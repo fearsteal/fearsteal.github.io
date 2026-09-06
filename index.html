@@ -1,1 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FearSteal | Minecraft Network</title>
+<meta name="description" content="FearSteal - The Ultimate Minecraft Lifesteal Experience.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;700;800;900&display=swap');
 
+:root{
+  --red:#ff2424;
+  --red2:#ff5a1f;
+  --orange:#ff8a00;
+  --gold:#ffc44d;
+  --bg:#050505;
+  --bg2:#0b0b0d;
+  --card:#101013;
+  --text:#fff;
+  --muted:#999;
+  --border:rgba(255,255,255,.08);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(255,40,20,.12),transparent 30%),
+    radial-gradient(circle at 80% 30%,rgba(255,120,0,.08),transparent 30%),
+    var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+
+a{text-decoration:none;color:inherit}
+
+button{
+  font:inherit;
+  cursor:pointer;
+  border:0;
+}
+
+#loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#030303;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  transition:opacity .8s,visibility .8s;
+}
+
+#loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-logo{
+  font-family:Orbitron;
+  font-weight:900;
+  font-size:clamp(40px,9vw,90px);
+  letter-spacing:8px;
+  background:linear-gradient(90deg,#fff,var(--red),var(--orange),#fff);
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:shine 2s infinite linear;
+}
+
+.loader-line{
+  width:220px;
+  height:3px;
+  background:#222;
+  margin-top:25px;
+  overflow:hidden;
+  border-radius:10px;
+}
+
+.loader-line span{
+  display:block;
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--red),var(--orange));
+  animation:load 2.2s forwards;
+}
+
+.loader-text{
+  margin-top:14px;
+  color:#777;
+  letter-spacing:4px;
+  font-size:11px;
+}
+
+@keyframes load{to{width:100%}}
+@keyframes shine{
+  0%{background-position:-400px}
+  100%{background-position:400px}
+}
+
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+
+.particle{
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:var(--red);
+  box-shadow:0 0 12px var(--red);
+  animation:float linear infinite;
+  opacity:.5;
+}
+
+@keyframes float{
+  from{transform:translateY(110vh);opacity:0}
+  20%{opacity:.7}
+  80%{opacity:.7}
+  to{transform:translateY(-20vh);opacity:0}
+}
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  background:rgba(4,4,5,.72);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+
+.brand{
+  font-family:Orbitron;
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.brand span{color:var(--red)}
+
+.navlinks{
+  display:flex;
+  gap:25px;
+  align-items:center;
+}
+
+.navlinks a{
+  font-size:13px;
+  color:#aaa;
+  transition:.25s;
+}
+
+.navlinks a:hover{
+  color:#fff;
+  text-shadow:0 0 15px var(--red);
+}
+
+.nav-discord{
+  padding:11px 18px;
+  border:1px solid rgba(255,50,30,.4);
+  border-radius:8px;
+  color:#fff!important;
+  background:rgba(255,30,20,.08);
+}
+
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:120px 6% 80px;
+  overflow:hidden;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  width:700px;
+  height:700px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,35,20,.20),transparent 65%);
+  filter:blur(10px);
+  animation:pulse 4s infinite alternate;
+}
+
+@keyframes pulse{
+  from{transform:scale(.85);opacity:.6}
+  to{transform:scale(1.1);opacity:1}
+}
+
+.hero-content{position:relative;z-index:2}
+
+.badge{
+  display:inline-flex;
+  padding:8px 15px;
+  border:1px solid rgba(255,70,30,.35);
+  border-radius:30px;
+  background:rgba(255,40,20,.07);
+  color:#ffb19c;
+  font-size:11px;
+  letter-spacing:2px;
+  margin-bottom:24px;
+}
+
+.hero h1{
+  font-family:Orbitron;
+  font-size:clamp(55px,12vw,150px);
+  line-height:.9;
+  font-weight:900;
+  letter-spacing:4px;
+  text-shadow:
+    0 0 20px rgba(255,30,20,.4),
+    0 0 70px rgba(255,30,20,.15);
+}
+
+.hero h1 span{
+  color:var(--red);
+}
+
+.hero h2{
+  margin-top:25px;
+  font-family:Orbitron;
+  font-size:clamp(14px,2vw,22px);
+  letter-spacing:5px;
+  color:#ddd;
+}
+
+.hero p{
+  max-width:650px;
+  margin:22px auto;
+  color:#929292;
+  line-height:1.8;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin-top:32px;
+}
+
+.btn{
+  padding:14px 25px;
+  border-radius:9px;
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:1px;
+  transition:.3s;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--red),var(--red2));
+  box-shadow:0 0 30px rgba(255,40,20,.25);
+}
+
+.btn-primary:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 45px rgba(255,40,20,.5);
+}
+
+.btn-secondary{
+  border:1px solid #333;
+  background:#111;
+}
+
+.btn-secondary:hover{
+  border-color:var(--red);
+  transform:translateY(-4px);
+}
+
+.ipbox{
+  display:inline-flex;
+  align-items:center;
+  gap:15px;
+  margin-top:35px;
+  padding:12px 17px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:10px;
+}
+
+.ipbox small{
+  display:block;
+  color:#666;
+  font-size:9px;
+  letter-spacing:2px;
+  text-align:left;
+}
+
+.ip{
+  font-family:Orbitron;
+  font-size:14px;
+  color:#fff;
+}
+
+.copy{
+  background:#202024;
+  color:#fff;
+  padding:8px 12px;
+  border-radius:6px;
+  font-size:11px;
+}
+
+section{
+  position:relative;
+  z-index:2;
+  padding:110px 7%;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:55px;
+}
+
+.section-title .mini{
+  color:var(--red);
+  font-size:10px;
+  letter-spacing:4px;
+  font-weight:800;
+}
+
+.section-title h2{
+  font-family:Orbitron;
+  font-size:clamp(30px,5vw,55px);
+  margin-top:12px;
+}
+
+.section-title p{
+  color:#777;
+  max-width:600px;
+  margin:15px auto;
+  line-height:1.7;
+}
+
+.status-wrap{
+  max-width:900px;
+  margin:auto;
+  padding:30px;
+  background:linear-gradient(145deg,#121214,#09090a);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 20px 80px rgba(0,0,0,.4);
+}
+
+.status-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.status-name{
+  font-family:Orbitron;
+  font-weight:800;
+}
+
+.online{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#62ff88;
+  font-size:12px;
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#50ff7c;
+  box-shadow:0 0 15px #50ff7c;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.stat{
+  padding:22px;
+  background:#0c0c0e;
+  border:1px solid var(--border);
+  border-radius:12px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-family:Orbitron;
+  font-size:23px;
+  margin-bottom:8px;
+}
+
+.stat span{
+  color:#666;
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+.modes{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:15px;
+}
+
+.card{
+  background:linear-gradient(145deg,#111114,#09090a);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:28px 20px;
+  transition:.35s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  top:-100px;
+  right:-100px;
+  width:180px;
+  height:180px;
+  background:radial-gradient(circle,rgba(255,40,20,.15),transparent 65%);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(255,50,30,.35);
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+.mode-icon{
+  font-size:32px;
+  margin-bottom:18px;
+}
+
+.card h3{
+  font-family:Orbitron;
+  font-size:15px;
+  margin-bottom:9px;
+}
+
+.card p{
+  color:#777;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.ranks{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.rank{
+  text-align:center;
+  padding:30px 20px;
+}
+
+.rank.featured{
+  border-color:rgba(255,75,30,.55);
+  box-shadow:0 0 35px rgba(255,40,20,.08);
+}
+
+.rank-badge{
+  width:65px;
+  height:65px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 18px;
+  border-radius:14px;
+  background:linear-gradient(145deg,#242426,#0b0b0d);
+  border:1px solid #333;
+  font-size:27px;
+}
+
+.rank h3{
+  font-family:Orbitron;
+  color:#fff;
+  margin-bottom:10px;
+}
+
+.price{
+  color:var(--orange);
+  font-size:14px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+
+.rank ul{
+  list-style:none;
+  text-align:left;
+  color:#777;
+  font-size:11px;
+  line-height:2.1;
+}
+
+.rank li:before{
+  content:"✓";
+  color:var(--red);
+  margin-right:8px;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.feature{
+  padding:28px;
+}
+
+.feature span{
+  display:block;
+  font-size:28px;
+  margin-bottom:18px;
+}
+
+.staff{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.staff-card{
+  text-align:center;
+  padding:30px;
+}
+
+.avatar{
+  width:80px;
+  height:80px;
+  margin:auto auto 18px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Orbitron;
+  font-weight:900;
+  font-size:24px;
+  background:linear-gradient(145deg,#2a0b0b,#111);
+  border:2px solid rgba(255,50,30,.4);
+  box-shadow:0 0 25px rgba(255,30,20,.15);
+}
+
+.role{
+  display:inline-block;
+  margin-top:9px;
+  color:var(--red);
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+.discord{
+  max-width:950px;
+  margin:auto;
+  text-align:center;
+  padding:70px 30px;
+  border-radius:22px;
+  background:
+    radial-gradient(circle at center,rgba(255,40,20,.13),transparent 60%),
+    #0c0c0e;
+  border:1px solid rgba(255,50,30,.18);
+}
+
+.discord h2{
+  font-family:Orbitron;
+  font-size:clamp(28px,5vw,52px);
+  margin-bottom:18px;
+}
+
+.discord p{
+  color:#777;
+  max-width:600px;
+  margin:auto;
+  line-height:1.8;
+}
+
+.rules{
+  max-width:900px;
+  margin:auto;
+  display:grid;
+  gap:12px;
+}
+
+.rule{
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
+  padding:22px;
+}
+
+.number{
+  color:var(--red);
+  font-family:Orbitron;
+  font-weight:900;
+}
+
+.rule p{
+  color:#777;
+  margin-top:6px;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.about{
+  max-width:900px;
+  margin:auto;
+  text-align:center;
+}
+
+.about p{
+  color:#888;
+  line-height:2;
+  margin-top:20px;
+}
+
+.faq{
+  max-width:850px;
+  margin:auto;
+}
+
+details{
+  background:#0d0d0f;
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin-bottom:10px;
+  padding:20px;
+}
+
+summary{
+  cursor:pointer;
+  font-weight:700;
+  font-size:13px;
+}
+
+details p{
+  color:#777;
+  font-size:12px;
+  line-height:1.8;
+  padding-top:15px;
+}
+
+footer{
+  position:relative;
+  z-index:2;
+  padding:50px 7% 30px;
+  border-top:1px solid var(--border);
+  background:#050506;
+}
+
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  padding-bottom:40px;
+}
+
+.footer-brand{
+  max-width:350px;
+}
+
+.footer-brand h2{
+  font-family:Orbitron;
+}
+
+.footer-brand h2 span{color:var(--red)}
+
+.footer-brand p{
+  color:#666;
+  font-size:12px;
+  line-height:1.8;
+  margin-top:12px;
+}
+
+.footer-links{
+  display:flex;
+  gap:30px;
+}
+
+.footer-links a{
+  color:#777;
+  font-size:12px;
+}
+
+.footer-links a:hover{color:#fff}
+
+.copyright{
+  border-top:1px solid var(--border);
+  padding-top:25px;
+  color:#555;
+  font-size:10px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.toast{
+  position:fixed;
+  bottom:30px;
+  left:50%;
+  transform:translate(-50%,100px);
+  z-index:99999;
+  background:#151518;
+  border:1px solid rgba(255,50,30,.4);
+  padding:13px 20px;
+  border-radius:9px;
+  font-size:12px;
+  opacity:0;
+  transition:.3s;
+}
+
+.toast.show{
+  transform:translate(-50%,0);
+  opacity:1;
+}
+
+@media(max-width:950px){
+  .navlinks a:not(.nav-discord){display:none}
+  .modes{grid-template-columns:repeat(2,1fr)}
+  .ranks{grid-template-columns:repeat(2,1fr)}
+  .features{grid-template-columns:repeat(2,1fr)}
+  .staff{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:600px){
+  nav{padding:0 20px}
+  section{padding:80px 20px}
+  .buttons{flex-direction:column}
+  .buttons .btn{width:100%}
+  .stats{grid-template-columns:1fr}
+  .modes,.ranks,.features,.staff{grid-template-columns:1fr}
+  .footer-top{flex-direction:column}
+  .footer-links{flex-wrap:wrap}
+  .copyright{flex-direction:column;gap:10px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="loader">
+  <div class="loader-logo">FEARSTEAL</div>
+  <div class="loader-line"><span></span></div>
+  <div class="loader-text">ENTERING THE FEAR</div>
+</div>
+
+<div id="particles"></div>
+
+<nav>
+  <a href="#home" class="brand">FEAR<span>STEAL</span></a>
+
+  <div class="navlinks">
+    <a href="#status">Status</a>
+    <a href="#modes">Modes</a>
+    <a href="#ranks">Ranks</a>
+    <a href="#staff">Staff</a>
+    <a href="#rules">Rules</a>
+    <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="nav-discord">DISCORD</a>
+  </div>
+</nav>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="badge">⚔ THE ULTIMATE MINECRAFT NETWORK ⚔</div>
+
+    <h1>FEAR<span>STEAL</span></h1>
+
+    <h2>ENTER THE FEAR. RULE THE LIFESTEAL.</h2>
+
+    <p>
+      Welcome to FearSteal — a next-generation Minecraft network
+      built for warriors, grinders and PvP legends.
+      Fight. Survive. Dominate.
+    </p>
+
+    <div class="buttons">
+      <button class="btn btn-primary" onclick="copyIP()">PLAY NOW</button>
+      <a class="btn btn-secondary" href="https://discord.gg/pGM5x3gXpX" target="_blank">
+        JOIN DISCORD
+      </a>
+    </div>
+
+    <div class="ipbox">
+      <div>
+        <small>SERVER IP</small>
+        <div class="ip">play.fearsteal.fun</div>
+      </div>
+      <button class="copy" onclick="copyIP()">COPY</button>
+    </div>
+  </div>
+</section>
+
+<section id="status">
+  <div class="section-title">
+    <div class="mini">SERVER NETWORK</div>
+    <h2>LIVE STATUS</h2>
+    <p>Check the current FearSteal network status and player count.</p>
+  </div>
+
+  <div class="status-wrap">
+    <div class="status-top">
+      <div class="status-name">PLAY.FEARSTEAL.FUN</div>
+      <div class="online" id="statusText">
+        <span class="dot"></span>
+        CHECKING...
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <strong id="players">--</strong>
+        <span>PLAYERS ONLINE</span>
+      </div>
+
+      <div class="stat">
+        <strong id="serverVersion">--</strong>
+        <span>VERSION</span>
+      </div>
+
+      <div class="stat">
+        <strong id="serverPing">--</strong>
+        <span>SERVER STATUS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modes">
+  <div class="section-title">
+    <div class="mini">CHOOSE YOUR BATTLE</div>
+    <h2>GAME MODES</h2>
+    <p>Different modes. One network. Infinite possibilities.</p>
+  </div>
+
+  <div class="modes">
+
+    <div class="card">
+      <div class="mode-icon">🩸</div>
+      <h3>LIFESTEAL</h3>
+      <p>Steal hearts, build your empire and become the strongest player alive.</p>
+    </div>
+
+    <div class="card">
+      <div class="mode-icon">⚔️</div>
+      <h3>PRACTICE</h3>
+      <p>Sharpen your PvP skills and prove yourself against the best fighters.</p>
+    </div>
+
+    <div class="card">
+      <div class="mode-icon">🌲</div>
+      <h3>SURVIVAL</h3>
+      <p>Explore, build, grind and survive in a dangerous Minecraft world.</p>
+    </div>
+
+    <div class="card">
+      <div class="mode-icon">💥</div>
+      <h3>BOXPVP</h3>
+      <p>Fast-paced PvP, powerful gear and nonstop fights inside the box.</p>
+    </div>
+
+    <div class="card">
+      <div class="mode-icon">🏆</div>
+      <h3>TIertest</h3>
+      <p>Test your PvP ability and climb the competitive tier system.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="ranks">
+  <div class="section-title">
+    <div class="mini">UNLOCK YOUR POWER</div>
+    <h2>RANKS</h2>
+    <p>Stand above the rest and unlock exclusive perks.</p>
+  </div>
+
+  <div class="ranks">
+
+    <div class="card rank featured">
+      <div class="rank-badge">🔥</div>
+      <h3>FEAR+</h3>
+      <div class="price">COMING SOON</div>
+      <ul>
+        <li>Exclusive Rank Tag</li>
+        <li>Special Permissions</li>
+        <li>Premium Commands</li>
+        <li>Exclusive Cosmetics</li>
+      </ul>
+    </div>
+
+    <div class="card rank">
+      <div class="rank-badge">🩸</div>
+      <h3>FEAR</h3>
+      <div class="price">COMING SOON</div>
+      <ul>
+        <li>Exclusive Rank Tag</li>
+        <li>Special Permissions</li>
+        <li>Premium Commands</li>
+        <li>Rank Cosmetics</li>
+      </ul>
+    </div>
+
+    <div class="card rank">
+      <div class="rank-badge">⚔️</div>
+      <h3>KNIGHT</h3>
+      <div class="price">COMING SOON</div>
+      <ul>
+        <li>Knight Prefix</li>
+        <li>Special Commands</li>
+        <li>Cosmetic Rewards</li>
+        <li>Priority Features</li>
+      </ul>
+    </div>
+
+    <div class="card rank">
+      <div class="rank-badge">👑</div>
+      <h3>ELIYE+</h3>
+      <div class="price">COMING SOON</div>
+      <ul>
+        <li>Elite Prefix</li>
+        <li>Exclusive Commands</li>
+        <li>Special Cosmetics</li>
+        <li>Premium Rewards</li>
+      </ul>
+    </div>
+
+    <div class="card rank">
+      <div class="rank-badge">💎</div>
+      <h3>ELIYE</h3>
+      <div class="price">COMING SOON</div>
+      <ul>
+        <li>Elite Prefix</li>
+        <li>Premium Commands</li>
+        <li>Cosmetic Rewards</li>
+        <li>Extra Perks</li>
+      </ul>
+    </div>
+
+    <div class="card rank">
+      <div class="rank-badge">👑</div>
+      <h3>KING</h3>
+      <div class="price">COMING SOON</div>
+      <ul>
+        <li>King Prefix</li>
+        <li>Special Commands</li>
+        <li>Exclusive Rewards</li>
+        <li>Premium Perks</li>
+      </ul>
+    </div>
+
+    <div class="card rank">
+      <div class="rank-badge">⚜️</div>
+      <h3>LORD</h3>
+      <div class="price">COMING SOON</div>
+      <ul>
+        <li>Lord Prefix</li>
+        <li>Special Permissions</li>
+        <li>Exclusive Cosmetics</li>
+        <li>Premium Features</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section id="features">
+  <div class="section-title">
+    <div class="mini">WHY FEARSTEAL?</div>
+    <h2>NETWORK FEATURES</h2>
+  </div>
+
+  <div class="features">
+
+    <div class="card feature">
+      <span>🛡️</span>
+      <h3>POWERFUL ANTICHEAT</h3>
+      <p>Competitive gameplay protected by modern server security.</p>
+    </div>
+
+    <div class="card feature">
+      <span>⚡</span>
+      <h3>HIGH PERFORMANCE</h3>
+      <p>Optimized gameplay designed for smooth PvP and survival.</p>
+    </div>
+
+    <div class="card feature">
+      <span>🏆</span>
+      <h3>COMPETITIVE</h3>
+      <p>Climb the ranks and prove that you belong at the top.</p>
+    </div>
+
+    <div class="card feature">
+      <span>🎁</span>
+      <h3>REWARDS</h3>
+      <p>Events, rewards and exciting content for the community.</p>
+    </div>
+
+    <div class="card feature">
+      <span>🌎</span>
+      <h3>COMMUNITY</h3>
+      <p>Join a growing Minecraft community and meet new players.</p>
+    </div>
+
+    <div class="card feature">
+      <span>🔥</span>
+      <h3>CONSTANT UPDATES</h3>
+      <p>New features and improvements are always being developed.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="staff">
+  <div class="section-title">
+    <div class="mini">THE PEOPLE BEHIND FEARSTEAL</div>
+    <h2>STAFF TEAM</h2>
+    <p>Meet the team working behind the network.</p>
+  </div>
+
+  <div class="staff">
+
+    <div class="card staff-card">
+      <div class="avatar">V</div>
+      <h3>ItzVeltriex</h3>
+      <span class="role">OWNER / DEVELOPER</span>
+      <p style="margin-top:15px;color:#666;font-size:12px">
+        Server developer and the creator behind FearSteal.
+      </p>
+    </div>
+
+    <div class="card staff-card">
+      <div class="avatar">FS</div>
+      <h3>FearSteal Team</h3>
+      <span class="role">STAFF TEAM</span>
+      <p style="margin-top:15px;color:#666;font-size:12px">
+        Helping maintain a fair and enjoyable network.
+      </p>
+    </div>
+
+    <div class="card staff-card">
+      <div class="avatar">?</div>
+      <h3>Coming Soon</h3>
+      <span class="role">STAFF</span>
+      <p style="margin-top:15px;color:#666;font-size:12px">
+        More members will be announced soon.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section id="rules">
+  <div class="section-title">
+    <div class="mini">PLAY FAIR</div>
+    <h2>SERVER RULES</h2>
+    <p>Respect the community and keep FearSteal enjoyable for everyone.</p>
+  </div>
+
+  <div class="rules">
+
+    <div class="card rule">
+      <div class="number">01</div>
+      <div>
+        <h3>NO CHEATING</h3>
+        <p>Hacks, unfair modifications and other forms of cheating are prohibited.</p>
+      </div>
+    </div>
+
+    <div class="card rule">
+      <div class="number">02</div>
+      <div>
+        <h3>NO EXPLOITING</h3>
+        <p>Do not abuse bugs, glitches or unintended mechanics.</p>
+      </div>
+    </div>
+
+    <div class="card rule">
+      <div class="number">03</div>
+      <div>
+        <h3>RESPECT PLAYERS</h3>
+        <p>Harassment, discrimination and toxic behavior are not welcome.</p>
+      </div>
+    </div>
+
+    <div class="card rule">
+      <div class="number">04</div>
+      <div>
+        <h3>NO ADVERTISING</h3>
+        <p>Advertising other servers or communities without permission is prohibited.</p>
+      </div>
+    </div>
+
+    <div class="card rule">
+      <div class="number">05</div>
+      <div>
+        <h3>FOLLOW STAFF</h3>
+        <p>Follow reasonable instructions from FearSteal staff members.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="discord">
+    <h2>JOIN THE COMMUNITY</h2>
+    <p>
+      Stay updated with FearSteal announcements, events, giveaways,
+      support and everything happening inside the network.
+    </p>
+
+    <div class="buttons">
+      <a href="https://discord.gg/pGM5x3gXpX"
+         target="_blank"
+         class="btn btn-primary">
+         JOIN FEARSTEAL DISCORD
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">
+    <div class="mini">WHO WE ARE</div>
+    <h2>ABOUT FEARSTEAL</h2>
+  </div>
+
+  <div class="about">
+    <p>
+      FearSteal is a Minecraft network created for players who want
+      competitive PvP, exciting survival gameplay and a strong community.
+      From Lifesteal and Practice to Survival, BoxPvP and TierTest,
+      FearSteal is built around one idea:
+      <strong style="color:#fff">Enter the Fear. Rule the Lifesteal.</strong>
+    </p>
+
+    <p>
+      The network is developed and managed by <strong style="color:#fff">ItzVeltriex</strong>,
+      with a focus on creating a premium Minecraft experience.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">
+    <div class="mini">NEED ANSWERS?</div>
+    <h2>FAQ</h2>
+  </div>
+
+  <div class="faq">
+
+    <details>
+      <summary>How do I join FearSteal?</summary>
+      <p>Open Minecraft, add the server IP play.fearsteal.fun and connect to the network.</p>
+    </details>
+
+    <details>
+      <summary>What game modes are available?</summary>
+      <p>FearSteal currently features Lifesteal, Practice, Survival, BoxPvP and TierTest.</p>
+    </details>
+
+    <details>
+      <summary>Where can I get server updates?</summary>
+      <p>Join our Discord community for announcements, events and updates.</p>
+    </details>
+
+    <details>
+      <summary>Are rank prices available?</summary>
+      <p>Rank prices will be announced soon. Stay connected to the FearSteal Discord for updates.</p>
+    </details>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-top">
+
+    <div class="footer-brand">
+      <h2>FEAR<span>STEAL</span></h2>
+      <p>
+        The ultimate Minecraft Lifesteal experience.
+        Fight, survive and rule the network.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#status">Status</a>
+      <a href="#modes">Modes</a>
+      <a href="#ranks">Ranks</a>
+      <a href="#rules">Rules</a>
+      <a href="https://discord.gg/pGM5x3gXpX" target="_blank">Discord</a>
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    <span>© 2026 FearSteal. All Rights Reserved.</span>
+    <span>Built with fear by ItzVeltriex.</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Server IP copied!</div>
+
+<script>
+/* LOADING SCREEN */
+window.addEventListener("load",function(){
+  setTimeout(()=>{
+    document.getElementById("loader").classList.add("hide");
+  },2300);
+});
+
+/* PARTICLES */
+const particles=document.getElementById("particles");
+
+for(let i=0;i<45;i++){
+  const p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration=(5+Math.random()*9)+"s";
+  p.style.animationDelay=(-Math.random()*10)+"s";
+  p.style.opacity=(.2+Math.random()*.6);
+  particles.appendChild(p);
+}
+
+/* COPY SERVER IP */
+function copyIP(){
+  navigator.clipboard.writeText("play.fearsteal.fun")
+  .then(()=>{
+    const toast=document.getElementById("toast");
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+      toast.classList.remove("show");
+    },1800);
+  })
+  .catch(()=>{
+    alert("Server IP: play.fearsteal.fun");
+  });
+}
+
+/* SERVER STATUS */
+async function serverStatus(){
+
+  const statusText=document.getElementById("statusText");
+  const players=document.getElementById("players");
+  const version=document.getElementById("serverVersion");
+  const ping=document.getElementById("serverPing");
+
+  try{
+
+    const start=performance.now();
+
+    const response=await fetch(
+      "https://api.mcsrvstat.us/3/play.fearsteal.fun"
+    );
+
+    const data=await response.json();
+
+    const time=Math.round(performance.now()-start);
+
+    if(data.online){
+
+      statusText.innerHTML=
+        '<span class="dot"></span> ONLINE';
+
+      players.textContent=
+        data.players
+        ? data.players.online
+        : "0";
+
+      version.textContent=
+        data.version || "1.21+";
+
+      ping.textContent=
+        time+"ms";
+
+    }else{
+
+      statusText.innerHTML=
+        '<span class="dot" style="background:#ff3333;box-shadow:0 0 15px #ff3333"></span> OFFLINE';
+
+      players.textContent="0";
+      version.textContent="--";
+      ping.textContent="OFFLINE";
+    }
+
+  }catch(error){
+
+    statusText.innerHTML=
+      '<span class="dot" style="background:#ffb000;box-shadow:0 0 15px #ffb000"></span> UNKNOWN';
+
+    players.textContent="--";
+    version.textContent="--";
+    ping.textContent="--";
+  }
+}
+
+serverStatus();
+setInterval(serverStatus,30000);
+</script>
+
+</body>
+</html>
