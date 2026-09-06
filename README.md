@@ -1,2 +1,2 @@
 # fearsteal.github.io
-fearsteal.github.io
+fearsteal
