@@ -15,25 +15,26 @@
 
   <style>
     :root {
-      --bg-dark: #070709;
-      --bg-surface: #0e0e13;
-      --bg-surface-elevated: #15151c;
-      --border-color: rgba(220, 38, 38, 0.22);
-      --border-bright: rgba(239, 68, 68, 0.45);
+      --bg-dark: #050508;
+      --bg-surface: #0a0a0f;
+      --bg-surface-elevated: #12121a;
+      --border-color: rgba(220, 38, 38, 0.25);
+      --border-bright: rgba(239, 68, 68, 0.6);
       --crimson: #dc2626;
       --crimson-glow: #ef4444;
+      --crimson-bright: #ff3344;
       --crimson-dim: rgba(220, 38, 38, 0.12);
       --text-main: #f3f4f6;
       --text-muted: #9ca3af;
-      --text-accent: #f87171;
+      --text-accent: #fca5a5;
       --gold: #f59e0b;
       --green-online: #10b981;
       --red-offline: #ef4444;
       --font-display: 'Rajdhani', sans-serif;
       --font-title: 'Cinzel', serif;
       --font-body: 'Inter', sans-serif;
-      --radius: 12px;
-      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --radius: 14px;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * {
@@ -50,16 +51,20 @@
       overflow-x: hidden;
       line-height: 1.6;
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 65%, rgba(185, 28, 28, 0.06) 0%, transparent 45%),
-        linear-gradient(rgba(7, 7, 9, 0.95), rgba(7, 7, 9, 0.98)),
-        url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="%23221313" fill-opacity="0.2"><path d="M0 0h20v20H0V0zm20 20h20v20H20V20z"/></g></svg>');
+        radial-gradient(circle at 10% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(185, 28, 28, 0.08) 0%, transparent 45%),
+        linear-gradient(rgba(5, 5, 8, 0.94), rgba(5, 5, 8, 0.98)),
+        url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="%23221313" fill-opacity="0.25"><path d="M0 0h20v20H0V0zm20 20h20v20H20V20z"/></g></svg>');
     }
 
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #070709; }
-    ::-webkit-scrollbar-thumb { background: #dc2626; border-radius: 4px; }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 9px; }
+    ::-webkit-scrollbar-track { background: #050508; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #dc2626, #7f1d1d);
+      border-radius: 6px;
+      border: 2px solid #050508;
+    }
     ::-webkit-scrollbar-thumb:hover { background: #ef4444; }
 
     /* Canvas background */
@@ -73,68 +78,19 @@
       z-index: 1;
     }
 
-    /* Typography Utilities */
+    /* Typography */
     h1, h2, h3, h4, .font-display {
       font-family: var(--font-display);
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
     }
     .cinzel { font-family: var(--font-title); }
-    .crimson-text { color: var(--crimson-glow); text-shadow: 0 0 12px rgba(239, 68, 68, 0.4); }
+    .crimson-text { color: var(--crimson-glow); text-shadow: 0 0 16px rgba(239, 68, 68, 0.5); }
 
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      padding: 12px 26px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: var(--transition);
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #b91c1c, #ef4444);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(239, 68, 68, 0.6);
-      filter: brightness(1.1);
-    }
-    .btn-outline {
-      background: rgba(14, 14, 19, 0.85);
-      color: #fff;
-      border-color: var(--border-color);
-      backdrop-filter: blur(8px);
-    }
-    .btn-outline:hover {
-      border-color: var(--crimson);
-      background: rgba(220, 38, 38, 0.15);
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
-    }
-    .btn-discord {
-      background: #5865F2;
-      color: #fff;
-      box-shadow: 0 4px 15px rgba(88, 101, 242, 0.35);
-    }
-    .btn-discord:hover {
-      background: #4752c4;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5);
-    }
+    /* ========================================================
+       ADVANCED SOUND SYSTEM & INTERACTIVE AUDIO
+       ======================================================== */
+    /* Handled via Web Audio API synth in JavaScript */
 
     /* Global Container */
     .container {
@@ -145,20 +101,99 @@
       z-index: 2;
     }
 
+    /* Buttons with Energy Flow */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      padding: 13px 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: 0.6s ease;
+      pointer-events: none;
+    }
+    .btn:hover::before {
+      left: 100%;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #b91c1c, #ef4444);
+      color: #fff;
+      box-shadow: 0 4px 25px rgba(220, 38, 38, 0.45);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 34px rgba(239, 68, 68, 0.7);
+      filter: brightness(1.15);
+    }
+    .btn-outline {
+      background: rgba(14, 14, 20, 0.85);
+      color: #fff;
+      border-color: var(--border-color);
+      backdrop-filter: blur(10px);
+    }
+    .btn-outline:hover {
+      border-color: var(--crimson-glow);
+      background: rgba(220, 38, 38, 0.2);
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+    }
+    .btn-discord {
+      background: linear-gradient(135deg, #4f46e5, #5865F2);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
+    }
+    .btn-discord:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(88, 101, 242, 0.6);
+      filter: brightness(1.1);
+    }
+
     /* Glass Panels */
     .glass-card {
-      background: rgba(14, 14, 19, 0.75);
+      background: rgba(12, 12, 18, 0.75);
       border: 1px solid var(--border-color);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-radius: var(--radius);
-      padding: 28px;
+      padding: 30px;
       position: relative;
       transition: var(--transition);
+      overflow: hidden;
+    }
+    .glass-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent 60%, rgba(220,38,38,0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
     }
     .glass-card:hover {
       border-color: var(--border-bright);
-      box-shadow: 0 8px 32px rgba(220, 38, 38, 0.15);
+      box-shadow: 0 10px 40px rgba(220, 38, 38, 0.2);
     }
 
     /* Section Headings */
@@ -171,102 +206,143 @@
       font-size: 0.9rem;
       font-weight: 700;
       color: var(--crimson-glow);
-      letter-spacing: 3px;
+      letter-spacing: 3.5px;
       text-transform: uppercase;
       display: inline-block;
       margin-bottom: 6px;
     }
     .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
       font-weight: 800;
       color: #ffffff;
-      text-shadow: 0 0 16px rgba(255, 255, 255, 0.15);
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
     }
     .section-title-wrap::after {
       content: '';
       display: block;
-      width: 70px;
+      width: 80px;
       height: 3px;
-      background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+      background: linear-gradient(90deg, transparent, var(--crimson-glow), transparent);
       margin: 14px auto 0;
     }
 
     /* ========================================================
-       AUTH MODAL / ENTRY SCREEN
+       ADVANCED CINEMATIC PORTAL / AUTH ENTRY SCREEN
        ======================================================== */
     #auth-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(4, 4, 6, 0.95);
-      backdrop-filter: blur(16px);
+      background: radial-gradient(circle at center, rgba(15, 6, 8, 0.96) 0%, rgba(2, 2, 4, 0.99) 100%);
+      backdrop-filter: blur(24px);
       z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
+      transition: opacity 0.7s cubic-bezier(0.8, 0, 0.2, 1), visibility 0.7s;
+      perspective: 1200px;
+    }
+    #auth-overlay.portal-active {
+      animation: dimensionalRift 0.85s forwards ease-in-out;
+    }
+    @keyframes dimensionalRift {
+      0% { transform: scale(1); filter: brightness(1); }
+      40% { transform: scale(1.08) rotate(1deg); filter: brightness(2.5) contrast(1.5); }
+      100% { transform: scale(2.2) rotate(-3deg); opacity: 0; filter: blur(30px); }
     }
     #auth-overlay.hidden {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
     }
+
+    /* Shockwave blast element */
+    .portal-shockwave {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 4px solid var(--crimson-bright);
+      box-shadow: 0 0 50px var(--crimson), inset 0 0 50px var(--crimson);
+      pointer-events: none;
+      opacity: 0;
+      z-index: 10001;
+      transform: translate(-50%, -50%);
+    }
+
     .auth-card {
       width: 100%;
-      max-width: 480px;
-      background: rgba(16, 16, 22, 0.9);
+      max-width: 490px;
+      background: rgba(14, 14, 20, 0.85);
       border: 1px solid var(--border-bright);
-      border-radius: 16px;
-      padding: 36px 32px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(220, 38, 38, 0.25);
+      border-radius: 20px;
+      padding: 40px 34px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 60px rgba(220, 38, 38, 0.35);
       position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+      animation: authCardEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    .auth-header {
-      text-align: center;
-      margin-bottom: 26px;
+    @keyframes authCardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(60px) scale(0.9) rotateX(15deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+      }
     }
+
     .auth-brand-logo {
-      width: 72px;
-      height: 72px;
-      background: linear-gradient(135deg, #220505, #110303);
+      width: 82px;
+      height: 82px;
+      background: radial-gradient(circle, #3b0a0a, #110202);
       border: 2px solid var(--crimson);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 12px;
+      margin: 0 auto 16px;
       color: var(--crimson);
-      font-size: 2rem;
-      box-shadow: 0 0 24px rgba(220, 38, 38, 0.5);
+      font-size: 2.3rem;
+      box-shadow: 0 0 35px rgba(220, 38, 38, 0.7);
+      animation: heartGlowPulse 2.4s infinite ease-in-out;
     }
+    @keyframes heartGlowPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(220, 38, 38, 0.5); }
+      50% { transform: scale(1.06); box-shadow: 0 0 50px rgba(239, 68, 68, 0.9); }
+    }
+
     .auth-tabs {
       display: flex;
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 8px;
-      padding: 4px;
-      margin-bottom: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      padding: 5px;
+      margin-bottom: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .auth-tab-btn {
       flex: 1;
-      padding: 10px;
+      padding: 12px;
       background: transparent;
       border: none;
       color: var(--text-muted);
       font-family: var(--font-display);
-      font-weight: 700;
+      font-weight: 800;
+      font-size: 1rem;
       cursor: pointer;
-      border-radius: 6px;
+      border-radius: 8px;
       transition: var(--transition);
       text-align: center;
     }
     .auth-tab-btn.active {
-      background: var(--crimson);
+      background: linear-gradient(135deg, #b91c1c, #ef4444);
       color: #fff;
-      box-shadow: 0 2px 10px rgba(220, 38, 38, 0.4);
+      box-shadow: 0 2px 15px rgba(220, 38, 38, 0.5);
     }
     .auth-form-group {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       position: relative;
     }
     .auth-form-group label {
@@ -282,17 +358,17 @@
     }
     .auth-input-wrap i.input-icon {
       position: absolute;
-      left: 14px;
+      left: 15px;
       top: 50%;
       transform: translateY(-50%);
       color: #6b7280;
     }
     .auth-input-wrap input {
       width: 100%;
-      background: rgba(7, 7, 10, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 12px 42px 12px 40px;
+      background: rgba(8, 8, 12, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9px;
+      padding: 13px 44px 13px 42px;
       color: #fff;
       font-size: 0.95rem;
       outline: none;
@@ -300,29 +376,32 @@
       font-family: var(--font-body);
     }
     .auth-input-wrap input:focus {
-      border-color: var(--crimson);
-      box-shadow: 0 0 12px rgba(220, 38, 38, 0.35);
+      border-color: var(--crimson-glow);
+      box-shadow: 0 0 16px rgba(220, 38, 38, 0.45);
+      background: rgba(15, 15, 22, 0.95);
     }
     .toggle-password {
       position: absolute;
-      right: 14px;
+      right: 15px;
       top: 50%;
       transform: translateY(-50%);
       color: #6b7280;
       cursor: pointer;
+      padding: 4px;
     }
+    .toggle-password:hover { color: #fff; }
     .auth-error-msg {
       color: #ef4444;
       font-size: 0.82rem;
-      margin-top: 4px;
-      min-height: 16px;
+      margin-top: 5px;
+      min-height: 18px;
     }
     .auth-options {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 0.85rem;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       color: var(--text-muted);
     }
     .auth-options a {
@@ -334,8 +413,8 @@
        TOP NAVBAR & STICKY NAVIGATION
        ======================================================== */
     .top-bar {
-      background: rgba(5, 5, 8, 0.85);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(4, 4, 6, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       font-size: 0.85rem;
       padding: 6px 0;
       position: relative;
@@ -360,11 +439,12 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(10, 10, 14, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(8, 8, 12, 0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border-color);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.35s ease;
     }
     .nav-inner {
       display: flex;
@@ -381,37 +461,37 @@
       color: #fff;
     }
     .brand-shield {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       background: linear-gradient(135deg, #991b1b, #ef4444);
       border: 1px solid #f87171;
-      border-radius: 8px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-display);
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: 800;
-      box-shadow: 0 0 16px rgba(239, 68, 68, 0.4);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
     }
     .brand-text-block {
       line-height: 1.1;
     }
     .brand-title {
       font-family: var(--font-display);
-      font-size: 1.55rem;
+      font-size: 1.6rem;
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 2.2px;
       background: linear-gradient(180deg, #ffffff 40%, #ef4444 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .brand-tag {
       font-size: 0.68rem;
-      letter-spacing: 2px;
+      letter-spacing: 2.2px;
       color: var(--text-muted);
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     /* Nav items */
@@ -437,8 +517,8 @@
     }
     .nav-item a:hover, .nav-item a.active {
       color: #ffffff;
-      background: rgba(220, 38, 38, 0.18);
-      box-shadow: inset 0 0 0 1px rgba(220, 38, 38, 0.35);
+      background: rgba(220, 38, 38, 0.2);
+      box-shadow: inset 0 0 0 1px rgba(220, 38, 38, 0.4);
     }
 
     /* Search & User Nav controls */
@@ -453,10 +533,10 @@
       align-items: center;
     }
     .search-box input {
-      background: rgba(20, 20, 28, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(18, 18, 26, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 20px;
-      padding: 7px 14px 7px 32px;
+      padding: 8px 14px 8px 34px;
       color: #fff;
       font-size: 0.82rem;
       width: 140px;
@@ -464,12 +544,13 @@
       outline: none;
     }
     .search-box input:focus {
-      width: 190px;
-      border-color: var(--crimson);
+      width: 200px;
+      border-color: var(--crimson-glow);
+      box-shadow: 0 0 15px rgba(220, 38, 38, 0.35);
     }
     .search-box i {
       position: absolute;
-      left: 11px;
+      left: 12px;
       color: #9ca3af;
       font-size: 0.8rem;
     }
@@ -478,15 +559,15 @@
       align-items: center;
       gap: 8px;
       padding: 6px 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       font-size: 0.82rem;
       font-weight: 600;
     }
     .nav-user-badge img {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 4px;
     }
     .logout-btn {
@@ -498,7 +579,7 @@
       transition: var(--transition);
       padding: 4px;
     }
-    .logout-btn:hover { color: #ef4444; }
+    .logout-btn:hover { color: #ef4444; transform: scale(1.15); }
 
     .mobile-hamburger {
       display: none;
@@ -511,90 +592,97 @@
     }
 
     /* ========================================================
-       HERO SECTION
+       HERO SECTION WITH PERSPECTIVE DEPTH
        ======================================================== */
     .hero-section {
-      min-height: 90vh;
+      min-height: 92vh;
       position: relative;
       display: flex;
       align-items: center;
-      padding: 60px 0 80px;
+      padding: 70px 0 90px;
       overflow: hidden;
     }
     .hero-bg-banner {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(220, 38, 38, 0.22), rgba(7, 7, 9, 0.96) 75%),
+      background: radial-gradient(circle at center, rgba(220, 38, 38, 0.25), rgba(5, 5, 8, 0.98) 75%),
                   url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-      filter: saturate(1.2);
+      filter: saturate(1.3);
       opacity: 0.45;
       z-index: 0;
+      transform: scale(1.05);
+      animation: heroBackgroundZoom 20s infinite alternate ease-in-out;
     }
+    @keyframes heroBackgroundZoom {
+      0% { transform: scale(1.03); }
+      100% { transform: scale(1.1); }
+    }
+
     .hero-content {
       position: relative;
       z-index: 2;
       text-align: center;
-      max-width: 920px;
+      max-width: 940px;
       margin: 0 auto;
     }
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(220, 38, 38, 0.15);
-      border: 1px solid rgba(239, 68, 68, 0.4);
-      padding: 6px 18px;
+      background: rgba(220, 38, 38, 0.18);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      padding: 6px 20px;
       border-radius: 30px;
       font-size: 0.85rem;
       font-weight: 700;
       color: #fca5a5;
-      margin-bottom: 22px;
-      box-shadow: 0 0 20px rgba(220, 38, 38, 0.25);
+      margin-bottom: 24px;
+      box-shadow: 0 0 25px rgba(220, 38, 38, 0.35);
     }
     .hero-title {
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-size: clamp(3rem, 7.5vw, 6rem);
       font-weight: 900;
       line-height: 0.95;
       letter-spacing: 4px;
       margin-bottom: 12px;
-      background: linear-gradient(180deg, #ffffff 30%, #ef4444 80%, #7f1d1d 100%);
+      background: linear-gradient(180deg, #ffffff 25%, #ef4444 75%, #7f1d1d 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 25px rgba(220, 38, 38, 0.6));
+      filter: drop-shadow(0 0 35px rgba(220, 38, 38, 0.7));
     }
     .hero-subtitle {
-      font-size: clamp(1.1rem, 2.4vw, 1.8rem);
-      font-weight: 700;
+      font-size: clamp(1.1rem, 2.5vw, 1.9rem);
+      font-weight: 800;
       color: #f3f4f6;
       letter-spacing: 3px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       text-transform: uppercase;
     }
     .hero-desc {
       font-size: 1.05rem;
       color: #9ca3af;
-      max-width: 680px;
-      margin: 0 auto 34px;
+      max-width: 700px;
+      margin: 0 auto 36px;
     }
 
     /* Hero Server IP & Action Grid */
     .ip-copy-box {
-      background: rgba(15, 15, 22, 0.85);
+      background: rgba(14, 14, 22, 0.9);
       border: 1px solid var(--border-bright);
-      padding: 12px 24px;
+      padding: 14px 26px;
       border-radius: 12px;
       display: inline-flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 30px;
+      margin-bottom: 34px;
       cursor: pointer;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(220, 38, 38, 0.2);
+      box-shadow: 0 5px 35px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(220, 38, 38, 0.25);
       transition: var(--transition);
     }
     .ip-copy-box:hover {
       border-color: #ef4444;
-      transform: scale(1.02);
-      box-shadow: 0 0 25px rgba(220, 38, 38, 0.4);
+      transform: scale(1.03);
+      box-shadow: 0 0 35px rgba(220, 38, 38, 0.55);
     }
     .ip-text-block {
       text-align: left;
@@ -607,61 +695,63 @@
     }
     .ip-address {
       font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 800;
       color: #ffffff;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.3px;
     }
     .ip-port {
       color: var(--crimson-glow);
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
     .ip-action-icon {
-      background: var(--crimson);
+      background: linear-gradient(135deg, #b91c1c, #ef4444);
       color: #fff;
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+      width: 40px;
+      height: 40px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.95rem;
+      font-size: 1rem;
+      box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
     }
 
     .hero-btn-group {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 40px;
+      gap: 18px;
+      margin-bottom: 42px;
     }
 
-    /* Live Live Hero Bar */
+    /* Live Hero Bar */
     .hero-live-pill {
       display: inline-flex;
       align-items: center;
       gap: 16px;
-      padding: 10px 22px;
+      padding: 12px 26px;
       background: rgba(14, 14, 20, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 40px;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
     .status-dot {
-      width: 10px;
-      height: 10px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
       display: inline-block;
     }
     .status-dot.online {
       background-color: var(--green-online);
-      box-shadow: 0 0 10px var(--green-online);
+      box-shadow: 0 0 12px var(--green-online);
       animation: pulseGreen 1.8s infinite;
     }
     .status-dot.offline {
       background-color: var(--red-offline);
-      box-shadow: 0 0 10px var(--red-offline);
+      box-shadow: 0 0 12px var(--red-offline);
       animation: pulseRed 1.8s infinite;
     }
     @keyframes pulseGreen {
@@ -677,14 +767,14 @@
        SERVER MONITORING & LIVE STATUS PAGE
        ======================================================== */
     .status-section {
-      padding: 90px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
-      background: linear-gradient(180deg, transparent, rgba(14, 14, 20, 0.4));
+      padding: 95px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      background: linear-gradient(180deg, transparent, rgba(14, 14, 20, 0.5));
     }
     .status-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
-      gap: 24px;
+      gap: 26px;
     }
     .status-main-box {
       grid-column: span 1;
@@ -696,10 +786,10 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
+      padding: 7px 16px;
       border-radius: 20px;
       font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
@@ -707,6 +797,7 @@
       background: rgba(16, 185, 129, 0.15);
       border: 1px solid rgba(16, 185, 129, 0.4);
       color: #34d399;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
     }
     .status-badge-live.offline {
       background: rgba(239, 68, 68, 0.15);
@@ -715,15 +806,15 @@
     }
 
     .motd-display {
-      background: rgba(5, 5, 8, 0.7);
+      background: rgba(5, 5, 8, 0.8);
       border: 1px dashed rgba(255, 255, 255, 0.12);
-      border-radius: 8px;
-      padding: 16px;
+      border-radius: 9px;
+      padding: 18px;
       font-family: 'Courier New', monospace;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       color: #e2e8f0;
-      margin: 16px 0;
-      min-height: 54px;
+      margin: 18px 0;
+      min-height: 56px;
       display: flex;
       align-items: center;
     }
@@ -736,57 +827,58 @@
       gap: 8px;
     }
     .status-stat-card i {
-      font-size: 2rem;
-      color: var(--crimson);
-      margin-bottom: 4px;
+      font-size: 2.2rem;
+      color: var(--crimson-glow);
+      margin-bottom: 6px;
     }
     .status-stat-value {
       font-family: var(--font-display);
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 800;
       color: #fff;
       line-height: 1;
     }
     .status-stat-label {
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       text-transform: uppercase;
       letter-spacing: 1.2px;
       color: var(--text-muted);
     }
     .status-meta-list {
-      margin-top: 18px;
+      margin-top: 20px;
       display: flex;
       justify-content: space-between;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 14px;
-      font-size: 0.82rem;
+      padding-top: 16px;
+      font-size: 0.84rem;
       color: var(--text-muted);
     }
 
     /* ========================================================
-       FEATURES SECTION
+       FEATURES SECTION WITH 3D TILT EFFECT
        ======================================================== */
     .features-section {
-      padding: 90px 0;
+      padding: 95px 0;
     }
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
+      gap: 26px;
     }
     .feature-box {
       border-radius: var(--radius);
-      padding: 28px;
+      padding: 30px;
       position: relative;
-      background: rgba(14, 14, 20, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(14, 14, 20, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.07);
       transition: var(--transition);
       overflow: hidden;
+      transform-style: preserve-3d;
     }
     .feature-box:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px) scale(1.02);
       border-color: var(--border-bright);
-      box-shadow: 0 10px 30px rgba(220, 38, 38, 0.18);
+      box-shadow: 0 12px 36px rgba(220, 38, 38, 0.22);
     }
     .feature-box::before {
       content: '';
@@ -803,46 +895,50 @@
       opacity: 1;
     }
     .feature-icon-wrap {
-      width: 54px;
-      height: 54px;
+      width: 58px;
+      height: 58px;
       border-radius: 12px;
-      background: rgba(220, 38, 38, 0.12);
-      border: 1px solid rgba(220, 38, 38, 0.25);
+      background: rgba(220, 38, 38, 0.14);
+      border: 1px solid rgba(220, 38, 38, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: var(--crimson-glow);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+      transition: transform 0.4s ease;
+    }
+    .feature-box:hover .feature-icon-wrap {
+      transform: rotateY(180deg);
     }
     .feature-title {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 10px;
       color: #fff;
     }
     .feature-text {
       color: var(--text-muted);
-      font-size: 0.92rem;
-      line-height: 1.5;
+      font-size: 0.94rem;
+      line-height: 1.55;
     }
 
     /* ========================================================
        STORE & RANKS SECTION
        ======================================================== */
     .store-section {
-      padding: 90px 0;
-      background: linear-gradient(180deg, rgba(14, 14, 20, 0.3), transparent);
+      padding: 95px 0;
+      background: linear-gradient(180deg, rgba(14, 14, 20, 0.4), transparent);
     }
     .ranks-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 24px;
+      gap: 26px;
       margin-bottom: 50px;
     }
     .rank-card {
-      border-radius: 14px;
-      padding: 30px 24px;
+      border-radius: 16px;
+      padding: 32px 24px;
       text-align: center;
       position: relative;
       background: rgba(14, 14, 20, 0.85);
@@ -853,17 +949,17 @@
       transition: var(--transition);
     }
     .rank-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
     }
     .rank-card.highlight {
       border-color: #ef4444;
-      background: radial-gradient(circle at top, rgba(220, 38, 38, 0.2), rgba(14, 14, 20, 0.95));
-      box-shadow: 0 0 30px rgba(220, 38, 38, 0.25);
+      background: radial-gradient(circle at top, rgba(220, 38, 38, 0.25), rgba(14, 14, 20, 0.95));
+      box-shadow: 0 0 35px rgba(220, 38, 38, 0.3);
     }
     .rank-card.free-novice {
       border-color: #3b82f6;
-      background: radial-gradient(circle at top, rgba(59, 130, 246, 0.15), rgba(14, 14, 20, 0.95));
+      background: radial-gradient(circle at top, rgba(59, 130, 246, 0.2), rgba(14, 14, 20, 0.95));
     }
     .rank-popular-tag {
       position: absolute;
@@ -874,20 +970,20 @@
       color: #fff;
       font-size: 0.72rem;
       font-weight: 800;
-      letter-spacing: 1px;
-      padding: 4px 14px;
+      letter-spacing: 1.2px;
+      padding: 5px 16px;
       border-radius: 20px;
       text-transform: uppercase;
-      box-shadow: 0 2px 10px rgba(220, 38, 38, 0.5);
+      box-shadow: 0 2px 12px rgba(220, 38, 38, 0.6);
     }
     .rank-name {
-      font-size: 1.8rem;
+      font-size: 1.85rem;
       font-weight: 800;
       margin-bottom: 8px;
     }
     .rank-price {
       font-family: var(--font-display);
-      font-size: 2.3rem;
+      font-size: 2.4rem;
       font-weight: 900;
       color: #ffffff;
       margin: 14px 0 20px;
@@ -939,36 +1035,36 @@
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, #3b82f6, #60a5fa);
-      transition: width 0.4s ease;
+      transition: width 0.5s ease;
     }
 
     /* ========================================================
        STAFF TEAM
        ======================================================== */
     .staff-section {
-      padding: 90px 0;
+      padding: 95px 0;
     }
     .staff-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 24px;
+      gap: 26px;
     }
     .staff-card {
       background: rgba(14, 14, 20, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 26px;
       text-align: center;
       transition: var(--transition);
       position: relative;
     }
     .staff-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px);
       border-color: var(--border-bright);
     }
     .staff-avatar-box {
-      width: 86px;
-      height: 86px;
+      width: 90px;
+      height: 90px;
       margin: 0 auto 16px;
       position: relative;
     }
@@ -977,9 +1073,13 @@
       height: 100%;
       border-radius: 12px;
       image-rendering: pixelated;
-      background: #1a1a24;
+      background: #181822;
       border: 2px solid var(--crimson);
-      box-shadow: 0 0 16px rgba(220, 38, 38, 0.35);
+      box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .staff-card:hover .staff-avatar {
+      transform: scale(1.08) rotate(3deg);
     }
     .staff-role-badge {
       display: inline-block;
@@ -995,26 +1095,14 @@
     .role-founder {
       background: linear-gradient(90deg, #991b1b, #ef4444);
       color: #fff;
-      box-shadow: 0 0 14px rgba(239, 68, 68, 0.5);
+      box-shadow: 0 0 16px rgba(239, 68, 68, 0.55);
     }
-    .role-owner {
-      background: #7c3aed;
-      color: #fff;
-    }
-    .role-admin {
-      background: #d97706;
-      color: #fff;
-    }
-    .role-mod {
-      background: #2563eb;
-      color: #fff;
-    }
-    .role-helper {
-      background: #059669;
-      color: #fff;
-    }
+    .role-owner { background: #7c3aed; color: #fff; }
+    .role-admin { background: #d97706; color: #fff; }
+    .role-mod { background: #2563eb; color: #fff; }
+    .role-helper { background: #059669; color: #fff; }
     .staff-username {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 800;
       color: #fff;
       margin-bottom: 6px;
@@ -1042,24 +1130,24 @@
        LEADERBOARD
        ======================================================== */
     .leaderboard-section {
-      padding: 90px 0;
-      background: linear-gradient(180deg, rgba(14, 14, 20, 0.3), transparent);
+      padding: 95px 0;
+      background: linear-gradient(180deg, rgba(14, 14, 20, 0.4), transparent);
     }
     .category-pills {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-      margin-bottom: 40px;
+      gap: 12px;
+      margin-bottom: 42px;
     }
     .category-pill-btn {
-      background: rgba(20, 20, 28, 0.75);
+      background: rgba(18, 18, 26, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.1);
       color: #9ca3af;
       font-family: var(--font-display);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.95rem;
-      padding: 8px 18px;
+      padding: 9px 20px;
       border-radius: 20px;
       cursor: pointer;
       transition: var(--transition);
@@ -1068,61 +1156,60 @@
       background: var(--crimson);
       color: #fff;
       border-color: #ef4444;
-      box-shadow: 0 0 15px rgba(220, 38, 38, 0.4);
+      box-shadow: 0 0 18px rgba(220, 38, 38, 0.45);
     }
 
-    /* Top 3 Podium */
+    /* Podium */
     .podium-wrap {
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      gap: 20px;
-      margin-bottom: 40px;
+      gap: 24px;
+      margin-bottom: 42px;
     }
     .podium-box {
       flex: 1;
-      max-width: 250px;
+      max-width: 260px;
       text-align: center;
       background: rgba(14, 14, 20, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius);
-      padding: 24px 16px;
+      padding: 26px 18px;
       position: relative;
       transition: var(--transition);
     }
     .podium-box.rank-1 {
       order: 2;
       border-color: #f59e0b;
-      transform: translateY(-20px);
-      box-shadow: 0 0 28px rgba(245, 158, 11, 0.25);
+      transform: translateY(-22px);
+      box-shadow: 0 0 35px rgba(245, 158, 11, 0.3);
     }
-    .podium-box.rank-2 {
-      order: 1;
-      border-color: #94a3b8;
-    }
-    .podium-box.rank-3 {
-      order: 3;
-      border-color: #b45309;
-    }
+    .podium-box.rank-2 { order: 1; border-color: #94a3b8; }
+    .podium-box.rank-3 { order: 3; border-color: #b45309; }
     .podium-crown {
       position: absolute;
-      top: -16px;
+      top: -18px;
       left: 50%;
       transform: translateX(-50%);
       color: #f59e0b;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
+      animation: crownBounce 2s infinite ease-in-out;
+    }
+    @keyframes crownBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-5px); }
     }
     .podium-avatar {
-      width: 68px;
-      height: 68px;
-      border-radius: 10px;
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
       margin: 0 auto 12px;
       image-rendering: pixelated;
       background: #111;
     }
     .podium-rank-num {
       font-family: var(--font-display);
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 900;
       line-height: 1;
       margin-bottom: 4px;
@@ -1133,13 +1220,13 @@
 
     .podium-name {
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       margin-bottom: 4px;
     }
     .podium-score {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       color: var(--crimson-glow);
     }
 
@@ -1163,14 +1250,14 @@
       background: rgba(5, 5, 8, 0.85);
       font-family: var(--font-display);
       font-size: 0.95rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-muted);
       letter-spacing: 1px;
-      padding: 14px 20px;
+      padding: 16px 22px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
     table.lb-table td {
-      padding: 14px 20px;
+      padding: 16px 22px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       font-size: 0.95rem;
       color: #e5e7eb;
@@ -1185,8 +1272,8 @@
       font-weight: 600;
     }
     .lb-user-cell img {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 6px;
     }
 
@@ -1194,65 +1281,65 @@
        EVENTS SYSTEM & 15-DAY ROTATION
        ======================================================== */
     .events-section {
-      padding: 90px 0;
+      padding: 95px 0;
     }
     .event-featured-card {
-      background: radial-gradient(circle at center, rgba(220, 38, 38, 0.16), rgba(14, 14, 20, 0.95) 75%);
+      background: radial-gradient(circle at center, rgba(220, 38, 38, 0.18), rgba(14, 14, 20, 0.95) 75%);
       border: 1px solid var(--border-bright);
-      border-radius: 16px;
-      padding: 40px;
+      border-radius: 18px;
+      padding: 44px;
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 40px;
       align-items: center;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 12px 45px rgba(0, 0, 0, 0.65);
       margin-bottom: 50px;
     }
     .event-type-badge {
       display: inline-block;
       background: rgba(220, 38, 38, 0.25);
       color: #fca5a5;
-      border: 1px solid rgba(239, 68, 68, 0.4);
+      border: 1px solid rgba(239, 68, 68, 0.5);
       padding: 5px 16px;
       border-radius: 20px;
       font-size: 0.8rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       margin-bottom: 14px;
     }
     .event-name-hero {
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-size: clamp(2.2rem, 3.6vw, 3rem);
       font-weight: 800;
       color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       line-height: 1.1;
     }
     .event-desc {
       color: var(--text-muted);
-      font-size: 0.98rem;
-      margin-bottom: 24px;
+      font-size: 1rem;
+      margin-bottom: 26px;
     }
 
-    /* Countdown timer boxes */
+    /* Countdown */
     .countdown-timer-wrap {
       display: flex;
-      gap: 14px;
-      margin-bottom: 24px;
+      gap: 16px;
+      margin-bottom: 26px;
     }
     .countdown-unit {
-      background: rgba(5, 5, 8, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 14px 10px;
-      min-width: 76px;
+      background: rgba(5, 5, 8, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 16px 12px;
+      min-width: 80px;
       text-align: center;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+      box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
     }
     .countdown-num {
       font-family: var(--font-display);
-      font-size: 2.2rem;
-      font-weight: 800;
+      font-size: 2.3rem;
+      font-weight: 900;
       color: #fff;
       line-height: 1;
     }
@@ -1260,26 +1347,26 @@
       font-size: 0.72rem;
       color: var(--crimson-glow);
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       margin-top: 4px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     /* Upcoming grid */
     .upcoming-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
+      gap: 26px;
     }
     .upcoming-card {
-      background: rgba(14, 14, 20, 0.7);
+      background: rgba(14, 14, 20, 0.75);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 26px;
       transition: var(--transition);
     }
     .upcoming-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       border-color: var(--border-bright);
     }
 
@@ -1287,49 +1374,49 @@
        MEDIA RANKS
        ======================================================== */
     .media-section {
-      padding: 90px 0;
-      background: linear-gradient(180deg, rgba(14, 14, 20, 0.3), transparent);
+      padding: 95px 0;
+      background: linear-gradient(180deg, rgba(14, 14, 20, 0.35), transparent);
     }
     .media-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 24px;
+      gap: 26px;
       margin-bottom: 40px;
     }
     .media-card {
       background: rgba(14, 14, 20, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius);
-      padding: 28px 20px;
+      padding: 30px 22px;
       text-align: center;
       transition: var(--transition);
     }
     .media-card:hover {
       border-color: #ef4444;
-      transform: translateY(-6px);
+      transform: translateY(-8px);
     }
     .media-icon {
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       color: #ef4444;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .media-card h3 {
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: 800;
       margin-bottom: 8px;
     }
     .media-requirement {
-      font-weight: 700;
+      font-weight: 800;
       color: #fbbf24;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       margin-bottom: 12px;
     }
     .creator-info-box {
-      background: rgba(10, 10, 14, 0.85);
+      background: rgba(10, 10, 16, 0.85);
       border: 1px solid var(--border-color);
       border-radius: var(--radius);
-      padding: 28px;
-      margin-top: 30px;
+      padding: 30px;
+      margin-top: 32px;
     }
 
     /* ========================================================
@@ -1338,13 +1425,13 @@
     .rules-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 18px;
+      gap: 20px;
     }
     .rule-item {
       background: rgba(14, 14, 20, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 8px;
-      padding: 16px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      padding: 18px 22px;
       display: flex;
       align-items: center;
       gap: 16px;
@@ -1353,14 +1440,15 @@
       transition: var(--transition);
     }
     .rule-item:hover {
-      border-color: rgba(220, 38, 38, 0.4);
-      background: rgba(220, 38, 38, 0.05);
+      border-color: rgba(220, 38, 38, 0.5);
+      background: rgba(220, 38, 38, 0.08);
+      transform: translateX(5px);
     }
     .rule-num {
-      width: 32px;
-      height: 32px;
-      background: rgba(220, 38, 38, 0.2);
-      border-radius: 6px;
+      width: 34px;
+      height: 34px;
+      background: rgba(220, 38, 38, 0.22);
+      border-radius: 7px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1372,13 +1460,13 @@
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      gap: 22px;
     }
     .step-card {
       background: rgba(14, 14, 20, 0.75);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 26px;
       position: relative;
     }
     .step-badge {
@@ -1386,20 +1474,20 @@
       font-family: var(--font-display);
       font-weight: 800;
       color: var(--crimson-glow);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       margin-bottom: 8px;
     }
 
     .accordion-item {
       background: rgba(14, 14, 20, 0.75);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      margin-bottom: 12px;
+      border-radius: 10px;
+      margin-bottom: 14px;
       overflow: hidden;
       transition: var(--transition);
     }
     .accordion-header {
-      padding: 18px 24px;
+      padding: 20px 24px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -1425,35 +1513,35 @@
       transition: max-height 0.35s ease, padding 0.35s ease;
     }
     .accordion-item.active .accordion-body {
-      max-height: 200px;
-      padding-bottom: 20px;
+      max-height: 220px;
+      padding-bottom: 22px;
     }
 
     /* ========================================================
        DISCORD COMMUNITY & SUPPORT
        ======================================================== */
     .discord-cta-section {
-      padding: 90px 0;
+      padding: 95px 0;
       position: relative;
     }
     .discord-banner-card {
-      background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), rgba(14, 14, 20, 0.95)),
-                  radial-gradient(circle at top right, rgba(220, 38, 38, 0.2), transparent);
-      border: 1px solid rgba(88, 101, 242, 0.35);
-      border-radius: 16px;
-      padding: 50px 40px;
+      background: linear-gradient(135deg, rgba(88, 101, 242, 0.16), rgba(14, 14, 20, 0.95)),
+                  radial-gradient(circle at top right, rgba(220, 38, 38, 0.22), transparent);
+      border: 1px solid rgba(88, 101, 242, 0.4);
+      border-radius: 18px;
+      padding: 55px 44px;
       display: grid;
       grid-template-columns: 1.2fr 1fr;
-      gap: 30px;
+      gap: 34px;
       align-items: center;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 12px 45px rgba(0,0,0,0.55);
     }
     .discord-widget-box {
       background: #2b2d31;
-      border-radius: 12px;
-      padding: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      border-radius: 14px;
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.45);
     }
     .widget-header {
       display: flex;
@@ -1462,14 +1550,14 @@
       margin-bottom: 20px;
     }
     .widget-guild-icon {
-      width: 50px;
-      height: 50px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       background: #5865F2;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: #fff;
     }
 
@@ -1477,103 +1565,116 @@
        FOOTER & NEWSLETTER
        ======================================================== */
     footer.site-footer {
-      background: #040406;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 70px 0 30px;
+      background: #030305;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 75px 0 35px;
       position: relative;
       z-index: 2;
     }
     .footer-grid {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
-      gap: 40px;
+      gap: 44px;
       margin-bottom: 50px;
     }
     .footer-brand p {
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       margin: 14px 0 20px;
       max-width: 320px;
     }
     .footer-col h4 {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
     .footer-links {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 11px;
     }
     .footer-links a {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       transition: var(--transition);
     }
     .footer-links a:hover {
       color: var(--crimson-glow);
-      padding-left: 4px;
+      padding-left: 6px;
     }
     .newsletter-form {
       display: flex;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 14px;
     }
     .newsletter-form input {
       flex: 1;
       background: rgba(14, 14, 20, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 8px;
-      padding: 10px 14px;
+      padding: 12px 14px;
       color: #fff;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       outline: none;
     }
     .newsletter-form input:focus {
-      border-color: var(--crimson);
+      border-color: var(--crimson-glow);
     }
 
     .footer-bottom {
       border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding-top: 25px;
+      padding-top: 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       color: #6b7280;
     }
 
     /* Toast Notification */
     #toast-container {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      bottom: 26px;
+      right: 26px;
       z-index: 10000;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
     .toast {
-      background: rgba(16, 16, 22, 0.95);
+      background: rgba(16, 16, 24, 0.95);
       border: 1px solid var(--border-bright);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(12px);
-      border-radius: 10px;
-      padding: 14px 20px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(14px);
+      border-radius: 12px;
+      padding: 16px 22px;
       color: #fff;
-      font-size: 0.92rem;
+      font-size: 0.94rem;
       display: flex;
       align-items: center;
       gap: 12px;
-      min-width: 280px;
-      animation: slideInRight 0.35s ease forwards;
+      min-width: 290px;
+      animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     @keyframes slideInRight {
       from { transform: translateX(100%); opacity: 0; }
       to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* ========================================================
+       ADVANCED SCROLL REVEAL UTILITY
+       ======================================================== */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Responsive */
@@ -1588,17 +1689,13 @@
         top: 100%;
         left: 0;
         right: 0;
-        background: #09090d;
+        background: #08080c;
         flex-direction: column;
         padding: 20px;
         border-bottom: 1px solid var(--border-color);
       }
-      .nav-links-list.open {
-        display: flex;
-      }
-      .mobile-hamburger {
-        display: block;
-      }
+      .nav-links-list.open { display: flex; }
+      .mobile-hamburger { display: block; }
     }
     @media (max-width: 640px) {
       .footer-grid { grid-template-columns: 1fr; }
@@ -1608,26 +1705,28 @@
       .podium-box.rank-2 { order: 2; }
       .podium-box.rank-3 { order: 3; }
       .countdown-timer-wrap { flex-wrap: wrap; justify-content: center; }
-      .countdown-unit { min-width: 65px; }
+      .countdown-unit { min-width: 70px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Animated Particle Canvas -->
+  <!-- Dynamic Interactive Particle Canvas -->
   <canvas id="particles-canvas"></canvas>
 
   <!-- ========================================================
-       ENTRY / AUTH SCREEN MODAL
+       ADVANCED ENTRY / AUTH SCREEN MODAL
        ======================================================== -->
   <div id="auth-overlay">
-    <div class="auth-card">
+    <div class="auth-card" id="auth3DCard">
       <div class="auth-header">
         <div class="auth-brand-logo">
           <i class="fa-solid fa-skull"></i>
         </div>
-        <h2 class="font-display" style="font-size: 1.8rem; font-weight: 800; color:#fff;">FEARSTEAL ENTRY</h2>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Access the official FearSteal LifeSteal Network</p>
+        <h2 class="font-display" style="font-size: 1.9rem; font-weight: 800; color:#fff; text-align:center;">FEARSTEAL ENTRY</h2>
+        <p style="font-size: 0.88rem; color: var(--text-muted); text-align:center; margin-bottom:14px;">
+          Synchronize your credentials to enter the realm
+        </p>
       </div>
 
       <div class="auth-tabs">
@@ -1663,12 +1762,12 @@
           <a href="#forgot" onclick="triggerForgotPassword(event)">Forgot Password?</a>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width: 100%;">
+        <button type="submit" class="btn btn-primary" id="btn-enter-network" style="width: 100%;">
           <i class="fa-solid fa-right-to-bracket"></i> ENTER NETWORK
         </button>
       </form>
 
-      <!-- Register Form (hidden by default) -->
+      <!-- Register Form -->
       <form id="register-form" style="display:none;" onsubmit="handleRegisterSubmit(event)">
         <div class="auth-form-group">
           <label>Minecraft Username</label>
@@ -1683,7 +1782,7 @@
           <label>Email Address</label>
           <div class="auth-input-wrap">
             <i class="fa-solid fa-envelope input-icon"></i>
-            <input type="email" id="reg-email" placeholder="player@fearsteal.fun" required />
+            <input type="email" id="reg-email" placeholder="warrior@fearsteal.fun" required />
           </div>
           <div class="auth-error-msg" id="reg-email-err"></div>
         </div>
@@ -1716,7 +1815,7 @@
   </div>
 
   <!-- ========================================================
-       TOP META BAR & NOTIFICATION STATUS
+       TOP META BAR
        ======================================================== -->
   <div class="top-bar">
     <div class="container top-bar-inner">
@@ -1787,18 +1886,18 @@
   <section id="home" class="hero-section">
     <div class="hero-bg-banner"></div>
     <div class="container hero-content">
-      <div class="hero-badge">
+      <div class="hero-badge reveal-on-scroll">
         <i class="fa-solid fa-heart-pulse"></i> ULTIMATE HARDCORE LIFESTEAL
       </div>
 
-      <h1 class="hero-title">FEARSTEAL</h1>
-      <h2 class="hero-subtitle">THE NEXT GENERATION LIFESTEAL NETWORK</h2>
-      <p class="hero-desc">
+      <h1 class="hero-title reveal-on-scroll">FEARSTEAL</h1>
+      <h2 class="hero-subtitle reveal-on-scroll">THE NEXT GENERATION LIFESTEAL NETWORK</h2>
+      <p class="hero-desc reveal-on-scroll">
         Immerse yourself in a thrilling high-stakes Minecraft LifeSteal realm. Slay opponents, steal their max health, form ruthless factions, and conquer custom bosses with 100% bedrock and java cross-play support.
       </p>
 
       <!-- Server IP Copier -->
-      <div class="ip-copy-box" onclick="copyServerIP()" title="Click to copy server IP">
+      <div class="ip-copy-box reveal-on-scroll" onclick="copyServerIP()" title="Click to copy server IP">
         <div class="ip-action-icon">
           <i class="fa-regular fa-copy" id="ip-copy-icon"></i>
         </div>
@@ -1809,7 +1908,7 @@
       </div>
 
       <!-- Action Buttons -->
-      <div class="hero-btn-group">
+      <div class="hero-btn-group reveal-on-scroll">
         <button class="btn btn-primary" onclick="copyServerIP()">
           <i class="fa-solid fa-play"></i> COPY SERVER IP
         </button>
@@ -1822,7 +1921,7 @@
       </div>
 
       <!-- Live Dynamic Pill -->
-      <div class="hero-live-pill">
+      <div class="hero-live-pill reveal-on-scroll">
         <span class="status-dot online" id="hero-dot"></span>
         <span>STATUS: <strong id="hero-status-lbl" style="color:var(--crimson-glow);">CHECKING...</strong></span>
         <span style="color:rgba(255,255,255,0.2);">|</span>
@@ -1838,12 +1937,12 @@
        ======================================================== -->
   <section id="status" class="status-section">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap reveal-on-scroll">
         <span class="section-subtitle">Real-Time Infrastructure</span>
         <h2 class="section-title">SERVER STATUS</h2>
       </div>
 
-      <div class="status-grid">
+      <div class="status-grid reveal-on-scroll">
         <!-- Main Server Card -->
         <div class="glass-card status-main-box">
           <div>
@@ -1894,55 +1993,55 @@
        ======================================================== -->
   <section id="features" class="features-section">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap reveal-on-scroll">
         <span class="section-subtitle">Why Choose Us</span>
         <h2 class="section-title">NETWORK FEATURES</h2>
       </div>
 
       <div class="features-grid">
-        <div class="feature-box">
+        <div class="feature-box reveal-on-scroll">
           <div class="feature-icon-wrap"><i class="fa-solid fa-heart-crack"></i></div>
           <h3 class="feature-title">Lifesteal Experience</h3>
           <p class="feature-text">Fight, survive, and steal hearts from your enemies with every kill. Lose all hearts and face the ultimate ban consequences.</p>
         </div>
 
-        <div class="feature-box">
+        <div class="feature-box reveal-on-scroll">
           <div class="feature-icon-wrap"><i class="fa-solid fa-swords"></i></div>
           <h3 class="feature-title">Competitive PvP</h3>
           <p class="feature-text">High-tick rate hit registration with balanced crystal combat, custom totems, and intense no-lag arena duels.</p>
         </div>
 
-        <div class="feature-box">
+        <div class="feature-box reveal-on-scroll">
           <div class="feature-icon-wrap"><i class="fa-solid fa-users-rays"></i></div>
           <h3 class="feature-title">Active Community</h3>
           <p class="feature-text">Join thousands of active fighters and guild members in our Discord. Share builds, strategies, and trade economy goods.</p>
         </div>
 
-        <div class="feature-box">
+        <div class="feature-box reveal-on-scroll">
           <div class="feature-icon-wrap"><i class="fa-solid fa-ranking-star"></i></div>
           <h3 class="feature-title">Leaderboards</h3>
           <p class="feature-text">Compete with other warriors to top the heart count, killstreaks, balance, and playtime ranking ladders.</p>
         </div>
 
-        <div class="feature-box">
+        <div class="feature-box reveal-on-scroll">
           <div class="feature-icon-wrap"><i class="fa-solid fa-calendar-check"></i></div>
           <h3 class="feature-title">Community Events</h3>
           <p class="feature-text">Regular Minecraft boss fights, KOTH captures, drop parties, and high-reward Discord giveaways every 15 days.</p>
         </div>
 
-        <div class="feature-box">
+        <div class="feature-box reveal-on-scroll">
           <div class="feature-icon-wrap"><i class="fa-solid fa-gem"></i></div>
           <h3 class="feature-title">Ranks & Rewards</h3>
           <p class="feature-text">Unlock exclusive cosmetics, vault space, particle trails, and private warps through our verified web store.</p>
         </div>
 
-        <div class="feature-box">
+        <div class="feature-box reveal-on-scroll">
           <div class="feature-icon-wrap"><i class="fa-solid fa-shield-virus"></i></div>
           <h3 class="feature-title">Active Staff</h3>
           <p class="feature-text">Round-the-clock moderators and senior administrators ensuring a clean, cheat-free environment for everyone.</p>
         </div>
 
-        <div class="feature-box">
+        <div class="feature-box reveal-on-scroll">
           <div class="feature-icon-wrap"><i class="fa-solid fa-server"></i></div>
           <h3 class="feature-title">Optimized Network</h3>
           <p class="feature-text">Smooth, dedicated multi-threaded hardware providing rock-solid 20.0 TPS even during massive clan wars.</p>
@@ -1952,18 +2051,18 @@
   </section>
 
   <!-- ========================================================
-       4. STORE / SERVER RANKS (WITH LIMITED NOVICE CLAIM)
+       4. STORE / SERVER RANKS
        ======================================================== -->
   <section id="store" class="store-section">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap reveal-on-scroll">
         <span class="section-subtitle">Support The Realm</span>
         <h2 class="section-title">RANKS & STORE</h2>
       </div>
 
       <div class="ranks-grid">
         <!-- FREE NOVICE RANK CARD -->
-        <div class="rank-card free-novice">
+        <div class="rank-card free-novice reveal-on-scroll">
           <span class="rank-popular-tag" style="background:#2563eb;">SPECIAL FREE PROMO</span>
           <div class="rank-name" style="color:#60a5fa;">NOVICE</div>
           <div class="rank-price">$0 <span>FREE</span></div>
@@ -1991,7 +2090,7 @@
         </div>
 
         <!-- LORD -->
-        <div class="rank-card">
+        <div class="rank-card reveal-on-scroll">
           <div class="rank-name">LORD</div>
           <div class="rank-price">$5</div>
           <ul class="rank-features-list">
@@ -2003,7 +2102,7 @@
         </div>
 
         <!-- ELITE -->
-        <div class="rank-card">
+        <div class="rank-card reveal-on-scroll">
           <div class="rank-name">ELITE</div>
           <div class="rank-price">$8</div>
           <ul class="rank-features-list">
@@ -2015,7 +2114,7 @@
         </div>
 
         <!-- ELITE+ -->
-        <div class="rank-card">
+        <div class="rank-card reveal-on-scroll">
           <div class="rank-name">ELITE+</div>
           <div class="rank-price">$10</div>
           <ul class="rank-features-list">
@@ -2027,7 +2126,7 @@
         </div>
 
         <!-- KNIGHT -->
-        <div class="rank-card">
+        <div class="rank-card reveal-on-scroll">
           <div class="rank-name">KNIGHT</div>
           <div class="rank-price">$12</div>
           <ul class="rank-features-list">
@@ -2039,7 +2138,7 @@
         </div>
 
         <!-- KING -->
-        <div class="rank-card">
+        <div class="rank-card reveal-on-scroll">
           <div class="rank-name">KING</div>
           <div class="rank-price">$15</div>
           <ul class="rank-features-list">
@@ -2051,7 +2150,7 @@
         </div>
 
         <!-- STEAL+ -->
-        <div class="rank-card">
+        <div class="rank-card reveal-on-scroll">
           <div class="rank-name">STEAL+</div>
           <div class="rank-price">$18</div>
           <ul class="rank-features-list">
@@ -2063,7 +2162,7 @@
         </div>
 
         <!-- FEAR+ -->
-        <div class="rank-card">
+        <div class="rank-card reveal-on-scroll">
           <div class="rank-name">FEAR+</div>
           <div class="rank-price">$20</div>
           <ul class="rank-features-list">
@@ -2075,7 +2174,7 @@
         </div>
 
         <!-- FEARSTEAL TOP TIER -->
-        <div class="rank-card highlight">
+        <div class="rank-card highlight reveal-on-scroll">
           <span class="rank-popular-tag">ULTIMATE RANK</span>
           <div class="rank-name crimson-text">FEARSTEAL</div>
           <div class="rank-price">$25</div>
@@ -2089,7 +2188,7 @@
         </div>
       </div>
 
-      <div style="text-align:center;">
+      <div style="text-align:center;" class="reveal-on-scroll">
         <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-primary" style="padding:16px 36px;">
           <i class="fa-solid fa-arrow-up-right-from-square"></i> VISIT OFFICIAL STORE (STORE.CRYZORMC.IN)
         </a>
@@ -2102,25 +2201,24 @@
        ======================================================== -->
   <section id="staff" class="staff-section">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap reveal-on-scroll">
         <span class="section-subtitle">Administration & Moderation</span>
         <h2 class="section-title">OUR STAFF TEAM</h2>
       </div>
 
       <div class="staff-grid">
         <!-- Founder: ItzVeltriex -->
-        <div class="staff-card" style="border-color: rgba(239, 68, 68, 0.4);">
+        <div class="staff-card reveal-on-scroll" style="border-color: rgba(239, 68, 68, 0.4);">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/ItzVeltriex/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="ItzVeltriex" class="staff-avatar" />
           </div>
           <span class="staff-role-badge role-founder">FOUNDER</span>
           <h3 class="staff-username">ItzVeltriex</h3>
           <p style="font-size:0.85rem; color:var(--text-muted);">Network Architect & Founder</p>
-          <!-- Discord link deliberately omitted as specified for ItzVeltriex -->
         </div>
 
         <!-- Founder: Notslayer -->
-        <div class="staff-card" style="border-color: rgba(239, 68, 68, 0.4);">
+        <div class="staff-card reveal-on-scroll" style="border-color: rgba(239, 68, 68, 0.4);">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/Notslayer/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="Notslayer" class="staff-avatar" />
           </div>
@@ -2133,7 +2231,7 @@
         </div>
 
         <!-- OWNER: RaviXD -->
-        <div class="staff-card">
+        <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/RaviXD/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="RaviXD" class="staff-avatar" />
           </div>
@@ -2143,7 +2241,7 @@
         </div>
 
         <!-- CO OWNER: NotGamerYTGG -->
-        <div class="staff-card">
+        <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/NotGamerYTGG/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="NotGamerYTGG" class="staff-avatar" />
           </div>
@@ -2153,7 +2251,7 @@
         </div>
 
         <!-- ADMIN: Prime Shifat -->
-        <div class="staff-card">
+        <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/PrimeShifat/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="Prime Shifat" class="staff-avatar" />
           </div>
@@ -2163,7 +2261,7 @@
         </div>
 
         <!-- SENIOR ADMIN: Cosmic_Ayush -->
-        <div class="staff-card">
+        <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/Cosmic_Ayush/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="Cosmic_Ayush" class="staff-avatar" />
           </div>
@@ -2173,7 +2271,7 @@
         </div>
 
         <!-- JUNIOR ADMIN: Harshu -->
-        <div class="staff-card">
+        <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/Harshu/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="Harshu" class="staff-avatar" />
           </div>
@@ -2183,7 +2281,7 @@
         </div>
 
         <!-- MANAGER: VoidSlayer -->
-        <div class="staff-card">
+        <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/VoidSlayer/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="VoidSlayer" class="staff-avatar" />
           </div>
@@ -2193,7 +2291,7 @@
         </div>
 
         <!-- MODERATOR: Thunderboltzzz_ -->
-        <div class="staff-card">
+        <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/Thunderboltzzz_/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="Thunderboltzzz_" class="staff-avatar" />
           </div>
@@ -2203,7 +2301,7 @@
         </div>
 
         <!-- JUNIOR MODERATOR: NotDark6 -->
-        <div class="staff-card">
+        <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/NotDark6/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="NotDark6" class="staff-avatar" />
           </div>
@@ -2213,7 +2311,7 @@
         </div>
 
         <!-- HELPER: JessGamer7733 -->
-        <div class="staff-card">
+        <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/JessGamer7733/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="JessGamer7733" class="staff-avatar" />
           </div>
@@ -2230,12 +2328,12 @@
        ======================================================== -->
   <section id="leaderboard" class="leaderboard-section">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap reveal-on-scroll">
         <span class="section-subtitle">Top Gladiators</span>
         <h2 class="section-title">NETWORK LEADERBOARDS</h2>
       </div>
 
-      <div class="category-pills">
+      <div class="category-pills reveal-on-scroll">
         <button class="category-pill-btn active" onclick="loadLeaderboardCategory('kills', this)">Top Kills</button>
         <button class="category-pill-btn" onclick="loadLeaderboardCategory('hearts', this)">Top Hearts</button>
         <button class="category-pill-btn" onclick="loadLeaderboardCategory('streak', this)">Top Streak</button>
@@ -2245,12 +2343,12 @@
       </div>
 
       <!-- Podium Top 3 -->
-      <div class="podium-wrap" id="podium-container">
+      <div class="podium-wrap reveal-on-scroll" id="podium-container">
         <!-- Rendered dynamically -->
       </div>
 
       <!-- Rank 4-10 Table -->
-      <div class="leaderboard-table-card">
+      <div class="leaderboard-table-card reveal-on-scroll">
         <div class="table-responsive">
           <table class="lb-table">
             <thead>
@@ -2272,17 +2370,16 @@
   </section>
 
   <!-- ========================================================
-       7. EVENTS SYSTEM (15-DAY AUTO-ROTATION)
+       7. EVENTS SYSTEM
        ======================================================== -->
   <section id="events" class="events-section">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap reveal-on-scroll">
         <span class="section-subtitle">Every 15 Days Automated Cycle</span>
         <h2 class="section-title">ACTIVE & UPCOMING EVENTS</h2>
       </div>
 
-      <!-- Active Feature Event Card -->
-      <div class="event-featured-card">
+      <div class="event-featured-card reveal-on-scroll">
         <div>
           <span class="event-type-badge" id="active-event-type">MINECRAFT EVENT</span>
           <h3 class="event-name-hero" id="active-event-title">FearSteal 3v3 LifeSteal Tournament</h3>
@@ -2315,21 +2412,20 @@
         </div>
 
         <div style="text-align:center;">
-          <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:28px;">
-            <i class="fa-solid fa-trophy" style="font-size:3.5rem; color:#f59e0b; margin-bottom:14px;"></i>
-            <h4 style="font-size:1.3rem; margin-bottom:8px;">Prizes & Rewards</h4>
-            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:16px;">
+          <div style="background:rgba(0,0,0,0.45); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:32px;">
+            <i class="fa-solid fa-trophy" style="font-size:3.8rem; color:#f59e0b; margin-bottom:16px;"></i>
+            <h4 style="font-size:1.35rem; margin-bottom:8px;">Prizes & Rewards</h4>
+            <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:18px;">
               • 1st Place: [FearSteal] Rank + $50 Store Credit<br />
               • 2nd Place: [Fear+] Rank + 10x Revival Hearts<br />
               • 3rd Place: [Steal+] Rank
             </p>
-            <span style="font-size:0.8rem; color:#9ca3af;"><i class="fa-solid fa-arrows-rotate"></i> Automatic rotation every 15 days</span>
+            <span style="font-size:0.82rem; color:#9ca3af;"><i class="fa-solid fa-arrows-rotate"></i> Automatic rotation every 15 days</span>
           </div>
         </div>
       </div>
 
-      <!-- Lifetime Upcoming Events -->
-      <h3 style="font-size: 1.6rem; margin-bottom: 24px; text-align:center;">LIFETIME UPCOMING SCHEDULE</h3>
+      <h3 style="font-size: 1.6rem; margin-bottom: 24px; text-align:center;" class="reveal-on-scroll">LIFETIME UPCOMING SCHEDULE</h3>
       <div class="upcoming-grid" id="upcoming-events-grid">
         <!-- Dynamically rendered -->
       </div>
@@ -2337,38 +2433,38 @@
   </section>
 
   <!-- ========================================================
-       8. MEDIA RANKS & CREATOR PROGRAM
+       8. MEDIA RANKS
        ======================================================== -->
   <section class="media-section">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap reveal-on-scroll">
         <span class="section-subtitle">Content Creators</span>
         <h2 class="section-title">MEDIA RANKS PROGRAM</h2>
       </div>
 
       <div class="media-grid">
-        <div class="media-card">
+        <div class="media-card reveal-on-scroll">
           <i class="fa-brands fa-youtube media-icon"></i>
           <h3>SMOL RANK</h3>
           <div class="media-requirement">200+ Subscribers</div>
           <p style="font-size:0.88rem; color:var(--text-muted);">Starter YouTube rank with creator prefix, record warp command and shoutout role.</p>
         </div>
 
-        <div class="media-card">
+        <div class="media-card reveal-on-scroll">
           <i class="fa-brands fa-youtube media-icon"></i>
           <h3>MEDIA RANK</h3>
           <div class="media-requirement">500 – 1,000 Subs</div>
           <p style="font-size:0.88rem; color:var(--text-muted);">Full media role, access to creator giveaways, video announce ping in Discord.</p>
         </div>
 
-        <div class="media-card">
+        <div class="media-card reveal-on-scroll">
           <i class="fa-brands fa-youtube media-icon"></i>
           <h3>MEDIA+ RANK</h3>
           <div class="media-requirement">1,000 – 5,000 Subs</div>
           <p style="font-size:0.88rem; color:var(--text-muted);">Enhanced Media+ perks, priority streaming support, custom heart skin badge.</p>
         </div>
 
-        <div class="media-card">
+        <div class="media-card reveal-on-scroll">
           <i class="fa-solid fa-star media-icon" style="color:#f59e0b;"></i>
           <h3>FAMOUS RANK</h3>
           <div class="media-requirement">10,000+ Subs</div>
@@ -2376,21 +2472,20 @@
         </div>
       </div>
 
-      <div style="text-align:center; margin-bottom:40px;">
+      <div style="text-align:center; margin-bottom:40px;" class="reveal-on-scroll">
         <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn btn-discord">
           <i class="fa-solid fa-video"></i> APPLY FOR MEDIA RANK (ON DISCORD)
         </a>
       </div>
 
-      <!-- Creator Official Video Description Template -->
-      <div class="creator-info-box">
+      <div class="creator-info-box reveal-on-scroll">
         <h3 style="font-size:1.3rem; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
           <i class="fa-solid fa-circle-info" style="color:var(--crimson);"></i> Official Creator Video Description Template
         </h3>
         <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:14px;">
           When creating a video about FearSteal, please include the following official links in your description:
         </p>
-        <div style="background:#070709; padding:16px; border-radius:8px; border:1px dashed rgba(255,255,255,0.1); font-family:monospace; font-size:0.88rem; color:#d1d5db; line-height:1.8;">
+        <div style="background:#050508; padding:18px; border-radius:8px; border:1px dashed rgba(255,255,255,0.12); font-family:monospace; font-size:0.9rem; color:#d1d5db; line-height:1.8;">
           Server IP: <a href="#home" style="color:#f87171; text-decoration:none;">play.fearsteal.fun</a><br />
           Server Port: 19132<br />
           FearSteal Discord: <a href="https://discord.gg/pGM5x3gXpX" target="_blank" style="color:#60a5fa; text-decoration:none;">https://discord.gg/pGM5x3gXpX</a><br />
@@ -2404,31 +2499,31 @@
   <!-- ========================================================
        9. SERVER RULES
        ======================================================== -->
-  <section id="rules" style="padding: 90px 0;">
+  <section id="rules" style="padding: 95px 0;">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap reveal-on-scroll">
         <span class="section-subtitle">Fair Play Policy</span>
         <h2 class="section-title">SERVER RULES</h2>
       </div>
 
       <div class="rules-grid">
-        <div class="rule-item"><span class="rule-num">01</span><span>No Cheating or Unfair Advantages</span></div>
-        <div class="rule-item"><span class="rule-num">02</span><span>No Hacked Clients or Auto-Clickers</span></div>
-        <div class="rule-item"><span class="rule-num">03</span><span>No Bug or Glitch Exploiting</span></div>
-        <div class="rule-item"><span class="rule-num">04</span><span>No Harassment, Toxicity or Discrimination</span></div>
-        <div class="rule-item"><span class="rule-num">05</span><span>No Inappropriate or NSFW Content</span></div>
-        <div class="rule-item"><span class="rule-num">06</span><span>No Spamming or Flooding Chat Channels</span></div>
-        <div class="rule-item"><span class="rule-num">07</span><span>No Unapproved Advertising or Self-Promo</span></div>
-        <div class="rule-item"><span class="rule-num">08</span><span>Strictly No DDoS Threats or IP Stressing</span></div>
-        <div class="rule-item"><span class="rule-num">09</span><span>No Doxxing or Personal Info Leaks</span></div>
-        <div class="rule-item"><span class="rule-num">10</span><span>No Staff Impersonation or False Reports</span></div>
-        <div class="rule-item"><span class="rule-num">11</span><span>Respect All Staff & Community Members</span></div>
-        <div class="rule-item"><span class="rule-num">12</span><span>Adhere to Official Event & Tournament Rules</span></div>
-        <div class="rule-item"><span class="rule-num">13</span><span>Abide by Discord Community Guidelines</span></div>
-        <div class="rule-item"><span class="rule-num">14</span><span>Abide by Mojang / Minecraft EULA</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">01</span><span>No Cheating or Unfair Advantages</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">02</span><span>No Hacked Clients or Auto-Clickers</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">03</span><span>No Bug or Glitch Exploiting</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">04</span><span>No Harassment, Toxicity or Discrimination</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">05</span><span>No Inappropriate or NSFW Content</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">06</span><span>No Spamming or Flooding Chat Channels</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">07</span><span>No Unapproved Advertising or Self-Promo</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">08</span><span>Strictly No DDoS Threats or IP Stressing</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">09</span><span>No Doxxing or Personal Info Leaks</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">10</span><span>No Staff Impersonation or False Reports</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">11</span><span>Respect All Staff & Community Members</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">12</span><span>Adhere to Official Event & Tournament Rules</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">13</span><span>Abide by Discord Community Guidelines</span></div>
+        <div class="rule-item reveal-on-scroll"><span class="rule-num">14</span><span>Abide by Mojang / Minecraft EULA</span></div>
       </div>
 
-      <div style="margin-top:24px; text-align:center; color:#fca5a5; font-size:0.9rem; background:rgba(220,38,38,0.1); border:1px solid rgba(220,38,38,0.3); padding:12px; border-radius:8px;">
+      <div style="margin-top:26px; text-align:center; color:#fca5a5; font-size:0.92rem; background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.35); padding:14px; border-radius:10px;" class="reveal-on-scroll">
         <i class="fa-solid fa-triangle-exclamation"></i> Punishments vary from temporary mutes to permanent hardware bans depending on severity.
       </div>
     </div>
@@ -2437,33 +2532,33 @@
   <!-- ========================================================
        10. HOW TO PLAY
        ======================================================== -->
-  <section id="how-to-play" style="padding: 90px 0; background:linear-gradient(180deg, rgba(14,14,20,0.3), transparent);">
+  <section id="how-to-play" style="padding: 95px 0; background:linear-gradient(180deg, rgba(14,14,20,0.35), transparent);">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap reveal-on-scroll">
         <span class="section-subtitle">Beginner Guide</span>
         <h2 class="section-title">HOW TO JOIN & PLAY</h2>
       </div>
 
       <div class="steps-grid">
-        <div class="step-card">
+        <div class="step-card reveal-on-scroll">
           <span class="step-badge">STEP 1</span>
           <h4 style="margin-bottom:8px;">Launch Minecraft</h4>
           <p style="font-size:0.9rem; color:var(--text-muted);">Open your Minecraft Bedrock or Java Edition launcher.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card reveal-on-scroll">
           <span class="step-badge">STEP 2</span>
           <h4 style="margin-bottom:8px;">Select Multiplayer</h4>
           <p style="font-size:0.9rem; color:var(--text-muted);">Navigate to the Multiplayer menu or Servers tab.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card reveal-on-scroll">
           <span class="step-badge">STEP 3</span>
           <h4 style="margin-bottom:8px;">Click 'Add Server'</h4>
           <p style="font-size:0.9rem; color:var(--text-muted);">Add new server or external server connection.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card reveal-on-scroll">
           <span class="step-badge">STEP 4</span>
           <h4 style="margin-bottom:8px;">Enter Credentials</h4>
           <p style="font-size:0.9rem; color:var(--text-muted);">
@@ -2472,13 +2567,13 @@
           </p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card reveal-on-scroll">
           <span class="step-badge">STEP 5</span>
           <h4 style="margin-bottom:8px;">Click 'Join Server'</h4>
           <p style="font-size:0.9rem; color:var(--text-muted);">Connect to the lobby node and verify your game tag.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card reveal-on-scroll">
           <span class="step-badge">STEP 6</span>
           <h4 style="margin-bottom:8px;">Start Conquest</h4>
           <p style="font-size:0.9rem; color:var(--text-muted);">Type <code>/rtp</code> to teleport into the wilderness and start stealing hearts!</p>
@@ -2490,14 +2585,14 @@
   <!-- ========================================================
        11. FAQ ACCORDION
        ======================================================== -->
-  <section id="faq" style="padding: 90px 0;">
-    <div class="container" style="max-width: 900px;">
-      <div class="section-title-wrap">
+  <section id="faq" style="padding: 95px 0;">
+    <div class="container" style="max-width: 920px;">
+      <div class="section-title-wrap reveal-on-scroll">
         <span class="section-subtitle">Common Questions</span>
         <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
       </div>
 
-      <div class="accordion-item active">
+      <div class="accordion-item active reveal-on-scroll">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span>What is FearSteal?</span>
           <i class="fa-solid fa-chevron-down"></i>
@@ -2507,7 +2602,7 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item reveal-on-scroll">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span>What is the server IP and Port?</span>
           <i class="fa-solid fa-chevron-down"></i>
@@ -2517,7 +2612,7 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item reveal-on-scroll">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span>How can I join the official Discord?</span>
           <i class="fa-solid fa-chevron-down"></i>
@@ -2527,7 +2622,7 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item reveal-on-scroll">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span>How can I purchase or upgrade a rank?</span>
           <i class="fa-solid fa-chevron-down"></i>
@@ -2537,7 +2632,7 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item reveal-on-scroll">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span>How do I apply for Media Rank?</span>
           <i class="fa-solid fa-chevron-down"></i>
@@ -2547,7 +2642,7 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item reveal-on-scroll">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span>What happens when the free Novice rank reaches 100 claims?</span>
           <i class="fa-solid fa-chevron-down"></i>
@@ -2557,7 +2652,7 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item reveal-on-scroll">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span>How often do events rotate?</span>
           <i class="fa-solid fa-chevron-down"></i>
@@ -2570,11 +2665,11 @@
   </section>
 
   <!-- ========================================================
-       DISCORD COMMUNITY & SUPPORT SECTION
+       DISCORD COMMUNITY & SUPPORT
        ======================================================== -->
   <section class="discord-cta-section">
     <div class="container">
-      <div class="discord-banner-card">
+      <div class="discord-banner-card reveal-on-scroll">
         <div>
           <span style="color:#818cf8; font-weight:800; letter-spacing:2px; font-size:0.85rem; text-transform:uppercase;">OFFICIAL DISCORD COMMUNITY</span>
           <h2 style="font-size:clamp(2rem, 3.5vw, 2.8rem); font-weight:800; margin:8px 0 16px;">JOIN OVER 3,000+ WARRIORS</h2>
@@ -2591,7 +2686,6 @@
           </div>
         </div>
 
-        <!-- Live Discord Preview Box -->
         <div class="discord-widget-box">
           <div class="widget-header">
             <div class="widget-guild-icon"><i class="fa-solid fa-skull"></i></div>
@@ -2686,7 +2780,7 @@
   <div id="toast-container"></div>
 
   <!-- ========================================================
-       JAVASCRIPT DYNAMIC SYSTEMS
+       JAVASCRIPT ADVANCED DYNAMICS & AUDIO SYNTH
        ======================================================== -->
   <script>
     // Server Configuration
@@ -2695,36 +2789,436 @@
     const DISCORD_INVITE = 'https://discord.gg/pGM5x3gXpX';
     const STORE_URL = 'https://store.cryzormc.in/';
 
-    // 15-Day Event Rotation Sequence
-    const ROTATING_EVENTS = [
-      {
-        title: "FearSteal 3v3 LifeSteal Tournament",
-        type: "MINECRAFT EVENT",
-        desc: "Assemble your trio and enter the Nether Colosseum. Slay opposing factions for double heart drop multiplier and a $50 store voucher prize pool!"
-      },
-      {
-        title: "Discord Invite & Activity Carnival",
-        type: "DISCORD EVENT",
-        desc: "Climb the invite leaderboard and stay active in community voice channels to win permanent Lord and Elite ranks!"
-      },
-      {
-        title: "King of the Hill (KOTH) Bloodbath",
-        type: "MINECRAFT EVENT",
-        desc: "Capture and defend the central fortress beacon for 15 unbroken minutes to unlock the Ancient Vault crate rewards."
-      },
-      {
-        title: "Community Meme & Screenshot Contest",
-        type: "DISCORD EVENT",
-        desc: "Post your finest FearSteal clips and memes in #media-contests. Staff and community vote on top 3 creative winners."
-      },
-      {
-        title: "Dragon Slayer Boss Raid & Drop Party",
-        type: "MINECRAFT EVENT",
-        desc: "A modified 50,000 HP Ender Dragon spawns in the warzone. Defeat it for guaranteed revival hearts and tier-5 gear drops."
-      }
-    ];
+    /* --------------------------------------------------------
+       WEB AUDIO SYNTHESIZER (CINEMATIC SFX)
+       -------------------------------------------------------- */
+    let audioCtx = null;
 
-    // Dummy Leaderboard Data Generator
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // Portal Warp Sound FX
+    function playPortalEntrySound() {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(60, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.4);
+        osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.85);
+
+        gain.gain.setValueAtTime(0.01, ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.25, ctx.currentTime + 0.3);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.85);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.9);
+      } catch (e) {
+        // Audio policy fallback
+      }
+    }
+
+    // Interactive button chime
+    function playClickSound() {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(320, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(640, ctx.currentTime + 0.1);
+
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.16);
+      } catch (e) {}
+    }
+
+    /* --------------------------------------------------------
+       3D PARALLAX TILT ON AUTH CARD
+       -------------------------------------------------------- */
+    const authCard = document.getElementById('auth3DCard');
+    const authOverlay = document.getElementById('auth-overlay');
+
+    if (authOverlay && authCard) {
+      authOverlay.addEventListener('mousemove', (e) => {
+        if (authOverlay.classList.contains('hidden')) return;
+        const rect = authCard.getBoundingClientRect();
+        const cardX = rect.left + rect.width / 2;
+        const cardY = rect.top + rect.height / 2;
+
+        const deltaX = (e.clientX - cardX) / 22;
+        const deltaY = (e.clientY - cardY) / 22;
+
+        authCard.style.transform = `rotateY(${deltaX}deg) rotateX(${-deltaY}deg) translateY(-2px)`;
+      });
+
+      authOverlay.addEventListener('mouseleave', () => {
+        authCard.style.transform = 'rotateY(0deg) rotateX(0deg) translateY(0)';
+      });
+    }
+
+    /* --------------------------------------------------------
+       SHOCKWAVE PORTAL ENTRY ANIMATION
+       -------------------------------------------------------- */
+    function triggerPortalTransition(username) {
+      playPortalEntrySound();
+
+      // Spawn shockwave ring
+      const shockwave = document.createElement('div');
+      shockwave.className = 'portal-shockwave';
+      shockwave.style.left = '50%';
+      shockwave.style.top = '50%';
+      document.body.appendChild(shockwave);
+
+      shockwave.animate([
+        { width: '10px', height: '10px', opacity: 1, borderWidth: '8px' },
+        { width: '220vw', height: '220vw', opacity: 0, borderWidth: '1px' }
+      ], {
+        duration: 850,
+        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        fill: 'forwards'
+      });
+
+      authOverlay.classList.add('portal-active');
+
+      setTimeout(() => {
+        authOverlay.classList.add('hidden');
+        authOverlay.classList.remove('portal-active');
+        shockwave.remove();
+        showToast(`⚔️ Realm unsealed. Welcome warrior, ${username}!`, 'success', 'fa-skull');
+        initScrollReveal();
+      }, 780);
+    }
+
+    /* --------------------------------------------------------
+       TOAST NOTIFICATION ENGINE
+       -------------------------------------------------------- */
+    function showToast(message, type = 'info', icon = 'fa-circle-info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      
+      let iconColor = '#f87171';
+      if (type === 'success') iconColor = '#34d399';
+      if (type === 'warning') iconColor = '#fbbf24';
+
+      toast.innerHTML = `
+        <i class="fa-solid ${icon}" style="color:${iconColor}; font-size:1.25rem;"></i>
+        <div style="flex:1;">${message}</div>
+      `;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        toast.style.transition = 'all 0.35s ease';
+        setTimeout(() => toast.remove(), 350);
+      }, 4500);
+    }
+
+    /* --------------------------------------------------------
+       AUTHENTICATION STATE & FORM HANDLING
+       -------------------------------------------------------- */
+    const AUTH_STORAGE_KEY = 'fearsteal_user_auth';
+    const NOVICE_STORAGE_KEY = 'fearsteal_novice_claimed';
+    const NOVICE_COUNT_KEY = 'fearsteal_novice_counter';
+
+    function initAuth() {
+      const storedUser = localStorage.getItem(AUTH_STORAGE_KEY);
+      const navUserBadge = document.getElementById('user-nav-profile');
+      const navUserName = document.getElementById('user-nav-name');
+      const navUserAvatar = document.getElementById('user-nav-avatar');
+
+      if (storedUser) {
+        const userObj = JSON.parse(storedUser);
+        authOverlay.classList.add('hidden');
+        navUserName.textContent = userObj.username;
+        navUserAvatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(userObj.username)}/32`;
+        navUserBadge.style.display = 'flex';
+      } else {
+        authOverlay.classList.remove('hidden');
+      }
+    }
+
+    function switchAuthTab(type) {
+      playClickSound();
+      const tabLogin = document.getElementById('tab-login-btn');
+      const tabReg = document.getElementById('tab-register-btn');
+      const formLogin = document.getElementById('login-form');
+      const formReg = document.getElementById('register-form');
+
+      if (type === 'login') {
+        tabLogin.classList.add('active');
+        tabReg.classList.remove('active');
+        formLogin.style.display = 'block';
+        formReg.style.display = 'none';
+      } else {
+        tabReg.classList.add('active');
+        tabLogin.classList.remove('active');
+        formReg.style.display = 'block';
+        formLogin.style.display = 'none';
+      }
+    }
+
+    function togglePassVisibility(inputId, el) {
+      const input = document.getElementById(inputId);
+      if (input.type === 'password') {
+        input.type = 'text';
+        el.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        input.type = 'password';
+        el.classList.replace('fa-eye-slash', 'fa-eye');
+      }
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const identifier = document.getElementById('login-identifier').value.trim();
+      const pass = document.getElementById('login-password').value;
+      const errBox = document.getElementById('login-pass-err');
+
+      if (pass.length < 4) {
+        errBox.textContent = 'Password must be at least 4 characters.';
+        return;
+      }
+      errBox.textContent = '';
+
+      const userData = { username: identifier, loggedInAt: new Date().toISOString() };
+      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
+
+      triggerPortalTransition(identifier);
+
+      const navUserName = document.getElementById('user-nav-name');
+      const navUserAvatar = document.getElementById('user-nav-avatar');
+      navUserName.textContent = identifier;
+      navUserAvatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(identifier)}/32`;
+    }
+
+    function handleRegisterSubmit(e) {
+      e.preventDefault();
+      const username = document.getElementById('reg-username').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const pass = document.getElementById('reg-password').value;
+      const confirm = document.getElementById('reg-confirm').value;
+      const confirmErr = document.getElementById('reg-confirm-err');
+
+      if (pass !== confirm) {
+        confirmErr.textContent = 'Passwords do not match!';
+        return;
+      }
+      confirmErr.textContent = '';
+
+      const userData = { username, email, loggedInAt: new Date().toISOString() };
+      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
+
+      triggerPortalTransition(username);
+
+      const navUserName = document.getElementById('user-nav-name');
+      const navUserAvatar = document.getElementById('user-nav-avatar');
+      navUserName.textContent = username;
+      navUserAvatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(username)}/32`;
+    }
+
+    function handleLogout() {
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+      location.reload();
+    }
+
+    function triggerForgotPassword(e) {
+      e.preventDefault();
+      alert('Password reset instructions will be forwarded via the official Discord ticketing system (https://discord.gg/pGM5x3gXpX).');
+    }
+
+    /* --------------------------------------------------------
+       REAL MINECRAFT SERVER STATUS (play.fearsteal.fun:19132)
+       -------------------------------------------------------- */
+    async function fetchServerStatus() {
+      const topStatusText = document.getElementById('top-status-text');
+      const topDot = document.getElementById('top-dot-indicator');
+      const heroDot = document.getElementById('hero-dot');
+      const heroStatusLbl = document.getElementById('hero-status-lbl');
+      const heroPlayers = document.getElementById('hero-players-count');
+      const heroVersion = document.getElementById('hero-version-text');
+
+      const dashboardBadge = document.getElementById('dashboard-badge');
+      const dashboardBadgeText = document.getElementById('dashboard-badge-text');
+      const dashboardDot = document.getElementById('dashboard-dot');
+      const dashboardMotd = document.getElementById('dashboard-motd');
+      const metaSoftware = document.getElementById('meta-software');
+      const metaVersion = document.getElementById('meta-version');
+      const metaPing = document.getElementById('meta-ping');
+      const metaUpdated = document.getElementById('meta-updated');
+      const dashboardPlayerStat = document.getElementById('dashboard-player-stat');
+      const dashboardMaxStat = document.getElementById('dashboard-max-stat');
+
+      const nowStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+      try {
+        const response = await fetch(`https://api.mcstatus.io/v2/status/bedrock/${MC_HOST}:${MC_PORT}`, { cache: 'no-store' });
+        let data = null;
+        if (response.ok) data = await response.json();
+
+        if (!data || !data.online) {
+          const javaResp = await fetch(`https://api.mcstatus.io/v2/status/java/${MC_HOST}:${MC_PORT}`, { cache: 'no-store' });
+          if (javaResp.ok) {
+            const jData = await javaResp.json();
+            if (jData && jData.online) data = jData;
+          }
+        }
+
+        if (data && data.online) {
+          topDot.className = 'status-dot online';
+          heroDot.className = 'status-dot online';
+          dashboardDot.className = 'status-dot online';
+
+          const onlineCount = data.players?.online ?? 0;
+          const maxCount = data.players?.max ?? 500;
+
+          topStatusText.textContent = `Online (${onlineCount}/${maxCount})`;
+          heroStatusLbl.textContent = 'ONLINE';
+          heroStatusLbl.style.color = '#34d399';
+
+          heroPlayers.textContent = `${onlineCount} / ${maxCount}`;
+          dashboardPlayerStat.textContent = onlineCount;
+          dashboardMaxStat.textContent = `Max Capacity: ${maxCount}`;
+
+          const verStr = data.version?.name || '1.20.x Bedrock/Java';
+          heroVersion.textContent = verStr;
+          metaVersion.textContent = verStr;
+          metaSoftware.textContent = data.edition || 'Bedrock / PaperMC';
+
+          dashboardBadge.className = 'status-badge-live online';
+          dashboardBadgeText.textContent = 'ONLINE';
+
+          const rawMotd = (data.motd && data.motd.clean) ? data.motd.clean : 'FearSteal LifeSteal Network • Steal Hearts or Die!';
+          dashboardMotd.innerHTML = `<span><i class="fa-solid fa-terminal" style="color:var(--crimson); margin-right:8px;"></i>${rawMotd}</span>`;
+          metaPing.textContent = '19ms';
+          metaUpdated.textContent = nowStr;
+        } else {
+          setOfflineState(nowStr);
+        }
+      } catch (err) {
+        setOfflineState(nowStr);
+      }
+    }
+
+    function setOfflineState(timeStr) {
+      document.getElementById('top-dot-indicator').className = 'status-dot offline';
+      document.getElementById('top-status-text').textContent = 'Server Offline';
+
+      const heroDot = document.getElementById('hero-dot');
+      heroDot.className = 'status-dot offline';
+      const heroStatusLbl = document.getElementById('hero-status-lbl');
+      heroStatusLbl.textContent = 'OFFLINE';
+      heroStatusLbl.style.color = '#f87171';
+      document.getElementById('hero-players-count').textContent = '0 / 0';
+
+      const dashboardBadge = document.getElementById('dashboard-badge');
+      dashboardBadge.className = 'status-badge-live offline';
+      document.getElementById('dashboard-badge-text').textContent = 'OFFLINE';
+      document.getElementById('dashboard-dot').className = 'status-dot offline';
+
+      document.getElementById('dashboard-motd').innerHTML = `<span style="color:#f87171;"><i class="fa-solid fa-triangle-exclamation"></i> Server Offline or Node Unreachable. Attempting reconnect...</span>`;
+      document.getElementById('dashboard-player-stat').textContent = '0';
+      document.getElementById('meta-updated').textContent = timeStr;
+    }
+
+    /* --------------------------------------------------------
+       COPY IP
+       -------------------------------------------------------- */
+    function copyServerIP() {
+      playClickSound();
+      const textToCopy = `${MC_HOST}:${MC_PORT}`;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        showToast('✓ Server IP copied! (play.fearsteal.fun:19132)', 'success', 'fa-copy');
+        const icon = document.getElementById('ip-copy-icon');
+        if (icon) {
+          icon.className = 'fa-solid fa-check';
+          setTimeout(() => icon.className = 'fa-regular fa-copy', 2000);
+        }
+      }).catch(() => {
+        showToast(`Server IP: ${textToCopy}`, 'info', 'fa-copy');
+      });
+    }
+
+    /* --------------------------------------------------------
+       NOVICE FREE RANK CLAIM LOGIC (0 to 100 SLOTS)
+       -------------------------------------------------------- */
+    function initNoviceCounter() {
+      let count = parseInt(localStorage.getItem(NOVICE_COUNT_KEY) || '0', 10);
+      updateNoviceUI(count);
+    }
+
+    function updateNoviceUI(count) {
+      const counterText = document.getElementById('novice-counter-text');
+      const progressFill = document.getElementById('novice-progress-fill');
+      const btn = document.getElementById('claim-novice-btn');
+      const hasClaimed = localStorage.getItem(NOVICE_STORAGE_KEY) === 'true';
+
+      const clamped = Math.min(100, Math.max(0, count));
+      counterText.textContent = `${clamped} / 100 Claimed`;
+      progressFill.style.width = `${clamped}%`;
+
+      if (clamped >= 100) {
+        btn.textContent = '🔴 OUT OF STOCK';
+        btn.disabled = true;
+        btn.style.background = '#27272a';
+        btn.style.color = '#71717a';
+        btn.style.borderColor = '#3f3f46';
+        btn.style.cursor = 'not-allowed';
+      } else if (hasClaimed) {
+        btn.textContent = 'CLAIMED ✓';
+        btn.style.borderColor = '#10b981';
+        btn.style.color = '#10b981';
+      }
+    }
+
+    function handleNoviceClaim() {
+      playClickSound();
+      let count = parseInt(localStorage.getItem(NOVICE_COUNT_KEY) || '0', 10);
+      const hasClaimed = localStorage.getItem(NOVICE_STORAGE_KEY) === 'true';
+
+      if (count >= 100) {
+        alert('This free rank is OUT OF STOCK. All 100 promotional slots have been claimed.');
+        return;
+      }
+
+      if (hasClaimed) {
+        alert('You have already claimed this rank. You cannot claim this free rank again ❌️');
+        return;
+      }
+
+      count++;
+      localStorage.setItem(NOVICE_COUNT_KEY, count.toString());
+      localStorage.setItem(NOVICE_STORAGE_KEY, 'true');
+      updateNoviceUI(count);
+
+      showToast('Redirecting to Discord to claim your Novice role...', 'success', 'fa-gift');
+      window.open(DISCORD_INVITE, '_blank');
+    }
+
+    /* --------------------------------------------------------
+       LEADERBOARDS & PODIUM
+       -------------------------------------------------------- */
     const LEADERBOARD_DATA = {
       kills: [
         { name: "BloodReaper99", val: 1420, guild: "BloodLust" },
@@ -2782,324 +3276,8 @@
       ]
     };
 
-    /* --------------------------------------------------------
-       TOAST NOTIFICATION ENGINE
-       -------------------------------------------------------- */
-    function showToast(message, type = 'info', icon = 'fa-circle-info') {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      
-      let iconColor = '#f87171';
-      if (type === 'success') iconColor = '#34d399';
-      if (type === 'warning') iconColor = '#fbbf24';
-
-      toast.innerHTML = `
-        <i class="fa-solid ${icon}" style="color:${iconColor}; font-size:1.2rem;"></i>
-        <div style="flex:1;">${message}</div>
-      `;
-      container.appendChild(toast);
-
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateX(100%)';
-        toast.style.transition = 'all 0.3s ease';
-        setTimeout(() => toast.remove(), 300);
-      }, 4200);
-    }
-
-    /* --------------------------------------------------------
-       AUTHENTICATION STATE & ROUTING
-       -------------------------------------------------------- */
-    const AUTH_STORAGE_KEY = 'fearsteal_user_auth';
-    const NOVICE_STORAGE_KEY = 'fearsteal_novice_claimed';
-    const NOVICE_COUNT_KEY = 'fearsteal_novice_counter';
-
-    function initAuth() {
-      const storedUser = localStorage.getItem(AUTH_STORAGE_KEY);
-      const authOverlay = document.getElementById('auth-overlay');
-      const navUserBadge = document.getElementById('user-nav-profile');
-      const navUserName = document.getElementById('user-nav-name');
-      const navUserAvatar = document.getElementById('user-nav-avatar');
-
-      if (storedUser) {
-        const userObj = JSON.parse(storedUser);
-        authOverlay.classList.add('hidden');
-        navUserName.textContent = userObj.username;
-        navUserAvatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(userObj.username)}/32`;
-        navUserBadge.style.display = 'flex';
-      } else {
-        authOverlay.classList.remove('hidden');
-      }
-    }
-
-    function switchAuthTab(type) {
-      const tabLogin = document.getElementById('tab-login-btn');
-      const tabReg = document.getElementById('tab-register-btn');
-      const formLogin = document.getElementById('login-form');
-      const formReg = document.getElementById('register-form');
-
-      if (type === 'login') {
-        tabLogin.classList.add('active');
-        tabReg.classList.remove('active');
-        formLogin.style.display = 'block';
-        formReg.style.display = 'none';
-      } else {
-        tabReg.classList.add('active');
-        tabLogin.classList.remove('active');
-        formReg.style.display = 'block';
-        formLogin.style.display = 'none';
-      }
-    }
-
-    function togglePassVisibility(inputId, el) {
-      const input = document.getElementById(inputId);
-      if (input.type === 'password') {
-        input.type = 'text';
-        el.classList.replace('fa-eye', 'fa-eye-slash');
-      } else {
-        input.type = 'password';
-        el.classList.replace('fa-eye-slash', 'fa-eye');
-      }
-    }
-
-    function handleLoginSubmit(e) {
-      e.preventDefault();
-      const identifier = document.getElementById('login-identifier').value.trim();
-      const pass = document.getElementById('login-password').value;
-      const errBox = document.getElementById('login-pass-err');
-
-      if (pass.length < 4) {
-        errBox.textContent = 'Password must be at least 4 characters.';
-        return;
-      }
-      errBox.textContent = '';
-
-      const userData = { username: identifier, loggedInAt: new Date().toISOString() };
-      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
-      document.getElementById('auth-overlay').classList.add('hidden');
-
-      initAuth();
-      showToast(`Welcome back, ${identifier}! Access granted.`, 'success', 'fa-check');
-      checkBrowserNotificationSupport();
-    }
-
-    function handleRegisterSubmit(e) {
-      e.preventDefault();
-      const username = document.getElementById('reg-username').value.trim();
-      const email = document.getElementById('reg-email').value.trim();
-      const pass = document.getElementById('reg-password').value;
-      const confirm = document.getElementById('reg-confirm').value;
-      const confirmErr = document.getElementById('reg-confirm-err');
-
-      if (pass !== confirm) {
-        confirmErr.textContent = 'Passwords do not match!';
-        return;
-      }
-      confirmErr.textContent = '';
-
-      const userData = { username, email, loggedInAt: new Date().toISOString() };
-      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
-      document.getElementById('auth-overlay').classList.add('hidden');
-
-      initAuth();
-      showToast(`Account registered! Welcome to FearSteal, ${username}.`, 'success', 'fa-user-check');
-      checkBrowserNotificationSupport();
-    }
-
-    function handleLogout() {
-      localStorage.removeItem(AUTH_STORAGE_KEY);
-      location.reload();
-    }
-
-    function triggerForgotPassword(e) {
-      e.preventDefault();
-      alert('Password reset instructions will be forwarded via the official Discord ticketing system (https://discord.gg/pGM5x3gXpX).');
-    }
-
-    /* --------------------------------------------------------
-       REAL MINECRAFT SERVER STATUS (play.fearsteal.fun:19132)
-       -------------------------------------------------------- */
-    async function fetchServerStatus() {
-      const topStatusText = document.getElementById('top-status-text');
-      const topDot = document.getElementById('top-dot-indicator');
-      const heroDot = document.getElementById('hero-dot');
-      const heroStatusLbl = document.getElementById('hero-status-lbl');
-      const heroPlayers = document.getElementById('hero-players-count');
-      const heroVersion = document.getElementById('hero-version-text');
-
-      const dashboardBadge = document.getElementById('dashboard-badge');
-      const dashboardBadgeText = document.getElementById('dashboard-badge-text');
-      const dashboardDot = document.getElementById('dashboard-dot');
-      const dashboardMotd = document.getElementById('dashboard-motd');
-      const metaSoftware = document.getElementById('meta-software');
-      const metaVersion = document.getElementById('meta-version');
-      const metaPing = document.getElementById('meta-ping');
-      const metaUpdated = document.getElementById('meta-updated');
-      const dashboardPlayerStat = document.getElementById('dashboard-player-stat');
-      const dashboardMaxStat = document.getElementById('dashboard-max-stat');
-
-      const nowStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-
-      try {
-        // Query bedrock endpoint first since port is 19132, fallback to standard
-        const response = await fetch(`https://api.mcstatus.io/v2/status/bedrock/${MC_HOST}:${MC_PORT}`, {
-          cache: 'no-store'
-        });
-
-        let data = null;
-        if (response.ok) {
-          data = await response.json();
-        }
-
-        // If bedrock query unsuccessful, attempt java fallback
-        if (!data || !data.online) {
-          const javaResp = await fetch(`https://api.mcstatus.io/v2/status/java/${MC_HOST}:${MC_PORT}`, { cache: 'no-store' });
-          if (javaResp.ok) {
-            const jData = await javaResp.json();
-            if (jData && jData.online) {
-              data = jData;
-            }
-          }
-        }
-
-        if (data && data.online) {
-          // ONLINE
-          topDot.className = 'status-dot online';
-          heroDot.className = 'status-dot online';
-          dashboardDot.className = 'status-dot online';
-
-          topStatusText.textContent = `Online (${data.players?.online ?? 0}/${data.players?.max ?? 500})`;
-          heroStatusLbl.textContent = 'ONLINE';
-          heroStatusLbl.style.color = '#34d399';
-
-          const onlineCount = data.players?.online ?? 0;
-          const maxCount = data.players?.max ?? 500;
-
-          heroPlayers.textContent = `${onlineCount} / ${maxCount}`;
-          dashboardPlayerStat.textContent = onlineCount;
-          dashboardMaxStat.textContent = `Max Capacity: ${maxCount}`;
-
-          const verStr = data.version?.name || '1.20.x Bedrock/Java';
-          heroVersion.textContent = verStr;
-          metaVersion.textContent = verStr;
-          metaSoftware.textContent = data.edition || 'Bedrock / PaperMC';
-
-          dashboardBadge.className = 'status-badge-live online';
-          dashboardBadgeText.textContent = 'ONLINE';
-
-          const rawMotd = (data.motd && data.motd.clean) ? data.motd.clean : 'FearSteal LifeSteal Network • Steal Hearts or Die!';
-          dashboardMotd.innerHTML = `<span><i class="fa-solid fa-terminal" style="color:var(--crimson); margin-right:8px;"></i>${rawMotd}</span>`;
-          metaPing.textContent = '21ms';
-          metaUpdated.textContent = nowStr;
-        } else {
-          // OFFLINE
-          setOfflineState(nowStr);
-        }
-      } catch (err) {
-        console.warn('Live API status query failed:', err);
-        setOfflineState(nowStr);
-      }
-    }
-
-    function setOfflineState(timeStr) {
-      document.getElementById('top-dot-indicator').className = 'status-dot offline';
-      document.getElementById('top-status-text').textContent = 'Server Offline';
-
-      const heroDot = document.getElementById('hero-dot');
-      heroDot.className = 'status-dot offline';
-      const heroStatusLbl = document.getElementById('hero-status-lbl');
-      heroStatusLbl.textContent = 'OFFLINE';
-      heroStatusLbl.style.color = '#f87171';
-      document.getElementById('hero-players-count').textContent = '0 / 0';
-
-      const dashboardBadge = document.getElementById('dashboard-badge');
-      dashboardBadge.className = 'status-badge-live offline';
-      document.getElementById('dashboard-badge-text').textContent = 'OFFLINE';
-      document.getElementById('dashboard-dot').className = 'status-dot offline';
-
-      document.getElementById('dashboard-motd').innerHTML = `<span style="color:#f87171;"><i class="fa-solid fa-triangle-exclamation"></i> Server Offline or Node Unreachable. Attempting reconnect...</span>`;
-      document.getElementById('dashboard-player-stat').textContent = '0';
-      document.getElementById('meta-updated').textContent = timeStr;
-    }
-
-    /* --------------------------------------------------------
-       COPY IP TO CLIPBOARD
-       -------------------------------------------------------- */
-    function copyServerIP() {
-      const textToCopy = `${MC_HOST}:${MC_PORT}`;
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        showToast('✓ Server IP copied! (play.fearsteal.fun:19132)', 'success', 'fa-copy');
-        const icon = document.getElementById('ip-copy-icon');
-        if (icon) {
-          icon.className = 'fa-solid fa-check';
-          setTimeout(() => icon.className = 'fa-regular fa-copy', 2000);
-        }
-      }).catch(() => {
-        showToast(`Server IP: ${textToCopy}`, 'info', 'fa-copy');
-      });
-    }
-
-    /* --------------------------------------------------------
-       NOVICE FREE RANK CLAIM LOGIC (0 to 100 SLOTS)
-       -------------------------------------------------------- */
-    function initNoviceCounter() {
-      let count = parseInt(localStorage.getItem(NOVICE_COUNT_KEY) || '0', 10);
-      updateNoviceUI(count);
-    }
-
-    function updateNoviceUI(count) {
-      const counterText = document.getElementById('novice-counter-text');
-      const progressFill = document.getElementById('novice-progress-fill');
-      const btn = document.getElementById('claim-novice-btn');
-      const hasClaimed = localStorage.getItem(NOVICE_STORAGE_KEY) === 'true';
-
-      const clamped = Math.min(100, Math.max(0, count));
-      counterText.textContent = `${clamped} / 100 Claimed`;
-      progressFill.style.width = `${clamped}%`;
-
-      if (clamped >= 100) {
-        btn.textContent = '🔴 OUT OF STOCK';
-        btn.disabled = true;
-        btn.style.background = '#27272a';
-        btn.style.color = '#71717a';
-        btn.style.borderColor = '#3f3f46';
-        btn.style.cursor = 'not-allowed';
-      } else if (hasClaimed) {
-        btn.textContent = 'CLAIMED ✓';
-        btn.style.borderColor = '#10b981';
-        btn.style.color = '#10b981';
-      }
-    }
-
-    function handleNoviceClaim() {
-      let count = parseInt(localStorage.getItem(NOVICE_COUNT_KEY) || '0', 10);
-      const hasClaimed = localStorage.getItem(NOVICE_STORAGE_KEY) === 'true';
-
-      if (count >= 100) {
-        alert('This free rank is OUT OF STOCK. All 100 promotional slots have been claimed.');
-        return;
-      }
-
-      if (hasClaimed) {
-        alert('You have already claimed this rank. You cannot claim this free rank again ❌️');
-        return;
-      }
-
-      // Claim rank
-      count++;
-      localStorage.setItem(NOVICE_COUNT_KEY, count.toString());
-      localStorage.setItem(NOVICE_STORAGE_KEY, 'true');
-      updateNoviceUI(count);
-
-      showToast('Redirecting to Discord to finalize your Novice role...', 'success', 'fa-gift');
-      window.open(DISCORD_INVITE, '_blank');
-    }
-
-    /* --------------------------------------------------------
-       LEADERBOARD TAB SYSTEM
-       -------------------------------------------------------- */
     function loadLeaderboardCategory(catKey, btnEl) {
+      playClickSound();
       if (btnEl) {
         document.querySelectorAll('.category-pill-btn').forEach(b => b.classList.remove('active'));
         btnEl.classList.add('active');
@@ -3114,28 +3292,25 @@
       const top3 = list[2] || { name: 'None', val: 0, guild: '-' };
 
       podium.innerHTML = `
-        <!-- Rank 2 -->
         <div class="podium-box rank-2">
-          <img src="https://mc-heads.net/avatar/${top2.name}/68" onerror="this.src='https://mc-heads.net/avatar/Steve/68'" class="podium-avatar" alt="${top2.name}" />
+          <img src="https://mc-heads.net/avatar/${top2.name}/72" onerror="this.src='https://mc-heads.net/avatar/Steve/72'" class="podium-avatar" alt="${top2.name}" />
           <div class="podium-rank-num">#2</div>
           <div class="podium-name">${top2.name}</div>
           <div class="podium-score">${top2.val}</div>
           <span style="font-size:0.75rem; color:#9ca3af;">Guild: ${top2.guild}</span>
         </div>
 
-        <!-- Rank 1 (Center) -->
         <div class="podium-box rank-1">
           <div class="podium-crown"><i class="fa-solid fa-crown"></i></div>
-          <img src="https://mc-heads.net/avatar/${top1.name}/68" onerror="this.src='https://mc-heads.net/avatar/Steve/68'" class="podium-avatar" alt="${top1.name}" />
+          <img src="https://mc-heads.net/avatar/${top1.name}/72" onerror="this.src='https://mc-heads.net/avatar/Steve/72'" class="podium-avatar" alt="${top1.name}" />
           <div class="podium-rank-num">#1</div>
           <div class="podium-name">${top1.name}</div>
           <div class="podium-score">${top1.val}</div>
           <span style="font-size:0.75rem; color:#f59e0b;">Guild: ${top1.guild}</span>
         </div>
 
-        <!-- Rank 3 -->
         <div class="podium-box rank-3">
-          <img src="https://mc-heads.net/avatar/${top3.name}/68" onerror="this.src='https://mc-heads.net/avatar/Steve/68'" class="podium-avatar" alt="${top3.name}" />
+          <img src="https://mc-heads.net/avatar/${top3.name}/72" onerror="this.src='https://mc-heads.net/avatar/Steve/72'" class="podium-avatar" alt="${top3.name}" />
           <div class="podium-rank-num">#3</div>
           <div class="podium-name">${top3.name}</div>
           <div class="podium-score">${top3.val}</div>
@@ -3143,7 +3318,6 @@
         </div>
       `;
 
-      // Rows 4+
       tbody.innerHTML = '';
       for (let i = 3; i < list.length; i++) {
         const item = list[i];
@@ -3152,7 +3326,7 @@
           <td style="font-weight:800; color:var(--crimson-glow);">#${i + 1}</td>
           <td>
             <div class="lb-user-cell">
-              <img src="https://mc-heads.net/avatar/${item.name}/32" onerror="this.src='https://mc-heads.net/avatar/Steve/32'" alt="${item.name}" />
+              <img src="https://mc-heads.net/avatar/${item.name}/34" onerror="this.src='https://mc-heads.net/avatar/Steve/34'" alt="${item.name}" />
               <span>${item.name}</span>
             </div>
           </td>
@@ -3165,12 +3339,39 @@
     }
 
     /* --------------------------------------------------------
-       15-DAY EVENT ROTATION SYSTEM & COUNTDOWN
+       15-DAY EVENT ROTATION SYSTEM
        -------------------------------------------------------- */
+    const ROTATING_EVENTS = [
+      {
+        title: "FearSteal 3v3 LifeSteal Tournament",
+        type: "MINECRAFT EVENT",
+        desc: "Assemble your trio and enter the Nether Colosseum. Slay opposing factions for double heart drop multiplier and a $50 store voucher prize pool!"
+      },
+      {
+        title: "Discord Invite & Activity Carnival",
+        type: "DISCORD EVENT",
+        desc: "Climb the invite leaderboard and stay active in community voice channels to win permanent Lord and Elite ranks!"
+      },
+      {
+        title: "King of the Hill (KOTH) Bloodbath",
+        type: "MINECRAFT EVENT",
+        desc: "Capture and defend the central fortress beacon for 15 unbroken minutes to unlock the Ancient Vault crate rewards."
+      },
+      {
+        title: "Community Meme & Screenshot Contest",
+        type: "DISCORD EVENT",
+        desc: "Post your finest FearSteal clips and memes in #media-contests. Staff and community vote on top 3 creative winners."
+      },
+      {
+        title: "Dragon Slayer Boss Raid & Drop Party",
+        type: "MINECRAFT EVENT",
+        desc: "A modified 50,000 HP Ender Dragon spawns in the warzone. Defeat it for guaranteed revival hearts and tier-5 gear drops."
+      }
+    ];
+
     const EVENT_CYCLE_DAYS = 15;
     const CYCLE_DURATION_MS = EVENT_CYCLE_DAYS * 24 * 60 * 60 * 1000;
-    // Anchor timestamp
-    const BASE_TIMESTAMP = 1704067200000; // Jan 1 2024
+    const BASE_TIMESTAMP = 1704067200000;
 
     function calculateActiveEvent() {
       const now = Date.now();
@@ -3191,7 +3392,6 @@
       document.getElementById('active-event-type').textContent = activeEventObj.type;
       document.getElementById('active-event-description').textContent = activeEventObj.desc;
 
-      // Split remainingMs into days/hours/minutes/seconds
       const totalSec = Math.max(0, Math.floor(remainingMs / 1000));
       const days = Math.floor(totalSec / 86400);
       const hours = Math.floor((totalSec % 86400) / 3600);
@@ -3214,70 +3414,37 @@
         const daysFromNow = (i * 15);
 
         const card = document.createElement('div');
-        card.className = 'upcoming-card';
+        card.className = 'upcoming-card reveal-on-scroll';
         card.innerHTML = `
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
             <span class="event-type-badge">${nextEvt.type}</span>
             <span style="font-size:0.8rem; font-weight:700; color:var(--crimson-glow);">IN ~${daysFromNow} DAYS</span>
           </div>
           <h4 style="font-size:1.25rem; font-weight:800; margin-bottom:8px;">${nextEvt.title}</h4>
-          <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">${nextEvt.desc}</p>
+          <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.55;">${nextEvt.desc}</p>
         `;
         container.appendChild(card);
       }
     }
 
     /* --------------------------------------------------------
-       NEWSLETTER, SEARCH, UI ACCORDION
+       SCROLL REVEAL OBSERVER
        -------------------------------------------------------- */
-    function toggleAccordion(el) {
-      const parent = el.parentElement;
-      const isActive = parent.classList.contains('active');
-      document.querySelectorAll('.accordion-item').forEach(item => item.classList.remove('active'));
-      if (!isActive) parent.classList.add('active');
-    }
-
-    function toggleMobileNav() {
-      document.getElementById('navMenu').classList.toggle('open');
-    }
-
-    function handleSiteSearch(query) {
-      query = query.toLowerCase().trim();
-      if (!query) return;
-
-      const elementsToSearch = document.querySelectorAll('.feature-box, .rule-item, .accordion-item, .staff-card');
-      elementsToSearch.forEach(el => {
-        const text = el.textContent.toLowerCase();
-        if (text.includes(query)) {
-          el.style.outline = '2px solid var(--crimson-glow)';
-        } else {
-          el.style.outline = 'none';
-        }
-      });
-    }
-
-    function handleNewsletterSubmit(e) {
-      e.preventDefault();
-      const email = document.getElementById('newsletter-email').value;
-      showToast(`Thank you! ${email} has been registered for FearSteal alerts.`, 'success', 'fa-envelope-circle-check');
-      document.getElementById('newsletter-email').value = '';
-    }
-
-    function checkBrowserNotificationSupport() {
-      if ('Notification' in window && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
-        Notification.requestPermission().then(perm => {
-          if (perm === 'granted') {
-            new Notification('FearSteal LifeSteal Network', {
-              body: 'You will receive major announcements and 15-day event notifications!',
-              icon: 'https://mc-heads.net/avatar/Steve/64'
-            });
+    function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
           }
         });
-      }
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
     }
 
     /* --------------------------------------------------------
-       ANIMATED BACKGROUND PARTICLES (Cinematic Embers)
+       INTERACTIVE CANVAS PARTICLES (VORTEX EMBER PHYSICS)
        -------------------------------------------------------- */
     function initCanvasParticles() {
       const canvas = document.getElementById('particles-canvas');
@@ -3285,22 +3452,30 @@
       let w = canvas.width = window.innerWidth;
       let h = canvas.height = window.innerHeight;
 
+      let mouseX = w / 2;
+      let mouseY = h / 2;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
       window.addEventListener('resize', () => {
         w = canvas.width = window.innerWidth;
         h = canvas.height = window.innerHeight;
       });
 
-      const particleCount = 45;
+      const particleCount = 55;
       const particles = [];
 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * w,
           y: Math.random() * h,
-          radius: Math.random() * 2 + 0.8,
-          speedY: -(Math.random() * 0.7 + 0.2),
-          speedX: (Math.random() - 0.5) * 0.5,
-          alpha: Math.random() * 0.6 + 0.2
+          radius: Math.random() * 2.2 + 0.8,
+          speedY: -(Math.random() * 0.8 + 0.3),
+          speedX: (Math.random() - 0.5) * 0.6,
+          alpha: Math.random() * 0.6 + 0.25
         });
       }
 
@@ -3308,10 +3483,20 @@
         ctx.clearRect(0, 0, w, h);
         for (let i = 0; i < particles.length; i++) {
           const p = particles[i];
+
+          // Gentle gravity attraction towards mouse cursor
+          const dx = mouseX - p.x;
+          const dy = mouseY - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 200) {
+            p.x += (dx / dist) * 0.6;
+            p.y += (dy / dist) * 0.6;
+          }
+
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(239, 68, 68, ${p.alpha})`;
-          ctx.shadowBlur = 8;
+          ctx.shadowBlur = 10;
           ctx.shadowColor = '#dc2626';
           ctx.fill();
 
@@ -3331,6 +3516,47 @@
     }
 
     /* --------------------------------------------------------
+       UI ACCORDIONS, SEARCH, MOBILE NAV
+       -------------------------------------------------------- */
+    function toggleAccordion(el) {
+      playClickSound();
+      const parent = el.parentElement;
+      const isActive = parent.classList.contains('active');
+      document.querySelectorAll('.accordion-item').forEach(item => item.classList.remove('active'));
+      if (!isActive) parent.classList.add('active');
+    }
+
+    function toggleMobileNav() {
+      playClickSound();
+      document.getElementById('navMenu').classList.toggle('open');
+    }
+
+    function handleSiteSearch(query) {
+      query = query.toLowerCase().trim();
+      if (!query) return;
+
+      const elementsToSearch = document.querySelectorAll('.feature-box, .rule-item, .accordion-item, .staff-card');
+      elementsToSearch.forEach(el => {
+        const text = el.textContent.toLowerCase();
+        if (text.includes(query)) {
+          el.style.outline = '2px solid var(--crimson-glow)';
+          el.style.boxShadow = '0 0 20px rgba(220, 38, 38, 0.4)';
+        } else {
+          el.style.outline = 'none';
+          el.style.boxShadow = 'none';
+        }
+      });
+    }
+
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      playClickSound();
+      const email = document.getElementById('newsletter-email').value;
+      showToast(`Thank you! ${email} has been registered for FearSteal alerts.`, 'success', 'fa-envelope-circle-check');
+      document.getElementById('newsletter-email').value = '';
+    }
+
+    /* --------------------------------------------------------
        LIFECYCLE INITIALIZER
        -------------------------------------------------------- */
     document.addEventListener('DOMContentLoaded', () => {
@@ -3341,6 +3567,7 @@
       initNoviceCounter();
       loadLeaderboardCategory('kills', null);
       renderUpcomingSchedule();
+      initScrollReveal();
 
       // Countdown ticker every second
       renderActiveEvent();
@@ -3352,8 +3579,8 @@
 
       // Welcome visitor toast
       setTimeout(() => {
-        showToast('⚔️ FearSteal Season 2 is live! Join IP: play.fearsteal.fun:19132', 'warning', 'fa-bolt');
-      }, 1400);
+        showToast('⚔️ FearSteal Season 1 is live! Join IP: play.fearsteal.fun:19132', 'warning', 'fa-bolt');
+      }, 1600);
     });
   </script>
 </body>
