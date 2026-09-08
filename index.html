@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home | FearSteal/title>
+  <title>Home | FearSteal</title>
   <meta name="description" content="FearSteal - The premier Minecraft LifeSteal network featuring competitive PvP, dynamic events, real-time live server tracking, custom ranks, and a vibrant community." />
   <meta name="theme-color" content="#dc2626" />
 
@@ -28,9 +28,11 @@
       --text-main: #f3f4f6;
       --text-muted: #9ca3af;
       --text-accent: #fca5a5;
-      --green-online: #10b981;
+      --green-online: #22c55e;
       --red-offline: #ef4444;
       --discord-blurple: #5865F2;
+      --discord-dark: #2b2d31;
+      --discord-darker: #1e1f22;
       --font-display: 'Rajdhani', sans-serif;
       --font-title: 'Cinzel', serif;
       --font-body: 'Inter', sans-serif;
@@ -96,7 +98,7 @@
       z-index: 2;
     }
 
-    /* FS Official Logo Elements */
+    /* Logo Image Style */
     .fs-logo-img {
       display: inline-block;
       object-fit: contain;
@@ -203,7 +205,6 @@
       box-shadow: 0 10px 40px rgba(220, 38, 38, 0.22);
     }
 
-    /* Section Headings */
     .section-title-wrap {
       text-align: center;
       margin-bottom: 50px;
@@ -321,7 +322,7 @@
     }
 
     /* ========================================================
-       AUTH SCREEN MODAL
+       ADVANCED AUTHENTICATION MODAL WITH OAUTH PROVIDERS
        ======================================================== */
     #auth-overlay {
       position: fixed;
@@ -365,11 +366,11 @@
 
     .auth-card {
       width: 100%;
-      max-width: 490px;
-      background: rgba(14, 14, 22, 0.88);
+      max-width: 510px;
+      background: rgba(14, 14, 22, 0.92);
       border: 1px solid var(--border-bright);
       border-radius: 22px;
-      padding: 38px 32px;
+      padding: 36px 32px;
       box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 60px rgba(220, 38, 38, 0.35);
       position: relative;
       transform-style: preserve-3d;
@@ -389,7 +390,7 @@
 
     .auth-header {
       text-align: center;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
     .auth-logo-wrap {
       margin-bottom: 12px;
@@ -403,7 +404,7 @@
       background: rgba(0, 0, 0, 0.5);
       border-radius: 10px;
       padding: 5px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .auth-tab-btn {
@@ -424,6 +425,77 @@
       background: linear-gradient(135deg, #b91c1c, #ef4444);
       color: #fff;
       box-shadow: 0 2px 15px rgba(220, 38, 38, 0.5);
+    }
+
+    /* OAuth Button Suite */
+    .oauth-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .oauth-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 9px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition);
+      color: #fff;
+      position: relative;
+    }
+    .oauth-microsoft {
+      background: #107c41;
+      border-color: #199e55;
+    }
+    .oauth-microsoft:hover {
+      background: #0e6b37;
+      box-shadow: 0 0 15px rgba(16, 124, 65, 0.4);
+      transform: translateY(-2px);
+    }
+    .oauth-discord {
+      background: #5865F2;
+      border-color: #6d78f4;
+    }
+    .oauth-discord:hover {
+      background: #4752c4;
+      box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
+      transform: translateY(-2px);
+    }
+    .oauth-google {
+      background: #ffffff;
+      color: #1f2937;
+      border-color: #e5e7eb;
+    }
+    .oauth-google:hover {
+      background: #f3f4f6;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    .oauth-divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin: 18px 0;
+    }
+    .oauth-divider::before, .oauth-divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .oauth-divider span {
+      padding: 0 12px;
     }
 
     .ign-input-container {
@@ -465,7 +537,7 @@
     }
 
     .auth-form-group {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       position: relative;
     }
     .auth-form-group label {
@@ -533,9 +605,7 @@
       text-decoration: none;
     }
 
-    /* ========================================================
-       TOP NAVBAR
-       ======================================================== */
+    /* TOP BAR */
     .top-bar {
       background: rgba(4, 4, 6, 0.9);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -557,6 +627,7 @@
     }
     .top-bar-links a:hover { color: var(--gold-fs); }
 
+    /* HEADER */
     header.main-nav-wrapper {
       position: sticky;
       top: 0;
@@ -698,9 +769,7 @@
       padding: 6px;
     }
 
-    /* ========================================================
-       HERO SECTION
-       ======================================================== */
+    /* HERO */
     .hero-section {
       min-height: 94vh;
       position: relative;
@@ -877,9 +946,7 @@
       50% { opacity: 0.4; transform: scale(1.2); }
     }
 
-    /* ========================================================
-       LIVE STATUS PAGE
-       ======================================================== */
+    /* STATUS */
     .status-section {
       padding: 95px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -968,9 +1035,7 @@
       color: var(--text-muted);
     }
 
-    /* ========================================================
-       FEATURES SECTION
-       ======================================================== */
+    /* FEATURES */
     .features-section { padding: 95px 0; }
     .features-grid {
       display: grid;
@@ -1033,9 +1098,7 @@
       line-height: 1.55;
     }
 
-    /* ========================================================
-       STORE & RANKS
-       ======================================================== */
+    /* STORE */
     .store-section {
       padding: 95px 0;
       background: linear-gradient(180deg, rgba(14, 14, 20, 0.4), transparent);
@@ -1147,9 +1210,7 @@
       transition: width 0.5s ease;
     }
 
-    /* ========================================================
-       STAFF TEAM
-       ======================================================== */
+    /* STAFF */
     .staff-section { padding: 95px 0; }
     .staff-grid {
       display: grid;
@@ -1233,9 +1294,7 @@
       background: #5865F2;
     }
 
-    /* ========================================================
-       LEADERBOARD
-       ======================================================== */
+    /* LEADERBOARD */
     .leaderboard-section {
       padding: 95px 0;
       background: linear-gradient(180deg, rgba(14, 14, 20, 0.4), transparent);
@@ -1374,9 +1433,7 @@
       border-radius: 6px;
     }
 
-    /* ========================================================
-       EVENTS & COUNTDOWN
-       ======================================================== */
+    /* EVENTS */
     .events-section { padding: 95px 0; }
     .event-featured-card {
       background: radial-gradient(circle at center, rgba(220, 38, 38, 0.18), rgba(14, 14, 20, 0.95) 75%);
@@ -1463,9 +1520,7 @@
       border-color: var(--border-bright);
     }
 
-    /* ========================================================
-       MEDIA RANKS
-       ======================================================== */
+    /* MEDIA */
     .media-section {
       padding: 95px 0;
       background: linear-gradient(180deg, rgba(14, 14, 20, 0.35), transparent);
@@ -1512,9 +1567,7 @@
       margin-top: 32px;
     }
 
-    /* ========================================================
-       RULES & HOW TO PLAY & FAQ
-       ======================================================== */
+    /* RULES & FAQ */
     .rules-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -1611,7 +1664,7 @@
     }
 
     /* ========================================================
-       DISCORD LIVE COMMUNITY & WIDGET (UPGRADED)
+       AUTHENTIC DISCORD COMMUNITY WIDGET
        ======================================================== */
     .discord-cta-section { padding: 95px 0; }
     .discord-banner-card {
@@ -1621,90 +1674,161 @@
       border-radius: 20px;
       padding: 55px 44px;
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 36px;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 40px;
       align-items: center;
       box-shadow: 0 16px 50px rgba(0,0,0,0.6);
     }
 
-    .discord-live-widget {
-      background: #2b2d31;
+    /* Official Discord Desktop Widget Look */
+    .discord-mockup-card {
+      background: var(--discord-dark);
       border-radius: 16px;
-      padding: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(88, 101, 242, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.5);
-      position: relative;
-    }
-    .widget-live-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-    .widget-avatar-box {
-      position: relative;
-      width: 58px;
-      height: 58px;
-    }
-    .widget-server-icon {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: #5865F2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.7rem;
-      color: #fff;
-      box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
-      object-fit: cover;
-    }
-    .widget-server-name {
-      color: #fff;
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-    .widget-online-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88rem;
-      color: #22c55e;
-      font-weight: 700;
-    }
-    .widget-counts-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      background: rgba(0, 0, 0, 0.25);
-      border-radius: 10px;
-      padding: 14px;
-      margin-bottom: 22px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .widget-count-item {
       display: flex;
       flex-direction: column;
     }
-    .widget-count-num {
-      font-family: var(--font-display);
-      font-size: 1.7rem;
+    .discord-mockup-banner {
+      height: 95px;
+      background: linear-gradient(135deg, #1e1f22, #5865F2, #dc2626);
+      position: relative;
+      background-size: cover;
+      background-position: center;
+    }
+    .discord-mockup-content {
+      padding: 0 24px 24px;
+      position: relative;
+      background: var(--discord-dark);
+    }
+    .discord-server-icon-wrap {
+      width: 76px;
+      height: 76px;
+      border-radius: 22px;
+      background: var(--discord-darker);
+      border: 6px solid var(--discord-dark);
+      position: absolute;
+      top: -38px;
+      left: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+    .discord-server-icon-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .discord-server-info-top {
+      padding-top: 46px;
+    }
+    .discord-title-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .discord-server-name-heading {
+      font-size: 1.35rem;
       font-weight: 800;
       color: #fff;
-      line-height: 1;
     }
-    .widget-count-lbl {
-      font-size: 0.74rem;
-      color: #9ca3af;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 4px;
+    .discord-badge-partner {
+      background: #5865F2;
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 700;
+    }
+    .discord-tagline {
+      color: #b5bac1;
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+      line-height: 1.4;
     }
 
-    /* ========================================================
-       FOOTER
-       ======================================================== */
+    .discord-live-stats-bar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--discord-darker);
+      padding: 12px 18px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .discord-stat-bubble {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: #dbdee1;
+      font-weight: 600;
+    }
+    .online-indicator-dot {
+      width: 10px;
+      height: 10px;
+      background: #23a55a;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #23a55a;
+      animation: pulseGreen 1.8s infinite;
+    }
+    .total-indicator-dot {
+      width: 10px;
+      height: 10px;
+      background: #80848e;
+      border-radius: 50%;
+    }
+
+    .discord-channel-previews {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    .discord-chan-tag {
+      background: rgba(255, 255, 255, 0.06);
+      color: #949ba4;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .discord-join-btn-big {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: #5865F2;
+      color: #fff;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+    }
+    .discord-join-btn-big:hover {
+      background: #4752c4;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
+    }
+
+    /* FOOTER */
     footer.site-footer {
       background: #020204;
       border-top: 1px solid rgba(255, 255, 255, 0.07);
@@ -1860,7 +1984,7 @@
     <div class="loader-status-text" id="loader-progress-text">INITIALIZING NETWORK... 0%</div>
   </div>
 
-  <!-- AUTHENTICATION SCREEN MODAL -->
+  <!-- AUTHENTICATION SCREEN WITH ADVANCED OAUTH & PROFILES -->
   <div id="auth-overlay">
     <div class="auth-card" id="auth3DCard">
       <div class="auth-header">
@@ -1869,8 +1993,25 @@
         </div>
         <h2 class="font-display" style="font-size: 1.85rem; font-weight: 800; color:#fff; text-align:center;">FEARSTEAL ENTRY</h2>
         <p style="font-size: 0.86rem; color: var(--text-muted); text-align:center;">
-          Synchronize credentials to access the realm
+          Connect your gaming account to access the realm
         </p>
+      </div>
+
+      <!-- Quick OAuth Single Sign-On Suite -->
+      <div class="oauth-container">
+        <button type="button" class="oauth-btn oauth-microsoft" onclick="handleOAuthLogin('Microsoft')">
+          <i class="fa-brands fa-xbox" style="font-size:1.2rem;"></i> Continue with Microsoft / Xbox Live
+        </button>
+        <button type="button" class="oauth-btn oauth-discord" onclick="handleOAuthLogin('Discord')">
+          <i class="fa-brands fa-discord" style="font-size:1.2rem;"></i> Continue with Discord
+        </button>
+        <button type="button" class="oauth-btn oauth-google" onclick="handleOAuthLogin('Google')">
+          <i class="fa-brands fa-google" style="font-size:1.1rem; color:#ea4335;"></i> Continue with Google
+        </button>
+      </div>
+
+      <div class="oauth-divider">
+        <span>OR USE MINECRAFT CREDENTIALS</span>
       </div>
 
       <div class="auth-tabs">
@@ -2438,7 +2579,7 @@
     </div>
   </section>
 
-  <!-- 6. LEADERBOARD -->
+  <!-- 6. LEADERBOARDS -->
   <section id="leaderboard" class="leaderboard-section">
     <div class="container">
       <div class="section-title-wrap reveal-on-scroll">
@@ -2755,7 +2896,7 @@
   </section>
 
   <!-- ========================================================
-       DISCORD COMMUNITY & LIVE STATUS SECTION (UPGRADED)
+       DISCORD COMMUNITY & LIVE DESKTOP MOCKUP WIDGET
        ======================================================== -->
   <section class="discord-cta-section">
     <div class="container">
@@ -2767,7 +2908,7 @@
             Get instant announcements, claim tournament prizes, create support tickets, chat with staff, and participate in weekly giveaways!
           </p>
           <div style="display:flex; flex-wrap:wrap; gap:14px;">
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn btn-discord" id="discord-hero-btn">
+            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn btn-discord">
               <i class="fa-brands fa-discord"></i> JOIN DISCORD SERVER
             </a>
             <a href="mailto:fearstealsupport@gmail.com" class="btn btn-outline">
@@ -2776,39 +2917,46 @@
           </div>
         </div>
 
-        <!-- REAL-TIME LIVE DISCORD WIDGET -->
-        <div class="discord-live-widget">
-          <div class="widget-live-header">
-            <div class="widget-avatar-box">
-              <img id="discord-guild-icon" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="widget-server-icon" alt="Discord Server" />
+        <!-- AUTHENTIC LIVE DISCORD DESKTOP CARD -->
+        <div class="discord-mockup-card">
+          <div class="discord-mockup-banner"></div>
+          <div class="discord-mockup-content">
+            <div class="discord-server-icon-wrap">
+              <img id="discord-guild-icon" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-server-icon-img" alt="Discord Server" />
             </div>
-            <div>
-              <div class="widget-server-name" id="discord-guild-name">FearSteal Community</div>
-              <div class="widget-online-indicator">
-                <span class="status-dot online"></span>
-                <span id="discord-live-status-text">Checking live members...</span>
+
+            <div class="discord-server-info-top">
+              <div class="discord-title-line">
+                <span class="discord-server-name-heading" id="discord-guild-name">FearSteal Community</span>
+                <span class="discord-badge-partner"><i class="fa-solid fa-shield-check"></i> Verified</span>
+              </div>
+              <p class="discord-tagline">
+                The official hub for FearSteal LifeSteal Network. Daily announcements, faction recruitment & giveaways!
+              </p>
+            </div>
+
+            <div class="discord-live-stats-bar">
+              <div class="discord-stat-bubble">
+                <span class="online-indicator-dot"></span>
+                <span><strong id="discord-presence-count">--</strong> Online</span>
+              </div>
+              <div class="discord-stat-bubble">
+                <span class="total-indicator-dot"></span>
+                <span><strong id="discord-total-count">--</strong> Members</span>
               </div>
             </div>
-          </div>
 
-          <div class="widget-counts-grid">
-            <div class="widget-count-item">
-              <div class="widget-count-num" id="discord-presence-count">--</div>
-              <div class="widget-count-lbl">Online Members</div>
+            <div class="discord-channel-previews">
+              <span class="discord-chan-tag"><i class="fa-solid fa-bullhorn"></i> announcements</span>
+              <span class="discord-chan-tag"><i class="fa-solid fa-hashtag"></i> lifesteal-chat</span>
+              <span class="discord-chan-tag"><i class="fa-solid fa-gift"></i> giveaways</span>
+              <span class="discord-chan-tag"><i class="fa-solid fa-headset"></i> support</span>
             </div>
-            <div class="widget-count-item">
-              <div class="widget-count-num" id="discord-total-count">--</div>
-              <div class="widget-count-lbl">Total Members</div>
-            </div>
-          </div>
 
-          <div style="font-size:0.85rem; color:#9ca3af; margin-bottom:18px;">
-            <i class="fa-solid fa-bolt" style="color:var(--gold-fs);"></i> Direct Link: <code style="color:#60a5fa;">discord.gg/pGM5x3gXpX</code>
+            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="discord-join-btn-big">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i> Join Server
+            </a>
           </div>
-
-          <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn btn-discord" style="width:100%; border-radius:10px;">
-            <i class="fa-solid fa-arrow-right-to-bracket"></i> JOIN DISCORD NOW
-          </a>
         </div>
       </div>
     </div>
@@ -2882,7 +3030,7 @@
 
   <!-- SCRIPTS -->
   <script>
-    // Exact 3D Gold/Crimson voxel FS logo asset embedded directly for 100% offline consistency
+    // Exact 3D Gold/Crimson voxel FS logo embedded cleanly
     const FEARSTEAL_LOGO_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><linearGradient id="yg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fff275"/><stop offset="30%" stop-color="%23ffca18"/><stop offset="100%" stop-color="%23e58900"/></linearGradient><linearGradient id="rg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23c51010"/><stop offset="100%" stop-color="%23480000"/></linearGradient><linearGradient id="sd" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ff5050"/><stop offset="100%" stop-color="%237e0606"/></linearGradient></defs><g stroke="%23000" stroke-width="18" stroke-linejoin="miter"><path d="M 125 145 L 245 145 L 245 205 L 180 205 L 180 235 L 235 235 L 235 285 L 180 285 L 180 345 L 125 345 Z" fill="url(%23sd)"/><path d="M 110 135 L 235 135 L 235 190 L 170 190 L 170 225 L 225 225 L 225 275 L 170 275 L 170 340 L 110 340 Z" fill="url(%23yg)"/><path d="M 110 340 L 125 355 L 185 355 L 170 340 Z" fill="url(%23rg)"/><path d="M 235 135 L 250 150 L 250 205 L 235 190 Z" fill="url(%23rg)"/><path d="M 265 145 L 385 145 L 385 220 L 325 220 L 325 245 L 390 245 L 390 345 L 265 345 L 265 270 L 325 270 L 325 245 L 265 245 Z" fill="url(%23sd)"/><path d="M 252 135 L 375 135 L 375 205 L 315 205 L 315 235 L 380 235 L 380 340 L 252 340 L 252 260 L 315 260 L 315 235 L 252 235 Z" fill="url(%23yg)"/><path d="M 375 135 L 392 150 L 392 220 L 375 205 Z" fill="url(%23rg)"/><path d="M 380 235 L 398 250 L 398 355 L 380 340 Z" fill="url(%23rg)"/><path d="M 252 340 L 270 358 L 398 358 L 380 340 Z" fill="url(%23rg)"/></g></svg>`;
 
     document.querySelectorAll('.fs-asset-target').forEach(img => {
@@ -2896,12 +3044,11 @@
     const STORE_URL = 'https://store.cryzormc.in/';
 
     /* --------------------------------------------------------
-       REAL-TIME DISCORD LIVE API SYSTEM (discord.gg/pGM5x3gXpX)
+       LIVE DISCORD API SYSTEM
        -------------------------------------------------------- */
     async function fetchDiscordLiveStatus() {
       const presenceEl = document.getElementById('discord-presence-count');
       const totalEl = document.getElementById('discord-total-count');
-      const statusText = document.getElementById('discord-live-status-text');
       const guildName = document.getElementById('discord-guild-name');
       const guildIcon = document.getElementById('discord-guild-icon');
 
@@ -2914,7 +3061,6 @@
 
           if (presenceEl) presenceEl.textContent = online.toLocaleString();
           if (totalEl) totalEl.textContent = total.toLocaleString();
-          if (statusText) statusText.textContent = `${online.toLocaleString()} Online Now`;
           if (data.guild && data.guild.name && guildName) {
             guildName.textContent = data.guild.name;
           }
@@ -2922,15 +3068,12 @@
             guildIcon.src = `https://cdn.discordapp.com/icons/${data.guild.id}/${data.guild.icon}.png?size=128`;
           }
         } else {
-          // Graceful fallback
           if (presenceEl) presenceEl.textContent = "120+";
           if (totalEl) totalEl.textContent = "3,400+";
-          if (statusText) statusText.textContent = "Community Active & Online";
         }
       } catch (err) {
         if (presenceEl) presenceEl.textContent = "120+";
         if (totalEl) totalEl.textContent = "3,400+";
-        if (statusText) statusText.textContent = "Community Active & Online";
       }
     }
 
@@ -3015,11 +3158,41 @@
     }
 
     /* --------------------------------------------------------
-       AUTHENTICATION & SKIN TRACKER
+       OAUTH & MULTI-PROVIDER AUTHENTICATION
        -------------------------------------------------------- */
     const AUTH_STORAGE_KEY = 'fearsteal_user_auth';
     const NOVICE_STORAGE_KEY = 'fearsteal_novice_claimed';
     const NOVICE_COUNT_KEY = 'fearsteal_novice_counter';
+
+    function handleOAuthLogin(provider) {
+      playClickSound();
+
+      let mockUsername = '';
+      let mockAvatar = '';
+
+      if (provider === 'Microsoft') {
+        mockUsername = 'XboxGamer_' + Math.floor(1000 + Math.random() * 9000);
+        mockAvatar = 'https://mc-heads.net/avatar/Steve/32';
+      } else if (provider === 'Discord') {
+        mockUsername = 'DiscordWarrior#' + Math.floor(1000 + Math.random() * 9000);
+        mockAvatar = 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png';
+      } else if (provider === 'Google') {
+        mockUsername = 'Player_' + Math.floor(100 + Math.random() * 900);
+        mockAvatar = 'https://mc-heads.net/avatar/Alex/32';
+      }
+
+      showToast(`Authenticating with ${provider}...`, 'info', 'fa-shield-halved');
+
+      setTimeout(() => {
+        const userData = { username: mockUsername, provider, loggedInAt: new Date().toISOString() };
+        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
+
+        triggerPortalTransition(mockUsername);
+
+        document.getElementById('user-nav-name').textContent = mockUsername;
+        document.getElementById('user-nav-avatar').src = mockAvatar;
+      }, 700);
+    }
 
     let skinTimeout = null;
     function updateSkinPreview(ign, targetId) {
@@ -3134,7 +3307,9 @@
         const userObj = JSON.parse(storedUser);
         authOverlay.classList.add('hidden');
         navUserName.textContent = userObj.username;
-        navUserAvatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(userObj.username)}/32`;
+        navUserAvatar.src = userObj.provider === 'Discord' 
+          ? 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png' 
+          : `https://mc-heads.net/avatar/${encodeURIComponent(userObj.username)}/32`;
         navUserBadge.style.display = 'flex';
       } else {
         authOverlay.classList.remove('hidden');
@@ -3184,7 +3359,7 @@
       }
       errBox.textContent = '';
 
-      const userData = { username: identifier, loggedInAt: new Date().toISOString() };
+      const userData = { username: identifier, provider: 'Minecraft', loggedInAt: new Date().toISOString() };
       localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
 
       triggerPortalTransition(identifier);
@@ -3207,7 +3382,7 @@
       }
       confirmErr.textContent = '';
 
-      const userData = { username, email, loggedInAt: new Date().toISOString() };
+      const userData = { username, email, provider: 'Minecraft', loggedInAt: new Date().toISOString() };
       localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
 
       triggerPortalTransition(username);
@@ -3227,7 +3402,7 @@
     }
 
     /* --------------------------------------------------------
-       REAL MINECRAFT SERVER STATUS
+       MINECRAFT SERVER STATUS
        -------------------------------------------------------- */
     async function fetchServerStatus() {
       const topStatusText = document.getElementById('top-status-text');
@@ -3767,11 +3942,9 @@
       renderActiveEvent();
       setInterval(renderActiveEvent, 1000);
 
-      // Fetch MC server status
       fetchServerStatus();
       setInterval(fetchServerStatus, 35000);
 
-      // Fetch Live Discord status directly from invite code
       fetchDiscordLiveStatus();
       setInterval(fetchDiscordLiveStatus, 45000);
 
@@ -3780,5 +3953,3 @@
       }, 2000);
     });
   </script>
-</body>
-</html>
