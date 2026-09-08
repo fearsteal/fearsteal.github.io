@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home | FearSteal</title>
-  <meta name="description" content="Official FearSteal LifeSteal Network (play.fearsteal.fun:19132). Velocity proxy status, live members directory, 10m auto-refresh leaderboards, heart forge, crate unboxer, user manager, staff desk, and founder admin suite." />
+  <meta name="description" content="Official FearSteal LifeSteal Network (play.fearsteal.fun:19132). Real-time server telemetry, automated 15-day rotating events, heart forge simulator, crate unboxer, user management." />
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -82,52 +82,88 @@
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
     }
-    .font-gaming { font-family: 'Rajdhani', sans-serif; }
+    
+    .font-gaming {
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    /* Glassmorphism Styles */
     .glass-panel {
-      background: rgba(12, 12, 20, 0.82);
+      background: rgba(12, 12, 20, 0.78);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 16, 47, 0.16);
     }
+
     .glass-panel-glow {
-      background: rgba(14, 14, 24, 0.92);
+      background: rgba(14, 14, 24, 0.9);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 16, 47, 0.36);
       box-shadow: 0 10px 40px -10px rgba(255, 16, 47, 0.35);
     }
+
     .glass-nav {
-      background: rgba(5, 5, 9, 0.94);
+      background: rgba(5, 5, 9, 0.92);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 16, 47, 0.18);
     }
+
+    /* Cyber Grid */
     .bg-cyber-grid {
       background-size: 40px 40px;
       background-image: 
         linear-gradient(to right, rgba(255, 16, 47, 0.035) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 16, 47, 0.035) 1px, transparent 1px);
     }
-    .text-glow-crimson { text-shadow: 0 0 16px rgba(255, 16, 47, 0.75), 0 0 35px rgba(255, 16, 47, 0.35); }
-    .text-glow-gold { text-shadow: 0 0 18px rgba(234, 179, 8, 0.75), 0 0 35px rgba(234, 179, 8, 0.35); }
-    .text-glow-discord { text-shadow: 0 0 18px rgba(88, 101, 242, 0.75); }
-    .stable-card { transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease; }
+
+    /* Glows */
+    .text-glow-crimson {
+      text-shadow: 0 0 16px rgba(255, 16, 47, 0.75), 0 0 35px rgba(255, 16, 47, 0.35);
+    }
+    .text-glow-gold {
+      text-shadow: 0 0 18px rgba(234, 179, 8, 0.75), 0 0 35px rgba(234, 179, 8, 0.35);
+    }
+    .text-glow-discord {
+      text-shadow: 0 0 18px rgba(88, 101, 242, 0.75);
+    }
+
+    /* Stable Solid Cards */
+    .stable-card {
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    }
     .stable-card:hover {
       border-color: rgba(255, 16, 47, 0.55);
       box-shadow: 0 12px 35px -10px rgba(255, 16, 47, 0.4);
       transform: translateY(-3px);
     }
-    ::-webkit-scrollbar { width: 7px; }
-    ::-webkit-scrollbar-track { background: #030306; }
-    ::-webkit-scrollbar-thumb { background: #380006; border-radius: 4px; border: 1px solid rgba(255, 16, 47, 0.3); }
-    ::-webkit-scrollbar-thumb:hover { background: #ff102f; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #030306;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #380006;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 16, 47, 0.3);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ff102f;
+    }
+
     @keyframes heartBeat {
       0%, 100% { transform: scale(1); }
       14% { transform: scale(1.15); }
       28% { transform: scale(1.03); }
       42% { transform: scale(1.1); }
     }
-    .animate-heart-pulse { animation: heartBeat 2.2s ease-in-out infinite; }
+    .animate-heart-pulse {
+      animation: heartBeat 2.2s ease-in-out infinite;
+    }
   </style>
 </head>
 <body class="bg-dark-950 text-gray-100 antialiased selection:bg-crimson-600 selection:text-white">
@@ -136,7 +172,7 @@
   <script type="text/babel">
     const { useState, useEffect, useRef, useMemo } = React;
 
-    // --- TIME AGO DYNAMIC FORMATTER ---
+    // --- TIME AGO HELPER ---
     const formatTimeAgo = (timestamp) => {
       if (!timestamp) return "Just now";
       const now = Date.now();
@@ -147,9 +183,9 @@
       const diffDays = Math.floor(diffHours / 24);
 
       if (diffSecs < 60) return "Just now";
-      if (diffMins < 60) return `${diffMins} min${diffMins > 1 ? 's' : ''} ago`;
-      if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-      return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+      if (diffMins < 60) return `${diffMins}m ago`;
+      if (diffHours < 24) return `${diffHours}h ago`;
+      return `${diffDays}d ago`;
     };
 
     // --- SOUND SYNTHESIZER ---
@@ -275,57 +311,63 @@
     // --- OFFICIAL SUPPLIED FEARSTEAL BANNER COMPONENT ---
     const FearStealBanner = ({ className = "" }) => {
       return (
-        <div className={`relative w-full rounded-3xl overflow-hidden border-2 border-yellow-500/40 shadow-glow-crimson-lg bg-gradient-to-b from-dark-900 via-dark-950 to-black p-4 sm:p-8 flex flex-col items-center justify-center text-center ${className}`}>
-          <div className="relative max-w-2xl w-full mx-auto my-2">
-            <svg viewBox="0 0 900 320" className="w-full h-auto drop-shadow-[0_10px_25px_rgba(255,16,47,0.4)]" fill="none">
-              <g transform="translate(450, 110)">
-                <path d="M-140 -50 L-90 -10 L-200 40 L-220 20 Z" fill="#9333ea" />
-                <path d="M-190 30 L-270 100 L-280 90 L-200 20 Z" fill="#78350f" />
-                <rect x="-40" y="-80" width="80" height="90" rx="14" fill="#09090b" stroke="#facc15" strokeWidth="3" />
-                <path d="M-40 -50 C-40 -90, 40 -90, 40 -50 L40 -40 L-40 -40 Z" fill="#f4f4f5" />
-                <rect x="-24" y="-35" width="12" height="16" rx="2" fill="#3b82f6" />
-                <rect x="12" y="-35" width="12" height="16" rx="2" fill="#3b82f6" />
-                <rect x="-20" y="-31" width="5" height="7" fill="#ffffff" />
-                <rect x="16" y="-31" width="5" height="7" fill="#ffffff" />
-                <rect x="-10" y="-5" width="4" height="25" fill="#ffffff" />
-                <rect x="6" y="-5" width="4" height="25" fill="#ffffff" />
-                <rect x="120" y="-60" width="70" height="70" rx="8" fill="#475569" stroke="#6366f1" strokeWidth="4" />
-                <rect x="145" y="-35" width="20" height="20" fill="#1e1b4b" />
-                <path d="M130 -10 L230 70 L220 85 L120 5 Z" fill="#312e81" stroke="#4f46e5" strokeWidth="2" />
-              </g>
+        <div className={`relative w-full rounded-3xl overflow-hidden border-2 border-yellow-500/40 shadow-glow-crimson-lg bg-black ${className}`}>
+          <div className="absolute inset-0 bg-gradient-to-r from-crimson-950/80 via-black to-crimson-950/80"></div>
+          
+          <div className="relative z-10 flex flex-col items-center justify-center p-6 sm:p-12 text-center">
+            <div className="relative mb-2 flex items-center justify-center">
+              <div className="flex items-center justify-center gap-2 sm:gap-6">
+                <div className="transform -rotate-45 text-purple-400 filter drop-shadow-[0_0_18px_rgba(168,85,247,0.8)]">
+                  <Icon name="sword" size={54} />
+                </div>
 
-              <text x="450" y="240" textAnchor="middle" fill="#d97706" fontSize="88" fontWeight="900" fontFamily="Rajdhani, sans-serif" letterSpacing="2">FEARSTEAL</text>
-              <text x="450" y="235" textAnchor="middle" fill="url(#bannerGold)" fontSize="88" fontWeight="900" fontFamily="Rajdhani, sans-serif" letterSpacing="2" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.9))">FEARSTEAL</text>
+                <div className="relative mx-1 sm:mx-4">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-3xl border-4 border-yellow-400 shadow-glow-gold bg-gradient-to-b from-slate-800 to-black flex flex-col items-center justify-center overflow-hidden">
+                    <div className="w-16 h-8 bg-slate-200 rounded-t-lg shadow-inner mt-1"></div>
+                    <div className="flex gap-4 my-1">
+                      <div className="w-2 h-3 bg-blue-400 rounded-sm"></div>
+                      <div className="w-2 h-3 bg-blue-400 rounded-sm"></div>
+                    </div>
+                    <div className="w-20 h-10 bg-slate-900 rounded-md mt-1"></div>
+                  </div>
+                  <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-crimson-600 text-white font-black text-[9px] font-gaming shadow-md uppercase tracking-wider whitespace-nowrap">
+                    S1 LIFESTEAL
+                  </div>
+                </div>
 
-              <rect x="220" y="265" width="460" height="42" rx="10" fill="#292524" stroke="#78716c" strokeWidth="3" />
-              <text x="450" y="293" textAnchor="middle" fill="#ffffff" fontSize="20" fontWeight="700" fontFamily="JetBrains Mono, monospace" letterSpacing="3">PLAY.FEARSTEAL.FUN <tspan fill="#facc15">PORT: 19132</tspan></text>
+                <div className="transform rotate-45 text-indigo-400 filter drop-shadow-[0_0_18px_rgba(99,102,241,0.8)]">
+                  <Icon name="hammer" size={54} />
+                </div>
+              </div>
+            </div>
 
-              <defs>
-                <linearGradient id="bannerGold" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#fef08a" />
-                  <stop offset="50%" stopColor="#facc15" />
-                  <stop offset="100%" stopColor="#b45309" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-gaming tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-400 to-yellow-600 uppercase filter drop-shadow-[0_5px_15px_rgba(0,0,0,0.9)] mt-2">
+              FEARSTEAL
+            </h2>
+
+            <div className="mt-3 inline-flex items-center gap-3 px-6 py-2 rounded-xl bg-gradient-to-r from-stone-800 via-stone-700 to-stone-800 border-2 border-stone-500 shadow-xl">
+              <span className="font-mono font-bold text-xs sm:text-sm tracking-widest text-gray-200 uppercase">
+                PLAY.FEARSTEAL.FUN
+              </span>
+              <span className="text-yellow-400 font-mono font-bold text-xs">PORT: 19132</span>
+            </div>
           </div>
         </div>
       );
     };
 
-    // --- REAL MINECRAFT BEDROCK/JAVA + VELOCITY STATUS API HOOK (1-Min Auto Poll) ---
+    // --- REAL MINECRAFT BEDROCK/JAVA STATUS API HOOK ---
     const useMinecraftStatus = (ip = "play.fearsteal.fun", port = 19132) => {
       const [status, setStatus] = useState({
         online: false,
         players: { online: 0, max: 500 },
         version: "1.20.x - 1.21.x",
-        software: "Velocity / Bedrock Proxy",
+        software: "FearSteal Core Engine",
         motd: "⚔️ FEARSTEAL LIFESTEAL NETWORK | Steal Hearts, Rule the World",
-        ping: 22,
+        ping: 24,
         lastUpdated: null,
         loading: true,
-        rawStatus: 'loading',
-        refreshSecondsRemaining: 60
+        rawStatus: 'loading'
       });
 
       const fetchStatus = async () => {
@@ -333,10 +375,10 @@
           let isOnline = false;
           let pOnline = 0;
           let pMax = 500;
-          let sVersion = "1.20.x - 1.21.x (Velocity/Bedrock)";
-          let sSoftware = "Velocity Proxy / Paper LifeSteal Core";
+          let sVersion = "1.20.x - 1.21.x";
+          let sSoftware = "Bedrock / Java LifeSteal Core";
           let sMotd = "FearSteal LifeSteal Network • Season 1 Official";
-          let sPing = Math.floor(Math.random() * 6) + 19;
+          let sPing = Math.floor(Math.random() * 8) + 21;
 
           try {
             const res = await fetch(`https://api.mcstatus.io/v2/status/bedrock/${ip}:${port}`, { cache: 'no-store' });
@@ -348,7 +390,7 @@
                   pOnline = data.players?.online || 0;
                   pMax = data.players?.max || 500;
                   sVersion = data.version?.name || sVersion;
-                  sSoftware = "Velocity Proxy / Geyser Bedrock";
+                  sSoftware = data.edition || "Bedrock LifeSteal Engine";
                   sMotd = data.motd?.clean || sMotd;
                 }
               }
@@ -362,7 +404,7 @@
                 pOnline = fbData.players?.online || 0;
                 pMax = fbData.players?.max || 500;
                 sVersion = fbData.version || sVersion;
-                sSoftware = "Velocity Core Engine";
+                sSoftware = fbData.software || "FearSteal Custom";
                 if (fbData.motd?.clean) sMotd = fbData.motd.clean.join(' ');
               }
             }
@@ -371,14 +413,13 @@
           setStatus({
             online: isOnline,
             players: { online: pOnline, max: pMax },
-            version: isOnline ? sVersion : "Unavailable",
-            software: isOnline ? sSoftware : "Offline (Awaiting Proxy Handshake)",
-            motd: isOnline ? sMotd : "Server is currently offline or undergoing maintenance.",
+            version: sVersion,
+            software: sSoftware,
+            motd: sMotd,
             ping: sPing,
             lastUpdated: new Date().toLocaleTimeString(),
             loading: false,
-            rawStatus: isOnline ? 'online' : 'offline',
-            refreshSecondsRemaining: 60
+            rawStatus: isOnline ? 'online' : 'offline'
           });
         } catch (err) {
           setStatus(prev => ({
@@ -386,32 +427,21 @@
             online: false,
             loading: false,
             lastUpdated: new Date().toLocaleTimeString(),
-            rawStatus: 'unknown',
-            refreshSecondsRemaining: 60
+            rawStatus: 'unknown'
           }));
         }
       };
 
       useEffect(() => {
         fetchStatus();
-        const pollInterval = setInterval(fetchStatus, 60000);
-        const tickInterval = setInterval(() => {
-          setStatus(prev => ({
-            ...prev,
-            refreshSecondsRemaining: prev.refreshSecondsRemaining > 1 ? prev.refreshSecondsRemaining - 1 : 60
-          }));
-        }, 1000);
-
-        return () => {
-          clearInterval(pollInterval);
-          clearInterval(tickInterval);
-        };
+        const interval = setInterval(fetchStatus, 45000);
+        return () => clearInterval(interval);
       }, [ip, port]);
 
       return { status, refresh: fetchStatus };
     };
 
-    // --- REAL DISCORD WIDGET API HOOK ---
+    // --- REAL DISCORD WIDGET / API HOOK (https://discord.gg/pGM5x3gXpX) ---
     const useDiscordLiveStatus = (inviteCode = "pGM5x3gXpX") => {
       const [discordData, setDiscordData] = useState({
         guildName: "FearSteal",
@@ -454,7 +484,7 @@
 
     // --- MAIN REACT APPLICATION COMPONENT ---
     function App() {
-      // 1. Boot Sequence
+      // 1. Cinematic Boot Sequence
       const [bootProgress, setBootProgress] = useState(0);
       const [bootLog, setBootLog] = useState("Initializing FearSteal Network Telemetry...");
       const [bootComplete, setBootComplete] = useState(false);
@@ -462,8 +492,8 @@
       useEffect(() => {
         const logs = [
           { p: 20, text: "Connecting to play.fearsteal.fun:19132..." },
-          { p: 45, text: "Handshaking Velocity & Bedrock protocol..." },
-          { p: 70, text: "Syncing 10m Leaderboards & Registered Members..." },
+          { p: 45, text: "Handshaking Bedrock & Java protocol bridge..." },
+          { p: 70, text: "Synchronizing Discord API & 15-Day Rotation Engine..." },
           { p: 90, text: "Loading Heart Forge Database & Crate Mechanics..." },
           { p: 100, text: "Handshake Verified! Welcome to FearSteal." },
         ];
@@ -483,62 +513,7 @@
         return () => clearInterval(interval);
       }, []);
 
-      // 2. URL ROUTE SYNC (Clean URL Sync like https://fearsteal.github.io/status)
-      const [activeSection, setActiveSection] = useState(() => {
-        const path = window.location.pathname.replace(/^\//, '') || window.location.hash.replace(/^#\/?/, '');
-        return path || 'home';
-      });
-
-      const navigateTo = (sectionId) => {
-        playSound('click');
-        setActiveSection(sectionId);
-        setMobileMenuOpen(false);
-        setIsSearchOpen(false);
-
-        if (window.history.pushState) {
-          const newUrl = `/${sectionId === 'home' ? '' : sectionId}`;
-          window.history.pushState({ section: sectionId }, '', newUrl);
-        } else {
-          window.location.hash = sectionId;
-        }
-
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const yOffset = -85;
-          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-      };
-
-      useEffect(() => {
-        const handlePopState = () => {
-          const path = window.location.pathname.replace(/^\//, '') || window.location.hash.replace(/^#\/?/, '');
-          setActiveSection(path || 'home');
-        };
-        window.addEventListener('popstate', handlePopState);
-        return () => window.removeEventListener('popstate', handlePopState);
-      }, []);
-
-      // 3. Registered Members Directory (Auto-populated with Premium Skin Heads)
-      const [registeredMembers, setRegisteredMembers] = useState(() => {
-        const saved = localStorage.getItem('fearsteal_members_list');
-        return saved ? JSON.parse(saved) : [
-          { rank: 1, username: "ItzVeltriex", role: "FOUNDER", hearts: 84, kills: 1420, joinedAt: "Launch Day" },
-          { rank: 2, username: "Notslayer", role: "FOUNDER", hearts: 72, kills: 1190, joinedAt: "Launch Day" },
-          { rank: 3, username: "RaviXD", role: "OWNER", hearts: 54, kills: 765, joinedAt: "Day 1" },
-          { rank: 4, username: "NotGamerYTGG", role: "CO OWNER", hearts: 48, kills: 510, joinedAt: "Day 1" },
-          { rank: 5, username: "VoidSlayer", role: "MANAGER", hearts: 65, kills: 982, joinedAt: "Day 2" },
-          { rank: 6, username: "Thunderboltzzz_", role: "MODERATOR", hearts: 58, kills: 840, joinedAt: "Day 2" },
-        ];
-      });
-
-      const [memberSearchQuery, setMemberSearchQuery] = useState('');
-      const filteredMembers = useMemo(() => {
-        if (!memberSearchQuery.trim()) return registeredMembers;
-        return registeredMembers.filter(m => m.username.toLowerCase().includes(memberSearchQuery.toLowerCase()));
-      }, [registeredMembers, memberSearchQuery]);
-
-      // 4. Custom User Directory State (Admin User Manager)
+      // 2. Custom User Directory State (Managed from Admin Panel)
       const [managedUsers, setManagedUsers] = useState(() => {
         const saved = localStorage.getItem('fearsteal_managed_users');
         return saved ? JSON.parse(saved) : [
@@ -563,14 +538,14 @@
         ];
       });
 
-      // 5. Authentication State with Strict Mandatory Access Gate
+      // 3. Authentication State with Strict Mandatory Access Gate
       const [authUser, setAuthUser] = useState(() => {
         const saved = localStorage.getItem('fearsteal_user');
         return saved ? JSON.parse(saved) : null;
       });
       const [showAdminPanel, setShowAdminPanel] = useState(false);
       const [showStaffPanel, setShowStaffPanel] = useState(false);
-      const [authMode, setAuthMode] = useState('login');
+      const [authMode, setAuthMode] = useState('login'); // 'login' | 'register' | 'forgot'
       const [authFormData, setAuthFormData] = useState({
         username: '',
         email: '',
@@ -593,11 +568,11 @@
 
       const isStaffUser = useMemo(() => {
         if (!authUser) return false;
-        if (isSuperAdmin) return true;
+        if (isSuperAdmin) return true; // Founder gets full staff desk access
         return authUser.adminAccessLevel === 'staff' || authUser.role === 'Staff Member';
       }, [authUser, isSuperAdmin]);
 
-      // 6. Dynamic announcements with 24-HOUR AUTO-EXPIRATION & LIVE TIME AGO
+      // Dynamic announcements with 24-HOUR AUTO-EXPIRATION SYSTEM & LIVE TIME AGO
       const [allAnnouncements, setAllAnnouncements] = useState(() => {
         const saved = localStorage.getItem('fearsteal_announcements');
         return saved ? JSON.parse(saved) : [
@@ -607,7 +582,7 @@
             category: "TOURNAMENT",
             body: "The 15-day bi-weekly competitive tournament is live in the Warzone! Eliminate opposing players to harvest double hearts.",
             timestamp: "Today at 12:00 PM",
-            createdAt: Date.now() - (2 * 60 * 60 * 1000),
+            createdAt: Date.now() - (2 * 60 * 60 * 1000), // 2 hours ago
             authorSignature: "Author by ItzVeltriex and Notslayer"
           },
           {
@@ -616,12 +591,13 @@
             category: "REWARDS",
             body: "Only 100 slots allocated. Join Discord to automatically claim your starter Novice tier with extra heart storage.",
             timestamp: "10 hours ago",
-            createdAt: Date.now() - (10 * 60 * 60 * 1000),
+            createdAt: Date.now() - (10 * 60 * 60 * 1000), // 10 hours ago
             authorSignature: "Author by ItzVeltriex and Notslayer"
           }
         ];
       });
 
+      // Filter active (less than 24h old) announcements for the Home Screen
       const homeActiveAnnouncements = useMemo(() => {
         const twentyFourHoursAgo = Date.now() - (24 * 60 * 60 * 1000);
         return allAnnouncements.filter(a => (a.createdAt || 0) > twentyFourHoursAgo);
@@ -632,72 +608,16 @@
       const [newAnnounceCategory, setNewAnnounceCategory] = useState('ANNOUNCEMENT');
       const [newAnnounceBody, setNewAnnounceBody] = useState('');
 
-      // New User Creator Form State in Admin Panel
+      // New User Creator Form State in Admin Panel (User Category)
       const [newUserForm, setNewUserForm] = useState({
         username: '',
         email: '',
         password: '',
         isAdministrator: true,
-        assignedRole: 'admin'
+        assignedRole: 'admin' // 'admin' | 'staff'
       });
 
-      // 7. Leaderboard 10-Minute Auto-Refresh System
-      const [leaderboardCategory, setLeaderboardCategory] = useState('hearts');
-      const [leaderboardSecondsLeft, setLeaderboardSecondsLeft] = useState(600);
-
-      const leaderboardData = {
-        hearts: [
-          { rank: 1, name: "ItzVeltriex", value: "84 Hearts", kills: "1,420", clan: "FEAR", kd: "118.3" },
-          { rank: 2, name: "Notslayer", value: "72 Hearts", kills: "1,190", clan: "CHAOS", kd: "62.6" },
-          { rank: 3, name: "VoidSlayer", value: "65 Hearts", kills: "982", clan: "SHADOW", kd: "40.9" },
-          { rank: 4, name: "Thunderboltzzz_", value: "58 Hearts", kills: "840", clan: "FEAR", kd: "27.0" },
-          { rank: 5, name: "RaviXD", value: "54 Hearts", kills: "765", clan: "VALOR", kd: "19.6" },
-          { rank: 6, name: "Cosmic_Ayush", value: "49 Hearts", kills: "680", clan: "ELITE", kd: "16.1" },
-          { rank: 7, name: "NotDark6", value: "45 Hearts", kills: "590", clan: "CHAOS", kd: "12.2" },
-        ],
-        kills: [
-          { rank: 1, name: "ItzVeltriex", value: "1,420 Kills", kills: "1,420", clan: "FEAR", kd: "118.3" },
-          { rank: 2, name: "Notslayer", value: "1,190 Kills", kills: "1,190", clan: "CHAOS", kd: "62.6" },
-          { rank: 3, name: "VoidSlayer", value: "982 Kills", kills: "982", clan: "SHADOW", kd: "40.9" },
-          { rank: 4, name: "Thunderboltzzz_", value: "840 Kills", kills: "840", clan: "FEAR", kd: "27.0" },
-        ],
-        streak: [
-          { rank: 1, name: "ItzVeltriex", value: "48 Killstreak", kills: "1,420", clan: "FEAR", kd: "118.3" },
-          { rank: 2, name: "Notslayer", value: "39 Killstreak", kills: "1,190", clan: "CHAOS", kd: "62.6" },
-          { rank: 3, name: "Thunderboltzzz_", value: "31 Killstreak", kills: "840", clan: "FEAR", kd: "27.0" },
-        ],
-        balance: [
-          { rank: 1, name: "Cosmic_Ayush", value: "$4,850,000", kills: "680", clan: "ELITE", kd: "16.1" },
-          { rank: 2, name: "RaviXD", value: "$3,920,000", kills: "765", clan: "VALOR", kd: "19.6" },
-          { rank: 3, name: "ItzVeltriex", value: "$3,410,000", kills: "1,420", clan: "FEAR", kd: "118.3" },
-        ],
-        playtime: [
-          { rank: 1, name: "JessGamer7733", value: "482 Hours", kills: "340", clan: "STAFF", kd: "5.2" },
-          { rank: 2, name: "VoidSlayer", value: "420 Hours", kills: "982", clan: "SHADOW", kd: "40.9" },
-          { rank: 3, name: "NotGamerYTGG", value: "395 Hours", kills: "510", clan: "FEAR", kd: "12.7" },
-        ]
-      };
-
-      useEffect(() => {
-        const timer = setInterval(() => {
-          setLeaderboardSecondsLeft(prev => {
-            if (prev <= 1) {
-              addToast("Leaderboard Synced", "Live database ranking updated automatically (10m cycle).", "info");
-              return 600;
-            }
-            return prev - 1;
-          });
-        }, 1000);
-        return () => clearInterval(timer);
-      }, []);
-
-      const formatLeaderboardTimer = (secs) => {
-        const m = Math.floor(secs / 60);
-        const s = secs % 60;
-        return `${m}:${s < 10 ? '0' : ''}${s}`;
-      };
-
-      // 8. Staff Applications System State (12 Questions)
+      // Staff Applications System State (12 Detailed Questions)
       const [staffApplications, setStaffApplications] = useState(() => {
         const saved = localStorage.getItem('fearsteal_staff_apps');
         return saved ? JSON.parse(saved) : [
@@ -721,6 +641,7 @@
         ];
       });
 
+      // Staff Application Form State
       const [staffForm, setStaffForm] = useState({
         ign: '',
         discord: '',
@@ -737,7 +658,7 @@
       });
       const [staffSubmitting, setStaffSubmitting] = useState(false);
 
-      // 9. Server Player Suggestions System State
+      // Server Player Suggestions System State
       const [serverSuggestions, setServerSuggestions] = useState(() => {
         const saved = localStorage.getItem('fearsteal_suggestions');
         return saved ? JSON.parse(saved) : [
@@ -762,6 +683,7 @@
         ];
       });
 
+      // Suggestion Form State
       const [suggestionForm, setSuggestionForm] = useState({
         ign: '',
         discord: '',
@@ -771,7 +693,7 @@
       });
       const [suggestionSubmitting, setSuggestionSubmitting] = useState(false);
 
-      // 10. Crate Simulator 24-Hour Cooldown State
+      // Crate Simulator 24-Hour Cooldown State
       const [crateCooldownUntil, setCrateCooldownUntil] = useState(() => {
         const saved = localStorage.getItem('fearsteal_crate_cooldown');
         return saved ? parseInt(saved, 10) : null;
@@ -845,17 +767,40 @@
         }, 1400);
       };
 
-      // 11. Interactive Heart Forge Simulator (Default 10 Hearts for New Players)
+      // Global Navigation & Modals
+      const [activeSection, setActiveSection] = useState('home');
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+      const [searchQuery, setSearchQuery] = useState('');
+      const [isSearchOpen, setIsSearchOpen] = useState(false);
+      const [showProfileDrawer, setShowProfileDrawer] = useState(false);
+
+      // Discord Widget Tab
+      const [discordWidgetTab, setDiscordWidgetTab] = useState('overview');
+
+      // Toasts & Notifications
+      const [toasts, setToasts] = useState([]);
+      const [notificationTrayOpen, setNotificationTrayOpen] = useState(false);
+
+      // Free Novice Rank Claim Tracker
+      const [noviceClaims, setNoviceClaims] = useState(() => {
+        const saved = localStorage.getItem('fearsteal_novice_claims');
+        return saved ? parseInt(saved, 10) : 58;
+      });
+      const [hasClaimedNovice, setHasClaimedNovice] = useState(() => {
+        return localStorage.getItem('fearsteal_user_claimed_novice') === 'true';
+      });
+
+      // Interactive Heart Forge Simulator
       const [simHearts, setSimHearts] = useState(10);
-      const [simKills, setSimKills] = useState(0);
-      const [simDeaths, setSimDeaths] = useState(0);
+      const [simKills, setSimKills] = useState(4);
+      const [simDeaths, setSimDeaths] = useState(1);
 
       const calculatedHearts = useMemo(() => {
         const total = simHearts + (simKills * 1) - (simDeaths * 1);
         return Math.max(0, Math.min(30, total));
       }, [simHearts, simKills, simDeaths]);
 
-      // 12. 15-Day Auto-Rotating Events System
+      // 15-Day Auto-Rotating Events System
       const eventList = useMemo(() => [
         {
           id: 1,
@@ -894,120 +839,19 @@
       const [currentEventIndex, setCurrentEventIndex] = useState(0);
       const [eventTimeLeft, setEventTimeLeft] = useState({ days: 11, hours: 14, minutes: 22, seconds: 18 });
 
-      // Live Server & Discord Status Hooks
-      const { status: serverStatus, refresh: refreshServerStatus } = useMinecraftStatus("play.fearsteal.fun", 19132);
-      const { discordData: discordLive, refresh: refreshDiscord } = useDiscordLiveStatus("pGM5x3gXpX");
-
-      // Staff Team with Custom Roles & Descriptions
-      const staffList = useMemo(() => [
-        {
-          name: "ItzVeltriex",
-          role: "FOUNDER",
-          badgeColor: "bg-yellow-500/20 text-yellow-400 border-yellow-500",
-          description: "Network Founder, Lead Systems Developer, Server Core Developer & Economy Architect.",
-          discordUrl: "https://discord.gg/pGM5x3gXpX",
-          crown: "👑"
-        },
-        {
-          name: "Notslayer",
-          role: "FOUNDER",
-          badgeColor: "bg-yellow-500/20 text-yellow-400 border-yellow-500",
-          description: "Network Founder, Community Operations Director & Strategic Partnerships Lead.",
-          discordUrl: "https://discord.gg/HZhTd9Pry5",
-          crown: "👑"
-        },
-        {
-          name: "RaviXD",
-          role: "OWNER",
-          badgeColor: "bg-amber-950/40 text-amber-400 border-amber-500/40",
-          description: "Server Owner overseeing network operations, infrastructure uptime, and server hosting.",
-          discordUrl: "https://discord.gg/pGM5x3gXpX"
-        },
-        {
-          name: "NotGamerYTGG",
-          role: "CO OWNER",
-          badgeColor: "bg-amber-950/40 text-amber-500 border-amber-600/40",
-          description: "Co-Owner assisting in high-level network administration, store inquiries and moderation teams.",
-          discordUrl: "https://discord.gg/pGM5x3gXpX"
-        },
-        {
-          name: "Prime Shifat",
-          role: "ADMIN",
-          badgeColor: "bg-crimson-950/40 text-crimson-400 border-crimson-500/40",
-          description: "Senior Administrator managing staff tickets, Warzone outposts, and anti-cheat investigations.",
-          discordUrl: "https://discord.gg/pGM5x3gXpX"
-        },
-        {
-          name: "Cosmic_Ayush",
-          role: "SENIOR ADMIN",
-          badgeColor: "bg-crimson-950/40 text-crimson-400 border-crimson-500/40",
-          description: "Senior Administrator supervising in-game economy, clan territory wars, and server discord.",
-          discordUrl: "https://discord.gg/pGM5x3gXpX"
-        },
-        {
-          name: "Harshu",
-          role: "JUNIOR ADMIN",
-          badgeColor: "bg-rose-950/40 text-rose-400 border-rose-500/40",
-          description: "Junior Administrator assisting players with rank perks, glitch reports, and live PvP tournaments.",
-          discordUrl: "https://discord.gg/pGM5x3gXpX"
-        },
-        {
-          name: "VoidSlayer",
-          role: "MANAGER",
-          badgeColor: "bg-purple-950/40 text-purple-400 border-purple-500/40",
-          description: "General Manager coordinating staff shifts, event setups, and player support queues.",
-          discordUrl: "https://discord.gg/pGM5x3gXpX"
-        },
-        {
-          name: "Thunderboltzzz_",
-          role: "MODERATOR",
-          badgeColor: "bg-blue-950/40 text-blue-400 border-blue-500/40",
-          description: "Senior Moderator enforcing chat safety, monitoring combat reach logs, and issuing fair bans.",
-          discordUrl: "https://discord.gg/pGM5x3gXpX"
-        },
-        {
-          name: "NotDark6",
-          role: "JUNIOR MODERATOR",
-          badgeColor: "bg-cyan-950/40 text-cyan-400 border-cyan-500/40",
-          description: "Junior Moderator active in global chat moderation, mute ladders, and Warzone rule enforcement.",
-          discordUrl: "https://discord.gg/pGM5x3gXpX"
-        },
-        {
-          name: "JessGamer7733",
-          role: "HELPER",
-          badgeColor: "bg-emerald-950/40 text-emerald-400 border-emerald-500/40",
-          description: "Dedicated Helper guiding new players, explaining /heart commands, and answering connection queries.",
-          discordUrl: "https://discord.gg/pGM5x3gXpX"
-        },
-      ], []);
-
-      // Admin Panel Live Controls
+      // Admin Panel Live Controls State
       const [adminConsoleLogs, setAdminConsoleLogs] = useState([
         "[INFO] FearSteal Core Engine v3.4.2 booted successfully on port 19132.",
-        "[SECURITY] Velocity Proxy & Anti-Cheat Matrix active.",
-        "[ADMIN] Founder master access verified for ItzVeltriex.",
+        "[SECURITY] Anti-Cheat Matrix armed: Killaura, Speed, Baritone filters active.",
+        "[ADMIN] Founder access verified for ItzVeltriex (IP: Protected).",
       ]);
       const [adminCommandInput, setAdminCommandInput] = useState('');
       const [adminMaintenanceMode, setAdminMaintenanceMode] = useState(false);
       const [adminTab, setAdminTab] = useState('overview');
 
-      // Modals & Navigation
-      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-      const [searchQuery, setSearchQuery] = useState('');
-      const [isSearchOpen, setIsSearchOpen] = useState(false);
-      const [showProfileDrawer, setShowProfileDrawer] = useState(false);
-      const [discordWidgetTab, setDiscordWidgetTab] = useState('overview');
-      const [toasts, setToasts] = useState([]);
-      const [notificationTrayOpen, setNotificationTrayOpen] = useState(false);
-
-      // Free Novice Rank Claim Tracker
-      const [noviceClaims, setNoviceClaims] = useState(() => {
-        const saved = localStorage.getItem('fearsteal_novice_claims');
-        return saved ? parseInt(saved, 10) : 58;
-      });
-      const [hasClaimedNovice, setHasClaimedNovice] = useState(() => {
-        return localStorage.getItem('fearsteal_user_claimed_novice') === 'true';
-      });
+      // Live Server & Discord Status Hooks
+      const { status: serverStatus, refresh: refreshServerStatus } = useMinecraftStatus("play.fearsteal.fun", 19132);
+      const { discordData: discordLive, refresh: refreshDiscord } = useDiscordLiveStatus("pGM5x3gXpX");
 
       // Toast Dispatch Helper
       const addToast = (title, message, type = 'info') => {
@@ -1033,6 +877,23 @@
         playSound('copy');
         addToast("✓ Discord Invite Copied!", "https://discord.gg/pGM5x3gXpX copied to clipboard.", "success");
       };
+
+      // 15-Day Auto-Rotation Interval
+      useEffect(() => {
+        const timer = setInterval(() => {
+          setEventTimeLeft(prev => {
+            if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
+            if (prev.minutes > 0) return { ...prev, minutes: 59, seconds: 59 };
+            if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
+            if (prev.days > 0) return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
+            
+            setCurrentEventIndex(curr => (curr + 1) % eventList.length);
+            addToast("🎉 New Event Started!", `${eventList[(currentEventIndex + 1) % eventList.length].name} is now live!`, "success");
+            return { days: 15, hours: 0, minutes: 0, seconds: 0 };
+          });
+        }, 1000);
+        return () => clearInterval(timer);
+      }, [currentEventIndex, eventList]);
 
       // Free Novice Rank Claim Action
       const handleClaimNovice = () => {
@@ -1062,25 +923,6 @@
         }, 1200);
       };
 
-      // Helper to Append Member to Directory upon registration/login
-      const appendToMembersDirectory = (username, role = "MEMBER") => {
-        setRegisteredMembers(prev => {
-          const exists = prev.some(m => m.username.toLowerCase() === username.toLowerCase());
-          if (exists) return prev;
-          const newMember = {
-            rank: prev.length + 1,
-            username: username,
-            role: role,
-            hearts: 10,
-            kills: 0,
-            joinedAt: "Just now"
-          };
-          const updated = [...prev, newMember];
-          localStorage.setItem('fearsteal_members_list', JSON.stringify(updated));
-          return updated;
-        });
-      };
-
       // Social OAuth SSO Handlers
       const handleOAuthLogin = (provider) => {
         playSound('click');
@@ -1092,45 +934,44 @@
           let mockUser;
           if (provider === 'microsoft') {
             mockUser = {
-              username: 'Xbox_Player_' + Math.floor(100 + Math.random() * 900),
+              username: 'Xbox_Warrior_' + Math.floor(100 + Math.random() * 900),
               email: 'player@xboxlive.com',
-              role: 'Verified Player',
+              role: 'Verified Bedrock/Java',
               provider: 'Microsoft Xbox',
               isAdmin: false,
               adminAccessLevel: 'none',
-              hearts: 10,
-              kills: 0,
+              hearts: 14,
+              kills: 18,
               joined: 'Via Microsoft'
             };
           } else if (provider === 'discord') {
             mockUser = {
-              username: 'Discord_Warrior',
+              username: 'Discord_Gladiator',
               email: 'user@discord.gg',
               role: 'Discord Verified',
               provider: 'Discord',
               isAdmin: false,
               adminAccessLevel: 'none',
-              hearts: 10,
-              kills: 0,
+              hearts: 16,
+              kills: 35,
               joined: 'Via Discord'
             };
           } else if (provider === 'google') {
             mockUser = {
-              username: 'Google_Gladiator_' + Math.floor(10 + Math.random() * 90),
+              username: 'Google_Player_' + Math.floor(10 + Math.random() * 90),
               email: 'user@gmail.com',
               role: 'Google Verified',
               provider: 'Google',
               isAdmin: false,
               adminAccessLevel: 'none',
               hearts: 10,
-              kills: 0,
+              kills: 4,
               joined: 'Via Google'
             };
           }
 
           localStorage.setItem('fearsteal_user', JSON.stringify(mockUser));
           setAuthUser(mockUser);
-          appendToMembersDirectory(mockUser.username, "PLAYER");
           addToast(`⚔️ ${provider.toUpperCase()} Login Success!`, `Authenticated as ${mockUser.username}`, "success");
         }, 900);
       };
@@ -1181,7 +1022,7 @@
               playSound('admin');
               addToast("👑 FOUNDER AUTHENTICATED!", "Welcome Founder ItzVeltriex. Admin Suite & Staff Panel Unlocked!", "admin");
             } else if (matchedManagedUser) {
-              const roleType = matchedManagedUser.assignedRole;
+              const roleType = matchedManagedUser.assignedRole; // 'admin' | 'staff'
               userObj = {
                 username: matchedManagedUser.username,
                 email: matchedManagedUser.email,
@@ -1209,8 +1050,8 @@
                 provider: 'Credentials',
                 isAdmin: false,
                 adminAccessLevel: 'none',
-                hearts: 10,
-                kills: 0,
+                hearts: 14,
+                kills: 24,
                 joined: 'Season 1'
               };
               addToast("⚔️ Welcome Back!", `Authenticated as ${userObj.username}`, "success");
@@ -1220,7 +1061,6 @@
               localStorage.setItem('fearsteal_user', JSON.stringify(userObj));
             }
             setAuthUser(userObj);
-            appendToMembersDirectory(userObj.username, userObj.isAdmin ? "ADMIN" : userObj.adminAccessLevel === 'staff' ? "STAFF" : "WARRIOR");
 
           } else if (authMode === 'register') {
             if (!authFormData.username || !authFormData.email || !authFormData.password) {
@@ -1248,8 +1088,7 @@
             };
             localStorage.setItem('fearsteal_user', JSON.stringify(newUser));
             setAuthUser(newUser);
-            appendToMembersDirectory(newUser.username, "RECRUIT");
-            addToast("🎉 Profile Created!", `Welcome to FearSteal, ${newUser.username}! Default 10 Hearts Assigned.`, "success");
+            addToast("🎉 Profile Created!", `Welcome to FearSteal, ${newUser.username}!`, "success");
           } else if (authMode === 'forgot') {
             if (!authFormData.email) {
               setAuthError('Please enter your email.');
@@ -1336,7 +1175,6 @@
         const updated = [newUser, ...managedUsers];
         setManagedUsers(updated);
         localStorage.setItem('fearsteal_managed_users', JSON.stringify(updated));
-        appendToMembersDirectory(newUser.username, newUser.assignedRole.toUpperCase());
 
         playSound('admin');
         addToast("User Account Created!", `Created ${newUser.username} with ${newUser.assignedRole.toUpperCase()} panel permissions!`, "admin");
@@ -1495,11 +1333,102 @@
         setAdminCommandInput('');
       };
 
+      // Smooth Section Scroll
+      const scrollToSection = (id) => {
+        playSound('click');
+        setActiveSection(id);
+        setMobileMenuOpen(false);
+        setIsSearchOpen(false);
+        const element = document.getElementById(id);
+        if (element) {
+          const yOffset = -85;
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      };
+
+      // Leaderboard Database
+      const [leaderboardCategory, setLeaderboardCategory] = useState('hearts');
+      const leaderboardData = {
+        hearts: [
+          { rank: 1, name: "ItzVeltriex", value: "84 Hearts", kills: "1,420", clan: "FEAR", kd: "118.3" },
+          { rank: 2, name: "Notslayer", value: "72 Hearts", kills: "1,190", clan: "CHAOS", kd: "62.6" },
+          { rank: 3, name: "VoidSlayer", value: "65 Hearts", kills: "982", clan: "SHADOW", kd: "40.9" },
+          { rank: 4, name: "Thunderboltzzz_", value: "58 Hearts", kills: "840", clan: "FEAR", kd: "27.0" },
+          { rank: 5, name: "RaviXD", value: "54 Hearts", kills: "765", clan: "VALOR", kd: "19.6" },
+          { rank: 6, name: "Cosmic_Ayush", value: "49 Hearts", kills: "680", clan: "ELITE", kd: "16.1" },
+          { rank: 7, name: "NotDark6", value: "45 Hearts", kills: "590", clan: "CHAOS", kd: "12.2" },
+        ],
+        kills: [
+          { rank: 1, name: "ItzVeltriex", value: "1,420 Kills", kills: "1,420", clan: "FEAR", kd: "118.3" },
+          { rank: 2, name: "Notslayer", value: "1,190 Kills", kills: "1,190", clan: "CHAOS", kd: "62.6" },
+          { rank: 3, name: "VoidSlayer", value: "982 Kills", kills: "982", clan: "SHADOW", kd: "40.9" },
+          { rank: 4, name: "Thunderboltzzz_", value: "840 Kills", kills: "840", clan: "FEAR", kd: "27.0" },
+        ],
+        streak: [
+          { rank: 1, name: "ItzVeltriex", value: "48 Killstreak", kills: "1,420", clan: "FEAR", kd: "118.3" },
+          { rank: 2, name: "Notslayer", value: "39 Killstreak", kills: "1,190", clan: "CHAOS", kd: "62.6" },
+          { rank: 3, name: "Thunderboltzzz_", value: "31 Killstreak", kills: "840", clan: "FEAR", kd: "27.0" },
+        ],
+        balance: [
+          { rank: 1, name: "Cosmic_Ayush", value: "$4,850,000", kills: "680", clan: "ELITE", kd: "16.1" },
+          { rank: 2, name: "RaviXD", value: "$3,920,000", kills: "765", clan: "VALOR", kd: "19.6" },
+          { rank: 3, name: "ItzVeltriex", value: "$3,410,000", kills: "1,420", clan: "FEAR", kd: "118.3" },
+        ],
+        playtime: [
+          { rank: 1, name: "JessGamer7733", value: "482 Hours", kills: "340", clan: "STAFF", kd: "5.2" },
+          { rank: 2, name: "VoidSlayer", value: "420 Hours", kills: "982", clan: "SHADOW", kd: "40.9" },
+          { rank: 3, name: "NotGamerYTGG", value: "395 Hours", kills: "510", clan: "FEAR", kd: "12.7" },
+        ]
+      };
+
+      // Search Database
+      const searchableDatabase = [
+        { type: "Rule", title: "No Cheating or Hacked Clients", section: "rules", desc: "Using auto-totem, reach, or baritone is strictly prohibited." },
+        { type: "Rule", title: "No Exploiting Glitches", section: "rules", desc: "Duplication or heart glitches result in immediate blacklists." },
+        { type: "Staff", title: "ItzVeltriex (Founder)", section: "staff", desc: "FearSteal Founder and lead network developer." },
+        { type: "Staff", title: "Notslayer (Founder)", section: "staff", desc: "FearSteal Founder & community executive." },
+        { type: "Suggest", title: "Server Suggestions Box", section: "suggestions", desc: "Submit ideas, features, and feedback directly to the Founder." },
+        { type: "Apply", title: "Staff Application (12 Questions)", section: "staff-apply", desc: "Apply for Helper, Moderator or Staff roles on FearSteal." },
+        { type: "Store", title: "KNIGHT Rank ($12 - MOST POPULAR)", section: "store", desc: "Most popular server rank with /hat, /near, and 2x Heart Storage." },
+        { type: "Store", title: "FEARSTEAL Rank ($25)", section: "store", desc: "Highest tier rank with unlimited heart vault access and prefix." },
+        { type: "Store", title: "NOVICE Rank ($0 FREE)", section: "store", desc: "Limited free starter rank for our community members." },
+        { type: "Community", title: "Discord Live Widget & Support", section: "discord-support", desc: "Real-time Discord members, channels overview, ticket support and email desk." },
+        { type: "Feature", title: "Heart Forge Simulator", section: "simulator", desc: "Simulate LifeSteal heart transfers, damage thresholds, and craft items." },
+        { type: "Feature", title: "Crate Unboxer Simulator (24h Cooldown)", section: "crates", desc: "Test crate drop rates with 24h reward claim cooldown." },
+        { type: "FAQ", title: "How do I steal hearts?", section: "faq", desc: "Killing any player removes 1 of their hearts and transfers it to you." },
+        { type: "Guide", title: "Bedrock Port Information", section: "how-to-play", desc: "Connect with IP play.fearsteal.fun and Port 19132." },
+      ];
+
+      const searchResults = useMemo(() => {
+        if (!searchQuery.trim()) return [];
+        return searchableDatabase.filter(item => 
+          item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.desc.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      }, [searchQuery]);
+
+      // Newsletter
+      const [newsletterEmail, setNewsletterEmail] = useState('');
+      const [newsletterSuccess, setNewsletterSuccess] = useState(false);
+
+      const handleNewsletterSubmit = (e) => {
+        e.preventDefault();
+        if (!newsletterEmail || !newsletterEmail.includes('@')) {
+          addToast("Invalid Email", "Please enter a valid email address.", "error");
+          return;
+        }
+        setNewsletterSuccess(true);
+        addToast("Stay Updated!", "You are now subscribed to FearSteal drop parties & tournament alerts!", "success");
+        setNewsletterEmail('');
+        setTimeout(() => setNewsletterSuccess(false), 4000);
+      };
+
       return (
         <div className="relative min-h-screen bg-dark-950 text-gray-100 flex flex-col bg-cyber-grid selection:bg-crimson-600 selection:text-white">
           
           {/* ========================================================================= */}
-          {/* CINEMATIC BOOT OVERLAY */}
+          {/* CINEMATIC BOOT & LOADING ANIMATION OVERLAY */}
           {/* ========================================================================= */}
           {!bootComplete && (
             <div className="fixed inset-0 z-50 bg-dark-950 flex flex-col items-center justify-center p-6 select-none transition-opacity duration-500">
@@ -1528,12 +1457,13 @@
           )}
 
           {/* ========================================================================= */}
-          {/* MANDATORY AUTHENTICATION ENTRY GATE (LOCKED UNTIL LOGIN) */}
+          {/* MANDATORY AUTHENTICATION ENTRY GATE (LOCKED WHEN LOGGED OUT) */}
           {/* ========================================================================= */}
           {!authUser && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-3xl overflow-y-auto">
               <div className="relative w-full max-w-md glass-panel-glow rounded-3xl p-6 sm:p-8 border-2 border-yellow-500/40 shadow-glow-crimson-lg my-8">
                 
+                {/* Notice Banner */}
                 <div className="mb-4 p-3 rounded-2xl bg-crimson-950/80 border border-crimson-500/60 text-center">
                   <p className="text-xs text-crimson-300 font-mono font-bold leading-relaxed">
                     ⚠️ Please register or login first than you can visit our website
@@ -1559,7 +1489,7 @@
                   </p>
                 </div>
 
-                {/* SSO Buttons */}
+                {/* Single Sign-On (SSO) OAuth Buttons */}
                 <div className="space-y-2 mb-5">
                   <button
                     type="button"
@@ -1741,7 +1671,7 @@
                     className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-crimson-600 via-crimson-600 to-crimson-700 hover:from-crimson-500 text-white font-gaming font-bold text-sm tracking-widest uppercase shadow-glow-crimson transition-all flex items-center justify-center gap-2 mt-2"
                   >
                     {authLoading ? (
-                      <Icon name="loader-2" size={16} className="animate-spin" />
+                      <Icon name="loader-2" size={16} />
                     ) : (
                       <>
                         <span>{authMode === 'login' ? 'AUTHENTICATE & ENTER WEBSITE' : authMode === 'register' ? 'CREATE PROFILE & ENTER' : 'SEND RESET LINK'}</span>
@@ -1874,7 +1804,7 @@
                       </div>
 
                       <div className="p-4 rounded-2xl bg-dark-800/80 border border-white/10 text-center">
-                        <span className="text-[10px] uppercase font-bold text-gray-400 block font-gaming">Velocity Server Status</span>
+                        <span className="text-[10px] uppercase font-bold text-gray-400 block font-gaming">Server Status</span>
                         <span className="text-xl font-bold text-emerald-400 font-mono">{serverStatus.players.online} Online</span>
                         <span className="text-[10px] text-gray-400 block mt-1">play.fearsteal.fun:19132</span>
                       </div>
@@ -1897,6 +1827,40 @@
                         <span className="text-[10px] uppercase font-bold text-gray-400 block font-gaming">Discord Guild</span>
                         <span className="text-xl font-bold text-[#5865F2] font-mono">{discordLive.onlineMembers} Online</span>
                         <span className="text-[10px] text-gray-400 block mt-1">{discordLive.totalMembers} Total Members</span>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="p-4 rounded-2xl bg-dark-800/60 border border-white/10">
+                        <h4 className="text-xs font-bold font-gaming text-white uppercase mb-2">
+                          Quick Emergency Actions
+                        </h4>
+                        <div className="space-y-2">
+                          <button
+                            onClick={() => addToast("Heart Revive Dispatched", "Global spectator unban packet sent", "admin")}
+                            className="w-full py-2.5 rounded-xl bg-dark-900 hover:bg-dark-750 text-gray-300 hover:text-white text-xs font-mono border border-white/10 text-left px-3.5 flex items-center justify-between"
+                          >
+                            <span>/revive all (Unban Spectators)</span>
+                            <Icon name="zap" size={14} className="text-yellow-400" />
+                          </button>
+                          <button
+                            onClick={() => addToast("Broadcast Sent", "📢 DROP PARTY at /warp warzone in 10 minutes!", "admin")}
+                            className="w-full py-2.5 rounded-xl bg-dark-900 hover:bg-dark-750 text-gray-300 hover:text-white text-xs font-mono border border-white/10 text-left px-3.5 flex items-center justify-between"
+                          >
+                            <span>📢 Trigger Drop Party Alert</span>
+                            <Icon name="gift" size={14} className="text-crimson-400" />
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-2xl bg-dark-800/60 border border-white/10">
+                        <h4 className="text-xs font-bold font-gaming text-white uppercase mb-2">
+                          Founder 24h Expiration System
+                        </h4>
+                        <p className="text-xs text-gray-400 leading-relaxed">
+                          Published updates automatically stay on the Home Screen for 24 hours. After 24h, they auto-archive into notifications history.<br/>
+                          <span className="font-mono text-yellow-400 font-bold">Author by ItzVeltriex and Notslayer</span>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -1990,8 +1954,11 @@
                               className="w-full bg-dark-900 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-yellow-400 font-gaming font-bold disabled:opacity-40"
                             >
                               <option value="admin">👑 ADMIN ROLE (Full Admin Panel Access)</option>
-                              <option value="staff">📋 STAFF ROLE (Dedicated Staff Desk Panel Access)</option>
+                              <option value="staff">📋 STAFF ROLE (Dedicated Staff Panel Access)</option>
                             </select>
+                            <span className="text-[10px] text-gray-500 font-mono mt-1 block">
+                              Selecting 'admin' grants Admin Panel. Selecting 'staff' opens the Staff Panel.
+                            </span>
                           </div>
                         </div>
 
@@ -2150,7 +2117,7 @@
                   </div>
                 )}
 
-                {/* TAB 4: PRIVATE PLAYER SUGGESTIONS */}
+                {/* TAB 4: PRIVATE PLAYER SUGGESTIONS INBOX */}
                 {adminTab === 'suggestions' && (
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
@@ -2231,7 +2198,7 @@
                   </div>
                 )}
 
-                {/* TAB 5: STAFF APPLICATIONS */}
+                {/* TAB 5: STAFF APPLICATIONS REVIEW DESK */}
                 {adminTab === 'staff_apps' && (
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
@@ -2286,20 +2253,28 @@
                                 <p className="text-gray-200 mt-0.5">{app.hoursWeekly || 'N/A'}</p>
                               </div>
                               <div>
-                                <span className="text-gray-400 block font-bold">3. Experience:</span>
+                                <span className="text-gray-400 block font-bold">3. Previous Moderation Experience:</span>
                                 <p className="text-gray-200 mt-0.5">{app.experience || 'N/A'}</p>
                               </div>
                               <div>
-                                <span className="text-gray-400 block font-bold">4. Hacks Protocol:</span>
+                                <span className="text-gray-400 block font-bold">4. Cheater/Hacks Handling:</span>
                                 <p className="text-gray-200 mt-0.5">{app.scenarioHacks || 'N/A'}</p>
                               </div>
                               <div>
-                                <span className="text-gray-400 block font-bold">5. Toxicity Protocol:</span>
+                                <span className="text-gray-400 block font-bold">5. Toxicity/Chat Handling:</span>
                                 <p className="text-gray-200 mt-0.5">{app.scenarioToxicity || 'N/A'}</p>
                               </div>
                               <div>
-                                <span className="text-gray-400 block font-bold">6. Why Choose:</span>
+                                <span className="text-gray-400 block font-bold">6. Why Choose Applicant:</span>
                                 <p className="text-gray-200 mt-0.5">{app.whyChoose || 'N/A'}</p>
+                              </div>
+                              <div>
+                                <span className="text-gray-400 block font-bold">7. Punishment History:</span>
+                                <p className="text-gray-200 mt-0.5">{app.punishmentHistory || 'None'}</p>
+                              </div>
+                              <div>
+                                <span className="text-gray-400 block font-bold">8. Mic & Recording Capable:</span>
+                                <p className="text-gray-200 mt-0.5">{app.hasMicAndRecorder || 'Yes'}</p>
                               </div>
                             </div>
 
@@ -2367,7 +2342,7 @@
           )}
 
           {/* ========================================================================= */}
-          {/* EXCLUSIVE DEDICATED STAFF PANEL MODAL */}
+          {/* EXCLUSIVE DEDICATED STAFF PANEL MODAL (For Staff Role Users & Founder) */}
           {/* ========================================================================= */}
           {showStaffPanel && isStaffUser && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-2xl">
@@ -2410,7 +2385,7 @@
 
                   <div className="p-4 rounded-2xl bg-dark-800/80 border border-white/10 text-center">
                     <Icon name="shield-alert" size={20} className="text-crimson-400 mx-auto mb-1" />
-                    <span className="text-xs font-bold text-gray-400 uppercase block">Velocity Anti-Cheat</span>
+                    <span className="text-xs font-bold text-gray-400 uppercase block">Anti-Cheat Matrix</span>
                     <span className="text-xs font-bold text-emerald-400 font-mono">ACTIVE (19132)</span>
                   </div>
 
@@ -2422,510 +2397,380 @@
                     </a>
                   </div>
                 </div>
-              </div>
-            </div>
-          )}
 
-          {/* ========================================================================= */}
-          {/* TOAST NOTIFICATION STACK */}
-          {/* ========================================================================= */}
-          <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 pointer-events-none max-w-sm w-full">
-            {toasts.map(toast => (
-              <div 
-                key={toast.id}
-                className={`pointer-events-auto p-4 rounded-2xl border shadow-2xl backdrop-blur-xl flex items-start gap-3.5 transform transition-all duration-300 ${
-                  toast.type === 'admin' ? 'bg-yellow-950/95 border-yellow-400 text-yellow-300 shadow-glow-gold' :
-                  toast.type === 'staff' ? 'bg-indigo-950/95 border-indigo-400 text-indigo-300 shadow-glow-discord' :
-                  toast.type === 'success' ? 'bg-dark-900/95 border-emerald-500/50 text-emerald-400' :
-                  toast.type === 'error' ? 'bg-dark-900/95 border-crimson-500/80 text-crimson-400' :
-                  'bg-dark-900/95 border-yellow-500/40 text-gray-200'
-                }`}
-              >
-                <div className="mt-0.5">
-                  <Icon name={toast.type === 'admin' ? 'crown' : toast.type === 'staff' ? 'shield' : toast.type === 'success' ? 'check-circle-2' : toast.type === 'error' ? 'alert-octagon' : 'bell'} size={20} />
-                </div>
-                <div className="flex-1 text-sm">
-                  <h4 className="font-bold text-white leading-snug">{toast.title}</h4>
-                  <p className="text-gray-300 text-xs mt-0.5">{toast.message}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* ========================================================================= */}
-          {/* SEARCH MODAL */}
-          {/* ========================================================================= */}
-          {isSearchOpen && (
-            <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 bg-black/85 backdrop-blur-md">
-              <div className="relative w-full max-w-2xl glass-panel-glow rounded-3xl shadow-glow-gold overflow-hidden">
-                <div className="p-4 border-b border-white/10 flex items-center gap-3">
-                  <Icon name="search" size={20} className="text-yellow-400" />
-                  <input
-                    type="text"
-                    autoFocus
-                    placeholder="Search rules, staff, store ranks, members, suggestions, guide..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="flex-1 bg-transparent text-white placeholder-gray-400 text-base focus:outline-none"
-                  />
-                  <button onClick={() => setIsSearchOpen(false)} className="text-gray-400 hover:text-white">
-                    <Icon name="x" size={20} />
-                  </button>
-                </div>
-
-                <div className="max-h-96 overflow-y-auto p-4 space-y-2">
-                  {searchResults.length > 0 ? (
-                    searchResults.map((item, idx) => (
-                      <div
-                        key={idx}
-                        onClick={() => navigateTo(item.section)}
-                        className="p-3.5 rounded-2xl bg-dark-800/80 hover:bg-yellow-900/20 border border-white/5 hover:border-yellow-500/40 cursor-pointer transition-all flex items-center justify-between"
-                      >
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-yellow-950 text-yellow-400 border border-yellow-700/50">
-                              {item.type}
-                            </span>
-                            <h4 className="text-sm font-semibold text-white">{item.title}</h4>
-                          </div>
-                          <p className="text-xs text-gray-400 mt-1">{item.desc}</p>
-                        </div>
-                        <Icon name="chevron-right" size={16} className="text-gray-500" />
-                      </div>
-                    ))
-                  ) : searchQuery ? (
-                    <div className="text-center py-8 text-gray-400 text-sm">
-                      No results for "{searchQuery}".
+                <div className="space-y-3">
+                  <h4 className="text-xs font-bold font-gaming text-white uppercase">Moderation Quick Protocol</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div className="p-3.5 rounded-xl bg-dark-900 border border-white/5 space-y-1">
+                      <span className="font-bold text-yellow-400">1. Combat Reach & Hacks:</span>
+                      <p className="text-gray-300">Always record at least 30 seconds of clear POV evidence before issuing temporary bans.</p>
                     </div>
-                  ) : (
-                    <div className="text-center py-6 text-gray-500 text-xs">
-                      Type keyword to search categories...
+                    <div className="p-3.5 rounded-xl bg-dark-900 border border-white/5 space-y-1">
+                      <span className="font-bold text-yellow-400">2. Chat Toxicity & Harassment:</span>
+                      <p className="text-gray-300">Issue warning first, escalate to 15m / 1h mute ladder if non-compliant.</p>
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
           )}
 
           {/* ========================================================================= */}
-          {/* USER PROFILE MODAL DRAWER */}
+          {/* LEADERBOARDS & PODIUM */}
           {/* ========================================================================= */}
-          {showProfileDrawer && authUser && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-              <div className="relative w-full max-w-md glass-panel-glow rounded-3xl p-6 shadow-glow-gold">
-                <button onClick={() => setShowProfileDrawer(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white">
-                  <Icon name="x" size={20} />
-                </button>
-                
-                <div className="text-center flex flex-col items-center">
-                  <img
-                    src={`https://mc-heads.net/avatar/${authUser.username}/128`}
-                    alt={authUser.username}
-                    className="w-20 h-20 rounded-2xl border-2 border-yellow-400 bg-dark-800 shadow-glow-gold mb-3"
-                    onError={(e) => { e.target.src = "https://mc-heads.net/avatar/MHF_Steve/128"; }}
-                  />
-                  <h3 className="text-2xl font-black font-gaming text-white">{authUser.username}</h3>
-                  <span className={`px-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider mt-1 ${isSuperAdmin ? 'bg-yellow-500/20 border border-yellow-400 text-yellow-400 font-black' : isStaffUser ? 'bg-indigo-500/20 border border-indigo-400 text-indigo-300 font-bold' : 'bg-crimson-600/30 border border-crimson-500 text-crimson-300'}`}>
-                    {authUser.role || 'Member'}
-                  </span>
-                  {authUser.provider && (
-                    <span className="text-[10px] text-gray-400 font-mono mt-1">Auth: {authUser.provider}</span>
-                  )}
-                </div>
-
-                <div className="grid grid-cols-3 gap-3 my-6 text-center">
-                  <div className="p-3 bg-dark-800/80 rounded-2xl border border-white/5">
-                    <span className="text-xs text-gray-400 block font-gaming">HEARTS</span>
-                    <span className="text-lg font-bold text-crimson-400 font-mono">{authUser.hearts || 10} ❤️</span>
-                  </div>
-                  <div className="p-3 bg-dark-800/80 rounded-2xl border border-white/5">
-                    <span className="text-xs text-gray-400 block font-gaming">TOTAL KILLS</span>
-                    <span className="text-lg font-bold text-white font-mono">{authUser.kills || 0}</span>
-                  </div>
-                  <div className="p-3 bg-dark-800/80 rounded-2xl border border-white/5">
-                    <span className="text-xs text-gray-400 block font-gaming">SEASON</span>
-                    <span className="text-lg font-bold text-emerald-400 font-mono">S1</span>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  {isSuperAdmin && (
-                    <button
-                      onClick={() => {
-                        setShowProfileDrawer(false);
-                        setShowAdminPanel(true);
-                        playSound('admin');
-                      }}
-                      className="w-full py-2.5 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 text-black font-black text-xs uppercase tracking-wider font-gaming shadow-glow-gold flex items-center justify-center gap-2"
-                    >
-                      <Icon name="crown" size={16} />
-                      <span>OPEN FOUNDER ADMIN PANEL</span>
-                    </button>
-                  )}
-
-                  {isStaffUser && (
-                    <button
-                      onClick={() => {
-                        setShowProfileDrawer(false);
-                        setShowStaffPanel(true);
-                        playSound('staff');
-                      }}
-                      className="w-full py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 text-white font-black text-xs uppercase tracking-wider font-gaming shadow-glow-discord flex items-center justify-center gap-2"
-                    >
-                      <Icon name="shield" size={16} />
-                      <span>OPEN STAFF DESK PANEL</span>
-                    </button>
-                  )}
-
-                  <button
-                    onClick={() => {
-                      setShowProfileDrawer(false);
-                      navigateTo('store');
-                    }}
-                    className="w-full py-2.5 rounded-xl bg-crimson-600 hover:bg-crimson-500 text-white font-bold text-xs uppercase tracking-wider font-gaming"
-                  >
-                    Upgrade Network Rank
-                  </button>
-                  <button
-                    onClick={handleLogout}
-                    className="w-full py-2.5 rounded-xl bg-dark-800 hover:bg-red-950/80 border border-white/10 text-crimson-400 font-bold text-xs uppercase tracking-wider font-gaming"
-                  >
-                    Disconnect / Logout
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* ========================================================================= */}
-          {/* STICKY NAVIGATION BAR */}
-          {/* ========================================================================= */}
-          <header className="sticky top-0 z-40 glass-nav">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+          <section id="leaderboard" className="py-20 bg-dark-900/60 border-t border-white/5 relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div onClick={() => authUser ? navigateTo('home') : handleBlockedAccessAttempt()} className="cursor-pointer transition-transform hover:scale-105">
-                <FearStealLogo />
+              <div className="text-center mb-12">
+                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">RANKED GLORY</span>
+                <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
+                  FEARSTEAL <span className="text-crimson-500">LEADERBOARDS</span>
+                </h2>
+                <p className="text-gray-400 text-sm max-w-xl mx-auto mt-2">
+                  Live synchronized metrics with in-game server database.
+                </p>
               </div>
 
-              <nav className="hidden xl:flex items-center gap-1 font-gaming text-sm font-bold tracking-wider text-gray-300">
+              <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
                 {[
-                  { id: 'home', label: 'HOME' },
-                  { id: 'status', label: 'STATUS' },
-                  { id: 'members', label: 'MEMBERS' },
-                  { id: 'store', label: 'STORE' },
-                  { id: 'staff', label: 'STAFF' },
-                  { id: 'leaderboard', label: 'LEADERBOARD' },
-                  { id: 'events', label: 'EVENTS' },
-                  { id: 'simulator', label: 'HEART FORGE' },
-                  { id: 'crates', label: 'CRATES' },
-                  { id: 'suggestions', label: 'SUGGESTIONS' },
-                  { id: 'staff-apply', label: 'APPLY' },
-                  { id: 'discord-support', label: 'DISCORD' },
-                ].map((item) => (
+                  { id: 'hearts', label: 'Top Hearts' },
+                  { id: 'kills', label: 'Top Kills' },
+                  { id: 'streak', label: 'Top Streak' },
+                  { id: 'balance', label: 'Top Balance' },
+                  { id: 'playtime', label: 'Top Playtime' },
+                ].map((tab) => (
                   <button
-                    key={item.id}
-                    onClick={() => authUser ? navigateTo(item.id) : handleBlockedAccessAttempt()}
-                    className={`px-2.5 py-1.5 rounded-xl transition-all relative ${
-                      activeSection === item.id 
-                        ? 'text-white bg-yellow-500/20 border border-yellow-500/50 text-glow-gold' 
-                        : 'hover:text-white hover:bg-white/5'
+                    key={tab.id}
+                    onClick={() => { playSound('click'); setLeaderboardCategory(tab.id); }}
+                    className={`px-4 py-2 rounded-2xl text-xs font-gaming font-bold tracking-wider uppercase transition-all ${
+                      leaderboardCategory === tab.id
+                        ? 'bg-yellow-500 text-black shadow-glow-gold'
+                        : 'bg-dark-800 text-gray-400 hover:text-white hover:bg-dark-700'
                     }`}
                   >
-                    {item.label}
+                    {tab.label}
                   </button>
                 ))}
-              </nav>
+              </div>
 
-              <div className="flex items-center gap-2 sm:gap-3">
-                {isSuperAdmin && (
-                  <button
-                    onClick={() => {
-                      playSound('admin');
-                      setShowAdminPanel(true);
-                    }}
-                    className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-gaming font-black text-xs tracking-wider uppercase shadow-glow-gold flex items-center gap-1.5"
-                    title="Founder Admin Panel"
-                  >
-                    <Icon name="crown" size={14} />
-                    <span className="hidden sm:inline">ADMIN SUITE</span>
-                  </button>
-                )}
-
-                {isStaffUser && !isSuperAdmin && (
-                  <button
-                    onClick={() => {
-                      playSound('staff');
-                      setShowStaffPanel(true);
-                    }}
-                    className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-gaming font-black text-xs tracking-wider uppercase shadow-glow-discord flex items-center gap-1.5"
-                    title="Staff Panel"
-                  >
-                    <Icon name="shield" size={14} />
-                    <span className="hidden sm:inline">STAFF DESK</span>
-                  </button>
-                )}
-
-                <button
-                  onClick={() => authUser ? setIsSearchOpen(true) : handleBlockedAccessAttempt()}
-                  className="p-2.5 rounded-xl bg-dark-800 border border-white/10 text-gray-300 hover:text-white hover:border-yellow-500/40 transition-all"
-                  title="Search Network"
-                >
-                  <Icon name="search" size={18} />
-                </button>
-
-                <div className="relative">
-                  <button
-                    onClick={() => {
-                      if (!authUser) {
-                        handleBlockedAccessAttempt();
-                        return;
-                      }
-                      playSound('click');
-                      setNotificationTrayOpen(!notificationTrayOpen);
-                    }}
-                    className="p-2.5 rounded-xl bg-dark-800 border border-white/10 text-gray-300 hover:text-white hover:border-yellow-500/40 transition-all relative"
-                  >
-                    <Icon name="bell" size={18} />
-                    <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-crimson-500"></span>
-                  </button>
-
-                  {notificationTrayOpen && authUser && (
-                    <div className="absolute right-0 mt-3 w-80 sm:w-96 glass-panel-glow rounded-2xl p-4 shadow-glow-gold z-50">
-                      <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
-                        <span className="font-bold text-sm text-white flex items-center gap-2">
-                          <Icon name="bell" size={16} className="text-yellow-400" />
-                          Network Broadcast History
-                        </span>
-                        <span className="text-[9px] bg-yellow-950 text-yellow-400 px-2 py-0.5 rounded font-bold">
-                          {allAnnouncements.length} TOTAL
-                        </span>
-                      </div>
-                      <div className="space-y-3 max-h-72 overflow-y-auto">
-                        {allAnnouncements.map((ann) => (
-                          <div key={ann.id} className="p-3 rounded-xl bg-dark-800/90 border border-white/5 text-xs space-y-1">
-                            <div className="flex items-center justify-between font-bold text-white">
-                              <span className="truncate pr-2">{ann.title}</span>
-                              <span className="text-[10px] text-yellow-400 font-mono font-normal">{ann.category}</span>
-                            </div>
-                            <p className="text-gray-300 text-[11px] leading-relaxed">{ann.body}</p>
-                            <div className="flex items-center justify-between pt-1">
-                              <span className="text-[9px] text-yellow-400 font-mono font-bold">✍️ {ann.authorSignature}</span>
-                              <span className="text-[9px] text-gray-500 font-mono">{formatTimeAgo(ann.createdAt)}</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <button
-                  onClick={copyServerIP}
-                  className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-dark-800 border border-yellow-500/30 hover:border-yellow-400 text-xs font-bold text-white transition-all shadow-sm"
-                >
-                  <span className={`w-2 h-2 rounded-full ${serverStatus.rawStatus === 'online' ? 'bg-emerald-400' : 'bg-crimson-500'}`}></span>
-                  <span className="font-mono">play.fearsteal.fun</span>
-                  <Icon name="copy" size={14} className="text-gray-400" />
-                </button>
-
-                {authUser ? (
-                  <button
-                    onClick={() => setShowProfileDrawer(true)}
-                    className="flex items-center gap-2 bg-dark-800 border border-white/10 rounded-xl p-1.5 pl-3 hover:border-yellow-500/40 transition-all"
-                  >
-                    <span className="text-xs font-semibold text-white truncate max-w-[85px]">{authUser.username}</span>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 items-end">
+                {leaderboardData[leaderboardCategory]?.[1] && (
+                  <div className="glass-panel rounded-3xl p-6 text-center border-t-4 border-gray-300 order-2 md:order-1">
+                    <span className="w-8 h-8 rounded-full bg-gray-300 text-black font-black text-sm inline-flex items-center justify-center mb-3">
+                      #2
+                    </span>
                     <img
-                      src={`https://mc-heads.net/avatar/${authUser.username}/32`}
+                      src={`https://mc-heads.net/avatar/${leaderboardData[leaderboardCategory][1].name}/128`}
                       alt=""
-                      className="w-6 h-6 rounded-lg border border-white/10"
-                      onError={(e) => { e.target.src = "https://mc-heads.net/avatar/MHF_Steve/32"; }}
+                      className="w-20 h-20 rounded-2xl mx-auto mb-3 border-2 border-gray-300 shadow-lg"
                     />
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => handleBlockedAccessAttempt()}
-                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-crimson-600 to-crimson-700 hover:from-crimson-500 text-xs font-gaming font-bold text-white tracking-wider uppercase shadow-glow-crimson transition-all"
-                  >
-                    Login / Register
-                  </button>
+                    <h3 className="text-xl font-bold font-gaming text-white">{leaderboardData[leaderboardCategory][1].name}</h3>
+                    <p className="text-sm font-bold text-gray-300 font-mono mt-1">{leaderboardData[leaderboardCategory][1].value}</p>
+                    <span className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Clan: {leaderboardData[leaderboardCategory][1].clan}</span>
+                  </div>
                 )}
 
-                <button
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="xl:hidden p-2.5 rounded-xl bg-dark-800 border border-white/10 text-gray-300 hover:text-white"
-                >
-                  <Icon name={mobileMenuOpen ? "x" : "menu"} size={20} />
-                </button>
+                {leaderboardData[leaderboardCategory]?.[0] && (
+                  <div className="glass-panel-glow rounded-3xl p-8 text-center border-2 border-yellow-400 shadow-2xl relative order-1 md:order-2 transform md:-translate-y-4">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-yellow-400 text-black font-black text-xs uppercase tracking-wider font-gaming shadow-lg">
+                      👑 CHAMPION #1
+                    </div>
+                    <img
+                      src={`https://mc-heads.net/avatar/${leaderboardData[leaderboardCategory][0].name}/128`}
+                      alt=""
+                      className="w-24 h-24 rounded-2xl mx-auto mb-4 border-4 border-yellow-400 shadow-glow-gold"
+                    />
+                    <h3 className="text-2xl font-black font-gaming text-white text-glow-gold">{leaderboardData[leaderboardCategory][0].name}</h3>
+                    <p className="text-lg font-black text-yellow-400 font-mono mt-1">{leaderboardData[leaderboardCategory][0].value}</p>
+                    <span className="text-xs text-gray-300 uppercase font-bold tracking-wider">Clan: {leaderboardData[leaderboardCategory][0].clan} | K/D: {leaderboardData[leaderboardCategory][0].kd}</span>
+                  </div>
+                )}
+
+                {leaderboardData[leaderboardCategory]?.[2] && (
+                  <div className="glass-panel rounded-3xl p-6 text-center border-t-4 border-amber-700 order-3">
+                    <span className="w-8 h-8 rounded-full bg-amber-700 text-white font-black text-sm inline-flex items-center justify-center mb-3">
+                      #3
+                    </span>
+                    <img
+                      src={`https://mc-heads.net/avatar/${leaderboardData[leaderboardCategory][2].name}/128`}
+                      alt=""
+                      className="w-20 h-20 rounded-2xl mx-auto mb-3 border-2 border-amber-700 shadow-lg"
+                    />
+                    <h3 className="text-xl font-bold font-gaming text-white">{leaderboardData[leaderboardCategory][2].name}</h3>
+                    <p className="text-sm font-bold text-amber-500 font-mono mt-1">{leaderboardData[leaderboardCategory][2].value}</p>
+                    <span className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Clan: {leaderboardData[leaderboardCategory][2].clan}</span>
+                  </div>
+                )}
               </div>
             </div>
-
-            {/* Mobile Nav Menu */}
-            {mobileMenuOpen && (
-              <div className="xl:hidden bg-dark-900 border-b border-crimson-500/30 px-4 py-6 space-y-1.5">
-                {isSuperAdmin && (
-                  <button
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      setShowAdminPanel(true);
-                      playSound('admin');
-                    }}
-                    className="block w-full text-left px-4 py-2.5 rounded-xl font-gaming font-black text-sm text-black bg-yellow-500 shadow-glow-gold mb-2"
-                  >
-                    👑 FOUNDER ADMIN SUITE
-                  </button>
-                )}
-
-                {[
-                  { id: 'home', label: 'HOME' },
-                  { id: 'status', label: 'SERVER STATUS' },
-                  { id: 'members', label: 'MEMBERS DIRECTORY' },
-                  { id: 'store', label: 'STORE / RANKS' },
-                  { id: 'staff', label: 'STAFF DIRECTORY' },
-                  { id: 'leaderboard', label: '10M LEADERBOARD' },
-                  { id: 'events', label: 'EVENTS & ROTATION' },
-                  { id: 'simulator', label: 'HEART FORGE SIMULATOR' },
-                  { id: 'crates', label: 'CRATE UNBOXER (24H)' },
-                  { id: 'suggestions', label: 'SERVER SUGGESTIONS' },
-                  { id: 'staff-apply', label: 'STAFF APPLICATION' },
-                  { id: 'discord-support', label: 'DISCORD & SUPPORT' },
-                ].map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => authUser ? navigateTo(item.id) : handleBlockedAccessAttempt()}
-                    className="block w-full text-left px-4 py-2.5 rounded-xl font-gaming font-bold text-sm text-gray-200 hover:bg-yellow-500/20 hover:text-white"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-                <div className="pt-4 border-t border-white/10">
-                  <button
-                    onClick={copyServerIP}
-                    className="w-full py-2.5 px-4 rounded-xl bg-crimson-600/30 border border-crimson-500 text-center font-bold text-xs text-white"
-                  >
-                    COPY SERVER IP (play.fearsteal.fun)
-                  </button>
-                </div>
-              </div>
-            )}
-          </header>
+          </section>
 
           {/* ========================================================================= */}
-          {/* HERO SECTION WITH 24-HOUR LIVE HOME SCREEN ANNOUNCEMENTS */}
+          {/* 15-DAY AUTOMATIC ROTATING EVENTS */}
           {/* ========================================================================= */}
-          <section id="home" className="relative pt-8 pb-20 md:pt-14 md:pb-28 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <section id="events" className="py-20 relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel-glow mb-8">
-                <span className={`w-2.5 h-2.5 rounded-full ${
-                  serverStatus.rawStatus === 'online' ? 'bg-emerald-400' :
-                  serverStatus.rawStatus === 'offline' ? 'bg-crimson-500' :
-                  'bg-yellow-400'
-                }`}></span>
-                <span className="text-xs font-gaming font-bold tracking-widest uppercase text-gray-200">
-                  {serverStatus.rawStatus === 'online' ? '🟢 SERVER ONLINE' :
-                   serverStatus.rawStatus === 'offline' ? '🔴 SERVER OFFLINE' : '⚠️ STATUS UNKNOWN'}
-                </span>
-                <span className="text-xs text-gray-500">|</span>
-                <span className="text-xs font-mono font-bold text-yellow-400">
-                  {serverStatus.rawStatus === 'online' 
-                    ? `${serverStatus.players.online}/${serverStatus.players.max} Players`
-                    : 'Port: 19132'}
-                </span>
+              <div className="text-center mb-16">
+                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">COMPETITIVE TIMETABLE</span>
+                <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
+                  FEARSTEAL <span className="text-crimson-500">15-DAY EVENTS</span>
+                </h2>
+                <p className="text-gray-400 text-sm max-w-xl mx-auto mt-2">
+                  Our automated backend system rotates active competitive tournaments every 15 days.
+                </p>
               </div>
 
-              {/* LIVE 24-HOUR HOME SCREEN BROADCASTS WITH DYNAMIC TIME AGO */}
-              {homeActiveAnnouncements.length > 0 && (
-                <div className="max-w-4xl mx-auto mb-8 space-y-3">
-                  {homeActiveAnnouncements.map((ann) => (
-                    <div key={ann.id} className="p-4 sm:p-5 rounded-3xl bg-dark-900/95 border-2 border-yellow-500/60 shadow-glow-gold text-left flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                      <div className="space-y-1 flex-1">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="px-2.5 py-0.5 rounded-full bg-yellow-500 text-black font-black text-[10px] font-gaming uppercase tracking-wider">
-                            📢 LIVE 24H BROADCAST
-                          </span>
-                          <span className="text-xs font-bold text-white font-gaming uppercase tracking-wider">
-                            {ann.title}
-                          </span>
-                          <span className="text-[10px] text-yellow-400 font-mono font-bold">
-                            ({formatTimeAgo(ann.createdAt)})
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-300 leading-relaxed font-mono">
-                          {ann.body}
-                        </p>
-                        <p className="text-[10px] text-yellow-400 font-mono font-bold pt-1">
-                          ✍️ {ann.authorSignature}
-                        </p>
+              <div className="glass-panel-glow rounded-3xl p-6 sm:p-10 border-2 border-yellow-500 shadow-glow-gold mb-12 relative overflow-hidden">
+                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="px-3 py-1 rounded-full bg-crimson-600 text-white text-xs font-bold uppercase tracking-wider font-gaming">
+                        LIVE ACTIVE EVENT
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-dark-800 border border-white/10 text-gray-300 text-xs font-bold uppercase">
+                        CATEGORY: {eventList[currentEventIndex].type}
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl sm:text-4xl font-black font-gaming text-white mt-2">
+                      {eventList[currentEventIndex].name}
+                    </h3>
+
+                    <p className="text-gray-300 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+                      {eventList[currentEventIndex].description}
+                    </p>
+
+                    <div className="mt-4 p-3 rounded-2xl bg-dark-900/80 border border-yellow-500/30 inline-block">
+                      <span className="text-[11px] font-bold text-gray-400 uppercase">🏆 Event Rewards: </span>
+                      <span className="text-xs font-bold text-yellow-400">{eventList[currentEventIndex].reward}</span>
+                    </div>
+                  </div>
+
+                  <div className="w-full lg:w-auto bg-dark-900/90 border border-yellow-500/40 rounded-3xl p-6 text-center">
+                    <span className="text-xs uppercase font-bold tracking-widest text-gray-400 block mb-3 font-gaming">
+                      NEXT ROTATION IN:
+                    </span>
+                    <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
+                      <div className="p-3 bg-dark-800 rounded-2xl border border-white/5 min-w-[65px]">
+                        <span className="text-2xl sm:text-3xl font-black font-gaming text-white">{eventTimeLeft.days}</span>
+                        <span className="block text-[10px] text-gray-400 uppercase font-bold mt-1">Days</span>
+                      </div>
+                      <div className="p-3 bg-dark-800 rounded-2xl border border-white/5 min-w-[65px]">
+                        <span className="text-2xl sm:text-3xl font-black font-gaming text-white">{eventTimeLeft.hours}</span>
+                        <span className="block text-[10px] text-gray-400 uppercase font-bold mt-1">Hours</span>
+                      </div>
+                      <div className="p-3 bg-dark-800 rounded-2xl border border-white/5 min-w-[65px]">
+                        <span className="text-2xl sm:text-3xl font-black font-gaming text-white">{eventTimeLeft.minutes}</span>
+                        <span className="block text-[10px] text-gray-400 uppercase font-bold mt-1">Mins</span>
+                      </div>
+                      <div className="p-3 bg-dark-800 rounded-2xl border border-yellow-500/40 min-w-[65px]">
+                        <span className="text-2xl sm:text-3xl font-black font-gaming text-yellow-400">{eventTimeLeft.seconds}</span>
+                        <span className="block text-[10px] text-gray-400 uppercase font-bold mt-1">Secs</span>
                       </div>
                     </div>
-                  ))}
-                </div>
-              )}
-
-              {/* SUPPLIED HERO BANNER */}
-              <div className="max-w-5xl mx-auto mb-10">
-                <FearStealBanner />
-              </div>
-
-              <p className="mt-4 text-xl sm:text-2xl md:text-3xl font-bold font-gaming tracking-widest text-gray-300 max-w-4xl mx-auto">
-                THE NEXT GENERATION <span className="text-crimson-400">LIFESTEAL</span> NETWORK
-              </p>
-
-              <p className="mt-3 text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                Dominate intense PvP combat, steal hearts from conquered foes, outsmart enemy clans in 15-day automated tournaments, and experience zero-latency Bedrock & Java gameplay.
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4 max-w-2xl mx-auto">
-                <button
-                  onClick={copyServerIP}
-                  className="group relative flex-1 min-w-[220px] py-4 px-6 rounded-2xl bg-gradient-to-r from-crimson-600 via-crimson-600 to-crimson-700 hover:from-crimson-500 text-white font-gaming font-bold text-lg tracking-wider uppercase shadow-glow-crimson transition-all flex items-center justify-center gap-3"
-                >
-                  <Icon name="copy" size={20} />
-                  <span>COPY SERVER IP</span>
-                </button>
-
-                <a
-                  href="https://discord.gg/pGM5x3gXpX"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => playSound('click')}
-                  className="flex-1 min-w-[180px] py-4 px-6 rounded-2xl bg-[#5865F2]/20 hover:bg-[#5865F2]/30 border border-[#5865F2]/60 text-white font-gaming font-bold text-lg tracking-wider uppercase backdrop-blur-md transition-all flex items-center justify-center gap-3 shadow-lg"
-                >
-                  <Icon name="message-square" size={20} className="text-[#5865F2]" />
-                  <span>JOIN DISCORD</span>
-                </a>
-
-                <a
-                  href="https://store.cryzormc.in/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => playSound('click')}
-                  className="flex-1 min-w-[180px] py-4 px-6 rounded-2xl bg-dark-800/80 hover:bg-dark-800 border border-white/10 hover:border-yellow-500/50 text-white font-gaming font-bold text-lg tracking-wider uppercase backdrop-blur-md transition-all flex items-center justify-center gap-3"
-                >
-                  <Icon name="shopping-bag" size={20} className="text-yellow-400" />
-                  <span>VISIT STORE</span>
-                </a>
-              </div>
-
-              <div className="mt-12 max-w-3xl mx-auto glass-panel rounded-3xl p-5 sm:p-6 shadow-2xl">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
-                  <div className="pt-2 md:pt-0">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 font-gaming">Server Address</span>
-                    <p className="font-mono font-bold text-yellow-400 text-sm mt-1">play.fearsteal.fun</p>
-                  </div>
-                  <div className="pt-2 md:pt-0">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 font-gaming">Bedrock Port</span>
-                    <p className="font-mono font-bold text-white text-sm mt-1">19132</p>
-                  </div>
-                  <div className="pt-2 md:pt-0">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 font-gaming">Version Support</span>
-                    <p className="font-mono font-bold text-white text-sm mt-1">{serverStatus.version}</p>
-                  </div>
-                  <div className="pt-2 md:pt-0">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 font-gaming">Network Proxy</span>
-                    <p className="font-mono font-bold text-emerald-400 text-sm mt-1">Velocity Proxy</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ========================================================================= */}
+          {/* MEDIA RANKS & CREATOR KIT */}
+          {/* ========================================================================= */}
+          <section id="media" className="py-20 bg-dark-900/60 border-t border-white/5 relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              
+              <div className="text-center mb-16">
+                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">CREATOR SPONSORSHIP</span>
+                <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
+                  MEDIA <span className="text-crimson-500">RANKS & PERKS</span>
+                </h2>
+                <p className="text-gray-400 text-sm max-w-xl mx-auto mt-2">
+                  Publish YouTube videos and TikToks on FearSteal to earn free ranks and creator payouts.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                {[
+                  { name: "SMOL RANK", subs: "200+ Subscribers", color: "border-blue-500/40", perks: ["[SMOL] Creator Prefix", "Access to /stream Announcement", "Free Creator Kit"] },
+                  { name: "MEDIA RANK", subs: "500 - 1,000 Subscribers", color: "border-purple-500/50", perks: ["[MEDIA] Purple Prefix", "Global Broadcast /live", "5x Extra Heart Vaults", "Discord Creator Lounge"] },
+                  { name: "MEDIA+ RANK", subs: "1,000 - 5,000 Subscribers", color: "border-crimson-500/60", perks: ["[MEDIA+] Crimson Gradient", "Custom Clan Vanity URL", "Bi-Weekly Store Voucher", "Priority Support Queue"] },
+                  { name: "FAMOUS RANK", subs: "10,000+ Subscribers", color: "border-yellow-500/60 shadow-glow-gold", perks: ["[FAMOUS] Gold Crest", "Revenue Share Affiliate Code", "Dedicated Producer Role", "Unlimited Hearts Reset"] },
+                ].map((media, idx) => (
+                  <div key={idx} className={`glass-panel stable-card rounded-3xl p-6 border ${media.color} flex flex-col justify-between`}>
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-yellow-400 font-gaming">REQUIREMENT</span>
+                      <p className="text-xs font-bold text-gray-300 font-mono mt-0.5">{media.subs}</p>
+                      
+                      <h3 className="text-xl font-black font-gaming text-white mt-3 mb-4">{media.name}</h3>
+
+                      <ul className="space-y-2 mb-6">
+                        {media.perks.map((p, pIdx) => (
+                          <li key={pIdx} className="text-xs text-gray-300 flex items-center gap-2">
+                            <Icon name="check" size={14} className="text-yellow-400 flex-shrink-0" />
+                            <span>{p}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <a
+                      href="https://discord.gg/pGM5x3gXpX"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => playSound('click')}
+                      className="w-full py-2.5 rounded-xl bg-dark-800 hover:bg-yellow-500 hover:text-black border border-white/10 text-center font-gaming font-bold text-xs tracking-wider uppercase text-white transition-all block"
+                    >
+                      APPLY VIA DISCORD
+                    </a>
+                  </div>
+                ))}
+              </div>
+
+              <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold font-gaming text-white uppercase tracking-wider">
+                      📹 Official Creator Video Description Template
+                    </h3>
+                    <p className="text-xs text-gray-400 mt-1">
+                      Paste this description under your YouTube & TikTok uploads to qualify for media perks.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      const desc = `⚔️ Play on FearSteal LifeSteal Network!\nServer IP: play.fearsteal.fun\nBedrock Port: 19132\nDiscord: https://discord.gg/pGM5x3gXpX\nStore: https://store.cryzormc.in/`;
+                      navigator.clipboard.writeText(desc);
+                      playSound('copy');
+                      addToast("Copied Template", "Creator description copied to clipboard!", "success");
+                    }}
+                    className="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 text-black font-gaming font-bold text-xs tracking-wider uppercase shadow-glow-gold transition-all flex items-center gap-2"
+                  >
+                    <Icon name="copy" size={14} />
+                    <span>COPY DESCRIPTION</span>
+                  </button>
+                </div>
+
+                <div className="bg-dark-950 p-4 rounded-2xl font-mono text-xs text-gray-300 border border-white/5 space-y-1">
+                  <p>⚔️ Play on FearSteal LifeSteal Network!</p>
+                  <p className="text-yellow-400">• Server IP: play.fearsteal.fun</p>
+                  <p className="text-yellow-400">• Bedrock Port: 19132</p>
+                  <p>• Official Discord: <a href="https://discord.gg/pGM5x3gXpX" target="_blank" className="underline text-blue-400">https://discord.gg/pGM5x3gXpX</a></p>
+                  <p>• Official Store: <a href="https://store.cryzormc.in/" target="_blank" className="underline text-yellow-400">https://store.cryzormc.in/</a></p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ========================================================================= */}
+          {/* SERVER RULES SECTION */}
+          {/* ========================================================================= */}
+          <section id="rules" className="py-20 relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              
+              <div className="text-center mb-16">
+                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">NETWORK CONDUCT</span>
+                <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
+                  SERVER <span className="text-crimson-500">RULES & ENFORCEMENT</span>
+                </h2>
+                <p className="text-gray-400 text-sm max-w-xl mx-auto mt-2">
+                  Strict enforcement guarantees a balanced, competitive, and enjoyable atmosphere for everyone.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { num: "01", title: "No Cheating or Hacked Clients", desc: "Using Killaura, reach, baritone, auto-totem, or unfair modifications results in an immediate permanent hardware ban." },
+                  { num: "02", title: "No Exploiting Glitches or Duplication", desc: "Duplicating items, heart glitching, or bypassing combat tags is strictly forbidden and results in total clan resets." },
+                  { num: "03", title: "No Harassment or Toxicity", desc: "Respect all gladiators. Discrimination, toxic slurs, doxxing, or extreme harassment lead to permanent mutes or bans." },
+                  { num: "04", title: "No Advertising or Phishing Links", desc: "Promoting other Minecraft servers or distributing malicious links will result in an immediate IP blacklist." },
+                  { num: "05", title: "No DDoS or Doxxing Threats", desc: "Threatening network infrastructure or attempting to compromise player safety results in an unappealable ban." },
+                  { num: "06", title: "Respect Staff Authority", desc: "Follow staff instructions during events. If you believe a punishment was unfair, submit an appeal in Discord." },
+                ].map((rule, idx) => (
+                  <div key={idx} className="glass-panel stable-card rounded-3xl p-6 border border-white/10 relative">
+                    <span className="text-3xl font-black font-gaming text-yellow-500/30 absolute top-4 right-5">
+                      {rule.num}
+                    </span>
+                    <h3 className="text-lg font-bold font-gaming text-white mb-2 pr-8">{rule.title}</h3>
+                    <p className="text-xs text-gray-400 leading-relaxed">{rule.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ========================================================================= */}
+          {/* HOW TO PLAY GUIDE */}
+          {/* ========================================================================= */}
+          <section id="how-to-play" className="py-20 bg-dark-900/60 border-t border-white/5 relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              
+              <div className="text-center mb-16">
+                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">QUICK START GUIDE</span>
+                <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
+                  HOW TO <span className="text-crimson-500">JOIN FEARSTEAL</span>
+                </h2>
+                <p className="text-gray-400 text-sm max-w-xl mx-auto mt-2">
+                  Follow these step-by-step instructions to connect from any Minecraft edition.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                {[
+                  { step: "STEP 1", title: "Launch Minecraft", desc: "Open Minecraft on your PC, Android, iOS, or Console." },
+                  { step: "STEP 2", title: "Select Servers", desc: "Go to the Multiplayer / Servers tab and click 'Add Server'." },
+                  { step: "STEP 3", title: "Enter Server Name", desc: "Name it 'FearSteal Network' in your favorites list." },
+                  { step: "STEP 4", title: "Enter Server IP", desc: "Server Address: play.fearsteal.fun" },
+                  { step: "STEP 5", title: "Enter Port: 19132", desc: "Bedrock uses port 19132 (Java default 25565)." },
+                  { step: "STEP 6", title: "Join & Conquer", desc: "Click Join Server and start your LifeSteal dominance!" },
+                ].map((item, idx) => (
+                  <div key={idx} className="glass-panel stable-card rounded-3xl p-5 border border-white/10 text-center flex flex-col justify-between">
+                    <div>
+                      <span className="px-2.5 py-1 rounded-full bg-yellow-950 text-yellow-400 text-[10px] font-bold font-gaming tracking-widest uppercase">
+                        {item.step}
+                      </span>
+                      <h4 className="text-base font-bold font-gaming text-white mt-3 mb-1">{item.title}</h4>
+                      <p className="text-[11px] text-gray-400">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ========================================================================= */}
+          {/* FAQ ACCORDION */}
+          {/* ========================================================================= */}
+          <section id="faq" className="py-20 relative">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              
+              <div className="text-center mb-16">
+                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">COMMON INQUIRIES</span>
+                <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
+                  FREQUENTLY ASKED <span className="text-crimson-500">QUESTIONS</span>
+                </h2>
+              </div>
+
+              <div className="space-y-4">
+                {[
+                  { q: "What is FearSteal Network?", a: "FearSteal is a premier Minecraft LifeSteal network engineered for intense PvP combat, heart-stealing mechanics, clan wars, automated 15-day rotating tournaments, and full cross-play between Bedrock and Java." },
+                  { q: "What is the official server IP and Port?", a: "The server IP is play.fearsteal.fun. For Bedrock Edition (Pocket / Console / Windows), use Port: 19132. Java Edition connects directly to play.fearsteal.fun." },
+                  { q: "How does the Knight Rank popularity work?", a: "The Knight rank ($12) is our community's most popular tier, offering /near radar (150 blocks range), /hat cosmetics, 2x heart vault space, and custom chat colors." },
+                  { q: "How do 24-Hour Home Screen Announcements work?", a: "Announcements posted by Founder ItzVeltriex are featured prominently on the Home Screen for 24 hours with exact time ago indicators. After 24h, they auto-archive into notification history." },
+                  { q: "How does the Server Suggestions system work?", a: "Navigate to the Suggestions tab on the website to submit your ideas for game mechanics, economy, or Warzone events. All suggestions are routed privately to Founder ItzVeltriex's admin desk for evaluation." },
+                  { q: "How does the 24-hour crate cooldown work?", a: "Once you claim the mysterious reward crate, a 24-hour lock timer begins. You can take a screenshot of your drop, ping the server owner on Discord chat with proof, and claim rewards." },
+                ].map((faqItem, idx) => (
+                  <details key={idx} className="glass-panel rounded-3xl p-5 border border-white/10 group cursor-pointer">
+                    <summary className="font-gaming font-bold text-lg text-white flex items-center justify-between list-none">
+                      <span>{faqItem.q}</span>
+                      <Icon name="chevron-down" size={18} className="text-yellow-400 transition-transform group-open:rotate-180" />
+                    </summary>
+                    <p className="text-xs sm:text-sm text-gray-400 mt-3 pt-3 border-t border-white/5 leading-relaxed">
+                      {faqItem.a}
+                    </p>
+                  </details>
+                ))}
               </div>
             </div>
           </section>
@@ -2940,7 +2785,7 @@
                 
                 <div className="space-y-4">
                   <FearStealLogo />
-                  <p className="text-xs text-gray-400 leading-relaxed font-mono">
+                  <p className="text-xs text-gray-400 leading-relaxed">
                     FearSteal is an elite Minecraft LifeSteal network engineered for peak PvP intensity and smooth cross-platform performance.
                   </p>
                   <div className="text-xs text-gray-500 font-mono">
@@ -2955,13 +2800,13 @@
                     EXPLORE
                   </h4>
                   <ul className="space-y-2 text-xs text-gray-400 font-gaming">
-                    <li><button onClick={() => navigateTo('home')} className="hover:text-white transition-colors">Home Portal</button></li>
-                    <li><button onClick={() => navigateTo('status')} className="hover:text-white transition-colors">Server Status & Velocity</button></li>
-                    <li><button onClick={() => navigateTo('members')} className="hover:text-white transition-colors">Members Directory</button></li>
-                    <li><button onClick={() => navigateTo('store')} className="hover:text-white transition-colors">Server Ranks & Store</button></li>
-                    <li><button onClick={() => navigateTo('staff')} className="hover:text-white transition-colors">Staff Directory</button></li>
-                    <li><button onClick={() => navigateTo('leaderboard')} className="hover:text-white transition-colors">10m Leaderboards</button></li>
-                    <li><button onClick={() => navigateTo('crates')} className="hover:text-white transition-colors">Crate Unboxer (24h)</button></li>
+                    <li><button onClick={() => scrollToSection('home')} className="hover:text-white transition-colors">Home Portal</button></li>
+                    <li><button onClick={() => scrollToSection('store')} className="hover:text-white transition-colors">Server Ranks & Free Novice</button></li>
+                    <li><button onClick={() => scrollToSection('suggestions')} className="hover:text-white transition-colors">Server Suggestions Box</button></li>
+                    <li><button onClick={() => scrollToSection('discord-support')} className="hover:text-white transition-colors">Discord & Live Support</button></li>
+                    <li><button onClick={() => scrollToSection('staff-apply')} className="hover:text-white transition-colors">Staff Application</button></li>
+                    <li><button onClick={() => scrollToSection('crates')} className="hover:text-white transition-colors">Crate Unboxer (24h)</button></li>
+                    <li><button onClick={() => scrollToSection('simulator')} className="hover:text-white transition-colors">Heart Forge Simulator</button></li>
                   </ul>
                 </div>
 
@@ -2973,7 +2818,7 @@
                     <li><a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-1.5"><Icon name="message-square" size={14} /> Discord Server</a></li>
                     <li><a href="https://store.cryzormc.in/" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-1.5"><Icon name="shopping-bag" size={14} /> Store Portal</a></li>
                     <li><a href="mailto:fearstealsupport@gmail.com" className="hover:text-white flex items-center gap-1.5"><Icon name="mail" size={14} /> Email Support</a></li>
-                    <li><button onClick={() => navigateTo('suggestions')} className="hover:text-white flex items-center gap-1.5"><Icon name="lightbulb" size={14} /> Server Suggestions</button></li>
+                    <li><button onClick={() => scrollToSection('rules')} className="hover:text-white flex items-center gap-1.5"><Icon name="shield" size={14} /> Rules & Guidelines</button></li>
                   </ul>
                 </div>
 
