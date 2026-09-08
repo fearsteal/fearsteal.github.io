@@ -91,7 +91,7 @@
       z-index: 2;
     }
 
-    /* Standard Buttons */
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -647,7 +647,7 @@
       to { transform: translateX(0); opacity: 1; }
     }
 
-    /* Mobile Responsive */
+    /* Mobile Responsive Overrides */
     @media (max-width: 1100px) {
       .nav-menu-list {
         position: fixed;
@@ -672,11 +672,11 @@
 </head>
 <body>
 
-  <!-- Particle canvas & Vignette overlay -->
+  <!-- Particle Background & Vignette Layer -->
   <canvas id="bg-canvas"></canvas>
   <div class="vignette-overlay"></div>
 
-  <!-- Toast Wrapper -->
+  <!-- Toast Notification Wrapper -->
   <div id="toast-holder"></div>
 
   <!-- ================= 0-100% PRELOADER ================= -->
@@ -748,7 +748,7 @@
         </button>
       </form>
 
-      <!-- Steps & Credits Note -->
+      <!-- Registration & Verification Instructions -->
       <div class="instruction-steps-card">
         <strong style="color: var(--neon-red);"><i class="fa-solid fa-circle-info"></i> Important notes:</strong>
         <p style="margin: 4px 0;">Thanks for visiting our website! Here is how to register or login:</p>
@@ -916,7 +916,7 @@
       </div>
 
       <div class="members-grid" id="members-container">
-        <!-- Dynamically injected members list -->
+        <!-- Dynamically populated member cards -->
       </div>
     </div>
   </section>
@@ -930,7 +930,7 @@
         <p style="color: var(--text-muted);">Auto-refreshes every 10 minutes. Next refresh in: <span id="lb-timer" style="color: var(--neon-red); font-weight: bold;">10m 00s</span></p>
       </div>
 
-      <!-- Reviews Top Leaderboard #1 to #10 -->
+      <!-- Top #1 to #10 Reviews Leaderboard -->
       <div class="glass-card" style="margin-bottom: 30px;">
         <h3 style="color: var(--gold); margin-bottom: 12px;"><i class="fa-solid fa-award"></i> Top #1 to #10 Community Reviewers</h3>
         <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">Ranked dynamically based on review star scores and contributions.</p>
@@ -939,7 +939,7 @@
         </div>
       </div>
 
-      <!-- HEART FORGE & LIFESTEAL SIMULATOR -->
+      <!-- Heart Forge / Simulator Widget -->
       <div class="heart-forge-box">
         <span class="badge-pill" style="border-color: var(--neon-red); color: var(--neon-red); background: rgba(230,25,55,0.15);">
           HEART FORGE & LIFESTEAL SIMULATOR
@@ -1277,7 +1277,7 @@
             </select>
           </div>
 
-          <!-- 12 Questions -->
+          <!-- 12 Structured Questions -->
           <div class="form-group">
             <label>Q1: What is your exact Minecraft In-Game Name (IGN) and Discord Tag?</label>
             <input type="text" id="app-q1" class="form-control" placeholder="e.g. PlayerName#0001" required>
@@ -1385,7 +1385,7 @@
           Strictly for Administrator accounts.
         </p>
 
-        <!-- Category: USER MANAGEMENT (Requested) -->
+        <!-- Category: USER MANAGEMENT -->
         <div class="glass-card" style="margin-bottom: 25px; border-color: var(--purple);">
           <h3 style="color: #fff; margin-bottom: 10px;"><i class="fa-solid fa-user-gear text-purple"></i> Category: USER (Create & Manage Credentials)</h3>
           <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
@@ -1483,10 +1483,10 @@
       discord: 'https://discord.gg/pGM5x3gXpX'
     };
 
-    // Current Session
+    // Active session
     let currentUser = JSON.parse(localStorage.getItem('fearsteal_active_user')) || null;
 
-    // Database simulation
+    // Database simulations
     let dbUsers = JSON.parse(localStorage.getItem('fearsteal_db_users')) || [
       { username: 'ItzVeltriex', pass: 'thakuree@2064', role: 'staff', hearts: 10, time: Date.now() }
     ];
@@ -1500,7 +1500,7 @@
     let dbSuggestions = JSON.parse(localStorage.getItem('fearsteal_db_suggestions')) || [];
     let dbApplications = JSON.parse(localStorage.getItem('fearsteal_db_applications')) || [];
 
-    // Novice Rank state
+    // Novice Rank State Engine
     let noviceClaimsCount = parseInt(localStorage.getItem('fearsteal_novice_claims_count') || '0', 10);
     let novice60dStart = parseInt(localStorage.getItem('fearsteal_novice_60d_start') || '0', 10);
     if (!novice60dStart) {
@@ -1593,7 +1593,7 @@
     }
 
     /* --------------------------------------------------------
-       4. TOAST NOTIFICATION ENGINE
+       4. TOAST NOTIFICATION SYSTEM
     -------------------------------------------------------- */
     function showToast(message, type = 'info') {
       const holder = document.getElementById('toast-holder');
@@ -1628,7 +1628,6 @@
         return;
       }
 
-      // Check if matches known user
       const existing = dbUsers.find(u => u.username.toLowerCase() === val.toLowerCase());
       if (existing) {
         label.innerText = `Detected User: ${existing.username} (${existing.role.toUpperCase()})`;
@@ -1653,11 +1652,10 @@
         return;
       }
 
-      // Authenticated state
       authModal.classList.add('hidden');
       navIndicator.innerText = `${currentUser.username} [${currentUser.role.toUpperCase()}]`;
 
-      // Role Routing: Admin gets both panels, Staff gets only staff panel
+      // Role Routing: Admin accesses both, Staff accesses only Staff Panel
       if (currentUser.role === 'admin') {
         staffNav.style.display = 'inline-block';
         adminNav.style.display = 'inline-block';
@@ -1709,7 +1707,6 @@
         return;
       }
 
-      // Check simulated database
       const found = dbUsers.find(u => (u.username.toLowerCase() === identifier.toLowerCase() || u.email === identifier) && u.pass === key);
 
       if (found) {
@@ -1731,7 +1728,6 @@
 
       if (!u || !p) return;
 
-      // Duplicate check
       if (dbUsers.some(user => user.username.toLowerCase() === u.toLowerCase())) {
         showToast("Username is already registered! Please login instead.", "error");
         setAuthTab('login');
@@ -1742,7 +1738,6 @@
       dbUsers.push(newUser);
       localStorage.setItem('fearsteal_db_users', JSON.stringify(dbUsers));
 
-      // Register into members list
       registerMemberRecord(u);
 
       showToast("You are successful register so please login ✅️", "success");
@@ -1791,7 +1786,7 @@
 
     /* --------------------------------------------------------
        7. REAL LIVE STATUS QUERY (play.fearsteal.fun:19132)
-       No rolling icons; clean, steady UI
+       Steady UI, no spinning icons
     -------------------------------------------------------- */
     async function queryMinecraftServerStatus() {
       const heroDot = document.getElementById('hero-dot');
@@ -1840,7 +1835,7 @@
           diagSoftware.innerText = data.software || 'Paper LifeSteal';
           diagMotd.innerText = (data.motd && data.motd.clean) ? data.motd.clean : 'FearSteal LifeSteal Network';
         } else {
-          // Check Java Gateway
+          // Check Java Fallback
           const jRes = await fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_CONFIG.ip}:${SERVER_CONFIG.port}`);
           const jData = await jRes.json();
 
@@ -1925,7 +1920,6 @@
       const now = Date.now();
       const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 
-      // Filter active (under 24h)
       const active = dbAnnouncements.filter(a => (now - a.timestamp) < TWENTY_FOUR_HOURS);
 
       active.forEach(a => {
@@ -1951,7 +1945,6 @@
       return `${hours}h ago`;
     }
 
-    // Refresh time tags every minute
     setInterval(renderAnnouncementsFeed, 60000);
 
     /* --------------------------------------------------------
@@ -2020,7 +2013,6 @@
         return;
       }
 
-      // Sort by highest stars then latest
       const sorted = [...dbReviews].sort((a, b) => b.stars - a.stars).slice(0, 10);
       cont.innerHTML = '';
 
@@ -2088,7 +2080,6 @@
         return;
       }
 
-      // Increment claim
       noviceClaimsCount++;
       localStorage.setItem('fearsteal_novice_claims_count', noviceClaimsCount.toString());
       localStorage.setItem(`fearsteal_novice_claimed_${currentUser.username}`, 'true');
@@ -2164,7 +2155,6 @@
       const p = document.getElementById('adm-user-pass').value.trim();
       const r = document.getElementById('adm-user-role').value;
 
-      // Upsert
       const idx = dbUsers.findIndex(usr => usr.username.toLowerCase() === u.toLowerCase());
       if (idx !== -1) {
         dbUsers[idx].pass = p;
@@ -2274,4 +2264,4 @@
     });
   </script>
 </body>
-  </html>
+      </html>
