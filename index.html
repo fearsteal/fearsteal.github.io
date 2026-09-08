@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home | FearSteal</title>
-  <meta name="description" content="Official FearSteal LifeSteal Network (play.fearsteal.fun:19132). Real-time server telemetry, automated 15-day rotating events, heart forge simulator, crate unboxer, and active Discord community." />
+  <title>⚔️ FearSteal Network | The Next-Gen LifeSteal Minecraft Network</title>
+  <meta name="description" content="Enter FearSteal LifeSteal Network (play.fearsteal.fun:19132). High tick-rate PvP, automated 15-day event cycles, competitive leaderboards, and Bedrock/Java cross-play." />
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,40 +15,60 @@
         extend: {
           colors: {
             crimson: {
-              300: '#ff6b7e',
               400: '#ff3d55',
               500: '#ff102f',
               600: '#d90422',
               700: '#a80016',
               800: '#6d000c',
               900: '#380006',
-              950: '#1a0003',
-            },
-            gold: {
-              300: '#fde047',
-              400: '#facc15',
-              500: '#eab308',
-              600: '#ca8a04',
+              950: '#1e0003',
             },
             dark: {
-              950: '#030306',
-              900: '#07070d',
-              850: '#0c0c14',
-              800: '#12121e',
-              750: '#181827',
-              700: '#202033',
+              950: '#040407',
+              900: '#09090f',
+              850: '#0e0e17',
+              800: '#141420',
+              750: '#1b1b2a',
+              700: '#232336',
             }
           },
           fontFamily: {
             sans: ['Inter', 'system-ui', 'sans-serif'],
             gaming: ['Rajdhani', 'Montserrat', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace']
           },
           boxShadow: {
-            'glow-crimson': '0 0 30px -5px rgba(255, 16, 47, 0.5)',
-            'glow-crimson-lg': '0 0 60px -10px rgba(255, 16, 47, 0.7)',
-            'glow-gold': '0 0 35px -5px rgba(234, 179, 8, 0.55)',
+            'glow-crimson': '0 0 30px -5px rgba(255, 16, 47, 0.45)',
+            'glow-crimson-lg': '0 0 60px -10px rgba(255, 16, 47, 0.65)',
             'glow-emerald': '0 0 30px -5px rgba(16, 185, 129, 0.45)',
+            'glow-gold': '0 0 35px -5px rgba(234, 179, 8, 0.5)',
+            'inner-glow': 'inset 0 0 20px rgba(255, 16, 47, 0.2)'
+          },
+          animation: {
+            'float': 'floating 4s ease-in-out infinite',
+            'float-slow': 'floating 7s ease-in-out infinite',
+            'pulse-crimson': 'pulseCrimson 2.5s infinite',
+            'scanline': 'scanline 8s linear infinite',
+            'shimmer': 'shimmer 2.5s infinite linear',
+            'spin-slow': 'spin 18s linear infinite',
+          },
+          keyframes: {
+            floating: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            pulseCrimson: {
+              '0%, 100%': { boxShadow: '0 0 20px -5px rgba(255, 16, 47, 0.4)' },
+              '50%': { boxShadow: '0 0 45px 5px rgba(255, 16, 47, 0.75)' }
+            },
+            scanline: {
+              '0%': { transform: 'translateY(-100%)' },
+              '100%': { transform: 'translateY(1000%)' }
+            },
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(200%)' }
+            }
           }
         }
       }
@@ -58,9 +78,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Rajdhani:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- React 18, ReactDOM & Babel -->
+  <!-- React 18 & Babel -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -71,7 +91,7 @@
 
   <style>
     body {
-      background-color: #030306;
+      background-color: #040407;
       color: #f3f4f6;
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
@@ -81,53 +101,67 @@
       font-family: 'Rajdhani', sans-serif;
     }
 
-    /* Ultra Glassmorphism */
+    /* Glassmorphism Styles */
     .glass-panel {
-      background: rgba(12, 12, 20, 0.76);
+      background: rgba(14, 14, 23, 0.72);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 16, 47, 0.16);
     }
 
     .glass-panel-glow {
-      background: rgba(14, 14, 24, 0.88);
+      background: rgba(14, 14, 23, 0.82);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 16, 47, 0.36);
-      box-shadow: 0 10px 40px -10px rgba(255, 16, 47, 0.35);
+      border: 1px solid rgba(255, 16, 47, 0.35);
+      box-shadow: 0 10px 35px -10px rgba(255, 16, 47, 0.3);
     }
 
     .glass-nav {
-      background: rgba(5, 5, 9, 0.88);
+      background: rgba(6, 6, 10, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 16, 47, 0.18);
     }
 
-    /* Cyber Pattern */
+    /* Cinematic Cyber Grid Pattern */
     .bg-cyber-grid {
-      background-size: 40px 40px;
+      background-size: 50px 50px;
       background-image: 
-        linear-gradient(to right, rgba(255, 16, 47, 0.035) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 16, 47, 0.035) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 16, 47, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 16, 47, 0.04) 1px, transparent 1px);
     }
 
-    /* Glows */
+    /* Dynamic Glow Effects */
     .text-glow-crimson {
-      text-shadow: 0 0 16px rgba(255, 16, 47, 0.75), 0 0 35px rgba(255, 16, 47, 0.35);
+      text-shadow: 0 0 15px rgba(255, 16, 47, 0.7), 0 0 35px rgba(255, 16, 47, 0.35);
+    }
+    .text-glow-emerald {
+      text-shadow: 0 0 15px rgba(16, 185, 129, 0.7);
     }
     .text-glow-gold {
-      text-shadow: 0 0 18px rgba(234, 179, 8, 0.75), 0 0 35px rgba(234, 179, 8, 0.35);
+      text-shadow: 0 0 20px rgba(234, 179, 8, 0.7);
     }
 
-    /* Rock-Solid Card Hover (Zero Rolling, Zero Drifting) */
-    .stable-card {
-      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    /* 3D Tilt Card Base */
+    .tilt-card {
+      transform-style: preserve-3d;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
     }
-    .stable-card:hover {
+    .tilt-card:hover {
       border-color: rgba(255, 16, 47, 0.55);
-      box-shadow: 0 12px 35px -10px rgba(255, 16, 47, 0.4);
-      transform: translateY(-3px);
+      box-shadow: 0 15px 40px -10px rgba(255, 16, 47, 0.4);
+    }
+
+    /* Scroll Reveal Animation Classes */
+    .reveal-hidden {
+      opacity: 0;
+      transform: translateY(30px) scale(0.98);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     /* Custom Scrollbar */
@@ -135,7 +169,7 @@
       width: 7px;
     }
     ::-webkit-scrollbar-track {
-      background: #030306;
+      background: #040407;
     }
     ::-webkit-scrollbar-thumb {
       background: #380006;
@@ -146,15 +180,15 @@
       background: #ff102f;
     }
 
-    /* Pulse */
+    /* Animated Heart Life Bar */
     @keyframes heartBeat {
       0%, 100% { transform: scale(1); }
-      14% { transform: scale(1.15); }
-      28% { transform: scale(1.03); }
-      42% { transform: scale(1.1); }
+      15% { transform: scale(1.22); }
+      30% { transform: scale(1.05); }
+      45% { transform: scale(1.18); }
     }
-    .animate-heart-pulse {
-      animation: heartBeat 2.2s ease-in-out infinite;
+    .animate-heartbeat {
+      animation: heartBeat 1.8s infinite ease-in-out;
     }
   </style>
 </head>
@@ -164,49 +198,51 @@
   <script type="text/babel">
     const { useState, useEffect, useRef, useMemo } = React;
 
-    // --- SOUND SYNTHESIZER ---
+    // --- SOUND SYNTHESIS ENGINE (Micro-interactions) ---
     const playSound = (type = 'click') => {
       try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const ctx = new AudioCtx();
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.connect(gain);
         gain.connect(ctx.destination);
-        const now = ctx.currentTime;
 
+        const now = ctx.currentTime;
         if (type === 'click') {
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(560, now);
-          osc.frequency.exponentialRampToValueAtTime(880, now + 0.04);
+          osc.frequency.setValueAtTime(540, now);
+          osc.frequency.exponentialRampToValueAtTime(880, now + 0.05);
           gain.gain.setValueAtTime(0.08, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
           osc.start(now);
-          osc.stop(now + 0.05);
+          osc.stop(now + 0.06);
         } else if (type === 'copy') {
           osc.type = 'triangle';
           osc.frequency.setValueAtTime(440, now);
-          osc.frequency.exponentialRampToValueAtTime(1320, now + 0.1);
+          osc.frequency.exponentialRampToValueAtTime(1320, now + 0.12);
           gain.gain.setValueAtTime(0.12, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
           osc.start(now);
-          osc.stop(now + 0.12);
-        } else if (type === 'crate') {
-          osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(220, now);
-          osc.frequency.linearRampToValueAtTime(880, now + 0.25);
+          osc.stop(now + 0.14);
+        } else if (type === 'rank') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(320, now);
+          osc.frequency.linearRampToValueAtTime(640, now + 0.1);
+          osc.frequency.linearRampToValueAtTime(960, now + 0.2);
           gain.gain.setValueAtTime(0.15, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
           osc.start(now);
-          osc.stop(now + 0.3);
+          osc.stop(now + 0.25);
         }
       } catch (e) {}
     };
 
-    // --- LUCIDE ICON HELPER (Static & Sharp) ---
+    // --- LUCIDE ICON HELPER ---
     const Icon = ({ name, size = 18, className = "", color = "currentColor" }) => {
       const containerRef = useRef(null);
+
       useEffect(() => {
         if (containerRef.current && window.lucide) {
           containerRef.current.innerHTML = `<i data-lucide="${name}" style="width:${size}px; height:${size}px; display:inline-block;"></i>`;
@@ -216,54 +252,34 @@
           });
         }
       }, [name, size, className, color]);
+
       return <span ref={containerRef} className="inline-flex items-center justify-center align-middle flex-shrink-0" />;
     };
 
-    // --- OFFICIAL SUPPLIED FEARSTEAL LOGO (FS 3D Golden/Crimson Icon) ---
+    // --- BRAND LOGO / SWORD EMBLEM ---
     const FearStealLogo = ({ size = "default", className = "" }) => {
       const isLarge = size === "large";
-      const isSmall = size === "small";
-
       return (
         <div className={`flex items-center gap-3 select-none ${className}`}>
-          <div className="relative flex items-center justify-center flex-shrink-0">
-            <div className="absolute inset-0 bg-crimson-600 rounded-2xl blur-md opacity-70"></div>
-            
-            {/* 3D FS Emblem using SVG Vector recreation of supplied logo */}
-            <div className={`relative ${isLarge ? 'w-16 h-16 sm:w-20 sm:h-20' : isSmall ? 'w-9 h-9' : 'w-11 h-11'} rounded-xl bg-dark-900 border border-yellow-500/50 shadow-glow-gold flex items-center justify-center p-1`}>
-              <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-md" fill="none">
-                {/* 3D Red Shadow Layer */}
-                <path d="M18 20 H48 V38 H34 V48 H46 V66 H34 V82 H18 Z" fill="#990000" />
-                <path d="M52 20 H84 V42 H66 V52 H84 V82 H52 V64 H70 V56 H52 Z" fill="#990000" />
-                {/* 3D Mid Red Layer */}
-                <path d="M16 18 H46 V36 H32 V46 H44 V64 H32 V80 H16 Z" fill="#e60000" />
-                <path d="M50 18 H82 V40 H64 V50 H82 V80 H50 V62 H68 V54 H50 Z" fill="#e60000" />
-                {/* Golden Yellow Face Layer */}
-                <path d="M14 14 H44 V32 H30 V42 H42 V60 H30 V76 H14 Z" fill="url(#goldGrad1)" stroke="#000" strokeWidth="2.5" strokeLinejoin="miter" />
-                <path d="M48 14 H80 V36 H62 V46 H80 V76 H48 V58 H66 V50 H48 Z" fill="url(#goldGrad2)" stroke="#000" strokeWidth="2.5" strokeLinejoin="miter" />
-                <defs>
-                  <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#fff566" />
-                    <stop offset="50%" stopColor="#ffcc00" />
-                    <stop offset="100%" stopColor="#d48800" />
-                  </linearGradient>
-                  <linearGradient id="goldGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#fff566" />
-                    <stop offset="50%" stopColor="#ffcc00" />
-                    <stop offset="100%" stopColor="#d48800" />
-                  </linearGradient>
-                </defs>
+          <div className="relative flex items-center justify-center">
+            <div className="absolute inset-0 bg-crimson-600 rounded-xl blur-md opacity-70 animate-pulse"></div>
+            <div className={`relative ${isLarge ? 'w-14 h-14' : 'w-10 h-10 md:w-11 md:h-11'} rounded-xl bg-gradient-to-br from-crimson-500 via-crimson-700 to-black p-0.5 border border-crimson-400 shadow-glow-crimson flex items-center justify-center`}>
+              <svg viewBox="0 0 24 24" className={`${isLarge ? 'w-8 h-8' : 'w-6 h-6'} text-white filter drop-shadow`} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" fill="#ff102f" fillOpacity="0.45" />
+                <path d="M12 3v18" stroke="#fff" />
+                <path d="M8 7l8 8" stroke="#fff" />
+                <path d="M16 7l-8 8" stroke="#fff" />
               </svg>
             </div>
           </div>
           
           <div className="flex flex-col leading-none">
             <div className="flex items-center">
-              <span className={`font-gaming font-black ${isLarge ? 'text-4xl sm:text-5xl' : isSmall ? 'text-xl' : 'text-2xl sm:text-3xl'} tracking-wider text-white`}>
-                FEAR<span className="text-yellow-400 text-glow-gold">STEAL</span>
+              <span className={`font-gaming font-black ${isLarge ? 'text-4xl' : 'text-2xl md:text-3xl'} tracking-wider text-white`}>
+                FEAR<span className="text-crimson-500 text-glow-crimson">STEAL</span>
               </span>
             </div>
-            <span className="text-[9px] md:text-[10px] font-bold tracking-[0.28em] text-gray-400 uppercase font-mono">
+            <span className="text-[9px] md:text-[10px] font-bold tracking-[0.28em] text-gray-400 uppercase">
               LIFESTEAL NETWORK
             </span>
           </div>
@@ -271,60 +287,141 @@
       );
     };
 
-    // --- OFFICIAL SUPPLIED FEARSTEAL BANNER COMPONENT ---
-    const FearStealBanner = ({ className = "" }) => {
-      return (
-        <div className={`relative w-full rounded-3xl overflow-hidden border-2 border-yellow-500/40 shadow-glow-crimson-lg ${className}`}>
-          {/* Background Ambient Glow */}
-          <div className="absolute inset-0 bg-gradient-to-r from-crimson-950 via-dark-900 to-black opacity-90"></div>
-          
-          <div className="relative z-10 flex flex-col items-center justify-center p-6 sm:p-10 text-center">
-            {/* Minecraft Hero Character & Weapons Concept Graphic */}
-            <div className="relative mb-4 flex items-center justify-center">
-              <div className="flex items-center gap-4 sm:gap-6">
-                {/* Netherite Spear / LifeSteal Sword */}
-                <div className="transform -rotate-45 text-purple-400 filter drop-shadow-[0_0_15px_rgba(168,85,247,0.7)] hidden sm:block">
-                  <Icon name="sword" size={48} />
-                </div>
+    // --- INTERACTIVE NEURAL & CRIMSON PARTICLE CANVAS ---
+    const NeuralCrimsonCanvas = () => {
+      const canvasRef = useRef(null);
 
-                {/* Center Character Avatar / Crest */}
-                <div className="relative">
-                  <img
-                    src="https://mc-heads.net/avatar/ItzVeltriex/128"
-                    alt="FearSteal Hero"
-                    className="w-20 h-20 sm:w-28 sm:h-28 rounded-3xl border-4 border-yellow-400 shadow-glow-gold bg-dark-800 object-cover"
-                    onError={(e) => { e.target.src = "https://mc-heads.net/avatar/MHF_Steve/128"; }}
-                  />
-                  <div className="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-full bg-crimson-600 text-white font-black text-[10px] font-gaming shadow-md">
-                    S1 LIFESTEAL
-                  </div>
-                </div>
+      useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let animationFrameId;
 
-                {/* Mace / Battle Hammer */}
-                <div className="transform rotate-45 text-indigo-400 filter drop-shadow-[0_0_15px_rgba(99,102,241,0.7)] hidden sm:block">
-                  <Icon name="hammer" size={48} />
-                </div>
-              </div>
-            </div>
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
 
-            {/* 3D FearSteal Gold 3D Text Header */}
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-gaming tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-400 to-yellow-600 uppercase filter drop-shadow-[0_5px_15px_rgba(0,0,0,0.9)]">
-              FEARSTEAL
-            </h2>
+        const handleResize = () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        };
 
-            {/* Stone Bar with IP */}
-            <div className="mt-3 inline-flex items-center gap-3 px-6 py-2 rounded-xl bg-gradient-to-r from-stone-800 via-stone-700 to-stone-800 border-2 border-stone-500 shadow-xl">
-              <span className="font-mono font-bold text-xs sm:text-sm tracking-widest text-gray-200 uppercase">
-                PLAY.FEARSTEAL.FUN
-              </span>
-              <span className="text-yellow-400 font-mono font-bold text-xs">PORT: 19132</span>
-            </div>
-          </div>
-        </div>
-      );
+        window.addEventListener('resize', handleResize);
+
+        let mouse = { x: null, y: null, radius: 140 };
+        const handleMouseMove = (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+        };
+        const handleMouseLeave = () => {
+          mouse.x = null;
+          mouse.y = null;
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseleave', handleMouseLeave);
+
+        // Embers & Star Network Particles
+        const particleCount = Math.min(80, Math.floor((width * height) / 16000));
+        const particles = Array.from({ length: particleCount }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 2.4 + 0.6,
+          speedY: -(Math.random() * 0.7 + 0.2),
+          speedX: (Math.random() - 0.5) * 0.4,
+          opacity: Math.random() * 0.7 + 0.2,
+          pulse: Math.random() * 0.02 + 0.01,
+        }));
+
+        const render = () => {
+          ctx.clearRect(0, 0, width, height);
+
+          // Draw particles
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.y += p.speedY;
+            p.x += p.speedX;
+
+            if (p.y < -10) { p.y = height + 10; p.x = Math.random() * width; }
+            if (p.x < -10) p.x = width + 10;
+            if (p.x > width + 10) p.x = -10;
+
+            // Mouse Repulsion & Connect Lines
+            if (mouse.x && mouse.y) {
+              const dx = mouse.x - p.x;
+              const dy = mouse.y - p.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < mouse.radius) {
+                const force = (mouse.radius - dist) / mouse.radius;
+                p.x -= (dx / dist) * force * 3;
+                p.y -= (dy / dist) * force * 3;
+              }
+            }
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 16, 47, ${p.opacity})`;
+            ctx.shadowBlur = p.size * 5;
+            ctx.shadowColor = '#ff102f';
+            ctx.fill();
+
+            // Connect nearby nodes
+            for (let j = i + 1; j < particles.length; j++) {
+              const p2 = particles[j];
+              const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+              if (dist < 100) {
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = `rgba(255, 16, 47, ${0.15 * (1 - dist / 100)})`;
+                ctx.lineWidth = 0.6;
+                ctx.stroke();
+              }
+            }
+          }
+
+          animationFrameId = requestAnimationFrame(render);
+        };
+
+        render();
+
+        return () => {
+          window.removeEventListener('resize', handleResize);
+          window.removeEventListener('mousemove', handleMouseMove);
+          window.removeEventListener('mouseleave', handleMouseLeave);
+          cancelAnimationFrame(animationFrameId);
+        };
+      }, []);
+
+      return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0 opacity-60" />;
     };
 
-    // --- REAL MINECRAFT BEDROCK/JAVA STATUS API HOOK ---
+    // --- 3D INTERACTIVE TILT CONTAINER HOOK ---
+    const useTilt = () => {
+      const ref = useRef(null);
+
+      const handleMouseMove = (e) => {
+        const card = ref.current;
+        if (!card) return;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -7;
+        const rotateY = ((x - centerX) / centerX) * 7;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      };
+
+      const handleMouseLeave = () => {
+        const card = ref.current;
+        if (!card) return;
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      };
+
+      return { ref, onMouseMove: handleMouseMove, onMouseLeave: handleMouseLeave };
+    };
+
+    // --- MINECRAFT SERVER STATUS HOOK ---
     const useMinecraftStatus = (ip = "play.fearsteal.fun", port = 19132) => {
       const [status, setStatus] = useState({
         online: false,
@@ -344,7 +441,7 @@
           let pOnline = 0;
           let pMax = 500;
           let sVersion = "1.20.x - 1.21.x";
-          let sSoftware = "Bedrock / Java LifeSteal Core";
+          let sSoftware = "Bedrock / Java LifeSteal";
           let sMotd = "FearSteal LifeSteal Network • Season 1 Official";
           let sPing = Math.floor(Math.random() * 8) + 21;
 
@@ -358,7 +455,7 @@
                   pOnline = data.players?.online || 0;
                   pMax = data.players?.max || 500;
                   sVersion = data.version?.name || sVersion;
-                  sSoftware = data.edition || "Bedrock LifeSteal Engine";
+                  sSoftware = data.edition || "Bedrock Core Engine";
                   sMotd = data.motd?.clean || sMotd;
                 }
               }
@@ -409,161 +506,44 @@
       return { status, refresh: fetchStatus };
     };
 
-    // --- REAL DISCORD WIDGET / API HOOK (https://discord.gg/pGM5x3gXpX) ---
-    const useDiscordLiveStatus = (inviteCode = "pGM5x3gXpX") => {
-      const [discordData, setDiscordData] = useState({
-        guildName: "FearSteal Official Community",
-        onlineMembers: 1845,
-        totalMembers: 7290,
-        loading: false,
-        inviteUrl: "https://discord.gg/pGM5x3gXpX"
-      });
-
-      useEffect(() => {
-        const fetchDiscordCounts = async () => {
-          try {
-            const res = await fetch(`https://discord.com/api/v9/invites/${inviteCode}?with_counts=true`);
-            if (res.ok) {
-              const data = await res.json();
-              if (data && data.guild) {
-                setDiscordData({
-                  guildName: data.guild.name || "FearSteal Official Community",
-                  onlineMembers: data.approximate_presence_count || 1845,
-                  totalMembers: data.approximate_member_count || 7290,
-                  loading: false,
-                  inviteUrl: `https://discord.gg/${inviteCode}`
-                });
-              }
-            }
-          } catch (e) {}
-        };
-        fetchDiscordCounts();
-      }, [inviteCode]);
-
-      return discordData;
-    };
-
     // --- MAIN REACT APPLICATION COMPONENT ---
     function App() {
-      // 1. Cinematic Boot Loading Animation State
-      const [bootProgress, setBootProgress] = useState(0);
-      const [bootLog, setBootLog] = useState("Initializing FearSteal Network Telemetry...");
-      const [bootComplete, setBootComplete] = useState(false);
+      // Intro Boot Sequence (Cool entered transition)
+      const [bootLoaded, setBootLoaded] = useState(false);
 
-      useEffect(() => {
-        const logs = [
-          { p: 20, text: "Connecting to play.fearsteal.fun:19132..." },
-          { p: 45, text: "Handshaking Bedrock & Java protocol bridge..." },
-          { p: 70, text: "Synchronizing Discord API & 15-Day Rotation Engine..." },
-          { p: 90, text: "Loading Heart Forge Database & Crate Mechanics..." },
-          { p: 100, text: "Handshake Verified! Welcome to FearSteal." },
-        ];
-
-        let currentStep = 0;
-        const interval = setInterval(() => {
-          if (currentStep < logs.length) {
-            setBootProgress(logs[currentStep].p);
-            setBootLog(logs[currentStep].text);
-            currentStep++;
-          } else {
-            clearInterval(interval);
-            setTimeout(() => setBootComplete(true), 350);
-          }
-        }, 300);
-
-        return () => clearInterval(interval);
-      }, []);
-
-      // 2. Authentication State with Live Minecraft Skin Preview
+      // Auth State
       const [authUser, setAuthUser] = useState(() => {
         const saved = localStorage.getItem('fearsteal_user');
         return saved ? JSON.parse(saved) : null;
       });
-      const [showAuthModal, setShowAuthModal] = useState(false);
+      const [showAuthModal, setShowAuthModal] = useState(!authUser);
       const [authMode, setAuthMode] = useState('login'); // 'login' | 'register' | 'forgot'
-      const [authFormData, setAuthFormData] = useState({
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        rememberMe: true
-      });
+      const [authFormData, setAuthFormData] = useState({ username: '', email: '', password: '', confirmPassword: '', rememberMe: true });
       const [authShowPassword, setAuthShowPassword] = useState(false);
       const [authError, setAuthError] = useState('');
-      const [authLoading, setAuthLoading] = useState(false);
 
-      // Password Strength
-      const passwordStrength = useMemo(() => {
-        const p = authFormData.password;
-        if (!p) return { score: 0, text: 'None', color: 'bg-gray-700' };
-        let score = 0;
-        if (p.length >= 6) score++;
-        if (/[A-Z]/.test(p)) score++;
-        if (/[0-9]/.test(p)) score++;
-        if (/[^A-Za-z0-9]/.test(p)) score++;
-
-        if (score <= 1) return { score: 25, text: 'Weak', color: 'bg-red-500' };
-        if (score === 2) return { score: 50, text: 'Fair', color: 'bg-yellow-500' };
-        if (score === 3) return { score: 75, text: 'Good', color: 'bg-blue-500' };
-        return { score: 100, text: 'Overpowered 🛡️', color: 'bg-emerald-500' };
-      }, [authFormData.password]);
-
-      // 3. Global Navigation & Search
+      // Global Nav & Modals
       const [activeSection, setActiveSection] = useState('home');
       const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
       const [searchQuery, setSearchQuery] = useState('');
       const [isSearchOpen, setIsSearchOpen] = useState(false);
-      const [showProfileDrawer, setShowProfileDrawer] = useState(false);
+      const [selectedRankModal, setSelectedRankModal] = useState(null);
 
-      // 4. Notification / Toast Stack
+      // Notification / Toast Stack
       const [toasts, setToasts] = useState([]);
       const [notificationTrayOpen, setNotificationTrayOpen] = useState(false);
+      const [soundEnabled, setSoundEnabled] = useState(true);
 
-      // 5. Free Novice Rank Claim Tracker (0-100 max, single claim enforcement)
+      // Free Novice Rank Claim Tracker (0-100 max)
       const [noviceClaims, setNoviceClaims] = useState(() => {
         const saved = localStorage.getItem('fearsteal_novice_claims');
-        return saved ? parseInt(saved, 10) : 58;
+        return saved ? parseInt(saved, 10) : 56;
       });
       const [hasClaimedNovice, setHasClaimedNovice] = useState(() => {
         return localStorage.getItem('fearsteal_user_claimed_novice') === 'true';
       });
 
-      // 6. Interactive Heart Forge Simulator
-      const [simHearts, setSimHearts] = useState(10);
-      const [simKills, setSimKills] = useState(4);
-      const [simDeaths, setSimDeaths] = useState(1);
-
-      const calculatedHearts = useMemo(() => {
-        const total = simHearts + (simKills * 1) - (simDeaths * 1);
-        return Math.max(0, Math.min(30, total));
-      }, [simHearts, simKills, simDeaths]);
-
-      // 7. Interactive Crate Spinner Simulator
-      const crateLootPool = [
-        { name: "1x FEARSTEAL Rank Voucher", rarity: "MYTHIC", color: "text-yellow-400 border-yellow-500/50" },
-        { name: "5x Extra LifeSteal Hearts", rarity: "LEGENDARY", color: "text-crimson-400 border-crimson-500/50" },
-        { name: "Full Protection IV Netherite Set", rarity: "EPIC", color: "text-purple-400 border-purple-500/50" },
-        { name: "16x Super Enchanted Golden Apples", rarity: "RARE", color: "text-blue-400 border-blue-500/50" },
-        { name: "64x Diamonds + $25,000 In-Game Cash", rarity: "UNCOMMON", color: "text-emerald-400 border-emerald-500/50" }
-      ];
-      const [crateOpening, setCrateOpening] = useState(false);
-      const [crateResult, setCrateResult] = useState(null);
-
-      const openCrateSimulator = () => {
-        playSound('crate');
-        setCrateOpening(true);
-        setCrateResult(null);
-        setTimeout(() => {
-          const item = crateLootPool[Math.floor(Math.random() * crateLootPool.length)];
-          setCrateResult(item);
-          setCrateOpening(false);
-          if (window.confetti) {
-            window.confetti({ particleCount: 70, spread: 60, origin: { y: 0.7 }, colors: ['#ff102f', '#fbbf24'] });
-          }
-        }, 1400);
-      };
-
-      // 8. 15-Day Auto-Rotating Events System
+      // 15-Day Auto-Rotating Events
       const eventList = useMemo(() => [
         {
           id: 1,
@@ -600,16 +580,47 @@
       ], []);
 
       const [currentEventIndex, setCurrentEventIndex] = useState(0);
-      const [eventTimeLeft, setEventTimeLeft] = useState({ days: 11, hours: 14, minutes: 22, seconds: 18 });
+      const [eventTimeLeft, setEventTimeLeft] = useState({ days: 11, hours: 18, minutes: 42, seconds: 15 });
 
-      // Live Server & Discord Status Hooks
+      // Live Server Status
       const { status: serverStatus, refresh: refreshServerStatus } = useMinecraftStatus("play.fearsteal.fun", 19132);
-      const discordLive = useDiscordLiveStatus("pGM5x3gXpX");
 
-      // Toast Dispatch Helper
+      // Trigger Boot Sequence on Mount
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          setBootLoaded(true);
+        }, 1100);
+        return () => clearTimeout(timer);
+      }, []);
+
+      // Scroll Reveal Intersection Observer
+      useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-visible');
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -50px 0px' }
+        );
+
+        const elements = document.querySelectorAll('.reveal-on-scroll');
+        elements.forEach((el) => observer.observe(el));
+
+        return () => observer.disconnect();
+      }, [bootLoaded]);
+
+      // Sound Wrapper
+      const triggerSound = (type) => {
+        if (soundEnabled) playSound(type);
+      };
+
+      // Toast dispatch helper
       const addToast = (title, message, type = 'info') => {
         const id = Date.now();
-        playSound(type === 'error' ? 'click' : 'copy');
+        triggerSound(type === 'error' ? 'click' : 'copy');
         setToasts(prev => [...prev, { id, title, message, type }]);
         setTimeout(() => {
           setToasts(prev => prev.filter(t => t.id !== id));
@@ -620,7 +631,7 @@
       const copyServerIP = (e) => {
         if (e) e.stopPropagation();
         navigator.clipboard.writeText("play.fearsteal.fun:19132");
-        playSound('copy');
+        triggerSound('copy');
         addToast("✓ Server IP Copied!", "play.fearsteal.fun (Port: 19132) copied to clipboard.", "success");
       };
 
@@ -642,9 +653,9 @@
         return () => clearInterval(timer);
       }, [currentEventIndex, eventList]);
 
-      // Free Novice Rank Claim Action
+      // Handle Claim Free Novice Rank
       const handleClaimNovice = () => {
-        playSound('click');
+        triggerSound('rank');
         if (hasClaimedNovice) {
           addToast("Claim Denied", "You have already claimed this rank. You cannot claim this free rank again ❌️", "error");
           return;
@@ -661,7 +672,7 @@
         localStorage.setItem('fearsteal_user_claimed_novice', 'true');
 
         if (window.confetti) {
-          window.confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#ff102f', '#fbbf24', '#ffffff'] });
+          window.confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#ff102f', '#ffffff', '#a80016'] });
         }
 
         addToast("🎉 Novice Rank Claimed!", "Redirecting you to the official FearSteal Discord to link your tag...", "success");
@@ -674,77 +685,62 @@
       const handleAuthSubmit = (e) => {
         e.preventDefault();
         setAuthError('');
-        playSound('click');
-        setAuthLoading(true);
+        triggerSound('click');
 
-        setTimeout(() => {
-          setAuthLoading(false);
-          if (authMode === 'login') {
-            if (!authFormData.username || !authFormData.password) {
-              setAuthError('Please provide both your username and password.');
-              return;
-            }
-            const userObj = {
-              username: authFormData.username,
-              email: authFormData.username.includes('@') ? authFormData.username : `${authFormData.username}@fearsteal.fun`,
-              role: 'Warrior',
-              hearts: 14,
-              kills: 24,
-              joined: 'Season 1'
-            };
-            if (authFormData.rememberMe) {
-              localStorage.setItem('fearsteal_user', JSON.stringify(userObj));
-            }
-            setAuthUser(userObj);
-            setShowAuthModal(false);
-            addToast("⚔️ Welcome Back!", `Authenticated as ${userObj.username}`, "success");
-          } else if (authMode === 'register') {
-            if (!authFormData.username || !authFormData.email || !authFormData.password) {
-              setAuthError('Please fill out all registration fields.');
-              return;
-            }
-            if (authFormData.password !== authFormData.confirmPassword) {
-              setAuthError('Passwords do not match.');
-              return;
-            }
-            if (authFormData.password.length < 6) {
-              setAuthError('Password must contain at least 6 characters.');
-              return;
-            }
-            const newUser = {
-              username: authFormData.username,
-              email: authFormData.email,
-              role: 'Recruit',
-              hearts: 10,
-              kills: 0,
-              joined: 'Just Now'
-            };
-            localStorage.setItem('fearsteal_user', JSON.stringify(newUser));
-            setAuthUser(newUser);
-            setShowAuthModal(false);
-            addToast("🎉 Profile Created!", `Welcome to FearSteal, ${newUser.username}!`, "success");
-          } else if (authMode === 'forgot') {
-            if (!authFormData.email) {
-              setAuthError('Please enter your email.');
-              return;
-            }
-            addToast("Recovery Dispatched", `Reset instructions sent to ${authFormData.email}`, "info");
-            setAuthMode('login');
+        if (authMode === 'login') {
+          if (!authFormData.username || !authFormData.password) {
+            setAuthError('Please enter both your username/email and password.');
+            return;
           }
-        }, 800);
+          const userObj = {
+            username: authFormData.username,
+            email: authFormData.username.includes('@') ? authFormData.username : `${authFormData.username}@fearsteal.fun`,
+            role: 'Warrior'
+          };
+          if (authFormData.rememberMe) {
+            localStorage.setItem('fearsteal_user', JSON.stringify(userObj));
+          }
+          setAuthUser(userObj);
+          setShowAuthModal(false);
+          addToast("⚔️ Welcome Back!", `Logged in as ${userObj.username}`, "success");
+        } else if (authMode === 'register') {
+          if (!authFormData.username || !authFormData.email || !authFormData.password) {
+            setAuthError('Please complete all required fields.');
+            return;
+          }
+          if (authFormData.password !== authFormData.confirmPassword) {
+            setAuthError('Passwords do not match.');
+            return;
+          }
+          if (authFormData.password.length < 6) {
+            setAuthError('Password must be at least 6 characters.');
+            return;
+          }
+          const newUser = { username: authFormData.username, email: authFormData.email, role: 'Recruit' };
+          localStorage.setItem('fearsteal_user', JSON.stringify(newUser));
+          setAuthUser(newUser);
+          setShowAuthModal(false);
+          addToast("🎉 Welcome Warrior!", `Account created for ${newUser.username}!`, "success");
+        } else if (authMode === 'forgot') {
+          if (!authFormData.email) {
+            setAuthError('Please enter your registered email.');
+            return;
+          }
+          addToast("Reset Link Sent", `Password recovery email sent to ${authFormData.email}`, "info");
+          setAuthMode('login');
+        }
       };
 
       const handleLogout = () => {
-        playSound('click');
+        triggerSound('click');
         localStorage.removeItem('fearsteal_user');
         setAuthUser(null);
-        setShowProfileDrawer(false);
-        addToast("Logged Out", "Session disconnected safely.", "info");
+        addToast("Logged Out", "You have been safely disconnected.", "info");
       };
 
       // Smooth Section Scroll
       const scrollToSection = (id) => {
-        playSound('click');
+        triggerSound('click');
         setActiveSection(id);
         setMobileMenuOpen(false);
         setIsSearchOpen(false);
@@ -800,8 +796,6 @@
         { type: "Staff", title: "RaviXD (Owner)", section: "staff", desc: "Server Owner and economy manager." },
         { type: "Store", title: "FEARSTEAL Rank ($25)", section: "store", desc: "Highest tier rank with unlimited heart vault access and prefix." },
         { type: "Store", title: "NOVICE Rank ($0 FREE)", section: "store", desc: "Limited free starter rank for our community members." },
-        { type: "Feature", title: "Heart Forge Simulator", section: "simulator", desc: "Simulate LifeSteal heart transfers, damage thresholds, and craft items." },
-        { type: "Feature", title: "Crate Unboxer Simulator", section: "crates", desc: "Test crate drop rates for Mythic and Legendary ranks." },
         { type: "FAQ", title: "How do I steal hearts?", section: "faq", desc: "Killing any player removes 1 of their hearts and transfers it to you." },
         { type: "Guide", title: "Bedrock Port Information", section: "how-to-play", desc: "Connect with IP play.fearsteal.fun and Port 19132." },
       ];
@@ -814,65 +808,56 @@
         );
       }, [searchQuery]);
 
-      // Newsletter
+      // Newsletter form
       const [newsletterEmail, setNewsletterEmail] = useState('');
       const [newsletterSuccess, setNewsletterSuccess] = useState(false);
 
       const handleNewsletterSubmit = (e) => {
         e.preventDefault();
         if (!newsletterEmail || !newsletterEmail.includes('@')) {
-          addToast("Invalid Email", "Please enter a valid email address.", "error");
+          addToast("Invalid Email", "Please provide a valid email address.", "error");
           return;
         }
         setNewsletterSuccess(true);
-        addToast("Stay Updated!", "You are now subscribed to FearSteal drop parties & tournament alerts!", "success");
+        addToast("Stay Updated!", "You are now subscribed to FearSteal drop party & tournament pings!", "success");
         setNewsletterEmail('');
         setTimeout(() => setNewsletterSuccess(false), 4000);
       };
 
       return (
         <div className="relative min-h-screen bg-dark-950 text-gray-100 flex flex-col bg-cyber-grid selection:bg-crimson-600 selection:text-white">
-          
+          <NeuralCrimsonCanvas />
+
           {/* ========================================================================= */}
-          {/* CINEMATIC BOOT & LOADING ANIMATION OVERLAY */}
+          {/* CINEMATIC BOOT ENTRY SEQUENCE OVERLAY */}
           {/* ========================================================================= */}
-          {!bootComplete && (
-            <div className="fixed inset-0 z-50 bg-dark-950 flex flex-col items-center justify-center p-6 select-none transition-opacity duration-500">
-              <div className="relative flex flex-col items-center max-w-md w-full text-center">
+          {!bootLoaded && (
+            <div className="fixed inset-0 z-50 bg-dark-950 flex flex-col items-center justify-center transition-opacity duration-700 pointer-events-none">
+              <div className="relative flex flex-col items-center animate-pulse">
                 <FearStealLogo size="large" />
-                
-                <div className="my-8 relative">
-                  <div className="w-20 h-20 rounded-3xl bg-dark-900 border-2 border-yellow-400 flex items-center justify-center text-yellow-400 shadow-glow-gold animate-heart-pulse">
-                    <Icon name="sword" size={38} />
+                <div className="mt-8 flex items-center gap-3">
+                  <div className="w-48 h-1.5 bg-dark-800 rounded-full overflow-hidden border border-crimson-500/30">
+                    <div className="w-full h-full bg-gradient-to-r from-crimson-600 to-crimson-400 animate-shimmer"></div>
                   </div>
                 </div>
-
-                <div className="w-full bg-dark-850 rounded-full h-3.5 p-0.5 border border-yellow-500/40 shadow-inner overflow-hidden mb-3">
-                  <div 
-                    className="h-full rounded-full bg-gradient-to-r from-crimson-600 via-yellow-500 to-yellow-400 transition-all duration-300 ease-out shadow-glow-gold"
-                    style={{ width: `${bootProgress}%` }}
-                  ></div>
-                </div>
-
-                <div className="flex items-center justify-between w-full text-xs font-mono text-gray-400">
-                  <span className="truncate pr-2">{bootLog}</span>
-                  <span className="font-bold text-yellow-400">{bootProgress}%</span>
-                </div>
+                <span className="text-[11px] font-mono tracking-widest text-crimson-400 uppercase mt-3">
+                  SYNCHRONIZING WITH PLAY.FEARSTEAL.FUN:19132...
+                </span>
               </div>
             </div>
           )}
 
           {/* ========================================================================= */}
-          {/* TOAST NOTIFICATION STACK */}
+          {/* TOAST SYSTEM */}
           {/* ========================================================================= */}
           <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 pointer-events-none max-w-sm w-full">
             {toasts.map(toast => (
               <div 
                 key={toast.id}
-                className={`pointer-events-auto p-4 rounded-2xl border shadow-2xl backdrop-blur-xl flex items-start gap-3.5 transform transition-all duration-300 ${
+                className={`pointer-events-auto p-4 rounded-2xl border shadow-2xl backdrop-blur-xl flex items-start gap-3.5 transform transition-all duration-300 animate-slide-in ${
                   toast.type === 'success' ? 'bg-dark-900/95 border-emerald-500/50 text-emerald-400' :
                   toast.type === 'error' ? 'bg-dark-900/95 border-crimson-500/80 text-crimson-400' :
-                  'bg-dark-900/95 border-yellow-500/40 text-gray-200'
+                  'bg-dark-900/95 border-crimson-500/40 text-gray-200'
                 }`}
               >
                 <div className="mt-0.5">
@@ -887,42 +872,31 @@
           </div>
 
           {/* ========================================================================= */}
-          {/* AUTHENTICATION MODAL */}
+          {/* AUTHENTICATION GATE MODAL */}
           {/* ========================================================================= */}
           {showAuthModal && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-2xl transition-all">
               <div className="relative w-full max-w-md glass-panel-glow rounded-3xl p-6 sm:p-8 shadow-glow-crimson-lg">
-                <button 
-                  onClick={() => { playSound('click'); setShowAuthModal(false); }} 
-                  className="absolute top-4 right-4 text-gray-400 hover:text-white p-1.5 rounded-xl hover:bg-white/10"
-                >
-                  <Icon name="x" size={20} />
-                </button>
+                {authUser && (
+                  <button 
+                    onClick={() => { triggerSound('click'); setShowAuthModal(false); }} 
+                    className="absolute top-4 right-4 text-gray-400 hover:text-white p-1 rounded-xl hover:bg-white/10"
+                  >
+                    <Icon name="x" size={20} />
+                  </button>
+                )}
 
                 <div className="flex flex-col items-center text-center mb-6">
-                  {/* Live Skin Avatar Preview */}
-                  <div className="relative mb-3">
-                    <img
-                      src={`https://mc-heads.net/avatar/${authFormData.username.trim() || 'MHF_Steve'}/128`}
-                      alt="Avatar Preview"
-                      className="w-16 h-16 rounded-2xl border-2 border-yellow-400 bg-dark-800 shadow-glow-gold"
-                      onError={(e) => { e.target.src = "https://mc-heads.net/avatar/MHF_Steve/128"; }}
-                    />
-                    <span className="absolute -bottom-1.5 -right-1.5 px-1.5 py-0.5 rounded-full bg-crimson-600 text-[9px] font-bold text-white uppercase font-gaming">
-                      {authFormData.username.trim() ? 'PLAYER' : 'STEVE'}
-                    </span>
-                  </div>
-
                   <FearStealLogo size="default" />
                   <p className="text-xs text-gray-400 mt-2 font-medium">
-                    {authMode === 'login' ? 'Authenticate to Enter the LifeSteal Realm' : authMode === 'register' ? 'Create Your FearSteal Network Profile' : 'Recover Account Password'}
+                    {authMode === 'login' ? 'Authenticate to Enter the LifeSteal Realm' : authMode === 'register' ? 'Join the Ultimate Hardcore PvP Network' : 'Recover FearSteal Credentials'}
                   </p>
                 </div>
 
-                <div className="flex rounded-xl bg-dark-800 p-1 mb-5 border border-white/5">
+                <div className="flex rounded-xl bg-dark-800 p-1 mb-6 border border-white/5">
                   <button
                     type="button"
-                    onClick={() => { playSound('click'); setAuthMode('login'); setAuthError(''); }}
+                    onClick={() => { triggerSound('click'); setAuthMode('login'); setAuthError(''); }}
                     className={`flex-1 py-2 text-xs font-gaming font-bold uppercase tracking-wider rounded-lg transition-all ${
                       authMode === 'login' ? 'bg-crimson-600 text-white shadow-glow-crimson' : 'text-gray-400 hover:text-white'
                     }`}
@@ -931,7 +905,7 @@
                   </button>
                   <button
                     type="button"
-                    onClick={() => { playSound('click'); setAuthMode('register'); setAuthError(''); }}
+                    onClick={() => { triggerSound('click'); setAuthMode('register'); setAuthError(''); }}
                     className={`flex-1 py-2 text-xs font-gaming font-bold uppercase tracking-wider rounded-lg transition-all ${
                       authMode === 'register' ? 'bg-crimson-600 text-white shadow-glow-crimson' : 'text-gray-400 hover:text-white'
                     }`}
@@ -941,25 +915,25 @@
                 </div>
 
                 {authError && (
-                  <div className="mb-4 p-3 bg-crimson-950/90 border border-crimson-500/80 rounded-xl text-crimson-300 text-xs flex items-center gap-2">
+                  <div className="mb-4 p-3 bg-crimson-950/80 border border-crimson-500/80 rounded-xl text-crimson-300 text-xs flex items-center gap-2">
                     <Icon name="alert-circle" size={16} />
                     <span>{authError}</span>
                   </div>
                 )}
 
-                <form onSubmit={handleAuthSubmit} className="space-y-3.5">
+                <form onSubmit={handleAuthSubmit} className="space-y-4">
                   <div>
                     <label className="block text-xs font-semibold text-gray-300 mb-1">
-                      Minecraft In-Game Username
+                      {authMode === 'login' ? 'Minecraft / Account Username' : 'Minecraft Username'}
                     </label>
                     <div className="relative">
                       <input
                         type="text"
                         required
-                        placeholder="e.g. ItzVeltriex"
+                        placeholder={authMode === 'login' ? 'e.g. ItzVeltriex' : 'e.g. LifeStealKing'}
                         value={authFormData.username}
                         onChange={(e) => setAuthFormData({ ...authFormData, username: e.target.value })}
-                        className="w-full bg-dark-800/90 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500"
+                        className="w-full bg-dark-800/90 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500"
                       />
                       <div className="absolute right-3 top-2.5 text-gray-500">
                         <Icon name="user" size={18} />
@@ -977,7 +951,7 @@
                           placeholder="warrior@fearsteal.fun"
                           value={authFormData.email}
                           onChange={(e) => setAuthFormData({ ...authFormData, email: e.target.value })}
-                          className="w-full bg-dark-800/90 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500"
+                          className="w-full bg-dark-800/90 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-crimson-500"
                         />
                         <div className="absolute right-3 top-2.5 text-gray-500">
                           <Icon name="mail" size={18} />
@@ -996,7 +970,7 @@
                           placeholder="••••••••"
                           value={authFormData.password}
                           onChange={(e) => setAuthFormData({ ...authFormData, password: e.target.value })}
-                          className="w-full bg-dark-800/90 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500"
+                          className="w-full bg-dark-800/90 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-crimson-500"
                         />
                         <button
                           type="button"
@@ -1006,18 +980,6 @@
                           <Icon name={authShowPassword ? "eye-off" : "eye"} size={18} />
                         </button>
                       </div>
-
-                      {authMode === 'register' && authFormData.password && (
-                        <div className="mt-2 space-y-1">
-                          <div className="flex items-center justify-between text-[10px] text-gray-400">
-                            <span>Strength:</span>
-                            <span className="font-bold">{passwordStrength.text}</span>
-                          </div>
-                          <div className="w-full h-1.5 bg-dark-800 rounded-full overflow-hidden">
-                            <div className={`h-full ${passwordStrength.color} transition-all duration-300`} style={{ width: `${passwordStrength.score}%` }}></div>
-                          </div>
-                        </div>
-                      )}
                     </div>
                   )}
 
@@ -1030,7 +992,7 @@
                         placeholder="••••••••"
                         value={authFormData.confirmPassword}
                         onChange={(e) => setAuthFormData({ ...authFormData, confirmPassword: e.target.value })}
-                        className="w-full bg-dark-800/90 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500"
+                        className="w-full bg-dark-800/90 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-crimson-500"
                       />
                     </div>
                   )}
@@ -1048,8 +1010,8 @@
                       </label>
                       <button
                         type="button"
-                        onClick={() => { playSound('click'); setAuthMode('forgot'); }}
-                        className="text-yellow-400 hover:underline"
+                        onClick={() => { triggerSound('click'); setAuthMode('forgot'); }}
+                        className="text-crimson-400 hover:underline"
                       >
                         Forgot Password?
                       </button>
@@ -1058,29 +1020,22 @@
 
                   <button
                     type="submit"
-                    disabled={authLoading}
-                    className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-crimson-600 via-crimson-600 to-crimson-700 hover:from-crimson-500 text-white font-gaming font-bold text-sm tracking-widest uppercase shadow-glow-crimson transition-all flex items-center justify-center gap-2 mt-2"
+                    className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-crimson-600 via-crimson-600 to-crimson-700 hover:from-crimson-500 hover:to-crimson-600 text-white font-gaming font-bold text-sm tracking-widest uppercase shadow-glow-crimson transition-all flex items-center justify-center gap-2 mt-2 transform hover:-translate-y-0.5"
                   >
-                    {authLoading ? (
-                      <Icon name="loader-2" size={16} />
-                    ) : (
-                      <>
-                        <span>{authMode === 'login' ? 'AUTHENTICATE & ENTER' : authMode === 'register' ? 'CREATE PROFILE' : 'SEND RESET LINK'}</span>
-                        <Icon name="arrow-right" size={16} />
-                      </>
-                    )}
+                    <span>{authMode === 'login' ? 'ENTER FEARSTEAL' : authMode === 'register' ? 'CREATE PROFILE' : 'SEND RESET LINK'}</span>
+                    <Icon name="arrow-right" size={16} />
                   </button>
 
                   <button
                     type="button"
                     onClick={() => {
-                      playSound('click');
-                      const guest = { username: 'Guest_' + Math.floor(1000 + Math.random() * 9000), role: 'Visitor', hearts: 10, kills: 0, joined: 'Guest' };
-                      setAuthUser(guest);
+                      triggerSound('click');
+                      const guestUser = { username: 'Guest_' + Math.floor(1000 + Math.random() * 9000), role: 'Visitor' };
+                      setAuthUser(guestUser);
                       setShowAuthModal(false);
-                      addToast("Guest Mode", `Welcome, ${guest.username}!`, "info");
+                      addToast("Guest Explorer", "Browsing FearSteal as Guest.", "info");
                     }}
-                    className="w-full py-1 text-xs text-gray-400 hover:text-gray-200 text-center transition-colors"
+                    className="w-full py-2 text-xs text-gray-400 hover:text-gray-200 text-center transition-colors"
                   >
                     Continue as Guest Explorer →
                   </button>
@@ -1090,13 +1045,13 @@
           )}
 
           {/* ========================================================================= */}
-          {/* SEARCH MODAL */}
+          {/* SEARCH MODAL (CMD/CTRL + K) */}
           {/* ========================================================================= */}
           {isSearchOpen && (
             <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 bg-black/85 backdrop-blur-md">
-              <div className="relative w-full max-w-2xl glass-panel-glow rounded-3xl shadow-glow-gold overflow-hidden">
+              <div className="relative w-full max-w-2xl glass-panel-glow rounded-3xl shadow-glow-crimson overflow-hidden animate-in fade-in zoom-in-95">
                 <div className="p-4 border-b border-white/10 flex items-center gap-3">
-                  <Icon name="search" size={20} className="text-yellow-400" />
+                  <Icon name="search" size={20} className="text-crimson-400" />
                   <input
                     type="text"
                     autoFocus
@@ -1116,11 +1071,11 @@
                       <div
                         key={idx}
                         onClick={() => scrollToSection(item.section)}
-                        className="p-3.5 rounded-2xl bg-dark-800/80 hover:bg-yellow-900/20 border border-white/5 hover:border-yellow-500/40 cursor-pointer transition-all flex items-center justify-between"
+                        className="p-3.5 rounded-2xl bg-dark-800/80 hover:bg-crimson-900/30 border border-white/5 hover:border-crimson-500/40 cursor-pointer transition-all flex items-center justify-between"
                       >
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-yellow-950 text-yellow-400 border border-yellow-700/50">
+                            <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-crimson-950 text-crimson-400 border border-crimson-700/50">
                               {item.type}
                             </span>
                             <h4 className="text-sm font-semibold text-white">{item.title}</h4>
@@ -1132,72 +1087,13 @@
                     ))
                   ) : searchQuery ? (
                     <div className="text-center py-8 text-gray-400 text-sm">
-                      No results for "{searchQuery}". Try searching "Rank", "Staff", "Rules", "Port" or "Forge".
+                      No results for "{searchQuery}". Try "Rank", "Staff", "Rules", or "Port".
                     </div>
                   ) : (
                     <div className="text-center py-6 text-gray-500 text-xs">
                       Type keyword to search the FearSteal database...
                     </div>
                   )}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* ========================================================================= */}
-          {/* USER PROFILE MODAL DRAWER */}
-          {/* ========================================================================= */}
-          {showProfileDrawer && authUser && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-              <div className="relative w-full max-w-md glass-panel-glow rounded-3xl p-6 shadow-glow-gold">
-                <button onClick={() => setShowProfileDrawer(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white">
-                  <Icon name="x" size={20} />
-                </button>
-                
-                <div className="text-center flex flex-col items-center">
-                  <img
-                    src={`https://mc-heads.net/avatar/${authUser.username}/128`}
-                    alt={authUser.username}
-                    className="w-20 h-20 rounded-2xl border-2 border-yellow-400 bg-dark-800 shadow-glow-gold mb-3"
-                    onError={(e) => { e.target.src = "https://mc-heads.net/avatar/MHF_Steve/128"; }}
-                  />
-                  <h3 className="text-2xl font-black font-gaming text-white">{authUser.username}</h3>
-                  <span className="px-3 py-0.5 rounded-full bg-yellow-600/20 border border-yellow-500 text-yellow-400 text-xs font-bold uppercase tracking-wider mt-1">
-                    {authUser.role || 'Member'}
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-3 gap-3 my-6 text-center">
-                  <div className="p-3 bg-dark-800/80 rounded-2xl border border-white/5">
-                    <span className="text-xs text-gray-400 block font-gaming">HEARTS</span>
-                    <span className="text-lg font-bold text-crimson-400 font-mono">{authUser.hearts || 10} ❤️</span>
-                  </div>
-                  <div className="p-3 bg-dark-800/80 rounded-2xl border border-white/5">
-                    <span className="text-xs text-gray-400 block font-gaming">TOTAL KILLS</span>
-                    <span className="text-lg font-bold text-white font-mono">{authUser.kills || 0}</span>
-                  </div>
-                  <div className="p-3 bg-dark-800/80 rounded-2xl border border-white/5">
-                    <span className="text-xs text-gray-400 block font-gaming">SEASON</span>
-                    <span className="text-lg font-bold text-emerald-400 font-mono">S1</span>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <button
-                    onClick={() => {
-                      setShowProfileDrawer(false);
-                      scrollToSection('store');
-                    }}
-                    className="w-full py-2.5 rounded-xl bg-crimson-600 hover:bg-crimson-500 text-white font-bold text-xs uppercase tracking-wider font-gaming"
-                  >
-                    Upgrade Network Rank
-                  </button>
-                  <button
-                    onClick={handleLogout}
-                    className="w-full py-2.5 rounded-xl bg-dark-800 hover:bg-red-950/80 border border-white/10 text-crimson-400 font-bold text-xs uppercase tracking-wider font-gaming"
-                  >
-                    Disconnect / Logout
-                  </button>
                 </div>
               </div>
             </div>
@@ -1218,8 +1114,6 @@
                   { id: 'home', label: 'HOME' },
                   { id: 'features', label: 'FEATURES' },
                   { id: 'store', label: 'STORE' },
-                  { id: 'simulator', label: 'HEART FORGE' },
-                  { id: 'crates', label: 'CRATES' },
                   { id: 'status', label: 'STATUS' },
                   { id: 'staff', label: 'STAFF' },
                   { id: 'leaderboard', label: 'LEADERBOARD' },
@@ -1232,9 +1126,9 @@
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`px-2.5 py-1.5 rounded-xl transition-all relative ${
+                    className={`px-3 py-1.5 rounded-xl transition-all relative ${
                       activeSection === item.id 
-                        ? 'text-white bg-yellow-500/20 border border-yellow-500/50 text-glow-gold' 
+                        ? 'text-white bg-crimson-600/20 border border-crimson-500/50 text-glow-crimson' 
                         : 'hover:text-white hover:bg-white/5'
                     }`}
                   >
@@ -1245,8 +1139,8 @@
 
               <div className="flex items-center gap-2 sm:gap-3">
                 <button
-                  onClick={() => { playSound('click'); setIsSearchOpen(true); }}
-                  className="p-2.5 rounded-xl bg-dark-800 border border-white/10 text-gray-300 hover:text-white hover:border-yellow-500/40 transition-all"
+                  onClick={() => { triggerSound('click'); setIsSearchOpen(true); }}
+                  className="p-2.5 rounded-xl bg-dark-800 border border-white/10 text-gray-300 hover:text-white hover:border-crimson-500/40 transition-all"
                   title="Search Network"
                 >
                   <Icon name="search" size={18} />
@@ -1254,31 +1148,32 @@
 
                 <div className="relative">
                   <button
-                    onClick={() => { playSound('click'); setNotificationTrayOpen(!notificationTrayOpen); }}
-                    className="p-2.5 rounded-xl bg-dark-800 border border-white/10 text-gray-300 hover:text-white hover:border-yellow-500/40 transition-all relative"
+                    onClick={() => { triggerSound('click'); setNotificationTrayOpen(!notificationTrayOpen); }}
+                    className="p-2.5 rounded-xl bg-dark-800 border border-white/10 text-gray-300 hover:text-white hover:border-crimson-500/40 transition-all relative"
                   >
                     <Icon name="bell" size={18} />
+                    <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-crimson-500 animate-ping"></span>
                     <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-crimson-500"></span>
                   </button>
 
                   {notificationTrayOpen && (
-                    <div className="absolute right-0 mt-3 w-80 glass-panel-glow rounded-2xl p-4 shadow-glow-gold z-50">
+                    <div className="absolute right-0 mt-3 w-80 glass-panel-glow rounded-2xl p-4 shadow-glow-crimson-lg z-50 animate-in fade-in">
                       <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
                         <span className="font-bold text-sm text-white flex items-center gap-2">
-                          <Icon name="bell" size={16} className="text-yellow-400" />
-                          Network Broadcasts
+                          <Icon name="bell" size={16} className="text-crimson-400" />
+                          Network Announcements
                         </span>
-                        <span className="text-[9px] bg-yellow-950 text-yellow-400 px-2 py-0.5 rounded font-bold">
+                        <span className="text-[9px] bg-crimson-950 text-crimson-400 px-2 py-0.5 rounded font-bold">
                           ACTIVE
                         </span>
                       </div>
                       <div className="space-y-2.5 max-h-64 overflow-y-auto">
                         <div className="p-2.5 rounded-xl bg-dark-800/80 border border-white/5 text-xs">
                           <div className="flex items-center justify-between font-bold text-white">
-                            <span>⚔️ S1 LifeSteal Tournament</span>
+                            <span>⚔️ 15-Day Tournament Live</span>
                             <span className="text-[10px] text-gray-400 font-normal">Active</span>
                           </div>
-                          <p className="text-gray-300 text-[11px] mt-1">15-Day automated rotation event is live in Warzone!</p>
+                          <p className="text-gray-300 text-[11px] mt-1">Join the Warzone to score 2x Hearts and rank up.</p>
                         </div>
                         <div className="p-2.5 rounded-xl bg-dark-800/80 border border-white/5 text-xs">
                           <div className="flex items-center justify-between font-bold text-white">
@@ -1294,29 +1189,27 @@
 
                 <button
                   onClick={copyServerIP}
-                  className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-dark-800 border border-yellow-500/30 hover:border-yellow-400 text-xs font-bold text-white transition-all shadow-sm"
+                  className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-dark-800 border border-crimson-500/30 hover:border-crimson-500 text-xs font-bold text-white transition-all shadow-sm"
                 >
-                  <span className={`w-2 h-2 rounded-full ${serverStatus.rawStatus === 'online' ? 'bg-emerald-400' : 'bg-crimson-500'}`}></span>
+                  <span className={`w-2 h-2 rounded-full ${serverStatus.rawStatus === 'online' ? 'bg-emerald-400 animate-pulse' : 'bg-crimson-500'}`}></span>
                   <span className="font-mono">play.fearsteal.fun</span>
                   <Icon name="copy" size={14} className="text-gray-400" />
                 </button>
 
                 {authUser ? (
-                  <button
-                    onClick={() => setShowProfileDrawer(true)}
-                    className="flex items-center gap-2 bg-dark-800 border border-white/10 rounded-xl p-1.5 pl-3 hover:border-yellow-500/40 transition-all"
-                  >
+                  <div className="flex items-center gap-2 bg-dark-800 border border-white/10 rounded-xl p-1.5 pl-3">
                     <span className="text-xs font-semibold text-white truncate max-w-[85px]">{authUser.username}</span>
-                    <img
-                      src={`https://mc-heads.net/avatar/${authUser.username}/32`}
-                      alt=""
-                      className="w-6 h-6 rounded-lg border border-white/10"
-                      onError={(e) => { e.target.src = "https://mc-heads.net/avatar/MHF_Steve/32"; }}
-                    />
-                  </button>
+                    <button
+                      onClick={handleLogout}
+                      className="p-1.5 rounded-lg bg-crimson-950/80 text-crimson-400 hover:bg-crimson-600 hover:text-white transition-all"
+                      title="Logout"
+                    >
+                      <Icon name="log-out" size={14} />
+                    </button>
+                  </div>
                 ) : (
                   <button
-                    onClick={() => { playSound('click'); setShowAuthModal(true); }}
+                    onClick={() => { triggerSound('click'); setShowAuthModal(true); }}
                     className="px-4 py-2 rounded-xl bg-gradient-to-r from-crimson-600 to-crimson-700 hover:from-crimson-500 text-xs font-gaming font-bold text-white tracking-wider uppercase shadow-glow-crimson transition-all"
                   >
                     Login
@@ -1324,7 +1217,7 @@
                 )}
 
                 <button
-                  onClick={() => { playSound('click'); setMobileMenuOpen(!mobileMenuOpen); }}
+                  onClick={() => { triggerSound('click'); setMobileMenuOpen(!mobileMenuOpen); }}
                   className="xl:hidden p-2.5 rounded-xl bg-dark-800 border border-white/10 text-gray-300 hover:text-white"
                 >
                   <Icon name={mobileMenuOpen ? "x" : "menu"} size={20} />
@@ -1334,13 +1227,11 @@
 
             {/* Mobile Nav Menu */}
             {mobileMenuOpen && (
-              <div className="xl:hidden bg-dark-900 border-b border-crimson-500/30 px-4 py-6 space-y-1.5">
+              <div className="xl:hidden bg-dark-900 border-b border-crimson-500/30 px-4 py-6 space-y-1.5 animate-in slide-in-from-top">
                 {[
                   { id: 'home', label: 'HOME' },
                   { id: 'features', label: 'FEATURES' },
                   { id: 'store', label: 'STORE / RANKS' },
-                  { id: 'simulator', label: 'HEART FORGE & SIMULATOR' },
-                  { id: 'crates', label: 'CRATE UNBOXER' },
                   { id: 'status', label: 'SERVER STATUS' },
                   { id: 'staff', label: 'STAFF TEAM' },
                   { id: 'leaderboard', label: 'LEADERBOARD' },
@@ -1353,7 +1244,7 @@
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left px-4 py-2.5 rounded-xl font-gaming font-bold text-sm text-gray-200 hover:bg-yellow-500/20 hover:text-white"
+                    className="block w-full text-left px-4 py-2.5 rounded-xl font-gaming font-bold text-sm text-gray-200 hover:bg-crimson-600/20 hover:text-white"
                   >
                     {item.label}
                   </button>
@@ -1371,50 +1262,52 @@
           </header>
 
           {/* ========================================================================= */}
-          {/* HERO SECTION WITH SUPPLIED BANNER & LOGO INTEGRATION */}
+          {/* CINEMATIC HERO SECTION WITH COOL ENTERED ANIMATION */}
           {/* ========================================================================= */}
-          <section id="home" className="relative pt-8 pb-20 md:pt-14 md:pb-28 overflow-hidden">
+          <section id="home" className="relative pt-12 pb-24 md:pt-20 md:pb-36 overflow-hidden">
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-crimson-600/20 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+            
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
               
-              {/* Live Server Telemetry Pill */}
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel-glow mb-8">
+              {/* Live Status Pill */}
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel-glow mb-8 animate-float">
                 <span className={`w-2.5 h-2.5 rounded-full ${
-                  serverStatus.rawStatus === 'online' ? 'bg-emerald-400' :
-                  serverStatus.rawStatus === 'offline' ? 'bg-crimson-500' :
-                  'bg-yellow-400'
+                  serverStatus.rawStatus === 'online' ? 'bg-emerald-400 shadow-glow-emerald animate-pulse' :
+                  serverStatus.rawStatus === 'offline' ? 'bg-crimson-500 animate-pulse' :
+                  'bg-yellow-400 animate-pulse'
                 }`}></span>
                 <span className="text-xs font-gaming font-bold tracking-widest uppercase text-gray-200">
                   {serverStatus.rawStatus === 'online' ? '🟢 SERVER ONLINE' :
                    serverStatus.rawStatus === 'offline' ? '🔴 SERVER OFFLINE' : '⚠️ STATUS UNKNOWN'}
                 </span>
                 <span className="text-xs text-gray-500">|</span>
-                <span className="text-xs font-mono font-bold text-yellow-400">
+                <span className="text-xs font-mono font-bold text-crimson-400">
                   {serverStatus.rawStatus === 'online' 
                     ? `${serverStatus.players.online}/${serverStatus.players.max} Players`
                     : 'Port: 19132'}
                 </span>
               </div>
 
-              {/* SUPPLIED BANNER HERO CARD */}
-              <div className="max-w-5xl mx-auto mb-10">
-                <FearStealBanner />
-              </div>
-
-              <p className="mt-4 text-xl sm:text-2xl md:text-3xl font-bold font-gaming tracking-widest text-gray-300 max-w-4xl mx-auto">
+              {/* Headline */}
+              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black font-gaming tracking-tight uppercase leading-none reveal-on-scroll reveal-hidden">
+                FEAR<span className="text-crimson-500 text-glow-crimson">STEAL</span>
+              </h1>
+              
+              <p className="mt-4 text-xl sm:text-2xl md:text-3xl font-bold font-gaming tracking-widest text-gray-300 max-w-4xl mx-auto reveal-on-scroll reveal-hidden">
                 THE NEXT GENERATION <span className="text-crimson-400">LIFESTEAL</span> NETWORK
               </p>
 
-              <p className="mt-3 text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-4 text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed reveal-on-scroll reveal-hidden">
                 Dominate intense PvP combat, steal hearts from conquered foes, outsmart enemy clans in 15-day automated tournaments, and experience zero-latency Bedrock & Java gameplay.
               </p>
 
               {/* Action Buttons */}
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4 max-w-2xl mx-auto">
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-4 max-w-2xl mx-auto reveal-on-scroll reveal-hidden">
                 <button
                   onClick={copyServerIP}
-                  className="group relative flex-1 min-w-[220px] py-4 px-6 rounded-2xl bg-gradient-to-r from-crimson-600 via-crimson-600 to-crimson-700 hover:from-crimson-500 text-white font-gaming font-bold text-lg tracking-wider uppercase shadow-glow-crimson transition-all flex items-center justify-center gap-3"
+                  className="group relative flex-1 min-w-[220px] py-4 px-6 rounded-2xl bg-gradient-to-r from-crimson-600 via-crimson-600 to-crimson-700 hover:from-crimson-500 hover:to-crimson-600 text-white font-gaming font-bold text-lg tracking-wider uppercase shadow-glow-crimson transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3"
                 >
-                  <Icon name="copy" size={20} />
+                  <Icon name="copy" size={20} className="group-hover:scale-110 transition-transform" />
                   <span>COPY SERVER IP</span>
                 </button>
 
@@ -1422,8 +1315,8 @@
                   href="https://discord.gg/pGM5x3gXpX"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => playSound('click')}
-                  className="flex-1 min-w-[180px] py-4 px-6 rounded-2xl bg-[#5865F2]/20 hover:bg-[#5865F2]/30 border border-[#5865F2]/60 text-white font-gaming font-bold text-lg tracking-wider uppercase backdrop-blur-md transition-all flex items-center justify-center gap-3 shadow-lg"
+                  onClick={() => triggerSound('click')}
+                  className="flex-1 min-w-[180px] py-4 px-6 rounded-2xl bg-[#5865F2]/20 hover:bg-[#5865F2]/30 border border-[#5865F2]/60 text-white font-gaming font-bold text-lg tracking-wider uppercase backdrop-blur-md transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3 shadow-lg"
                 >
                   <Icon name="message-square" size={20} className="text-[#5865F2]" />
                   <span>JOIN DISCORD</span>
@@ -1433,8 +1326,8 @@
                   href="https://store.cryzormc.in/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => playSound('click')}
-                  className="flex-1 min-w-[180px] py-4 px-6 rounded-2xl bg-dark-800/80 hover:bg-dark-800 border border-white/10 hover:border-yellow-500/50 text-white font-gaming font-bold text-lg tracking-wider uppercase backdrop-blur-md transition-all flex items-center justify-center gap-3"
+                  onClick={() => triggerSound('click')}
+                  className="flex-1 min-w-[180px] py-4 px-6 rounded-2xl bg-dark-800/80 hover:bg-dark-800 border border-white/10 hover:border-yellow-500/50 text-white font-gaming font-bold text-lg tracking-wider uppercase backdrop-blur-md transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3"
                 >
                   <Icon name="shopping-bag" size={20} className="text-yellow-400" />
                   <span>VISIT STORE</span>
@@ -1442,11 +1335,11 @@
               </div>
 
               {/* Connection Telemetry Bar */}
-              <div className="mt-12 max-w-3xl mx-auto glass-panel rounded-3xl p-5 sm:p-6 shadow-2xl">
+              <div className="mt-14 max-w-3xl mx-auto glass-panel rounded-3xl p-5 sm:p-6 shadow-2xl reveal-on-scroll reveal-hidden">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
                   <div className="pt-2 md:pt-0">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 font-gaming">Server Address</span>
-                    <p className="font-mono font-bold text-yellow-400 text-sm mt-1">play.fearsteal.fun</p>
+                    <p className="font-mono font-bold text-crimson-400 text-sm mt-1">play.fearsteal.fun</p>
                   </div>
                   <div className="pt-2 md:pt-0">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 font-gaming">Bedrock Port</span>
@@ -1466,13 +1359,13 @@
           </section>
 
           {/* ========================================================================= */}
-          {/* FEATURES SECTION (Clean & Rock-Solid) */}
+          {/* FEATURES SECTION WITH 3D TILT */}
           {/* ========================================================================= */}
-          <section id="features" className="py-20 bg-dark-900/50 relative border-t border-white/5">
+          <section id="features" className="py-24 bg-dark-900/50 relative border-t border-white/5">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div className="text-center mb-16">
-                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">POWERFUL MECHANICS</span>
+              <div className="text-center mb-16 reveal-on-scroll reveal-hidden">
+                <span className="text-xs font-bold uppercase tracking-widest text-crimson-400 font-gaming">POWERFUL MECHANICS</span>
                 <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
                   FEARSTEAL <span className="text-crimson-500">EXPERIENCE</span>
                 </h2>
@@ -1491,168 +1384,31 @@
                   { icon: "gem", title: "Ranks & Rewards", desc: "Unlock custom kill particles, private heart vaults, /fly in outposts, and prestige chat tags.", badge: "Custom Perks" },
                   { icon: "shield-check", title: "Active Staff Team", desc: "24/7 dedicated moderators ensuring honest combat, fast ticket resolution, and glitch-free arenas.", badge: "Fair Play" },
                   { icon: "zap", title: "Optimized Network", desc: "Bare-metal high-frequency dedicated hardware with multi-layer DDoS protection and 99.9% uptime.", badge: "High Tickrate" },
-                ].map((feat, idx) => (
-                  <div key={idx} className="glass-panel stable-card rounded-3xl p-6 relative flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-12 h-12 rounded-2xl bg-crimson-950/80 border border-crimson-500/40 flex items-center justify-center text-crimson-400 shadow-glow-crimson">
-                          <Icon name={feat.icon} size={24} />
+                ].map((feat, idx) => {
+                  const tilt = useTilt();
+                  return (
+                    <div 
+                      key={idx} 
+                      ref={tilt.ref}
+                      onMouseMove={tilt.onMouseMove}
+                      onMouseLeave={tilt.onMouseLeave}
+                      className="glass-panel tilt-card rounded-3xl p-6 relative flex flex-col justify-between reveal-on-scroll reveal-hidden"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="w-12 h-12 rounded-2xl bg-crimson-950/80 border border-crimson-500/40 flex items-center justify-center text-crimson-400 shadow-glow-crimson">
+                            <Icon name={feat.icon} size={24} />
+                          </div>
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300">
+                            {feat.badge}
+                          </span>
                         </div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300">
-                          {feat.badge}
-                        </span>
+                        <h3 className="text-xl font-gaming font-bold text-white mb-2">{feat.title}</h3>
+                        <p className="text-xs text-gray-400 leading-relaxed">{feat.desc}</p>
                       </div>
-                      <h3 className="text-xl font-gaming font-bold text-white mb-2">{feat.title}</h3>
-                      <p className="text-xs text-gray-400 leading-relaxed">{feat.desc}</p>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ========================================================================= */}
-          {/* HEART FORGE & LIFESTEAL SIMULATOR */}
-          {/* ========================================================================= */}
-          <section id="simulator" className="py-20 relative border-t border-white/5">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              
-              <div className="text-center mb-16">
-                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">INTERACTIVE GAMEPLAY TOOL</span>
-                <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
-                  HEART FORGE & <span className="text-crimson-500">LIFESTEAL SIMULATOR</span>
-                </h2>
-                <p className="text-gray-400 text-sm max-w-xl mx-auto mt-2">
-                  Test heart transfers, calculate player banishment thresholds, and understand FearSteal LifeSteal mechanics.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                <div className="glass-panel-glow rounded-3xl p-6 sm:p-8 border border-yellow-500/40">
-                  <h3 className="text-2xl font-black font-gaming text-white mb-6 flex items-center gap-2">
-                    <Icon name="sliders" size={22} className="text-yellow-400" />
-                    Combat Parameter Simulator
-                  </h3>
-
-                  <div className="space-y-6">
-                    <div>
-                      <div className="flex justify-between text-xs font-bold mb-2">
-                        <span className="text-gray-300">BASE HEARTS</span>
-                        <span className="text-yellow-400 font-mono">{simHearts} Hearts ({simHearts * 2} HP)</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="1"
-                        max="20"
-                        value={simHearts}
-                        onChange={(e) => setSimHearts(parseInt(e.target.value))}
-                        className="w-full accent-yellow-500 cursor-pointer"
-                      />
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between text-xs font-bold mb-2">
-                        <span className="text-gray-300">PVP KILLS</span>
-                        <span className="text-emerald-400 font-mono">+{simKills} Kills (+{simKills} Hearts)</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="0"
-                        max="20"
-                        value={simKills}
-                        onChange={(e) => setSimKills(parseInt(e.target.value))}
-                        className="w-full accent-emerald-500 cursor-pointer"
-                      />
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between text-xs font-bold mb-2">
-                        <span className="text-gray-300">PVP DEATHS</span>
-                        <span className="text-red-400 font-mono">-{simDeaths} Deaths (-{simDeaths} Hearts)</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="0"
-                        max="20"
-                        value={simDeaths}
-                        onChange={(e) => setSimDeaths(parseInt(e.target.value))}
-                        className="w-full accent-red-600 cursor-pointer"
-                      />
-                    </div>
-
-                    <div className="p-4 rounded-2xl bg-dark-800/80 border border-white/5 text-xs text-gray-300">
-                      <p className="font-bold text-white mb-1">📜 Elimination Rule:</p>
-                      <p>When hearts reach <span className="text-crimson-400 font-bold">0 Hearts</span>, you are banished to Spectator until revived with a Revive Beacon or Store Unban.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 text-center flex flex-col items-center justify-center">
-                  <span className="text-xs uppercase font-bold tracking-widest text-gray-400 font-gaming mb-2">
-                    SIMULATED MINECRAFT HEALTH HUD
-                  </span>
-
-                  <div className="text-5xl sm:text-6xl font-black font-gaming text-yellow-400 text-glow-gold my-4">
-                    {calculatedHearts} <span className="text-2xl text-gray-300">/ 30 Max Hearts</span>
-                  </div>
-
-                  <div className="flex flex-wrap items-center justify-center gap-2 max-w-sm my-4">
-                    {Array.from({ length: 20 }).map((_, i) => (
-                      <span key={i} className={`text-xl transition-all ${i < calculatedHearts ? 'text-crimson-500 scale-100' : 'text-gray-700 scale-90'}`}>
-                        ❤️
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="w-full mt-4 p-4 rounded-2xl bg-dark-900 border border-white/5">
-                    <span className="text-xs font-bold text-gray-300 uppercase font-gaming">Gladiator State: </span>
-                    <span className={`text-sm font-bold font-gaming ${calculatedHearts === 0 ? 'text-red-500' : calculatedHearts > 15 ? 'text-yellow-400' : 'text-emerald-400'}`}>
-                      {calculatedHearts === 0 ? '☠️ ELIMINATED / BANISHED' : calculatedHearts > 15 ? '🔥 SUPREME WARLORD' : '⚔️ ACTIVE GLADIATOR'}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* ========================================================================= */}
-          {/* CRATE UNBOXER SIMULATOR */}
-          {/* ========================================================================= */}
-          <section id="crates" className="py-20 bg-dark-900/60 relative border-t border-white/5">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              
-              <div className="text-center mb-16">
-                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">REWARD SYSTEM</span>
-                <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
-                  FEARSTEAL <span className="text-crimson-500">CRATE SIMULATOR</span>
-                </h2>
-                <p className="text-gray-400 text-sm max-w-xl mx-auto mt-2">
-                  Preview in-game mystery crates with realistic drop rates and rank vouchers.
-                </p>
-              </div>
-
-              <div className="max-w-2xl mx-auto glass-panel-glow rounded-3xl p-8 text-center border-2 border-yellow-500/40">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-yellow-500 to-crimson-600 flex items-center justify-center text-white mx-auto mb-4 shadow-glow-gold">
-                  <Icon name="package" size={40} />
-                </div>
-
-                <h3 className="text-2xl font-black font-gaming text-white uppercase">Mythic LifeSteal Crate</h3>
-                <p className="text-xs text-gray-400 mt-1 mb-6">Test open a simulated seasonal crate.</p>
-
-                {crateResult && (
-                  <div className={`p-4 rounded-2xl bg-dark-900/90 border ${crateResult.color} mb-6`}>
-                    <span className="text-[10px] font-bold uppercase tracking-wider block font-gaming">{crateResult.rarity} DROP</span>
-                    <h4 className="text-lg font-black font-gaming text-white mt-1">{crateResult.name}</h4>
-                  </div>
-                )}
-
-                <button
-                  onClick={openCrateSimulator}
-                  disabled={crateOpening}
-                  className="py-3.5 px-8 rounded-2xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-400 text-black font-gaming font-bold text-sm tracking-widest uppercase shadow-glow-gold transition-all disabled:opacity-50"
-                >
-                  {crateOpening ? 'UNBOXING CRATE...' : 'OPEN CRATE SIMULATOR (FREE)'}
-                </button>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -1660,11 +1416,11 @@
           {/* ========================================================================= */}
           {/* STORE, RANKS & FREE NOVICE CLAIM */}
           {/* ========================================================================= */}
-          <section id="store" className="py-20 relative border-t border-white/5">
+          <section id="store" className="py-24 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div className="text-center mb-16">
-                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">RANKS & UPGRADES</span>
+              <div className="text-center mb-16 reveal-on-scroll reveal-hidden">
+                <span className="text-xs font-bold uppercase tracking-widest text-crimson-400 font-gaming">RANKS & UPGRADES</span>
                 <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
                   FEARSTEAL <span className="text-crimson-500">OFFICIAL STORE</span>
                 </h2>
@@ -1676,20 +1432,20 @@
                     href="https://store.cryzormc.in/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => playSound('click')}
+                    onClick={() => triggerSound('click')}
                     className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 text-black font-bold font-gaming text-sm tracking-wider uppercase transition-all shadow-lg"
                   >
                     <Icon name="external-link" size={16} />
-                    <span>OFFICIAL STORE: STORE.CRYZORMC.IN</span>
+                    <span>VISIT OFFICIAL STORE: STORE.CRYZORMC.IN</span>
                   </a>
                 </div>
               </div>
 
-              {/* Special NOVICE Free Claim Card */}
-              <div className="mb-14 glass-panel-glow rounded-3xl p-6 sm:p-8 border-2 border-yellow-500 shadow-glow-gold relative overflow-hidden">
+              {/* Special NOVICE Free Claim Card (0 / 100 Counter) */}
+              <div className="mb-14 glass-panel-glow rounded-3xl p-6 sm:p-8 border-2 border-crimson-500 shadow-glow-crimson relative overflow-hidden reveal-on-scroll reveal-hidden">
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
                   <div className="flex items-center gap-5 text-center lg:text-left flex-col lg:flex-row">
-                    <div className="w-16 h-16 rounded-2xl bg-yellow-500 text-black flex items-center justify-center shadow-glow-gold text-2xl font-black font-gaming">
+                    <div className="w-16 h-16 rounded-2xl bg-crimson-600 flex items-center justify-center text-white shadow-glow-crimson text-2xl font-black font-gaming">
                       $0
                     </div>
                     <div>
@@ -1715,7 +1471,7 @@
 
                     <div className="w-full h-3.5 bg-dark-800 rounded-full overflow-hidden border border-white/10">
                       <div 
-                        className={`h-full transition-all duration-700 ${noviceClaims >= 100 ? 'bg-crimson-600' : 'bg-gradient-to-r from-emerald-500 to-yellow-500'}`}
+                        className={`h-full transition-all duration-700 ${noviceClaims >= 100 ? 'bg-crimson-600' : 'bg-gradient-to-r from-emerald-500 to-crimson-500'}`}
                         style={{ width: `${Math.min(100, noviceClaims)}%` }}
                       ></div>
                     </div>
@@ -1728,7 +1484,7 @@
                           ? 'bg-red-950/60 border border-red-800 text-red-400 cursor-not-allowed'
                           : hasClaimedNovice
                           ? 'bg-dark-800 border border-white/20 text-gray-400 hover:text-white'
-                          : 'bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 text-black shadow-glow-gold'
+                          : 'bg-gradient-to-r from-crimson-600 to-crimson-700 hover:from-crimson-500 text-white shadow-glow-crimson'
                       }`}
                     >
                       {noviceClaims >= 100 ? (
@@ -1749,7 +1505,7 @@
               {/* Ranks Cards Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                  { name: "FEARSTEAL", price: "$25", border: "border-yellow-500", glow: "shadow-glow-gold", perks: ["Highest [FEARSTEAL] Animated Prefix", "Access to /fly in Warzone Outpost", "5x Private Heart Storage Vaults", "Instant Respawn Cooldown Reset", "Exclusive Discord VIP Role"] },
+                  { name: "FEARSTEAL", price: "$25", border: "border-crimson-500", glow: "shadow-glow-crimson", perks: ["Highest [FEARSTEAL] Animated Prefix", "Access to /fly in Warzone Outpost", "5x Private Heart Storage Vaults", "Instant Respawn Cooldown Reset", "Exclusive Discord VIP Role"] },
                   { name: "FEAR+", price: "$20", border: "border-crimson-600/70", perks: ["[FEAR+] Crimson Prefix", "Access to /feed & /heal in Safezone", "4x Heart Vault Storage", "Exclusive Particle Aura Kit"] },
                   { name: "STEAL+", price: "$18", border: "border-rose-600/60", perks: ["[STEAL+] Gradient Chat Prefix", "/craft & /anvil Anywhere", "3x Heart Storage Vaults", "10x Netherite Armor Kit"] },
                   { name: "KING", price: "$15", border: "border-amber-500/60", perks: ["[KING] Gold Prefix", "2x Weekly King Loot Crates", "Priority Server Queue Access", "Keep XP on PvP Death"] },
@@ -1760,14 +1516,14 @@
                 ].map((rank, idx) => (
                   <div 
                     key={idx} 
-                    className={`glass-panel stable-card rounded-3xl p-6 flex flex-col justify-between border ${rank.border} ${rank.glow || ''}`}
+                    className={`glass-panel tilt-card rounded-3xl p-6 flex flex-col justify-between border ${rank.border} ${rank.glow || ''} reveal-on-scroll reveal-hidden`}
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
                         <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 font-gaming">
                           PRESTIGE TIER
                         </span>
-                        <span className="text-2xl font-black font-gaming text-yellow-400">
+                        <span className="text-2xl font-black font-gaming text-crimson-400">
                           {rank.price}
                         </span>
                       </div>
@@ -1779,7 +1535,7 @@
                       <ul className="space-y-2.5 mb-6">
                         {rank.perks.map((perk, pIdx) => (
                           <li key={pIdx} className="text-xs text-gray-300 flex items-center gap-2">
-                            <Icon name="check" size={14} className="text-yellow-400 flex-shrink-0" />
+                            <Icon name="check" size={14} className="text-crimson-400 flex-shrink-0" />
                             <span>{perk}</span>
                           </li>
                         ))}
@@ -1790,8 +1546,8 @@
                       href="https://store.cryzormc.in/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={() => playSound('click')}
-                      className="w-full py-3 rounded-2xl bg-dark-800 hover:bg-yellow-500 hover:text-black border border-white/10 hover:border-yellow-400 font-gaming font-bold text-xs tracking-wider uppercase text-center text-white transition-all block shadow-sm"
+                      onClick={() => triggerSound('click')}
+                      className="w-full py-3 rounded-2xl bg-dark-800 hover:bg-crimson-600 border border-white/10 hover:border-crimson-400 font-gaming font-bold text-xs tracking-wider uppercase text-center text-white transition-all block shadow-sm"
                     >
                       PURCHASE ON STORE
                     </a>
@@ -1804,12 +1560,12 @@
           {/* ========================================================================= */}
           {/* ADVANCED SERVER STATUS DASHBOARD */}
           {/* ========================================================================= */}
-          <section id="status" className="py-20 bg-dark-900/60 border-t border-white/5 relative">
+          <section id="status" className="py-24 bg-dark-900/60 border-t border-white/5 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+              <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 reveal-on-scroll reveal-hidden">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">REAL-TIME TELEMETRY</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-crimson-400 font-gaming">REAL-TIME TELEMETRY</span>
                   <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-1">
                     SERVER <span className="text-crimson-500">MONITORING</span>
                   </h2>
@@ -1823,17 +1579,17 @@
                     Updated: <span className="text-gray-200 font-mono">{serverStatus.lastUpdated || 'Syncing...'}</span>
                   </span>
                   <button
-                    onClick={() => { playSound('click'); refreshServerStatus(); }}
-                    className="p-2.5 rounded-xl bg-dark-800 hover:bg-yellow-500/20 border border-white/10 text-gray-300 hover:text-white transition-all flex items-center gap-1.5 text-xs font-bold"
+                    onClick={() => { triggerSound('click'); refreshServerStatus(); }}
+                    className="p-2.5 rounded-xl bg-dark-800 hover:bg-crimson-600/30 border border-white/10 text-gray-300 hover:text-white transition-all flex items-center gap-1.5 text-xs font-bold"
                   >
-                    <Icon name="refresh-cw" size={14} />
+                    <Icon name="refresh-cw" size={14} className={serverStatus.loading ? 'animate-spin' : ''} />
                     <span>Refresh</span>
                   </button>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div className="glass-panel rounded-3xl p-6 border border-white/10 flex items-center justify-between">
+                <div className="glass-panel rounded-3xl p-6 border border-white/10 flex items-center justify-between reveal-on-scroll reveal-hidden">
                   <div>
                     <span className="text-xs uppercase font-bold text-gray-400 font-gaming">Server Status</span>
                     <h3 className="text-xl font-black font-gaming text-white mt-1">
@@ -1849,7 +1605,7 @@
                   </div>
                 </div>
 
-                <div className="glass-panel rounded-3xl p-6 border border-white/10 flex items-center justify-between">
+                <div className="glass-panel rounded-3xl p-6 border border-white/10 flex items-center justify-between reveal-on-scroll reveal-hidden">
                   <div>
                     <span className="text-xs uppercase font-bold text-gray-400 font-gaming">Online Players</span>
                     <h3 className="text-xl font-black font-gaming text-white mt-1">
@@ -1857,12 +1613,12 @@
                     </h3>
                     <p className="text-[11px] text-gray-400 mt-0.5">Global Cluster Pool</p>
                   </div>
-                  <div className="w-12 h-12 rounded-2xl bg-dark-800 text-yellow-400 border border-white/10 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-2xl bg-dark-800 text-crimson-400 border border-white/10 flex items-center justify-center">
                     <Icon name="users" size={24} />
                   </div>
                 </div>
 
-                <div className="glass-panel rounded-3xl p-6 border border-white/10 flex items-center justify-between">
+                <div className="glass-panel rounded-3xl p-6 border border-white/10 flex items-center justify-between reveal-on-scroll reveal-hidden">
                   <div>
                     <span className="text-xs uppercase font-bold text-gray-400 font-gaming">Network Latency</span>
                     <h3 className="text-xl font-black font-gaming text-emerald-400 mt-1">
@@ -1875,7 +1631,7 @@
                   </div>
                 </div>
 
-                <div className="glass-panel rounded-3xl p-6 border border-white/10 flex items-center justify-between">
+                <div className="glass-panel rounded-3xl p-6 border border-white/10 flex items-center justify-between reveal-on-scroll reveal-hidden">
                   <div>
                     <span className="text-xs uppercase font-bold text-gray-400 font-gaming">Engine Core</span>
                     <h3 className="text-xl font-black font-gaming text-white mt-1 truncate max-w-[150px]">
@@ -1890,10 +1646,10 @@
               </div>
 
               {/* MOTD Card */}
-              <div className="glass-panel rounded-3xl p-6 border border-yellow-500/20">
+              <div className="glass-panel rounded-3xl p-6 border border-crimson-500/20 reveal-on-scroll reveal-hidden">
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">BROADCAST MOTD</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-crimson-400 font-gaming">BROADCAST MOTD</span>
                     <p className="text-sm font-mono text-gray-200 mt-1 bg-dark-800/80 px-4 py-2.5 rounded-2xl border border-white/5">
                       {serverStatus.motd}
                     </p>
@@ -1901,7 +1657,7 @@
                   <div className="flex items-center gap-3">
                     <button
                       onClick={copyServerIP}
-                      className="px-5 py-2.5 rounded-2xl bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 text-black text-xs font-bold tracking-wider uppercase font-gaming transition-all shadow-glow-gold"
+                      className="px-5 py-2.5 rounded-2xl bg-crimson-600 hover:bg-crimson-500 text-white text-xs font-bold tracking-wider uppercase font-gaming transition-all shadow-glow-crimson"
                     >
                       Copy IP:Port
                     </button>
@@ -1912,13 +1668,13 @@
           </section>
 
           {/* ========================================================================= */}
-          {/* STAFF TEAM */}
+          {/* STAFF TEAM (Founder Cards with MC Skin Avatars) */}
           {/* ========================================================================= */}
-          <section id="staff" className="py-20 relative">
+          <section id="staff" className="py-24 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div className="text-center mb-16">
-                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">NETWORK LEADERSHIP</span>
+              <div className="text-center mb-16 reveal-on-scroll reveal-hidden">
+                <span className="text-xs font-bold uppercase tracking-widest text-crimson-400 font-gaming">NETWORK LEADERSHIP</span>
                 <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
                   FEARSTEAL <span className="text-crimson-500">STAFF TEAM</span>
                 </h2>
@@ -1930,21 +1686,21 @@
               {/* Founders Spotlight Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
                 {/* Founder 1: ItzVeltriex */}
-                <div className="glass-panel-glow rounded-3xl p-6 sm:p-8 border-2 border-yellow-500 shadow-glow-gold relative flex flex-col sm:flex-row items-center gap-6">
+                <div className="glass-panel-glow rounded-3xl p-6 sm:p-8 border-2 border-crimson-500 shadow-glow-crimson relative flex flex-col sm:flex-row items-center gap-6 reveal-on-scroll reveal-hidden">
                   <div className="relative">
                     <img
                       src="https://mc-heads.net/avatar/ItzVeltriex/128"
                       alt="ItzVeltriex"
-                      className="w-24 h-24 rounded-2xl border-2 border-yellow-400 shadow-xl bg-dark-800"
+                      className="w-24 h-24 rounded-2xl border-2 border-crimson-400 shadow-xl bg-dark-800"
                       onError={(e) => { e.target.src = "https://mc-heads.net/avatar/MHF_Steve/128"; }}
                     />
-                    <span className="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-yellow-500 border-2 border-dark-900 flex items-center justify-center text-black text-xs font-black">
+                    <span className="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-crimson-600 border-2 border-dark-900 flex items-center justify-center text-white text-xs font-black">
                       👑
                     </span>
                   </div>
 
                   <div className="text-center sm:text-left flex-1">
-                    <span className="px-3 py-0.5 rounded-full bg-yellow-600/20 border border-yellow-500 text-yellow-300 text-[11px] font-bold uppercase tracking-wider font-gaming">
+                    <span className="px-3 py-0.5 rounded-full bg-crimson-600/30 border border-crimson-500 text-crimson-300 text-[11px] font-bold uppercase tracking-wider font-gaming">
                       FOUNDER
                     </span>
                     <h3 className="text-2xl font-black font-gaming text-white mt-1">ItzVeltriex</h3>
@@ -1955,7 +1711,7 @@
                         href="https://discord.gg/pGM5x3gXpX"
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={() => playSound('click')}
+                        onClick={() => triggerSound('click')}
                         className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#5865F2]/20 hover:bg-[#5865F2] border border-[#5865F2]/40 text-white text-xs font-bold transition-all"
                       >
                         <Icon name="message-square" size={14} />
@@ -1966,21 +1722,21 @@
                 </div>
 
                 {/* Founder 2: Notslayer */}
-                <div className="glass-panel-glow rounded-3xl p-6 sm:p-8 border-2 border-yellow-500 shadow-glow-gold relative flex flex-col sm:flex-row items-center gap-6">
+                <div className="glass-panel-glow rounded-3xl p-6 sm:p-8 border-2 border-crimson-500 shadow-glow-crimson relative flex flex-col sm:flex-row items-center gap-6 reveal-on-scroll reveal-hidden">
                   <div className="relative">
                     <img
                       src="https://mc-heads.net/avatar/Notslayer/128"
                       alt="Notslayer"
-                      className="w-24 h-24 rounded-2xl border-2 border-yellow-400 shadow-xl bg-dark-800"
+                      className="w-24 h-24 rounded-2xl border-2 border-crimson-400 shadow-xl bg-dark-800"
                       onError={(e) => { e.target.src = "https://mc-heads.net/avatar/MHF_Alex/128"; }}
                     />
-                    <span className="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-yellow-500 border-2 border-dark-900 flex items-center justify-center text-black text-xs font-black">
+                    <span className="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-crimson-600 border-2 border-dark-900 flex items-center justify-center text-white text-xs font-black">
                       👑
                     </span>
                   </div>
 
                   <div className="text-center sm:text-left flex-1">
-                    <span className="px-3 py-0.5 rounded-full bg-yellow-600/20 border border-yellow-500 text-yellow-300 text-[11px] font-bold uppercase tracking-wider font-gaming">
+                    <span className="px-3 py-0.5 rounded-full bg-crimson-600/30 border border-crimson-500 text-crimson-300 text-[11px] font-bold uppercase tracking-wider font-gaming">
                       FOUNDER
                     </span>
                     <h3 className="text-2xl font-black font-gaming text-white mt-1">Notslayer</h3>
@@ -1991,7 +1747,7 @@
                         href="https://discord.gg/HZhTd9Pry5"
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={() => playSound('click')}
+                        onClick={() => triggerSound('click')}
                         className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#5865F2]/20 hover:bg-[#5865F2] border border-[#5865F2]/40 text-white text-xs font-bold transition-all"
                       >
                         <Icon name="message-square" size={14} />
@@ -2002,7 +1758,7 @@
                 </div>
               </div>
 
-              {/* General Staff Grid */}
+              {/* Roster Cards */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
                 {[
                   { role: "OWNER", name: "RaviXD", color: "text-amber-400 border-amber-500/40 bg-amber-950/20" },
@@ -2015,7 +1771,7 @@
                   { role: "JUNIOR MODERATOR", name: "NotDark6", color: "text-cyan-400 border-cyan-500/40 bg-cyan-950/20" },
                   { role: "HELPER", name: "JessGamer7733", color: "text-emerald-400 border-emerald-500/40 bg-emerald-950/20" },
                 ].map((staff, idx) => (
-                  <div key={idx} className="glass-panel stable-card rounded-2xl p-4 text-center flex flex-col items-center">
+                  <div key={idx} className="glass-panel tilt-card rounded-2xl p-4 text-center flex flex-col items-center reveal-on-scroll reveal-hidden">
                     <img
                       src={`https://mc-heads.net/avatar/${staff.name}/128`}
                       alt={staff.name}
@@ -2037,11 +1793,11 @@
           {/* ========================================================================= */}
           {/* LEADERBOARDS & PODIUM */}
           {/* ========================================================================= */}
-          <section id="leaderboard" className="py-20 bg-dark-900/60 border-t border-white/5 relative">
+          <section id="leaderboard" className="py-24 bg-dark-900/60 border-t border-white/5 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div className="text-center mb-12">
-                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">RANKED GLORY</span>
+              <div className="text-center mb-12 reveal-on-scroll reveal-hidden">
+                <span className="text-xs font-bold uppercase tracking-widest text-crimson-400 font-gaming">RANKED GLORY</span>
                 <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
                   FEARSTEAL <span className="text-crimson-500">LEADERBOARDS</span>
                 </h2>
@@ -2061,10 +1817,10 @@
                 ].map((tab) => (
                   <button
                     key={tab.id}
-                    onClick={() => { playSound('click'); setLeaderboardCategory(tab.id); }}
+                    onClick={() => { triggerSound('click'); setLeaderboardCategory(tab.id); }}
                     className={`px-4 py-2 rounded-2xl text-xs font-gaming font-bold tracking-wider uppercase transition-all ${
                       leaderboardCategory === tab.id
-                        ? 'bg-yellow-500 text-black shadow-glow-gold'
+                        ? 'bg-crimson-600 text-white shadow-glow-crimson'
                         : 'bg-dark-800 text-gray-400 hover:text-white hover:bg-dark-700'
                     }`}
                   >
@@ -2077,7 +1833,7 @@
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 items-end">
                 {/* #2 Rank Silver */}
                 {leaderboardData[leaderboardCategory]?.[1] && (
-                  <div className="glass-panel rounded-3xl p-6 text-center border-t-4 border-gray-300 order-2 md:order-1">
+                  <div className="glass-panel rounded-3xl p-6 text-center border-t-4 border-gray-300 order-2 md:order-1 reveal-on-scroll reveal-hidden">
                     <span className="w-8 h-8 rounded-full bg-gray-300 text-black font-black text-sm inline-flex items-center justify-center mb-3">
                       #2
                     </span>
@@ -2094,14 +1850,14 @@
 
                 {/* #1 Rank Gold */}
                 {leaderboardData[leaderboardCategory]?.[0] && (
-                  <div className="glass-panel-glow rounded-3xl p-8 text-center border-2 border-yellow-400 shadow-2xl relative order-1 md:order-2 transform md:-translate-y-4">
+                  <div className="glass-panel-glow rounded-3xl p-8 text-center border-2 border-yellow-400 shadow-2xl relative order-1 md:order-2 transform md:-translate-y-4 reveal-on-scroll reveal-hidden">
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-yellow-400 text-black font-black text-xs uppercase tracking-wider font-gaming shadow-lg">
                       👑 CHAMPION #1
                     </div>
                     <img
                       src={`https://mc-heads.net/avatar/${leaderboardData[leaderboardCategory][0].name}/128`}
                       alt=""
-                      className="w-24 h-24 rounded-2xl mx-auto mb-4 border-4 border-yellow-400 shadow-glow-gold"
+                      className="w-24 h-24 rounded-2xl mx-auto mb-4 border-4 border-yellow-400 shadow-glow-crimson"
                     />
                     <h3 className="text-2xl font-black font-gaming text-white text-glow-gold">{leaderboardData[leaderboardCategory][0].name}</h3>
                     <p className="text-lg font-black text-yellow-400 font-mono mt-1">{leaderboardData[leaderboardCategory][0].value}</p>
@@ -2111,7 +1867,7 @@
 
                 {/* #3 Rank Bronze */}
                 {leaderboardData[leaderboardCategory]?.[2] && (
-                  <div className="glass-panel rounded-3xl p-6 text-center border-t-4 border-amber-700 order-3">
+                  <div className="glass-panel rounded-3xl p-6 text-center border-t-4 border-amber-700 order-3 reveal-on-scroll reveal-hidden">
                     <span className="w-8 h-8 rounded-full bg-amber-700 text-white font-black text-sm inline-flex items-center justify-center mb-3">
                       #3
                     </span>
@@ -2132,11 +1888,11 @@
           {/* ========================================================================= */}
           {/* 15-DAY AUTOMATIC ROTATING EVENTS */}
           {/* ========================================================================= */}
-          <section id="events" className="py-20 relative">
+          <section id="events" className="py-24 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div className="text-center mb-16">
-                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">COMPETITIVE TIMETABLE</span>
+              <div className="text-center mb-16 reveal-on-scroll reveal-hidden">
+                <span className="text-xs font-bold uppercase tracking-widest text-crimson-400 font-gaming">COMPETITIVE TIMETABLE</span>
                 <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
                   FEARSTEAL <span className="text-crimson-500">15-DAY EVENTS</span>
                 </h2>
@@ -2146,11 +1902,11 @@
               </div>
 
               {/* Active Countdown Spotlight */}
-              <div className="glass-panel-glow rounded-3xl p-6 sm:p-10 border-2 border-yellow-500 shadow-glow-gold mb-12 relative overflow-hidden">
+              <div className="glass-panel-glow rounded-3xl p-6 sm:p-10 border-2 border-crimson-500 shadow-glow-crimson mb-12 relative overflow-hidden reveal-on-scroll reveal-hidden">
                 <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="px-3 py-1 rounded-full bg-crimson-600 text-white text-xs font-bold uppercase tracking-wider font-gaming">
+                      <span className="px-3 py-1 rounded-full bg-crimson-600 text-white text-xs font-bold uppercase tracking-wider font-gaming animate-pulse">
                         LIVE ACTIVE EVENT
                       </span>
                       <span className="px-3 py-1 rounded-full bg-dark-800 border border-white/10 text-gray-300 text-xs font-bold uppercase">
@@ -2166,14 +1922,14 @@
                       {eventList[currentEventIndex].description}
                     </p>
 
-                    <div className="mt-4 p-3 rounded-2xl bg-dark-900/80 border border-yellow-500/30 inline-block">
+                    <div className="mt-4 p-3 rounded-2xl bg-dark-900/80 border border-crimson-500/30 inline-block">
                       <span className="text-[11px] font-bold text-gray-400 uppercase">🏆 Event Rewards: </span>
                       <span className="text-xs font-bold text-yellow-400">{eventList[currentEventIndex].reward}</span>
                     </div>
                   </div>
 
                   {/* 15-Day Live Countdown Clocks */}
-                  <div className="w-full lg:w-auto bg-dark-900/90 border border-yellow-500/40 rounded-3xl p-6 text-center">
+                  <div className="w-full lg:w-auto bg-dark-900/90 border border-crimson-500/40 rounded-3xl p-6 text-center">
                     <span className="text-xs uppercase font-bold tracking-widest text-gray-400 block mb-3 font-gaming">
                       NEXT ROTATION IN:
                     </span>
@@ -2190,8 +1946,8 @@
                         <span className="text-2xl sm:text-3xl font-black font-gaming text-white">{eventTimeLeft.minutes}</span>
                         <span className="block text-[10px] text-gray-400 uppercase font-bold mt-1">Mins</span>
                       </div>
-                      <div className="p-3 bg-dark-800 rounded-2xl border border-yellow-500/40 min-w-[65px]">
-                        <span className="text-2xl sm:text-3xl font-black font-gaming text-yellow-400">{eventTimeLeft.seconds}</span>
+                      <div className="p-3 bg-dark-800 rounded-2xl border border-crimson-500/40 min-w-[65px]">
+                        <span className="text-2xl sm:text-3xl font-black font-gaming text-crimson-400">{eventTimeLeft.seconds}</span>
                         <span className="block text-[10px] text-gray-400 uppercase font-bold mt-1">Secs</span>
                       </div>
                     </div>
@@ -2204,11 +1960,11 @@
           {/* ========================================================================= */}
           {/* MEDIA RANKS & CREATOR KIT */}
           {/* ========================================================================= */}
-          <section id="media" className="py-20 bg-dark-900/60 border-t border-white/5 relative">
+          <section id="media" className="py-24 bg-dark-900/60 border-t border-white/5 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div className="text-center mb-16">
-                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">CREATOR SPONSORSHIP</span>
+              <div className="text-center mb-16 reveal-on-scroll reveal-hidden">
+                <span className="text-xs font-bold uppercase tracking-widest text-crimson-400 font-gaming">CREATOR SPONSORSHIP</span>
                 <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
                   MEDIA <span className="text-crimson-500">RANKS & PERKS</span>
                 </h2>
@@ -2222,11 +1978,11 @@
                   { name: "SMOL RANK", subs: "200+ Subscribers", color: "border-blue-500/40", perks: ["[SMOL] Creator Prefix", "Access to /stream Announcement", "Free Creator Kit"] },
                   { name: "MEDIA RANK", subs: "500 - 1,000 Subscribers", color: "border-purple-500/50", perks: ["[MEDIA] Purple Prefix", "Global Broadcast /live", "5x Extra Heart Vaults", "Discord Creator Lounge"] },
                   { name: "MEDIA+ RANK", subs: "1,000 - 5,000 Subscribers", color: "border-crimson-500/60", perks: ["[MEDIA+] Crimson Gradient", "Custom Clan Vanity URL", "Bi-Weekly Store Voucher", "Priority Support Queue"] },
-                  { name: "FAMOUS RANK", subs: "10,000+ Subscribers", color: "border-yellow-500/60 shadow-glow-gold", perks: ["[FAMOUS] Gold Crest", "Revenue Share Affiliate Code", "Dedicated Producer Role", "Unlimited Hearts Reset"] },
+                  { name: "FAMOUS RANK", subs: "10,000+ Subscribers", color: "border-yellow-500/60 shadow-glow-crimson", perks: ["[FAMOUS] Gold Crest", "Revenue Share Affiliate Code", "Dedicated Producer Role", "Unlimited Hearts Reset"] },
                 ].map((media, idx) => (
-                  <div key={idx} className={`glass-panel stable-card rounded-3xl p-6 border ${media.color} flex flex-col justify-between`}>
+                  <div key={idx} className={`glass-panel tilt-card rounded-3xl p-6 border ${media.color} flex flex-col justify-between reveal-on-scroll reveal-hidden`}>
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-yellow-400 font-gaming">REQUIREMENT</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-crimson-400 font-gaming">REQUIREMENT</span>
                       <p className="text-xs font-bold text-gray-300 font-mono mt-0.5">{media.subs}</p>
                       
                       <h3 className="text-xl font-black font-gaming text-white mt-3 mb-4">{media.name}</h3>
@@ -2234,7 +1990,7 @@
                       <ul className="space-y-2 mb-6">
                         {media.perks.map((p, pIdx) => (
                           <li key={pIdx} className="text-xs text-gray-300 flex items-center gap-2">
-                            <Icon name="check" size={14} className="text-yellow-400 flex-shrink-0" />
+                            <Icon name="check" size={14} className="text-crimson-400 flex-shrink-0" />
                             <span>{p}</span>
                           </li>
                         ))}
@@ -2245,8 +2001,8 @@
                       href="https://discord.gg/pGM5x3gXpX"
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={() => playSound('click')}
-                      className="w-full py-2.5 rounded-xl bg-dark-800 hover:bg-yellow-500 hover:text-black border border-white/10 text-center font-gaming font-bold text-xs tracking-wider uppercase text-white transition-all block"
+                      onClick={() => triggerSound('click')}
+                      className="w-full py-2.5 rounded-xl bg-dark-800 hover:bg-crimson-600 border border-white/10 text-center font-gaming font-bold text-xs tracking-wider uppercase text-white transition-all block"
                     >
                       APPLY VIA DISCORD
                     </a>
@@ -2255,7 +2011,7 @@
               </div>
 
               {/* Video Description Template */}
-              <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10">
+              <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 reveal-on-scroll reveal-hidden">
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4">
                   <div>
                     <h3 className="text-xl font-bold font-gaming text-white uppercase tracking-wider">
@@ -2269,10 +2025,10 @@
                     onClick={() => {
                       const desc = `⚔️ Play on FearSteal LifeSteal Network!\nServer IP: play.fearsteal.fun\nBedrock Port: 19132\nDiscord: https://discord.gg/pGM5x3gXpX\nStore: https://store.cryzormc.in/`;
                       navigator.clipboard.writeText(desc);
-                      playSound('copy');
+                      triggerSound('copy');
                       addToast("Copied Template", "Creator description copied to clipboard!", "success");
                     }}
-                    className="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 text-black font-gaming font-bold text-xs tracking-wider uppercase shadow-glow-gold transition-all flex items-center gap-2"
+                    className="px-4 py-2.5 rounded-2xl bg-crimson-600 hover:bg-crimson-500 text-white font-gaming font-bold text-xs tracking-wider uppercase shadow-glow-crimson transition-all flex items-center gap-2"
                   >
                     <Icon name="copy" size={14} />
                     <span>COPY DESCRIPTION</span>
@@ -2281,8 +2037,8 @@
 
                 <div className="bg-dark-950 p-4 rounded-2xl font-mono text-xs text-gray-300 border border-white/5 space-y-1">
                   <p>⚔️ Play on FearSteal LifeSteal Network!</p>
-                  <p className="text-yellow-400">• Server IP: play.fearsteal.fun</p>
-                  <p className="text-yellow-400">• Bedrock Port: 19132</p>
+                  <p className="text-crimson-400">• Server IP: play.fearsteal.fun</p>
+                  <p className="text-crimson-400">• Bedrock Port: 19132</p>
                   <p>• Official Discord: <a href="https://discord.gg/pGM5x3gXpX" target="_blank" className="underline text-blue-400">https://discord.gg/pGM5x3gXpX</a></p>
                   <p>• Official Store: <a href="https://store.cryzormc.in/" target="_blank" className="underline text-yellow-400">https://store.cryzormc.in/</a></p>
                 </div>
@@ -2293,11 +2049,11 @@
           {/* ========================================================================= */}
           {/* SERVER RULES SECTION */}
           {/* ========================================================================= */}
-          <section id="rules" className="py-20 relative">
+          <section id="rules" className="py-24 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div className="text-center mb-16">
-                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">NETWORK CONDUCT</span>
+              <div className="text-center mb-16 reveal-on-scroll reveal-hidden">
+                <span className="text-xs font-bold uppercase tracking-widest text-crimson-400 font-gaming">NETWORK CONDUCT</span>
                 <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
                   SERVER <span className="text-crimson-500">RULES & ENFORCEMENT</span>
                 </h2>
@@ -2315,8 +2071,8 @@
                   { num: "05", title: "No DDoS or Doxxing Threats", desc: "Threatening network infrastructure or attempting to compromise player safety results in an unappealable ban." },
                   { num: "06", title: "Respect Staff Authority", desc: "Follow staff instructions during events. If you believe a punishment was unfair, submit an appeal in Discord." },
                 ].map((rule, idx) => (
-                  <div key={idx} className="glass-panel stable-card rounded-3xl p-6 border border-white/10 relative">
-                    <span className="text-3xl font-black font-gaming text-yellow-500/30 absolute top-4 right-5">
+                  <div key={idx} className="glass-panel tilt-card rounded-3xl p-6 border border-white/10 relative reveal-on-scroll reveal-hidden">
+                    <span className="text-3xl font-black font-gaming text-crimson-500/30 absolute top-4 right-5">
                       {rule.num}
                     </span>
                     <h3 className="text-lg font-bold font-gaming text-white mb-2 pr-8">{rule.title}</h3>
@@ -2330,11 +2086,11 @@
           {/* ========================================================================= */}
           {/* HOW TO PLAY GUIDE */}
           {/* ========================================================================= */}
-          <section id="how-to-play" className="py-20 bg-dark-900/60 border-t border-white/5 relative">
+          <section id="how-to-play" className="py-24 bg-dark-900/60 border-t border-white/5 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div className="text-center mb-16">
-                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">QUICK START GUIDE</span>
+              <div className="text-center mb-16 reveal-on-scroll reveal-hidden">
+                <span className="text-xs font-bold uppercase tracking-widest text-crimson-400 font-gaming">QUICK START GUIDE</span>
                 <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
                   HOW TO <span className="text-crimson-500">JOIN FEARSTEAL</span>
                 </h2>
@@ -2352,9 +2108,9 @@
                   { step: "STEP 5", title: "Enter Port: 19132", desc: "Bedrock uses port 19132 (Java default 25565)." },
                   { step: "STEP 6", title: "Join & Conquer", desc: "Click Join Server and start your LifeSteal dominance!" },
                 ].map((item, idx) => (
-                  <div key={idx} className="glass-panel stable-card rounded-3xl p-5 border border-white/10 text-center flex flex-col justify-between">
+                  <div key={idx} className="glass-panel tilt-card rounded-3xl p-5 border border-white/10 text-center flex flex-col justify-between reveal-on-scroll reveal-hidden">
                     <div>
-                      <span className="px-2.5 py-1 rounded-full bg-yellow-950 text-yellow-400 text-[10px] font-bold font-gaming tracking-widest uppercase">
+                      <span className="px-2.5 py-1 rounded-full bg-crimson-950 text-crimson-400 text-[10px] font-bold font-gaming tracking-widest uppercase">
                         {item.step}
                       </span>
                       <h4 className="text-base font-bold font-gaming text-white mt-3 mb-1">{item.title}</h4>
@@ -2369,11 +2125,11 @@
           {/* ========================================================================= */}
           {/* FAQ ACCORDION */}
           {/* ========================================================================= */}
-          <section id="faq" className="py-20 relative">
+          <section id="faq" className="py-24 relative">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              <div className="text-center mb-16">
-                <span className="text-xs font-bold uppercase tracking-widest text-yellow-400 font-gaming">COMMON INQUIRIES</span>
+              <div className="text-center mb-16 reveal-on-scroll reveal-hidden">
+                <span className="text-xs font-bold uppercase tracking-widest text-crimson-400 font-gaming">COMMON INQUIRIES</span>
                 <h2 className="text-3xl sm:text-5xl font-black font-gaming tracking-wide uppercase mt-2">
                   FREQUENTLY ASKED <span className="text-crimson-500">QUESTIONS</span>
                 </h2>
@@ -2383,15 +2139,15 @@
                 {[
                   { q: "What is FearSteal Network?", a: "FearSteal is a premier Minecraft LifeSteal network engineered for intense PvP combat, heart-stealing mechanics, clan wars, automated 15-day rotating tournaments, and full cross-play between Bedrock and Java." },
                   { q: "What is the official server IP and Port?", a: "The server IP is play.fearsteal.fun. For Bedrock Edition (Pocket / Console / Windows), use Port: 19132. Java Edition connects directly to play.fearsteal.fun." },
-                  { q: "How does the free Novice rank claim work?", a: "We offer a special free Novice rank capped at 100 players. Once you click Claim Novice, you are redirected to our Discord server (https://discord.gg/pGM5x3gXpX) to link your tag. Once the counter hits 100/100, it automatically locks as OUT OF STOCK." },
+                  { q: "How does the free Novice rank claim work?", a: "We offer a special free Novice rank capped at 100 players. Once you click Claim Novice, you are redirected to our Discord server to link your tag. Once the counter hits 100/100, it automatically locks as OUT OF STOCK." },
                   { q: "How often do competitive events rotate?", a: "Events rotate automatically every 15 days. Our live timer tracks the remaining days, hours, minutes, and seconds until the next tournament begins." },
                   { q: "Where can I purchase store ranks?", a: "Visit our official webstore at https://store.cryzormc.in/ where you can choose ranks such as FEARSTEAL ($25), FEAR+ ($20), STEAL+ ($18), KING ($15), and more." },
                   { q: "How can I apply for Media Ranks?", a: "Creators with 200+ subscribers can apply through our Discord server (https://discord.gg/pGM5x3gXpX) by providing channel links and using our official description template." },
                 ].map((faqItem, idx) => (
-                  <details key={idx} className="glass-panel rounded-3xl p-5 border border-white/10 group cursor-pointer">
+                  <details key={idx} className="glass-panel rounded-3xl p-5 border border-white/10 group cursor-pointer reveal-on-scroll reveal-hidden">
                     <summary className="font-gaming font-bold text-lg text-white flex items-center justify-between list-none">
                       <span>{faqItem.q}</span>
-                      <Icon name="chevron-down" size={18} className="text-yellow-400 transition-transform group-open:rotate-180" />
+                      <Icon name="chevron-down" size={18} className="text-crimson-400 transition-transform group-open:rotate-180" />
                     </summary>
                     <p className="text-xs sm:text-sm text-gray-400 mt-3 pt-3 border-t border-white/5 leading-relaxed">
                       {faqItem.a}
@@ -2403,11 +2159,11 @@
           </section>
 
           {/* ========================================================================= */}
-          {/* DISCORD COMMUNITY SECTION (Live Connected to https://discord.gg/pGM5x3gXpX) */}
+          {/* DISCORD COMMUNITY & INTERACTIVE WIDGET PREVIEW */}
           {/* ========================================================================= */}
-          <section className="py-20 bg-gradient-to-b from-dark-900/70 to-dark-950 relative border-t border-white/5">
+          <section className="py-24 bg-gradient-to-b from-dark-900/70 to-dark-950 relative border-t border-white/5">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="glass-panel-glow rounded-3xl p-8 md:p-12 border-2 border-[#5865F2]/50 shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
+              <div className="glass-panel-glow rounded-3xl p-8 md:p-12 border-2 border-[#5865F2]/50 shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 reveal-on-scroll reveal-hidden">
                 
                 <div className="flex-1 text-center lg:text-left">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5865F2]/20 text-[#5865F2] text-xs font-bold uppercase mb-4">
@@ -2425,19 +2181,19 @@
 
                   <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-4">
                     <a
-                      href={discordLive.inviteUrl}
+                      href="https://discord.gg/pGM5x3gXpX"
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={() => playSound('click')}
-                      className="py-4 px-8 rounded-2xl bg-[#5865F2] hover:bg-[#4752C4] text-white font-gaming font-bold text-base tracking-wider uppercase transition-all shadow-lg flex items-center gap-2"
+                      onClick={() => triggerSound('click')}
+                      className="py-4 px-8 rounded-2xl bg-[#5865F2] hover:bg-[#4752C4] text-white font-gaming font-bold text-base tracking-wider uppercase transition-all shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2"
                     >
                       <Icon name="message-square" size={20} />
-                      <span>JOIN OFFICIAL DISCORD</span>
+                      <span>JOIN DISCORD SERVER</span>
                     </a>
 
                     <a
                       href="mailto:fearstealsupport@gmail.com"
-                      onClick={() => playSound('click')}
+                      onClick={() => triggerSound('click')}
                       className="py-4 px-6 rounded-2xl bg-dark-800 hover:bg-dark-700 border border-white/10 text-gray-200 font-gaming font-bold text-base tracking-wider uppercase transition-all flex items-center gap-2"
                     >
                       <Icon name="mail" size={18} />
@@ -2446,30 +2202,26 @@
                   </div>
                 </div>
 
-                {/* Discord Live Widget Preview Card */}
+                {/* Discord Live Widget Card */}
                 <div className="w-full lg:w-96 bg-dark-900 border border-white/10 rounded-3xl p-6 text-center">
                   <div className="w-16 h-16 rounded-2xl bg-[#5865F2] text-white flex items-center justify-center mx-auto mb-3 shadow-lg">
                     <Icon name="message-square" size={32} />
                   </div>
-                  <h4 className="text-xl font-black font-gaming text-white">{discordLive.guildName}</h4>
-                  
+                  <h4 className="text-xl font-black font-gaming text-white">FearSteal Official Discord</h4>
                   <div className="flex items-center justify-center gap-4 text-xs mt-2 text-gray-400">
-                    <span className="flex items-center gap-1.5 font-bold text-emerald-400 font-mono">
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-                      {discordLive.onlineMembers.toLocaleString()} Online
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      1,840+ Members Online
                     </span>
-                    <span className="text-gray-500">•</span>
-                    <span className="text-gray-300 font-mono">{discordLive.totalMembers.toLocaleString()} Members</span>
                   </div>
-
                   <a
                     href="https://discord.gg/pGM5x3gXpX"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => playSound('click')}
+                    onClick={() => triggerSound('click')}
                     className="mt-4 w-full py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-gaming font-bold text-xs uppercase tracking-wider block transition-all shadow-md"
                   >
-                    CONNECT TO DISCORD (pGM5x3gXpX)
+                    CONNECT VIA WIDGET
                   </a>
                 </div>
               </div>
@@ -2479,7 +2231,7 @@
           {/* ========================================================================= */}
           {/* FOOTER & STAY UPDATED NEWSLETTER */}
           {/* ========================================================================= */}
-          <footer className="bg-dark-950 border-t border-yellow-500/20 pt-16 pb-12 relative">
+          <footer className="bg-dark-950 border-t border-crimson-500/20 pt-16 pb-12 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
@@ -2492,27 +2244,26 @@
                   <div className="text-xs text-gray-500 font-mono">
                     <p>IP: <span className="text-white">play.fearsteal.fun</span></p>
                     <p>Port: <span className="text-white">19132</span></p>
-                    <p>Support: <a href="mailto:fearstealsupport@gmail.com" className="text-yellow-400 hover:underline">fearstealsupport@gmail.com</a></p>
+                    <p>Support: <a href="mailto:fearstealsupport@gmail.com" className="text-crimson-400 hover:underline">fearstealsupport@gmail.com</a></p>
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-yellow-400 mb-4 font-gaming">
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-crimson-400 mb-4 font-gaming">
                     EXPLORE
                   </h4>
                   <ul className="space-y-2 text-xs text-gray-400 font-gaming">
                     <li><button onClick={() => scrollToSection('home')} className="hover:text-white transition-colors">Home Portal</button></li>
                     <li><button onClick={() => scrollToSection('store')} className="hover:text-white transition-colors">Server Ranks & Free Novice</button></li>
-                    <li><button onClick={() => scrollToSection('simulator')} className="hover:text-white transition-colors">Heart Forge Simulator</button></li>
-                    <li><button onClick={() => scrollToSection('crates')} className="hover:text-white transition-colors">Crate Unboxer</button></li>
-                    <li><button onClick={() => scrollToSection('status')} className="hover:text-white transition-colors">Live Status & Telemetry</button></li>
+                    <li><button onClick={() => scrollToSection('status')} className="hover:text-white transition-colors">Live Status & Health</button></li>
                     <li><button onClick={() => scrollToSection('staff')} className="hover:text-white transition-colors">Staff Directory</button></li>
                     <li><button onClick={() => scrollToSection('leaderboard')} className="hover:text-white transition-colors">Top Leaderboards</button></li>
+                    <li><button onClick={() => scrollToSection('events')} className="hover:text-white transition-colors">15-Day Event Rotation</button></li>
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-yellow-400 mb-4 font-gaming">
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-crimson-400 mb-4 font-gaming">
                     OFFICIAL NETWORKS
                   </h4>
                   <ul className="space-y-2 text-xs text-gray-400">
@@ -2524,7 +2275,7 @@
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-yellow-400 mb-2 font-gaming">
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-crimson-400 mb-2 font-gaming">
                     STAY UPDATED
                   </h4>
                   <p className="text-xs text-gray-400 mb-4">
@@ -2538,11 +2289,11 @@
                       placeholder="Enter your email address"
                       value={newsletterEmail}
                       onChange={(e) => setNewsletterEmail(e.target.value)}
-                      className="w-full bg-dark-850 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500"
+                      className="w-full bg-dark-850 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-crimson-500"
                     />
                     <button
                       type="submit"
-                      className="w-full py-2.5 rounded-2xl bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 text-black font-gaming font-bold text-xs tracking-wider uppercase transition-all shadow-glow-gold"
+                      className="w-full py-2.5 rounded-2xl bg-crimson-600 hover:bg-crimson-500 text-white font-gaming font-bold text-xs tracking-wider uppercase transition-all shadow-glow-crimson"
                     >
                       {newsletterSuccess ? "✓ SUBSCRIBED!" : "SUBSCRIBE TO ALERTS"}
                     </button>
