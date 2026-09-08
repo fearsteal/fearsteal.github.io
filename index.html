@@ -126,11 +126,6 @@
       transform: translateY(-3px); box-shadow: 0 8px 30px rgba(88, 101, 242, 0.6);
       filter: brightness(1.1);
     }
-    .btn-admin {
-      background: linear-gradient(135deg, #f59e0b, #ef4444);
-      color: #fff; box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
-      border: 1px solid #ffca18;
-    }
 
     .glass-card {
       background: rgba(12, 12, 18, 0.78);
@@ -212,7 +207,7 @@
       font-size: 0.95rem; color: #9ca3af;
     }
 
-    /* AUTHENTICATION OVERLAY */
+    /* AUTHENTICATION SCREEN */
     #auth-overlay {
       position: fixed; inset: 0;
       background: radial-gradient(circle at center, rgba(20, 6, 8, 0.97) 0%, rgba(2, 2, 4, 0.99) 100%);
@@ -266,28 +261,6 @@
       box-shadow: 0 2px 15px rgba(220, 38, 38, 0.5);
     }
 
-    .oauth-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-    .oauth-btn {
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      width: 100%; padding: 12px; border-radius: 9px; font-family: var(--font-body);
-      font-weight: 600; font-size: 0.92rem; cursor: pointer; border: 1px solid transparent;
-      transition: var(--transition); color: #fff;
-    }
-    .oauth-microsoft { background: #107c41; border-color: #199e55; }
-    .oauth-microsoft:hover { background: #0e6b37; transform: translateY(-2px); }
-    .oauth-discord { background: #5865F2; border-color: #6d78f4; }
-    .oauth-discord:hover { background: #4752c4; transform: translateY(-2px); }
-    .oauth-google { background: #ffffff; color: #1f2937; border-color: #e5e7eb; }
-    .oauth-google:hover { background: #f3f4f6; transform: translateY(-2px); }
-
-    .oauth-divider {
-      display: flex; align-items: center; text-align: center;
-      color: var(--text-muted); font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 1.5px; margin: 18px 0;
-    }
-    .oauth-divider::before, .oauth-divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-    .oauth-divider span { padding: 0 12px; }
-
     .ign-input-container { display: flex; align-items: center; gap: 12px; }
     .auth-live-avatar {
       width: 44px; height: 44px; border-radius: 8px; border: 2px solid var(--border-bright);
@@ -325,6 +298,15 @@
     }
     .auth-options a { color: var(--crimson-glow); text-decoration: none; }
 
+    /* BROADCAST BANNER */
+    #admin-broadcast-banner {
+      display: none;
+      background: linear-gradient(90deg, #991b1b, #ef4444, #f59e0b);
+      color: #fff; text-align: center; padding: 8px 16px; font-weight: 800;
+      font-size: 0.88rem; letter-spacing: 1px; text-transform: uppercase;
+      box-shadow: 0 2px 15px rgba(220, 38, 38, 0.6); position: relative; z-index: 102;
+    }
+
     /* TOP BAR & NAVBAR */
     .top-bar {
       background: rgba(4, 4, 6, 0.9); border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -335,15 +317,6 @@
       color: var(--text-muted); text-decoration: none; margin-left: 18px; transition: var(--transition);
     }
     .top-bar-links a:hover { color: var(--gold-fs); }
-
-    /* Admin Announcement Broadcast Strip */
-    #admin-broadcast-banner {
-      display: none;
-      background: linear-gradient(90deg, #991b1b, #ef4444, #f59e0b);
-      color: #fff; text-align: center; padding: 8px 16px; font-weight: 800;
-      font-size: 0.88rem; letter-spacing: 1px; text-transform: uppercase;
-      box-shadow: 0 2px 15px rgba(220, 38, 38, 0.6); position: relative; z-index: 102;
-    }
 
     header.main-nav-wrapper {
       position: sticky; top: 0; z-index: 100;
@@ -375,14 +348,16 @@
       color: #ffffff; background: rgba(220, 38, 38, 0.2); box-shadow: inset 0 0 0 1px rgba(220, 38, 38, 0.4);
     }
 
-    /* Admin Nav Item (Hidden for normal users) */
+    /* STRICT ADMIN NAVIGATION BUTTON (Strictly hidden unless authorized) */
     #admin-nav-item { display: none; }
     #admin-nav-item a {
-      color: #fef08a; background: rgba(245, 158, 11, 0.18);
-      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #fff; background: linear-gradient(135deg, #b91c1c, #f59e0b);
+      border: 1px solid #f59e0b; box-shadow: 0 0 16px rgba(245, 158, 11, 0.5);
+      font-weight: 800; animation: adminGlowPulse 2.5s infinite;
     }
-    #admin-nav-item a:hover {
-      background: var(--gold-deep); color: #000; box-shadow: 0 0 15px rgba(245, 158, 11, 0.7);
+    @keyframes adminGlowPulse {
+      0%, 100% { box-shadow: 0 0 12px rgba(245, 158, 11, 0.4); }
+      50% { box-shadow: 0 0 24px rgba(239, 68, 68, 0.8); }
     }
 
     .nav-actions { display: flex; align-items: center; gap: 12px; }
@@ -400,9 +375,9 @@
       border-radius: 20px; font-size: 0.82rem; font-weight: 600;
     }
     .nav-user-badge.founder-badge {
-      background: linear-gradient(135deg, rgba(220, 38, 38, 0.35), rgba(245, 158, 11, 0.35));
+      background: linear-gradient(135deg, rgba(220, 38, 38, 0.4), rgba(245, 158, 11, 0.4));
       border: 1px solid var(--gold-fs);
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
     }
     .nav-user-badge img { width: 24px; height: 24px; border-radius: 4px; }
     .logout-btn {
@@ -417,18 +392,18 @@
     }
 
     /* ========================================================
-       FOUNDER ADMIN PANEL MODAL & DASHBOARD
+       FOUNDER ADMIN PANEL MODAL (LOCKED BY DEFAULT)
        ======================================================== */
     #admin-panel-overlay {
-      position: fixed; inset: 0; background: rgba(3, 3, 6, 0.95);
-      backdrop-filter: blur(20px); z-index: 10005; display: none;
+      position: fixed; inset: 0; background: rgba(3, 3, 6, 0.96);
+      backdrop-filter: blur(24px); z-index: 10005; display: none;
       align-items: center; justify-content: center; padding: 20px;
     }
     #admin-panel-overlay.open { display: flex; }
     .admin-dashboard-box {
-      width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto;
-      background: #0d0d14; border: 1px solid var(--gold-fs); border-radius: 18px;
-      padding: 32px; box-shadow: 0 20px 70px rgba(0,0,0,0.9), 0 0 40px rgba(245, 158, 11, 0.25);
+      width: 100%; max-width: 920px; max-height: 90vh; overflow-y: auto;
+      background: #0d0d14; border: 2px solid var(--gold-fs); border-radius: 18px;
+      padding: 34px; box-shadow: 0 20px 80px rgba(0,0,0,0.95), 0 0 50px rgba(245, 158, 11, 0.3);
     }
     .admin-dash-header {
       display: flex; justify-content: space-between; align-items: center;
@@ -569,7 +544,7 @@
     .feature-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
     .feature-text { color: var(--text-muted); font-size: 0.94rem; line-height: 1.55; }
 
-    /* STORE & RANKS */
+    /* STORE */
     .store-section { padding: 95px 0; background: linear-gradient(180deg, rgba(14, 14, 20, 0.4), transparent); }
     .ranks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 26px; margin-bottom: 50px; }
     .rank-card {
@@ -851,29 +826,12 @@
         </p>
       </div>
 
-      <!-- Quick OAuth Single Sign-On Suite -->
-      <div class="oauth-container">
-        <button type="button" class="oauth-btn oauth-microsoft" onclick="handleOAuthLogin('Microsoft')">
-          <i class="fa-brands fa-xbox" style="font-size:1.2rem;"></i> Continue with Microsoft / Xbox Live
-        </button>
-        <button type="button" class="oauth-btn oauth-discord" onclick="handleOAuthLogin('Discord')">
-          <i class="fa-brands fa-discord" style="font-size:1.2rem;"></i> Continue with Discord
-        </button>
-        <button type="button" class="oauth-btn oauth-google" onclick="handleOAuthLogin('Google')">
-          <i class="fa-brands fa-google" style="font-size:1.1rem; color:#ea4335;"></i> Continue with Google
-        </button>
-      </div>
-
-      <div class="oauth-divider">
-        <span>OR USE MINECRAFT CREDENTIALS</span>
-      </div>
-
       <div class="auth-tabs">
         <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">LOGIN</button>
         <button class="auth-tab-btn" id="tab-register-btn" onclick="switchAuthTab('register')">REGISTER</button>
       </div>
 
-      <!-- Login Form (Supports IGN ItzVeltriex OR Email fearstealsupport@gmail.com with password thakuree@2064) -->
+      <!-- Login Form (Only ItzVeltriex or fearstealsupport@gmail.com with thakuree@2064 unlocks Admin Panel) -->
       <form id="login-form" onsubmit="handleLoginSubmit(event)">
         <div class="auth-form-group">
           <label>Minecraft Username or Email</label>
@@ -959,10 +917,10 @@
     </div>
   </div>
 
-  <!-- LIVE ADMIN BROADCAST STRIP -->
+  <!-- BROADCAST BANNER -->
   <div id="admin-broadcast-banner">
     <i class="fa-solid fa-bullhorn" style="margin-right: 8px;"></i>
-    <span id="broadcast-message-text">NETWORK NOTICE: FEARSTEAL S2 TOURNAMENTS ARE UNDERWAY!</span>
+    <span id="broadcast-message-text">NETWORK NOTICE: FEARSTEAL TOURNAMENTS ARE UNDERWAY!</span>
   </div>
 
   <!-- TOP BAR -->
@@ -984,7 +942,7 @@
     </div>
   </div>
 
-  <!-- NAVIGATION WITH ADMIN DASHBOARD BUTTON -->
+  <!-- NAVIGATION WITH DYNAMIC ADMIN TAB -->
   <header class="main-nav-wrapper">
     <div class="container nav-inner">
       <a href="#home" class="brand-logo-area">
@@ -1007,10 +965,10 @@
         <li class="nav-item"><a href="#how-to-play"><i class="fa-solid fa-gamepad"></i> How To Play</a></li>
         <li class="nav-item"><a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
         
-        <!-- EXCLUSIVE ADMIN TAB (Visible only if logged in as ItzVeltriex / fearstealsupport@gmail.com) -->
+        <!-- FOUNDER ADMIN LINK (STRICTLY HIDDEN BY DEFAULT, ONLY VISIBLE TO ITZVELTRIEX) -->
         <li class="nav-item" id="admin-nav-item">
           <a href="#admin" onclick="openAdminPanel(event)">
-            <i class="fa-solid fa-shield-halved" style="color:var(--gold-fs);"></i> ADMIN PANEL
+            <i class="fa-solid fa-crown" style="color:#000;"></i> ADMIN PANEL
           </a>
         </li>
       </ul>
@@ -1035,13 +993,13 @@
   </header>
 
   <!-- ========================================================
-       FOUNDER EXCLUSIVE ADMIN DASHBOARD PANEL (HIDDEN BY DEFAULT)
+       FOUNDER ADMIN DASHBOARD CONSOLE (LOCKED TO ITZVELTRIEX)
        ======================================================== -->
   <div id="admin-panel-overlay">
     <div class="admin-dashboard-box">
       <div class="admin-dash-header">
         <div>
-          <span style="color:var(--gold-fs); font-size:0.8rem; font-weight:800; letter-spacing:2px;">AUTHENTICATED AS NETWORK FOUNDER</span>
+          <span style="color:var(--gold-fs); font-size:0.8rem; font-weight:800; letter-spacing:2px;">SECURITY STATUS: FOUNDER VERIFIED (ItzVeltriex)</span>
           <h2 style="font-size:1.8rem; color:#fff; display:flex; align-items:center; gap:10px;">
             <i class="fa-solid fa-crown" style="color:var(--gold-fs);"></i> FEARSTEAL MASTER ADMIN CONSOLE
           </h2>
@@ -1052,16 +1010,16 @@
       </div>
 
       <div class="admin-grid-cards">
-        <!-- Panel 1: Free Novice Rank Claim Controller -->
+        <!-- Controller 1: Novice Rank 0-100 Manager -->
         <div class="admin-card-inner">
-          <h4><i class="fa-solid fa-gift"></i> Novice Rank Slots Controller</h4>
+          <h4><i class="fa-solid fa-gift"></i> Novice Free Claims Controller</h4>
           <p style="font-size:0.85rem; color:#9ca3af; margin-bottom:12px;">
-            Live claimed count: <strong id="admin-live-novice-count" style="color:#fff;">0</strong> / 100
+            Live claimed slots: <strong id="admin-live-novice-count" style="color:#fff;">0</strong> / 100
           </p>
           <div style="display:flex; gap:8px; margin-bottom:10px;">
-            <input type="number" id="admin-novice-input" min="0" max="100" placeholder="New Slots (0-100)" style="flex:1; background:#000; border:1px solid #333; color:#fff; padding:8px 12px; border-radius:6px;" />
+            <input type="number" id="admin-novice-input" min="0" max="100" placeholder="Set claims (0-100)" style="flex:1; background:#000; border:1px solid #333; color:#fff; padding:8px 12px; border-radius:6px;" />
             <button class="btn btn-primary" style="padding:8px 14px; font-size:0.85rem;" onclick="adminUpdateNoviceCount()">
-              UPDATE
+              SAVE
             </button>
           </div>
           <button class="btn btn-outline" style="width:100%; padding:8px; font-size:0.8rem; border-color:#ef4444; color:#ef4444;" onclick="adminResetNoviceCount()">
@@ -1069,42 +1027,42 @@
           </button>
         </div>
 
-        <!-- Panel 2: Live Announcement Broadcast Banner -->
+        <!-- Controller 2: Announcement Strip Publisher -->
         <div class="admin-card-inner">
-          <h4><i class="fa-solid fa-bullhorn"></i> Website Announcement Strip</h4>
+          <h4><i class="fa-solid fa-bullhorn"></i> Live Broadcast Banner</h4>
           <p style="font-size:0.85rem; color:#9ca3af; margin-bottom:12px;">
-            Broadcast a custom high-visibility message across the entire website.
+            Display emergency announcements across the top of every page.
           </p>
-          <input type="text" id="admin-broadcast-input" placeholder="e.g. DROP PARTY STARTS IN 1 HOUR!" style="width:100%; background:#000; border:1px solid #333; color:#fff; padding:10px 12px; border-radius:6px; margin-bottom:10px;" />
+          <input type="text" id="admin-broadcast-input" placeholder="e.g. S2 TOURNAMENT STARTS TONIGHT!" style="width:100%; background:#000; border:1px solid #333; color:#fff; padding:10px 12px; border-radius:6px; margin-bottom:10px;" />
           <div style="display:flex; gap:8px;">
             <button class="btn btn-primary" style="flex:1; padding:8px 12px; font-size:0.85rem;" onclick="adminPublishBroadcast()">
               PUBLISH
             </button>
             <button class="btn btn-outline" style="padding:8px 12px; font-size:0.85rem;" onclick="adminClearBroadcast()">
-              DISABLE
+              HIDE
             </button>
           </div>
         </div>
 
-        <!-- Panel 3: Server Maintenance Emergency Switch -->
+        <!-- Controller 3: Emergency Maintenance Mode -->
         <div class="admin-card-inner">
           <h4><i class="fa-solid fa-power-off"></i> Maintenance Mode Toggle</h4>
           <p style="font-size:0.85rem; color:#9ca3af; margin-bottom:14px;">
-            Override live status display to 'MAINTENANCE' during critical network updates.
+            Switch network status to 'MAINTENANCE' for backend updates.
           </p>
           <button class="btn btn-outline" id="admin-maint-btn" style="width:100%; padding:10px; font-size:0.88rem; border-color:#f59e0b; color:#f59e0b;" onclick="adminToggleMaintenance()">
-            ENABLE MAINTENANCE MODE
+            ACTIVATE MAINTENANCE MODE
           </button>
         </div>
 
-        <!-- Panel 4: Quick Tournament & Event Overrider -->
+        <!-- Controller 4: 15-Day Event Overrider -->
         <div class="admin-card-inner">
-          <h4><i class="fa-solid fa-trophy"></i> Event Cycle Overrider</h4>
+          <h4><i class="fa-solid fa-trophy"></i> Force Rotate Tournament</h4>
           <p style="font-size:0.85rem; color:#9ca3af; margin-bottom:14px;">
-            Force rotate the 15-day tournament cycle to the next scheduled event immediately.
+            Manually trigger the next event in the 15-day rotation sequence.
           </p>
           <button class="btn btn-primary" style="width:100%; padding:10px; font-size:0.88rem;" onclick="adminForceNextEvent()">
-            <i class="fa-solid fa-forward-step"></i> FORCE NEXT EVENT
+            <i class="fa-solid fa-forward-step"></i> NEXT EVENT NOW
           </button>
         </div>
       </div>
@@ -1800,31 +1758,11 @@
 
       <div class="accordion-item reveal-on-scroll">
         <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>How do I apply for Media Rank?</span>
-          <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="accordion-body">
-          Ensure you meet the subscriber requirements (Smol 200+, Media 500+, Media+ 1000+, Famous 10,000+) and submit an application ticket in the FearSteal Discord channel.
-        </div>
-      </div>
-
-      <div class="accordion-item reveal-on-scroll">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
           <span>What happens when the free Novice rank reaches 100 claims?</span>
           <i class="fa-solid fa-chevron-down"></i>
         </div>
         <div class="accordion-body">
           The free Novice rank automatically shifts to <strong>🔴 OUT OF STOCK</strong>. Once 100 slots are exhausted, no further free claims can be made.
-        </div>
-      </div>
-
-      <div class="accordion-item reveal-on-scroll">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>How often do events rotate?</span>
-          <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="accordion-body">
-          Events cycle automatically every 15 days, rotating through tournaments, KOTH competitions, boss drops, and community giveaways.
         </div>
       </div>
     </div>
@@ -1974,25 +1912,17 @@
     const DISCORD_INVITE_CODE = 'pGM5x3gXpX';
     const STORE_URL = 'https://store.cryzormc.in/';
 
-    // FOUNDER ADMIN CREDENTIAL SPECIFICATIONS
+    // EXACT REQUIRED ADMIN CREDENTIAL SPECIFICATIONS
     const ADMIN_IGN = 'ItzVeltriex';
     const ADMIN_EMAIL = 'fearstealsupport@gmail.com';
     const ADMIN_PASS = 'thakuree@2064';
 
     /* --------------------------------------------------------
-       AUTHENTICATION & FOUNDER PRIVILEGES
+       AUTHENTICATION & STRICT FOUNDER PRIVILEGES
        -------------------------------------------------------- */
     const AUTH_STORAGE_KEY = 'fearsteal_user_auth';
     const NOVICE_STORAGE_KEY = 'fearsteal_novice_claimed';
     const NOVICE_COUNT_KEY = 'fearsteal_novice_counter';
-    const ADMIN_OVERRIDE_KEY = 'fearsteal_admin_access';
-
-    function isFounderAdmin(user, pass) {
-      if (!user) return false;
-      const cleanUser = user.trim().toLowerCase();
-      const matchIdentity = (cleanUser === ADMIN_IGN.toLowerCase() || cleanUser === ADMIN_EMAIL.toLowerCase());
-      return matchIdentity && (pass === ADMIN_PASS);
-    }
 
     function initAuth() {
       const storedUser = localStorage.getItem(AUTH_STORAGE_KEY);
@@ -2008,7 +1938,7 @@
         navUserAvatar.src = userObj.avatar || `https://mc-heads.net/avatar/${encodeURIComponent(userObj.username)}/32`;
         navUserBadge.style.display = 'flex';
 
-        // Check if current session belongs to Founder
+        // ONLY UNLOCK FOR ITZVELTRIEX / FOUNDER
         if (userObj.isAdmin === true) {
           adminNavItem.style.display = 'block';
           navUserBadge.classList.add('founder-badge');
@@ -2035,13 +1965,15 @@
       let displayUsername = identifier;
       let avatarUrl = `https://mc-heads.net/avatar/${encodeURIComponent(identifier)}/32`;
 
-      // Check if credentials are for Founder Admin
-      if (identifier.toLowerCase() === ADMIN_IGN.toLowerCase() || identifier.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+      // STRICT VALIDATION: Exactly ItzVeltriex OR fearstealsupport@gmail.com with password thakuree@2064
+      const isMatchIdentity = (identifier.toLowerCase() === ADMIN_IGN.toLowerCase() || identifier.toLowerCase() === ADMIN_EMAIL.toLowerCase());
+
+      if (isMatchIdentity) {
         if (pass === ADMIN_PASS) {
           isAdminUser = true;
-          displayUsername = ADMIN_IGN; // Standardize to ItzVeltriex
+          displayUsername = ADMIN_IGN; // Force standard Founder IGN
           avatarUrl = `https://mc-heads.net/avatar/ItzVeltriex/32`;
-          showToast('👑 Founder Admin Authorization Accepted! Welcome ItzVeltriex.', 'success', 'fa-crown');
+          showToast('👑 Founder Authorization Accepted! Welcome ItzVeltriex.', 'success', 'fa-crown');
         } else {
           errBox.textContent = 'Invalid administrator password!';
           return;
@@ -2063,7 +1995,6 @@
 
       localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
       triggerPortalTransition(displayUsername);
-
       initAuth();
     }
 
@@ -2083,13 +2014,13 @@
       }
       confirmErr.textContent = '';
 
-      // Check if registered user is trying to claim Founder Admin account
-      let isAdminUser = isFounderAdmin(username, pass) || isFounderAdmin(email, pass);
+      // Check if registration matches the secret founder credentials
+      const isMatchFounder = (username.toLowerCase() === ADMIN_IGN.toLowerCase() || email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) && (pass === ADMIN_PASS);
 
       const userData = {
-        username,
+        username: isMatchFounder ? ADMIN_IGN : username,
         email,
-        isAdmin: isAdminUser,
+        isAdmin: isMatchFounder,
         avatar: `https://mc-heads.net/avatar/${encodeURIComponent(username)}/32`,
         loggedInAt: new Date().toISOString()
       };
@@ -2099,39 +2030,8 @@
       initAuth();
     }
 
-    function handleOAuthLogin(provider) {
-      playClickSound();
-      let mockUsername = '';
-      let mockAvatar = '';
-
-      if (provider === 'Microsoft') {
-        mockUsername = 'XboxPlayer_' + Math.floor(1000 + Math.random() * 9000);
-        mockAvatar = 'https://mc-heads.net/avatar/Steve/32';
-      } else if (provider === 'Discord') {
-        mockUsername = 'DiscordMember#' + Math.floor(1000 + Math.random() * 9000);
-        mockAvatar = 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png';
-      } else if (provider === 'Google') {
-        mockUsername = 'Player_' + Math.floor(100 + Math.random() * 900);
-        mockAvatar = 'https://mc-heads.net/avatar/Alex/32';
-      }
-
-      showToast(`Authenticating with ${provider}...`, 'info', 'fa-shield-halved');
-
-      setTimeout(() => {
-        const userData = {
-          username: mockUsername,
-          isAdmin: false,
-          avatar: mockAvatar,
-          loggedInAt: new Date().toISOString()
-        };
-        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
-        triggerPortalTransition(mockUsername);
-        initAuth();
-      }, 700);
-    }
-
     /* --------------------------------------------------------
-       ADMIN CONSOLE ACTIONS
+       ADMIN PANEL CONTROL LOGIC
        -------------------------------------------------------- */
     function openAdminPanel(e) {
       if (e) e.preventDefault();
@@ -2200,7 +2100,7 @@
       const dashBadge = document.getElementById('dashboard-badge-text');
 
       if (isMaintenanceActive) {
-        btn.textContent = 'DISABLE MAINTENANCE MODE';
+        btn.textContent = 'DEACTIVATE MAINTENANCE';
         btn.style.borderColor = '#ef4444';
         btn.style.color = '#ef4444';
         heroLbl.textContent = 'MAINTENANCE';
@@ -2208,7 +2108,7 @@
         dashBadge.textContent = 'MAINTENANCE';
         showToast('⚠️ Emergency Maintenance Mode Activated.', 'warning', 'fa-triangle-exclamation');
       } else {
-        btn.textContent = 'ENABLE MAINTENANCE MODE';
+        btn.textContent = 'ACTIVATE MAINTENANCE MODE';
         btn.style.borderColor = '#f59e0b';
         btn.style.color = '#f59e0b';
         fetchServerStatus();
@@ -2221,7 +2121,7 @@
       showToast('Advancing tournament cycle to next event...', 'success', 'fa-forward-step');
       setTimeout(() => {
         renderActiveEvent();
-        showToast('Next event is now officially active!', 'success', 'fa-trophy');
+        showToast('Next event is now active!', 'success', 'fa-trophy');
       }, 500);
     }
 
@@ -2922,7 +2822,7 @@
       setInterval(fetchDiscordLiveStatus, 45000);
 
       setTimeout(() => {
-        showToast('⚔️ FearSteal Season is live! Join IP: play.fearsteal.fun:19132', 'warning', 'fa-bolt');
+        showToast('FearSteal Season 1 is live! Join IP: play.fearsteal.fun:19132', 'warning', 'fa-bolt');
       }, 2000);
     });
   </script>
