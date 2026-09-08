@@ -15,19 +15,19 @@
 
   <style>
     :root {
-      --bg-dark: #050508;
+      --bg-dark: #040407;
       --bg-surface: #0a0a0f;
-      --bg-surface-elevated: #12121a;
+      --bg-surface-elevated: #12121b;
       --border-color: rgba(220, 38, 38, 0.25);
-      --border-bright: rgba(239, 68, 68, 0.6);
+      --border-bright: rgba(239, 68, 68, 0.65);
       --crimson: #dc2626;
       --crimson-glow: #ef4444;
       --crimson-bright: #ff3344;
-      --crimson-dim: rgba(220, 38, 38, 0.12);
+      --gold-fs: #ffca18;
+      --gold-deep: #e59005;
       --text-main: #f3f4f6;
       --text-muted: #9ca3af;
       --text-accent: #fca5a5;
-      --gold: #f59e0b;
       --green-online: #10b981;
       --red-offline: #ef4444;
       --font-display: 'Rajdhani', sans-serif;
@@ -51,23 +51,22 @@
       overflow-x: hidden;
       line-height: 1.6;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(185, 28, 28, 0.08) 0%, transparent 45%),
-        linear-gradient(rgba(5, 5, 8, 0.94), rgba(5, 5, 8, 0.98)),
+        radial-gradient(circle at 15% 20%, rgba(220, 38, 38, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(229, 144, 5, 0.08) 0%, transparent 45%),
+        linear-gradient(rgba(4, 4, 7, 0.94), rgba(4, 4, 7, 0.98)),
         url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="%23221313" fill-opacity="0.25"><path d="M0 0h20v20H0V0zm20 20h20v20H20V20z"/></g></svg>');
     }
 
-    /* Custom Scrollbar */
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 9px; }
-    ::-webkit-scrollbar-track { background: #050508; }
+    ::-webkit-scrollbar-track { background: #040407; }
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #dc2626, #7f1d1d);
+      background: linear-gradient(180deg, #dc2626, #e59005);
       border-radius: 6px;
-      border: 2px solid #050508;
+      border: 2px solid #040407;
     }
     ::-webkit-scrollbar-thumb:hover { background: #ef4444; }
 
-    /* Canvas background */
     #particles-canvas {
       position: fixed;
       top: 0;
@@ -86,13 +85,9 @@
     }
     .cinzel { font-family: var(--font-title); }
     .crimson-text { color: var(--crimson-glow); text-shadow: 0 0 16px rgba(239, 68, 68, 0.5); }
+    .gold-text { color: var(--gold-fs); text-shadow: 0 0 16px rgba(255, 202, 24, 0.5); }
 
-    /* ========================================================
-       ADVANCED SOUND SYSTEM & INTERACTIVE AUDIO
-       ======================================================== */
-    /* Handled via Web Audio API synth in JavaScript */
-
-    /* Global Container */
+    /* Container */
     .container {
       max-width: 1280px;
       margin: 0 auto;
@@ -101,7 +96,20 @@
       z-index: 2;
     }
 
-    /* Buttons with Energy Flow */
+    /* FS Official Logo Elements */
+    .fs-logo-img {
+      display: inline-block;
+      object-fit: contain;
+      filter: drop-shadow(0 0 16px rgba(255, 180, 0, 0.55));
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+      user-select: none;
+    }
+    .fs-logo-img:hover {
+      transform: scale(1.08) rotate(-1deg);
+      filter: drop-shadow(0 0 28px rgba(255, 60, 60, 0.8)) drop-shadow(0 0 12px rgba(255, 200, 0, 0.9));
+    }
+
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -113,7 +121,7 @@
       text-transform: uppercase;
       letter-spacing: 1.4px;
       padding: 13px 28px;
-      border-radius: 8px;
+      border-radius: 9px;
       cursor: pointer;
       border: 1px solid transparent;
       transition: var(--transition);
@@ -130,11 +138,10 @@
       transition: 0.6s ease;
       pointer-events: none;
     }
-    .btn:hover::before {
-      left: 100%;
-    }
+    .btn:hover::before { left: 100%; }
+
     .btn-primary {
-      background: linear-gradient(135deg, #b91c1c, #ef4444);
+      background: linear-gradient(135deg, #b91c1c 0%, #ef4444 50%, #f59e0b 100%);
       color: #fff;
       box-shadow: 0 4px 25px rgba(220, 38, 38, 0.45);
     }
@@ -167,9 +174,9 @@
       filter: brightness(1.1);
     }
 
-    /* Glass Panels */
+    /* Glass Cards */
     .glass-card {
-      background: rgba(12, 12, 18, 0.75);
+      background: rgba(12, 12, 18, 0.78);
       border: 1px solid var(--border-color);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -193,7 +200,7 @@
     }
     .glass-card:hover {
       border-color: var(--border-bright);
-      box-shadow: 0 10px 40px rgba(220, 38, 38, 0.2);
+      box-shadow: 0 10px 40px rgba(220, 38, 38, 0.22);
     }
 
     /* Section Headings */
@@ -205,7 +212,7 @@
     .section-subtitle {
       font-size: 0.9rem;
       font-weight: 700;
-      color: var(--crimson-glow);
+      color: var(--gold-fs);
       letter-spacing: 3.5px;
       text-transform: uppercase;
       display: inline-block;
@@ -227,13 +234,100 @@
     }
 
     /* ========================================================
-       ADVANCED CINEMATIC PORTAL / AUTH ENTRY SCREEN
+       PRE-WEBSITE CINEMATIC LOADER
+       ======================================================== */
+    #site-loader {
+      position: fixed;
+      inset: 0;
+      background: #020204;
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.7s cubic-bezier(0.8, 0, 0.2, 1), visibility 0.7s;
+    }
+    #site-loader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-ring-wrap {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .loader-spinning-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: var(--crimson);
+      border-bottom-color: var(--gold-fs);
+      animation: spinRing 1.6s linear infinite;
+    }
+    .loader-spinning-ring-outer {
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 2px dashed rgba(239, 68, 68, 0.4);
+      animation: spinRingReverse 6s linear infinite;
+    }
+    @keyframes spinRing {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes spinRingReverse {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+    .loader-logo {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      z-index: 2;
+      animation: logoFloat 2.2s infinite ease-in-out;
+    }
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-8px) scale(1.04); }
+    }
+    .loader-bar-bg {
+      width: 280px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      border: 1px solid rgba(220, 38, 38, 0.3);
+    }
+    .loader-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #dc2626, #f59e0b, #ef4444);
+      border-radius: 10px;
+      box-shadow: 0 0 15px #ef4444;
+      transition: width 0.15s ease-out;
+    }
+    .loader-status-text {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 0.95rem;
+      color: #9ca3af;
+    }
+
+    /* ========================================================
+       ADVANCED AUTHENTICATION / ENTRY SCREEN
        ======================================================== */
     #auth-overlay {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(15, 6, 8, 0.96) 0%, rgba(2, 2, 4, 0.99) 100%);
-      backdrop-filter: blur(24px);
+      background: radial-gradient(circle at center, rgba(20, 6, 8, 0.97) 0%, rgba(2, 2, 4, 0.99) 100%);
+      backdrop-filter: blur(28px);
       z-index: 9999;
       display: flex;
       align-items: center;
@@ -256,7 +350,6 @@
       pointer-events: none;
     }
 
-    /* Shockwave blast element */
     .portal-shockwave {
       position: absolute;
       width: 10px;
@@ -273,15 +366,15 @@
     .auth-card {
       width: 100%;
       max-width: 490px;
-      background: rgba(14, 14, 20, 0.85);
+      background: rgba(14, 14, 22, 0.88);
       border: 1px solid var(--border-bright);
-      border-radius: 20px;
-      padding: 40px 34px;
+      border-radius: 22px;
+      padding: 38px 32px;
       box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 60px rgba(220, 38, 38, 0.35);
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.15s ease-out, box-shadow 0.3s ease;
-      animation: authCardEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: authCardEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     @keyframes authCardEnter {
       from {
@@ -294,37 +387,28 @@
       }
     }
 
-    .auth-brand-logo {
-      width: 82px;
-      height: 82px;
-      background: radial-gradient(circle, #3b0a0a, #110202);
-      border: 2px solid var(--crimson);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-      color: var(--crimson);
-      font-size: 2.3rem;
-      box-shadow: 0 0 35px rgba(220, 38, 38, 0.7);
-      animation: heartGlowPulse 2.4s infinite ease-in-out;
+    .auth-header {
+      text-align: center;
+      margin-bottom: 22px;
     }
-    @keyframes heartGlowPulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(220, 38, 38, 0.5); }
-      50% { transform: scale(1.06); box-shadow: 0 0 50px rgba(239, 68, 68, 0.9); }
+    .auth-logo-wrap {
+      margin-bottom: 12px;
     }
-
+    .auth-logo-img {
+      width: 86px;
+      height: 86px;
+    }
     .auth-tabs {
       display: flex;
       background: rgba(0, 0, 0, 0.5);
       border-radius: 10px;
       padding: 5px;
-      margin-bottom: 26px;
+      margin-bottom: 22px;
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .auth-tab-btn {
       flex: 1;
-      padding: 12px;
+      padding: 11px;
       background: transparent;
       border: none;
       color: var(--text-muted);
@@ -341,8 +425,49 @@
       color: #fff;
       box-shadow: 0 2px 15px rgba(220, 38, 38, 0.5);
     }
+
+    /* Live Minecraft IGN avatar preview */
+    .ign-input-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .auth-live-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      border: 2px solid var(--border-bright);
+      background: #181822;
+      image-rendering: pixelated;
+      box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+      flex-shrink: 0;
+    }
+
+    /* Password strength indicator */
+    .strength-meter-wrap {
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+    .strength-bars {
+      display: flex;
+      gap: 4px;
+      height: 4px;
+    }
+    .strength-segment {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      transition: background 0.3s ease;
+    }
+    .strength-label {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      text-align: right;
+    }
+
     .auth-form-group {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       position: relative;
     }
     .auth-form-group label {
@@ -355,6 +480,7 @@
     }
     .auth-input-wrap {
       position: relative;
+      flex: 1;
     }
     .auth-input-wrap i.input-icon {
       position: absolute;
@@ -393,7 +519,7 @@
     .auth-error-msg {
       color: #ef4444;
       font-size: 0.82rem;
-      margin-top: 5px;
+      margin-top: 4px;
       min-height: 18px;
     }
     .auth-options {
@@ -401,7 +527,7 @@
       justify-content: space-between;
       align-items: center;
       font-size: 0.85rem;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       color: var(--text-muted);
     }
     .auth-options a {
@@ -410,7 +536,7 @@
     }
 
     /* ========================================================
-       TOP NAVBAR & STICKY NAVIGATION
+       TOP NAVBAR & NAVIGATION
        ======================================================== */
     .top-bar {
       background: rgba(4, 4, 6, 0.9);
@@ -431,9 +557,7 @@
       margin-left: 18px;
       transition: var(--transition);
     }
-    .top-bar-links a:hover {
-      color: var(--crimson-glow);
-    }
+    .top-bar-links a:hover { color: var(--gold-fs); }
 
     header.main-nav-wrapper {
       position: sticky;
@@ -444,13 +568,12 @@
       -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border-color);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
-      transition: transform 0.35s ease;
     }
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 0;
+      padding: 10px 0;
       gap: 16px;
     }
     .brand-logo-area {
@@ -460,29 +583,17 @@
       text-decoration: none;
       color: #fff;
     }
-    .brand-shield {
-      width: 46px;
-      height: 46px;
-      background: linear-gradient(135deg, #991b1b, #ef4444);
-      border: 1px solid #f87171;
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 1.45rem;
-      font-weight: 800;
-      box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    .nav-fs-logo {
+      width: 44px;
+      height: 44px;
     }
-    .brand-text-block {
-      line-height: 1.1;
-    }
+    .brand-text-block { line-height: 1.1; }
     .brand-title {
       font-family: var(--font-display);
       font-size: 1.6rem;
       font-weight: 900;
       letter-spacing: 2.2px;
-      background: linear-gradient(180deg, #ffffff 40%, #ef4444 100%);
+      background: linear-gradient(180deg, #ffffff 30%, #ffca18 70%, #dc2626 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -494,7 +605,6 @@
       font-weight: 700;
     }
 
-    /* Nav items */
     .nav-links-list {
       display: flex;
       list-style: none;
@@ -521,7 +631,6 @@
       box-shadow: inset 0 0 0 1px rgba(220, 38, 38, 0.4);
     }
 
-    /* Search & User Nav controls */
     .nav-actions {
       display: flex;
       align-items: center;
@@ -544,7 +653,7 @@
       outline: none;
     }
     .search-box input:focus {
-      width: 200px;
+      width: 190px;
       border-color: var(--crimson-glow);
       box-shadow: 0 0 15px rgba(220, 38, 38, 0.35);
     }
@@ -558,7 +667,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 12px;
+      padding: 5px 12px;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 20px;
@@ -592,10 +701,10 @@
     }
 
     /* ========================================================
-       HERO SECTION WITH PERSPECTIVE DEPTH
+       HERO SECTION WITH 3D LOGO SHOWCASE
        ======================================================== */
     .hero-section {
-      min-height: 92vh;
+      min-height: 94vh;
       position: relative;
       display: flex;
       align-items: center;
@@ -605,10 +714,10 @@
     .hero-bg-banner {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(220, 38, 38, 0.25), rgba(5, 5, 8, 0.98) 75%),
+      background: radial-gradient(circle at center, rgba(220, 38, 38, 0.25), rgba(4, 4, 7, 0.98) 75%),
                   url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
       filter: saturate(1.3);
-      opacity: 0.45;
+      opacity: 0.4;
       z-index: 0;
       transform: scale(1.05);
       animation: heroBackgroundZoom 20s infinite alternate ease-in-out;
@@ -622,9 +731,20 @@
       position: relative;
       z-index: 2;
       text-align: center;
-      max-width: 940px;
+      max-width: 960px;
       margin: 0 auto;
     }
+    .hero-center-logo {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 20px;
+      animation: heroLogoHover 4s infinite ease-in-out;
+    }
+    @keyframes heroLogoHover {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -636,7 +756,7 @@
       font-size: 0.85rem;
       font-weight: 700;
       color: #fca5a5;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       box-shadow: 0 0 25px rgba(220, 38, 38, 0.35);
     }
     .hero-title {
@@ -645,7 +765,7 @@
       line-height: 0.95;
       letter-spacing: 4px;
       margin-bottom: 12px;
-      background: linear-gradient(180deg, #ffffff 25%, #ef4444 75%, #7f1d1d 100%);
+      background: linear-gradient(180deg, #ffffff 25%, #ffca18 65%, #dc2626 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 0 35px rgba(220, 38, 38, 0.7));
@@ -661,15 +781,15 @@
     .hero-desc {
       font-size: 1.05rem;
       color: #9ca3af;
-      max-width: 700px;
+      max-width: 720px;
       margin: 0 auto 36px;
     }
 
-    /* Hero Server IP & Action Grid */
+    /* IP Copy Box */
     .ip-copy-box {
       background: rgba(14, 14, 22, 0.9);
       border: 1px solid var(--border-bright);
-      padding: 14px 26px;
+      padding: 14px 28px;
       border-radius: 12px;
       display: inline-flex;
       align-items: center;
@@ -684,9 +804,7 @@
       transform: scale(1.03);
       box-shadow: 0 0 35px rgba(220, 38, 38, 0.55);
     }
-    .ip-text-block {
-      text-align: left;
-    }
+    .ip-text-block { text-align: left; }
     .ip-label {
       font-size: 0.72rem;
       color: var(--text-muted);
@@ -701,7 +819,7 @@
       letter-spacing: 1.3px;
     }
     .ip-port {
-      color: var(--crimson-glow);
+      color: var(--gold-fs);
       font-size: 1rem;
     }
     .ip-action-icon {
@@ -725,7 +843,6 @@
       margin-bottom: 42px;
     }
 
-    /* Live Hero Bar */
     .hero-live-pill {
       display: inline-flex;
       align-items: center;
@@ -764,7 +881,7 @@
     }
 
     /* ========================================================
-       SERVER MONITORING & LIVE STATUS PAGE
+       LIVE STATUS PAGE
        ======================================================== */
     .status-section {
       padding: 95px 0;
@@ -828,7 +945,7 @@
     }
     .status-stat-card i {
       font-size: 2.2rem;
-      color: var(--crimson-glow);
+      color: var(--gold-fs);
       margin-bottom: 6px;
     }
     .status-stat-value {
@@ -855,11 +972,9 @@
     }
 
     /* ========================================================
-       FEATURES SECTION WITH 3D TILT EFFECT
+       FEATURES SECTION
        ======================================================== */
-    .features-section {
-      padding: 95px 0;
-    }
+    .features-section { padding: 95px 0; }
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -887,13 +1002,11 @@
       left: 0;
       width: 4px;
       height: 100%;
-      background: linear-gradient(180deg, var(--crimson), transparent);
+      background: linear-gradient(180deg, var(--crimson), var(--gold-fs));
       opacity: 0;
       transition: var(--transition);
     }
-    .feature-box:hover::before {
-      opacity: 1;
-    }
+    .feature-box:hover::before { opacity: 1; }
     .feature-icon-wrap {
       width: 58px;
       height: 58px;
@@ -924,7 +1037,7 @@
     }
 
     /* ========================================================
-       STORE & RANKS SECTION
+       STORE & RANKS
        ======================================================== */
     .store-section {
       padding: 95px 0;
@@ -966,7 +1079,7 @@
       top: -12px;
       left: 50%;
       transform: translateX(-50%);
-      background: linear-gradient(90deg, #dc2626, #ef4444);
+      background: linear-gradient(90deg, #dc2626, #f59e0b);
       color: #fff;
       font-size: 0.72rem;
       font-weight: 800;
@@ -1014,7 +1127,6 @@
       font-size: 0.8rem;
     }
 
-    /* Novice free counter */
     .novice-claim-progress-wrap {
       margin-bottom: 16px;
       text-align: left;
@@ -1041,9 +1153,7 @@
     /* ========================================================
        STAFF TEAM
        ======================================================== */
-    .staff-section {
-      padding: 95px 0;
-    }
+    .staff-section { padding: 95px 0; }
     .staff-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -1093,7 +1203,7 @@
       text-transform: uppercase;
     }
     .role-founder {
-      background: linear-gradient(90deg, #991b1b, #ef4444);
+      background: linear-gradient(90deg, #991b1b, #f59e0b);
       color: #fff;
       box-shadow: 0 0 16px rgba(239, 68, 68, 0.55);
     }
@@ -1159,7 +1269,6 @@
       box-shadow: 0 0 18px rgba(220, 38, 38, 0.45);
     }
 
-    /* Podium */
     .podium-wrap {
       display: flex;
       justify-content: center;
@@ -1193,11 +1302,6 @@
       transform: translateX(-50%);
       color: #f59e0b;
       font-size: 1.5rem;
-      animation: crownBounce 2s infinite ease-in-out;
-    }
-    @keyframes crownBounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-5px); }
     }
     .podium-avatar {
       width: 72px;
@@ -1227,20 +1331,16 @@
       font-family: var(--font-display);
       font-weight: 800;
       font-size: 1.35rem;
-      color: var(--crimson-glow);
+      color: var(--gold-fs);
     }
 
-    /* Leaderboard Table */
     .leaderboard-table-card {
       background: rgba(14, 14, 20, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius);
       overflow: hidden;
     }
-    .table-responsive {
-      width: 100%;
-      overflow-x: auto;
-    }
+    .table-responsive { width: 100%; overflow-x: auto; }
     table.lb-table {
       width: 100%;
       border-collapse: collapse;
@@ -1278,11 +1378,9 @@
     }
 
     /* ========================================================
-       EVENTS SYSTEM & 15-DAY ROTATION
+       EVENTS & COUNTDOWN
        ======================================================== */
-    .events-section {
-      padding: 95px 0;
-    }
+    .events-section { padding: 95px 0; }
     .event-featured-card {
       background: radial-gradient(circle at center, rgba(220, 38, 38, 0.18), rgba(14, 14, 20, 0.95) 75%);
       border: 1px solid var(--border-bright);
@@ -1321,7 +1419,6 @@
       margin-bottom: 26px;
     }
 
-    /* Countdown */
     .countdown-timer-wrap {
       display: flex;
       gap: 16px;
@@ -1345,14 +1442,13 @@
     }
     .countdown-label {
       font-size: 0.72rem;
-      color: var(--crimson-glow);
+      color: var(--gold-fs);
       text-transform: uppercase;
       letter-spacing: 1.2px;
       margin-top: 4px;
       font-weight: 800;
     }
 
-    /* Upcoming grid */
     .upcoming-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -1420,7 +1516,7 @@
     }
 
     /* ========================================================
-       RULES & HOW TO PLAY & FAQ ACCORDION
+       RULES & HOW TO PLAY & FAQ
        ======================================================== */
     .rules-grid {
       display: grid;
@@ -1473,7 +1569,7 @@
       display: inline-block;
       font-family: var(--font-display);
       font-weight: 800;
-      color: var(--crimson-glow);
+      color: var(--gold-fs);
       font-size: 1.15rem;
       margin-bottom: 8px;
     }
@@ -1498,7 +1594,7 @@
     }
     .accordion-header i {
       transition: transform 0.3s ease;
-      color: var(--crimson-glow);
+      color: var(--gold-fs);
     }
     .accordion-item.active .accordion-header i {
       transform: rotate(180deg);
@@ -1518,12 +1614,9 @@
     }
 
     /* ========================================================
-       DISCORD COMMUNITY & SUPPORT
+       DISCORD COMMUNITY
        ======================================================== */
-    .discord-cta-section {
-      padding: 95px 0;
-      position: relative;
-    }
+    .discord-cta-section { padding: 95px 0; }
     .discord-banner-card {
       background: linear-gradient(135deg, rgba(88, 101, 242, 0.16), rgba(14, 14, 20, 0.95)),
                   radial-gradient(circle at top right, rgba(220, 38, 38, 0.22), transparent);
@@ -1565,7 +1658,7 @@
        FOOTER & NEWSLETTER
        ======================================================== */
     footer.site-footer {
-      background: #030305;
+      background: #020204;
       border-top: 1px solid rgba(255, 255, 255, 0.07);
       padding: 75px 0 35px;
       position: relative;
@@ -1602,7 +1695,7 @@
       transition: var(--transition);
     }
     .footer-links a:hover {
-      color: var(--crimson-glow);
+      color: var(--gold-fs);
       padding-left: 6px;
     }
     .newsletter-form {
@@ -1620,9 +1713,7 @@
       font-size: 0.9rem;
       outline: none;
     }
-    .newsletter-form input:focus {
-      border-color: var(--crimson-glow);
-    }
+    .newsletter-form input:focus { border-color: var(--crimson-glow); }
 
     .footer-bottom {
       border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -1634,12 +1725,12 @@
       color: #6b7280;
     }
 
-    /* Toast Notification */
+    /* Toast */
     #toast-container {
       position: fixed;
       bottom: 26px;
       right: 26px;
-      z-index: 10000;
+      z-index: 100000;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -1664,9 +1755,7 @@
       to { transform: translateX(0); opacity: 1; }
     }
 
-    /* ========================================================
-       ADVANCED SCROLL REVEAL UTILITY
-       ======================================================== */
+    /* Scroll reveal */
     .reveal-on-scroll {
       opacity: 0;
       transform: translateY(40px);
@@ -1711,21 +1800,36 @@
 </head>
 <body>
 
-  <!-- Dynamic Interactive Particle Canvas -->
+  <!-- Particle canvas -->
   <canvas id="particles-canvas"></canvas>
 
   <!-- ========================================================
-       ADVANCED ENTRY / AUTH SCREEN MODAL
+       PRE-WEBSITE CINEMATIC LOADER
+       ======================================================== -->
+  <div id="site-loader">
+    <div class="loader-ring-wrap">
+      <div class="loader-spinning-ring-outer"></div>
+      <div class="loader-spinning-ring"></div>
+      <img src="" alt="FearSteal Logo" class="loader-logo fs-logo-img fs-asset-target" />
+    </div>
+    <div class="loader-bar-bg">
+      <div class="loader-bar-fill" id="loader-progress-bar"></div>
+    </div>
+    <div class="loader-status-text" id="loader-progress-text">INITIALIZING NETWORK... 0%</div>
+  </div>
+
+  <!-- ========================================================
+       ADVANCED AUTHENTICATION MODAL
        ======================================================== -->
   <div id="auth-overlay">
     <div class="auth-card" id="auth3DCard">
       <div class="auth-header">
-        <div class="auth-brand-logo">
-          <i class="fa-solid fa-skull"></i>
+        <div class="auth-logo-wrap">
+          <img src="" alt="FearSteal Logo" class="auth-logo-img fs-logo-img fs-asset-target" />
         </div>
-        <h2 class="font-display" style="font-size: 1.9rem; font-weight: 800; color:#fff; text-align:center;">FEARSTEAL ENTRY</h2>
-        <p style="font-size: 0.88rem; color: var(--text-muted); text-align:center; margin-bottom:14px;">
-          Synchronize your credentials to enter the realm
+        <h2 class="font-display" style="font-size: 1.85rem; font-weight: 800; color:#fff; text-align:center;">FEARSTEAL ENTRY</h2>
+        <p style="font-size: 0.86rem; color: var(--text-muted); text-align:center;">
+          Synchronize credentials to access the realm
         </p>
       </div>
 
@@ -1737,10 +1841,13 @@
       <!-- Login Form -->
       <form id="login-form" onsubmit="handleLoginSubmit(event)">
         <div class="auth-form-group">
-          <label>Username or Email</label>
-          <div class="auth-input-wrap">
-            <i class="fa-solid fa-user input-icon"></i>
-            <input type="text" id="login-identifier" placeholder="e.g. ItzVeltriex" required />
+          <label>Minecraft Username or Email</label>
+          <div class="ign-input-container">
+            <img src="https://mc-heads.net/avatar/Steve/44" id="login-avatar-preview" class="auth-live-avatar" alt="Avatar" />
+            <div class="auth-input-wrap">
+              <i class="fa-solid fa-user input-icon"></i>
+              <input type="text" id="login-identifier" placeholder="e.g. ItzVeltriex" oninput="updateSkinPreview(this.value, 'login-avatar-preview')" required />
+            </div>
           </div>
           <div class="auth-error-msg" id="login-ident-err"></div>
         </div>
@@ -1762,18 +1869,21 @@
           <a href="#forgot" onclick="triggerForgotPassword(event)">Forgot Password?</a>
         </div>
 
-        <button type="submit" class="btn btn-primary" id="btn-enter-network" style="width: 100%;">
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
           <i class="fa-solid fa-right-to-bracket"></i> ENTER NETWORK
         </button>
       </form>
 
-      <!-- Register Form -->
+      <!-- Register Form with Skin Tracker & Strength Analyzer -->
       <form id="register-form" style="display:none;" onsubmit="handleRegisterSubmit(event)">
         <div class="auth-form-group">
-          <label>Minecraft Username</label>
-          <div class="auth-input-wrap">
-            <i class="fa-solid fa-gamepad input-icon"></i>
-            <input type="text" id="reg-username" placeholder="Your in-game IGN" required />
+          <label>Minecraft In-Game Name (IGN)</label>
+          <div class="ign-input-container">
+            <img src="https://mc-heads.net/avatar/Steve/44" id="reg-avatar-preview" class="auth-live-avatar" alt="Avatar" />
+            <div class="auth-input-wrap">
+              <i class="fa-solid fa-gamepad input-icon"></i>
+              <input type="text" id="reg-username" placeholder="Exact Minecraft Name" oninput="updateSkinPreview(this.value, 'reg-avatar-preview')" required />
+            </div>
           </div>
           <div class="auth-error-msg" id="reg-user-err"></div>
         </div>
@@ -1791,8 +1901,17 @@
           <label>Create Password</label>
           <div class="auth-input-wrap">
             <i class="fa-solid fa-lock input-icon"></i>
-            <input type="password" id="reg-password" placeholder="Min. 6 characters" required />
+            <input type="password" id="reg-password" placeholder="Min. 6 characters" oninput="analyzePasswordStrength(this.value)" required />
             <i class="fa-regular fa-eye toggle-password" onclick="togglePassVisibility('reg-password', this)"></i>
+          </div>
+          <div class="strength-meter-wrap">
+            <div class="strength-bars">
+              <div class="strength-segment" id="str-1"></div>
+              <div class="strength-segment" id="str-2"></div>
+              <div class="strength-segment" id="str-3"></div>
+              <div class="strength-segment" id="str-4"></div>
+            </div>
+            <div class="strength-label" id="str-label">Strength: Too Short</div>
           </div>
           <div class="auth-error-msg" id="reg-pass-err"></div>
         </div>
@@ -1836,12 +1955,12 @@
   </div>
 
   <!-- ========================================================
-       STICKY MAIN NAVIGATION BAR
+       STICKY NAVIGATION BAR WITH SUPPLIED LOGO
        ======================================================== -->
   <header class="main-nav-wrapper">
     <div class="container nav-inner">
       <a href="#home" class="brand-logo-area">
-        <div class="brand-shield">FS</div>
+        <img src="" alt="FearSteal Logo" class="nav-fs-logo fs-logo-img fs-asset-target" />
         <div class="brand-text-block">
           <div class="brand-title">FEARSTEAL</div>
           <div class="brand-tag">LIFESTEAL NETWORK</div>
@@ -1886,6 +2005,10 @@
   <section id="home" class="hero-section">
     <div class="hero-bg-banner"></div>
     <div class="container hero-content">
+      <div class="reveal-on-scroll" style="display: flex; justify-content: center;">
+        <img src="" alt="FearSteal Logo" class="hero-center-logo fs-logo-img fs-asset-target" />
+      </div>
+
       <div class="hero-badge reveal-on-scroll">
         <i class="fa-solid fa-heart-pulse"></i> ULTIMATE HARDCORE LIFESTEAL
       </div>
@@ -1920,7 +2043,7 @@
         </a>
       </div>
 
-      <!-- Live Dynamic Pill -->
+      <!-- Live Hero Pill -->
       <div class="hero-live-pill reveal-on-scroll">
         <span class="status-dot online" id="hero-dot"></span>
         <span>STATUS: <strong id="hero-status-lbl" style="color:var(--crimson-glow);">CHECKING...</strong></span>
@@ -1943,7 +2066,6 @@
       </div>
 
       <div class="status-grid reveal-on-scroll">
-        <!-- Main Server Card -->
         <div class="glass-card status-main-box">
           <div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
@@ -1955,7 +2077,6 @@
             <p style="color:var(--text-muted); font-size:0.9rem;">
               Direct ping connection via <code style="color:#f87171;">play.fearsteal.fun:19132</code>
             </p>
-
             <div class="motd-display" id="dashboard-motd">
               Loading MOTD from FearSteal server...
             </div>
@@ -1969,7 +2090,6 @@
           </div>
         </div>
 
-        <!-- Metric 1: Players Online -->
         <div class="glass-card status-stat-card">
           <i class="fa-solid fa-users"></i>
           <div class="status-stat-value" id="dashboard-player-stat">0</div>
@@ -1977,7 +2097,6 @@
           <span style="font-size:0.8rem; color:var(--text-muted);" id="dashboard-max-stat">Max Capacity: 500</span>
         </div>
 
-        <!-- Metric 2: Uptime & Health -->
         <div class="glass-card status-stat-card">
           <i class="fa-solid fa-shield-heart"></i>
           <div class="status-stat-value" id="dashboard-uptime-stat">99.9%</div>
@@ -2002,7 +2121,7 @@
         <div class="feature-box reveal-on-scroll">
           <div class="feature-icon-wrap"><i class="fa-solid fa-heart-crack"></i></div>
           <h3 class="feature-title">Lifesteal Experience</h3>
-          <p class="feature-text">Fight, survive, and steal hearts from your enemies with every kill. Lose all hearts and face the ultimate ban consequences.</p>
+          <p class="feature-text">Fight, survive, and steal hearts from enemies with every kill. Lose all hearts and face the ultimate ban consequences.</p>
         </div>
 
         <div class="feature-box reveal-on-scroll">
@@ -2061,7 +2180,7 @@
       </div>
 
       <div class="ranks-grid">
-        <!-- FREE NOVICE RANK CARD -->
+        <!-- NOVICE FREE -->
         <div class="rank-card free-novice reveal-on-scroll">
           <span class="rank-popular-tag" style="background:#2563eb;">SPECIAL FREE PROMO</span>
           <div class="rank-name" style="color:#60a5fa;">NOVICE</div>
@@ -2089,7 +2208,6 @@
           </button>
         </div>
 
-        <!-- LORD -->
         <div class="rank-card reveal-on-scroll">
           <div class="rank-name">LORD</div>
           <div class="rank-price">$5</div>
@@ -2101,7 +2219,6 @@
           <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline">PURCHASE</a>
         </div>
 
-        <!-- ELITE -->
         <div class="rank-card reveal-on-scroll">
           <div class="rank-name">ELITE</div>
           <div class="rank-price">$8</div>
@@ -2113,7 +2230,6 @@
           <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline">PURCHASE</a>
         </div>
 
-        <!-- ELITE+ -->
         <div class="rank-card reveal-on-scroll">
           <div class="rank-name">ELITE+</div>
           <div class="rank-price">$10</div>
@@ -2125,7 +2241,6 @@
           <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline">PURCHASE</a>
         </div>
 
-        <!-- KNIGHT -->
         <div class="rank-card reveal-on-scroll">
           <div class="rank-name">KNIGHT</div>
           <div class="rank-price">$12</div>
@@ -2137,7 +2252,6 @@
           <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline">PURCHASE</a>
         </div>
 
-        <!-- KING -->
         <div class="rank-card reveal-on-scroll">
           <div class="rank-name">KING</div>
           <div class="rank-price">$15</div>
@@ -2149,7 +2263,6 @@
           <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline">PURCHASE</a>
         </div>
 
-        <!-- STEAL+ -->
         <div class="rank-card reveal-on-scroll">
           <div class="rank-name">STEAL+</div>
           <div class="rank-price">$18</div>
@@ -2161,7 +2274,6 @@
           <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline">PURCHASE</a>
         </div>
 
-        <!-- FEAR+ -->
         <div class="rank-card reveal-on-scroll">
           <div class="rank-name">FEAR+</div>
           <div class="rank-price">$20</div>
@@ -2173,7 +2285,6 @@
           <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline">PURCHASE</a>
         </div>
 
-        <!-- FEARSTEAL TOP TIER -->
         <div class="rank-card highlight reveal-on-scroll">
           <span class="rank-popular-tag">ULTIMATE RANK</span>
           <div class="rank-name crimson-text">FEARSTEAL</div>
@@ -2230,7 +2341,6 @@
           </a>
         </div>
 
-        <!-- OWNER: RaviXD -->
         <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/RaviXD/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="RaviXD" class="staff-avatar" />
@@ -2240,7 +2350,6 @@
           <p style="font-size:0.85rem; color:var(--text-muted);">Server Executive</p>
         </div>
 
-        <!-- CO OWNER: NotGamerYTGG -->
         <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/NotGamerYTGG/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="NotGamerYTGG" class="staff-avatar" />
@@ -2250,7 +2359,6 @@
           <p style="font-size:0.85rem; color:var(--text-muted);">Executive Co-Lead</p>
         </div>
 
-        <!-- ADMIN: Prime Shifat -->
         <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/PrimeShifat/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="Prime Shifat" class="staff-avatar" />
@@ -2260,7 +2368,6 @@
           <p style="font-size:0.85rem; color:var(--text-muted);">General Administrator</p>
         </div>
 
-        <!-- SENIOR ADMIN: Cosmic_Ayush -->
         <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/Cosmic_Ayush/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="Cosmic_Ayush" class="staff-avatar" />
@@ -2270,7 +2377,6 @@
           <p style="font-size:0.85rem; color:var(--text-muted);">Systems Supervisor</p>
         </div>
 
-        <!-- JUNIOR ADMIN: Harshu -->
         <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/Harshu/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="Harshu" class="staff-avatar" />
@@ -2280,7 +2386,6 @@
           <p style="font-size:0.85rem; color:var(--text-muted);">Network Assistance</p>
         </div>
 
-        <!-- MANAGER: VoidSlayer -->
         <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/VoidSlayer/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="VoidSlayer" class="staff-avatar" />
@@ -2290,7 +2395,6 @@
           <p style="font-size:0.85rem; color:var(--text-muted);">Community Manager</p>
         </div>
 
-        <!-- MODERATOR: Thunderboltzzz_ -->
         <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/Thunderboltzzz_/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="Thunderboltzzz_" class="staff-avatar" />
@@ -2300,7 +2404,6 @@
           <p style="font-size:0.85rem; color:var(--text-muted);">In-game Enforcement</p>
         </div>
 
-        <!-- JUNIOR MODERATOR: NotDark6 -->
         <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/NotDark6/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="NotDark6" class="staff-avatar" />
@@ -2310,7 +2413,6 @@
           <p style="font-size:0.85rem; color:var(--text-muted);">Trial Moderation</p>
         </div>
 
-        <!-- HELPER: JessGamer7733 -->
         <div class="staff-card reveal-on-scroll">
           <div class="staff-avatar-box">
             <img src="https://mc-heads.net/avatar/JessGamer7733/86" onerror="this.src='https://mc-heads.net/avatar/Steve/86'" alt="JessGamer7733" class="staff-avatar" />
@@ -2324,7 +2426,7 @@
   </section>
 
   <!-- ========================================================
-       6. LEADERBOARD
+       6. LEADERBOARDS
        ======================================================== -->
   <section id="leaderboard" class="leaderboard-section">
     <div class="container">
@@ -2342,12 +2444,8 @@
         <button class="category-pill-btn" onclick="loadLeaderboardCategory('deaths', this)">Top Deaths</button>
       </div>
 
-      <!-- Podium Top 3 -->
-      <div class="podium-wrap reveal-on-scroll" id="podium-container">
-        <!-- Rendered dynamically -->
-      </div>
+      <div class="podium-wrap reveal-on-scroll" id="podium-container"></div>
 
-      <!-- Rank 4-10 Table -->
       <div class="leaderboard-table-card reveal-on-scroll">
         <div class="table-responsive">
           <table class="lb-table">
@@ -2360,9 +2458,7 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody id="lb-table-body">
-              <!-- Dynamically populated -->
-            </tbody>
+            <tbody id="lb-table-body"></tbody>
           </table>
         </div>
       </div>
@@ -2370,7 +2466,7 @@
   </section>
 
   <!-- ========================================================
-       7. EVENTS SYSTEM
+       7. EVENTS & ROTATION
        ======================================================== -->
   <section id="events" class="events-section">
     <div class="container">
@@ -2426,9 +2522,7 @@
       </div>
 
       <h3 style="font-size: 1.6rem; margin-bottom: 24px; text-align:center;" class="reveal-on-scroll">LIFETIME UPCOMING SCHEDULE</h3>
-      <div class="upcoming-grid" id="upcoming-events-grid">
-        <!-- Dynamically rendered -->
-      </div>
+      <div class="upcoming-grid" id="upcoming-events-grid"></div>
     </div>
   </section>
 
@@ -2563,7 +2657,7 @@
           <h4 style="margin-bottom:8px;">Enter Credentials</h4>
           <p style="font-size:0.9rem; color:var(--text-muted);">
             Address: <strong style="color:#fff;">play.fearsteal.fun</strong><br />
-            Port: <strong style="color:var(--crimson-glow);">19132</strong>
+            Port: <strong style="color:var(--gold-fs);">19132</strong>
           </p>
         </div>
 
@@ -2665,7 +2759,7 @@
   </section>
 
   <!-- ========================================================
-       DISCORD COMMUNITY & SUPPORT
+       DISCORD COMMUNITY
        ======================================================== -->
   <section class="discord-cta-section">
     <div class="container">
@@ -2711,14 +2805,14 @@
   </section>
 
   <!-- ========================================================
-       FOOTER & STAY UPDATED NEWSLETTER
+       FOOTER
        ======================================================== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <div class="brand-shield" style="width:36px; height:36px; font-size:1.1rem;">FS</div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <img src="" alt="FearSteal Logo" class="footer-fs-logo fs-logo-img fs-asset-target" style="width:38px; height:38px;" />
             <span class="font-display" style="font-size:1.4rem; font-weight:800; color:#fff;">FEARSTEAL</span>
           </div>
           <p>
@@ -2780,31 +2874,58 @@
   <div id="toast-container"></div>
 
   <!-- ========================================================
-       JAVASCRIPT ADVANCED DYNAMICS & AUDIO SYNTH
+       SCRIPTS & LOGO EMBEDDING
        ======================================================== -->
   <script>
-    // Server Configuration
+    // Exact 3D Gold/Crimson voxel FS logo asset embedded directly for 100% offline consistency
+    const FEARSTEAL_LOGO_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><linearGradient id="yg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fff275"/><stop offset="30%" stop-color="%23ffca18"/><stop offset="100%" stop-color="%23e58900"/></linearGradient><linearGradient id="rg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23c51010"/><stop offset="100%" stop-color="%23480000"/></linearGradient><linearGradient id="sd" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ff5050"/><stop offset="100%" stop-color="%237e0606"/></linearGradient></defs><g stroke="%23000" stroke-width="18" stroke-linejoin="miter"><path d="M 125 145 L 245 145 L 245 205 L 180 205 L 180 235 L 235 235 L 235 285 L 180 285 L 180 345 L 125 345 Z" fill="url(%23sd)"/><path d="M 110 135 L 235 135 L 235 190 L 170 190 L 170 225 L 225 225 L 225 275 L 170 275 L 170 340 L 110 340 Z" fill="url(%23yg)"/><path d="M 110 340 L 125 355 L 185 355 L 170 340 Z" fill="url(%23rg)"/><path d="M 235 135 L 250 150 L 250 205 L 235 190 Z" fill="url(%23rg)"/><path d="M 265 145 L 385 145 L 385 220 L 325 220 L 325 245 L 390 245 L 390 345 L 265 345 L 265 270 L 325 270 L 325 245 L 265 245 Z" fill="url(%23sd)"/><path d="M 252 135 L 375 135 L 375 205 L 315 205 L 315 235 L 380 235 L 380 340 L 252 340 L 252 260 L 315 260 L 315 235 L 252 235 Z" fill="url(%23yg)"/><path d="M 375 135 L 392 150 L 392 220 L 375 205 Z" fill="url(%23rg)"/><path d="M 380 235 L 398 250 L 398 355 L 380 340 Z" fill="url(%23rg)"/><path d="M 252 340 L 270 358 L 398 358 L 380 340 Z" fill="url(%23rg)"/></g></svg>`;
+
+    // Distribute exact FS logo to all designated targets
+    document.querySelectorAll('.fs-asset-target').forEach(img => {
+      img.src = FEARSTEAL_LOGO_SVG;
+    });
+
     const MC_HOST = 'play.fearsteal.fun';
     const MC_PORT = 19132;
     const DISCORD_INVITE = 'https://discord.gg/pGM5x3gXpX';
     const STORE_URL = 'https://store.cryzormc.in/';
 
     /* --------------------------------------------------------
-       WEB AUDIO SYNTHESIZER (CINEMATIC SFX)
+       PRE-LOADER ENGINE
+       -------------------------------------------------------- */
+    function runPreLoader() {
+      let progress = 0;
+      const bar = document.getElementById('loader-progress-bar');
+      const text = document.getElementById('loader-progress-text');
+      const loader = document.getElementById('site-loader');
+
+      const interval = setInterval(() => {
+        progress += Math.floor(Math.random() * 9) + 4;
+        if (progress > 100) progress = 100;
+
+        bar.style.width = `${progress}%`;
+        text.textContent = `INITIALIZING NETWORK... ${progress}%`;
+
+        if (progress === 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            loader.classList.add('fade-out');
+            setTimeout(() => loader.remove(), 700);
+          }, 350);
+        }
+      }, 45);
+    }
+
+    /* --------------------------------------------------------
+       AUDIO SYNTHESIZER
        -------------------------------------------------------- */
     let audioCtx = null;
-
     function getAudioContext() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
       return audioCtx;
     }
 
-    // Portal Warp Sound FX
     function playPortalEntrySound() {
       try {
         const ctx = getAudioContext();
@@ -2813,11 +2934,11 @@
 
         osc.type = 'sawtooth';
         osc.frequency.setValueAtTime(60, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.4);
+        osc.frequency.exponentialRampToValueAtTime(850, ctx.currentTime + 0.4);
         osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.85);
 
         gain.gain.setValueAtTime(0.01, ctx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.25, ctx.currentTime + 0.3);
+        gain.gain.linearRampToValueAtTime(0.28, ctx.currentTime + 0.3);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.85);
 
         osc.connect(gain);
@@ -2825,12 +2946,9 @@
 
         osc.start();
         osc.stop(ctx.currentTime + 0.9);
-      } catch (e) {
-        // Audio policy fallback
-      }
+      } catch (e) {}
     }
 
-    // Interactive button chime
     function playClickSound() {
       try {
         const ctx = getAudioContext();
@@ -2853,8 +2971,69 @@
     }
 
     /* --------------------------------------------------------
-       3D PARALLAX TILT ON AUTH CARD
+       ADVANCED AUTH SYSTEMS & SKIN PREVIEWS
        -------------------------------------------------------- */
+    const AUTH_STORAGE_KEY = 'fearsteal_user_auth';
+    const NOVICE_STORAGE_KEY = 'fearsteal_novice_claimed';
+    const NOVICE_COUNT_KEY = 'fearsteal_novice_counter';
+
+    let skinTimeout = null;
+    function updateSkinPreview(ign, targetId) {
+      clearTimeout(skinTimeout);
+      const avatarEl = document.getElementById(targetId);
+      if (!avatarEl) return;
+
+      skinTimeout = setTimeout(() => {
+        const clean = ign.trim();
+        if (clean.length > 2) {
+          avatarEl.src = `https://mc-heads.net/avatar/${encodeURIComponent(clean)}/44`;
+        } else {
+          avatarEl.src = `https://mc-heads.net/avatar/Steve/44`;
+        }
+      }, 350);
+    }
+
+    function analyzePasswordStrength(pass) {
+      const bars = [
+        document.getElementById('str-1'),
+        document.getElementById('str-2'),
+        document.getElementById('str-3'),
+        document.getElementById('str-4')
+      ];
+      const label = document.getElementById('str-label');
+
+      bars.forEach(b => b.style.background = 'rgba(255, 255, 255, 0.1)');
+
+      let score = 0;
+      if (pass.length >= 6) score++;
+      if (pass.match(/[A-Z]/)) score++;
+      if (pass.match(/[0-9]/)) score++;
+      if (pass.match(/[^A-Za-z0-9]/)) score++;
+
+      if (pass.length === 0) {
+        label.textContent = 'Strength: Empty';
+      } else if (score === 1) {
+        bars[0].style.background = '#ef4444';
+        label.textContent = 'Strength: Weak';
+        label.style.color = '#ef4444';
+      } else if (score === 2) {
+        bars[0].style.background = '#f59e0b';
+        bars[1].style.background = '#f59e0b';
+        label.textContent = 'Strength: Moderate';
+        label.style.color = '#f59e0b';
+      } else if (score === 3) {
+        bars[0].style.background = '#3b82f6';
+        bars[1].style.background = '#3b82f6';
+        bars[2].style.background = '#3b82f6';
+        label.textContent = 'Strength: Strong';
+        label.style.color = '#3b82f6';
+      } else if (score === 4) {
+        bars.forEach(b => b.style.background = '#10b981');
+        label.textContent = 'Strength: Legendary';
+        label.style.color = '#10b981';
+      }
+    }
+
     const authCard = document.getElementById('auth3DCard');
     const authOverlay = document.getElementById('auth-overlay');
 
@@ -2862,12 +3041,8 @@
       authOverlay.addEventListener('mousemove', (e) => {
         if (authOverlay.classList.contains('hidden')) return;
         const rect = authCard.getBoundingClientRect();
-        const cardX = rect.left + rect.width / 2;
-        const cardY = rect.top + rect.height / 2;
-
-        const deltaX = (e.clientX - cardX) / 22;
-        const deltaY = (e.clientY - cardY) / 22;
-
+        const deltaX = (e.clientX - (rect.left + rect.width / 2)) / 22;
+        const deltaY = (e.clientY - (rect.top + rect.height / 2)) / 22;
         authCard.style.transform = `rotateY(${deltaX}deg) rotateX(${-deltaY}deg) translateY(-2px)`;
       });
 
@@ -2876,13 +3051,9 @@
       });
     }
 
-    /* --------------------------------------------------------
-       SHOCKWAVE PORTAL ENTRY ANIMATION
-       -------------------------------------------------------- */
     function triggerPortalTransition(username) {
       playPortalEntrySound();
 
-      // Spawn shockwave ring
       const shockwave = document.createElement('div');
       shockwave.className = 'portal-shockwave';
       shockwave.style.left = '50%';
@@ -2904,43 +3075,10 @@
         authOverlay.classList.add('hidden');
         authOverlay.classList.remove('portal-active');
         shockwave.remove();
-        showToast(`⚔️ Realm unsealed. Welcome warrior, ${username}!`, 'success', 'fa-skull');
+        showToast(`⚔️ FearSteal Portal Cleared. Welcome, ${username}!`, 'success', 'fa-skull');
         initScrollReveal();
       }, 780);
     }
-
-    /* --------------------------------------------------------
-       TOAST NOTIFICATION ENGINE
-       -------------------------------------------------------- */
-    function showToast(message, type = 'info', icon = 'fa-circle-info') {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      
-      let iconColor = '#f87171';
-      if (type === 'success') iconColor = '#34d399';
-      if (type === 'warning') iconColor = '#fbbf24';
-
-      toast.innerHTML = `
-        <i class="fa-solid ${icon}" style="color:${iconColor}; font-size:1.25rem;"></i>
-        <div style="flex:1;">${message}</div>
-      `;
-      container.appendChild(toast);
-
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateX(100%)';
-        toast.style.transition = 'all 0.35s ease';
-        setTimeout(() => toast.remove(), 350);
-      }, 4500);
-    }
-
-    /* --------------------------------------------------------
-       AUTHENTICATION STATE & FORM HANDLING
-       -------------------------------------------------------- */
-    const AUTH_STORAGE_KEY = 'fearsteal_user_auth';
-    const NOVICE_STORAGE_KEY = 'fearsteal_novice_claimed';
-    const NOVICE_COUNT_KEY = 'fearsteal_novice_counter';
 
     function initAuth() {
       const storedUser = localStorage.getItem(AUTH_STORAGE_KEY);
@@ -3007,10 +3145,8 @@
 
       triggerPortalTransition(identifier);
 
-      const navUserName = document.getElementById('user-nav-name');
-      const navUserAvatar = document.getElementById('user-nav-avatar');
-      navUserName.textContent = identifier;
-      navUserAvatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(identifier)}/32`;
+      document.getElementById('user-nav-name').textContent = identifier;
+      document.getElementById('user-nav-avatar').src = `https://mc-heads.net/avatar/${encodeURIComponent(identifier)}/32`;
     }
 
     function handleRegisterSubmit(e) {
@@ -3032,10 +3168,8 @@
 
       triggerPortalTransition(username);
 
-      const navUserName = document.getElementById('user-nav-name');
-      const navUserAvatar = document.getElementById('user-nav-avatar');
-      navUserName.textContent = username;
-      navUserAvatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(username)}/32`;
+      document.getElementById('user-nav-name').textContent = username;
+      document.getElementById('user-nav-avatar').src = `https://mc-heads.net/avatar/${encodeURIComponent(username)}/32`;
     }
 
     function handleLogout() {
@@ -3137,7 +3271,7 @@
       document.getElementById('dashboard-badge-text').textContent = 'OFFLINE';
       document.getElementById('dashboard-dot').className = 'status-dot offline';
 
-      document.getElementById('dashboard-motd').innerHTML = `<span style="color:#f87171;"><i class="fa-solid fa-triangle-exclamation"></i> Server Offline or Node Unreachable. Attempting reconnect...</span>`;
+      document.getElementById('dashboard-motd').innerHTML = `<span style="color:#f87171;"><i class="fa-solid fa-triangle-exclamation"></i> Server Offline or Node Unreachable.</span>`;
       document.getElementById('dashboard-player-stat').textContent = '0';
       document.getElementById('meta-updated').textContent = timeStr;
     }
@@ -3418,7 +3552,7 @@
         card.innerHTML = `
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
             <span class="event-type-badge">${nextEvt.type}</span>
-            <span style="font-size:0.8rem; font-weight:700; color:var(--crimson-glow);">IN ~${daysFromNow} DAYS</span>
+            <span style="font-size:0.8rem; font-weight:700; color:var(--gold-fs);">IN ~${daysFromNow} DAYS</span>
           </div>
           <h4 style="font-size:1.25rem; font-weight:800; margin-bottom:8px;">${nextEvt.title}</h4>
           <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.55;">${nextEvt.desc}</p>
@@ -3427,9 +3561,6 @@
       }
     }
 
-    /* --------------------------------------------------------
-       SCROLL REVEAL OBSERVER
-       -------------------------------------------------------- */
     function initScrollReveal() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -3444,7 +3575,7 @@
     }
 
     /* --------------------------------------------------------
-       INTERACTIVE CANVAS PARTICLES (VORTEX EMBER PHYSICS)
+       CANVAS PARTICLES
        -------------------------------------------------------- */
     function initCanvasParticles() {
       const canvas = document.getElementById('particles-canvas');
@@ -3484,7 +3615,6 @@
         for (let i = 0; i < particles.length; i++) {
           const p = particles[i];
 
-          // Gentle gravity attraction towards mouse cursor
           const dx = mouseX - p.x;
           const dy = mouseY - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
@@ -3515,9 +3645,6 @@
       draw();
     }
 
-    /* --------------------------------------------------------
-       UI ACCORDIONS, SEARCH, MOBILE NAV
-       -------------------------------------------------------- */
     function toggleAccordion(el) {
       playClickSound();
       const parent = el.parentElement;
@@ -3556,12 +3683,36 @@
       document.getElementById('newsletter-email').value = '';
     }
 
+    function showToast(message, type = 'info', icon = 'fa-circle-info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      
+      let iconColor = '#f87171';
+      if (type === 'success') iconColor = '#34d399';
+      if (type === 'warning') iconColor = '#fbbf24';
+
+      toast.innerHTML = `
+        <i class="fa-solid ${icon}" style="color:${iconColor}; font-size:1.25rem;"></i>
+        <div style="flex:1;">${message}</div>
+      `;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        toast.style.transition = 'all 0.35s ease';
+        setTimeout(() => toast.remove(), 350);
+      }, 4500);
+    }
+
     /* --------------------------------------------------------
        LIFECYCLE INITIALIZER
        -------------------------------------------------------- */
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('current-year').textContent = new Date().getFullYear();
 
+      runPreLoader();
       initCanvasParticles();
       initAuth();
       initNoviceCounter();
@@ -3569,18 +3720,15 @@
       renderUpcomingSchedule();
       initScrollReveal();
 
-      // Countdown ticker every second
       renderActiveEvent();
       setInterval(renderActiveEvent, 1000);
 
-      // Server status polling every 35 seconds
       fetchServerStatus();
       setInterval(fetchServerStatus, 35000);
 
-      // Welcome visitor toast
       setTimeout(() => {
-        showToast('⚔️ FearSteal Season 1 is live! Join IP: play.fearsteal.fun:19132', 'warning', 'fa-bolt');
-      }, 1600);
+        showToast('FearSteal is Online! IP: play.fearsteal.fun:19132', 'warning', 'fa-bolt');
+      }, 2000);
     });
   </script>
 </body>
