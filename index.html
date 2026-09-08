@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home | FearSteal</title>
-  <meta name="description" content="Official FearSteal LifeSteal Network (play.fearsteal.fun:19132). High tick-rate PvP, live Discord telemetry, automated 15-day rotating events, heart forge simulator, crate unboxer, and multi-auth system." />
+  <meta name="description" content="Official FearSteal LifeSteal Network (play.fearsteal.fun:19132). High tick-rate PvP, live Discord telemetry, automated 15-day rotating events, heart forge simulator, crate unboxer, and founder admin system." />
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -200,6 +200,15 @@
           gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
           osc.start(now);
           osc.stop(now + 0.12);
+        } else if (type === 'admin') {
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(350, now);
+          osc.frequency.linearRampToValueAtTime(700, now + 0.15);
+          osc.frequency.linearRampToValueAtTime(1050, now + 0.3);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
         } else if (type === 'crate') {
           osc.type = 'sawtooth';
           osc.frequency.setValueAtTime(220, now);
@@ -478,12 +487,15 @@
         return () => clearInterval(interval);
       }, []);
 
-      // 2. Authentication State with Multi-Provider SSO (Microsoft, Discord, Google)
+      // 2. Authentication State with Super-Admin Role Verification
+      // ADMIN CREDENTIALS SPECIFIED BY USER:
+      // Username/IGN: ItzVeltriex | Email: fearstealsupport@gmail.com | Password: thakuree@2064
       const [authUser, setAuthUser] = useState(() => {
         const saved = localStorage.getItem('fearsteal_user');
         return saved ? JSON.parse(saved) : null;
       });
       const [showAuthModal, setShowAuthModal] = useState(false);
+      const [showAdminPanel, setShowAdminPanel] = useState(false);
       const [authMode, setAuthMode] = useState('login'); // 'login' | 'register' | 'forgot'
       const [authFormData, setAuthFormData] = useState({
         username: '',
@@ -495,6 +507,15 @@
       const [authShowPassword, setAuthShowPassword] = useState(false);
       const [authError, setAuthError] = useState('');
       const [authLoading, setAuthLoading] = useState(false);
+
+      // Check if logged in user is the verified Founder / Super Admin
+      const isSuperAdmin = useMemo(() => {
+        if (!authUser) return false;
+        return (
+          (authUser.username?.toLowerCase() === 'itzveltriex' || authUser.email?.toLowerCase() === 'fearstealsupport@gmail.com') &&
+          authUser.isAdmin === true
+        );
+      }, [authUser]);
 
       // Password Strength
       const passwordStrength = useMemo(() => {
@@ -609,6 +630,16 @@
       const [currentEventIndex, setCurrentEventIndex] = useState(0);
       const [eventTimeLeft, setEventTimeLeft] = useState({ days: 11, hours: 14, minutes: 22, seconds: 18 });
 
+      // Admin Panel Live Controls State
+      const [adminConsoleLogs, setAdminConsoleLogs] = useState([
+        "[INFO] FearSteal Core Engine v3.4.2 booted successfully on port 19132.",
+        "[SECURITY] Anti-Cheat Matrix armed: Killaura, Speed, Baritone filters active.",
+        "[ADMIN] Founder access verified for ItzVeltriex (IP: Protected).",
+      ]);
+      const [adminCommandInput, setAdminCommandInput] = useState('');
+      const [adminMaintenanceMode, setAdminMaintenanceMode] = useState(false);
+      const [adminBroadcastMsg, setAdminBroadcastMsg] = useState('');
+
       // Live Server & Discord Status Hooks
       const { status: serverStatus, refresh: refreshServerStatus } = useMinecraftStatus("play.fearsteal.fun", 19132);
       const { discordData: discordLive, refresh: refreshDiscord } = useDiscordLiveStatus("pGM5x3gXpX");
@@ -616,7 +647,7 @@
       // Toast Dispatch Helper
       const addToast = (title, message, type = 'info') => {
         const id = Date.now();
-        playSound(type === 'error' ? 'click' : 'copy');
+        playSound(type === 'error' ? 'click' : type === 'admin' ? 'admin' : 'copy');
         setToasts(prev => [...prev, { id, title, message, type }]);
         setTimeout(() => {
           setToasts(prev => prev.filter(t => t.id !== id));
@@ -647,7 +678,6 @@
             if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
             if (prev.days > 0) return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
             
-            // Cycle ended -> Rotate next event!
             setCurrentEventIndex(curr => (curr + 1) % eventList.length);
             addToast("🎉 New Event Started!", `${eventList[(currentEventIndex + 1) % eventList.length].name} is now live!`, "success");
             return { days: 15, hours: 0, minutes: 0, seconds: 0 };
@@ -699,6 +729,7 @@
               email: 'player@xboxlive.com',
               role: 'Verified Bedrock/Java',
               provider: 'Microsoft Xbox',
+              isAdmin: false,
               hearts: 14,
               kills: 18,
               joined: 'Via Microsoft'
@@ -709,6 +740,7 @@
               email: 'user@discord.gg',
               role: 'Discord Verified',
               provider: 'Discord',
+              isAdmin: false,
               hearts: 16,
               kills: 35,
               joined: 'Via Discord'
@@ -719,6 +751,7 @@
               email: 'user@gmail.com',
               role: 'Google Verified',
               provider: 'Google',
+              isAdmin: false,
               hearts: 10,
               kills: 4,
               joined: 'Via Google'
@@ -732,35 +765,67 @@
         }, 900);
       };
 
-      // Standard Auth Submissions
+      // Standard Auth Submissions WITH FOUNDER / SUPER ADMIN LOGIC
+      // Exact Credentials Check:
+      // Username: ItzVeltriex OR Email: fearstealsupport@gmail.com
+      // Password: thakuree@2064
       const handleAuthSubmit = (e) => {
         e.preventDefault();
         setAuthError('');
         playSound('click');
         setAuthLoading(true);
 
+        const inputIdentifier = (authFormData.username || '').trim().toLowerCase();
+        const inputPassword = authFormData.password;
+
         setTimeout(() => {
           setAuthLoading(false);
+
           if (authMode === 'login') {
             if (!authFormData.username || !authFormData.password) {
-              setAuthError('Please provide both your username and password.');
+              setAuthError('Please provide both your username/email and password.');
               return;
             }
-            const userObj = {
-              username: authFormData.username,
-              email: authFormData.username.includes('@') ? authFormData.username : `${authFormData.username}@fearsteal.fun`,
-              role: 'Warrior',
-              provider: 'Credentials',
-              hearts: 14,
-              kills: 24,
-              joined: 'Season 1'
-            };
+
+            // CHECK SUPER ADMIN CREDENTIALS (ItzVeltriex / fearstealsupport@gmail.com + thakuree@2064)
+            const isFounderMatch = 
+              (inputIdentifier === 'itzveltriex' || inputIdentifier === 'fearstealsupport@gmail.com') &&
+              inputPassword === 'thakuree@2064';
+
+            let userObj;
+            if (isFounderMatch) {
+              userObj = {
+                username: 'ItzVeltriex',
+                email: 'fearstealsupport@gmail.com',
+                role: 'FOUNDER & SUPER ADMIN',
+                provider: 'Founder Master Credentials',
+                isAdmin: true,
+                hearts: 84,
+                kills: 1420,
+                joined: 'Founder'
+              };
+              playSound('admin');
+              addToast("👑 FOUNDER AUTHENTICATED!", "Welcome Founder ItzVeltriex. Super Admin Panel Unlocked!", "admin");
+            } else {
+              userObj = {
+                username: authFormData.username,
+                email: authFormData.username.includes('@') ? authFormData.username : `${authFormData.username}@fearsteal.fun`,
+                role: 'Warrior',
+                provider: 'Credentials',
+                isAdmin: false,
+                hearts: 14,
+                kills: 24,
+                joined: 'Season 1'
+              };
+              addToast("⚔️ Welcome Back!", `Authenticated as ${userObj.username}`, "success");
+            }
+
             if (authFormData.rememberMe) {
               localStorage.setItem('fearsteal_user', JSON.stringify(userObj));
             }
             setAuthUser(userObj);
             setShowAuthModal(false);
-            addToast("⚔️ Welcome Back!", `Authenticated as ${userObj.username}`, "success");
+
           } else if (authMode === 'register') {
             if (!authFormData.username || !authFormData.email || !authFormData.password) {
               setAuthError('Please fill out all registration fields.');
@@ -779,6 +844,7 @@
               email: authFormData.email,
               role: 'Recruit',
               provider: 'FearSteal Core',
+              isAdmin: false,
               hearts: 10,
               kills: 0,
               joined: 'Just Now'
@@ -803,7 +869,23 @@
         localStorage.removeItem('fearsteal_user');
         setAuthUser(null);
         setShowProfileDrawer(false);
+        setShowAdminPanel(false);
         addToast("Logged Out", "Session disconnected safely.", "info");
+      };
+
+      // Admin Console Command Executor
+      const handleAdminExecuteCommand = (e) => {
+        e.preventDefault();
+        if (!adminCommandInput.trim()) return;
+        playSound('click');
+        const cmd = adminCommandInput.trim();
+        setAdminConsoleLogs(prev => [
+          ...prev,
+          `> ${cmd}`,
+          cmd.startsWith('/') ? `[RCON SUCCESS] Executed command: ${cmd}` : `[BROADCAST] ${cmd}`
+        ]);
+        addToast("Command Executed", cmd, "admin");
+        setAdminCommandInput('');
       };
 
       // Smooth Section Scroll
@@ -928,6 +1010,203 @@
           )}
 
           {/* ========================================================================= */}
+          {/* EXCLUSIVE FOUNDER / SUPER ADMIN CONTROL PANEL MODAL */}
+          {/* Visible ONLY when logged in as ItzVeltriex / fearstealsupport@gmail.com */}
+          {/* ========================================================================= */}
+          {showAdminPanel && isSuperAdmin && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-2xl">
+              <div className="relative w-full max-w-5xl glass-panel-glow rounded-3xl p-6 sm:p-8 border-2 border-yellow-400 shadow-glow-gold max-h-[92vh] overflow-y-auto">
+                <button 
+                  onClick={() => setShowAdminPanel(false)} 
+                  className="absolute top-5 right-5 p-2 rounded-xl bg-dark-800 text-gray-400 hover:text-white border border-white/10"
+                >
+                  <Icon name="x" size={20} />
+                </button>
+
+                {/* Admin Header */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-yellow-500/30">
+                  <div className="flex items-center gap-4">
+                    <img
+                      src="https://mc-heads.net/avatar/ItzVeltriex/128"
+                      alt="ItzVeltriex"
+                      className="w-16 h-16 rounded-2xl border-2 border-yellow-400 shadow-glow-gold bg-dark-800"
+                    />
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="px-2.5 py-0.5 rounded-full bg-yellow-500/20 border border-yellow-400 text-yellow-400 text-xs font-black uppercase font-gaming">
+                          👑 FOUNDER MASTER CONSOLE
+                        </span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-red-950 border border-red-600 text-red-400 text-[10px] font-mono font-bold">
+                          ROOT ACCESS
+                        </span>
+                      </div>
+                      <h2 className="text-2xl sm:text-3xl font-black font-gaming text-white mt-1">
+                        ItzVeltriex Admin Center
+                      </h2>
+                      <p className="text-xs font-mono text-gray-400">Authenticated Email: fearstealsupport@gmail.com</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => {
+                        setAdminMaintenanceMode(!adminMaintenanceMode);
+                        addToast("Maintenance Mode", `Maintenance toggled to ${!adminMaintenanceMode ? 'ACTIVE' : 'OFF'}`, "admin");
+                      }}
+                      className={`px-4 py-2 rounded-xl text-xs font-gaming font-bold tracking-wider uppercase transition-all flex items-center gap-2 ${
+                        adminMaintenanceMode ? 'bg-red-600 text-white' : 'bg-dark-800 border border-white/10 text-gray-300'
+                      }`}
+                    >
+                      <Icon name="power" size={14} />
+                      <span>{adminMaintenanceMode ? 'MAINTENANCE ON' : 'MAINTENANCE OFF'}</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Admin Metrics Bar */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
+                  <div className="p-4 rounded-2xl bg-dark-800/80 border border-yellow-500/30 text-center">
+                    <span className="text-[10px] uppercase font-bold text-gray-400 block font-gaming">Free Novice Claims</span>
+                    <span className="text-xl font-bold text-yellow-400 font-mono">{noviceClaims} / 100</span>
+                    <button
+                      onClick={() => {
+                        setNoviceClaims(0);
+                        localStorage.setItem('fearsteal_novice_claims', '0');
+                        addToast("Counter Reset", "Novice claims reset to 0/100", "admin");
+                      }}
+                      className="mt-2 text-[10px] text-crimson-400 hover:underline block mx-auto font-bold"
+                    >
+                      Reset to 0 Claims
+                    </button>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-dark-800/80 border border-white/10 text-center">
+                    <span className="text-[10px] uppercase font-bold text-gray-400 block font-gaming">Server Status</span>
+                    <span className="text-xl font-bold text-emerald-400 font-mono">{serverStatus.players.online} Online</span>
+                    <span className="text-[10px] text-gray-400 block mt-1">play.fearsteal.fun:19132</span>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-dark-800/80 border border-white/10 text-center">
+                    <span className="text-[10px] uppercase font-bold text-gray-400 block font-gaming">Active 15-Day Event</span>
+                    <span className="text-xs font-bold text-white block mt-1 truncate">{eventList[currentEventIndex].name}</span>
+                    <button
+                      onClick={() => {
+                        setCurrentEventIndex((currentEventIndex + 1) % eventList.length);
+                        addToast("Event Rotated", "Manually rotated to next event cycle", "admin");
+                      }}
+                      className="mt-1 text-[10px] text-yellow-400 hover:underline font-bold"
+                    >
+                      Force Next Event ↻
+                    </button>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-dark-800/80 border border-white/10 text-center">
+                    <span className="text-[10px] uppercase font-bold text-gray-400 block font-gaming">Discord Guild</span>
+                    <span className="text-xl font-bold text-[#5865F2] font-mono">{discordLive.onlineMembers} Online</span>
+                    <span className="text-[10px] text-gray-400 block mt-1">{discordLive.totalMembers} Total Members</span>
+                  </div>
+                </div>
+
+                {/* Simulated Live RCON Console */}
+                <div className="p-5 rounded-2xl bg-dark-950 border border-white/10 mb-6">
+                  <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-3">
+                    <span className="text-xs font-mono font-bold text-yellow-400 flex items-center gap-2">
+                      <Icon name="terminal" size={16} />
+                      MINECRAFT SERVER RCON & DISPATCH CONSOLE
+                    </span>
+                    <span className="text-[10px] text-emerald-400 font-mono">CONNECTED: 19132</span>
+                  </div>
+
+                  <div className="h-36 overflow-y-auto font-mono text-xs text-gray-300 space-y-1 mb-3 bg-black/60 p-3 rounded-xl border border-white/5">
+                    {adminConsoleLogs.map((log, idx) => (
+                      <p key={idx} className={log.startsWith('>') ? 'text-yellow-400 font-bold' : log.includes('SUCCESS') ? 'text-emerald-400' : 'text-gray-300'}>
+                        {log}
+                      </p>
+                    ))}
+                  </div>
+
+                  <form onSubmit={handleAdminExecuteCommand} className="flex gap-2">
+                    <input
+                      type="text"
+                      placeholder="Execute command (e.g. /op ItzVeltriex, /heart give player 5, /say Server restarting in 5m)..."
+                      value={adminCommandInput}
+                      onChange={(e) => setAdminCommandInput(e.target.value)}
+                      className="flex-1 bg-dark-900 border border-white/10 rounded-xl px-4 py-2 text-xs font-mono text-white placeholder-gray-500 focus:outline-none focus:border-yellow-400"
+                    />
+                    <button
+                      type="submit"
+                      className="px-5 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-black font-gaming font-bold text-xs uppercase tracking-wider transition-all"
+                    >
+                      SEND RCON
+                    </button>
+                  </form>
+                </div>
+
+                {/* Quick Admin Actions Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="p-4 rounded-2xl bg-dark-800/80 border border-white/5">
+                    <h4 className="text-xs font-bold font-gaming text-white uppercase mb-2 flex items-center gap-2">
+                      <Icon name="heart" size={14} className="text-crimson-400" />
+                      Player Heart Management
+                    </h4>
+                    <div className="space-y-2">
+                      <button
+                        onClick={() => addToast("Heart Revive Dispatched", "Global spectator unban packet sent", "admin")}
+                        className="w-full py-2 rounded-xl bg-dark-900 hover:bg-dark-750 text-gray-300 hover:text-white text-xs font-mono border border-white/10 text-left px-3"
+                      >
+                        /revive all (Clear Spectators)
+                      </button>
+                      <button
+                        onClick={() => addToast("Heart Cap Reset", "Server heart cap enforced at 30 Hearts", "admin")}
+                        className="w-full py-2 rounded-xl bg-dark-900 hover:bg-dark-750 text-gray-300 hover:text-white text-xs font-mono border border-white/10 text-left px-3"
+                      >
+                        /heart cap set 30
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-dark-800/80 border border-white/5">
+                    <h4 className="text-xs font-bold font-gaming text-white uppercase mb-2 flex items-center gap-2">
+                      <Icon name="broadcast" size={14} className="text-yellow-400" />
+                      Global MOTD & Alerts
+                    </h4>
+                    <div className="space-y-2">
+                      <button
+                        onClick={() => addToast("Broadcast Sent", "📢 DROP PARTY at /warp warzone in 10 minutes!", "admin")}
+                        className="w-full py-2 rounded-xl bg-dark-900 hover:bg-dark-750 text-gray-300 hover:text-white text-xs font-mono border border-white/10 text-left px-3"
+                      >
+                        📢 Alert: Drop Party Warzone
+                      </button>
+                      <button
+                        onClick={() => addToast("Broadcast Sent", "⚔️ 2x HEARTS WEEKEND ACTIVATED!", "admin")}
+                        className="w-full py-2 rounded-xl bg-dark-900 hover:bg-dark-750 text-gray-300 hover:text-white text-xs font-mono border border-white/10 text-left px-3"
+                      >
+                        ⚔️ Alert: 2x Hearts Multiplier
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-dark-800/80 border border-white/5">
+                    <h4 className="text-xs font-bold font-gaming text-white uppercase mb-2 flex items-center gap-2">
+                      <Icon name="shield-check" size={14} className="text-emerald-400" />
+                      Staff Tickets & Logs
+                    </h4>
+                    <p className="text-xs text-gray-400">Support Desk: fearstealsupport@gmail.com</p>
+                    <a
+                      href="https://discord.gg/pGM5x3gXpX"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 block text-center py-2 rounded-xl bg-indigo-950/80 border border-indigo-500/50 text-indigo-300 text-xs font-bold font-gaming uppercase hover:bg-indigo-900"
+                    >
+                      Open Discord Ticket Queue →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ========================================================================= */}
           {/* TOAST NOTIFICATION STACK */}
           {/* ========================================================================= */}
           <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 pointer-events-none max-w-sm w-full">
@@ -935,13 +1214,14 @@
               <div 
                 key={toast.id}
                 className={`pointer-events-auto p-4 rounded-2xl border shadow-2xl backdrop-blur-xl flex items-start gap-3.5 transform transition-all duration-300 ${
+                  toast.type === 'admin' ? 'bg-yellow-950/95 border-yellow-400 text-yellow-300 shadow-glow-gold' :
                   toast.type === 'success' ? 'bg-dark-900/95 border-emerald-500/50 text-emerald-400' :
                   toast.type === 'error' ? 'bg-dark-900/95 border-crimson-500/80 text-crimson-400' :
                   'bg-dark-900/95 border-yellow-500/40 text-gray-200'
                 }`}
               >
                 <div className="mt-0.5">
-                  <Icon name={toast.type === 'success' ? 'check-circle-2' : toast.type === 'error' ? 'alert-octagon' : 'bell'} size={20} />
+                  <Icon name={toast.type === 'admin' ? 'crown' : toast.type === 'success' ? 'check-circle-2' : toast.type === 'error' ? 'alert-octagon' : 'bell'} size={20} />
                 </div>
                 <div className="flex-1 text-sm">
                   <h4 className="font-bold text-white leading-snug">{toast.title}</h4>
@@ -1065,13 +1345,13 @@
                 <form onSubmit={handleAuthSubmit} className="space-y-3">
                   <div>
                     <label className="block text-xs font-semibold text-gray-300 mb-1">
-                      Minecraft In-Game Username
+                      Minecraft IGN or Admin Email
                     </label>
                     <div className="relative">
                       <input
                         type="text"
                         required
-                        placeholder="e.g. ItzVeltriex"
+                        placeholder="ItzVeltriex or fearstealsupport@gmail.com"
                         value={authFormData.username}
                         onChange={(e) => setAuthFormData({ ...authFormData, username: e.target.value })}
                         className="w-full bg-dark-800/90 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500"
@@ -1277,7 +1557,7 @@
                     onError={(e) => { e.target.src = "https://mc-heads.net/avatar/MHF_Steve/128"; }}
                   />
                   <h3 className="text-2xl font-black font-gaming text-white">{authUser.username}</h3>
-                  <span className="px-3 py-0.5 rounded-full bg-yellow-600/20 border border-yellow-500 text-yellow-400 text-xs font-bold uppercase tracking-wider mt-1">
+                  <span className={`px-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider mt-1 ${isSuperAdmin ? 'bg-yellow-500/20 border border-yellow-400 text-yellow-400 font-black' : 'bg-crimson-600/30 border border-crimson-500 text-crimson-300'}`}>
                     {authUser.role || 'Member'}
                   </span>
                   {authUser.provider && (
@@ -1301,6 +1581,21 @@
                 </div>
 
                 <div className="space-y-2">
+                  {/* Founder Admin Panel Trigger if user is Super Admin */}
+                  {isSuperAdmin && (
+                    <button
+                      onClick={() => {
+                        setShowProfileDrawer(false);
+                        setShowAdminPanel(true);
+                        playSound('admin');
+                      }}
+                      className="w-full py-2.5 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 text-black font-black text-xs uppercase tracking-wider font-gaming shadow-glow-gold flex items-center justify-center gap-2"
+                    >
+                      <Icon name="crown" size={16} />
+                      <span>OPEN FOUNDER ADMIN PANEL</span>
+                    </button>
+                  )}
+
                   <button
                     onClick={() => {
                       setShowProfileDrawer(false);
@@ -1363,6 +1658,21 @@
               </nav>
 
               <div className="flex items-center gap-2 sm:gap-3">
+                {/* Dedicated Admin Button in Nav ONLY if Super Admin */}
+                {isSuperAdmin && (
+                  <button
+                    onClick={() => {
+                      playSound('admin');
+                      setShowAdminPanel(true);
+                    }}
+                    className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-gaming font-black text-xs tracking-wider uppercase shadow-glow-gold flex items-center gap-1.5"
+                    title="Founder Admin Panel"
+                  >
+                    <Icon name="crown" size={14} />
+                    <span className="hidden sm:inline">ADMIN</span>
+                  </button>
+                )}
+
                 <button
                   onClick={() => { playSound('click'); setIsSearchOpen(true); }}
                   className="p-2.5 rounded-xl bg-dark-800 border border-white/10 text-gray-300 hover:text-white hover:border-yellow-500/40 transition-all"
@@ -1454,6 +1764,19 @@
             {/* Mobile Nav Menu */}
             {mobileMenuOpen && (
               <div className="xl:hidden bg-dark-900 border-b border-crimson-500/30 px-4 py-6 space-y-1.5">
+                {isSuperAdmin && (
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setShowAdminPanel(true);
+                      playSound('admin');
+                    }}
+                    className="block w-full text-left px-4 py-2.5 rounded-xl font-gaming font-black text-sm text-black bg-yellow-500 shadow-glow-gold mb-2"
+                  >
+                    👑 FOUNDER ADMIN PANEL
+                  </button>
+                )}
+
                 {[
                   { id: 'home', label: 'HOME' },
                   { id: 'features', label: 'FEATURES' },
@@ -1671,30 +1994,31 @@
                 {/* Main Body of Widget */}
                 <div className="px-5 sm:px-8 pb-6 sm:pb-8 pt-0 relative">
                   
-                  {/* Avatar & Server Identity Header */}
+                  {/* Avatar & Server Identity Header (Responsive Wrap Fix) */}
                   <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 -mt-12 mb-5">
-                    <div className="flex items-end gap-4">
-                      <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl bg-dark-950 p-1 border-2 border-yellow-400 shadow-xl flex-shrink-0">
-                        <FearStealLogo size="small" className="w-full h-full justify-center" />
+                    <div className="flex items-end gap-3.5 min-w-0">
+                      {/* Exact Official Discord Server FS Logo in Avatar */}
+                      <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl bg-dark-950 p-1 border-2 border-yellow-400 shadow-xl flex-shrink-0 flex items-center justify-center">
+                        <FearStealLogo size="small" className="w-full h-full justify-center scale-90" />
                       </div>
                       
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h3 className="text-2xl sm:text-3xl font-black font-gaming text-white">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h3 className="text-2xl sm:text-3xl font-black font-gaming text-white tracking-wide truncate max-w-full">
                             {discordLive.guildName || 'FearSteal'}
                           </h3>
-                          <span className="px-2 py-0.5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-400 text-[10px] font-bold uppercase font-mono">
+                          <span className="px-2 py-0.5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-400 text-[10px] font-bold uppercase font-mono flex-shrink-0">
                             VERIFIED
                           </span>
                         </div>
-                        <p className="text-xs text-gray-400 font-mono mt-0.5">
+                        <p className="text-xs text-gray-400 font-mono mt-0.5 break-all">
                           discord.gg/pGM5x3gXpX • Season 1 LifeSteal
                         </p>
                       </div>
                     </div>
 
                     {/* Live Online & Total Member Counter Badges */}
-                    <div className="flex items-center gap-2 self-start sm:self-auto">
+                    <div className="flex items-center gap-2 flex-shrink-0 self-start sm:self-auto">
                       <div className="px-3.5 py-1.5 rounded-xl bg-dark-800 border border-emerald-500/40 text-center">
                         <span className="text-xs font-mono font-bold text-emerald-400 flex items-center justify-center gap-1.5">
                           <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
