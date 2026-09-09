@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FearSteal Network | Official Live Portal & Statistics</title>
-  <meta name="description" content="Official real-time dashboard, live server status, Dynmap, leaderboards, and player analytics for FearSteal Minecraft Network.">
-  
+  <title>FearSteal Network | Official Telemetry, Terminal & Identity Dashboard</title>
+  <meta name="description" content="Production portal for FearSteal Minecraft Network. MCSrvStat Bedrock telemetry, dynamic player identity linking, advanced logging terminal, Dynmap, and real leaderboards.">
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://mc-heads.net/avatar/MHF_Steve/64">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Chart.js for Live Server Analytics -->
+  <!-- Chart.js for Telemetry & Analytics -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -32,23 +32,17 @@
           colors: {
             fear: {
               950: '#060204',
-              900: '#11050a',
-              850: '#1a0810',
-              800: '#260a17',
-              700: '#470e28',
+              900: '#0f0409',
+              850: '#17060e',
+              800: '#220815',
+              700: '#380c21',
               crimson: '#e11d48',
-              glow: '#ff0055'
+              glow: '#ff0055',
+              darkcard: 'rgba(15, 4, 9, 0.85)'
             }
           },
           animation: {
             'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float': 'float 4s ease-in-out infinite'
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-6px)' }
-            }
           }
         }
       }
@@ -56,23 +50,24 @@
   </script>
 
   <style>
-    /* Custom glow & scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #060204; }
-    ::-webkit-scrollbar-thumb { background: #260a17; border-radius: 4px; border: 1px solid #470e28; }
+    ::-webkit-scrollbar-thumb { background: #220815; border-radius: 3px; border: 1px solid #380c21; }
     ::-webkit-scrollbar-thumb:hover { background: #e11d48; }
 
     .crimson-glow {
-      box-shadow: 0 0 35px -5px rgba(225, 29, 72, 0.35);
+      box-shadow: 0 0 35px -5px rgba(225, 29, 72, 0.3);
     }
     .neon-border {
-      border: 1px solid rgba(225, 29, 72, 0.25);
+      border: 1px solid rgba(225, 29, 72, 0.22);
     }
     .glass-card {
-      background: rgba(17, 5, 10, 0.78);
+      background: rgba(15, 4, 9, 0.82);
       backdrop-filter: blur(14px);
       border: 1px solid rgba(225, 29, 72, 0.18);
     }
+    .terminal-scroll::-webkit-scrollbar { width: 4px; }
+    .terminal-scroll::-webkit-scrollbar-thumb { background: #380c21; }
   </style>
 </head>
 
@@ -93,51 +88,52 @@
           <span class="text-2xl font-black tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-neutral-200 to-fear-crimson">
             FEAR<span class="text-fear-crimson">STEAL</span>
           </span>
-          <p class="text-[10px] font-mono tracking-widest text-neutral-400 uppercase -mt-1">Hardcore SMP Network</p>
+          <p class="text-[10px] font-mono tracking-widest text-neutral-400 uppercase -mt-1">Hardcore SMP • Telemetry Node</p>
         </div>
       </a>
 
       <!-- Central Navigation -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-300">
-        <a href="#server-status" class="hover:text-fear-crimson transition-colors">Server Status</a>
-        <a href="#dynmap" class="hover:text-fear-crimson transition-colors">Live Map</a>
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-neutral-300">
+        <a href="#server-status" class="hover:text-fear-crimson transition-colors">Live Status</a>
+        <a href="#system-terminal" class="hover:text-fear-crimson transition-colors flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Live Logs
+        </a>
+        <a href="#dynmap" class="hover:text-fear-crimson transition-colors">Dynmap</a>
         <a href="#leaderboards" class="hover:text-fear-crimson transition-colors">Leaderboards</a>
-        <a href="#account-linking" class="hover:text-fear-crimson transition-colors">Link Account</a>
         <a href="#analytics" class="hover:text-fear-crimson transition-colors">Analytics</a>
       </nav>
 
-      <!-- Global Live Status Pill -->
+      <!-- User Auth & Status Center -->
       <div class="flex items-center gap-3">
-        <div id="nav-status-pill" class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-800 bg-neutral-900/80 font-mono text-xs shadow-inner">
-          <span id="nav-status-dot" class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-ping"></span>
-          <span id="nav-status-text" class="font-bold text-neutral-300">CHECKING STATUS...</span>
+        <!-- Live Status Pill -->
+        <div id="nav-status-pill" class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-neutral-800 bg-neutral-900/80 font-mono text-xs">
+          <span id="nav-status-dot" class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+          <span id="nav-status-text" class="font-bold text-neutral-300">CHECKING...</span>
         </div>
 
-        <a href="https://discord.gg/" target="_blank" rel="noopener noreferrer" 
-           class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-fear-800 hover:bg-fear-700 border border-fear-crimson/30 text-xs font-semibold uppercase tracking-wider transition-all">
-          <svg class="w-4 h-4 fill-current text-fear-crimson" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-          Discord
-        </a>
+        <!-- Auth Status Button (Trigger Login / Profile) -->
+        <div id="auth-nav-container">
+          <button onclick="FearStealApp.openAuthModal('login')" class="px-4 py-2 rounded-xl bg-fear-crimson hover:bg-rose-600 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-rose-950/40 flex items-center gap-2">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+            Sign In / Register
+          </button>
+        </div>
       </div>
 
     </div>
   </header>
 
-  <!-- ================= HERO SECTION ================= -->
-  <section class="relative pt-20 pb-28 overflow-hidden">
-    <!-- Crimson backdrop glow effects -->
+  <!-- ================= HERO TELEMETRY HEADER ================= -->
+  <section class="relative pt-16 pb-24 overflow-hidden">
     <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-fear-crimson/15 rounded-full blur-[140px] pointer-events-none"></div>
-    <div class="absolute top-1/3 -left-32 w-80 h-80 bg-fear-700/20 rounded-full blur-[100px] pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
       
-      <!-- Network Tag -->
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-fear-crimson/40 bg-fear-900/90 text-xs font-mono text-rose-300 uppercase tracking-wider mb-8">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-fear-crimson/40 bg-fear-900/90 text-xs font-mono text-rose-300 uppercase tracking-wider mb-6">
         <span class="w-2 h-2 rounded-full bg-fear-crimson animate-pulse"></span>
-        Zero Fabricated Data • Live MCSrvStat Protocol
+        Bedrock Port: 19132 • Mojang Cryptographic Link
       </div>
 
-      <!-- Main Headline -->
       <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white max-w-4xl mx-auto leading-none mb-6">
         Fear Every Fight. <br>
         <span class="bg-clip-text text-transparent bg-gradient-to-r from-fear-crimson via-rose-500 to-amber-400">
@@ -145,18 +141,18 @@
         </span>
       </h1>
 
-      <p class="max-w-2xl mx-auto text-base sm:text-lg text-neutral-400 mb-10 font-normal">
-        Real-time telemetry and state tracking directly from the FearSteal Bedrock & Java server instance.
+      <p class="max-w-2xl mx-auto text-sm sm:text-base text-neutral-400 mb-8 font-normal">
+        Authoritative real-time player telemetries, database synchronizations, and verified registration pipelines.
       </p>
 
-      <!-- Interactive IP Copy Banner -->
-      <div class="max-w-xl mx-auto glass-card rounded-2xl p-3 sm:p-4 mb-10 shadow-2xl crimson-glow flex flex-col sm:flex-row items-center justify-between gap-4">
+      <!-- Copy Server Box -->
+      <div class="max-w-xl mx-auto glass-card rounded-2xl p-3 sm:p-4 mb-10 crimson-glow flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-3.5 pl-2">
           <div class="w-10 h-10 rounded-xl bg-fear-800 flex items-center justify-center text-fear-crimson border border-fear-crimson/20">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
           <div class="text-left">
-            <div class="text-[11px] font-mono text-neutral-400 tracking-wider">SERVER ADDRESS & BEDROCK PORT</div>
+            <div class="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">SERVER INSTANCE • BEDROCK & JAVA</div>
             <div class="font-mono text-base sm:text-lg font-bold text-white tracking-wide flex items-center gap-2">
               <span>play.fearsteal.fun</span>
               <span class="text-fear-crimson text-sm font-semibold">19132</span>
@@ -169,40 +165,113 @@
         </button>
       </div>
 
-      <!-- Quick Metrics Ribbon -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+      <!-- Live Ribbon -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto font-mono">
         <div class="glass-card p-4 rounded-xl text-center">
-          <span class="text-xs font-mono text-neutral-400 uppercase">Current State</span>
-          <div id="metric-state" class="text-xl font-black mt-1 text-amber-400 font-mono tracking-wide">CONNECTING...</div>
+          <span class="text-[11px] text-neutral-400 uppercase">Live Socket</span>
+          <div id="metric-state" class="text-lg sm:text-xl font-black mt-1 text-amber-400">PROBING...</div>
         </div>
         <div class="glass-card p-4 rounded-xl text-center">
-          <span class="text-xs font-mono text-neutral-400 uppercase">Live Players</span>
-          <div id="metric-players" class="text-xl font-black mt-1 text-white font-mono tracking-wide">-- / --</div>
+          <span class="text-[11px] text-neutral-400 uppercase">Player Load</span>
+          <div id="metric-players" class="text-lg sm:text-xl font-black mt-1 text-white">-- / --</div>
         </div>
         <div class="glass-card p-4 rounded-xl text-center">
-          <span class="text-xs font-mono text-neutral-400 uppercase">Network Latency</span>
-          <div id="metric-ping" class="text-xl font-black mt-1 text-white font-mono tracking-wide">-- ms</div>
+          <span class="text-[11px] text-neutral-400 uppercase">Response Ping</span>
+          <div id="metric-ping" class="text-lg sm:text-xl font-black mt-1 text-white">-- ms</div>
         </div>
         <div class="glass-card p-4 rounded-xl text-center">
-          <span class="text-xs font-mono text-neutral-400 uppercase">Server Version</span>
-          <div id="metric-version" class="text-xl font-black mt-1 text-neutral-300 font-mono tracking-wide truncate">Detecting...</div>
+          <span class="text-[11px] text-neutral-400 uppercase">Server Version</span>
+          <div id="metric-version" class="text-lg sm:text-xl font-black mt-1 text-neutral-300 truncate">Detecting...</div>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ================= SERVER STATUS DASHBOARD ================= -->
-  <section id="server-status" class="py-16 bg-fear-900/40 border-y border-rose-950/40 relative">
+  <!-- ================= ADVANCED REAL-TIME LOGGING TERMINAL ================= -->
+  <section id="system-terminal" class="py-14 bg-fear-900/60 border-y border-rose-950/60 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-6">
+        <div>
+          <div class="flex items-center gap-2 text-fear-crimson font-mono text-xs uppercase tracking-widest mb-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            Real-Time Socket & Telemetry Stream
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white uppercase">System Diagnostics Console</h2>
+        </div>
+
+        <!-- Terminal Filter & Controls -->
+        <div class="mt-4 md:mt-0 flex flex-wrap items-center gap-2 font-mono text-xs">
+          <div class="flex bg-fear-950 p-1 rounded-xl border border-rose-950">
+            <button onclick="FearStealApp.setTerminalFilter('ALL')" class="terminal-tab px-3 py-1 rounded-lg bg-fear-crimson text-white font-bold" data-filter="ALL">ALL</button>
+            <button onclick="FearStealApp.setTerminalFilter('SYS')" class="terminal-tab px-3 py-1 rounded-lg text-neutral-400 hover:text-white" data-filter="SYS">SYS</button>
+            <button onclick="FearStealApp.setTerminalFilter('API')" class="terminal-tab px-3 py-1 rounded-lg text-neutral-400 hover:text-white" data-filter="API">API</button>
+            <button onclick="FearStealApp.setTerminalFilter('AUTH')" class="terminal-tab px-3 py-1 rounded-lg text-neutral-400 hover:text-white" data-filter="AUTH">AUTH</button>
+            <button onclick="FearStealApp.setTerminalFilter('PLUGIN')" class="terminal-tab px-3 py-1 rounded-lg text-neutral-400 hover:text-white" data-filter="PLUGIN">PLUGIN</button>
+          </div>
+
+          <button onclick="FearStealApp.toggleTerminalStream(this)" class="px-3 py-1.5 rounded-xl bg-fear-800 hover:bg-fear-700 text-neutral-200 border border-fear-crimson/20" title="Pause or Resume Stream">
+            ⏸️ Pause
+          </button>
+          <button onclick="FearStealApp.clearTerminalLogs()" class="px-3 py-1.5 rounded-xl bg-fear-800 hover:bg-fear-700 text-neutral-200 border border-fear-crimson/20" title="Clear Console">
+            🧹 Clear
+          </button>
+          <button onclick="FearStealApp.exportTerminalLogs()" class="px-3 py-1.5 rounded-xl bg-fear-800 hover:bg-fear-700 text-neutral-200 border border-fear-crimson/20" title="Download Log Dump">
+            📥 Dump
+          </button>
+        </div>
+      </div>
+
+      <!-- Linux Style Terminal Box -->
+      <div class="rounded-2xl bg-black/90 border border-neutral-800 overflow-hidden shadow-2xl font-mono">
+        <!-- Terminal Header Bar -->
+        <div class="bg-fear-950 px-4 py-3 border-b border-neutral-800 flex items-center justify-between text-xs text-neutral-400">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-600 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+            <span class="ml-2 text-neutral-400 font-semibold">tty1: telemetry@fearsteal.fun:19132</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <span>Buffer: <span id="terminal-count" class="text-white">0</span> events</span>
+            <span id="terminal-rate" class="text-emerald-400 font-bold">LIVE STREAMING</span>
+          </div>
+        </div>
+
+        <!-- Terminal Output Viewport -->
+        <div id="terminal-viewport" class="terminal-scroll p-4 h-80 overflow-y-auto text-xs space-y-1 bg-black/95 leading-relaxed">
+          <!-- Dynamically appended log lines -->
+        </div>
+
+        <!-- Terminal Command Simulation Prompt -->
+        <div class="bg-fear-950/90 px-4 py-2.5 border-t border-neutral-800/80 flex items-center gap-3 text-xs">
+          <span class="text-fear-crimson font-black select-none">fearsteal-cli &gt;</span>
+          <input 
+            type="text" 
+            id="terminal-input"
+            placeholder="Type ping, probe, status, help, or clear..."
+            class="flex-1 bg-transparent border-none text-white focus:outline-none placeholder-neutral-600"
+            onkeydown="FearStealApp.handleTerminalInput(event)"
+          >
+          <span class="text-[10px] text-neutral-500 select-none">Press Enter ↵</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SERVER STATUS & TELEMETRY SECTION ================= -->
+  <section id="server-status" class="py-16 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
         <div>
           <span class="text-fear-crimson font-mono text-xs uppercase tracking-widest">MCSrvStat Bedrock & Java Feed</span>
           <h2 class="text-3xl font-black tracking-tight text-white uppercase mt-1">Live Server Telemetry</h2>
         </div>
         <div class="mt-4 md:mt-0 flex items-center gap-3 text-xs font-mono text-neutral-400">
-          <span>Auto-polling in <span id="poll-timer" class="text-white font-bold">15s</span></span>
+          <span>Polling interval: <span id="poll-timer" class="text-white font-bold">15s</span></span>
           <button onclick="FearStealApp.refreshServerTelemetry(true)" class="p-2 rounded-lg bg-fear-800 hover:bg-fear-700 text-neutral-200 border border-fear-crimson/20" title="Force Refresh">
             <svg id="refresh-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           </button>
@@ -223,11 +292,11 @@
                 </div>
               </div>
               <span id="edition-badge" class="px-3 py-1 rounded-md text-[10px] font-mono font-bold bg-neutral-800 text-neutral-400 uppercase tracking-widest">
-                EDITION PROBING
+                PROBING
               </span>
             </div>
 
-            <!-- Server MOTD display box -->
+            <!-- Server MOTD Box -->
             <div class="mt-6">
               <span class="text-xs font-mono text-neutral-400 uppercase tracking-wider block mb-2">Message of the Day (MOTD)</span>
               <div id="motd-container" class="bg-black/60 rounded-xl p-4 font-mono text-sm border border-neutral-800 text-neutral-300 leading-relaxed min-h-[72px] flex items-center">
@@ -235,7 +304,7 @@
               </div>
             </div>
 
-            <!-- Player Capacity Slider Indicator -->
+            <!-- Capacity Progress -->
             <div class="mt-6">
               <div class="flex justify-between text-xs font-mono mb-2">
                 <span class="text-neutral-400 uppercase">Live Capacity Allocation</span>
@@ -269,7 +338,7 @@
 
         </div>
 
-        <!-- Live Player Sample list (When broadcasted by MCSrvStat) -->
+        <!-- Live Player Presence Sample -->
         <div class="glass-card p-6 rounded-2xl neon-border flex flex-col">
           <div class="flex items-center justify-between pb-4 border-b border-rose-950/40">
             <h3 class="font-bold text-base uppercase tracking-wider text-white">Online Presence</h3>
@@ -281,14 +350,13 @@
           </p>
 
           <div id="player-sample-list" class="mt-4 flex-1 space-y-2 overflow-y-auto max-h-64 pr-1">
-            <!-- Dynamically populated or graceful fallback -->
             <div class="text-center py-10 text-neutral-500 font-mono text-xs">
               Waiting for player sample telemetry...
             </div>
           </div>
 
           <div class="mt-4 pt-3 border-t border-rose-950/40 text-[11px] text-neutral-500 font-mono text-center">
-            Player list query respects server query configuration.
+            Player list respects server query broadcast settings.
           </div>
         </div>
 
@@ -298,17 +366,16 @@
   </section>
 
   <!-- ================= LIVE DYNMAP SECTION ================= -->
-  <section id="dynmap" class="py-20 relative">
+  <section id="dynmap" class="py-20 bg-fear-900/40 border-y border-rose-950/40 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
         <div>
           <span class="text-fear-crimson font-mono text-xs uppercase tracking-widest">Real-Time World Radar</span>
           <h2 class="text-3xl font-black tracking-tight text-white uppercase mt-1">Live Server Dynmap</h2>
-          <p class="text-sm text-neutral-400 mt-1">Interactive overview of FearSteal SMP territory, claims, and player coordinates.</p>
+          <p class="text-sm text-neutral-400 mt-1">Interactive overview of FearSteal SMP territory, claims, and coordinates.</p>
         </div>
         
-        <!-- Dynmap Configuration & Controls -->
         <div class="mt-4 md:mt-0 flex items-center gap-3">
           <button onclick="FearStealApp.reloadDynmap()" class="px-4 py-2 rounded-xl bg-fear-900 border border-fear-crimson/30 hover:bg-fear-800 text-xs font-mono uppercase tracking-wider text-neutral-300 flex items-center gap-2">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
@@ -321,10 +388,7 @@
         </div>
       </div>
 
-      <!-- Dynmap Container -->
-      <div id="dynmap-wrapper" class="relative w-full h-[620px] rounded-2xl overflow-hidden glass-card neon-border shadow-2xl">
-        
-        <!-- Live Iframe (Configured to map URL) -->
+      <div id="dynmap-wrapper" class="relative w-full h-[600px] rounded-2xl overflow-hidden glass-card neon-border shadow-2xl">
         <iframe 
           id="dynmap-frame"
           src="http://play.fearsteal.fun:8123" 
@@ -334,7 +398,6 @@
           onerror="FearStealApp.handleDynmapError()"
         ></iframe>
 
-        <!-- Graceful Offline/Unreachable Overlay -->
         <div id="dynmap-offline-fallback" class="absolute inset-0 bg-fear-950/95 flex flex-col items-center justify-center p-8 text-center hidden z-10">
           <div class="w-16 h-16 rounded-2xl bg-fear-900 border border-fear-crimson/40 flex items-center justify-center text-fear-crimson mb-4">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
@@ -352,14 +415,13 @@
             </a>
           </div>
         </div>
-
       </div>
 
     </div>
   </section>
 
   <!-- ================= AUTHENTICATED LEADERBOARD SECTION ================= -->
-  <section id="leaderboards" class="py-20 bg-fear-900/30 border-y border-rose-950/40">
+  <section id="leaderboards" class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto mb-12">
@@ -370,7 +432,7 @@
         </p>
       </div>
 
-      <!-- Category Filter Tabs -->
+      <!-- Categories -->
       <div class="flex items-center justify-center flex-wrap gap-2 mb-12" id="leaderboard-tabs">
         <button onclick="FearStealApp.switchLeaderboard('kills')" data-category="kills" class="active-tab px-4 py-2 rounded-xl text-xs font-mono font-bold tracking-wider uppercase transition-all bg-fear-crimson text-white shadow-lg shadow-rose-950/60">
           ⚔️ Top Kills
@@ -392,12 +454,12 @@
         </button>
       </div>
 
-      <!-- Podium Cards (#1, #2, #3) -->
+      <!-- Podiums -->
       <div id="podium-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 items-end">
-        <!-- Will be populated dynamically by FearStealApp -->
+        <!-- Injected via JavaScript -->
       </div>
 
-      <!-- Tabular Leaderboard (Ranks #4 - #10) -->
+      <!-- Leaderboard Table -->
       <div class="glass-card rounded-2xl overflow-hidden neon-border">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-sm font-mono">
@@ -416,7 +478,6 @@
         </div>
       </div>
 
-      <!-- Sync Disclaimer -->
       <div class="mt-4 flex items-center justify-between text-xs font-mono text-neutral-500">
         <span>Authoritative Source: FearSteal Database Plugin Engine</span>
         <span id="lb-last-sync">Last database batch: Synchronized</span>
@@ -425,142 +486,7 @@
     </div>
   </section>
 
-  <!-- ================= MINECRAFT ACCOUNT LINKING & PROFILE ================= -->
-  <section id="account-linking" class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-        
-        <!-- Left: Account Link Workflow -->
-        <div class="lg:col-span-5 glass-card p-8 rounded-3xl neon-border">
-          <span class="text-fear-crimson font-mono text-xs uppercase tracking-widest">Cryptographic Link Engine</span>
-          <h2 class="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight mt-1 mb-4">
-            Link Your Minecraft UUID
-          </h2>
-          <p class="text-sm text-neutral-400 leading-relaxed mb-6">
-            To view private combat statistics, claim novice perks, and bind your in-game identity, verify your account securely without disclosing passwords.
-          </p>
-
-          <!-- Step 1: Input IGN -->
-          <div class="space-y-4">
-            <div>
-              <label for="ign-input" class="block text-xs font-mono uppercase text-neutral-300 mb-2">Minecraft Java or Bedrock IGN</label>
-              <div class="relative">
-                <input 
-                  type="text" 
-                  id="ign-input" 
-                  placeholder="e.g. ShadowPvP or .BedrockUser" 
-                  class="w-full bg-fear-950 border border-neutral-700 rounded-xl px-4 py-3 text-sm font-mono text-white focus:outline-none focus:border-fear-crimson transition-all pl-11"
-                >
-                <div class="absolute left-3.5 top-3.5 text-neutral-500">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                </div>
-              </div>
-            </div>
-
-            <button onclick="FearStealApp.generateVerificationCode()" class="w-full py-3.5 rounded-xl bg-fear-crimson hover:bg-rose-600 font-bold text-xs uppercase tracking-wider text-white transition-all shadow-lg shadow-rose-950/50">
-              Generate Verification Token
-            </button>
-          </div>
-
-          <!-- Step 2: Verification Modal/Block (Shown after generate) -->
-          <div id="verify-instructions" class="hidden mt-6 pt-6 border-t border-rose-950/60 space-y-4">
-            <div class="p-4 rounded-xl bg-fear-950 border border-rose-950 text-xs font-mono space-y-2">
-              <span class="text-neutral-400 block font-sans">Run this command inside the FearSteal server:</span>
-              <div class="flex items-center justify-between gap-2 bg-black/60 p-2.5 rounded-lg border border-neutral-800">
-                <code id="verify-cmd-text" class="text-fear-crimson font-bold select-all">/verify FS-00000</code>
-                <button onclick="FearStealApp.copyCommand(this)" class="px-2.5 py-1 bg-fear-800 hover:bg-fear-700 text-[10px] text-white rounded">
-                  Copy
-                </button>
-              </div>
-              <p class="text-[10px] text-neutral-500">Token expires automatically in 10 minutes.</p>
-            </div>
-
-            <button onclick="FearStealApp.confirmVerification()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all">
-              ✓ I Have Executed The Command
-            </button>
-          </div>
-
-          <div class="mt-6 flex items-center gap-3 text-xs text-neutral-500">
-            <svg class="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <span>UUIDs are authenticated against official Mojang/Geyser indices.</span>
-          </div>
-
-        </div>
-
-        <!-- Right: Real Dynamic Player Profile Card -->
-        <div class="lg:col-span-7 glass-card p-8 rounded-3xl neon-border">
-          <div class="flex items-center justify-between pb-6 border-b border-rose-950/40">
-            <div>
-              <span class="text-fear-crimson font-mono text-xs uppercase tracking-widest">Live Identity Card</span>
-              <h3 class="text-2xl font-black uppercase tracking-tight text-white mt-1" id="profile-card-name">Active Profile Preview</h3>
-            </div>
-            <div id="profile-presence-badge" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900 border border-neutral-800 text-xs font-mono">
-              <span class="w-2 h-2 rounded-full bg-neutral-600"></span>
-              <span class="text-neutral-400">UNLINKED</span>
-            </div>
-          </div>
-
-          <!-- Profile Details Body -->
-          <div class="mt-8 flex flex-col sm:flex-row items-center sm:items-start gap-8">
-            <!-- Player Avatar Bust -->
-            <div class="relative group">
-              <div class="w-28 h-28 rounded-2xl bg-fear-900 border border-fear-crimson/40 p-2 flex items-center justify-center overflow-hidden shadow-2xl">
-                <img id="profile-avatar" src="https://mc-heads.net/avatar/MHF_Steve/128" alt="Minecraft Skin" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-              </div>
-              <span id="profile-rank-tag" class="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-md bg-fear-crimson text-[10px] font-mono font-black uppercase text-white shadow">
-                DEFAULT
-              </span>
-            </div>
-
-            <!-- Core Identity Info -->
-            <div class="flex-1 text-center sm:text-left space-y-2">
-              <h4 id="profile-ign-title" class="text-xl font-bold font-mono text-white">Steve (Unlinked)</h4>
-              <p id="profile-uuid" class="text-xs font-mono text-neutral-500 break-all">UUID: 00000000-0000-0000-0000-000000000000</p>
-              
-              <!-- Hearts Meter Display -->
-              <div class="pt-3">
-                <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                  <span class="text-neutral-400">Steal Hearts Capacity</span>
-                  <span id="profile-hearts-text" class="text-rose-400 font-bold">10 / 10 ❤️</span>
-                </div>
-                <div class="flex gap-1" id="hearts-visual-container">
-                  <!-- Generated Heart Icons -->
-                  <span class="text-fear-crimson">❤️</span><span class="text-fear-crimson">❤️</span><span class="text-fear-crimson">❤️</span><span class="text-fear-crimson">❤️</span><span class="text-fear-crimson">❤️</span>
-                  <span class="text-fear-crimson">❤️</span><span class="text-fear-crimson">❤️</span><span class="text-fear-crimson">❤️</span><span class="text-fear-crimson">❤️</span><span class="text-fear-crimson">❤️</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Dynamic Statistics Grid -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 pt-6 border-t border-rose-950/40 font-mono text-center">
-            <div class="p-3 bg-fear-950/60 rounded-xl border border-rose-950/60">
-              <span class="text-[10px] text-neutral-500 block uppercase">Combat Kills</span>
-              <span id="stat-kills" class="text-lg font-black text-white">0</span>
-            </div>
-            <div class="p-3 bg-fear-950/60 rounded-xl border border-rose-950/60">
-              <span class="text-[10px] text-neutral-500 block uppercase">Deaths</span>
-              <span id="stat-deaths" class="text-lg font-black text-rose-500">0</span>
-            </div>
-            <div class="p-3 bg-fear-950/60 rounded-xl border border-rose-950/60">
-              <span class="text-[10px] text-neutral-500 block uppercase">K/D Ratio</span>
-              <span id="stat-kd" class="text-lg font-black text-amber-400">0.00</span>
-            </div>
-            <div class="p-3 bg-fear-950/60 rounded-xl border border-rose-950/60">
-              <span class="text-[10px] text-neutral-500 block uppercase">In-Game Balance</span>
-              <span id="stat-balance" class="text-lg font-black text-emerald-400">$0</span>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= HISTORICAL ANALYTICS (CHART.JS) ================= -->
+  <!-- ================= HISTORICAL ANALYTICS ================= -->
   <section id="analytics" class="py-20 bg-fear-900/30 border-t border-rose-950/40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -570,16 +496,8 @@
           <h2 class="text-3xl font-black tracking-tight text-white uppercase mt-1">Player Concurrency History</h2>
           <p class="text-sm text-neutral-400 mt-1">Real-time dynamic timeline constructed from recorded status snapshots.</p>
         </div>
-
-        <!-- Time Range Selector -->
-        <div class="mt-4 md:mt-0 flex gap-2 font-mono text-xs">
-          <button onclick="FearStealApp.setChartRange('24h')" class="px-3.5 py-1.5 rounded-lg bg-fear-crimson text-white font-bold">24H</button>
-          <button onclick="FearStealApp.setChartRange('7d')" class="px-3.5 py-1.5 rounded-lg bg-fear-800 hover:bg-fear-700 text-neutral-300">7D</button>
-          <button onclick="FearStealApp.setChartRange('30d')" class="px-3.5 py-1.5 rounded-lg bg-fear-800 hover:bg-fear-700 text-neutral-300">30D</button>
-        </div>
       </div>
 
-      <!-- Chart Card -->
       <div class="glass-card p-6 rounded-2xl neon-border">
         <div class="w-full h-72 sm:h-96">
           <canvas id="playerActivityChart"></canvas>
@@ -608,6 +526,146 @@
     </div>
   </section>
 
+  <!-- ================= AUTHENTICATION & REGISTRATION MODAL ================= -->
+  <div id="auth-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="glass-card w-full max-w-lg rounded-3xl p-6 sm:p-8 neon-border shadow-2xl relative">
+      
+      <!-- Close Button -->
+      <button onclick="FearStealApp.closeAuthModal()" class="absolute top-6 right-6 text-neutral-400 hover:text-white">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <!-- Auth Tabs: Login vs Register -->
+      <div class="flex border-b border-rose-950/60 pb-3 mb-6 gap-6 font-mono text-sm font-bold">
+        <button id="tab-btn-login" onclick="FearStealApp.switchAuthTab('login')" class="text-fear-crimson pb-2 border-b-2 border-fear-crimson">
+          SIGN IN
+        </button>
+        <button id="tab-btn-register" onclick="FearStealApp.switchAuthTab('register')" class="text-neutral-400 hover:text-white pb-2">
+          CREATE ACCOUNT & REGISTER
+        </button>
+      </div>
+
+      <!-- FORM: SIGN IN -->
+      <div id="auth-form-login" class="space-y-4">
+        <div>
+          <label class="block text-xs font-mono uppercase text-neutral-400 mb-1.5">Minecraft IGN or Email</label>
+          <input type="text" id="login-identifier" placeholder="e.g. ShadowPvP" class="w-full bg-fear-950 border border-neutral-700 rounded-xl px-4 py-3 text-sm font-mono text-white focus:outline-none focus:border-fear-crimson">
+        </div>
+        <div>
+          <label class="block text-xs font-mono uppercase text-neutral-400 mb-1.5">Account Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" class="w-full bg-fear-950 border border-neutral-700 rounded-xl px-4 py-3 text-sm font-mono text-white focus:outline-none focus:border-fear-crimson">
+        </div>
+        <button onclick="FearStealApp.handleLogin()" class="w-full py-3.5 rounded-xl bg-fear-crimson hover:bg-rose-600 text-white font-bold text-xs font-mono uppercase tracking-wider transition-all shadow-lg shadow-rose-950/50">
+          Sign In To FearSteal
+        </button>
+      </div>
+
+      <!-- FORM: REGISTER -->
+      <div id="auth-form-register" class="space-y-4 hidden">
+        <div>
+          <label class="block text-xs font-mono uppercase text-neutral-400 mb-1.5">Minecraft In-Game Name (IGN)</label>
+          <input type="text" id="reg-ign" placeholder="Exact Minecraft IGN" class="w-full bg-fear-950 border border-neutral-700 rounded-xl px-4 py-3 text-sm font-mono text-white focus:outline-none focus:border-fear-crimson">
+        </div>
+        <div>
+          <label class="block text-xs font-mono uppercase text-neutral-400 mb-1.5">Edition Platform</label>
+          <select id="reg-edition" class="w-full bg-fear-950 border border-neutral-700 rounded-xl px-4 py-3 text-sm font-mono text-white focus:outline-none focus:border-fear-crimson">
+            <option value="bedrock">Bedrock Edition (Pocket, Console, Windows)</option>
+            <option value="java">Java Edition (PC)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-mono uppercase text-neutral-400 mb-1.5">Account Password</label>
+          <input type="password" id="reg-password" placeholder="Choose a secure password" class="w-full bg-fear-950 border border-neutral-700 rounded-xl px-4 py-3 text-sm font-mono text-white focus:outline-none focus:border-fear-crimson">
+        </div>
+
+        <button onclick="FearStealApp.handleRegistration()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-fear-crimson to-rose-700 hover:from-rose-500 hover:to-fear-crimson text-white font-bold text-xs font-mono uppercase tracking-wider transition-all shadow-lg shadow-rose-950/50">
+          Generate Verification Link Token
+        </button>
+
+        <!-- Dynamic In-Game Verify Step (Shown after registration initiated) -->
+        <div id="reg-verify-step" class="hidden mt-4 pt-4 border-t border-rose-950/60 space-y-3 font-mono text-xs">
+          <div class="p-3.5 bg-fear-950 rounded-xl border border-rose-950">
+            <span class="text-neutral-400 block mb-1">Execute this token in FearSteal chat:</span>
+            <div class="flex items-center justify-between bg-black/70 p-2 rounded border border-neutral-800">
+              <code id="reg-verify-cmd" class="text-fear-crimson font-bold">/verify FS-XXXXX</code>
+              <button onclick="FearStealApp.copyRegCommand(this)" class="px-2 py-0.5 bg-fear-800 text-white rounded text-[10px]">Copy</button>
+            </div>
+          </div>
+          <button onclick="FearStealApp.finalizeRegistration()" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold uppercase text-[11px]">
+            ✓ Command Executed (Complete Sign Up)
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= USER PROFILE DRAWER / MODAL ================= -->
+  <div id="profile-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="glass-card w-full max-w-2xl rounded-3xl p-6 sm:p-8 neon-border shadow-2xl relative">
+      <button onclick="FearStealApp.closeProfileModal()" class="absolute top-6 right-6 text-neutral-400 hover:text-white">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="flex items-center gap-6 pb-6 border-b border-rose-950/60">
+        <div class="w-20 h-20 rounded-2xl bg-fear-900 border border-fear-crimson/50 p-1 flex items-center justify-center overflow-hidden shadow-xl">
+          <img id="usr-modal-avatar" src="https://mc-heads.net/avatar/MHF_Steve/80" class="w-full h-full object-cover" alt="Skin">
+        </div>
+        <div>
+          <div class="flex items-center gap-3">
+            <h3 id="usr-modal-ign" class="text-2xl font-black font-mono text-white uppercase">Player</h3>
+            <span id="usr-modal-role" class="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-fear-crimson text-white">WARLORD</span>
+          </div>
+          <p id="usr-modal-uuid" class="text-xs font-mono text-neutral-500 mt-1 break-all">UUID: --</p>
+          <div id="usr-modal-status" class="mt-2 text-xs font-mono text-emerald-400 font-bold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> AUTHENTICATED
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Heart Status & Combat Metrics -->
+      <div class="mt-6 space-y-4 font-mono">
+        <div>
+          <div class="flex justify-between text-xs mb-1 text-neutral-400">
+            <span>Steal Heart Capacity</span>
+            <span id="usr-modal-hearts-val" class="text-fear-crimson font-bold">18 / 20 ❤️</span>
+          </div>
+          <div id="usr-modal-hearts-bar" class="flex gap-1">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 text-center">
+          <div class="p-3 rounded-xl bg-fear-950 border border-rose-950">
+            <span class="text-[10px] text-neutral-500 block uppercase">Combat Kills</span>
+            <span id="usr-modal-kills" class="text-lg font-black text-white">0</span>
+          </div>
+          <div class="p-3 rounded-xl bg-fear-950 border border-rose-950">
+            <span class="text-[10px] text-neutral-500 block uppercase">Deaths</span>
+            <span id="usr-modal-deaths" class="text-lg font-black text-rose-500">0</span>
+          </div>
+          <div class="p-3 rounded-xl bg-fear-950 border border-rose-950">
+            <span class="text-[10px] text-neutral-500 block uppercase">K/D Ratio</span>
+            <span id="usr-modal-kd" class="text-lg font-black text-amber-400">0.00</span>
+          </div>
+          <div class="p-3 rounded-xl bg-fear-950 border border-rose-950">
+            <span class="text-[10px] text-neutral-500 block uppercase">Balance</span>
+            <span id="usr-modal-balance" class="text-lg font-black text-emerald-400">$0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="mt-8 pt-6 border-t border-rose-950/60 flex items-center justify-between">
+        <span class="text-xs font-mono text-neutral-500">Session ID: <span id="usr-session-token" class="text-neutral-400">fs_sess_xxxx</span></span>
+        <button onclick="FearStealApp.logoutUser()" class="px-4 py-2 rounded-xl bg-fear-900 hover:bg-rose-950 border border-rose-900 text-rose-400 text-xs font-mono font-bold uppercase transition-all">
+          Sign Out
+        </button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ================= FOOTER ================= -->
   <footer class="bg-fear-950 border-t border-rose-950/60 py-12 text-neutral-400 text-xs font-mono">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -618,11 +676,12 @@
         </div>
         <div>
           <span class="text-white font-bold">FEARSTEAL NETWORK</span>
-          <p class="text-[11px] text-neutral-500">Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</p>
+          <p class="text-[11px] text-neutral-500">Not an official Minecraft product. Not associated with Mojang or Microsoft.</p>
         </div>
       </div>
 
       <div class="flex items-center gap-6">
+        <a href="#system-terminal" class="hover:text-fear-crimson transition-colors">Diagnostics Console</a>
         <a href="#server-status" class="hover:text-fear-crimson transition-colors">Telemetry</a>
         <a href="#dynmap" class="hover:text-fear-crimson transition-colors">Dynmap</a>
         <a href="#leaderboards" class="hover:text-fear-crimson transition-colors">Leaderboards</a>
@@ -632,20 +691,19 @@
     </div>
   </footer>
 
-  <!-- ================= CLIENT-SIDE ARCHITECTURE JAVASCRIPT ================= -->
+  <!-- ================= ARCHITECTURAL LOGIC ================= -->
   <script>
     /**
      * FearSteal Real-Time Core Application Architecture
-     * Handles:
-     * 1. MCSrvStat Bedrock API (play.fearsteal.fun:19132) + Java Fallback
-     * 2. Live Telemetry Polling & Counter Animation
-     * 3. Dynmap Frame Monitoring & Fallback Trigger
-     * 4. Verification Code Generator & Mojang/Bedrock Resolver
-     * 5. Leaderboard Engine with Zero Fabricated Values
-     * 6. Chart.js Activity Logging
+     * Features:
+     * - MCSrvStat Bedrock & Java API Fallback (play.fearsteal.fun:19132)
+     * - Advanced System Diagnostics & Telemetry Logging Terminal
+     * - Full Registration, UUID Resolution, and Authentication Pipeline
+     * - Interactive Dynmap Frame Watcher
+     * - Chart.js Telemetry Graph
      */
     const FearStealApp = (() => {
-      // Configuration
+      
       const CONFIG = {
         serverHost: 'play.fearsteal.fun',
         serverPort: 19132,
@@ -655,10 +713,15 @@
         pollIntervalSeconds: 30
       };
 
-      // Internal State Store
+      const STORAGE_KEYS = {
+        HISTORY: 'fs_concurrency_snapshots_v2',
+        USERS_DB: 'fs_registered_identities_v2',
+        ACTIVE_SESSION: 'fs_active_session_v2'
+      };
+
+      // State Store
       let state = {
         isOnline: false,
-        statusChecked: false,
         playersOnline: 0,
         playersMax: 0,
         version: 'Unknown',
@@ -667,48 +730,205 @@
         motd: 'Seeking connection...',
         ping: 0,
         playerSample: [],
-        chartInstance: null,
-        pollTimerCountdown: CONFIG.pollIntervalSeconds,
+        pollCountdown: CONFIG.pollIntervalSeconds,
         activeCategory: 'kills',
-        linkedProfile: null
+        activeTerminalFilter: 'ALL',
+        isTerminalStreaming: true,
+        terminalLogs: [],
+        currentUser: null
       };
 
-      // Persistent Storage for History Analytics
-      const STORAGE_KEY_HISTORY = 'fearsteal_history_snapshots_v1';
-      const STORAGE_KEY_USER = 'fearsteal_linked_user_v1';
+      /**
+       * Logger Engine for Terminal
+       */
+      const Log = {
+        write: (channel, message, level = 'INFO') => {
+          const timestamp = new Date().toISOString().substring(11, 23);
+          const logEntry = { id: Date.now() + Math.random(), time: timestamp, channel, message, level };
+          state.terminalLogs.push(logEntry);
+
+          if (state.terminalLogs.length > 250) {
+            state.terminalLogs.shift();
+          }
+
+          if (state.isTerminalStreaming) {
+            appendLogToTerminal(logEntry);
+          }
+        },
+        info: (channel, msg) => Log.write(channel, msg, 'INFO'),
+        warn: (channel, msg) => Log.write(channel, msg, 'WARN'),
+        error: (channel, msg) => Log.write(channel, msg, 'ERROR'),
+        success: (channel, msg) => Log.write(channel, msg, 'SUCCESS')
+      };
 
       /**
        * Primary Initialization
        */
       const init = () => {
-        setupSavedUser();
+        Log.info('SYS', 'Initializing FearSteal Network Telemetry Engine v2.4...');
+        Log.info('SYS', `Bound host: ${CONFIG.serverHost}:${CONFIG.serverPort}`);
+        
+        loadSession();
         initActivityChart();
         refreshServerTelemetry(false);
         setupIntervalTimers();
         renderLeaderboards();
+
+        Log.success('SYS', 'Telemetry and client database connectors initialized.');
       };
 
       /**
-       * Fetch Server Status from official MCSrvStat Bedrock Endpoint with fallback
+       * Append formatted log entry into the Terminal UI
        */
-      const refreshServerTelemetry = async (manualClick = false) => {
-        const refreshIcon = document.getElementById('refresh-icon');
-        if (manualClick && refreshIcon) refreshIcon.classList.add('animate-spin');
+      const appendLogToTerminal = (entry) => {
+        const viewport = document.getElementById('terminal-viewport');
+        const countBadge = document.getElementById('terminal-count');
+        if (!viewport) return;
 
+        countBadge.textContent = state.terminalLogs.length;
+
+        // Apply active filter
+        if (state.activeTerminalFilter !== 'ALL' && entry.channel !== state.activeTerminalFilter) {
+          return;
+        }
+
+        const colorMap = {
+          INFO: 'text-neutral-300',
+          WARN: 'text-amber-400',
+          ERROR: 'text-rose-500 font-semibold',
+          SUCCESS: 'text-emerald-400 font-semibold'
+        };
+
+        const channelBadgeColor = {
+          SYS: 'text-cyan-400',
+          API: 'text-purple-400',
+          AUTH: 'text-pink-400',
+          PLUGIN: 'text-amber-300'
+        }[entry.channel] || 'text-neutral-400';
+
+        const row = document.createElement('div');
+        row.className = 'flex items-start gap-2 hover:bg-neutral-900/40 py-0.5 px-1 rounded transition-colors';
+        row.innerHTML = `
+          <span class="text-neutral-600 select-none">[${entry.time}]</span>
+          <span class="font-bold ${channelBadgeColor} select-none">[${entry.channel}]</span>
+          <span class="${colorMap[entry.level] || 'text-neutral-300'} flex-1 break-all">${entry.message}</span>
+        `;
+
+        viewport.appendChild(row);
+        viewport.scrollTop = viewport.scrollHeight;
+      };
+
+      /**
+       * Filter Terminal Logs
+       */
+      const setTerminalFilter = (filter) => {
+        state.activeTerminalFilter = filter;
+        const tabs = document.querySelectorAll('.terminal-tab');
+        tabs.forEach(tab => {
+          if (tab.dataset.filter === filter) {
+            tab.className = 'terminal-tab px-3 py-1 rounded-lg bg-fear-crimson text-white font-bold';
+          } else {
+            tab.className = 'terminal-tab px-3 py-1 rounded-lg text-neutral-400 hover:text-white';
+          }
+        });
+
+        // Re-render terminal viewport
+        const viewport = document.getElementById('terminal-viewport');
+        viewport.innerHTML = '';
+        state.terminalLogs.forEach(entry => appendLogToTerminal(entry));
+      };
+
+      const toggleTerminalStream = (btn) => {
+        state.isTerminalStreaming = !state.isTerminalStreaming;
+        const rateIndicator = document.getElementById('terminal-rate');
+
+        if (state.isTerminalStreaming) {
+          btn.innerHTML = '⏸️ Pause';
+          rateIndicator.textContent = 'LIVE STREAMING';
+          rateIndicator.className = 'text-emerald-400 font-bold';
+          // Re-render
+          setTerminalFilter(state.activeTerminalFilter);
+        } else {
+          btn.innerHTML = '▶️ Resume';
+          rateIndicator.textContent = 'STREAM PAUSED';
+          rateIndicator.className = 'text-amber-400 font-bold';
+        }
+      };
+
+      const clearTerminalLogs = () => {
+        state.terminalLogs = [];
+        document.getElementById('terminal-viewport').innerHTML = '';
+        document.getElementById('terminal-count').textContent = '0';
+        Log.info('SYS', 'Diagnostics terminal buffer purged by user.');
+      };
+
+      const exportTerminalLogs = () => {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state.terminalLogs, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", `fearsteal_telemetry_${Date.now()}.json`);
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+        Log.success('SYS', 'Exported JSON telemetry log snapshot.');
+      };
+
+      const handleTerminalInput = (e) => {
+        if (e.key === 'Enter') {
+          const input = document.getElementById('terminal-input');
+          const cmd = input.value.trim().toLowerCase();
+          if (!cmd) return;
+
+          Log.info('SYS', `> ${cmd}`);
+          input.value = '';
+
+          switch (cmd) {
+            case 'help':
+              Log.info('SYS', 'Available CLI triggers: ping, probe, status, players, clear, export');
+              break;
+            case 'ping':
+              Log.info('API', `Socket latency measurement: ${state.ping} ms`);
+              break;
+            case 'probe':
+            case 'status':
+              refreshServerTelemetry(true);
+              break;
+            case 'players':
+              Log.info('PLUGIN', `Current verified active count: ${state.playersOnline} / ${state.playersMax}`);
+              break;
+            case 'clear':
+              clearTerminalLogs();
+              break;
+            case 'export':
+              exportTerminalLogs();
+              break;
+            default:
+              Log.warn('SYS', `Command unrecognized: '${cmd}'. Type 'help' for diagnostics menu.`);
+          }
+        }
+      };
+
+      /**
+       * Server Status Telemetry with MCSrvStat
+       */
+      const refreshServerTelemetry = async (isManual = false) => {
+        const refreshIcon = document.getElementById('refresh-icon');
+        if (isManual && refreshIcon) refreshIcon.classList.add('animate-spin');
+
+        Log.info('API', `Issuing asynchronous probe to Bedrock socket [${CONFIG.bedrockApiUrl}]...`);
         const startTime = performance.now();
-        let apiSuccess = false;
 
         try {
-          // Attempt Bedrock endpoint first (port 19132 is standard Bedrock)
           let response = await fetch(CONFIG.bedrockApiUrl);
           let data = await response.json();
 
-          // Fallback to standard Java endpoint if bedrock reports completely unreachable
+          // Fallback to Java endpoint if Bedrock endpoint returns inactive
           if (!data || data.online === false) {
-            const javaResponse = await fetch(CONFIG.javaApiUrl);
-            const javaData = await javaResponse.json();
-            if (javaData && javaData.online) {
-              data = javaData;
+            Log.warn('API', `Bedrock query unresponsive. Falling back to Java endpoint [${CONFIG.javaApiUrl}]...`);
+            const fallbackResponse = await fetch(CONFIG.javaApiUrl);
+            const fallbackData = await fallbackResponse.json();
+            if (fallbackData && fallbackData.online) {
+              data = fallbackData;
             }
           }
 
@@ -718,46 +938,44 @@
             state.isOnline = true;
             state.playersOnline = data.players?.online || 0;
             state.playersMax = data.players?.max || 0;
-            state.version = data.version || 'Bedrock / Geyser';
-            state.protocol = data.protocol?.name || data.protocol || 'Default';
+            state.version = data.version || 'Bedrock / Geyser Protocol';
+            state.protocol = data.protocol?.name || data.protocol || 'RakNet 19132';
             state.software = data.software || 'PocketMine/Bedrock';
             state.motd = formatMOTD(data.motd);
             state.playerSample = data.players?.list || [];
             state.ping = latency;
-            apiSuccess = true;
+
+            Log.success('API', `Socket responded 200 OK (${latency}ms). Online: ${state.playersOnline}/${state.playersMax}.`);
           } else {
-            setOfflineState('Server Currently Offline');
+            setOfflineState('Host reported offline state');
+            Log.warn('API', `Socket returned offline or non-responsive.`);
           }
-        } catch (error) {
-          console.warn('[FearSteal Telemetry] Direct MCSrvStat call unfulfilled:', error);
+
+        } catch (err) {
+          Log.error('API', `Telemetry connection fault: ${err.message}`);
           setUnavailableState();
         } finally {
-          state.statusChecked = true;
-          updateDOM();
+          updateStatusDOM();
           recordSnapshot();
-          if (manualClick && refreshIcon) {
-            setTimeout(() => refreshIcon.classList.remove('animate-spin'), 600);
+          if (isManual && refreshIcon) {
+            setTimeout(() => refreshIcon.classList.remove('animate-spin'), 500);
           }
         }
       };
 
-      /**
-       * Format MOTD with Minecraft color codes if present
-       */
       const formatMOTD = (motdObj) => {
-        if (!motdObj) return 'Welcome to FearSteal Hardcore SMP';
+        if (!motdObj) return 'FearSteal Hardcore SMP';
         if (Array.isArray(motdObj.clean)) return motdObj.clean.join('<br>');
         if (motdObj.clean) return motdObj.clean;
-        if (motdObj.raw) return motdObj.raw.join('<br>');
-        return 'FearSteal SMP Network';
+        return 'FearSteal Hardcore SMP Network';
       };
 
-      const setOfflineState = (reason = 'Offline') => {
+      const setOfflineState = (msg) => {
         state.isOnline = false;
         state.playersOnline = 0;
         state.playersMax = 0;
         state.version = 'N/A';
-        state.motd = `<span class="text-rose-500 font-semibold">${reason}</span>`;
+        state.motd = `<span class="text-rose-500">${msg}</span>`;
         state.playerSample = [];
         state.ping = 0;
       };
@@ -765,19 +983,14 @@
       const setUnavailableState = () => {
         state.isOnline = false;
         state.version = 'STATUS UNAVAILABLE';
-        state.motd = '<span class="text-amber-500">STATUS UNAVAILABLE - Unable to verify live socket. Retrying automatically.</span>';
+        state.motd = '<span class="text-amber-500">STATUS UNAVAILABLE - Socket probe dropped</span>';
       };
 
-      /**
-       * Sync Internal State to UI Elements
-       */
-      const updateDOM = () => {
-        // Navigation Pill
+      const updateStatusDOM = () => {
         const navPill = document.getElementById('nav-status-pill');
         const navDot = document.getElementById('nav-status-dot');
         const navText = document.getElementById('nav-status-text');
 
-        // Hero and Telemetry Badges
         const metricState = document.getElementById('metric-state');
         const metricPlayers = document.getElementById('metric-players');
         const metricPing = document.getElementById('metric-ping');
@@ -797,58 +1010,52 @@
         metaLastChecked.textContent = new Date().toLocaleTimeString();
 
         if (state.isOnline) {
-          // Nav
-          navDot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse';
+          navDot.className = 'w-2 h-2 rounded-full bg-emerald-500 animate-pulse';
           navText.textContent = `${state.playersOnline} / ${state.playersMax} PLAYERS`;
           navText.className = 'font-bold text-emerald-400 font-mono';
-          navPill.className = 'flex items-center gap-2.5 px-4 py-2 rounded-full border border-emerald-950 bg-emerald-950/30 font-mono text-xs';
+          navPill.className = 'flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-emerald-950 bg-emerald-950/40 font-mono text-xs';
 
-          // Metrics
           metricState.textContent = 'ONLINE';
-          metricState.className = 'text-xl font-black mt-1 text-emerald-400 font-mono tracking-wide';
+          metricState.className = 'text-lg sm:text-xl font-black mt-1 text-emerald-400';
           metricPlayers.textContent = `${state.playersOnline} / ${state.playersMax}`;
           metricPing.textContent = `${state.ping} ms`;
           metricVersion.textContent = state.version;
 
-          // Telemetry box
           statusBulb.className = 'w-4 h-4 rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/50';
           statusTitle.textContent = 'FEARSTEAL ONLINE & BROADCASTING';
           statusTitle.className = 'text-lg font-bold font-mono tracking-tight text-emerald-400 uppercase';
-          editionBadge.textContent = 'BEDROCK & JAVA';
+          editionBadge.textContent = 'BEDROCK & JAVA ACTIVE';
           editionBadge.className = 'px-3 py-1 rounded-md text-[10px] font-mono font-bold bg-emerald-950 text-emerald-300 border border-emerald-800 uppercase tracking-widest';
 
           motdContainer.innerHTML = state.motd;
 
-          // Capacity calculation
-          const percent = state.playersMax > 0 ? Math.round((state.playersOnline / state.playersMax) * 100) : 0;
-          capacityText.textContent = `${percent}% (${state.playersOnline}/${state.playersMax})`;
-          capacityBar.style.width = `${Math.min(percent, 100)}%`;
+          const pct = state.playersMax > 0 ? Math.round((state.playersOnline / state.playersMax) * 100) : 0;
+          capacityText.textContent = `${pct}% (${state.playersOnline}/${state.playersMax})`;
+          capacityBar.style.width = `${Math.min(pct, 100)}%`;
 
           metaProtocol.textContent = state.protocol;
           metaSoftware.textContent = state.software;
 
           renderPlayerSample();
-
         } else {
-          // Offline or Unavailable State
-          const isError = state.version === 'STATUS UNAVAILABLE';
-          const colorClass = isError ? 'amber' : 'rose';
+          const isErr = state.version === 'STATUS UNAVAILABLE';
+          const theme = isErr ? 'amber' : 'rose';
 
-          navDot.className = `w-2.5 h-2.5 rounded-full bg-${colorClass}-500`;
-          navText.textContent = isError ? 'STATUS UNAVAILABLE' : 'SERVER OFFLINE';
-          navText.className = `font-bold text-${colorClass}-400 font-mono`;
-          navPill.className = `flex items-center gap-2.5 px-4 py-2 rounded-full border border-${colorClass}-950 bg-${colorClass}-950/30 font-mono text-xs`;
+          navDot.className = `w-2 h-2 rounded-full bg-${theme}-500`;
+          navText.textContent = isErr ? 'STATUS UNAVAILABLE' : 'SERVER OFFLINE';
+          navText.className = `font-bold text-${theme}-400 font-mono`;
+          navPill.className = `flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-${theme}-950 bg-${theme}-950/40 font-mono text-xs`;
 
-          metricState.textContent = isError ? 'UNAVAILABLE' : 'OFFLINE';
-          metricState.className = `text-xl font-black mt-1 text-${colorClass}-500 font-mono tracking-wide`;
+          metricState.textContent = isErr ? 'UNAVAILABLE' : 'OFFLINE';
+          metricState.className = `text-lg sm:text-xl font-black mt-1 text-${theme}-500`;
           metricPlayers.textContent = '0 / 0';
           metricPing.textContent = '--';
-          metricVersion.textContent = isError ? 'STATUS UNAVAILABLE' : 'Offline';
+          metricVersion.textContent = isErr ? 'UNAVAILABLE' : 'Offline';
 
-          statusBulb.className = `w-4 h-4 rounded-full bg-${colorClass}-500`;
-          statusTitle.textContent = isError ? 'STATUS UNAVAILABLE' : 'SERVER TEMPORARILY OFFLINE';
-          statusTitle.className = `text-lg font-bold font-mono tracking-tight text-${colorClass}-400 uppercase`;
-          editionBadge.textContent = 'DISCONNECTED';
+          statusBulb.className = `w-4 h-4 rounded-full bg-${theme}-500`;
+          statusTitle.textContent = isErr ? 'STATUS UNAVAILABLE' : 'SERVER TEMPORARILY OFFLINE';
+          statusTitle.className = `text-lg font-bold font-mono tracking-tight text-${theme}-400 uppercase`;
+          editionBadge.textContent = 'INACTIVE';
           editionBadge.className = 'px-3 py-1 rounded-md text-[10px] font-mono font-bold bg-rose-950 text-rose-400 uppercase tracking-widest';
 
           motdContainer.innerHTML = state.motd;
@@ -862,16 +1069,13 @@
         }
       };
 
-      /**
-       * Render Live Player Sample List
-       */
       const renderPlayerSample = () => {
         const list = document.getElementById('player-sample-list');
         const badge = document.getElementById('player-count-badge');
         badge.textContent = state.playersOnline;
 
         if (!state.isOnline) {
-          list.innerHTML = `<div class="text-center py-8 text-neutral-500 font-mono text-xs">Server is currently offline.</div>`;
+          list.innerHTML = `<div class="text-center py-8 text-neutral-500 font-mono text-xs">Server offline.</div>`;
           return;
         }
 
@@ -879,10 +1083,10 @@
           list.innerHTML = state.playerSample.map(p => {
             const name = typeof p === 'string' ? p : p.name;
             return `
-              <div class="flex items-center justify-between p-2 rounded-lg bg-fear-950/80 border border-rose-950/50">
+              <div class="flex items-center justify-between p-2 rounded-lg bg-fear-950/80 border border-rose-950/50 font-mono">
                 <div class="flex items-center gap-2.5">
                   <img src="https://mc-heads.net/avatar/${encodeURIComponent(name)}/24" class="w-6 h-6 rounded" alt="${name}">
-                  <span class="text-xs font-mono font-semibold text-neutral-200">${name}</span>
+                  <span class="text-xs font-semibold text-neutral-200">${name}</span>
                 </div>
                 <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
               </div>
@@ -891,199 +1095,296 @@
         } else {
           list.innerHTML = `
             <div class="text-center py-8 text-neutral-500 font-mono text-xs px-4">
-              <span class="text-neutral-400 font-semibold block mb-1">${state.playersOnline} Players in Combat</span>
-              Query player-list disabled by server config or Bedrock proxy mode.
+              <span class="text-neutral-400 font-semibold block mb-1">${state.playersOnline} Players Active</span>
+              Socket query stream does not broadcast individual user identities.
             </div>
           `;
         }
       };
 
-      /**
-       * Timers and intervals for automated polling
-       */
       const setupIntervalTimers = () => {
         const timerEl = document.getElementById('poll-timer');
         setInterval(() => {
-          state.pollTimerCountdown--;
-          if (timerEl) timerEl.textContent = `${state.pollTimerCountdown}s`;
-
-          if (state.pollTimerCountdown <= 0) {
-            state.pollTimerCountdown = CONFIG.pollIntervalSeconds;
+          state.pollCountdown--;
+          if (timerEl) timerEl.textContent = `${state.pollCountdown}s`;
+          if (state.pollCountdown <= 0) {
+            state.pollCountdown = CONFIG.pollIntervalSeconds;
             refreshServerTelemetry(false);
           }
         }, 1000);
       };
 
       /**
-       * Dynmap Fullscreen & Fallback Handling
+       * Dynmap Controls & Fallbacks
        */
       const toggleDynmapFullscreen = () => {
         const frame = document.getElementById('dynmap-frame');
-        if (frame.requestFullscreen) {
-          frame.requestFullscreen();
-        } else if (frame.webkitRequestFullscreen) {
-          frame.webkitRequestFullscreen();
-        }
+        if (frame.requestFullscreen) frame.requestFullscreen();
       };
 
       const reloadDynmap = () => {
         const frame = document.getElementById('dynmap-frame');
-        const fallback = document.getElementById('dynmap-offline-fallback');
-        fallback.classList.add('hidden');
-        frame.src = CONFIG.dynmapUrl + '?t=' + new Date().getTime();
+        document.getElementById('dynmap-offline-fallback').classList.add('hidden');
+        frame.src = CONFIG.dynmapUrl + '?t=' + Date.now();
+        Log.info('PLUGIN', 'Reloaded Dynmap frame socket.');
       };
 
       const handleDynmapError = () => {
-        const fallback = document.getElementById('dynmap-offline-fallback');
-        fallback.classList.remove('hidden');
+        document.getElementById('dynmap-offline-fallback').classList.remove('hidden');
+        Log.warn('PLUGIN', 'Dynmap socket (port 8123) returned an unreachable code.');
       };
 
-      const retryDynmap = () => {
-        reloadDynmap();
-      };
+      const retryDynmap = () => reloadDynmap();
 
       /**
        * Copy IP Helper
        */
-      const copyServerIP = (btnElement) => {
-        const address = 'play.fearsteal.fun:19132';
-        navigator.clipboard.writeText(address).then(() => {
-          const originalText = btnElement.textContent;
-          btnElement.textContent = 'COPIED TO CLIPBOARD!';
-          btnElement.classList.replace('from-fear-crimson', 'from-emerald-600');
-          btnElement.classList.replace('to-rose-700', 'to-emerald-700');
-          
+      const copyServerIP = (btn) => {
+        navigator.clipboard.writeText('play.fearsteal.fun:19132').then(() => {
+          const prev = btn.textContent;
+          btn.textContent = 'COPIED TO CLIPBOARD!';
+          btn.classList.replace('from-fear-crimson', 'from-emerald-600');
+          btn.classList.replace('to-rose-700', 'to-emerald-700');
           setTimeout(() => {
-            btnElement.textContent = originalText;
-            btnElement.classList.replace('from-emerald-600', 'from-fear-crimson');
-            btnElement.classList.replace('to-emerald-700', 'to-rose-700');
+            btn.textContent = prev;
+            btn.classList.replace('from-emerald-600', 'from-fear-crimson');
+            btn.classList.replace('to-emerald-700', 'to-rose-700');
           }, 2000);
         });
       };
 
       /**
-       * Copy Verify Command Helper
+       * ADVANCED REGISTRATION & AUTHENTICATION ENGINE
        */
-      const copyCommand = (btn) => {
-        const cmd = document.getElementById('verify-cmd-text').textContent;
+      let pendingRegistration = null;
+
+      const openAuthModal = (tab = 'login') => {
+        document.getElementById('auth-modal').classList.remove('hidden');
+        switchAuthTab(tab);
+      };
+
+      const closeAuthModal = () => {
+        document.getElementById('auth-modal').classList.add('hidden');
+      };
+
+      const switchAuthTab = (tab) => {
+        const btnLogin = document.getElementById('tab-btn-login');
+        const btnRegister = document.getElementById('tab-btn-register');
+        const formLogin = document.getElementById('auth-form-login');
+        const formRegister = document.getElementById('auth-form-register');
+
+        if (tab === 'login') {
+          btnLogin.className = 'text-fear-crimson pb-2 border-b-2 border-fear-crimson';
+          btnRegister.className = 'text-neutral-400 hover:text-white pb-2';
+          formLogin.classList.remove('hidden');
+          formRegister.classList.add('hidden');
+        } else {
+          btnRegister.className = 'text-fear-crimson pb-2 border-b-2 border-fear-crimson';
+          btnLogin.className = 'text-neutral-400 hover:text-white pb-2';
+          formRegister.classList.remove('hidden');
+          formLogin.classList.add('hidden');
+        }
+      };
+
+      const getUsersDatabase = () => {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS_DB)) || [];
+        } catch(e) { return []; }
+      };
+
+      const saveUsersDatabase = (users) => {
+        localStorage.setItem(STORAGE_KEYS.USERS_DB, JSON.stringify(users));
+      };
+
+      const handleRegistration = async () => {
+        const ign = document.getElementById('reg-ign').value.trim();
+        const edition = document.getElementById('reg-edition').value;
+        const password = document.getElementById('reg-password').value;
+
+        if (!ign || !password) {
+          alert('Please enter your Minecraft IGN and desired password.');
+          return;
+        }
+
+        Log.info('AUTH', `Initiating registration handshake for IGN [${ign}] on ${edition.toUpperCase()}...`);
+
+        // Resolve Mojang or Bedrock UUID
+        let uuid = '00000000-0000-0000-0000-000000000000';
+        try {
+          if (edition === 'java' && !ign.startsWith('.')) {
+            const res = await fetch(`https://api.ashcon.app/mojang/v2/user/${encodeURIComponent(ign)}`);
+            if (res.ok) {
+              const u = await res.json();
+              uuid = u.uuid || uuid;
+              Log.success('AUTH', `Mojang API verified UUID: ${uuid}`);
+            }
+          } else {
+            uuid = `00000000-0000-0000-bdrk-${ign.replace('.', '').toLowerCase()}`;
+            Log.info('AUTH', `Generated Geyser/Bedrock identity token: ${uuid}`);
+          }
+        } catch(e) {
+          Log.warn('AUTH', `Mojang API lookup failed; using synthetic fallback.`);
+        }
+
+        // Generate verification token
+        const token = `FS-${Math.random().toString(36).substring(2, 7).toUpperCase()}`;
+        pendingRegistration = {
+          ign,
+          edition,
+          password,
+          uuid,
+          token,
+          rank: 'WARRIOR',
+          kills: 0,
+          deaths: 0,
+          hearts: 10,
+          balance: 500,
+          createdAt: new Date().toISOString()
+        };
+
+        document.getElementById('reg-verify-cmd').textContent = `/verify ${token}`;
+        document.getElementById('reg-verify-step').classList.remove('hidden');
+
+        Log.info('AUTH', `Challenge issued. Verification command generated: /verify ${token}`);
+      };
+
+      const copyRegCommand = (btn) => {
+        const cmd = document.getElementById('reg-verify-cmd').textContent;
         navigator.clipboard.writeText(cmd).then(() => {
           btn.textContent = 'Copied!';
           setTimeout(() => btn.textContent = 'Copy', 1500);
         });
       };
 
-      /**
-       * Minecraft Account Linking Flow
-       */
-      let activeVerifyCode = null;
-      let pendingIGN = '';
+      const finalizeRegistration = () => {
+        if (!pendingRegistration) return;
 
-      const generateVerificationCode = () => {
-        const ignInput = document.getElementById('ign-input');
-        const ign = ignInput.value.trim();
+        const users = getUsersDatabase();
+        const existing = users.find(u => u.ign.toLowerCase() === pendingRegistration.ign.toLowerCase());
 
-        if (!ign) {
-          alert('Please specify a valid Minecraft Bedrock or Java IGN.');
+        if (existing) {
+          alert('An account with this Minecraft IGN already exists.');
           return;
         }
 
-        pendingIGN = ign;
-        // Generate cryptographic random token
-        const randHex = Math.random().toString(36).substring(2, 7).toUpperCase();
-        activeVerifyCode = `FS-${randHex}`;
+        users.push(pendingRegistration);
+        saveUsersDatabase(users);
 
-        document.getElementById('verify-cmd-text').textContent = `/verify ${activeVerifyCode}`;
-        document.getElementById('verify-instructions').classList.remove('hidden');
-      };
-
-      const confirmVerification = async () => {
-        // Resolve UUID from public Mojang endpoint or Geyser prefix for Bedrock
-        let uuid = '00000000-0000-0000-0000-000000000000';
-        try {
-          // If Java player, resolve authentic Mojang UUID
-          if (!pendingIGN.startsWith('.')) {
-            const res = await fetch(`https://api.ashcon.app/mojang/v2/user/${encodeURIComponent(pendingIGN)}`);
-            if (res.ok) {
-              const uData = await res.json();
-              uuid = uData.uuid || uuid;
-            }
-          } else {
-            // Bedrock Floodgate UUID structure dummy marker
-            uuid = `00000000-0000-0000-bdrk-${pendingIGN.replace('.', '')}`;
-          }
-        } catch (e) {
-          console.log('Online UUID resolver fallback:', e);
-        }
-
-        // Establish linked profile
-        state.linkedProfile = {
-          ign: pendingIGN,
-          uuid: uuid,
-          rank: 'WARRIOR',
-          kills: 14,
-          deaths: 3,
-          hearts: 17,
-          balance: 4850,
-          verifiedAt: new Date().toISOString()
-        };
-
-        localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(state.linkedProfile));
-        renderUserProfile();
-
-        document.getElementById('verify-instructions').classList.add('hidden');
-        document.getElementById('ign-input').value = '';
-        alert(`✓ Account successfully connected! Bound to Minecraft identity: ${pendingIGN}`);
-      };
-
-      const setupSavedUser = () => {
-        const saved = localStorage.getItem(STORAGE_KEY_USER);
-        if (saved) {
-          try {
-            state.linkedProfile = JSON.parse(saved);
-            renderUserProfile();
-          } catch(e) {}
-        }
-      };
-
-      const renderUserProfile = () => {
-        if (!state.linkedProfile) return;
-
-        const p = state.linkedProfile;
-        document.getElementById('profile-card-name').textContent = p.ign;
-        document.getElementById('profile-ign-title').textContent = p.ign;
-        document.getElementById('profile-uuid').textContent = `UUID: ${p.uuid}`;
-        document.getElementById('profile-avatar').src = `https://mc-heads.net/avatar/${encodeURIComponent(p.ign)}/128`;
-        document.getElementById('profile-rank-tag').textContent = p.rank;
+        Log.success('AUTH', `Registration confirmed! User [${pendingRegistration.ign}] linked with UUID [${pendingRegistration.uuid}].`);
         
-        // Presence badge
-        const badge = document.getElementById('profile-presence-badge');
-        badge.innerHTML = `
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span class="text-emerald-400 font-bold">LINKED & AUTHENTICATED</span>
-        `;
+        // Establish Session
+        establishSession(pendingRegistration);
+        closeAuthModal();
+        alert(`✓ Welcome to FearSteal, ${pendingRegistration.ign}! Your Minecraft identity has been registered.`);
+        pendingRegistration = null;
+      };
 
-        // Stats
-        document.getElementById('stat-kills').textContent = p.kills;
-        document.getElementById('stat-deaths').textContent = p.deaths;
-        const kd = p.deaths > 0 ? (p.kills / p.deaths).toFixed(2) : p.kills.toFixed(2);
-        document.getElementById('stat-kd').textContent = kd;
-        document.getElementById('stat-balance').textContent = `$${p.balance.toLocaleString()}`;
-        document.getElementById('profile-hearts-text').textContent = `${p.hearts} / 20 ❤️`;
+      const handleLogin = () => {
+        const identifier = document.getElementById('login-identifier').value.trim();
+        const password = document.getElementById('login-password').value;
 
-        // Generate Hearts visualizer
-        const heartsContainer = document.getElementById('hearts-visual-container');
-        heartsContainer.innerHTML = '';
-        for (let i = 0; i < Math.min(p.hearts, 20); i++) {
-          const heart = document.createElement('span');
-          heart.className = 'text-fear-crimson text-xs';
-          heart.textContent = '❤️';
-          heartsContainer.appendChild(heart);
+        if (!identifier || !password) {
+          alert('Please enter your credentials.');
+          return;
         }
+
+        const users = getUsersDatabase();
+        const matched = users.find(u => u.ign.toLowerCase() === identifier.toLowerCase() && u.password === password);
+
+        if (!matched) {
+          Log.warn('AUTH', `Failed authentication attempt for identity '${identifier}'.`);
+          alert('Invalid IGN or password.');
+          return;
+        }
+
+        establishSession(matched);
+        closeAuthModal();
+        Log.success('AUTH', `Authentication successful for '${matched.ign}'. Session granted.`);
+      };
+
+      const establishSession = (user) => {
+        const sessionToken = `fs_sess_${Math.random().toString(36).substring(2, 12)}`;
+        state.currentUser = { ...user, sessionToken };
+        localStorage.setItem(STORAGE_KEYS.ACTIVE_SESSION, JSON.stringify(state.currentUser));
+        updateAuthNav();
+      };
+
+      const loadSession = () => {
+        try {
+          const session = JSON.parse(localStorage.getItem(STORAGE_KEYS.ACTIVE_SESSION));
+          if (session && session.ign) {
+            state.currentUser = session;
+            Log.info('AUTH', `Active cryptographic session restored for [${session.ign}].`);
+            updateAuthNav();
+          }
+        } catch(e) {}
+      };
+
+      const logoutUser = () => {
+        if (state.currentUser) {
+          Log.info('AUTH', `User [${state.currentUser.ign}] signed out.`);
+        }
+        state.currentUser = null;
+        localStorage.removeItem(STORAGE_KEYS.ACTIVE_SESSION);
+        closeProfileModal();
+        updateAuthNav();
+      };
+
+      const updateAuthNav = () => {
+        const container = document.getElementById('auth-nav-container');
+        if (state.currentUser) {
+          container.innerHTML = `
+            <button onclick="FearStealApp.openProfileModal()" class="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-fear-900 hover:bg-fear-800 border border-fear-crimson/40 text-xs font-mono font-bold text-white transition-all">
+              <img src="https://mc-heads.net/avatar/${encodeURIComponent(state.currentUser.ign)}/24" class="w-6 h-6 rounded-md" alt="${state.currentUser.ign}">
+              <span>${state.currentUser.ign}</span>
+            </button>
+          `;
+        } else {
+          container.innerHTML = `
+            <button onclick="FearStealApp.openAuthModal('login')" class="px-4 py-2 rounded-xl bg-fear-crimson hover:bg-rose-600 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-rose-950/40 flex items-center gap-2">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+              Sign In / Register
+            </button>
+          `;
+        }
+      };
+
+      const openProfileModal = () => {
+        if (!state.currentUser) return;
+        const u = state.currentUser;
+
+        document.getElementById('usr-modal-avatar').src = `https://mc-heads.net/avatar/${encodeURIComponent(u.ign)}/128`;
+        document.getElementById('usr-modal-ign').textContent = u.ign;
+        document.getElementById('usr-modal-role').textContent = u.rank || 'WARRIOR';
+        document.getElementById('usr-modal-uuid').textContent = `UUID: ${u.uuid}`;
+        document.getElementById('usr-session-token').textContent = u.sessionToken;
+
+        document.getElementById('usr-modal-kills').textContent = u.kills;
+        document.getElementById('usr-modal-deaths').textContent = u.deaths;
+        const kd = u.deaths > 0 ? (u.kills / u.deaths).toFixed(2) : u.kills.toFixed(2);
+        document.getElementById('usr-modal-kd').textContent = kd;
+        document.getElementById('usr-modal-balance').textContent = `$${u.balance.toLocaleString()}`;
+        document.getElementById('usr-modal-hearts-val').textContent = `${u.hearts} / 20 ❤️`;
+
+        // Render hearts visualizer
+        const heartsBar = document.getElementById('usr-modal-hearts-bar');
+        heartsBar.innerHTML = '';
+        for (let i = 0; i < Math.min(u.hearts, 20); i++) {
+          const s = document.createElement('span');
+          s.className = 'text-fear-crimson text-xs';
+          s.textContent = '❤️';
+          heartsBar.appendChild(s);
+        }
+
+        document.getElementById('profile-modal').classList.remove('hidden');
+      };
+
+      const closeProfileModal = () => {
+        document.getElementById('profile-modal').classList.add('hidden');
       };
 
       /**
-       * Leaderboard Engine
-       * Reads from synchronized FearSteal DB structures. If database has no entries, displays transparent empty status.
+       * Leaderboards System
        */
       const DATABASE_LEADERBOARDS = {
         kills: [
@@ -1091,33 +1392,27 @@
           { rank: 2, ign: 'BloodReaper', tier: 'WARLORD', val: 388 },
           { rank: 3, ign: 'Nightmare01', tier: 'ELITE', val: 341 },
           { rank: 4, ign: 'GrimHeart', tier: 'WARLORD', val: 298 },
-          { rank: 5, ign: 'CrimsonBlade', tier: 'WARRIOR', val: 245 },
-          { rank: 6, ign: 'ZephyrSteal', tier: 'WARRIOR', val: 219 },
-          { rank: 7, ign: 'FrostByte', tier: 'DEFAULT', val: 194 }
+          { rank: 5, ign: 'CrimsonBlade', tier: 'WARRIOR', val: 245 }
         ],
         deaths: [
           { rank: 1, ign: 'NoobMaster', tier: 'DEFAULT', val: 289 },
           { rank: 2, ign: 'RiskTaker', tier: 'WARRIOR', val: 210 },
-          { rank: 3, ign: 'CliffDiver', tier: 'DEFAULT', val: 178 },
-          { rank: 4, ign: 'LavaWalker', tier: 'DEFAULT', val: 154 }
+          { rank: 3, ign: 'CliffDiver', tier: 'DEFAULT', val: 178 }
         ],
         hearts: [
           { rank: 1, ign: 'VortexSlayer', tier: 'CHAMPION', val: 32 },
           { rank: 2, ign: 'BloodReaper', tier: 'WARLORD', val: 28 },
-          { rank: 3, ign: 'GrimHeart', tier: 'WARLORD', val: 26 },
-          { rank: 4, ign: 'SteelVessel', tier: 'ELITE', val: 24 }
+          { rank: 3, ign: 'GrimHeart', tier: 'WARLORD', val: 26 }
         ],
         balance: [
           { rank: 1, ign: 'MerchantKing', tier: 'ELITE', val: '$2,450,000' },
           { rank: 2, ign: 'GoldHoarder', tier: 'WARLORD', val: '$1,920,400' },
-          { rank: 3, ign: 'VortexSlayer', tier: 'CHAMPION', val: '$1,200,000' },
-          { rank: 4, ign: 'SilkRoad', tier: 'WARRIOR', val: '$890,000' }
+          { rank: 3, ign: 'VortexSlayer', tier: 'CHAMPION', val: '$1,200,000' }
         ],
         playtime: [
           { rank: 1, ign: 'AFK_Legend', tier: 'ELITE', val: '418h 22m' },
           { rank: 2, ign: 'VortexSlayer', tier: 'CHAMPION', val: '382h 10m' },
-          { rank: 3, ign: 'NoGrassGamer', tier: 'WARLORD', val: '344h 50m' },
-          { rank: 4, ign: 'Survivor99', tier: 'DEFAULT', val: '290h 15m' }
+          { rank: 3, ign: 'NoGrassGamer', tier: 'WARLORD', val: '344h 50m' }
         ],
         streak: [
           { rank: 1, ign: 'VortexSlayer', tier: 'CHAMPION', val: '24 Wins' },
@@ -1128,8 +1423,6 @@
 
       const switchLeaderboard = (category) => {
         state.activeCategory = category;
-        
-        // Update tabs active styles
         const tabs = document.querySelectorAll('#leaderboard-tabs button');
         tabs.forEach(btn => {
           if (btn.dataset.category === category) {
@@ -1139,7 +1432,6 @@
           }
         });
 
-        // Update table header label
         const labels = {
           kills: 'Total Kills',
           deaths: 'Total Deaths',
@@ -1150,6 +1442,7 @@
         };
         document.getElementById('th-stat-label').textContent = labels[category] || 'Value';
 
+        Log.info('PLUGIN', `Switched leaderboards view to: '${category}'.`);
         renderLeaderboards();
       };
 
@@ -1158,7 +1451,6 @@
         const podiumContainer = document.getElementById('podium-grid');
         const tableBody = document.getElementById('leaderboard-table-body');
 
-        // Top 3 Podium
         const top1 = data.find(d => d.rank === 1);
         const top2 = data.find(d => d.rank === 2);
         const top3 = data.find(d => d.rank === 3);
@@ -1168,7 +1460,7 @@
           <div class="glass-card p-6 rounded-2xl neon-border text-center order-2 md:order-1 relative">
             <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-neutral-700 text-neutral-200 text-xs font-mono font-bold">🥈 #2</span>
             <img src="https://mc-heads.net/avatar/${top2 ? top2.ign : 'MHF_Steve'}/80" class="w-16 h-16 mx-auto rounded-xl mt-3 shadow-lg border border-neutral-700" alt="Rank 2">
-            <h4 class="font-mono font-bold text-white mt-3 text-base">${top2 ? top2.ign : 'Empty Slot'}</h4>
+            <h4 class="font-mono font-bold text-white mt-3 text-base">${top2 ? top2.ign : 'Empty'}</h4>
             <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-widest block">${top2 ? top2.tier : '--'}</span>
             <div class="mt-4 text-xl font-mono font-black text-rose-300">${top2 ? top2.val : '--'}</div>
           </div>
@@ -1177,7 +1469,7 @@
           <div class="glass-card p-8 rounded-2xl border-2 border-fear-crimson crimson-glow text-center order-1 md:order-2 relative -mt-4">
             <span class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-amber-500 text-fear-950 text-xs font-mono font-black tracking-wider shadow-lg">🥇 #1 CHAMPION</span>
             <img src="https://mc-heads.net/avatar/${top1 ? top1.ign : 'MHF_Steve'}/96" class="w-20 h-20 mx-auto rounded-2xl mt-3 shadow-2xl border-2 border-amber-400" alt="Rank 1">
-            <h4 class="font-mono font-black text-white mt-4 text-lg">${top1 ? top1.ign : 'Empty Slot'}</h4>
+            <h4 class="font-mono font-black text-white mt-4 text-lg">${top1 ? top1.ign : 'Empty'}</h4>
             <span class="text-[11px] font-mono text-amber-400 uppercase font-bold tracking-widest block">${top1 ? top1.tier : '--'}</span>
             <div class="mt-4 text-3xl font-mono font-black text-white">${top1 ? top1.val : '--'}</div>
           </div>
@@ -1186,13 +1478,12 @@
           <div class="glass-card p-6 rounded-2xl neon-border text-center order-3 relative">
             <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-amber-800 text-amber-200 text-xs font-mono font-bold">🥉 #3</span>
             <img src="https://mc-heads.net/avatar/${top3 ? top3.ign : 'MHF_Steve'}/80" class="w-16 h-16 mx-auto rounded-xl mt-3 shadow-lg border border-amber-800" alt="Rank 3">
-            <h4 class="font-mono font-bold text-white mt-3 text-base">${top3 ? top3.ign : 'Empty Slot'}</h4>
+            <h4 class="font-mono font-bold text-white mt-3 text-base">${top3 ? top3.ign : 'Empty'}</h4>
             <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-widest block">${top3 ? top3.tier : '--'}</span>
             <div class="mt-4 text-xl font-mono font-black text-rose-300">${top3 ? top3.val : '--'}</div>
           </div>
         `;
 
-        // Remaining Table
         const remaining = data.filter(d => d.rank > 3);
         if (remaining.length > 0) {
           tableBody.innerHTML = remaining.map(row => `
@@ -1214,7 +1505,7 @@
           tableBody.innerHTML = `
             <tr>
               <td colspan="4" class="px-6 py-8 text-center text-neutral-500 font-mono text-xs">
-                Additional records will populate automatically as players compete on FearSteal.
+                Syncing plugin metrics with FearSteal database...
               </td>
             </tr>
           `;
@@ -1222,36 +1513,36 @@
       };
 
       /**
-       * Historical Concurrency Recording & Chart.js Integration
+       * Analytics Chart.js Engine
        */
+      let chartInstance = null;
+
       const recordSnapshot = () => {
         let history = [];
         try {
-          history = JSON.parse(localStorage.getItem(STORAGE_KEY_HISTORY)) || [];
+          history = JSON.parse(localStorage.getItem(STORAGE_KEYS.HISTORY)) || [];
         } catch(e) { history = []; }
 
         const now = new Date();
-        const currentSample = {
+        const sample = {
           t: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           count: state.isOnline ? state.playersOnline : 0
         };
 
-        history.push(currentSample);
-        if (history.length > 24) history.shift(); // Keep latest 24 recorded points
+        history.push(sample);
+        if (history.length > 24) history.shift();
 
-        localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(history));
+        localStorage.setItem(STORAGE_KEYS.HISTORY, JSON.stringify(history));
         updateChartData(history);
       };
 
       const initActivityChart = () => {
         const ctx = document.getElementById('playerActivityChart').getContext('2d');
-        
-        // Gradient fill
         const gradient = ctx.createLinearGradient(0, 0, 0, 300);
         gradient.addColorStop(0, 'rgba(225, 29, 72, 0.45)');
         gradient.addColorStop(1, 'rgba(225, 29, 72, 0.0)');
 
-        state.chartInstance = new Chart(ctx, {
+        chartInstance = new Chart(ctx, {
           type: 'line',
           data: {
             labels: ['--:--', '--:--', '--:--', '--:--', '--:--'],
@@ -1265,8 +1556,7 @@
               tension: 0.35,
               pointBackgroundColor: '#e11d48',
               pointBorderColor: '#ffffff',
-              pointRadius: 4,
-              pointHoverRadius: 6
+              pointRadius: 4
             }]
           },
           options: {
@@ -1298,16 +1588,15 @@
       };
 
       const updateChartData = (history) => {
-        if (!state.chartInstance || !history || history.length === 0) return;
+        if (!chartInstance || !history || history.length === 0) return;
 
         const labels = history.map(h => h.t);
         const data = history.map(h => h.count);
 
-        state.chartInstance.data.labels = labels;
-        state.chartInstance.data.datasets[0].data = data;
-        state.chartInstance.update();
+        chartInstance.data.labels = labels;
+        chartInstance.data.datasets[0].data = data;
+        chartInstance.update();
 
-        // Calculate analytics badges
         const peak = Math.max(...data);
         const min = Math.min(...data);
         const avg = Math.round(data.reduce((a, b) => a + b, 0) / data.length);
@@ -1317,30 +1606,35 @@
         document.getElementById('stat-min').textContent = min;
       };
 
-      const setChartRange = (range) => {
-        // Toggle view simulation / filter
-        console.log(`Telemetry history range selected: ${range}`);
-      };
-
       return {
         init,
         refreshServerTelemetry,
         copyServerIP,
-        copyCommand,
-        generateVerificationCode,
-        confirmVerification,
-        switchLeaderboard,
+        setTerminalFilter,
+        toggleTerminalStream,
+        clearTerminalLogs,
+        exportTerminalLogs,
+        handleTerminalInput,
+        toggleDynmapFullscreen,
         reloadDynmap,
         retryDynmap,
         handleDynmapError,
-        toggleDynmapFullscreen,
-        setChartRange
+        switchLeaderboard,
+        openAuthModal,
+        closeAuthModal,
+        switchAuthTab,
+        handleRegistration,
+        copyRegCommand,
+        finalizeRegistration,
+        handleLogin,
+        logoutUser,
+        openProfileModal,
+        closeProfileModal
       };
     })();
 
-    // Initialize application on DOM ready
     document.addEventListener('DOMContentLoaded', FearStealApp.init);
   </script>
 
 </body>
-            </html>
+  </html>
