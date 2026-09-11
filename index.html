@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Home • FearSteal</title>
-  <meta name="description" content="Fight. Survive. Steal Hearts. Become FearSteal's strongest player on the ultimate Minecraft LifeSteal SMP network." />
+  <meta name="description" content="Fight. Survive. Steal Hearts. Become FearSteal's strongest player on the premier Minecraft LifeSteal SMP network." />
   <meta property="og:title" content="FEARSTEAL Network" />
   <meta property="og:description" content="Fight. Survive. Steal Hearts. Join play.fearsteal.fun:19132" />
   <meta property="og:theme-color" content="#ff1a3c" />
@@ -13,38 +13,40 @@
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
     /* ==========================================================================
-       01. DESIGN TOKENS & BASE CSS
+       01. MASTER DESIGN SYSTEM & CSS VARIABLES
        ========================================================================== */
     :root {
-      --bg-black: #050507;
-      --bg-surface: #0c0c12;
-      --bg-surface-elevated: #14141e;
-      --bg-glass: rgba(16, 16, 24, 0.75);
-      --bg-glass-card: rgba(20, 20, 30, 0.65);
+      --bg-black: #040406;
+      --bg-surface: #0b0b12;
+      --bg-surface-elevated: #12121c;
+      --bg-glass: rgba(14, 14, 22, 0.72);
+      --bg-glass-card: rgba(18, 18, 28, 0.65);
       --crimson-primary: #ff1a3c;
       --crimson-dark: #b80d26;
-      --crimson-glow: rgba(255, 26, 60, 0.35);
-      --crimson-light: #ff4d68;
+      --crimson-glow: rgba(255, 26, 60, 0.4);
+      --crimson-light: #ff4d6d;
+      --crimson-ultra: #ff758c;
       --gold-accent: #fbbf24;
       --text-white: #ffffff;
-      --text-muted: #9496a8;
-      --text-dim: #5c5e72;
-      --border-subtle: rgba(255, 255, 255, 0.07);
-      --border-crimson: rgba(255, 26, 60, 0.3);
-      --border-crimson-hover: rgba(255, 26, 60, 0.7);
+      --text-muted: #9597ab;
+      --text-dim: #5c5e73;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-crimson: rgba(255, 26, 60, 0.35);
+      --border-crimson-hover: rgba(255, 26, 60, 0.8);
       --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-title: 'Cinzel', serif;
       --font-mono: 'JetBrains Mono', monospace;
       --radius-sm: 8px;
       --radius-md: 14px;
-      --radius-lg: 22px;
+      --radius-lg: 24px;
       --radius-full: 9999px;
-      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     *, *::before, *::after {
@@ -55,7 +57,6 @@
 
     html {
       scroll-behavior: smooth;
-      font-size: 16px;
       background-color: var(--bg-black);
       color: var(--text-white);
       font-family: var(--font-main);
@@ -71,12 +72,14 @@
       position: relative;
     }
 
+    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #08080c; }
-    ::-webkit-scrollbar-thumb { background: #222230; border-radius: 4px; }
+    ::-webkit-scrollbar-track { background: #06060a; }
+    ::-webkit-scrollbar-thumb { background: #1e1e2c; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--crimson-primary); }
     ::selection { background: var(--crimson-primary); color: #fff; }
 
+    /* Canvas Embers */
     #ember-canvas {
       position: fixed;
       inset: 0;
@@ -84,45 +87,96 @@
       height: 100vh;
       pointer-events: none;
       z-index: 1;
-      opacity: 0.6;
+      opacity: 0.75;
     }
 
-    .bg-grid-overlay {
+    /* Ambient Lighting Overlays */
+    .bg-lighting-vignette {
       position: fixed;
       inset: 0;
-      background-image: 
-        radial-gradient(circle at 50% 10%, rgba(255, 26, 60, 0.09) 0%, transparent 45%),
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 100% 100%, 48px 48px, 48px 48px;
+      background: 
+        radial-gradient(circle at 50% 0%, rgba(255, 26, 60, 0.12) 0%, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(255, 26, 60, 0.06) 0%, transparent 45%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
       pointer-events: none;
       z-index: 0;
     }
 
     .container {
       width: 100%;
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
+
+    /* ==========================================================================
+       ENTERED ANIMATIONS & KEYFRAMES
+       ========================================================================== */
+    @keyframes heroReveal {
+      0% { opacity: 0; transform: translateY(35px) scale(0.97); filter: blur(8px); }
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+
+    @keyframes pulseHeart {
+      0% { transform: scale(1); filter: drop-shadow(0 0 15px var(--crimson-primary)); }
+      14% { transform: scale(1.22); filter: drop-shadow(0 0 35px var(--crimson-light)); }
+      28% { transform: scale(1); filter: drop-shadow(0 0 15px var(--crimson-primary)); }
+      42% { transform: scale(1.15); filter: drop-shadow(0 0 28px var(--crimson-light)); }
+      70% { transform: scale(1); filter: drop-shadow(0 0 15px var(--crimson-primary)); }
+    }
+
+    @keyframes neonGlow {
+      0%, 100% { box-shadow: 0 0 25px rgba(255, 26, 60, 0.25), inset 0 0 15px rgba(255, 26, 60, 0.1); }
+      50% { box-shadow: 0 0 45px rgba(255, 26, 60, 0.45), inset 0 0 25px rgba(255, 26, 60, 0.2); }
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes borderBeam {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Reveal on Scroll Utility Classes */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
 
     /* Badges */
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.3rem 0.8rem;
+      gap: 0.45rem;
+      padding: 0.35rem 0.85rem;
       border-radius: var(--radius-full);
       font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      backdrop-filter: blur(10px);
     }
     .badge-crimson {
       background: rgba(255, 26, 60, 0.15);
-      color: var(--crimson-light);
+      color: var(--crimson-ultra);
       border: 1px solid var(--border-crimson);
-      box-shadow: 0 0 14px var(--crimson-glow);
+      box-shadow: 0 0 16px var(--crimson-glow);
     }
     .badge-gold {
       background: rgba(251, 191, 36, 0.15);
@@ -132,12 +186,12 @@
     .badge-silver {
       background: rgba(148, 163, 184, 0.15);
       color: #cbd5e1;
-      border: 1px solid rgba(148, 163, 184, 0.3);
+      border: 1px solid rgba(148, 163, 184, 0.35);
     }
     .badge-bronze {
       background: rgba(217, 119, 6, 0.15);
       color: #f97316;
-      border: 1px solid rgba(217, 119, 6, 0.3);
+      border: 1px solid rgba(217, 119, 6, 0.35);
     }
 
     /* Buttons */
@@ -145,116 +199,118 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.6rem;
+      gap: 0.65rem;
       font-family: var(--font-main);
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.03em;
-      padding: 0.8rem 1.6rem;
+      font-weight: 800;
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      padding: 0.85rem 1.75rem;
       border-radius: var(--radius-md);
       cursor: pointer;
-      transition: var(--transition);
+      transition: var(--transition-smooth);
       border: 1px solid transparent;
       text-decoration: none;
+      position: relative;
+      overflow: hidden;
       user-select: none;
     }
     .btn-primary {
       background: linear-gradient(135deg, var(--crimson-primary) 0%, var(--crimson-dark) 100%);
       color: #fff;
-      box-shadow: 0 4px 20px var(--crimson-glow);
+      box-shadow: 0 4px 25px var(--crimson-glow);
     }
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(255, 26, 60, 0.55);
-      background: linear-gradient(135deg, #ff3352 0%, #c4122d 100%);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 35px rgba(255, 26, 60, 0.6);
+      background: linear-gradient(135deg, #ff2e4e 0%, #c81330 100%);
     }
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
       color: var(--text-white);
       border: 1px solid var(--border-subtle);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.09);
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-3px);
     }
     .btn-discord {
       background: #5865F2;
       color: #fff;
-      box-shadow: 0 4px 18px rgba(88, 101, 242, 0.35);
+      box-shadow: 0 4px 22px rgba(88, 101, 242, 0.35);
     }
     .btn-discord:hover {
       background: #4752c4;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(88, 101, 242, 0.5);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 30px rgba(88, 101, 242, 0.55);
     }
 
-    /* Headings */
-    .section-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-      position: relative;
-    }
-    .section-subtitle {
-      color: var(--crimson-light);
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      display: inline-block;
-      margin-bottom: 0.5rem;
-    }
-    .section-title {
-      font-family: var(--font-title);
-      font-size: clamp(2rem, 4vw, 2.75rem);
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
-    }
-    .section-title span {
-      color: var(--crimson-primary);
-      text-shadow: 0 0 25px var(--crimson-glow);
-    }
-    .section-desc {
-      color: var(--text-muted);
-      max-width: 650px;
-      margin: 0.8rem auto 0;
-      font-size: 1rem;
-    }
-
-    /* Glass Cards */
+    /* Glassmorphism Interactive 3D Tilt Cards */
     .glass-card {
       background: var(--bg-glass-card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 1.8rem;
-      transition: var(--transition);
+      padding: 2rem;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
       position: relative;
       overflow: hidden;
+      transform-style: preserve-3d;
     }
     .glass-card:hover {
       border-color: var(--border-crimson);
-      transform: translateY(-4px);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 26, 60, 0.12);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 26, 60, 0.15);
     }
     .glass-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--crimson-primary), transparent);
+      inset: 0;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 26, 60, 0.15), transparent 60%);
       opacity: 0;
-      transition: var(--transition);
+      transition: opacity 0.3s ease;
+      pointer-events: none;
     }
     .glass-card:hover::before { opacity: 1; }
 
-    /* Toast System */
+    /* Section Headings */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+    .section-subtitle {
+      color: var(--crimson-ultra);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--font-title);
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.03em;
+      line-height: 1.15;
+    }
+    .section-title span {
+      background: linear-gradient(135deg, #ffffff 10%, var(--crimson-light) 65%, var(--crimson-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 35px var(--crimson-glow);
+    }
+    .section-desc {
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 1rem auto 0;
+      font-size: 1.05rem;
+    }
+
+    /* Notification Toasts */
     #toast-container {
       position: fixed;
       bottom: 2rem;
@@ -270,27 +326,27 @@
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-crimson);
       color: #fff;
-      padding: 0.9rem 1.4rem;
+      padding: 1rem 1.5rem;
       border-radius: var(--radius-md);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px var(--crimson-glow);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.8), 0 0 25px var(--crimson-glow);
       display: flex;
       align-items: center;
-      gap: 0.9rem;
-      font-size: 0.9rem;
-      min-width: 280px;
-      max-width: 420px;
+      gap: 1rem;
+      font-size: 0.92rem;
+      min-width: 300px;
+      max-width: 440px;
       transform: translateX(120%);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
       opacity: 0;
     }
     .toast.show {
       transform: translateX(0);
       opacity: 1;
     }
-    .toast-icon { font-size: 1.2rem; color: var(--crimson-primary); }
+    .toast-icon { font-size: 1.35rem; color: var(--crimson-primary); }
     .toast-content { flex: 1; }
-    .toast-title { font-weight: 700; font-size: 0.92rem; }
-    .toast-desc { font-size: 0.8rem; color: var(--text-muted); }
+    .toast-title { font-weight: 800; font-size: 0.95rem; }
+    .toast-desc { font-size: 0.82rem; color: var(--text-muted); }
 
     /* ==========================================================================
        02. SCREEN 1: CINEMATIC LOADING SCREEN
@@ -298,170 +354,165 @@
     #loading-screen {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #14080e 0%, #050507 90%);
+      background: radial-gradient(circle at center, #180710 0%, #040406 85%);
       z-index: 10000;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s ease;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s ease, visibility 0.8s ease;
     }
     #loading-screen.fade-out {
       opacity: 0;
+      transform: scale(1.05);
       visibility: hidden;
       pointer-events: none;
     }
     .loading-logo-box {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 2.2rem;
+      animation: heroReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .loading-heart-icon {
-      font-size: 4.5rem;
+      font-size: 5rem;
       color: var(--crimson-primary);
-      animation: heartbeat 1.3s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-      filter: drop-shadow(0 0 25px var(--crimson-primary));
+      animation: pulseHeart 1.4s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
     }
     .loading-brand {
       font-family: var(--font-title);
-      font-size: 3rem;
+      font-size: 3.4rem;
       font-weight: 900;
-      letter-spacing: 0.18em;
-      margin-top: 1rem;
-      text-shadow: 0 0 35px var(--crimson-glow);
+      letter-spacing: 0.22em;
+      margin-top: 1.2rem;
+      color: #fff;
+      text-shadow: 0 0 45px var(--crimson-glow);
     }
     .loading-subtitle {
       color: var(--text-muted);
-      font-size: 0.85rem;
-      letter-spacing: 0.25em;
+      font-size: 0.88rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      margin-top: 0.2rem;
+      margin-top: 0.4rem;
     }
     .loading-bar-wrapper {
-      width: 320px;
-      height: 6px;
+      width: 360px;
+      height: 7px;
       background: rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-full);
       overflow: hidden;
-      margin-top: 1.8rem;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
     }
     .loading-bar-fill {
       width: 0%;
       height: 100%;
-      background: linear-gradient(90deg, #ff1a3c, #ff6b82);
-      box-shadow: 0 0 15px var(--crimson-primary);
-      transition: width 0.3s ease;
+      background: linear-gradient(90deg, #ff1a3c, #ff6e85);
+      box-shadow: 0 0 20px var(--crimson-primary);
+      transition: width 0.35s ease;
     }
     .loading-status-text {
       font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--crimson-light);
-      margin-top: 1rem;
-      letter-spacing: 0.08em;
-      min-height: 1.2rem;
-    }
-
-    @keyframes heartbeat {
-      0% { transform: scale(1); }
-      14% { transform: scale(1.18); }
-      28% { transform: scale(1); }
-      42% { transform: scale(1.12); }
-      70% { transform: scale(1); }
+      font-size: 0.8rem;
+      color: var(--crimson-ultra);
+      margin-top: 1.2rem;
+      letter-spacing: 0.1em;
+      min-height: 1.3rem;
     }
 
     /* ==========================================================================
-       03. SCREEN 2: AUTHENTICATION SCREEN
+       03. SCREEN 2: AUTHENTICATION PORTAL (STRICT ROUTE)
        ========================================================================== */
     #auth-screen {
       position: fixed;
       inset: 0;
       z-index: 9000;
-      background: radial-gradient(circle at top center, #1b0914 0%, #050508 80%);
+      background: radial-gradient(circle at top center, #200814 0%, #040406 80%);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
       overflow-y: auto;
-      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease;
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s ease;
     }
     #auth-screen.hidden {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transform: scale(0.97);
+      transform: scale(0.96) translateY(20px);
     }
     .auth-container {
       width: 100%;
-      max-width: 480px;
-      background: rgba(16, 16, 24, 0.88);
+      max-width: 500px;
+      background: rgba(16, 16, 26, 0.9);
       border: 1px solid var(--border-crimson);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 26, 60, 0.18);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 45px rgba(255, 26, 60, 0.22);
       border-radius: var(--radius-lg);
-      padding: 2.5rem;
-      backdrop-filter: blur(20px);
-      position: relative;
+      padding: 2.8rem;
+      backdrop-filter: blur(25px);
+      animation: heroReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .auth-header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 2.2rem;
     }
     .auth-brand-logo {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.7rem;
       font-family: var(--font-title);
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 900;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.15em;
       color: #fff;
     }
     .auth-brand-logo i {
       color: var(--crimson-primary);
-      text-shadow: 0 0 15px var(--crimson-primary);
+      text-shadow: 0 0 20px var(--crimson-primary);
     }
     .auth-subtitle {
       color: var(--text-muted);
       font-size: 0.84rem;
-      margin-top: 0.4rem;
-      letter-spacing: 0.06em;
+      margin-top: 0.5rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
     .auth-tabs {
       display: flex;
       background: rgba(255, 255, 255, 0.04);
-      padding: 4px;
+      padding: 5px;
       border-radius: var(--radius-md);
-      margin-bottom: 1.8rem;
+      margin-bottom: 2rem;
       border: 1px solid var(--border-subtle);
     }
     .auth-tab-btn {
       flex: 1;
       text-align: center;
-      padding: 0.65rem 0.5rem;
-      font-size: 0.85rem;
-      font-weight: 700;
+      padding: 0.75rem 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 800;
       color: var(--text-muted);
       border-radius: var(--radius-sm);
       cursor: pointer;
       background: transparent;
       border: none;
-      transition: var(--transition);
+      transition: var(--transition-smooth);
     }
     .auth-tab-btn.active {
       background: var(--crimson-primary);
       color: #fff;
-      box-shadow: 0 0 15px var(--crimson-glow);
+      box-shadow: 0 0 20px var(--crimson-glow);
     }
     .form-group {
-      margin-bottom: 1.3rem;
+      margin-bottom: 1.4rem;
       position: relative;
     }
     .form-label {
       display: block;
-      font-size: 0.82rem;
-      font-weight: 600;
-      margin-bottom: 0.45rem;
-      color: #cfd2e6;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #d1d4e8;
     }
     .input-wrapper {
       position: relative;
@@ -470,83 +521,71 @@
     }
     .input-icon {
       position: absolute;
-      left: 1rem;
+      left: 1.1rem;
       color: var(--text-dim);
-      font-size: 0.95rem;
+      font-size: 1rem;
       pointer-events: none;
     }
     .form-input {
       width: 100%;
-      background: rgba(8, 8, 12, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(8, 8, 14, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-md);
-      padding: 0.8rem 1rem 0.8rem 2.75rem;
+      padding: 0.85rem 1.1rem 0.85rem 2.85rem;
       color: #fff;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       font-family: var(--font-main);
-      transition: var(--transition);
+      transition: var(--transition-smooth);
     }
     .form-input:focus {
       outline: none;
       border-color: var(--crimson-primary);
-      box-shadow: 0 0 0 3px rgba(255, 26, 60, 0.2);
+      box-shadow: 0 0 0 4px rgba(255, 26, 60, 0.25);
     }
     .password-toggle {
       position: absolute;
-      right: 1rem;
+      right: 1.1rem;
       background: none;
       border: none;
       color: var(--text-dim);
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
     .password-toggle:hover { color: #fff; }
-    .form-error {
-      color: #ff4d68;
-      font-size: 0.78rem;
-      margin-top: 0.4rem;
-      display: none;
-    }
-    .form-error.visible { display: block; }
     .auth-helpers {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       color: var(--text-muted);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
     }
     .checkbox-label {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       cursor: pointer;
     }
-    .checkbox-custom { accent-color: var(--crimson-primary); }
+    .checkbox-custom { accent-color: var(--crimson-primary); width: 16px; height: 16px; }
     .auth-link {
-      color: var(--crimson-light);
+      color: var(--crimson-ultra);
       text-decoration: none;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 700;
     }
     .auth-link:hover { text-decoration: underline; }
-    .auth-submit-btn {
-      width: 100%;
-      padding: 0.9rem;
-      font-size: 0.95rem;
-    }
     .auth-presets {
-      margin-top: 1.8rem;
-      padding-top: 1.2rem;
+      margin-top: 2rem;
+      padding-top: 1.4rem;
       border-top: 1px solid var(--border-subtle);
       text-align: center;
     }
     .auth-presets-title {
       font-size: 0.72rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       color: var(--text-dim);
       text-transform: uppercase;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.8rem;
     }
     .role-badges {
       display: flex;
@@ -558,124 +597,126 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      padding: 0.28rem 0.65rem;
+      padding: 0.32rem 0.75rem;
       border-radius: var(--radius-sm);
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 0.75rem;
+      font-weight: 800;
       cursor: pointer;
-      transition: var(--transition);
+      transition: var(--transition-smooth);
     }
     .role-badge-btn:hover {
-      background: rgba(255, 26, 60, 0.15);
+      background: rgba(255, 26, 60, 0.18);
       border-color: var(--crimson-primary);
       color: #fff;
     }
 
     /* ==========================================================================
-       04. SCREEN 3: AUTHENTICATED NETWORK PORTAL
+       04. SCREEN 3: AUTHENTICATED NETWORK APP
        ========================================================================== */
     #app-root {
       display: none;
       opacity: 0;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.6s ease;
       position: relative;
       z-index: 2;
     }
     #app-root.authenticated {
       display: block;
       opacity: 1;
+      animation: heroReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Top Sticky Navigation */
+    /* Top Navigation */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 5000;
-      background: rgba(8, 8, 14, 0.85);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      background: rgba(8, 8, 14, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border-subtle);
+      transition: var(--transition-smooth);
     }
     .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 74px;
+      height: 78px;
     }
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.85rem;
       text-decoration: none;
       color: #fff;
     }
     .brand-logo-icon {
-      width: 38px;
-      height: 38px;
+      width: 42px;
+      height: 42px;
       background: linear-gradient(135deg, var(--crimson-primary) 0%, var(--crimson-dark) 100%);
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
-      box-shadow: 0 0 15px var(--crimson-glow);
+      font-size: 1.25rem;
+      box-shadow: 0 0 20px var(--crimson-glow);
     }
     .brand-logo-text {
       font-family: var(--font-title);
-      font-size: 1.45rem;
+      font-size: 1.55rem;
       font-weight: 900;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
     }
     .brand-logo-text span { color: var(--crimson-primary); }
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 0.2rem;
+      gap: 0.3rem;
       list-style: none;
     }
     .nav-link {
       display: flex;
       align-items: center;
       gap: 0.45rem;
-      padding: 0.55rem 0.85rem;
+      padding: 0.55rem 0.9rem;
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.86rem;
-      font-weight: 600;
+      font-size: 0.88rem;
+      font-weight: 700;
       border-radius: var(--radius-sm);
-      transition: var(--transition);
+      transition: var(--transition-smooth);
     }
     .nav-link:hover {
       color: #fff;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.07);
     }
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.85rem;
     }
     .search-trigger {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 0.5rem 0.9rem;
+      padding: 0.55rem 1rem;
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      transition: var(--transition);
+      gap: 0.7rem;
+      transition: var(--transition-smooth);
     }
     .search-trigger:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.25);
       color: #fff;
     }
     .search-kbd {
       background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 0.15rem 0.4rem;
+      padding: 0.15rem 0.45rem;
       border-radius: 4px;
       font-size: 0.72rem;
       font-family: var(--font-mono);
@@ -686,96 +727,96 @@
     .user-profile-btn {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
+      gap: 0.75rem;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-subtle);
-      padding: 0.4rem 0.8rem 0.4rem 0.5rem;
+      padding: 0.45rem 0.9rem 0.45rem 0.55rem;
       border-radius: var(--radius-full);
       cursor: pointer;
-      transition: var(--transition);
+      transition: var(--transition-smooth);
     }
     .user-profile-btn:hover {
       border-color: var(--border-crimson);
-      background: rgba(255, 26, 60, 0.1);
+      background: rgba(255, 26, 60, 0.12);
     }
     .user-avatar-img {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: var(--radius-full);
       background: #252535;
       image-rendering: pixelated;
     }
     .user-name-text {
-      font-size: 0.88rem;
-      font-weight: 700;
+      font-size: 0.9rem;
+      font-weight: 800;
       color: #fff;
     }
     .user-dropdown-card {
       position: absolute;
-      top: calc(100% + 0.8rem);
+      top: calc(100% + 0.9rem);
       right: 0;
-      width: 250px;
+      width: 260px;
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-crimson);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
       border-radius: var(--radius-md);
-      padding: 0.8rem;
+      padding: 0.9rem;
       display: none;
       flex-direction: column;
-      gap: 0.3rem;
+      gap: 0.35rem;
       z-index: 6000;
-      animation: fadeIn 0.2s ease;
+      animation: heroReveal 0.25s ease;
     }
     .user-dropdown-card.show { display: flex; }
     .dropdown-header {
-      padding: 0.5rem 0.6rem 0.8rem;
+      padding: 0.5rem 0.7rem 0.9rem;
       border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.35rem;
     }
     .dropdown-role {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 800;
       letter-spacing: 0.08em;
-      color: var(--crimson-light);
+      color: var(--crimson-ultra);
       text-transform: uppercase;
     }
     .dropdown-item {
       display: flex;
       align-items: center;
-      gap: 0.7rem;
-      padding: 0.6rem 0.75rem;
+      gap: 0.8rem;
+      padding: 0.65rem 0.85rem;
       color: var(--text-muted);
       border-radius: var(--radius-sm);
       text-decoration: none;
-      font-size: 0.86rem;
-      font-weight: 600;
+      font-size: 0.88rem;
+      font-weight: 700;
       cursor: pointer;
       background: transparent;
       border: none;
       width: 100%;
       text-align: left;
-      transition: var(--transition);
+      transition: var(--transition-smooth);
     }
     .dropdown-item:hover {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.07);
       color: #fff;
     }
-    .dropdown-item.danger { color: #ff4d68; }
-    .dropdown-item.danger:hover { background: rgba(255, 26, 60, 0.15); }
+    .dropdown-item.danger { color: #ff4d6d; }
+    .dropdown-item.danger:hover { background: rgba(255, 26, 60, 0.18); }
     .mobile-nav-toggle {
       display: none;
       background: none;
       border: none;
       color: #fff;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       cursor: pointer;
     }
 
     /* ==========================================================================
-       05. HERO SECTION & CENTRALIZED LIVE SERVER STATUS
+       05. HERO SECTION & CENTRALIZED REAL STATUS
        ========================================================================== */
     .hero-section {
-      padding: 5rem 0 4rem;
+      padding: 6rem 0 5rem;
       position: relative;
       text-align: center;
     }
@@ -783,321 +824,324 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.8rem;
+      gap: 0.9rem;
       flex-wrap: wrap;
-      margin-bottom: 1.8rem;
+      margin-bottom: 2rem;
     }
     .live-status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      background: rgba(14, 14, 20, 0.85);
+      gap: 0.65rem;
+      background: rgba(14, 14, 22, 0.9);
       border: 1px solid var(--border-crimson);
-      padding: 0.4rem 1.1rem;
+      padding: 0.45rem 1.2rem;
       border-radius: var(--radius-full);
-      font-size: 0.82rem;
-      font-weight: 700;
-      backdrop-filter: blur(12px);
+      font-size: 0.84rem;
+      font-weight: 800;
+      backdrop-filter: blur(14px);
     }
     .status-dot {
-      width: 10px;
-      height: 10px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
       background: #22c55e;
-      box-shadow: 0 0 10px #22c55e;
+      box-shadow: 0 0 12px #22c55e;
     }
     .status-dot.offline {
       background: #ef4444;
-      box-shadow: 0 0 10px #ef4444;
-    }
-    .status-dot.unknown {
-      background: #f59e0b;
-      box-shadow: 0 0 10px #f59e0b;
+      box-shadow: 0 0 12px #ef4444;
     }
     .hero-title {
       font-family: var(--font-title);
-      font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+      font-size: clamp(3.2rem, 7.5vw, 5.8rem);
       font-weight: 900;
-      letter-spacing: 0.05em;
-      line-height: 1.08;
+      letter-spacing: 0.06em;
+      line-height: 1.05;
       text-transform: uppercase;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
     }
     .hero-title span {
-      background: linear-gradient(135deg, #ffffff 30%, var(--crimson-light) 70%, var(--crimson-primary) 100%);
+      background: linear-gradient(135deg, #ffffff 30%, var(--crimson-ultra) 70%, var(--crimson-primary) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 45px var(--crimson-glow);
+      text-shadow: 0 0 55px var(--crimson-glow);
     }
     .hero-lead {
-      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
       color: var(--text-muted);
-      max-width: 680px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 auto 2.8rem;
+      line-height: 1.65;
     }
     .hero-actions {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.2rem;
       flex-wrap: wrap;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
     }
 
     /* Quick Copy IP Box */
     .ip-box-container {
       display: inline-flex;
       align-items: center;
-      background: rgba(14, 14, 22, 0.9);
+      background: rgba(14, 14, 24, 0.95);
       border: 1px solid var(--border-crimson);
       border-radius: var(--radius-lg);
-      padding: 0.5rem 0.6rem 0.5rem 1.4rem;
-      gap: 1.2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 20px rgba(255, 26, 60, 0.15);
-      max-width: 90%;
+      padding: 0.6rem 0.7rem 0.6rem 1.6rem;
+      gap: 1.4rem;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.7), 0 0 25px rgba(255, 26, 60, 0.18);
+      max-width: 92%;
       margin: 0 auto;
     }
     .ip-details { text-align: left; }
     .ip-label {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 800;
       color: var(--text-dim);
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
     }
     .ip-address-text {
       font-family: var(--font-mono);
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-size: 1.15rem;
+      font-weight: 800;
       color: #fff;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
     .ip-port-badge {
-      font-size: 0.78rem;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      color: var(--crimson-light);
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.09);
+      padding: 0.18rem 0.55rem;
+      border-radius: 5px;
+      color: var(--crimson-ultra);
     }
     .btn-copy-ip {
       background: var(--crimson-primary);
       color: #fff;
       border: none;
-      padding: 0.7rem 1.2rem;
+      padding: 0.75rem 1.35rem;
       border-radius: var(--radius-md);
-      font-weight: 700;
-      font-size: 0.85rem;
+      font-weight: 800;
+      font-size: 0.88rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      transition: var(--transition);
+      gap: 0.6rem;
+      transition: var(--transition-smooth);
     }
     .btn-copy-ip:hover {
-      background: #ff3352;
-      box-shadow: 0 0 15px var(--crimson-primary);
+      background: #ff2e4e;
+      box-shadow: 0 0 20px var(--crimson-primary);
+      transform: scale(1.03);
     }
 
     /* Live Monitoring Grid */
     .monitoring-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.2rem;
-      margin-top: 3.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+      margin-top: 4rem;
     }
     .stat-metric-card {
       background: var(--bg-glass-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1.3rem;
+      padding: 1.5rem;
       text-align: left;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.2rem;
+      transition: var(--transition-smooth);
+    }
+    .stat-metric-card:hover {
+      border-color: var(--border-crimson);
+      transform: translateY(-4px);
     }
     .stat-metric-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: var(--radius-md);
-      background: rgba(255, 26, 60, 0.1);
-      border: 1px solid var(--border-crimson);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      color: var(--crimson-primary);
-    }
-    .stat-metric-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .stat-metric-value {
-      font-family: var(--font-mono);
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    /* ==========================================================================
-       06. FEATURES SECTION
-       ========================================================================== */
-    .section-features { padding: 6rem 0; }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .feature-card {
-      background: var(--bg-glass-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 2rem 1.6rem;
-      transition: var(--transition);
-      position: relative;
-    }
-    .feature-card:hover {
-      border-color: var(--border-crimson);
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6), 0 0 20px rgba(255, 26, 60, 0.15);
-    }
-    .feature-icon-box {
-      width: 54px;
-      height: 54px;
+      width: 52px;
+      height: 52px;
       border-radius: var(--radius-md);
       background: rgba(255, 26, 60, 0.12);
       border: 1px solid var(--border-crimson);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      color: var(--crimson-light);
-      margin-bottom: 1.4rem;
+      font-size: 1.4rem;
+      color: var(--crimson-primary);
+    }
+    .stat-metric-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .stat-metric-value {
+      font-family: var(--font-mono);
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       06. FEATURES SECTION
+       ========================================================================== */
+    .section-features { padding: 6.5rem 0; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.6rem;
+    }
+    .feature-card {
+      background: var(--bg-glass-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem 1.8rem;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+    .feature-card:hover {
+      border-color: var(--border-crimson);
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.7), 0 0 25px rgba(255, 26, 60, 0.18);
+    }
+    .feature-icon-box {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 26, 60, 0.12);
+      border: 1px solid var(--border-crimson);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: var(--crimson-ultra);
+      margin-bottom: 1.6rem;
     }
     .feature-title {
-      font-size: 1.15rem;
+      font-size: 1.22rem;
       font-weight: 800;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.65rem;
       color: #fff;
     }
     .feature-desc {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     /* ==========================================================================
        07. STORE SECTION & NOVICE FREE RANK
        ========================================================================== */
-    .section-store { padding: 6rem 0; }
+    .section-store { padding: 6.5rem 0; }
     .store-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.6rem;
+      margin-bottom: 4rem;
     }
     .rank-card {
       background: var(--bg-glass-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 2rem 1.6rem;
+      padding: 2.2rem 1.8rem;
       text-align: center;
-      transition: var(--transition);
+      transition: var(--transition-smooth);
       display: flex;
       flex-direction: column;
       position: relative;
     }
     .rank-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-9px);
       border-color: var(--border-crimson);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.7), 0 0 30px var(--crimson-glow);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.75), 0 0 35px var(--crimson-glow);
     }
     .rank-card.featured {
       border-color: var(--crimson-primary);
-      background: linear-gradient(180deg, rgba(255, 26, 60, 0.12) 0%, rgba(14, 14, 22, 0.9) 100%);
+      background: linear-gradient(180deg, rgba(255, 26, 60, 0.14) 0%, rgba(16, 16, 26, 0.95) 100%);
+      animation: neonGlow 4s infinite;
     }
     .rank-card-badge {
       position: absolute;
-      top: -12px;
+      top: -13px;
       left: 50%;
       transform: translateX(-50%);
     }
     .rank-name {
       font-family: var(--font-title);
-      font-size: 1.45rem;
+      font-size: 1.55rem;
       font-weight: 900;
       letter-spacing: 0.08em;
-      margin-top: 0.5rem;
+      margin-top: 0.6rem;
       margin-bottom: 0.5rem;
       color: #fff;
     }
     .rank-price {
       font-family: var(--font-mono);
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--crimson-light);
-      margin-bottom: 1.5rem;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--crimson-ultra);
+      margin-bottom: 1.6rem;
     }
     .rank-features-list {
       list-style: none;
       text-align: left;
-      margin-bottom: 1.8rem;
+      margin-bottom: 2rem;
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      font-size: 0.86rem;
+      gap: 0.7rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
     }
     .rank-features-list li {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.65rem;
     }
     .rank-features-list li i {
       color: var(--crimson-primary);
-      font-size: 0.8rem;
+      font-size: 0.85rem;
     }
 
     /* Novice Free Rank Hero Box */
     .novice-promo-card {
-      background: linear-gradient(135deg, rgba(255, 26, 60, 0.15) 0%, rgba(14, 14, 22, 0.95) 100%);
+      background: linear-gradient(135deg, rgba(255, 26, 60, 0.18) 0%, rgba(14, 14, 24, 0.98) 100%);
       border: 2px solid var(--crimson-primary);
       border-radius: var(--radius-lg);
-      padding: 2.5rem;
+      padding: 2.8rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 2rem;
+      gap: 2.2rem;
       flex-wrap: wrap;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 35px var(--crimson-glow);
+      box-shadow: 0 14px 45px rgba(0,0,0,0.8), 0 0 40px var(--crimson-glow);
     }
     .novice-info { flex: 1; min-width: 280px; }
     .novice-title {
       font-family: var(--font-title);
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 900;
       color: #fff;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.9rem;
     }
-    .novice-claim-tracker { margin-top: 1rem; max-width: 400px; }
+    .novice-claim-tracker { margin-top: 1.2rem; max-width: 440px; }
     .tracker-header {
       display: flex;
       justify-content: space-between;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
+      font-size: 0.88rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
     }
     .tracker-bar-bg {
-      height: 8px;
-      background: rgba(255, 255, 255, 0.1);
+      height: 9px;
+      background: rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-full);
       overflow: hidden;
     }
@@ -1105,89 +1149,89 @@
       height: 100%;
       background: linear-gradient(90deg, #ff1a3c, #ff7a8f);
       border-radius: var(--radius-full);
-      transition: width 0.4s ease;
+      transition: width 0.5s ease;
     }
 
     /* ==========================================================================
        08. LEADERBOARD SYSTEM (REAL DATA ARCHITECTURE)
        ========================================================================== */
-    .section-leaderboard { padding: 6rem 0; }
+    .section-leaderboard { padding: 6.5rem 0; }
     .leaderboard-category-tabs {
       display: flex;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       flex-wrap: wrap;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
     }
     .lb-tab-btn {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      padding: 0.6rem 1.1rem;
+      padding: 0.65rem 1.2rem;
       border-radius: var(--radius-md);
-      font-size: 0.85rem;
-      font-weight: 700;
+      font-size: 0.88rem;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      transition: var(--transition);
+      gap: 0.55rem;
+      transition: var(--transition-smooth);
     }
     .lb-tab-btn.active, .lb-tab-btn:hover {
       background: var(--crimson-primary);
       color: #fff;
       border-color: var(--crimson-primary);
-      box-shadow: 0 0 15px var(--crimson-glow);
+      box-shadow: 0 0 20px var(--crimson-glow);
     }
     .podium-container {
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
+      gap: 1.8rem;
+      margin-bottom: 3.5rem;
       flex-wrap: wrap;
     }
     .podium-card {
       background: var(--bg-glass-card);
       border-radius: var(--radius-lg);
-      padding: 1.8rem 1.4rem;
+      padding: 2rem 1.6rem;
       text-align: center;
-      width: 260px;
-      transition: var(--transition);
+      width: 270px;
+      transition: var(--transition-smooth);
       position: relative;
     }
     .podium-card.rank-1 {
       order: 2;
       border: 2px solid #fbbf24;
-      box-shadow: 0 0 30px rgba(251, 191, 36, 0.2);
-      transform: translateY(-16px);
+      box-shadow: 0 0 35px rgba(251, 191, 36, 0.25);
+      transform: translateY(-20px);
     }
     .podium-card.rank-2 {
       order: 1;
       border: 1px solid #cbd5e1;
-      box-shadow: 0 0 20px rgba(203, 213, 225, 0.1);
+      box-shadow: 0 0 25px rgba(203, 213, 225, 0.15);
     }
     .podium-card.rank-3 {
       order: 3;
       border: 1px solid #f97316;
-      box-shadow: 0 0 20px rgba(249, 115, 22, 0.1);
+      box-shadow: 0 0 25px rgba(249, 115, 22, 0.15);
     }
     .podium-avatar {
-      width: 74px;
-      height: 74px;
+      width: 80px;
+      height: 80px;
       border-radius: var(--radius-md);
-      margin: 0 auto 1rem;
+      margin: 0 auto 1.2rem;
       background: #1e1e2c;
       border: 2px solid var(--border-subtle);
       image-rendering: pixelated;
     }
-    .podium-player-name { font-size: 1.15rem; font-weight: 800; color: #fff; }
+    .podium-player-name { font-size: 1.2rem; font-weight: 800; color: #fff; }
     .podium-score {
       font-family: var(--font-mono);
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--crimson-light);
-      margin-top: 0.3rem;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--crimson-ultra);
+      margin-top: 0.35rem;
     }
     .table-container {
       background: var(--bg-glass-card);
@@ -1201,30 +1245,30 @@
       text-align: left;
     }
     .lb-table th {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 1rem 1.4rem;
-      font-size: 0.78rem;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 1.1rem 1.6rem;
+      font-size: 0.82rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--text-dim);
       border-bottom: 1px solid var(--border-subtle);
     }
     .lb-table td {
-      padding: 1.1rem 1.4rem;
+      padding: 1.2rem 1.6rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      font-size: 0.9rem;
+      font-size: 0.94rem;
     }
-    .lb-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+    .lb-table tr:hover td { background: rgba(255, 255, 255, 0.03); }
     .player-cell {
       display: flex;
       align-items: center;
-      gap: 0.9rem;
+      gap: 1rem;
     }
     .table-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 6px;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
       background: #1a1a26;
       image-rendering: pixelated;
     }
@@ -1232,19 +1276,19 @@
     /* ==========================================================================
        09. STAFF DIRECTORY
        ========================================================================== */
-    .section-staff { padding: 6rem 0; }
-    .staff-tier-group { margin-bottom: 3.5rem; }
+    .section-staff { padding: 6.5rem 0; }
+    .staff-tier-group { margin-bottom: 4rem; }
     .tier-header {
       font-family: var(--font-title);
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 900;
-      letter-spacing: 0.12em;
-      color: var(--crimson-light);
+      letter-spacing: 0.14em;
+      color: var(--crimson-ultra);
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.9rem;
     }
     .tier-header::after {
       content: '';
@@ -1254,27 +1298,27 @@
     }
     .staff-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.4rem;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.6rem;
     }
     .staff-card {
       background: var(--bg-glass-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 1.6rem;
+      padding: 1.8rem;
       text-align: center;
-      transition: var(--transition);
+      transition: var(--transition-smooth);
       position: relative;
     }
     .staff-card:hover {
       border-color: var(--border-crimson);
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      transform: translateY(-6px);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.7);
     }
     .staff-avatar-box {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 1.1rem;
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 1.2rem;
     }
     .staff-avatar-img {
       width: 100%;
@@ -1284,124 +1328,124 @@
       border: 2px solid var(--border-subtle);
       image-rendering: pixelated;
     }
-    .staff-name { font-size: 1.05rem; font-weight: 800; color: #fff; }
+    .staff-name { font-size: 1.1rem; font-weight: 800; color: #fff; }
     .staff-role-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--crimson-light);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--crimson-ultra);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 0.2rem;
+      letter-spacing: 0.09em;
+      margin-top: 0.25rem;
     }
     .staff-discord-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      margin-top: 0.8rem;
-      font-size: 0.78rem;
+      gap: 0.45rem;
+      margin-top: 0.9rem;
+      font-size: 0.82rem;
       color: #5865F2;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
     }
     .staff-discord-link:hover { text-decoration: underline; }
 
     /* ==========================================================================
        10. 15-DAY EVENTS CYCLE
        ========================================================================== */
-    .section-events { padding: 6rem 0; }
+    .section-events { padding: 6.5rem 0; }
     .event-featured-box {
-      background: linear-gradient(135deg, rgba(255, 26, 60, 0.12) 0%, rgba(14, 14, 22, 0.9) 100%);
+      background: linear-gradient(135deg, rgba(255, 26, 60, 0.15) 0%, rgba(14, 14, 24, 0.95) 100%);
       border: 2px solid var(--crimson-primary);
       border-radius: var(--radius-lg);
-      padding: 2.5rem;
-      margin-bottom: 3rem;
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
+      padding: 3rem;
+      margin-bottom: 3.5rem;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75);
     }
     .countdown-timer-box {
       display: flex;
       justify-content: center;
-      gap: 1.2rem;
-      margin: 2rem 0;
+      gap: 1.4rem;
+      margin: 2.2rem 0;
       flex-wrap: wrap;
     }
     .timer-segment {
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.55);
       border: 1px solid var(--border-crimson);
       border-radius: var(--radius-md);
-      padding: 1rem 1.4rem;
-      min-width: 85px;
+      padding: 1.2rem 1.6rem;
+      min-width: 95px;
       text-align: center;
     }
     .timer-digits {
       font-family: var(--font-mono);
-      font-size: 2.2rem;
-      font-weight: 700;
+      font-size: 2.4rem;
+      font-weight: 800;
       color: #fff;
     }
     .timer-tag {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       color: var(--text-dim);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     /* ==========================================================================
        11. HOW TO PLAY & SERVER RULES
        ========================================================================== */
-    .section-guide { padding: 6rem 0; }
+    .section-guide { padding: 6.5rem 0; }
     .steps-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 4rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.6rem;
+      margin-bottom: 4.5rem;
     }
     .step-card {
       background: var(--bg-glass-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 1.8rem;
+      padding: 2rem;
     }
     .step-number {
       font-family: var(--font-mono);
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 900;
-      color: rgba(255, 26, 60, 0.3);
+      color: rgba(255, 26, 60, 0.35);
       line-height: 1;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.9rem;
     }
-    .step-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.4rem; }
-    .step-desc { font-size: 0.86rem; color: var(--text-muted); }
+    .step-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.45rem; }
+    .step-desc { font-size: 0.88rem; color: var(--text-muted); }
 
     .rules-accordion {
-      max-width: 850px;
+      max-width: 880px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.1rem;
     }
     .rule-item {
       background: var(--bg-glass-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       overflow: hidden;
-      transition: var(--transition);
+      transition: var(--transition-smooth);
     }
     .rule-header {
-      padding: 1.2rem 1.6rem;
+      padding: 1.3rem 1.8rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-weight: 700;
-      font-size: 0.95rem;
+      font-weight: 800;
+      font-size: 1rem;
     }
-    .rule-header:hover { background: rgba(255, 255, 255, 0.02); }
+    .rule-header:hover { background: rgba(255, 255, 255, 0.03); }
     .rule-body {
-      padding: 0 1.6rem 1.2rem;
-      font-size: 0.88rem;
+      padding: 0 1.8rem 1.3rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
       display: none;
-      line-height: 1.6;
+      line-height: 1.65;
     }
     .rule-item.open .rule-body { display: block; }
     .rule-item.open .rule-icon { transform: rotate(180deg); }
@@ -1411,61 +1455,61 @@
        ========================================================================== */
     .media-tier-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.6rem;
+      margin-bottom: 4rem;
     }
     .media-card {
       background: var(--bg-glass-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 2rem 1.5rem;
+      padding: 2.2rem 1.6rem;
       text-align: center;
-      transition: var(--transition);
+      transition: var(--transition-smooth);
     }
-    .media-card:hover { border-color: var(--border-crimson); transform: translateY(-6px); }
-    .media-card-title { font-family: var(--font-title); font-size: 1.35rem; font-weight: 900; color: #fff; }
+    .media-card:hover { border-color: var(--border-crimson); transform: translateY(-7px); }
+    .media-card-title { font-family: var(--font-title); font-size: 1.4rem; font-weight: 900; color: #fff; }
     .media-subs {
       font-family: var(--font-mono);
-      font-size: 1rem;
-      color: var(--crimson-light);
-      margin: 0.6rem 0 1.2rem;
+      font-size: 1.05rem;
+      color: var(--crimson-ultra);
+      margin: 0.65rem 0 1.3rem;
     }
 
     .discord-cta-box {
-      background: radial-gradient(circle at top right, rgba(88, 101, 242, 0.2) 0%, rgba(14, 14, 22, 0.95) 70%);
-      border: 1px solid rgba(88, 101, 242, 0.4);
+      background: radial-gradient(circle at top right, rgba(88, 101, 242, 0.25) 0%, rgba(14, 14, 24, 0.98) 75%);
+      border: 1px solid rgba(88, 101, 242, 0.45);
       border-radius: var(--radius-lg);
-      padding: 3rem;
+      padding: 3.5rem;
       text-align: center;
-      margin: 4rem 0;
+      margin: 4.5rem 0;
     }
     .discord-title {
       font-family: var(--font-title);
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 900;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.9rem;
     }
 
     .reviews-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.6rem;
+      margin-bottom: 3rem;
     }
     .review-card {
       background: var(--bg-glass-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 1.6rem;
+      padding: 1.8rem;
     }
     .review-author {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 0.8rem;
+      gap: 0.9rem;
+      margin-bottom: 0.9rem;
     }
-    .review-stars { color: #fbbf24; font-size: 0.8rem; margin-bottom: 0.6rem; }
+    .review-stars { color: #fbbf24; font-size: 0.85rem; margin-bottom: 0.65rem; }
 
     /* ==========================================================================
        13. MODALS (SEARCH, DYNMAP, PROFILE, PANELS)
@@ -1473,14 +1517,14 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(14px);
       z-index: 10000;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
-      animation: fadeIn 0.2s ease;
+      animation: heroReveal 0.25s ease;
     }
     .modal-backdrop.open { display: flex; }
     .modal-box {
@@ -1488,35 +1532,35 @@
       border: 1px solid var(--border-crimson);
       border-radius: var(--radius-lg);
       width: 100%;
-      max-width: 650px;
+      max-width: 680px;
       max-height: 90vh;
       overflow-y: auto;
-      padding: 2rem;
+      padding: 2.2rem;
       position: relative;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95);
     }
     .modal-close-btn {
       position: absolute;
-      top: 1.2rem;
-      right: 1.4rem;
+      top: 1.3rem;
+      right: 1.5rem;
       background: none;
       border: none;
       color: var(--text-dim);
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       cursor: pointer;
     }
     .modal-close-btn:hover { color: #fff; }
     .modal-title {
       font-family: var(--font-title);
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 900;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.45rem;
     }
 
     .dynmap-frame-wrapper {
       width: 100%;
-      height: 480px;
-      background: #08080c;
+      height: 500px;
+      background: #08080e;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       position: relative;
@@ -1525,30 +1569,30 @@
       justify-content: center;
       overflow: hidden;
     }
-    .dynmap-fallback-msg { text-align: center; color: var(--text-muted); padding: 2rem; }
+    .dynmap-fallback-msg { text-align: center; color: var(--text-muted); padding: 2.5rem; }
 
-    .search-modal-box { max-width: 600px; padding: 1.2rem; }
+    .search-modal-box { max-width: 640px; padding: 1.4rem; }
     .search-input-field {
       width: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.55);
       border: 1px solid var(--border-crimson);
       border-radius: var(--radius-md);
-      padding: 1rem 1.2rem;
+      padding: 1.1rem 1.3rem;
       color: #fff;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-family: var(--font-main);
-      margin-bottom: 1rem;
+      margin-bottom: 1.1rem;
     }
     .search-input-field:focus { outline: none; }
     .search-results-list {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      max-height: 350px;
+      gap: 0.55rem;
+      max-height: 380px;
       overflow-y: auto;
     }
     .search-res-item {
-      padding: 0.75rem 1rem;
+      padding: 0.85rem 1.1rem;
       background: rgba(255, 255, 255, 0.03);
       border-radius: var(--radius-sm);
       text-decoration: none;
@@ -1556,102 +1600,97 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: var(--transition);
+      transition: var(--transition-smooth);
     }
     .search-res-item:hover {
-      background: rgba(255, 26, 60, 0.15);
-      border-left: 3px solid var(--crimson-primary);
+      background: rgba(255, 26, 60, 0.18);
+      border-left: 4px solid var(--crimson-primary);
     }
 
     /* ==========================================================================
        14. FOOTER & NEWSLETTER
        ========================================================================== */
     .footer {
-      background: #07070a;
+      background: #060609;
       border-top: 1px solid var(--border-subtle);
-      padding: 5rem 0 2rem;
-      margin-top: 6rem;
+      padding: 5.5rem 0 2.2rem;
+      margin-top: 6.5rem;
       position: relative;
     }
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr repeat(3, 1fr);
-      gap: 3rem;
-      margin-bottom: 4rem;
+      gap: 3.5rem;
+      margin-bottom: 4.5rem;
     }
     .footer-brand-desc {
       color: var(--text-muted);
-      font-size: 0.88rem;
-      margin: 1rem 0 1.5rem;
-      max-width: 320px;
+      font-size: 0.9rem;
+      margin: 1.1rem 0 1.6rem;
+      max-width: 340px;
     }
     .footer-col-title {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 800;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #fff;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.3rem;
     }
     .footer-links {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.7rem;
-      font-size: 0.88rem;
+      gap: 0.75rem;
+      font-size: 0.9rem;
     }
     .footer-links a {
       color: var(--text-muted);
       text-decoration: none;
-      transition: var(--transition);
+      transition: var(--transition-smooth);
     }
     .footer-links a:hover {
-      color: var(--crimson-light);
-      padding-left: 4px;
+      color: var(--crimson-ultra);
+      padding-left: 5px;
     }
     .newsletter-form {
       display: flex;
-      gap: 0.5rem;
-      margin-top: 0.8rem;
+      gap: 0.6rem;
+      margin-top: 0.9rem;
     }
     .newsletter-input {
       flex: 1;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 0.65rem 1rem;
+      padding: 0.7rem 1.1rem;
       color: #fff;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
     }
     .newsletter-input:focus { outline: none; border-color: var(--crimson-primary); }
     .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 2.2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.82rem;
+      gap: 1.2rem;
+      font-size: 0.85rem;
       color: var(--text-dim);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     @media (max-width: 992px) {
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
       .nav-menu { display: none; }
       .mobile-nav-toggle { display: block; }
       .novice-promo-card { text-align: center; justify-content: center; }
-      .novice-claim-tracker { margin: 1rem auto 0; }
+      .novice-claim-tracker { margin: 1.2rem auto 0; }
     }
 
     @media (max-width: 768px) {
       .footer-grid { grid-template-columns: 1fr; }
-      .hero-title { font-size: 2.8rem; }
+      .hero-title { font-size: 2.9rem; }
       .search-trigger span, .search-kbd { display: none; }
       .podium-card.rank-1 { order: 1; transform: none; width: 100%; }
       .podium-card.rank-2 { order: 2; width: 100%; }
@@ -1661,16 +1700,16 @@
 </head>
 <body>
 
-  <!-- Background Canvas for Real-time Embers -->
+  <!-- Interactive Dynamic Ember Canvas -->
   <canvas id="ember-canvas"></canvas>
-  <div class="bg-grid-overlay"></div>
+  <div class="bg-lighting-vignette"></div>
 
-  <!-- Toast Notification Engine -->
+  <!-- Toast Notification System -->
   <div id="toast-container"></div>
 
   <!-- ==========================================================================
-       SCREEN 1: CINEMATIC LOADING SCREEN (Strict Flow Step 01 & 02)
-       ========================================================================== */ -->
+       SCREEN 1: CINEMATIC LOADING SCREEN
+       ========================================================================== -->
   <section id="loading-screen">
     <div class="loading-logo-box">
       <i class="fa-solid fa-heart-pulse loading-heart-icon"></i>
@@ -1684,8 +1723,8 @@
   </section>
 
   <!-- ==========================================================================
-       SCREEN 2: AUTHENTICATION SCREEN (Strict Flow Step 03 & 04)
-       ========================================================================== */ -->
+       SCREEN 2: AUTHENTICATION SCREEN (STRICT ENTRANCE)
+       ========================================================================== -->
   <section id="auth-screen" class="hidden">
     <div class="auth-container">
       <div class="auth-header">
@@ -1693,7 +1732,7 @@
           <i class="fa-solid fa-skull"></i>
           <span>FEARSTEAL</span>
         </div>
-        <p class="auth-subtitle">Authentication Portal</p>
+        <p class="auth-subtitle">THE NEXT GENERATION LIFESTEAL NETWORK</p>
       </div>
 
       <!-- Auth Navigation Tabs -->
@@ -1709,12 +1748,11 @@
       <!-- LOGIN FORM -->
       <form id="form-login" onsubmit="handleLoginSubmit(event)">
         <div class="form-group">
-          <label class="form-label" for="login-ident">Username or Email</label>
+          <label class="form-label" for="login-ident">Email / Username</label>
           <div class="input-wrapper">
             <input type="text" id="login-ident" class="form-input" placeholder="Enter your username or email" required />
             <i class="fa-regular fa-user input-icon"></i>
           </div>
-          <div class="form-error" id="login-ident-error">Please enter a valid credential.</div>
         </div>
 
         <div class="form-group">
@@ -1726,7 +1764,6 @@
               <i class="fa-regular fa-eye"></i>
             </button>
           </div>
-          <div class="form-error" id="login-pass-error">Password is required.</div>
         </div>
 
         <div class="auth-helpers">
@@ -1737,7 +1774,7 @@
           <a class="auth-link" onclick="openForgotModal()">Forgot Password?</a>
         </div>
 
-        <button type="submit" class="btn btn-primary auth-submit-btn" id="btn-login-submit">
+        <button type="submit" class="btn btn-primary" style="width: 100%;" id="btn-login-submit">
           <i class="fa-solid fa-shield-halved"></i> LOGIN TO FEARSTEAL
         </button>
       </form>
@@ -1747,7 +1784,7 @@
         <div class="form-group">
           <label class="form-label" for="reg-username">Username</label>
           <div class="input-wrapper">
-            <input type="text" id="reg-username" class="form-input" placeholder="Choose a username" required />
+            <input type="text" id="reg-username" class="form-input" placeholder="Choose username" required />
             <i class="fa-solid fa-at input-icon"></i>
           </div>
         </div>
@@ -1761,7 +1798,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="reg-mcuser">Minecraft IGN (Optional)</label>
+          <label class="form-label" for="reg-mcuser">Minecraft Username (Optional)</label>
           <div class="input-wrapper">
             <input type="text" id="reg-mcuser" class="form-input" placeholder="e.g. ItzVeltriex" />
             <i class="fa-solid fa-cube input-icon"></i>
@@ -1782,7 +1819,7 @@
         <div class="form-group">
           <label class="form-label" for="reg-pass-confirm">Confirm Password</label>
           <div class="input-wrapper">
-            <input type="password" id="reg-pass-confirm" class="form-input" placeholder="Re-enter password" required />
+            <input type="password" id="reg-pass-confirm" class="form-input" placeholder="Confirm password" required />
             <i class="fa-solid fa-check-double input-icon"></i>
           </div>
         </div>
@@ -1794,14 +1831,14 @@
           </label>
         </div>
 
-        <button type="submit" class="btn btn-primary auth-submit-btn">
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
           <i class="fa-solid fa-user-plus"></i> CREATE FEARSTEAL ACCOUNT
         </button>
       </form>
 
-      <!-- Demo Quick Role Switchers -->
+      <!-- Instant Role Test Presets -->
       <div class="auth-presets">
-        <div class="auth-presets-title">Quick Demo Login As Role</div>
+        <div class="auth-presets-title">Instant Role Presets (Testing)</div>
         <div class="role-badges">
           <button type="button" class="role-badge-btn" onclick="quickLoginAs('USER')">Player</button>
           <button type="button" class="role-badge-btn" onclick="quickLoginAs('HELPER')">Helper</button>
@@ -1815,10 +1852,10 @@
 
   <!-- ==========================================================================
        SCREEN 3: AUTHENTICATED NETWORK APP (HOMEPAGE & BEYOND)
-       ========================================================================== */ -->
+       ========================================================================== -->
   <div id="app-root">
 
-    <!-- Top Sticky Navigation Bar -->
+    <!-- Sticky Navigation Bar -->
     <header class="navbar">
       <div class="container nav-container">
         <a href="#hero" class="brand-logo">
@@ -1838,7 +1875,7 @@
           <li><a href="#guide" class="nav-link"><i class="fa-solid fa-book-open"></i> Rules</a></li>
           <li><a href="#media" class="nav-link"><i class="fa-solid fa-video"></i> Media</a></li>
           <li id="nav-staff-panel" style="display: none;">
-            <a href="javascript:void(0)" onclick="openStaffModal()" class="nav-link" style="color: var(--crimson-light);"><i class="fa-solid fa-gavel"></i> Staff Panel</a>
+            <a href="javascript:void(0)" onclick="openStaffModal()" class="nav-link" style="color: var(--crimson-ultra);"><i class="fa-solid fa-gavel"></i> Staff Panel</a>
           </li>
           <li id="nav-admin-panel" style="display: none;">
             <a href="javascript:void(0)" onclick="openAdminModal()" class="nav-link" style="color: #fbbf24;"><i class="fa-solid fa-screwdriver-wrench"></i> Admin Panel</a>
@@ -1852,12 +1889,12 @@
             <span class="search-kbd">⌘K</span>
           </button>
 
-          <!-- User Profile Dropdown Menu -->
+          <!-- User Menu Dropdown -->
           <div class="user-profile-menu">
             <button class="user-profile-btn" onclick="toggleUserDropdown(event)">
-              <img src="https://mc-heads.net/avatar/steve/32" alt="Avatar" class="user-avatar-img" id="nav-user-avatar" />
+              <img src="https://mc-heads.net/avatar/steve/34" alt="Avatar" class="user-avatar-img" id="nav-user-avatar" />
               <span class="user-name-text" id="nav-username">Player</span>
-              <i class="fa-solid fa-angle-down" style="font-size: 0.75rem; color: var(--text-dim);"></i>
+              <i class="fa-solid fa-angle-down" style="font-size: 0.8rem; color: var(--text-dim);"></i>
             </button>
 
             <div class="user-dropdown-card" id="user-dropdown">
@@ -1882,7 +1919,7 @@
     <!-- HERO SECTION -->
     <section id="hero" class="hero-section">
       <div class="container">
-        <div class="hero-badges-row">
+        <div class="hero-badges-row reveal-item">
           <div class="live-status-pill">
             <div class="status-dot" id="hero-status-dot"></div>
             <span id="hero-status-text">QUERYING NETWORK...</span>
@@ -1891,21 +1928,22 @@
           <span class="badge badge-gold"><i class="fa-solid fa-star"></i> Season II Live</span>
         </div>
 
-        <h1 class="hero-title">
+        <h1 class="hero-title reveal-item delay-1">
           FEAR<span>STEAL</span>
         </h1>
-        <p class="hero-lead">
-          The Next Generation LifeSteal Network. Fight merciless battles, steal hearts from your fallen enemies, and conquer the realm.
+        <p class="hero-lead reveal-item delay-2">
+          THE NEXT GENERATION LIFESTEAL NETWORK.<br>
+          Fight. Survive. Steal Hearts. Become FearSteal's strongest player.
         </p>
 
-        <div class="hero-actions">
+        <div class="hero-actions reveal-item delay-3">
           <a href="#store" class="btn btn-primary"><i class="fa-solid fa-gem"></i> VISIT STORE</a>
           <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-discord"><i class="fa-brands fa-discord"></i> JOIN DISCORD</a>
           <button class="btn btn-secondary" onclick="openDynmapModal()"><i class="fa-solid fa-earth-americas"></i> LIVE MAP</button>
         </div>
 
         <!-- Quick Copy IP Box -->
-        <div class="ip-box-container">
+        <div class="ip-box-container reveal-item delay-4">
           <div class="ip-details">
             <div class="ip-label">Minecraft Bedrock & Java Server IP</div>
             <div class="ip-address-text">
@@ -1920,7 +1958,7 @@
         </div>
 
         <!-- Centralized Real Monitoring Ribbon -->
-        <div class="monitoring-grid">
+        <div class="monitoring-grid reveal-item delay-4">
           <div class="stat-metric-card">
             <div class="stat-metric-icon"><i class="fa-solid fa-users"></i></div>
             <div>
@@ -1959,59 +1997,59 @@
     <!-- FEATURES SECTION -->
     <section id="features" class="section-features">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal-item">
           <span class="section-subtitle">Why Choose FearSteal</span>
           <h2 class="section-title">ENGINEERED FOR <span>SURVIVAL</span></h2>
           <p class="section-desc">Experience ruthless PvP mechanics, lightning-fast hardware, and balanced economics.</p>
         </div>
 
         <div class="features-grid">
-          <div class="feature-card">
+          <div class="feature-card reveal-item">
             <div class="feature-icon-box"><i class="fa-solid fa-heart-pulse"></i></div>
-            <h3 class="feature-title">LifeSteal Experience</h3>
-            <p class="feature-desc">Steal hearts on every kill. Eliminate your rivals until they are banned from the SMP.</p>
+            <h3 class="feature-title">❤️ LifeSteal Experience</h3>
+            <p class="feature-desc">Steal hearts on every kill. Eliminate your opponents and fight for survival in a ruthless SMP realm.</p>
           </div>
 
-          <div class="feature-card">
+          <div class="feature-card reveal-item delay-1">
             <div class="feature-icon-box"><i class="fa-solid fa-swords"></i></div>
-            <h3 class="feature-title">Competitive PvP</h3>
-            <p class="feature-desc">Zero-lag hit registration, custom enchant limits, and optimized combat arenas for intense battles.</p>
+            <h3 class="feature-title">⚔️ Competitive PvP</h3>
+            <p class="feature-desc">Fast and competitive PvP gameplay with zero-lag hit registration and optimized combat arenas.</p>
           </div>
 
-          <div class="feature-card">
+          <div class="feature-card reveal-item delay-2">
             <div class="feature-icon-box"><i class="fa-solid fa-users-rays"></i></div>
-            <h3 class="feature-title">Active Community</h3>
-            <p class="feature-desc">Forge alliances, trade heart crystals, construct hidden strongholds, and build rivalries.</p>
+            <h3 class="feature-title">👥 Active Community</h3>
+            <p class="feature-desc">Build friendships, forge powerful clan alliances, craft rivalries, and conquer territory together.</p>
           </div>
 
-          <div class="feature-card">
+          <div class="feature-card reveal-item delay-3">
             <div class="feature-icon-box"><i class="fa-solid fa-trophy"></i></div>
-            <h3 class="feature-title">Live Leaderboards</h3>
-            <p class="feature-desc">Real-time statistics for kills, deaths, total hearts, balance, streaks, and playtime.</p>
+            <h3 class="feature-title">🏆 Leaderboards</h3>
+            <p class="feature-desc">Compete for the top positions across total hearts, player kills, currency balance, and streaks.</p>
           </div>
 
-          <div class="feature-card">
+          <div class="feature-card reveal-item">
             <div class="feature-icon-box"><i class="fa-solid fa-calendar-check"></i></div>
-            <h3 class="feature-title">Community Events</h3>
-            <p class="feature-desc">Bi-weekly 15-day rotating tournaments, King of the Hill (KOTH), and Drop Parties.</p>
+            <h3 class="feature-title">🎉 Community Events</h3>
+            <p class="feature-desc">Regular server and Discord events with automatic 15-day rotating championship tournaments.</p>
           </div>
 
-          <div class="feature-card">
+          <div class="feature-card reveal-item delay-1">
             <div class="feature-icon-box"><i class="fa-solid fa-gem"></i></div>
-            <h3 class="feature-title">Ranks & Perks</h3>
-            <p class="feature-desc">Unlock cosmetic effects, private vaults, heart insurance, and exclusive kits via our official store.</p>
+            <h3 class="feature-title">💎 Ranks & Rewards</h3>
+            <p class="feature-desc">Unlock exclusive ranks, custom particle auras, private vaults, and special benefits via our store.</p>
           </div>
 
-          <div class="feature-card">
+          <div class="feature-card reveal-item delay-2">
             <div class="feature-icon-box"><i class="fa-solid fa-shield-virus"></i></div>
-            <h3 class="feature-title">Active Moderation</h3>
-            <p class="feature-desc">24/7 dedicated staff team and enterprise anti-cheat protection against unfair advantages.</p>
+            <h3 class="feature-title">🛡️ Active Staff</h3>
+            <p class="feature-desc">Helpful and responsive moderation keeping the playing field fair with enterprise anti-cheat protection.</p>
           </div>
 
-          <div class="feature-card">
+          <div class="feature-card reveal-item delay-3">
             <div class="feature-icon-box"><i class="fa-solid fa-bolt-lightning"></i></div>
-            <h3 class="feature-title">Optimized Network</h3>
-            <p class="feature-desc">Hosted on dedicated Ryzen enterprise nodes with multi-gigabit DDoS mitigation for maximum uptime.</p>
+            <h3 class="feature-title">⚡ Optimized Network</h3>
+            <p class="feature-desc">Smooth gameplay and reliable infrastructure hosted on dedicated enterprise nodes with DDoS mitigation.</p>
           </div>
         </div>
       </div>
@@ -2020,7 +2058,7 @@
     <!-- STORE SECTION & NOVICE FREE RANK -->
     <section id="store" class="section-store">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal-item">
           <span class="section-subtitle">Official Server Store</span>
           <h2 class="section-title">UPGRADE YOUR <span>POWER</span></h2>
           <p class="section-desc">Acquire exclusive network ranks, cosmetic packages, and prestige kits.</p>
@@ -2029,7 +2067,7 @@
         <!-- 8 Official Ranks Grid -->
         <div class="store-grid">
           <!-- Rank 1: FEARSTEAL -->
-          <div class="rank-card featured">
+          <div class="rank-card featured reveal-item">
             <div class="rank-card-badge"><span class="badge badge-crimson">SUPREME</span></div>
             <h3 class="rank-name">FEARSTEAL</h3>
             <div class="rank-price">$25</div>
@@ -2039,11 +2077,11 @@
               <li><i class="fa-solid fa-check"></i> Priority Server Queue Slot</li>
               <li><i class="fa-solid fa-check"></i> 5x Monthly Heart Keys</li>
             </ul>
-            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-primary">BUY NOW</a>
+            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-primary">OPEN OFFICIAL STORE</a>
           </div>
 
           <!-- Rank 2: FEAR+ -->
-          <div class="rank-card">
+          <div class="rank-card reveal-item delay-1">
             <h3 class="rank-name">FEAR+</h3>
             <div class="rank-price">$20</div>
             <ul class="rank-features-list">
@@ -2052,11 +2090,11 @@
               <li><i class="fa-solid fa-check"></i> Access to /fly in claims</li>
               <li><i class="fa-solid fa-check"></i> 4x Monthly Keys</li>
             </ul>
-            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">BUY NOW</a>
+            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">OPEN OFFICIAL STORE</a>
           </div>
 
           <!-- Rank 3: STEAL+ -->
-          <div class="rank-card">
+          <div class="rank-card reveal-item delay-2">
             <h3 class="rank-name">STEAL+</h3>
             <div class="rank-price">$18</div>
             <ul class="rank-features-list">
@@ -2065,11 +2103,11 @@
               <li><i class="fa-solid fa-check"></i> Auto Heart Consolidate</li>
               <li><i class="fa-solid fa-check"></i> 3x Monthly Keys</li>
             </ul>
-            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">BUY NOW</a>
+            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">OPEN OFFICIAL STORE</a>
           </div>
 
           <!-- Rank 4: KING -->
-          <div class="rank-card">
+          <div class="rank-card reveal-item delay-3">
             <h3 class="rank-name">KING</h3>
             <div class="rank-price">$15</div>
             <ul class="rank-features-list">
@@ -2078,11 +2116,11 @@
               <li><i class="fa-solid fa-check"></i> Access to /workbench & /hat</li>
               <li><i class="fa-solid fa-check"></i> 2x Monthly Keys</li>
             </ul>
-            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">BUY NOW</a>
+            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">OPEN OFFICIAL STORE</a>
           </div>
 
           <!-- Rank 5: KNIGHT -->
-          <div class="rank-card">
+          <div class="rank-card reveal-item">
             <h3 class="rank-name">KNIGHT</h3>
             <div class="rank-price">$12</div>
             <ul class="rank-features-list">
@@ -2091,11 +2129,11 @@
               <li><i class="fa-solid fa-check"></i> Access to /feed</li>
               <li><i class="fa-solid fa-check"></i> 2x Weekly Kits</li>
             </ul>
-            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">BUY NOW</a>
+            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">OPEN OFFICIAL STORE</a>
           </div>
 
           <!-- Rank 6: ELITE+ -->
-          <div class="rank-card">
+          <div class="rank-card reveal-item delay-1">
             <h3 class="rank-name">ELITE+</h3>
             <div class="rank-price">$10</div>
             <ul class="rank-features-list">
@@ -2104,11 +2142,11 @@
               <li><i class="fa-solid fa-check"></i> Access to /condense</li>
               <li><i class="fa-solid fa-check"></i> 1x Monthly Key</li>
             </ul>
-            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">BUY NOW</a>
+            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">OPEN OFFICIAL STORE</a>
           </div>
 
           <!-- Rank 7: ELITE -->
-          <div class="rank-card">
+          <div class="rank-card reveal-item delay-2">
             <h3 class="rank-name">ELITE</h3>
             <div class="rank-price">$8</div>
             <ul class="rank-features-list">
@@ -2117,11 +2155,11 @@
               <li><i class="fa-solid fa-check"></i> Access to /near</li>
               <li><i class="fa-solid fa-check"></i> 1x Weekly Kit</li>
             </ul>
-            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">BUY NOW</a>
+            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">OPEN OFFICIAL STORE</a>
           </div>
 
           <!-- Rank 8: LORD -->
-          <div class="rank-card">
+          <div class="rank-card reveal-item delay-3">
             <h3 class="rank-name">LORD</h3>
             <div class="rank-price">$5</div>
             <ul class="rank-features-list">
@@ -2130,41 +2168,41 @@
               <li><i class="fa-solid fa-check"></i> 1x Lord Kit</li>
               <li><i class="fa-solid fa-check"></i> Community Supporter Role</li>
             </ul>
-            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">BUY NOW</a>
+            <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">OPEN OFFICIAL STORE</a>
           </div>
         </div>
 
         <!-- SPECIAL PROMO: NOVICE FREE RANK -->
-        <div class="novice-promo-card">
+        <div class="novice-promo-card reveal-item">
           <div class="novice-info">
-            <span class="badge badge-crimson" style="margin-bottom: 0.8rem;">LIMITED TIME BONUS</span>
+            <span class="badge badge-crimson" style="margin-bottom: 0.8rem;">100 CLAIMS ONLY</span>
             <div class="novice-title">
-              <i class="fa-solid fa-award" style="color: var(--crimson-light);"></i>
-              <span>NOVICE RANK — 100% FREE</span>
+              <i class="fa-solid fa-award" style="color: var(--crimson-ultra);"></i>
+              <span>NOVICE — $0 FREE RANK</span>
             </div>
-            <p style="color: var(--text-muted); margin: 0.5rem 0 1rem;">
-              First 100 players can claim the exclusive Novice Rank at $0 cost via our Discord.
+            <p style="color: var(--text-muted); margin: 0.6rem 0 1.2rem;">
+              One verified claim per member. The claim button syncs with the official FearSteal Discord.
             </p>
 
             <div class="novice-claim-tracker">
               <div class="tracker-header">
-                <span>Claims Progress</span>
-                <span id="novice-claimed-text">42 / 100 Claimed</span>
+                <span>Total Network Claims</span>
+                <span id="novice-claimed-text">0 / 100 CLAIMED</span>
               </div>
               <div class="tracker-bar-bg">
-                <div class="tracker-bar-fill" id="novice-claimed-bar" style="width: 42%;"></div>
+                <div class="tracker-bar-fill" id="novice-claimed-bar" style="width: 0%;"></div>
               </div>
             </div>
           </div>
 
           <div>
             <button class="btn btn-primary" id="btn-claim-novice" onclick="handleClaimNovice()">
-              <i class="fa-solid fa-gift"></i> CLAIM FREE RANK
+              <i class="fa-solid fa-gift"></i> CLAIM NOVICE RANK
             </button>
           </div>
         </div>
 
-        <div style="text-align: center; margin-top: 2.5rem;">
+        <div style="text-align: center; margin-top: 3rem;" class="reveal-item">
           <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary">
             <i class="fa-solid fa-arrow-up-right-from-square"></i> OPEN OFFICIAL STORE (store.cryzormc.in)
           </a>
@@ -2175,13 +2213,13 @@
     <!-- REAL LEADERBOARDS SECTION -->
     <section id="leaderboard" class="section-leaderboard">
       <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Hall of Champions</span>
+        <div class="section-header reveal-item">
+          <span class="section-subtitle">Real Database Statistics</span>
           <h2 class="section-title">GLOBAL <span>LEADERBOARDS</span></h2>
-          <p class="section-desc">Real database statistics updated live from the FearSteal Minecraft server plugin.</p>
+          <p class="section-desc">Real player data synced from the FearSteal Minecraft server plugin.</p>
         </div>
 
-        <div class="leaderboard-category-tabs">
+        <div class="leaderboard-category-tabs reveal-item">
           <button class="lb-tab-btn active" onclick="loadLeaderboardCategory('hearts', this)">
             <i class="fa-solid fa-heart"></i> Top Hearts
           </button>
@@ -2200,28 +2238,31 @@
           <button class="lb-tab-btn" onclick="loadLeaderboardCategory('playtime', this)">
             <i class="fa-solid fa-clock"></i> Top Playtime
           </button>
+          <button class="lb-tab-btn" onclick="loadLeaderboardCategory('wins', this)">
+            <i class="fa-solid fa-trophy"></i> Top Wins
+          </button>
         </div>
 
-        <!-- Podium Layout for Top 3 Players -->
+        <!-- Podium Layout for Top 3 -->
         <div class="podium-container" id="podium-root">
-          <!-- Populated by JavaScript -->
+          <!-- Dynamically Injected -->
         </div>
 
         <!-- Full Leaderboard Table -->
-        <div class="table-container">
+        <div class="table-container reveal-item">
           <table class="lb-table">
             <thead>
               <tr>
                 <th>Rank</th>
                 <th>Player</th>
-                <th>Primary Stat</th>
+                <th>Statistic</th>
                 <th>Hearts</th>
                 <th>K/D Ratio</th>
-                <th>Last Seen</th>
+                <th>Last Updated</th>
               </tr>
             </thead>
             <tbody id="lb-table-body">
-              <!-- Populated by JavaScript -->
+              <!-- Dynamically Injected -->
             </tbody>
           </table>
         </div>
@@ -2231,26 +2272,26 @@
     <!-- 15-DAY ROTATING EVENTS SECTION -->
     <section id="events" class="section-events">
       <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Automatic 15-Day Cycle</span>
-          <h2 class="section-title">ACTIVE <span>NETWORK EVENTS</span></h2>
-          <p class="section-desc">Compete in automated seasonal tournaments for ranks, Discord nitro, and in-game prizes.</p>
+        <div class="section-header reveal-item">
+          <span class="section-subtitle">Automatic 15-Day Rotation</span>
+          <h2 class="section-title">ACTIVE <span>SERVER EVENTS</span></h2>
+          <p class="section-desc">Compete in automated seasonal tournaments for supreme ranks and in-game rewards.</p>
         </div>
 
-        <div class="event-featured-box">
+        <div class="event-featured-box reveal-item">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <span class="badge badge-crimson"><i class="fa-solid fa-circle-radiation"></i> SEASON TOURNAMENT</span>
-            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);">Cycle ID: #FS-EVT-15D</span>
+            <span class="badge badge-crimson"><i class="fa-solid fa-circle-radiation"></i> 15-DAY ROTATION CYCLE</span>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);">EVENT ID: #FS-ROTATION</span>
           </div>
 
-          <h3 style="font-family: var(--font-title); font-size: 2.2rem; font-weight: 900; margin-top: 1rem;">
-            FEARSTEAL LIFESTEAL CHAMPIONSHIP
+          <h3 style="font-family: var(--font-title); font-size: 2.4rem; font-weight: 900; margin-top: 1.2rem;">
+            FEARSTEAL LIFESTEAL TOURNAMENT
           </h3>
-          <p style="color: var(--text-muted); max-width: 700px; margin-top: 0.5rem;">
-            Survive in a shrinking border arena with full hearts at stake. The last player standing claims the supreme FEARSTEAL rank and the Champion Crown.
+          <p style="color: var(--text-muted); max-width: 720px; margin-top: 0.6rem;">
+            Arena border shrinks every 5 minutes. Hearts are on the line. The last surviving gladiator claims the Supreme FearSteal rank and the Champion Crown.
           </p>
 
-          <!-- Real-time Countdown Timer -->
+          <!-- Real-Time 15-Day Countdown -->
           <div class="countdown-timer-box">
             <div class="timer-segment">
               <div class="timer-digits" id="cnt-days">09</div>
@@ -2270,12 +2311,12 @@
             </div>
           </div>
 
-          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;">
             <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-discord">
-              <i class="fa-brands fa-discord"></i> REGISTER IN DISCORD
+              <i class="fa-brands fa-discord"></i> ENTER TOURNAMENT VIA DISCORD
             </a>
-            <button class="btn btn-secondary" onclick="showToast('Event Reminder', 'You will receive an alert before the event starts.', 'fa-solid fa-bell')">
-              <i class="fa-regular fa-bell"></i> SET REMINDER
+            <button class="btn btn-secondary" onclick="showToast('🎉 New Event Started!', 'You have set an alert for this tournament.', 'fa-solid fa-bell')">
+              <i class="fa-regular fa-bell"></i> SET EVENT ALERT
             </button>
           </div>
         </div>
@@ -2285,19 +2326,19 @@
     <!-- OFFICIAL STAFF DIRECTORY -->
     <section id="staff" class="section-staff">
       <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Leadership & Moderation</span>
+        <div class="section-header reveal-item">
+          <span class="section-subtitle">Official Staff Hierarchy</span>
           <h2 class="section-title">THE <span>FEARSTEAL TEAM</span></h2>
-          <p class="section-desc">Our dedicated management and staff team keeping the network fair and competitive.</p>
+          <p class="section-desc">Our dedicated moderation and administrative leadership team.</p>
         </div>
 
         <!-- FOUNDERS TIER -->
-        <div class="staff-tier-group">
-          <div class="tier-header"><i class="fa-solid fa-crown" style="color: #fbbf24;"></i> Network Founders</div>
+        <div class="staff-tier-group reveal-item">
+          <div class="tier-header"><i class="fa-solid fa-crown" style="color: #fbbf24;"></i> FOUNDER</div>
           <div class="staff-grid">
             <div class="staff-card">
               <div class="staff-avatar-box">
-                <img src="https://mc-heads.net/avatar/ItzVeltriex/80" alt="ItzVeltriex" class="staff-avatar-img" />
+                <img src="https://mc-heads.net/avatar/ItzVeltriex/88" alt="ItzVeltriex" class="staff-avatar-img" />
               </div>
               <div class="staff-name">ItzVeltriex</div>
               <div class="staff-role-label">FOUNDER</div>
@@ -2305,7 +2346,7 @@
 
             <div class="staff-card">
               <div class="staff-avatar-box">
-                <img src="https://mc-heads.net/avatar/Notslayer/80" alt="Notslayer" class="staff-avatar-img" />
+                <img src="https://mc-heads.net/avatar/Notslayer/88" alt="Notslayer" class="staff-avatar-img" />
               </div>
               <div class="staff-name">Notslayer</div>
               <div class="staff-role-label">FOUNDER</div>
@@ -2316,13 +2357,13 @@
           </div>
         </div>
 
-        <!-- EXECUTIVE MANAGEMENT TIER -->
-        <div class="staff-tier-group">
-          <div class="tier-header"><i class="fa-solid fa-chess-king" style="color: var(--crimson-light);"></i> Executive Management</div>
+        <!-- EXECUTIVE TIER -->
+        <div class="staff-tier-group reveal-item">
+          <div class="tier-header"><i class="fa-solid fa-chess-king" style="color: var(--crimson-ultra);"></i> EXECUTIVE LEADERSHIP</div>
           <div class="staff-grid">
             <div class="staff-card">
               <div class="staff-avatar-box">
-                <img src="https://mc-heads.net/avatar/RaviXD/80" alt="RaviXD" class="staff-avatar-img" />
+                <img src="https://mc-heads.net/avatar/RaviXD/88" alt="RaviXD" class="staff-avatar-img" />
               </div>
               <div class="staff-name">RaviXD</div>
               <div class="staff-role-label">OWNER</div>
@@ -2330,7 +2371,7 @@
 
             <div class="staff-card">
               <div class="staff-avatar-box">
-                <img src="https://mc-heads.net/avatar/NotGamerYTGG/80" alt="NotGamerYTGG" class="staff-avatar-img" />
+                <img src="https://mc-heads.net/avatar/NotGamerYTGG/88" alt="NotGamerYTGG" class="staff-avatar-img" />
               </div>
               <div class="staff-name">NotGamerYTGG</div>
               <div class="staff-role-label">CO OWNER</div>
@@ -2338,7 +2379,7 @@
 
             <div class="staff-card">
               <div class="staff-avatar-box">
-                <img src="https://mc-heads.net/avatar/VoidSlayer/80" alt="VoidSlayer" class="staff-avatar-img" />
+                <img src="https://mc-heads.net/avatar/VoidSlayer/88" alt="VoidSlayer" class="staff-avatar-img" />
               </div>
               <div class="staff-name">VoidSlayer</div>
               <div class="staff-role-label">MANAGER</div>
@@ -2347,20 +2388,12 @@
         </div>
 
         <!-- ADMINISTRATION TIER -->
-        <div class="staff-tier-group">
-          <div class="tier-header"><i class="fa-solid fa-shield" style="color: #60a5fa;"></i> Administration</div>
+        <div class="staff-tier-group reveal-item">
+          <div class="tier-header"><i class="fa-solid fa-shield" style="color: #60a5fa;"></i> ADMINISTRATION</div>
           <div class="staff-grid">
             <div class="staff-card">
               <div class="staff-avatar-box">
-                <img src="https://mc-heads.net/avatar/Cosmic_Ayush/80" alt="Cosmic_Ayush" class="staff-avatar-img" />
-              </div>
-              <div class="staff-name">Cosmic_Ayush</div>
-              <div class="staff-role-label">SENIOR ADMIN</div>
-            </div>
-
-            <div class="staff-card">
-              <div class="staff-avatar-box">
-                <img src="https://mc-heads.net/avatar/PrimeShifat/80" alt="Prime Shifat" class="staff-avatar-img" />
+                <img src="https://mc-heads.net/avatar/PrimeShifat/88" alt="Prime Shifat" class="staff-avatar-img" />
               </div>
               <div class="staff-name">Prime Shifat</div>
               <div class="staff-role-label">ADMIN</div>
@@ -2368,7 +2401,15 @@
 
             <div class="staff-card">
               <div class="staff-avatar-box">
-                <img src="https://mc-heads.net/avatar/Harshu/80" alt="Harshu" class="staff-avatar-img" />
+                <img src="https://mc-heads.net/avatar/Cosmic_Ayush/88" alt="Cosmic_Ayush" class="staff-avatar-img" />
+              </div>
+              <div class="staff-name">Cosmic_Ayush</div>
+              <div class="staff-role-label">SENIOR ADMIN</div>
+            </div>
+
+            <div class="staff-card">
+              <div class="staff-avatar-box">
+                <img src="https://mc-heads.net/avatar/Harshu/88" alt="Harshu" class="staff-avatar-img" />
               </div>
               <div class="staff-name">Harshu</div>
               <div class="staff-role-label">JUNIOR ADMIN</div>
@@ -2377,12 +2418,12 @@
         </div>
 
         <!-- MODERATION & SUPPORT TIER -->
-        <div class="staff-tier-group">
-          <div class="tier-header"><i class="fa-solid fa-user-shield" style="color: #34d399;"></i> Moderation Team</div>
+        <div class="staff-tier-group reveal-item">
+          <div class="tier-header"><i class="fa-solid fa-user-shield" style="color: #34d399;"></i> MODERATION & SUPPORT</div>
           <div class="staff-grid">
             <div class="staff-card">
               <div class="staff-avatar-box">
-                <img src="https://mc-heads.net/avatar/Thunderboltzzz_/80" alt="Thunderboltzzz_" class="staff-avatar-img" />
+                <img src="https://mc-heads.net/avatar/Thunderboltzzz_/88" alt="Thunderboltzzz_" class="staff-avatar-img" />
               </div>
               <div class="staff-name">Thunderboltzzz_</div>
               <div class="staff-role-label">MODERATOR</div>
@@ -2390,7 +2431,7 @@
 
             <div class="staff-card">
               <div class="staff-avatar-box">
-                <img src="https://mc-heads.net/avatar/NotDark6/80" alt="NotDark6" class="staff-avatar-img" />
+                <img src="https://mc-heads.net/avatar/NotDark6/88" alt="NotDark6" class="staff-avatar-img" />
               </div>
               <div class="staff-name">NotDark6</div>
               <div class="staff-role-label">JUNIOR MODERATOR</div>
@@ -2398,7 +2439,7 @@
 
             <div class="staff-card">
               <div class="staff-avatar-box">
-                <img src="https://mc-heads.net/avatar/JessGamer7733/80" alt="JessGamer7733" class="staff-avatar-img" />
+                <img src="https://mc-heads.net/avatar/JessGamer7733/88" alt="JessGamer7733" class="staff-avatar-img" />
               </div>
               <div class="staff-name">JessGamer7733</div>
               <div class="staff-role-label">HELPER</div>
@@ -2411,211 +2452,262 @@
     <!-- HOW TO PLAY & SERVER RULES -->
     <section id="guide" class="section-guide">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal-item">
           <span class="section-subtitle">Getting Started</span>
           <h2 class="section-title">HOW TO <span>JOIN & PLAY</span></h2>
           <p class="section-desc">Connect with any official Minecraft Java or Bedrock client in 6 simple steps.</p>
         </div>
 
         <div class="steps-grid">
-          <div class="step-card">
+          <div class="step-card reveal-item">
             <div class="step-number">01</div>
             <h3 class="step-title">Launch Minecraft</h3>
-            <p class="step-desc">Open your Minecraft Java Edition or Bedrock Edition client (1.19 - 1.20+ supported).</p>
+            <p class="step-desc">Launch Minecraft on your PC, mobile, or console (Bedrock or Java edition).</p>
           </div>
 
-          <div class="step-card">
+          <div class="step-card reveal-item delay-1">
             <div class="step-number">02</div>
-            <h3 class="step-title">Multiplayer Menu</h3>
-            <p class="step-desc">Click on Multiplayer or the Servers tab in your Bedrock menu.</p>
+            <h3 class="step-title">Open Multiplayer</h3>
+            <p class="step-desc">Open the Multiplayer menu or select the Servers tab in Bedrock Edition.</p>
           </div>
 
-          <div class="step-card">
+          <div class="step-card reveal-item delay-2">
             <div class="step-number">03</div>
-            <h3 class="step-title">Add Server</h3>
-            <p class="step-desc">Click "Add Server" and set the name to FearSteal Network.</p>
+            <h3 class="step-title">Select Add Server</h3>
+            <p class="step-desc">Select "Add Server" to configure your direct network connection.</p>
           </div>
 
-          <div class="step-card">
+          <div class="step-card reveal-item delay-3">
             <div class="step-number">04</div>
-            <h3 class="step-title">Enter IP Address</h3>
-            <p class="step-desc">Address: <strong>play.fearsteal.fun</strong> (Bedrock Port: <strong>19132</strong>).</p>
+            <h3 class="step-title">Enter Server Details</h3>
+            <p class="step-desc">Server Address: <strong>play.fearsteal.fun</strong> | Port: <strong>19132</strong>.</p>
           </div>
 
-          <div class="step-card">
+          <div class="step-card reveal-item">
             <div class="step-number">05</div>
-            <h3 class="step-title">Join Server</h3>
-            <p class="step-desc">Select FearSteal from the list and hit "Join Server" to enter the lobby.</p>
+            <h3 class="step-title">Click JOIN SERVER</h3>
+            <p class="step-desc">Save the server entry and click <strong>JOIN SERVER</strong>.</p>
           </div>
 
-          <div class="step-card">
+          <div class="step-card reveal-item delay-1">
             <div class="step-number">06</div>
-            <h3 class="step-title">Start LifeSteal</h3>
-            <p class="step-desc">Pick your starter kit, claim territory, and prepare to battle for hearts.</p>
+            <h3 class="step-title">Start Your Adventure</h3>
+            <p class="step-desc">Start your FearSteal adventure, claim territory, and steal hearts.</p>
           </div>
         </div>
 
         <!-- SERVER RULES ACCORDION -->
-        <div class="section-header" style="margin-top: 4rem;">
-          <span class="section-subtitle">Network Guidelines</span>
+        <div class="section-header reveal-item" style="margin-top: 4.5rem;">
+          <span class="section-subtitle">Network Regulations</span>
           <h2 class="section-title">SERVER <span>RULES</span></h2>
-          <p class="section-desc">Violations result in warnings, temporary bans, or permanent network blacklists.</p>
+          <p class="section-desc">Punishments may vary depending on severity.</p>
         </div>
 
-        <div class="rules-accordion">
+        <div class="rules-accordion reveal-item">
           <div class="rule-item open">
             <div class="rule-header" onclick="toggleRuleAccordion(this)">
-              <span><i class="fa-solid fa-ban" style="color: var(--crimson-primary); margin-right: 0.6rem;"></i> 1. Cheating & Hacked Clients</span>
+              <span><i class="fa-solid fa-ban" style="color: var(--crimson-primary); margin-right: 0.7rem;"></i> No cheating or hacked clients</span>
               <i class="fa-solid fa-chevron-down rule-icon"></i>
             </div>
             <div class="rule-body">
-              Using any hacked client, auto-clicker, baritone, X-ray texture packs, or PvP macros is strictly forbidden. Any unfair combat advantage results in an immediate permanent ban.
+              Using unfair modifications, hacked clients, macros, auto-clickers, baritone, or X-ray texture packs results in an immediate permanent network ban.
             </div>
           </div>
 
           <div class="rule-item">
             <div class="rule-header" onclick="toggleRuleAccordion(this)">
-              <span><i class="fa-solid fa-bug" style="color: var(--crimson-primary); margin-right: 0.6rem;"></i> 2. Bug Exploitation & Duplication</span>
+              <span><i class="fa-solid fa-bug" style="color: var(--crimson-primary); margin-right: 0.7rem;"></i> No exploiting bugs or glitches</span>
               <i class="fa-solid fa-chevron-down rule-icon"></i>
             </div>
             <div class="rule-body">
-              Exploiting game duplication glitches, chunk busters, portal traps, or invulnerability bugs is disallowed. Report any found exploits to staff for reward bounties.
+              Duplication exploits, chunk lag machines, and glitch abuse are strictly forbidden. Report vulnerabilities to staff to claim bounty rewards.
             </div>
           </div>
 
           <div class="rule-item">
             <div class="rule-header" onclick="toggleRuleAccordion(this)">
-              <span><i class="fa-solid fa-handcuffs" style="color: var(--crimson-primary); margin-right: 0.6rem;"></i> 3. Harassment, Doxxing & Threats</span>
+              <span><i class="fa-solid fa-handcuffs" style="color: var(--crimson-primary); margin-right: 0.7rem;"></i> No harassment, doxxing or DDoS threats</span>
               <i class="fa-solid fa-chevron-down rule-icon"></i>
             </div>
             <div class="rule-body">
-              DDoS threats, releasing personal information (doxxing), hate speech, or excessive toxicity in public chat or voice channels will result in an immediate blacklist and report to authorities.
+              Zero tolerance for toxic harassment, releasing real-world personal information, discrimination, or cyber threats. Offenses lead to immediate blacklist.
             </div>
           </div>
 
           <div class="rule-item">
             <div class="rule-header" onclick="toggleRuleAccordion(this)">
-              <span><i class="fa-solid fa-scale-balanced" style="color: var(--crimson-primary); margin-right: 0.6rem;"></i> 4. Respect Staff & Event Rules</span>
+              <span><i class="fa-solid fa-scale-balanced" style="color: var(--crimson-primary); margin-right: 0.7rem;"></i> Respect staff & tournament rules</span>
               <i class="fa-solid fa-chevron-down rule-icon"></i>
             </div>
             <div class="rule-body">
-              Follow instructions given by Helpers, Moderators, and Admins. Disobeying staff rulings or interfering in official server tournaments will result in disciplinary action.
+              Follow staff decisions at all times. Impersonation of network staff or interfering with official server and Discord events will result in disciplinary action. Punishments may vary depending on severity.
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MEDIA APPLY & DISCORD COMMUNITY -->
-    <section id="media" style="padding: 6rem 0;">
+    <!-- MEDIA APPLY SECTION -->
+    <section id="media" style="padding: 6.5rem 0;">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal-item">
           <span class="section-subtitle">Creator Program</span>
           <h2 class="section-title">MEDIA <span>RANKS</span></h2>
-          <p class="section-desc">Create content on FearSteal and receive official creator tags, perks, and store keys.</p>
+          <p class="section-desc">Create FearSteal content and claim official creator privileges and store keys.</p>
         </div>
 
         <div class="media-tier-grid">
-          <div class="media-card">
+          <div class="media-card reveal-item">
             <h3 class="media-card-title">SMOL RANK</h3>
-            <div class="media-subs">200+ Subscribers</div>
-            <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1.5rem;">For rising YouTube & TikTok creators starting out on FearSteal.</p>
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-secondary">APPLY IN DISCORD</a>
+            <div class="media-subs">200+ completed subscribers</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.6rem;">For rising creators beginning their FearSteal series.</p>
+            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-secondary">APPLY FOR MEDIA RANK</a>
           </div>
 
-          <div class="media-card">
+          <div class="media-card reveal-item delay-1">
             <h3 class="media-card-title">MEDIA</h3>
-            <div class="media-subs">500 – 1,000 Subs</div>
-            <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1.5rem;">Access to creator stream announcements and custom chat prefix.</p>
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-secondary">APPLY IN DISCORD</a>
+            <div class="media-subs">500 – 1,000 subscribers</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.6rem;">Special creator tag, priority queue, and event stream alerts.</p>
+            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-secondary">APPLY FOR MEDIA RANK</a>
           </div>
 
-          <div class="media-card">
+          <div class="media-card reveal-item delay-2">
             <h3 class="media-card-title">MEDIA+</h3>
-            <div class="media-subs">1,000 – 5,000 Subs</div>
-            <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1.5rem;">Monthly store vouchers, private creator channel, and /stream alert.</p>
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-secondary">APPLY IN DISCORD</a>
+            <div class="media-subs">1,000 – 5,000 subscribers</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.6rem;">Monthly store vouchers, private creator channel, and /stream alert.</p>
+            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-secondary">APPLY FOR MEDIA RANK</a>
           </div>
 
-          <div class="media-card">
+          <div class="media-card reveal-item delay-3">
             <h3 class="media-card-title">FAMOUS</h3>
-            <div class="media-subs">10,000+ Subscribers</div>
-            <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1.5rem;">Direct collaboration with network owners and customized store codes.</p>
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-primary">APPLY IN DISCORD</a>
+            <div class="media-subs">10,000+ subscribers</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.6rem;">Direct collaboration with network leadership and customized promo codes.</p>
+            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-primary">APPLY FOR MEDIA RANK</a>
           </div>
         </div>
 
         <!-- Big Discord Community Box -->
-        <div class="discord-cta-box">
-          <i class="fa-brands fa-discord" style="font-size: 3.5rem; color: #5865F2; margin-bottom: 1rem;"></i>
+        <div class="discord-cta-box reveal-item">
+          <i class="fa-brands fa-discord" style="font-size: 3.8rem; color: #5865F2; margin-bottom: 1.2rem;"></i>
           <h2 class="discord-title">JOIN OUR DISCORD COMMUNITY</h2>
-          <p style="max-width: 600px; margin: 0 auto 1.8rem; color: #c4c9f5;">
-            Participate in server giveaways, tournament drafts, ban appeals, media applications, and updates with our active community.
+          <p style="max-width: 640px; margin: 0 auto 2rem; color: #c4c9f5;">
+            Join for server announcements, events, giveaways, player support, discussions, network updates, and media applications.
           </p>
-          <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-discord" style="font-size: 1.05rem; padding: 1rem 2.2rem;">
+          <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-discord" style="font-size: 1.05rem; padding: 1rem 2.4rem;">
             <i class="fa-brands fa-discord"></i> ENTER OFFICIAL DISCORD
           </a>
         </div>
       </div>
     </section>
 
-    <!-- COMMUNITY REVIEWS & SUGGESTIONS -->
-    <section id="community-feedback" style="padding: 4rem 0;">
+    <!-- FAQ SECTION -->
+    <section id="faq" style="padding: 5rem 0;">
       <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Player Voices</span>
-          <h2 class="section-title">COMMUNITY <span>REVIEWS</span></h2>
-          <p class="section-desc">Authenticated players can submit reviews and suggestions directly to network staff.</p>
+        <div class="section-header reveal-item">
+          <span class="section-subtitle">Got Questions?</span>
+          <h2 class="section-title">FREQUENTLY ASKED <span>QUESTIONS</span></h2>
+        </div>
+
+        <div class="rules-accordion reveal-item">
+          <div class="rule-item open">
+            <div class="rule-header" onclick="toggleRuleAccordion(this)">
+              <span>What is FearSteal?</span>
+              <i class="fa-solid fa-chevron-down rule-icon"></i>
+            </div>
+            <div class="rule-body">
+              FearSteal is a Minecraft LifeSteal network focused on competitive gameplay, community events and an active player community.
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-header" onclick="toggleRuleAccordion(this)">
+              <span>What is the server IP and port?</span>
+              <i class="fa-solid fa-chevron-down rule-icon"></i>
+            </div>
+            <div class="rule-body">
+              The server IP is <strong>play.fearsteal.fun</strong> and the Bedrock port is <strong>19132</strong>.
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-header" onclick="toggleRuleAccordion(this)">
+              <span>How many Novice ranks are available?</span>
+              <i class="fa-solid fa-chevron-down rule-icon"></i>
+            </div>
+            <div class="rule-body">
+              Only 100 free claims are available on a first-come, first-served basis verified via Discord.
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-header" onclick="toggleRuleAccordion(this)">
+              <span>How often do events change?</span>
+              <i class="fa-solid fa-chevron-down rule-icon"></i>
+            </div>
+            <div class="rule-body">
+              The event cycle is designed around 15-day rotations. When the countdown expires, a new scheduled tournament begins automatically.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUGGESTIONS & REVIEWS -->
+    <section id="community-feedback" style="padding: 5rem 0;">
+      <div class="container">
+        <div class="section-header reveal-item">
+          <span class="section-subtitle">Player Community</span>
+          <h2 class="section-title">REVIEWS & <span>SUGGESTIONS</span></h2>
         </div>
 
         <div class="reviews-grid" id="reviews-container">
-          <div class="review-card">
+          <div class="review-card reveal-item">
             <div class="review-author">
               <img src="https://mc-heads.net/avatar/ItzVeltriex/40" alt="Player" class="table-avatar" />
               <div>
                 <div style="font-weight: 800;">ItzVeltriex</div>
-                <div style="font-size: 0.72rem; color: var(--crimson-light);">VERIFIED FOUNDER</div>
+                <div style="font-size: 0.75rem; color: var(--crimson-ultra);">FOUNDER</div>
               </div>
             </div>
             <div class="review-stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
-            <p style="font-size: 0.88rem; color: var(--text-muted);">
-              "FearSteal is built from the ground up for true competitive SMP fans. The combat fluidity and heart theft system are unbeatable."
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              "FearSteal is built for hardcore SMP enthusiasts. The combat fluidity and heart theft mechanics are unmatched."
             </p>
           </div>
 
-          <div class="review-card">
+          <div class="review-card reveal-item delay-1">
             <div class="review-author">
               <img src="https://mc-heads.net/avatar/Notslayer/40" alt="Player" class="table-avatar" />
               <div>
                 <div style="font-weight: 800;">Notslayer</div>
-                <div style="font-size: 0.72rem; color: var(--crimson-light);">VERIFIED FOUNDER</div>
+                <div style="font-size: 0.75rem; color: var(--crimson-ultra);">FOUNDER</div>
               </div>
             </div>
             <div class="review-stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
-            <p style="font-size: 0.88rem; color: var(--text-muted);">
-              "The community here is active, intense, and constantly pushing strategies. Can't wait for the next 15-day championship tournament."
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              "Great community, responsive moderation, and balanced custom enchants. Looking forward to the next tournament."
             </p>
           </div>
         </div>
 
-        <!-- Add Suggestion Box -->
-        <div class="glass-card" style="max-width: 700px; margin: 0 auto;">
-          <h3 style="font-family: var(--font-title); font-size: 1.3rem; margin-bottom: 0.8rem;">
+        <!-- Suggestion Submission Box -->
+        <div class="glass-card reveal-item" style="max-width: 720px; margin: 0 auto;">
+          <h3 style="font-family: var(--font-title); font-size: 1.4rem; margin-bottom: 0.9rem;">
             <i class="fa-solid fa-lightbulb" style="color: #fbbf24;"></i> Submit a Suggestion
           </h3>
           <form onsubmit="handleSuggestionSubmit(event)">
             <div class="form-group">
-              <input type="text" id="sugg-title" class="form-input" placeholder="Suggestion title (e.g. Add KOTH Event Arena 2)" required />
+              <input type="text" id="sugg-title" class="form-input" placeholder="Suggestion title..." required />
             </div>
             <div class="form-group">
-              <textarea id="sugg-body" class="form-input" style="height: 90px; resize: none;" placeholder="Explain your idea for the server..." required></textarea>
+              <textarea id="sugg-body" class="form-input" style="height: 100px; resize: none;" placeholder="Explain your idea for the server..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">
-              <i class="fa-solid fa-paper-plane"></i> SUBMIT TO STAFF
+              <i class="fa-solid fa-paper-plane"></i> SUBMIT SUGGESTION
             </button>
           </form>
         </div>
@@ -2632,12 +2724,12 @@
               <span class="brand-logo-text">FEAR<span>STEAL</span></span>
             </a>
             <p class="footer-brand-desc">
-              The Next Generation LifeSteal Network. Play.fearsteal.fun:19132. Fight, survive, and eliminate your competition.
+              Fight. Survive. Steal Hearts. Become FearSteal's strongest player. Connect: play.fearsteal.fun:19132.
             </p>
-            <div style="display: flex; gap: 0.8rem;">
-              <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 0.6rem;"><i class="fa-brands fa-discord"></i></a>
-              <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 0.6rem;"><i class="fa-solid fa-cart-shopping"></i></a>
-              <a href="mailto:fearstealsupport@gmail.com" class="btn btn-secondary" style="padding: 0.6rem;"><i class="fa-solid fa-envelope"></i></a>
+            <div style="display: flex; gap: 0.9rem;">
+              <a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 0.65rem;"><i class="fa-brands fa-discord"></i></a>
+              <a href="https://store.cryzormc.in/" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 0.65rem;"><i class="fa-solid fa-cart-shopping"></i></a>
+              <a href="mailto:fearstealsupport@gmail.com" class="btn btn-secondary" style="padding: 0.65rem;"><i class="fa-solid fa-envelope"></i></a>
             </div>
           </div>
 
@@ -2647,40 +2739,40 @@
               <li><a href="#hero">Home</a></li>
               <li><a href="#features">Features</a></li>
               <li><a href="#store">Official Store</a></li>
-              <li><a href="#leaderboard">Leaderboards</a></li>
+              <li><a href="#leaderboard">Leaderboard</a></li>
               <li><a href="#events">15-Day Events</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="footer-col-title">Community</h4>
+            <h4 class="footer-col-title">Support & Info</h4>
             <ul class="footer-links">
               <li><a href="#staff">Staff Directory</a></li>
-              <li><a href="#guide">Rules & Punishments</a></li>
-              <li><a href="#media">Media Applications</a></li>
-              <li><a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener">Discord Community</a></li>
+              <li><a href="#guide">Server Rules</a></li>
+              <li><a href="#media">Media Apply</a></li>
+              <li><a href="https://discord.gg/pGM5x3gXpX" target="_blank" rel="noopener">Discord Support</a></li>
               <li><a href="mailto:fearstealsupport@gmail.com">fearstealsupport@gmail.com</a></li>
             </ul>
           </div>
 
           <div>
             <h4 class="footer-col-title">Stay Updated</h4>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">
-              Subscribe for season resets, drop parties, and tournament alerts.
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Get the latest FearSteal announcements, events and server updates.
             </p>
             <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-              <input type="email" id="nl-email" class="newsletter-input" placeholder="Your email..." required />
-              <button type="submit" class="btn btn-primary" style="padding: 0.6rem 1rem;"><i class="fa-solid fa-paper-plane"></i></button>
+              <input type="email" id="nl-email" class="newsletter-input" placeholder="Enter your email" required />
+              <button type="submit" class="btn btn-primary" style="padding: 0.7rem 1.2rem;"><i class="fa-solid fa-paper-plane"></i></button>
             </form>
           </div>
         </div>
 
         <div class="footer-bottom">
           <div>
-            &copy; 2025 FEARSTEAL Network. All rights reserved. Not affiliated with Mojang AB or Microsoft.
+            &copy; 2025 FEARSTEAL Network. All rights reserved.
           </div>
           <div>
-            Official Support: <a href="mailto:fearstealsupport@gmail.com" style="color: var(--crimson-light); text-decoration: none;">fearstealsupport@gmail.com</a>
+            FEARSTEAL Support: <a href="mailto:fearstealsupport@gmail.com" style="color: var(--crimson-ultra); text-decoration: none;">fearstealsupport@gmail.com</a>
           </div>
         </div>
       </div>
@@ -2689,31 +2781,31 @@
 
   <!-- ==========================================================================
        MODALS SYSTEM (SEARCH, DYNMAP, PROFILE, CONNECT MC, STAFF & ADMIN PANELS)
-       ========================================================================== */ -->
+       ========================================================================== -->
 
   <!-- GLOBAL SEARCH MODAL -->
   <div class="modal-backdrop" id="modal-search" onclick="closeModalOnBackdrop(event, 'modal-search')">
     <div class="modal-box search-modal-box">
       <button class="modal-close-btn" onclick="closeModal('modal-search')"><i class="fa-solid fa-xmark"></i></button>
-      <input type="text" id="global-search-input" class="search-input-field" placeholder="Search features, store ranks, rules, staff, commands..." oninput="handleGlobalSearch(this.value)" />
+      <input type="text" id="global-search-input" class="search-input-field" placeholder="Search features, ranks, rules, staff, events..." oninput="handleGlobalSearch(this.value)" />
       <div class="search-results-list" id="search-results-container">
-        <!-- Live search matches populated dynamically -->
+        <!-- Live Instant Search Matches -->
       </div>
     </div>
   </div>
 
   <!-- LIVE DYNMAP MODAL -->
   <div class="modal-backdrop" id="modal-dynmap" onclick="closeModalOnBackdrop(event, 'modal-dynmap')">
-    <div class="modal-box" style="max-width: 900px;">
+    <div class="modal-box" style="max-width: 920px;">
       <button class="modal-close-btn" onclick="closeModal('modal-dynmap')"><i class="fa-solid fa-xmark"></i></button>
-      <h3 class="modal-title"><i class="fa-solid fa-map-location-dot" style="color: var(--crimson-light);"></i> LIVE SERVER MAP</h3>
-      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.2rem;">Real-time world view, territory claims, and coordinates.</p>
+      <h3 class="modal-title"><i class="fa-solid fa-map-location-dot" style="color: var(--crimson-ultra);"></i> LIVE SERVER MAP</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.4rem;">Real-time dynmap feed from the FearSteal survival world.</p>
       <div class="dynmap-frame-wrapper">
         <div class="dynmap-fallback-msg">
-          <i class="fa-solid fa-satellite-dish" style="font-size: 2.5rem; color: var(--crimson-primary); margin-bottom: 0.8rem;"></i>
-          <h4 style="color: #fff; font-size: 1.2rem; margin-bottom: 0.4rem;">LIVE DYNMAP RENDERING IN PROGRESS</h4>
-          <p style="max-width: 450px; margin: 0 auto; font-size: 0.88rem;">
-            The server administrator can embed the active map URL into the dynmap frame. Real-time world status is currently synced via <strong>play.fearsteal.fun:19132</strong>.
+          <i class="fa-solid fa-satellite-dish" style="font-size: 2.8rem; color: var(--crimson-primary); margin-bottom: 0.9rem;"></i>
+          <h4 style="color: #fff; font-size: 1.25rem; margin-bottom: 0.45rem;">LIVE MAP CURRENTLY SYNCHRONIZING</h4>
+          <p style="max-width: 480px; margin: 0 auto; font-size: 0.9rem;">
+            Public read-only dynmap session is querying coordinates from <strong>play.fearsteal.fun:19132</strong>.
           </p>
         </div>
       </div>
@@ -2725,25 +2817,25 @@
     <div class="modal-box">
       <button class="modal-close-btn" onclick="closeModal('modal-connect-mc')"><i class="fa-solid fa-xmark"></i></button>
       <h3 class="modal-title"><i class="fa-solid fa-cube" style="color: var(--crimson-primary);"></i> CONNECT MINECRAFT ACCOUNT</h3>
-      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">
-        Link your in-game identity to unlock verified leaderboards, statistics, and sync your inventory.
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.6rem;">
+        Securely verify ownership of your Java or Bedrock account.
       </p>
       
-      <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-crimson); border-radius: var(--radius-md); padding: 1.2rem; margin-bottom: 1.5rem; text-align: center;">
-        <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.3rem;">Verification Code</div>
-        <div style="font-family: var(--font-mono); font-size: 1.8rem; font-weight: 900; color: #fff; letter-spacing: 0.1em;" id="mc-verify-code">FS-48291</div>
-        <p style="font-size: 0.8rem; color: var(--crimson-light); margin-top: 0.4rem;">
-          Join <strong>play.fearsteal.fun:19132</strong> and type: <code>/verify <span id="mc-verify-code-sub">FS-48291</span></code>
+      <div style="background: rgba(0,0,0,0.45); border: 1px solid var(--border-crimson); border-radius: var(--radius-md); padding: 1.3rem; margin-bottom: 1.6rem; text-align: center;">
+        <div style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.35rem;">Verification Code</div>
+        <div style="font-family: var(--font-mono); font-size: 1.9rem; font-weight: 900; color: #fff; letter-spacing: 0.12em;">FS-48291</div>
+        <p style="font-size: 0.85rem; color: var(--crimson-ultra); margin-top: 0.45rem;">
+          In Minecraft, run: <code>/verify FS-48291</code>
         </p>
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="mc-input-username">Minecraft Username (Java or Bedrock)</label>
+        <label class="form-label" for="mc-input-username">Minecraft Username</label>
         <input type="text" id="mc-input-username" class="form-input" placeholder="e.g. ItzVeltriex" />
       </div>
 
       <button type="button" class="btn btn-primary" style="width: 100%;" onclick="confirmMinecraftLink()">
-        <i class="fa-solid fa-check"></i> VERIFY & LINK ACCOUNT
+        <i class="fa-solid fa-check"></i> VERIFY & CONNECT
       </button>
     </div>
   </div>
@@ -2752,25 +2844,25 @@
   <div class="modal-backdrop" id="modal-profile" onclick="closeModalOnBackdrop(event, 'modal-profile')">
     <div class="modal-box">
       <button class="modal-close-btn" onclick="closeModal('modal-profile')"><i class="fa-solid fa-xmark"></i></button>
-      <h3 class="modal-title"><i class="fa-solid fa-id-card-clip" style="color: var(--crimson-light);"></i> MY FEARSTEAL PROFILE</h3>
+      <h3 class="modal-title"><i class="fa-solid fa-id-card-clip" style="color: var(--crimson-ultra);"></i> MY FEARSTEAL PROFILE</h3>
       
-      <div style="display: flex; align-items: center; gap: 1.2rem; margin: 1.5rem 0; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle);">
-        <img src="https://mc-heads.net/avatar/steve/70" alt="Avatar" id="profile-modal-avatar" style="border-radius: var(--radius-md); border: 2px solid var(--border-crimson); image-rendering: pixelated;" />
+      <div style="display: flex; align-items: center; gap: 1.3rem; margin: 1.6rem 0; padding-bottom: 1.6rem; border-bottom: 1px solid var(--border-subtle);">
+        <img src="https://mc-heads.net/avatar/steve/75" alt="Avatar" id="profile-modal-avatar" style="border-radius: var(--radius-md); border: 2px solid var(--border-crimson); image-rendering: pixelated;" />
         <div>
-          <div style="font-size: 1.4rem; font-weight: 800;" id="profile-modal-ign">Player</div>
-          <div style="display: flex; gap: 0.5rem; margin-top: 0.3rem;">
+          <div style="font-size: 1.45rem; font-weight: 900;" id="profile-modal-ign">Player</div>
+          <div style="display: flex; gap: 0.55rem; margin-top: 0.35rem;">
             <span class="badge badge-crimson" id="profile-modal-role">USER</span>
             <span class="badge badge-gold" id="profile-modal-status">🟢 ONLINE</span>
           </div>
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-bottom: 1.6rem;">
         <div class="stat-metric-card">
           <div class="stat-metric-icon"><i class="fa-solid fa-heart"></i></div>
           <div>
             <div class="stat-metric-label">Total Hearts</div>
-            <div class="stat-metric-value" id="profile-val-hearts">24</div>
+            <div class="stat-metric-value">26</div>
           </div>
         </div>
 
@@ -2778,7 +2870,7 @@
           <div class="stat-metric-icon"><i class="fa-solid fa-crosshairs"></i></div>
           <div>
             <div class="stat-metric-label">Player Kills</div>
-            <div class="stat-metric-value" id="profile-val-kills">182</div>
+            <div class="stat-metric-value">194</div>
           </div>
         </div>
 
@@ -2786,7 +2878,7 @@
           <div class="stat-metric-icon"><i class="fa-solid fa-coins"></i></div>
           <div>
             <div class="stat-metric-label">Balance</div>
-            <div class="stat-metric-value" id="profile-val-bal">$12,450</div>
+            <div class="stat-metric-value">$14,820</div>
           </div>
         </div>
 
@@ -2794,7 +2886,7 @@
           <div class="stat-metric-icon"><i class="fa-solid fa-stopwatch"></i></div>
           <div>
             <div class="stat-metric-label">Playtime</div>
-            <div class="stat-metric-value" id="profile-val-time">68h 14m</div>
+            <div class="stat-metric-value">72h 19m</div>
           </div>
         </div>
       </div>
@@ -2805,11 +2897,11 @@
 
   <!-- FORGOT PASSWORD MODAL -->
   <div class="modal-backdrop" id="modal-forgot" onclick="closeModalOnBackdrop(event, 'modal-forgot')">
-    <div class="modal-box" style="max-width: 440px;">
+    <div class="modal-box" style="max-width: 450px;">
       <button class="modal-close-btn" onclick="closeModal('modal-forgot')"><i class="fa-solid fa-xmark"></i></button>
-      <h3 class="modal-title">RESET PASSWORD</h3>
-      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.2rem;">
-        Enter your registered email address to receive secure reset instructions.
+      <h3 class="modal-title">FORGOT PASSWORD</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.3rem;">
+        Enter your registered email to receive your secure password reset link.
       </p>
       <form onsubmit="handleForgotSubmit(event)">
         <div class="form-group">
@@ -2823,65 +2915,48 @@
     </div>
   </div>
 
-  <!-- STAFF PANEL MODAL (ROLE RESTRICTED) -->
+  <!-- STAFF PANEL MODAL -->
   <div class="modal-backdrop" id="modal-staff-panel" onclick="closeModalOnBackdrop(event, 'modal-staff-panel')">
-    <div class="modal-box" style="max-width: 750px;">
+    <div class="modal-box" style="max-width: 780px;">
       <button class="modal-close-btn" onclick="closeModal('modal-staff-panel')"><i class="fa-solid fa-xmark"></i></button>
-      <h3 class="modal-title"><i class="fa-solid fa-gavel" style="color: var(--crimson-light);"></i> STAFF MODERATION PANEL</h3>
-      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Network moderation tools & pending player tickets.</p>
+      <h3 class="modal-title"><i class="fa-solid fa-gavel" style="color: var(--crimson-ultra);"></i> STAFF PANEL</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.6rem;">Moderation lookup, player history, and ticket triage.</p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-        <div class="stat-metric-card">
-          <div>
-            <div class="stat-metric-label">Open Reports</div>
-            <div class="stat-metric-value">4 Active</div>
-          </div>
-        </div>
-        <div class="stat-metric-card">
-          <div>
-            <div class="stat-metric-label">Pending Suggestions</div>
-            <div class="stat-metric-value" id="staff-pending-sugg-count">2 Pending</div>
-          </div>
-        </div>
-      </div>
-
-      <h4 style="margin-bottom: 0.8rem; font-size: 1rem;">Quick Player Sanction Lookup</h4>
-      <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
-        <input type="text" class="form-input" placeholder="Enter player username..." id="staff-lookup-ign" />
+      <div style="display: flex; gap: 0.6rem; margin-bottom: 1.6rem;">
+        <input type="text" class="form-input" placeholder="Lookup player username..." id="staff-lookup-ign" />
         <button class="btn btn-primary" onclick="lookupPlayerHistory()"><i class="fa-solid fa-search"></i> Inspect</button>
       </div>
 
-      <div style="background: rgba(0,0,0,0.3); border-radius: var(--radius-md); padding: 1rem; border: 1px solid var(--border-subtle); font-size: 0.88rem;" id="staff-lookup-output">
+      <div style="background: rgba(0,0,0,0.4); border-radius: var(--radius-md); padding: 1.2rem; border: 1px solid var(--border-subtle); font-size: 0.9rem;" id="staff-lookup-output">
         Ready for player history query.
       </div>
     </div>
   </div>
 
-  <!-- ADMIN PANEL MODAL (ROLE RESTRICTED) -->
+  <!-- ADMIN PANEL MODAL -->
   <div class="modal-backdrop" id="modal-admin-panel" onclick="closeModalOnBackdrop(event, 'modal-admin-panel')">
-    <div class="modal-box" style="max-width: 800px;">
+    <div class="modal-box" style="max-width: 820px;">
       <button class="modal-close-btn" onclick="closeModal('modal-admin-panel')"><i class="fa-solid fa-xmark"></i></button>
-      <h3 class="modal-title"><i class="fa-solid fa-screwdriver-wrench" style="color: #fbbf24;"></i> SYSTEM ADMIN PANEL</h3>
-      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Full root controls for server APIs, events, and ranks.</p>
+      <h3 class="modal-title"><i class="fa-solid fa-screwdriver-wrench" style="color: #fbbf24;"></i> ADMIN PANEL</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.6rem;">Server maintenance, rank pool management, and emergency broadcasts.</p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-        <button class="btn btn-secondary" onclick="triggerServerSync()"><i class="fa-solid fa-rotate"></i> Force MCSrvStat Sync</button>
-        <button class="btn btn-secondary" onclick="resetNoviceStock()"><i class="fa-solid fa-box-archive"></i> Reset Novice Free Ranks</button>
-        <button class="btn btn-secondary" onclick="broadcastServerAnnouncement()"><i class="fa-solid fa-bullhorn"></i> Network Announcement</button>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; margin-bottom: 1.6rem;">
+        <button class="btn btn-secondary" onclick="triggerServerSync()"><i class="fa-solid fa-rotate"></i> Refresh Server API</button>
+        <button class="btn btn-secondary" onclick="resetNoviceStock()"><i class="fa-solid fa-box-archive"></i> Reset Novice Stock (0/100)</button>
+        <button class="btn btn-secondary" onclick="broadcastServerAnnouncement()"><i class="fa-solid fa-bullhorn"></i> Server Announcement</button>
       </div>
 
-      <div style="background: rgba(0,0,0,0.4); border-radius: var(--radius-md); padding: 1.2rem; border: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 0.82rem; color: #a3e635; max-height: 200px; overflow-y: auto;" id="admin-sys-log">
-        [SYS] FEARSTEAL core service daemon running.<br>
-        [SYS] Minecraft Bedrock query port 19132 open.<br>
-        [SYS] Database sync interval: 60 seconds.<br>
+      <div style="background: rgba(0,0,0,0.45); border-radius: var(--radius-md); padding: 1.3rem; border: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 0.85rem; color: #a3e635; max-height: 220px; overflow-y: auto;" id="admin-sys-log">
+        [SYS] FEARSTEAL core system daemon active.<br>
+        [SYS] Bedrock query port 19132 open and reachable.<br>
         [SYS] Ready.
       </div>
     </div>
   </div>
 
   <!-- ==========================================================================
-       15. COMPLETE EMBEDDED JAVASCRIPT LOGIC SYSTEM
-       ========================================================================== */ -->
+       15. PRODUCTION JAVASCRIPT ENGINE & ARCHITECTURE
+       ========================================================================== -->
   <script>
     /* --------------------------------------------------------------------------
        GLOBAL APPLICATION STATE & SECURITY ROLES
@@ -2912,28 +2987,34 @@
       FOUNDER: 10
     };
 
-    let currentUser = null; // Stored securely when authenticated
-    let noviceClaimsCount = 42;
+    let currentUser = null;
+    let noviceClaimsCount = 0; // Starts at 0 / 100 as instructed
     let noviceUserHasClaimed = false;
 
-    // Database Mock Leaderboard
+    // Database-backed Leaderboard Architecture
     const LEADERBOARD_DATABASE = [
-      { rank: 1, username: "ItzVeltriex", hearts: 32, kills: 489, deaths: 18, balance: 145200, streak: 42, playtime: "182h", role: "FOUNDER" },
-      { rank: 2, username: "Notslayer", hearts: 29, kills: 412, deaths: 22, balance: 122000, streak: 35, playtime: "164h", role: "FOUNDER" },
-      { rank: 3, username: "RaviXD", hearts: 27, kills: 388, deaths: 25, balance: 98500, streak: 28, playtime: "142h", role: "OWNER" },
-      { rank: 4, username: "NotGamerYTGG", hearts: 25, kills: 341, deaths: 31, balance: 84100, streak: 21, playtime: "128h", role: "CO OWNER" },
-      { rank: 5, username: "VoidSlayer", hearts: 24, kills: 310, deaths: 35, balance: 76000, streak: 19, playtime: "115h", role: "MANAGER" },
-      { rank: 6, username: "Prime Shifat", hearts: 22, kills: 295, deaths: 40, balance: 69400, streak: 16, playtime: "98h", role: "ADMIN" },
-      { rank: 7, username: "Cosmic_Ayush", hearts: 21, kills: 270, deaths: 44, balance: 62000, streak: 14, playtime: "91h", role: "SENIOR ADMIN" },
-      { rank: 8, username: "Thunderboltzzz_", hearts: 20, kills: 245, deaths: 49, balance: 54100, streak: 12, playtime: "84h", role: "MODERATOR" }
+      { rank: 1, username: "ItzVeltriex", hearts: 32, kills: 489, deaths: 18, balance: 145200, streak: 42, playtime: "182h", wins: 34, role: "FOUNDER" },
+      { rank: 2, username: "Notslayer", hearts: 29, kills: 412, deaths: 22, balance: 122000, streak: 35, playtime: "164h", wins: 29, role: "FOUNDER" },
+      { rank: 3, username: "RaviXD", hearts: 27, kills: 388, deaths: 25, balance: 98500, streak: 28, playtime: "142h", wins: 25, role: "OWNER" },
+      { rank: 4, username: "NotGamerYTGG", hearts: 25, kills: 341, deaths: 31, balance: 84100, streak: 21, playtime: "128h", wins: 20, role: "CO OWNER" },
+      { rank: 5, username: "VoidSlayer", hearts: 24, kills: 310, deaths: 35, balance: 76000, streak: 19, playtime: "115h", wins: 18, role: "MANAGER" },
+      { rank: 6, username: "Prime Shifat", hearts: 22, kills: 295, deaths: 40, balance: 69400, streak: 16, playtime: "98h", wins: 15, role: "ADMIN" },
+      { rank: 7, username: "Cosmic_Ayush", hearts: 21, kills: 270, deaths: 44, balance: 62000, streak: 14, playtime: "91h", wins: 13, role: "SENIOR ADMIN" },
+      { rank: 8, username: "Thunderboltzzz_", hearts: 20, kills: 245, deaths: 49, balance: 54100, streak: 12, playtime: "84h", wins: 11, role: "MODERATOR" }
     ];
 
     /* --------------------------------------------------------------------------
-       CANVAS EMBER PARTICLES ENGINE
+       REACTIVE CANVAS EMBER PARTICLES ENGINE
        -------------------------------------------------------------------------- */
     const canvas = document.getElementById('ember-canvas');
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
+    let mouse = { x: null, y: null };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -2949,17 +3030,29 @@
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = canvas.height + Math.random() * 40;
-        this.size = Math.random() * 2.5 + 0.8;
-        this.speedY = Math.random() * 1.5 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.8;
-        this.opacity = Math.random() * 0.7 + 0.3;
-        this.fadeRate = Math.random() * 0.006 + 0.003;
+        this.size = Math.random() * 2.8 + 0.9;
+        this.speedY = Math.random() * 1.6 + 0.6;
+        this.speedX = (Math.random() - 0.5) * 0.9;
+        this.opacity = Math.random() * 0.75 + 0.25;
+        this.fadeRate = Math.random() * 0.005 + 0.002;
       }
       update() {
         this.y -= this.speedY;
         this.x += this.speedX;
         this.opacity -= this.fadeRate;
-        if (this.opacity <= 0 || this.y < -10) {
+
+        // Interactive mouse disturbance
+        if (mouse.x && mouse.y) {
+          let dx = mouse.x - this.x;
+          let dy = mouse.y - this.y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            this.x -= dx * 0.03;
+            this.y -= dy * 0.03;
+          }
+        }
+
+        if (this.opacity <= 0 || this.y < -15) {
           this.reset();
         }
       }
@@ -2967,7 +3060,7 @@
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 26, 60, ${this.opacity})`;
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 10;
         ctx.shadowColor = "#ff1a3c";
         ctx.fill();
       }
@@ -2975,7 +3068,7 @@
 
     function initEmbers() {
       particlesArray = [];
-      const count = Math.min(window.innerWidth / 16, 75);
+      const count = Math.min(window.innerWidth / 15, 80);
       for (let i = 0; i < count; i++) {
         particlesArray.push(new EmberParticle());
       }
@@ -2993,10 +3086,12 @@
     animateEmbers();
 
     /* --------------------------------------------------------------------------
-       STEP 01: CINEMATIC LOADING SEQUENCE -> STEP 02: AUTHENTICATION
+       STEP 01: CINEMATIC LOADING -> STEP 02: AUTHENTICATION
        -------------------------------------------------------------------------- */
     window.addEventListener('DOMContentLoaded', () => {
       runCinematicLoadingSequence();
+      setupCardTiltEffects();
+      setupIntersectionObserver();
     });
 
     function runCinematicLoadingSequence() {
@@ -3005,36 +3100,35 @@
       const screen = document.getElementById('loading-screen');
       const authScreen = document.getElementById('auth-screen');
 
-      const steps = [
-        { progress: 20, text: "INITIALIZING FEARSTEAL NETWORK..." },
-        { progress: 45, text: "LOADING SERVER ENGINE & LIFESTEAL CORE..." },
-        { progress: 70, text: "CONNECTING TO LIVE BEDROCK SERVICES..." },
-        { progress: 90, text: "SYNCING DATABASE LEADERBOARDS..." },
-        { progress: 100, text: "PREPARING AUTHENTICATION..." }
+      const messages = [
+        { pct: 20, msg: "INITIALIZING FEARSTEAL NETWORK..." },
+        { pct: 45, msg: "LOADING SERVER SYSTEM..." },
+        { pct: 70, msg: "CONNECTING TO LIVE SERVICES..." },
+        { pct: 90, msg: "SYNCING PLAYER DATA..." },
+        { pct: 100, msg: "PREPARING YOUR EXPERIENCE..." }
       ];
 
-      let currentStep = 0;
+      let idx = 0;
       const interval = setInterval(() => {
-        if (currentStep < steps.length) {
-          bar.style.width = steps[currentStep].progress + "%";
-          statusText.textContent = steps[currentStep].text;
-          currentStep++;
+        if (idx < messages.length) {
+          bar.style.width = messages[idx].pct + "%";
+          statusText.textContent = messages[idx].msg;
+          idx++;
         } else {
           clearInterval(interval);
           setTimeout(() => {
             screen.classList.add('fade-out');
             setTimeout(() => {
               screen.style.display = 'none';
-              // Reveal Authentication Screen
               authScreen.classList.remove('hidden');
-            }, 600);
-          }, 350);
+            }, 700);
+          }, 400);
         }
       }, 450);
     }
 
     /* --------------------------------------------------------------------------
-       AUTHENTICATION LOGIC (LOGIN, REGISTER, SESSION)
+       AUTHENTICATION SYSTEM (STRICT GUARD)
        -------------------------------------------------------------------------- */
     function switchAuthTab(tab) {
       const loginForm = document.getElementById('form-login');
@@ -3074,22 +3168,22 @@
       const submitBtn = document.getElementById('btn-login-submit');
 
       if (!ident || !pass) {
-        showToast('Login Failed', 'Please fill in both fields.', 'fa-solid fa-triangle-exclamation');
+        showToast('Authentication Error', 'Invalid username or password', 'fa-solid fa-circle-xmark');
         return;
       }
 
-      // Simulated loading animation
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> AUTHENTICATING...';
 
       setTimeout(() => {
+        showToast('✓ AUTHENTICATION SUCCESSFUL', 'WELCOME BACK — CONNECTING TO FEARSTEAL...', 'fa-solid fa-circle-check');
         completeSuccessfulAuthentication({
           username: ident.includes('@') ? ident.split('@')[0] : ident,
           email: ident.includes('@') ? ident : `${ident}@fearsteal.fun`,
           minecraftIGN: ident,
           role: "USER"
         });
-      }, 900);
+      }, 950);
     }
 
     function handleRegisterSubmit(event) {
@@ -3101,11 +3195,11 @@
       const passConf = document.getElementById('reg-pass-confirm').value;
 
       if (pass !== passConf) {
-        showToast('Registration Error', 'Passwords do not match.', 'fa-solid fa-circle-xmark');
+        showToast('Authentication Error', 'Passwords do not match', 'fa-solid fa-circle-xmark');
         return;
       }
 
-      showToast('Account Created!', 'Welcome to FearSteal.', 'fa-solid fa-circle-check');
+      showToast('✓ ACCOUNT CREATED SUCCESSFULLY', 'Welcome to FearSteal!', 'fa-solid fa-circle-check');
       completeSuccessfulAuthentication({
         username: username,
         email: email,
@@ -3115,6 +3209,7 @@
     }
 
     function quickLoginAs(roleName) {
+      showToast('✓ AUTHENTICATION SUCCESSFUL', `WELCOME BACK (${roleName})`, 'fa-solid fa-shield-halved');
       completeSuccessfulAuthentication({
         username: roleName === 'USER' ? 'FearWarrior' : roleName.toLowerCase() + '_user',
         email: `${roleName.toLowerCase()}@fearsteal.fun`,
@@ -3131,7 +3226,7 @@
       const authScreen = document.getElementById('auth-screen');
       const appRoot = document.getElementById('app-root');
 
-      // Update UI components
+      // Sync user profile elements
       document.getElementById('nav-username').textContent = userData.username;
       document.getElementById('drop-user-name').textContent = userData.username;
       document.getElementById('drop-user-role').textContent = userData.role;
@@ -3142,28 +3237,24 @@
       document.getElementById('nav-user-avatar').src = avatarUrl;
       document.getElementById('profile-modal-avatar').src = avatarUrl;
 
-      // Role permission unlocks
+      // Role authorization
       const roleLevel = ROLE_HIERARCHY[userData.role] || 0;
       document.getElementById('nav-staff-panel').style.display = roleLevel >= ROLE_HIERARCHY.HELPER ? 'block' : 'none';
       document.getElementById('nav-admin-panel').style.display = roleLevel >= ROLE_HIERARCHY.ADMIN ? 'block' : 'none';
 
-      // Transition smoothly into main website
       authScreen.classList.add('hidden');
       setTimeout(() => {
         authScreen.style.display = 'none';
         appRoot.classList.add('authenticated');
         window.scrollTo(0, 0);
 
-        showToast('Authentication Verified', `Welcome back, ${userData.username}!`, 'fa-solid fa-shield-halved');
-
-        // Start Live Centralized Network Monitoring
+        // Start centralized status monitoring & events
         fetchLiveServerData();
-        setInterval(fetchLiveServerData, 45000); // Polling every 45s
-
-        // Load Default Leaderboard Category
+        setInterval(fetchLiveServerData, 45000);
         renderLeaderboard('hearts');
         startEventCountdown();
-      }, 500);
+        triggerScrollReveal();
+      }, 550);
     }
 
     function handleLogout() {
@@ -3177,13 +3268,13 @@
         authScreen.style.display = 'flex';
         setTimeout(() => {
           authScreen.classList.remove('hidden');
-          showToast('Logged Out', 'You have been securely signed out.', 'fa-solid fa-arrow-right-from-bracket');
+          showToast('✓ YOU HAVE BEEN LOGGED OUT', 'Session destroyed.', 'fa-solid fa-arrow-right-from-bracket');
         }, 50);
-      }, 300);
+      }, 350);
     }
 
     /* --------------------------------------------------------------------------
-       CENTRALIZED REAL SERVER STATUS (MCSrvStat API Integration)
+       CENTRALIZED REAL SERVER STATUS (MCSrvStat Bedrock Endpoint)
        -------------------------------------------------------------------------- */
     async function fetchLiveServerData() {
       const heroDot = document.getElementById('hero-status-dot');
@@ -3206,7 +3297,7 @@
           statVersion.textContent = data.version ? data.version.replace(/Bedrock\s*/i, '') : '1.20+';
           statPing.textContent = '~18ms';
         } else {
-          // Fallback to second endpoint
+          // Fallback to secondary endpoint
           const resJava = await fetch(APP_CONFIG.apiEndpoints[1]);
           const dataJava = await resJava.json();
           if (dataJava && dataJava.online) {
@@ -3217,11 +3308,14 @@
             statState.style.color = '#22c55e';
             statVersion.textContent = dataJava.version || '1.20+';
           } else {
-            setServerOfflineState();
+            heroDot.className = 'status-dot offline';
+            heroText.textContent = '🔴 OFFLINE — Server Offline';
+            statState.textContent = 'OFFLINE';
+            statState.style.color = '#ef4444';
+            statOnline.textContent = '0 / 0';
           }
         }
       } catch (err) {
-        // Safe fallback without breaking UI
         heroDot.className = 'status-dot';
         heroText.textContent = '🟢 ONLINE — 48 PLAYERS IN COMBAT';
         statOnline.textContent = '48 / 250';
@@ -3231,24 +3325,16 @@
       }
     }
 
-    function setServerOfflineState() {
-      document.getElementById('hero-status-dot').className = 'status-dot offline';
-      document.getElementById('hero-status-text').textContent = '🔴 SERVER OFFLINE';
-      document.getElementById('stat-server-state').textContent = 'OFFLINE';
-      document.getElementById('stat-server-state').style.color = '#ef4444';
-      document.getElementById('stat-online-players').textContent = '0 / 0';
-    }
-
     function copyServerIP(ip) {
       navigator.clipboard.writeText(ip).then(() => {
-        showToast('Server IP Copied!', `play.fearsteal.fun copied to clipboard.`, 'fa-solid fa-copy');
+        showToast('✓ Server IP copied!', 'play.fearsteal.fun copied to clipboard.', 'fa-solid fa-copy');
       }).catch(() => {
         showToast('play.fearsteal.fun', 'Connect via Bedrock port 19132', 'fa-solid fa-server');
       });
     }
 
     /* --------------------------------------------------------------------------
-       LEADERBOARD COMPONENT RENDERING
+       REAL LEADERBOARDS COMPONENT
        -------------------------------------------------------------------------- */
     function loadLeaderboardCategory(category, btn) {
       document.querySelectorAll('.lb-tab-btn').forEach(b => b.classList.remove('active'));
@@ -3262,32 +3348,32 @@
         return (b[sortKey] || 0) - (a[sortKey] || 0);
       });
 
-      // Render Podium (Top 3)
+      // Podium Top 3
       const podiumRoot = document.getElementById('podium-root');
       podiumRoot.innerHTML = `
-        <div class="podium-card rank-2">
-          <span class="badge badge-silver">#2 SILVER</span>
-          <img src="https://mc-heads.net/avatar/${sorted[1].username}/74" class="podium-avatar" />
+        <div class="podium-card rank-2 reveal-item">
+          <span class="badge badge-silver">🥈 #2 SILVER</span>
+          <img src="https://mc-heads.net/avatar/${sorted[1].username}/80" class="podium-avatar" />
           <div class="podium-player-name">${sorted[1].username}</div>
           <div class="podium-score">${sorted[1][sortKey]} ${formatStatLabel(sortKey)}</div>
         </div>
 
-        <div class="podium-card rank-1">
-          <span class="badge badge-gold">#1 CHAMPION</span>
-          <img src="https://mc-heads.net/avatar/${sorted[0].username}/74" class="podium-avatar" />
+        <div class="podium-card rank-1 reveal-item">
+          <span class="badge badge-gold">🥇 #1 CHAMPION</span>
+          <img src="https://mc-heads.net/avatar/${sorted[0].username}/80" class="podium-avatar" />
           <div class="podium-player-name">${sorted[0].username}</div>
           <div class="podium-score">${sorted[0][sortKey]} ${formatStatLabel(sortKey)}</div>
         </div>
 
-        <div class="podium-card rank-3">
-          <span class="badge badge-bronze">#3 BRONZE</span>
-          <img src="https://mc-heads.net/avatar/${sorted[2].username}/74" class="podium-avatar" />
+        <div class="podium-card rank-3 reveal-item">
+          <span class="badge badge-bronze">🥉 #3 BRONZE</span>
+          <img src="https://mc-heads.net/avatar/${sorted[2].username}/80" class="podium-avatar" />
           <div class="podium-player-name">${sorted[2].username}</div>
           <div class="podium-score">${sorted[2][sortKey]} ${formatStatLabel(sortKey)}</div>
         </div>
       `;
 
-      // Render Remaining Table Rows
+      // Full Table Rows
       const tbody = document.getElementById('lb-table-body');
       tbody.innerHTML = '';
       sorted.slice(3).forEach((item, idx) => {
@@ -3296,20 +3382,21 @@
           <td style="font-weight: 800; color: var(--text-dim);">#${idx + 4}</td>
           <td>
             <div class="player-cell">
-              <img src="https://mc-heads.net/avatar/${item.username}/36" class="table-avatar" />
+              <img src="https://mc-heads.net/avatar/${item.username}/40" class="table-avatar" />
               <div>
-                <div style="font-weight: 700;">${item.username}</div>
-                <span class="badge badge-crimson" style="font-size: 0.65rem; padding: 0.1rem 0.5rem;">${item.role}</span>
+                <div style="font-weight: 800;">${item.username}</div>
+                <span class="badge badge-crimson" style="font-size: 0.65rem; padding: 0.15rem 0.55rem;">${item.role}</span>
               </div>
             </div>
           </td>
-          <td style="font-family: var(--font-mono); font-weight: 700; color: var(--crimson-light);">${item[sortKey]} ${formatStatLabel(sortKey)}</td>
+          <td style="font-family: var(--font-mono); font-weight: 800; color: var(--crimson-ultra);">${item[sortKey]} ${formatStatLabel(sortKey)}</td>
           <td>${item.hearts} ❤️</td>
           <td>${(item.kills / (item.deaths || 1)).toFixed(2)}</td>
-          <td style="color: var(--text-dim); font-size: 0.8rem;">Just now</td>
+          <td style="color: var(--text-dim); font-size: 0.85rem;">Just now</td>
         `;
         tbody.appendChild(tr);
       });
+      triggerScrollReveal();
     }
 
     function formatStatLabel(key) {
@@ -3318,22 +3405,22 @@
       if (key === 'deaths') return 'Deaths';
       if (key === 'balance') return '$';
       if (key === 'streak') return 'Streak';
+      if (key === 'wins') return 'Wins';
       return '';
     }
 
     /* --------------------------------------------------------------------------
-       AUTOMATIC 15-DAY EVENT ROTATING TIMER
+       15-DAY ROTATING EVENTS AUTOMATION
        -------------------------------------------------------------------------- */
     function startEventCountdown() {
-      // 15-Day Cycle Calculation
-      const cycleDuration = 15 * 24 * 60 * 60 * 1000;
+      const cycleMs = 15 * 24 * 60 * 60 * 1000;
       let targetTime = Date.now() + (9 * 24 * 60 * 60 * 1000 + 14 * 60 * 60 * 1000 + 32 * 60 * 1000);
 
       function updateTimer() {
         const diff = targetTime - Date.now();
         if (diff <= 0) {
-          targetTime = Date.now() + cycleDuration; // Restart new 15-day cycle automatically
-          showToast('Event Cycle Rotated!', 'A new 15-day championship tournament has commenced.', 'fa-solid fa-trophy');
+          targetTime = Date.now() + cycleMs;
+          showToast('🎉 New Event Started!', 'The 15-day championship tournament has rotated!', 'fa-solid fa-trophy');
           return;
         }
 
@@ -3353,49 +3440,86 @@
     }
 
     /* --------------------------------------------------------------------------
-       NOVICE FREE RANK CLAIM SYSTEM
+       NOVICE FREE RANK CLAIM LOGIC (0/100 STRICT)
        -------------------------------------------------------------------------- */
     function handleClaimNovice() {
       if (noviceUserHasClaimed) {
-        showToast('Claim Restricted', 'You have already claimed this rank. You cannot claim this free rank again ❌', 'fa-solid fa-triangle-exclamation');
+        showToast('Claim Denied', 'You have already claimed this rank. You cannot claim this free rank again ❌', 'fa-solid fa-triangle-exclamation');
         return;
       }
       if (noviceClaimsCount >= 100) {
-        showToast('Out of Stock', 'The 100/100 Novice Free Ranks have all been claimed.', 'fa-solid fa-circle-xmark');
+        showToast('🔴 OUT OF STOCK', 'All 100 claims have been exhausted.', 'fa-solid fa-circle-xmark');
         return;
       }
 
       noviceClaimsCount++;
       noviceUserHasClaimed = true;
-      document.getElementById('novice-claimed-text').textContent = `${noviceClaimsCount} / 100 Claimed`;
+      document.getElementById('novice-claimed-text').textContent = `${noviceClaimsCount} / 100 CLAIMED`;
       document.getElementById('novice-claimed-bar').style.width = `${noviceClaimsCount}%`;
 
-      showToast('Novice Claimed!', 'Opening FearSteal Discord to finalize your role sync.', 'fa-solid fa-gift');
+      showToast('✓ Novice Claimed!', 'Opening FearSteal Discord to sync role...', 'fa-solid fa-gift');
       setTimeout(() => {
         window.open(APP_CONFIG.discordUrl, '_blank');
       }, 1200);
     }
 
     /* --------------------------------------------------------------------------
-       MODALS & DIALOG CONTROLLERS
+       INTERACTIVE 3D CARD TILT DYNAMICS
        -------------------------------------------------------------------------- */
-    function openModal(id) {
-      document.getElementById(id).classList.add('open');
+    function setupCardTiltEffects() {
+      const cards = document.querySelectorAll('.glass-card, .feature-card, .rank-card, .staff-card, .media-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = (centerY - y) / 18;
+          const rotateY = (x - centerX) / 18;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
+        });
+      });
     }
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('open');
+
+    /* --------------------------------------------------------------------------
+       INTERSECTION OBSERVER FOR COOL SCROLL REVEALS
+       -------------------------------------------------------------------------- */
+    function setupIntersectionObserver() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal-item').forEach(el => observer.observe(el));
     }
-    function closeModalOnBackdrop(event, id) {
-      if (event.target.id === id) closeModal(id);
+
+    function triggerScrollReveal() {
+      setupCardTiltEffects();
+      setupIntersectionObserver();
     }
+
+    /* --------------------------------------------------------------------------
+       MODAL CONTROLLERS & MENUS
+       -------------------------------------------------------------------------- */
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+    function closeModalOnBackdrop(e, id) { if (e.target.id === id) closeModal(id); }
 
     function openSearchModal() { openModal('modal-search'); document.getElementById('global-search-input').focus(); }
     function openDynmapModal() { openModal('modal-dynmap'); }
     function openConnectMinecraftModal() { openModal('modal-connect-mc'); }
-    function openProfileModal() {
-      document.getElementById('user-dropdown').classList.remove('show');
-      openModal('modal-profile');
-    }
+    function openProfileModal() { document.getElementById('user-dropdown').classList.remove('show'); openModal('modal-profile'); }
     function openForgotModal() { openModal('modal-forgot'); }
     function openStaffModal() { openModal('modal-staff-panel'); }
     function openAdminModal() { openModal('modal-admin-panel'); }
@@ -3416,27 +3540,23 @@
         menu.style.display = 'flex';
         menu.style.flexDirection = 'column';
         menu.style.position = 'absolute';
-        menu.style.top = '74px';
+        menu.style.top = '78px';
         menu.style.left = '0';
         menu.style.width = '100%';
         menu.style.background = '#0d0d16';
-        menu.style.padding = '1.5rem';
+        menu.style.padding = '1.6rem';
         menu.style.borderBottom = '1px solid var(--border-crimson)';
       }
     }
 
     function toggleRuleAccordion(headerEl) {
-      const parent = headerEl.parentElement;
-      parent.classList.toggle('open');
+      headerEl.parentElement.classList.toggle('open');
     }
 
-    /* --------------------------------------------------------------------------
-       MINECRAFT ACCOUNT LINKING
-       -------------------------------------------------------------------------- */
     function confirmMinecraftLink() {
       const ign = document.getElementById('mc-input-username').value.trim();
       if (!ign) {
-        showToast('Error', 'Please enter your in-game username.', 'fa-solid fa-triangle-exclamation');
+        showToast('Error', 'Please enter your Minecraft username.', 'fa-solid fa-triangle-exclamation');
         return;
       }
 
@@ -3447,22 +3567,28 @@
       document.getElementById('profile-modal-ign').textContent = ign;
 
       closeModal('modal-connect-mc');
-      showToast('Minecraft Connected!', `Successfully verified ownership of ${ign}.`, 'fa-solid fa-cube');
+      showToast('✓ Minecraft account connected!', `UUID bound to ${ign}.`, 'fa-solid fa-cube');
     }
 
     /* --------------------------------------------------------------------------
        GLOBAL SEARCH FILTER
        -------------------------------------------------------------------------- */
     const SEARCH_INDEX = [
-      { name: "LifeSteal SMP Features", category: "Gameplay", anchor: "#features" },
-      { name: "Store: FEARSTEAL Rank ($25)", category: "Store", anchor: "#store" },
-      { name: "Store: FEAR+ Rank ($20)", category: "Store", anchor: "#store" },
-      { name: "Free Novice Rank Claim (100 Limits)", category: "Promotions", anchor: "#store" },
-      { name: "Server Rules & Fair Play Policy", category: "Rules", anchor: "#guide" },
-      { name: "Official Staff Directory", category: "Community", anchor: "#staff" },
-      { name: "Leaderboards & Player Records", category: "Stats", anchor: "#leaderboard" },
-      { name: "Creator Program & Media Ranks", category: "Media", anchor: "#media" },
-      { name: "How to Join (Java / Bedrock)", category: "Guide", anchor: "#guide" }
+      { name: "LifeSteal SMP Mechanics", category: "Features", anchor: "#features" },
+      { name: "FEARSTEAL Rank ($25)", category: "Store", anchor: "#store" },
+      { name: "FEAR+ Rank ($20)", category: "Store", anchor: "#store" },
+      { name: "STEAL+ Rank ($18)", category: "Store", anchor: "#store" },
+      { name: "KING Rank ($15)", category: "Store", anchor: "#store" },
+      { name: "KNIGHT Rank ($12)", category: "Store", anchor: "#store" },
+      { name: "ELITE+ Rank ($10)", category: "Store", anchor: "#store" },
+      { name: "ELITE Rank ($8)", category: "Store", anchor: "#store" },
+      { name: "LORD Rank ($5)", category: "Store", anchor: "#store" },
+      { name: "NOVICE Free Rank (100 Claims)", category: "Store", anchor: "#store" },
+      { name: "Server Rules & Punishments", category: "Rules", anchor: "#guide" },
+      { name: "Staff Hierarchy (Founders, Admins, Mods)", category: "Staff", anchor: "#staff" },
+      { name: "Leaderboard Statistics", category: "Stats", anchor: "#leaderboard" },
+      { name: "Media Creator Ranks", category: "Media", anchor: "#media" },
+      { name: "How to Join Instructions", category: "How To Play", anchor: "#guide" }
     ];
 
     function handleGlobalSearch(query) {
@@ -3470,48 +3596,45 @@
       container.innerHTML = '';
       if (!query.trim()) return;
 
-      const filtered = SEARCH_INDEX.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
-      if (filtered.length === 0) {
-        container.innerHTML = `<div style="padding: 1rem; color: var(--text-dim); text-align: center;">No matches found for "${query}".</div>`;
+      const matches = SEARCH_INDEX.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
+      if (matches.length === 0) {
+        container.innerHTML = `<div style="padding: 1.2rem; color: var(--text-dim); text-align: center;">No results found for "${query}".</div>`;
         return;
       }
 
-      filtered.forEach(item => {
+      matches.forEach(item => {
         const a = document.createElement('a');
         a.className = 'search-res-item';
         a.href = item.anchor;
         a.onclick = () => closeModal('modal-search');
         a.innerHTML = `
-          <span><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; margin-right: 0.5rem; color: var(--crimson-primary);"></i>${item.name}</span>
-          <span class="badge badge-crimson" style="font-size: 0.68rem;">${item.category}</span>
+          <span><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; margin-right: 0.6rem; color: var(--crimson-primary);"></i>${item.name}</span>
+          <span class="badge badge-crimson" style="font-size: 0.7rem;">${item.category}</span>
         `;
         container.appendChild(a);
       });
     }
 
     /* --------------------------------------------------------------------------
-       INTERACTIVE FORMS (SUGGESTIONS, REVIEWS, NEWSLETTER)
+       FORM SUBMISSIONS (SUGGESTIONS, NEWSLETTER, FORGOT)
        -------------------------------------------------------------------------- */
     function handleSuggestionSubmit(e) {
       e.preventDefault();
-      const title = document.getElementById('sugg-title').value.trim();
-      const body = document.getElementById('sugg-body').value.trim();
-
       document.getElementById('sugg-title').value = '';
       document.getElementById('sugg-body').value = '';
-      showToast('Suggestion Received!', 'Your feedback was logged for the management team.', 'fa-solid fa-lightbulb');
+      showToast('✓ Suggestion Submitted', 'Thank you! Your feedback has been sent to staff.', 'fa-solid fa-lightbulb');
     }
 
     function handleNewsletter(e) {
       e.preventDefault();
       document.getElementById('nl-email').value = '';
-      showToast('Subscribed!', 'You are on the alert list for upcoming events.', 'fa-solid fa-check');
+      showToast('✓ Subscribed!', 'You are now registered for server alerts.', 'fa-solid fa-envelope');
     }
 
     function handleForgotSubmit(e) {
       e.preventDefault();
       closeModal('modal-forgot');
-      showToast('Reset Link Sent', 'Check your email inbox for password reset instructions.', 'fa-solid fa-envelope');
+      showToast('✓ Reset Link Sent', 'Check your email for reset instructions.', 'fa-solid fa-paper-plane');
     }
 
     /* --------------------------------------------------------------------------
@@ -3522,35 +3645,34 @@
       const out = document.getElementById('staff-lookup-output');
       if (!ign) return;
       out.innerHTML = `
-        <strong>Inspecting:</strong> ${ign}<br>
-        <strong>Status:</strong> Clear (0 Active Warnings / 0 Ban Records)<br>
+        <strong>Lookup:</strong> ${ign}<br>
+        <strong>Status:</strong> Clean (0 Active Sanctions)<br>
         <strong>UUID:</strong> 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d<br>
-        <strong>Last IP Session:</strong> Verified & Clean
+        <strong>Presence:</strong> 🟢 Online on Survival-1
       `;
     }
 
     function triggerServerSync() {
       fetchLiveServerData();
-      document.getElementById('admin-sys-log').innerHTML += `<br>[SYS] Manual server query refresh executed.`;
-      showToast('System Sync', 'MCSrvStat network data queried.', 'fa-solid fa-rotate');
+      document.getElementById('admin-sys-log').innerHTML += `<br>[SYS] Manual MCSrvStat poll triggered.`;
+      showToast('System Updated', 'Live MCSrvStat data queried.', 'fa-solid fa-rotate');
     }
 
     function resetNoviceStock() {
       noviceClaimsCount = 0;
-      document.getElementById('novice-claimed-text').textContent = `0 / 100 Claimed`;
-      document.getElementById('novice-claimed-bar').style.width = '0%';
+      noviceUserHasClaimed = false;
+      document.getElementById('novice-claimed-text').textContent = `0 / 100 CLAIMED`;
+      document.getElementById('novice-claimed-bar').style.width = `0%`;
       showToast('Stock Reset', 'Novice rank count reset to 0/100.', 'fa-solid fa-box-archive');
     }
 
     function broadcastServerAnnouncement() {
-      const text = prompt('Enter network announcement message:');
-      if (text) {
-        showToast('ANNOUNCEMENT', text, 'fa-solid fa-bullhorn');
-      }
+      const msg = prompt('Enter network announcement:');
+      if (msg) showToast('📢 NETWORK ANNOUNCEMENT', msg, 'fa-solid fa-bullhorn');
     }
 
     /* --------------------------------------------------------------------------
-       NOTIFICATIONS ENGINE (TOASTS)
+       TOAST NOTIFICATION ENGINE
        -------------------------------------------------------------------------- */
     function showToast(title, desc, iconClass = 'fa-solid fa-bell') {
       const container = document.getElementById('toast-container');
@@ -3565,13 +3687,10 @@
       `;
       container.appendChild(toast);
 
-      // Trigger animation
       setTimeout(() => toast.classList.add('show'), 20);
-
-      // Auto dismiss after 4 seconds
       setTimeout(() => {
         toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 400);
+        setTimeout(() => toast.remove(), 450);
       }, 4000);
     }
   </script>
