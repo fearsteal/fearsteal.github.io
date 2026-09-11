@@ -4,20 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home • FearSteal</title>
-  <meta name="description" content="Official FearSteal Minecraft LifeSteal Network. Steal hearts, survive, and rule the realm. IP: play.fearsteal.fun:19132" />
+  <meta name="description" content="FearSteal Network - The Next Generation Competitive Minecraft LifeSteal Network. IP: play.fearsteal.fun:19132" />
 
   <!-- Google Fonts & Font Awesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     :root {
       --bg-black: #050508;
       --bg-surface: #0a0a12;
-      --bg-card: rgba(15, 15, 25, 0.85);
-      --bg-card-hover: rgba(26, 26, 42, 0.95);
+      --bg-card: rgba(13, 13, 22, 0.88);
+      --bg-card-hover: rgba(22, 22, 36, 0.95);
       --crimson: #e61937;
       --crimson-light: #ff2d4d;
       --crimson-glow: rgba(230, 25, 55, 0.45);
@@ -57,12 +57,59 @@
       text-transform: uppercase;
     }
 
-    .font-cinzel {
-      font-family: 'Cinzel', serif;
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* ================= PRELOADER ANIMATION ================= */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #040407;
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
     }
 
-    .font-mono {
-      font-family: 'JetBrains Mono', monospace;
+    .loader-skull {
+      font-size: 3.5rem;
+      color: var(--crimson);
+      text-shadow: 0 0 30px var(--crimson-glow);
+      animation: skull-pulse 1.4s infinite ease-in-out;
+      margin-bottom: 20px;
+    }
+
+    .loader-bar-wrap {
+      width: 240px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .loader-bar-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--crimson), #ff4d66);
+      box-shadow: 0 0 12px var(--crimson);
+      animation: fill-progress 1.5s forwards cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    @keyframes skull-pulse {
+      0%, 100% { transform: scale(1); filter: brightness(1); }
+      50% { transform: scale(1.1); filter: brightness(1.4); }
+    }
+
+    @keyframes fill-progress {
+      0% { width: 0%; }
+      60% { width: 75%; }
+      100% { width: 100%; }
     }
 
     /* Ambient Background & Particles */
@@ -79,8 +126,8 @@
     .vignette-overlay {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at 50% 30%, transparent 20%, rgba(5, 5, 8, 0.85) 80%),
-                  radial-gradient(circle at top right, rgba(230, 25, 55, 0.12), transparent 50%);
+      background: radial-gradient(circle at 50% 30%, transparent 20%, rgba(5, 5, 8, 0.85) 85%),
+                  radial-gradient(circle at top right, rgba(230, 25, 55, 0.08), transparent 50%);
       pointer-events: none;
       z-index: 1;
     }
@@ -88,8 +135,8 @@
     /* Glass Panels */
     .glass-panel {
       background: var(--bg-card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border: 1px solid var(--border-glass);
       border-radius: 12px;
       transition: var(--transition);
@@ -114,7 +161,7 @@
       padding: 12px 26px;
       border-radius: 8px;
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       text-transform: uppercase;
       letter-spacing: 1px;
       cursor: pointer;
@@ -125,7 +172,7 @@
     }
 
     .btn-crimson {
-      background: linear-gradient(135deg, var(--crimson) 0%, #990e22 100%);
+      background: linear-gradient(135deg, var(--crimson) 0%, #8f0d20 100%);
       box-shadow: 0 4px 20px var(--crimson-glow);
     }
 
@@ -158,9 +205,9 @@
       transform: translateY(-2px);
     }
 
-    /* Container */
+    /* Containers */
     .container {
-      max-width: 1300px;
+      max-width: 1320px;
       margin: 0 auto;
       padding: 0 24px;
       position: relative;
@@ -199,7 +246,7 @@
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: radial-gradient(circle at center, #11111a 0%, #030305 90%);
+      background: radial-gradient(circle at center, #10101a 0%, #030306 95%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -209,12 +256,18 @@
 
     .auth-card {
       width: 100%;
-      max-width: 480px;
+      max-width: 460px;
       padding: 40px;
       border: 1px solid var(--crimson-border);
       box-shadow: 0 0 50px rgba(230, 25, 55, 0.25);
       position: relative;
       overflow: hidden;
+      animation: auth-card-appear 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes auth-card-appear {
+      from { opacity: 0; transform: scale(0.92) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     .auth-tabs {
@@ -222,7 +275,7 @@
       gap: 15px;
       margin-bottom: 25px;
       border-bottom: 1px solid var(--border-glass);
-      padding-bottom: 12px;
+      padding-bottom: 10px;
     }
 
     .auth-tab {
@@ -232,7 +285,7 @@
       font-weight: 700;
       padding: 6px 14px;
       cursor: pointer;
-      font-size: 1.05rem;
+      font-size: 1rem;
       transition: var(--transition);
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -254,7 +307,7 @@
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .input-wrapper {
@@ -280,9 +333,9 @@
 
     .form-input {
       width: 100%;
-      background: rgba(8, 8, 14, 0.9);
+      background: rgba(8, 8, 14, 0.92);
       border: 1px solid var(--border-glass);
-      padding: 13px 14px 13px 42px;
+      padding: 12px 14px 12px 42px;
       border-radius: 8px;
       color: #fff;
       font-size: 0.95rem;
@@ -320,7 +373,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .oauth-btn {
@@ -343,31 +396,12 @@
       border-color: var(--crimson-border);
     }
 
-    .avatar-preview-box {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: rgba(0,0,0,0.4);
-      padding: 10px 14px;
-      border-radius: 8px;
-      margin-bottom: 16px;
-      border: 1px solid var(--border-glass);
-    }
-
-    .avatar-preview-box img {
-      width: 42px;
-      height: 42px;
-      border-radius: 8px;
-      border: 1px solid var(--crimson-border);
-      image-rendering: pixelated;
-    }
-
     /* HEADER & NAVIGATION */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(8, 8, 14, 0.88);
+      background: rgba(8, 8, 14, 0.9);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border-glass);
     }
@@ -376,7 +410,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 80px;
+      height: 75px;
     }
 
     .brand-logo {
@@ -387,14 +421,14 @@
     }
 
     .brand-logo .logo-icon {
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       border-radius: 10px;
       background: linear-gradient(135deg, var(--crimson) 0%, #300006 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       color: #fff;
       border: 1px solid var(--crimson);
       box-shadow: 0 0 18px var(--crimson-glow);
@@ -403,7 +437,7 @@
     .brand-logo .brand-text {
       font-family: 'Cinzel', serif;
       font-weight: 900;
-      font-size: 1.7rem;
+      font-size: 1.6rem;
       letter-spacing: 2px;
       background: linear-gradient(180deg, #fff 40%, var(--crimson) 100%);
       -webkit-background-clip: text;
@@ -414,7 +448,7 @@
       display: flex;
       align-items: center;
       list-style: none;
-      gap: 18px;
+      gap: 16px;
     }
 
     .nav-link {
@@ -425,9 +459,7 @@
       letter-spacing: 0.5px;
       text-transform: uppercase;
       transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      cursor: pointer;
     }
 
     .nav-link:hover, .nav-link.active {
@@ -456,14 +488,14 @@
     /* HERO SECTION */
     .hero {
       position: relative;
-      padding: 90px 0 110px;
+      padding: 70px 0 90px;
       text-align: center;
       background: radial-gradient(circle at center, rgba(230, 25, 55, 0.08) 0%, transparent 70%);
     }
 
     .hero-banner-wrap {
-      max-width: 960px;
-      margin: 0 auto 35px;
+      max-width: 980px;
+      margin: 0 auto 30px;
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid var(--crimson-border);
@@ -489,7 +521,7 @@
     }
 
     .hero-title {
-      font-size: 5rem;
+      font-size: 4.8rem;
       line-height: 1;
       letter-spacing: 4px;
       margin-bottom: 12px;
@@ -500,19 +532,19 @@
     }
 
     .hero-subtitle {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 600;
       color: var(--text-muted);
       letter-spacing: 3px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
-    /* Live Announcement Broadcast Bar */
+    /* Live Announcement Banner (24h Auto-Expiry) */
     #home-announcement-bar {
       display: none;
       max-width: 960px;
       margin: 0 auto 30px;
-      background: linear-gradient(90deg, rgba(230, 25, 55, 0.15), rgba(15, 15, 25, 0.95));
+      background: linear-gradient(90deg, rgba(230, 25, 55, 0.18), rgba(15, 15, 25, 0.95));
       border: 1px solid var(--crimson);
       border-radius: 10px;
       padding: 18px 24px;
@@ -520,16 +552,15 @@
       box-shadow: 0 0 25px var(--crimson-glow);
     }
 
-    /* Live Status Badge */
     .server-status-pill {
       display: inline-flex;
       align-items: center;
       gap: 16px;
-      padding: 12px 26px;
+      padding: 10px 24px;
       background: rgba(14, 14, 22, 0.9);
       border: 1px solid var(--crimson-border);
       border-radius: 50px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     .status-dot {
@@ -555,7 +586,7 @@
       gap: 12px;
       cursor: pointer;
       transition: var(--transition);
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
 
     .ip-box:hover {
@@ -572,12 +603,11 @@
       flex-wrap: wrap;
     }
 
-    /* SECTION PADDING */
     section {
       padding: 85px 0;
     }
 
-    /* ADVANCED LIVE STATUS MONITOR */
+    /* REAL-TIME STATUS CARDS (No infinite rolling animation) */
     .status-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -613,7 +643,7 @@
 
     /* CRATE SIMULATOR */
     .crate-sim-card {
-      max-width: 700px;
+      max-width: 680px;
       margin: 0 auto;
       padding: 40px;
       text-align: center;
@@ -622,24 +652,24 @@
     }
 
     .crate-icon-box {
-      width: 90px;
-      height: 90px;
-      border-radius: 18px;
+      width: 85px;
+      height: 85px;
+      border-radius: 16px;
       background: rgba(230, 25, 55, 0.15);
       border: 2px solid var(--crimson);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
+      font-size: 2.8rem;
       color: var(--crimson);
       margin: 0 auto 20px;
       box-shadow: 0 0 30px var(--crimson-glow);
     }
 
-    /* HEART FORGE / LIFESTEAL SIMULATOR */
+    /* HEART FORGE */
     .heart-forge-box {
       max-width: 780px;
-      margin: 0 auto 45px;
+      margin: 0 auto;
       padding: 35px;
       text-align: center;
     }
@@ -664,7 +694,7 @@
       text-shadow: none;
     }
 
-    /* STORE & RANKS */
+    /* RANKS GRID */
     .ranks-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -672,7 +702,7 @@
     }
 
     .rank-card {
-      padding: 32px 24px;
+      padding: 32px 22px;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -892,17 +922,20 @@
       image-rendering: pixelated;
     }
 
-    /* DISCORD WIDGET CARD */
+    /* DISCORD CARD */
     .discord-card {
       padding: 40px;
       text-align: center;
       border: 1px solid rgba(88, 101, 242, 0.4);
       background: radial-gradient(circle at center, rgba(88, 101, 242, 0.15) 0%, rgba(15, 15, 25, 0.9) 100%);
+      max-width: 850px;
+      margin: 0 auto;
+      overflow: hidden;
     }
 
     .discord-avatar-logo {
-      width: 90px;
-      height: 90px;
+      width: 85px;
+      height: 85px;
       border-radius: 50%;
       border: 3px solid #5865F2;
       box-shadow: 0 0 25px rgba(88, 101, 242, 0.5);
@@ -947,7 +980,7 @@
       color: #fff;
     }
 
-    /* TOAST CONTAINER */
+    /* TOAST ALERTS */
     #toast-container {
       position: fixed;
       bottom: 24px;
@@ -975,9 +1008,7 @@
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .toast.show {
-      transform: translateX(0);
-    }
+    .toast.show { transform: translateX(0); }
 
     /* FOOTER */
     footer {
@@ -999,19 +1030,14 @@
       color: #fff;
     }
 
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
     .footer-links a {
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.9rem;
       transition: var(--transition);
+      cursor: pointer;
     }
 
     .footer-links a:hover {
@@ -1036,6 +1062,17 @@
   </style>
 </head>
 <body>
+
+  <!-- ================= PRELOADER ================= -->
+  <div id="preloader">
+    <i class="fa-solid fa-skull loader-skull"></i>
+    <div style="font-family:'Cinzel', serif; font-size: 1.4rem; font-weight:900; letter-spacing: 3px; margin-bottom: 15px; color:#fff;">
+      FEAR<span style="color:var(--crimson)">STEAL</span>
+    </div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar-fill"></div>
+    </div>
+  </div>
 
   <!-- Background Canvas & Vignette -->
   <canvas id="particle-canvas"></canvas>
@@ -1063,14 +1100,8 @@
           <label>Minecraft Username or Email</label>
           <div class="input-wrapper">
             <i class="fa-solid fa-user input-icon"></i>
-            <input type="text" id="login-identifier" class="form-input" placeholder="e.g. ItzVeltriex or email" required oninput="previewAuthSkin(this.value, 'login-avatar-preview')">
+            <input type="text" id="login-identifier" class="form-input" placeholder="IGN or email" required>
           </div>
-        </div>
-
-        <!-- Dynamic Skin Preview -->
-        <div class="avatar-preview-box" id="login-avatar-box">
-          <img id="login-avatar-preview" src="https://mc-heads.net/avatar/MHF_Steve/100" alt="Avatar">
-          <span style="font-size:0.85rem; color:var(--text-muted);" id="login-avatar-label">Player Skin Detected</span>
         </div>
 
         <div class="form-group">
@@ -1100,13 +1131,8 @@
           <label>Minecraft Username</label>
           <div class="input-wrapper">
             <i class="fa-solid fa-gamepad input-icon"></i>
-            <input type="text" id="reg-username" class="form-input" placeholder="Minecraft IGN" required oninput="previewAuthSkin(this.value, 'reg-avatar-preview')">
+            <input type="text" id="reg-username" class="form-input" placeholder="Minecraft IGN" required>
           </div>
-        </div>
-
-        <div class="avatar-preview-box" id="reg-avatar-box">
-          <img id="reg-avatar-preview" src="https://mc-heads.net/avatar/MHF_Steve/100" alt="Avatar">
-          <span style="font-size:0.85rem; color:var(--text-muted);" id="reg-avatar-label">Default Skin Head</span>
         </div>
 
         <div class="form-group">
@@ -1151,23 +1177,23 @@
   <!-- ================= STICKY HEADER ================= -->
   <header>
     <div class="container nav-container">
-      <a href="#home" class="brand-logo">
+      <a onclick="navigateTo('home')" class="brand-logo" style="cursor:pointer;">
         <div class="logo-icon"><i class="fa-solid fa-skull"></i></div>
         <span class="brand-text">FEARSTEAL</span>
       </a>
 
       <ul class="nav-menu" id="nav-menu">
-        <li><a href="#home" class="nav-link">Home</a></li>
-        <li><a href="#status" class="nav-link">Status</a></li>
-        <li><a href="#store" class="nav-link">Store</a></li>
-        <li><a href="#staff" class="nav-link">Staff</a></li>
-        <li><a href="#leaderboard" class="nav-link">Leaderboard</a></li>
-        <li><a href="#crate" class="nav-link">Crate Sim</a></li>
-        <li><a href="#members" class="nav-link">Members</a></li>
-        <li><a href="#apply" class="nav-link">Apply</a></li>
-        <li><a href="#suggest" class="nav-link">Suggest</a></li>
-        <li id="nav-admin-link" style="display: none;"><a href="#admin-panel" class="nav-link" style="color: var(--crimson); font-weight:700;"><i class="fa-solid fa-shield-virus"></i> Admin</a></li>
-        <li id="nav-staff-link" style="display: none;"><a href="#staff-panel" class="nav-link" style="color: var(--gold); font-weight:700;"><i class="fa-solid fa-hammer"></i> Staff</a></li>
+        <li><a onclick="navigateTo('home')" class="nav-link">Home</a></li>
+        <li><a onclick="navigateTo('status')" class="nav-link">Status</a></li>
+        <li><a onclick="navigateTo('store')" class="nav-link">Store</a></li>
+        <li><a onclick="navigateTo('staff')" class="nav-link">Staff</a></li>
+        <li><a onclick="navigateTo('leaderboard')" class="nav-link">Leaderboard</a></li>
+        <li><a onclick="navigateTo('crate')" class="nav-link">Crate Sim</a></li>
+        <li><a onclick="navigateTo('members')" class="nav-link">Members</a></li>
+        <li><a onclick="navigateTo('apply')" class="nav-link">Apply</a></li>
+        <li><a onclick="navigateTo('suggest')" class="nav-link">Suggest</a></li>
+        <li id="nav-admin-link" style="display: none;"><a onclick="navigateTo('admin-panel')" class="nav-link" style="color: var(--crimson); font-weight:700;"><i class="fa-solid fa-shield-virus"></i> Admin</a></li>
+        <li id="nav-staff-link" style="display: none;"><a onclick="navigateTo('staff-panel')" class="nav-link" style="color: var(--gold); font-weight:700;"><i class="fa-solid fa-hammer"></i> Staff</a></li>
       </ul>
 
       <div style="display: flex; align-items: center; gap: 14px;">
@@ -1187,7 +1213,7 @@
         
         <!-- FearSteal Official Banner -->
         <div class="hero-banner-wrap">
-          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="FearSteal Official Banner">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="FearSteal Banner">
           <div class="hero-banner-overlay">
             <span style="font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--crimson); font-weight: 700;">
               Season 4 LifeSteal Realm Active
@@ -1942,12 +1968,12 @@
         <div class="footer-col">
           <h4>Navigation</h4>
           <ul class="footer-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#status">Live Status</a></li>
-            <li><a href="#store">Server Store</a></li>
-            <li><a href="#staff">Staff Directory</a></li>
-            <li><a href="#leaderboard">Leaderboards</a></li>
-            <li><a href="#crate">Daily Crate</a></li>
+            <li><a onclick="navigateTo('home')">Home</a></li>
+            <li><a onclick="navigateTo('status')">Live Status</a></li>
+            <li><a onclick="navigateTo('store')">Server Store</a></li>
+            <li><a onclick="navigateTo('staff')">Staff Directory</a></li>
+            <li><a onclick="navigateTo('leaderboard')">Leaderboards</a></li>
+            <li><a onclick="navigateTo('crate')">Daily Crate</a></li>
           </ul>
         </div>
 
@@ -1978,18 +2004,18 @@
     </div>
   </footer>
 
-  <!-- ================= LOGIC & JAVASCRIPT ================= -->
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
     // Server Constants
     const MC_SERVER_IP = "play.fearsteal.fun";
     const MC_SERVER_PORT = "19132";
 
-    // Hardened Admin Credentials
+    // Admin Credentials
     const ROOT_ADMIN_USERNAME = "ItzVeltriex";
     const ROOT_ADMIN_EMAIL = "fearstealsupport@gmail.com";
     const ROOT_ADMIN_PASS = "thakuree@2064";
 
-    // App State Management
+    // Application State
     let currentUser = null;
     let registeredMembers = JSON.parse(localStorage.getItem('fs_members_list') || '[]');
     let staffApplications = JSON.parse(localStorage.getItem('fs_applications') || '[]');
@@ -1998,7 +2024,7 @@
     let crateCooldownExpiry = parseInt(localStorage.getItem('fs_crate_cooldown') || '0', 10);
     let userHearts = parseInt(localStorage.getItem('fs_user_hearts') || '10', 10);
 
-    // Dynamic Mock Leaderboard
+    // Mock Dynamic Leaderboard
     const mockLeaderboard = {
       kills: [
         { rank: 1, name: "ItzVeltriex", val: "1,520 kills", status: "Online" },
@@ -2043,14 +2069,14 @@
       ]
     };
 
-    // Initialize Page Systems
+    // ================= INITIALIZATION =================
     window.addEventListener('DOMContentLoaded', () => {
       document.getElementById('year-span').innerText = new Date().getFullYear();
       initParticles();
       initSeedData();
       initAuthSession();
       checkMinecraftServerStatus();
-      setInterval(() => checkMinecraftServerStatus(false), 60000); // 1 minute auto refresh
+      setInterval(() => checkMinecraftServerStatus(false), 60000); // 1-minute auto status refresh
       initLeaderboardRefreshTimer();
       renderAnnouncement();
       renderMembersDirectory();
@@ -2058,9 +2084,53 @@
       checkCrateCooldown();
       loadLeaderboardCategory('kills');
       updateBadgeCounts();
+
+      // Fade out preloader smoothly
+      setTimeout(() => {
+        const p = document.getElementById('preloader');
+        p.style.opacity = '0';
+        setTimeout(() => p.style.display = 'none', 600);
+      }, 1000);
+
+      // Handle Route from Current URL Path (e.g. /status or #status)
+      handlePathRouting();
     });
 
-    // Seed Initial Registered Members
+    // ================= DYNAMIC ROUTING & URL MASKING =================
+    function navigateTo(sectionId) {
+      const targetElem = document.getElementById(sectionId);
+      if (targetElem) {
+        targetElem.scrollIntoView({ behavior: 'smooth' });
+        
+        // Update URL bar to display like https://fearsteal.github.io/status
+        const cleanPath = sectionId === 'home' ? '/' : `/${sectionId}`;
+        try {
+          window.history.pushState({ section: sectionId }, '', cleanPath);
+        } catch (e) {
+          window.location.hash = sectionId;
+        }
+
+        // Active link highlighting
+        document.querySelectorAll('.nav-link').forEach(link => {
+          if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(sectionId)) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    }
+
+    window.addEventListener('popstate', handlePathRouting);
+
+    function handlePathRouting() {
+      const path = window.location.pathname.replace(/^\/+/g, '') || window.location.hash.replace(/^#+/, '');
+      if (path && document.getElementById(path)) {
+        setTimeout(() => navigateTo(path), 300);
+      }
+    }
+
+    // ================= DEFAULT REGISTERED MEMBERS =================
     function initSeedData() {
       if (registeredMembers.length === 0) {
         registeredMembers = [
@@ -2075,7 +2145,7 @@
       }
     }
 
-    // ================= REAL SERVER STATUS (No Infinite Spin) =================
+    // ================= REAL MINECRAFT STATUS CHECKER (No Infinite Spinning) =================
     async function checkMinecraftServerStatus(manualTrigger = false) {
       const heroDot = document.getElementById('hero-status-dot');
       const heroText = document.getElementById('hero-status-text');
@@ -2088,11 +2158,11 @@
       const monMotd = document.getElementById('monitor-motd');
       const monUpdated = document.getElementById('monitor-last-updated');
 
-      if (manualTrigger) showToast("Querying play.fearsteal.fun:19132...", "info");
+      if (manualTrigger) showToast("Pinging play.fearsteal.fun:19132...", "info");
 
       try {
         const startTime = performance.now();
-        // Bedrock Port Checking
+        // Bedrock Port Check
         const res = await fetch(`https://api.mcstatus.io/v2/status/bedrock/${MC_SERVER_IP}:${MC_SERVER_PORT}`, {
           cache: "no-store"
         });
@@ -2114,7 +2184,7 @@
           monPing.innerText = `${pingTime} ms`;
           monMotd.innerText = data.motd?.clean || "FearSteal Official LifeSteal Network";
         } else {
-          // Java fallback verification
+          // Java fallback test
           const javaRes = await fetch(`https://api.mcstatus.io/v2/status/java/${MC_SERVER_IP}`, { cache: "no-store" });
           const javaData = javaRes.ok ? await javaRes.json() : null;
 
@@ -2130,7 +2200,7 @@
             monPing.innerText = `${pingTime} ms`;
             monMotd.innerText = javaData.motd?.clean || "FearSteal LifeSteal Network";
           } else {
-            // Legitimately OFFLINE
+            // Server legitimately OFFLINE
             heroDot.className = 'status-dot offline';
             heroText.innerText = 'OFFLINE';
             heroText.style.color = 'var(--crimson)';
@@ -2191,16 +2261,6 @@
       }
     }
 
-    function previewAuthSkin(val, imgId) {
-      const username = val.trim();
-      const img = document.getElementById(imgId);
-      if (username.length >= 3 && !username.includes('@')) {
-        img.src = `https://mc-heads.net/avatar/${username}/100`;
-      } else {
-        img.src = `https://mc-heads.net/avatar/MHF_Steve/100`;
-      }
-    }
-
     function togglePasswordVisibility(fieldId, iconElem) {
       const input = document.getElementById(fieldId);
       if (input.type === 'password') {
@@ -2219,13 +2279,13 @@
 
       let assignedRole = "player";
 
-      // Strict Administrator Check
+      // Superuser Administrator verification
       const isRootMatch = (identifier === ROOT_ADMIN_USERNAME || identifier.toLowerCase() === ROOT_ADMIN_EMAIL.toLowerCase()) && pass === ROOT_ADMIN_PASS;
 
       if (isRootMatch) {
         assignedRole = "admin";
       } else {
-        // Check dynamic users created by admin
+        // Custom users created inside Admin Panel
         const customUsers = JSON.parse(localStorage.getItem('fs_custom_users') || '[]');
         const matched = customUsers.find(u => (u.username.toLowerCase() === identifier.toLowerCase() || u.email.toLowerCase() === identifier.toLowerCase()) && u.password === pass);
 
@@ -2259,7 +2319,6 @@
         return;
       }
 
-      // Add to registered members list
       const newRank = registeredMembers.length + 1;
       const newMember = { rankNum: newRank, username: ign, role: "player", joined: new Date().toLocaleDateString() };
       registeredMembers.push(newMember);
@@ -2384,7 +2443,6 @@
       document.getElementById('crate-reward-title').innerText = won;
       document.getElementById('crate-reward-box').style.display = 'block';
 
-      // Set 24 hour cooldown
       crateCooldownExpiry = Date.now() + (24 * 60 * 60 * 1000);
       localStorage.setItem('fs_crate_cooldown', crateCooldownExpiry.toString());
       checkCrateCooldown();
@@ -2572,7 +2630,7 @@
       showToast("Thank you! Suggestion forwarded to the Administrator panel.", "success");
     }
 
-    // ================= ADMIN FUNCTIONS =================
+    // ================= ADMIN PANEL LOGIC =================
     function switchAdminTab(tab, btnElem) {
       document.querySelectorAll('.admin-sub-tab-btn').forEach(b => b.classList.remove('active'));
       btnElem.classList.add('active');
@@ -2610,7 +2668,6 @@
       const twentyFourHours = 24 * 60 * 60 * 1000;
 
       if (elapsed > twentyFourHours) {
-        // Expired automatically
         bar.style.display = 'none';
         activeAnnouncement = null;
         localStorage.removeItem('fs_announcement');
@@ -2634,7 +2691,6 @@
       customUsers.push({ username: ign, email: email, password: pass, role: role });
       localStorage.setItem('fs_custom_users', JSON.stringify(customUsers));
 
-      // Add to registered list too
       registeredMembers.push({ rankNum: registeredMembers.length + 1, username: ign, role: role, joined: "Admin Created" });
       localStorage.setItem('fs_members_list', JSON.stringify(registeredMembers));
 
@@ -2774,7 +2830,7 @@
       }, 4500);
     }
 
-    // ================= STABLE AMBIENT PARTICLES =================
+    // ================= PARTICLE CANVAS =================
     function initParticles() {
       const canvas = document.getElementById('particle-canvas');
       const ctx = canvas.getContext('2d');
