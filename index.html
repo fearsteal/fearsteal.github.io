@@ -6,7 +6,7 @@
   <title>Home • FearSteal</title>
   <meta name="description" content="FearSteal LifeSteal Minecraft Network. Official IP: play.fearsteal.fun:19132. Steal hearts, survive, and rule the realm." />
 
-  <!-- Fonts & Icons -->
+  <!-- Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -15,14 +15,14 @@
   <style>
     :root {
       --bg-main: #050508;
-      --bg-panel: rgba(13, 13, 18, 0.82);
-      --bg-glass: rgba(20, 20, 28, 0.68);
+      --bg-panel: rgba(13, 13, 18, 0.85);
+      --bg-glass: rgba(20, 20, 28, 0.7);
       --crimson: #e6193c;
       --crimson-glow: rgba(230, 25, 60, 0.45);
       --crimson-subtle: rgba(230, 25, 60, 0.12);
       --red-bright: #ff2a4b;
       --gold: #f59e0b;
-      --gold-glow: rgba(245, 158, 11, 0.35);
+      --gold-glow: rgba(245, 158, 11, 0.4);
       --gold-bright: #fbbf24;
       --text: #f3f4f6;
       --text-muted: #9ca3af;
@@ -51,7 +51,7 @@
       position: relative;
     }
 
-    /* Interactive Canvas Background with Crimson Particles */
+    /* Ambient Canvas for Floating Crimson & Gold Embers */
     #bg-canvas {
       position: fixed;
       top: 0;
@@ -115,23 +115,20 @@
       gap: 6px;
     }
 
-    /* =========================================================
-       FS LOGO EMBEDDED STYLES (Provided Image)
-       ========================================================= */
+    /* 3D FS LOGO STYLES */
     .fs-logo-img {
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
       object-fit: contain;
-      filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.5));
-      image-rendering: pixelated;
+      filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.5));
       transition: var(--transition);
     }
     .fs-logo-img:hover {
       transform: scale(1.08);
-      filter: drop-shadow(0 0 24px rgba(230, 25, 60, 0.8));
+      filter: drop-shadow(0 0 20px rgba(230, 25, 60, 0.8));
     }
 
-    /* 0 - 100% LOADING SCREEN */
+    /* 0 - 100% LOADER SCREEN */
     #loader-screen {
       position: fixed;
       inset: 0;
@@ -147,7 +144,6 @@
     .loader-logo-wrap {
       text-align: center;
       margin-bottom: 24px;
-      position: relative;
     }
 
     .loader-fs-logo {
@@ -160,7 +156,7 @@
 
     @keyframes logoPulse {
       0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px var(--crimson-glow)); }
-      50% { transform: scale(1.05); filter: drop-shadow(0 0 50px var(--gold-glow)); }
+      50% { transform: scale(1.05); filter: drop-shadow(0 0 45px var(--gold-glow)); }
     }
 
     .loader-meter-outer {
@@ -189,7 +185,7 @@
       letter-spacing: 2px;
     }
 
-    /* TOAST NOTIFICATION ENGINE */
+    /* TOAST ALERTS */
     #toast-shelf {
       position: fixed;
       top: 24px;
@@ -228,7 +224,7 @@
     .toast-close { cursor: pointer; color: var(--text-dim); transition: color 0.2s; }
     .toast-close:hover { color: #fff; }
 
-    /* AUTHENTICATION GATE SCREEN */
+    /* AUTHENTICATION GATE */
     #auth-screen {
       min-height: 100vh;
       display: flex;
@@ -405,7 +401,7 @@
       gap: 4px;
     }
 
-    /* MAIN SITE PORTAL */
+    /* MAIN PORTAL */
     #main-portal { display: none; }
 
     /* STICKY NAVBAR */
@@ -546,7 +542,7 @@
       .hamburger-btn { display: block; }
     }
 
-    /* MOBILE MENU */
+    /* MOBILE DRAWER */
     #mobile-drawer {
       position: fixed;
       top: 74px;
@@ -583,7 +579,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* HERO BANNER */
+    /* HERO SECTION */
     .hero-banner {
       position: relative;
       border-radius: 24px;
@@ -628,7 +624,7 @@
       font-size: 1.1rem;
     }
 
-    /* REALTIME MINECRAFT TELEMETRY PILL (play.fearsteal.fun:19132) */
+    /* REALTIME MINECRAFT TELEMETRY PILL */
     .live-status-card {
       max-width: 600px;
       margin: 0 auto 32px;
@@ -722,7 +718,7 @@
     .btn-action-store { background: linear-gradient(135deg, #e6193c, #940a20); color: #fff; box-shadow: 0 4px 20px var(--crimson-glow); }
     .btn-action-store:hover { background: linear-gradient(135deg, #ff2a4b, #ba0f2b); transform: translateY(-2px); }
 
-    /* 24-HOUR AUTO EXPIRING ANNOUNCEMENT BANNER */
+    /* 24-HOUR AUTO EXPIRING ANNOUNCEMENT */
     #home-announcement-card {
       background: rgba(22, 17, 24, 0.95);
       border: 1px solid var(--border-red);
@@ -745,7 +741,7 @@
     .ann-content { color: #e5e7eb; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
     .ann-signature { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; border-top: 1px solid var(--border); padding-top: 8px; display: flex; align-items: center; gap: 6px; }
 
-    /* ALL 16 CATEGORIES PORTAL DECK (ON HOME SCREEN) */
+    /* ALL 16 CATEGORIES PORTAL DECK (HOME SCREEN) */
     .home-deck-header { text-align: center; margin: 50px 0 26px; }
     .category-deck-grid {
       display: grid;
@@ -843,7 +839,7 @@
     }
     .deck-card:hover .deck-action-link { gap: 10px; color: #fff; }
 
-    /* CARD SYSTEM & GRIDS */
+    /* CARDS & GRIDS */
     .glass-card {
       background: var(--bg-panel);
       border: 1px solid var(--border);
@@ -1005,7 +1001,7 @@
     .heart-forge-sim { background: var(--bg-panel); border: 1px solid var(--border-red); border-radius: 16px; padding: 24px; margin-top: 36px; }
     .hearts-meter { font-size: 1.8rem; color: var(--crimson); display: flex; align-items: center; gap: 6px; margin: 12px 0; flex-wrap: wrap; }
 
-    /* EVENTS SYSTEM */
+    /* EVENTS */
     .event-card-featured { background: linear-gradient(180deg, rgba(230,25,60,0.16) 0%, rgba(14,14,18,0.92) 100%); border: 1px solid var(--border-red); border-radius: 20px; padding: 34px; text-align: center; margin-bottom: 30px; }
     .countdown-timer-grid { display: flex; justify-content: center; gap: 16px; margin: 24px 0; flex-wrap: wrap; }
     .timer-unit-box { background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 12px; padding: 12px 18px; min-width: 80px; }
@@ -1024,7 +1020,7 @@
     .faq-item.open .faq-answer { max-height: 250px; padding-bottom: 20px; }
     .faq-item.open .faq-icon { transform: rotate(180deg); color: var(--crimson); }
 
-    /* ADMIN PANEL SUB-TABS */
+    /* ADMIN SUB-TABS */
     .admin-subnav { display: flex; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px; overflow-x: auto; }
     .admin-tab-btn { background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text-muted); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.85rem; }
     .admin-tab-btn.active { background: var(--gold); color: #000; border-color: var(--gold); }
@@ -1050,13 +1046,11 @@
 </head>
 
 <body>
-  <!-- Interactive Animated Background Canvas -->
+  <!-- Ambient Canvas Background -->
   <canvas id="bg-canvas"></canvas>
   <div class="grid-overlay"></div>
 
-  <!-- =========================================================
-       0-100% LOADING SCREEN WITH THE OFFICIAL FS LOGO
-       ========================================================= -->
+  <!-- 0 - 100% LOADER WITH FS LOGO -->
   <div id="loader-screen">
     <div class="loader-logo-wrap">
       <img id="loader-logo" class="loader-fs-logo" alt="FearSteal Logo" />
@@ -1074,9 +1068,7 @@
   <!-- TOAST SHELF -->
   <div id="toast-shelf"></div>
 
-  <!-- =========================================================
-       AUTHENTICATION GATE SCREEN (Before entering website)
-       ========================================================= -->
+  <!-- AUTHENTICATION GATE SCREEN -->
   <section id="auth-screen">
     <div class="auth-card">
       <div class="auth-logo">
@@ -1099,7 +1091,7 @@
         </button>
       </div>
 
-      <!-- LOGIN FORM -->
+      <!-- LOGIN -->
       <form id="form-login" onsubmit="handleLoginSubmit(event)">
         <div class="form-group">
           <label>Username or Email</label>
@@ -1138,7 +1130,7 @@
         </button>
       </form>
 
-      <!-- REGISTER FORM -->
+      <!-- REGISTER -->
       <form id="form-register" style="display: none;" onsubmit="handleRegisterSubmit(event)">
         <div class="form-group">
           <label>Minecraft Username (IGN)</label>
@@ -1186,7 +1178,7 @@
         </button>
       </form>
 
-      <!-- FORGOT PASSWORD -->
+      <!-- FORGOT -->
       <form id="form-forgot" style="display: none;" onsubmit="handleForgotSubmit(event)">
         <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
           Enter your registered email address to verify account ownership.
@@ -1203,7 +1195,7 @@
         </button>
       </form>
 
-      <!-- REGISTRATION GUIDANCE NOTES -->
+      <!-- REGISTRATION GUIDANCE -->
       <div class="auth-notes-box">
         <strong>Important Notes</strong>
         <div style="font-size: 0.76rem; margin-top: 2px;">Thanks for visiting our website! Follow these quick steps:</div>
@@ -1220,9 +1212,7 @@
     </div>
   </section>
 
-  <!-- =========================================================
-       MAIN AUTHENTICATED PORTAL
-       ========================================================= -->
+  <!-- MAIN AUTHENTICATED PORTAL -->
   <div id="main-portal">
     <!-- STICKY NAVBAR -->
     <header class="sticky-nav">
@@ -1263,7 +1253,6 @@
           <button id="nav-item-adminpanel" class="nav-item admin-only" onclick="navigateTo('adminpanel')"><i class="fa-solid fa-crown"></i> Admin Panel</button>
         </nav>
 
-        <!-- Current User Pill & Hamburger -->
         <div style="display: flex; align-items: center; gap: 12px;">
           <div class="user-pill">
             <img id="nav-user-head" class="user-pill-head" src="https://minotar.net/helm/Steve/64" alt="Head" />
@@ -1281,7 +1270,7 @@
       </div>
     </header>
 
-    <!-- MOBILE DRAWER -->
+    <!-- MOBILE MENU -->
     <div id="mobile-drawer">
       <button class="nav-item" onclick="navigateTo('home'); toggleMobileMenu();"><i class="fa-solid fa-house"></i> Home</button>
       <button class="nav-item" onclick="navigateTo('features'); toggleMobileMenu();"><i class="fa-solid fa-wand-magic-sparkles"></i> Features</button>
@@ -1306,7 +1295,7 @@
       </button>
     </div>
 
-    <!-- MAIN VIEWS -->
+    <!-- MAIN VIEW CONTAINER -->
     <main class="view-container">
 
       <!-- =========================================================
@@ -1369,7 +1358,7 @@
           </div>
         </div>
 
-        <!-- ALL 16 CATEGORIES PORTAL DECK (DIRECT ACCESS FROM HOME) -->
+        <!-- ALL 16 CATEGORIES PORTAL DECK -->
         <div class="home-deck-header">
           <span class="badge-gold"><i class="fa-solid fa-layer-group"></i> COMPLETE NETWORK COMMAND DECK</span>
           <h2 style="font-size: 2.2rem; margin-top: 8px;">ALL 16 NETWORK HUBS & CATEGORIES</h2>
@@ -2523,7 +2512,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       </div>
     </main>
 
-    <!-- FOOTER WITH NEWSLETTER -->
+    <!-- FOOTER -->
     <footer>
       <div class="footer-inner">
         <div>
@@ -2569,16 +2558,13 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
     </footer>
   </div>
 
-  <!-- JAVASCRIPT CONTROLLER & ANIMATED PARTICLES -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
     document.getElementById('year-disp').textContent = new Date().getFullYear();
 
-    /* =========================================================
-       SUPPLIED FS LOGO ASSET INJECTION
-       ========================================================= */
-    const FS_LOGO_URL = 'https://i.ibb.co/vzV2Qk6/fearsteal-logo.png';
+    /* EMBEDDED HIGH-FIDELITY 3D PIXEL FS LOGO */
+    const FS_LOGO_URL = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><linearGradient id="goldTop" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fff47d"/><stop offset="25%" stop-color="%23ffd000"/><stop offset="85%" stop-color="%23e69500"/><stop offset="100%" stop-color="%23c27000"/></linearGradient><linearGradient id="red3D" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23d60c28"/><stop offset="100%" stop-color="%235c000c"/></linearGradient><linearGradient id="redSide" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="%23ff2a4b"/><stop offset="100%" stop-color="%238a0314"/></linearGradient></defs><g stroke="%23000" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"><path d="M 120,180 L 120,380 L 195,380 L 195,310 L 235,310 L 235,380 L 250,380 L 250,180 Z" fill="url(%23red3D)"/><path d="M 270,180 L 270,380 L 400,380 L 400,240 L 330,240 L 330,220 L 400,220 L 400,180 Z" fill="url(%23red3D)"/><path d="M 100,140 L 240,140 L 240,200 L 170,200 L 170,230 L 230,230 L 230,280 L 170,280 L 170,350 L 100,350 Z" fill="url(%23goldTop)"/><path d="M 260,140 L 390,140 L 390,200 L 320,200 L 320,230 L 390,230 L 390,350 L 260,350 L 260,290 L 330,290 L 330,270 L 260,270 Z" fill="url(%23goldTop)"/><polygon points="100,140 120,165 240,165 240,140" fill="%23fffeb3" opacity="0.6"/><polygon points="260,140 280,165 390,165 390,140" fill="%23fffeb3" opacity="0.6"/></g></svg>`;
 
-    // Apply exact logo across elements
     function applyLogoAssets() {
       const loaderLogo = document.getElementById('loader-logo');
       const authLogo = document.getElementById('auth-logo-img');
@@ -2592,9 +2578,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
     }
     applyLogoAssets();
 
-    /* =========================================================
-       INTERACTIVE ANIMATED LIFESTEAL BACKGROUND (CANVAS)
-       ========================================================= */
+    /* ANIMATED CANVAS EMBERS */
     (function initBackgroundCanvas() {
       const canvas = document.getElementById('bg-canvas');
       const ctx = canvas.getContext('2d');
@@ -2606,18 +2590,17 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
         height = canvas.height = window.innerHeight;
       });
 
-      // Embers & Floating Red/Gold Shards
       const particles = [];
-      const particleCount = Math.min(Math.floor(window.innerWidth / 20), 65);
+      const particleCount = Math.min(Math.floor(window.innerWidth / 22), 65);
 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
           size: Math.random() * 3 + 1,
-          speedY: -(Math.random() * 0.9 + 0.3),
+          speedY: -(Math.random() * 0.8 + 0.3),
           speedX: (Math.random() - 0.5) * 0.5,
-          color: Math.random() > 0.3 ? 'rgba(230, 25, 60, ' : 'rgba(245, 158, 11, ',
+          color: Math.random() > 0.35 ? 'rgba(230, 25, 60, ' : 'rgba(245, 158, 11, ',
           opacity: Math.random() * 0.7 + 0.2,
           fadeSpeed: Math.random() * 0.008 + 0.003
         });
@@ -2626,14 +2609,12 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       function render() {
         ctx.clearRect(0, 0, width, height);
 
-        // Subtle gradient background
         const radGrad = ctx.createRadialGradient(width / 2, height * 0.3, 20, width / 2, height * 0.3, width * 0.7);
         radGrad.addColorStop(0, 'rgba(230, 25, 60, 0.08)');
         radGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = radGrad;
         ctx.fillRect(0, 0, width, height);
 
-        // Draw and update embers
         particles.forEach(p => {
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -2647,7 +2628,6 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
           p.x += p.speedX;
           p.opacity -= p.fadeSpeed;
 
-          // Recycle particles
           if (p.y < 0 || p.opacity <= 0) {
             p.y = height + 10;
             p.x = Math.random() * width;
@@ -2660,9 +2640,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       render();
     })();
 
-    /* =========================================================
-       LOCAL STORAGE & DEFAULT USERS
-       ========================================================= */
+    /* STORAGE & SEED ACCOUNTS */
     const STORAGE_KEYS = {
       AUTH_USER: 'fearsteal_current_user',
       USERS: 'fearsteal_users_db',
@@ -2711,9 +2689,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
 
     let usersDB = initDefaultUsers();
 
-    /* =========================================================
-       0 - 100% LOADER
-       ========================================================= */
+    /* 0 - 100% LOADER TIMER */
     window.addEventListener('DOMContentLoaded', () => {
       const loaderBar = document.getElementById('loader-bar');
       const loaderPercent = document.getElementById('loader-percent');
@@ -3074,7 +3050,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       item.classList.toggle('open');
     }
 
-    /* 24-HOUR AUTO EXPIRING ANNOUNCEMENT */
+    /* 24-HOUR AUTO-EXPIRING ANNOUNCEMENT */
     function checkActiveAnnouncement() {
       const saved = localStorage.getItem(STORAGE_KEYS.ANNOUNCEMENT);
       const card = document.getElementById('home-announcement-card');
@@ -3265,7 +3241,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       toast("Simulator reset to default 10 hearts.", "info");
     }
 
-    /* MEMBERS TABLE */
+    /* MEMBERS */
     function renderMembersTable() {
       usersDB = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
       const tbody = document.getElementById('members-table-body');
@@ -3370,7 +3346,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       });
     }
 
-    /* STAFF APPLICATION & SUGGESTIONS */
+    /* STAFF APPS & SUGGESTIONS */
     function handleStaffAppSubmit(e) {
       e.preventDefault();
       if (!currentUser) return;
@@ -3515,4 +3491,71 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
           adminBody.innerHTML += `
             <tr>
               <td><strong>${app.ign}</strong></td>
-              <td>${app.role
+              <td>${app.role}</td>
+              <td>${app.age}</td>
+              <td>${app.discord}</td>
+              <td style="font-size:0.8rem; color:var(--text-muted);">${app.exp.substring(0, 25)}...</td>
+              <td>
+                <span class="badge-crimson" style="font-size:0.7rem;">${app.status}</span>
+                <button class="btn-crimson" style="padding:3px 6px; font-size:0.7rem; width:auto; display:inline;" onclick="decideApp(${idx}, 'Accepted')">Accept</button>
+                <button class="btn-crimson" style="padding:3px 6px; font-size:0.7rem; width:auto; background:#374151; display:inline;" onclick="decideApp(${idx}, 'Denied')">Deny</button>
+              </td>
+            </tr>
+          `;
+        }
+        if (staffBody) {
+          staffBody.innerHTML += `
+            <tr>
+              <td><strong>${app.ign}</strong></td>
+              <td>${app.discord}</td>
+              <td>${app.role}</td>
+              <td>${app.age}</td>
+              <td><span class="badge-crimson" style="font-size:0.7rem;">${app.status}</span></td>
+            </tr>
+          `;
+        }
+      });
+    }
+
+    function decideApp(idx, decision) {
+      let apps = JSON.parse(localStorage.getItem(STORAGE_KEYS.STAFF_APPS) || '[]');
+      if (apps[idx]) {
+        apps[idx].status = decision;
+        localStorage.setItem(STORAGE_KEYS.STAFF_APPS, JSON.stringify(apps));
+        renderStaffAppsTables();
+        toast(`Application marked as: ${decision}`, "info");
+      }
+    }
+
+    function renderAdminSuggestionsTable() {
+      const sugs = JSON.parse(localStorage.getItem(STORAGE_KEYS.SUGGESTIONS) || '[]');
+      const tbody = document.getElementById('admin-suggestions-list-body');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      if (!sugs.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:var(--text-dim);">No suggestions.</td></tr>';
+        return;
+      }
+
+      sugs.forEach(s => {
+        tbody.innerHTML += `
+          <tr>
+            <td><strong>${s.username}</strong></td>
+            <td><span class="badge-crimson" style="font-size:0.7rem;">${s.category}</span></td>
+            <td><strong>${s.title}</strong></td>
+            <td style="font-size:0.85rem; color:var(--text-muted);">${s.desc}</td>
+            <td style="font-size:0.75rem; color:var(--text-dim);">${s.time}</td>
+          </tr>
+        `;
+      });
+    }
+
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      toast(`Subscribed (${document.getElementById('newsletter-email').value}) to updates!`, "success");
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
