@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home • FearSteal</title>
+  <title>Home  • FearSteal</title>
   <meta name="description" content="FearSteal LifeSteal Minecraft Network. Official IP: play.fearsteal.fun:19132. Steal hearts, survive, and rule the realm." />
 
   <!-- Fonts & FontAwesome -->
@@ -15,8 +15,8 @@
   <style>
     :root {
       --bg-main: #050508;
-      --bg-panel: rgba(13, 13, 18, 0.88);
-      --bg-glass: rgba(20, 20, 28, 0.72);
+      --bg-panel: rgba(13, 13, 18, 0.9);
+      --bg-glass: rgba(20, 20, 28, 0.75);
       --crimson: #e6193c;
       --crimson-glow: rgba(230, 25, 60, 0.45);
       --crimson-subtle: rgba(230, 25, 60, 0.12);
@@ -42,9 +42,7 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       background-color: var(--bg-main);
@@ -55,7 +53,7 @@
       position: relative;
     }
 
-    /* Ambient Canvas for Floating Crimson & Gold Embers */
+    /* Ambient Interactive Canvas */
     #bg-canvas {
       position: fixed;
       top: 0;
@@ -78,7 +76,6 @@
       pointer-events: none;
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #07070b; }
     ::-webkit-scrollbar-thumb { background: #22222d; border-radius: 4px; border: 1px solid var(--border-red); }
@@ -119,7 +116,7 @@
       gap: 6px;
     }
 
-    /* 3D FS LOGO STYLES */
+    /* 3D FS Logo */
     .fs-logo-img {
       width: 46px;
       height: 46px;
@@ -160,7 +157,7 @@
 
     @keyframes logoPulse {
       0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px var(--crimson-glow)); }
-      50% { transform: scale(1.05); filter: drop-shadow(0 0 45px var(--gold-glow)); }
+      50% { transform: scale(1.06); filter: drop-shadow(0 0 45px var(--gold-glow)); }
     }
 
     .loader-meter-outer {
@@ -228,7 +225,7 @@
     .toast-close { cursor: pointer; color: var(--text-dim); transition: color 0.2s; }
     .toast-close:hover { color: #fff; }
 
-    /* AUTHENTICATION GATE SCREEN */
+    /* AUTHENTICATION GATE */
     #auth-screen {
       min-height: 100vh;
       display: flex;
@@ -260,8 +257,8 @@
     }
 
     .auth-logo-img {
-      width: 76px;
-      height: 76px;
+      width: 80px;
+      height: 80px;
       object-fit: contain;
       filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.4));
     }
@@ -506,6 +503,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      text-decoration: none;
       transition: var(--transition);
     }
     .nav-item:hover, .nav-item.active {
@@ -513,10 +511,17 @@
       background: rgba(230, 25, 60, 0.14);
       border: 1px solid rgba(230, 25, 60, 0.3);
     }
-    .nav-item.admin-only, .nav-item.staff-only {
+
+    /* Staff and Admin category nav buttons are hidden by default and strictly role-controlled */
+    .nav-item.staff-only, #mobile-staff-btn {
+      display: none;
+      border: 1px solid #3b82f6;
+      color: #60a5fa;
+    }
+    .nav-item.admin-only, #mobile-admin-btn {
+      display: none;
       border: 1px solid var(--gold);
       color: var(--gold);
-      display: none;
     }
 
     .user-pill {
@@ -573,8 +578,8 @@
     }
 
     .page-section {
-      animation: fadeIn 0.35s ease forwards;
       margin-bottom: 70px;
+      animation: fadeIn 0.35s ease forwards;
     }
 
     @keyframes fadeIn {
@@ -627,7 +632,7 @@
       font-size: 1.1rem;
     }
 
-    /* REALTIME MINECRAFT TELEMETRY PILL */
+    /* REALTIME MINECRAFT TELEMETRY */
     .live-status-card {
       max-width: 600px;
       margin: 0 auto 32px;
@@ -930,6 +935,29 @@
     .admin-tab-btn { background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text-muted); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.85rem; }
     .admin-tab-btn.active { background: var(--gold); color: #000; border-color: var(--gold); }
 
+    /* MODAL PANELS FOR STAFF & ADMIN (Accessible only via Category navbar) */
+    .panel-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 4, 7, 0.85);
+      backdrop-filter: blur(16px);
+      z-index: 5000;
+      padding: 30px 16px;
+      overflow-y: auto;
+    }
+    .panel-modal.open { display: block; }
+    .panel-modal-content {
+      max-width: 1100px;
+      margin: 40px auto;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-red);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+      position: relative;
+    }
+
     /* FOOTER */
     footer { background: #030305; border-top: 1px solid var(--border); padding: 60px 24px 30px; }
     .footer-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px; margin-bottom: 40px; }
@@ -951,7 +979,7 @@
 </head>
 
 <body>
-  <!-- Ambient Canvas Background -->
+  <!-- Ambient Canvas Background with Floating Embers -->
   <canvas id="bg-canvas"></canvas>
   <div class="grid-overlay"></div>
 
@@ -1154,8 +1182,10 @@
           <a class="nav-item" href="#view-staffapply"><i class="fa-solid fa-clipboard-user"></i> Staff Apply</a>
           <a class="nav-item" href="#view-suggestion"><i class="fa-solid fa-lightbulb"></i> Suggestion</a>
           <a class="nav-item" href="#view-reviews"><i class="fa-solid fa-star"></i> Reviews</a>
-          <a id="nav-item-staffpanel" class="nav-item staff-only" href="#view-staffpanel"><i class="fa-solid fa-user-shield"></i> Staff Panel</a>
-          <a id="nav-item-adminpanel" class="nav-item admin-only" href="#view-adminpanel"><i class="fa-solid fa-crown"></i> Admin Panel</a>
+          
+          <!-- Only visible to Staff or Admin accounts -->
+          <button id="nav-item-staffpanel" class="nav-item staff-only" onclick="openStaffModal()"><i class="fa-solid fa-user-shield"></i> Staff Panel</button>
+          <button id="nav-item-adminpanel" class="nav-item admin-only" onclick="openAdminModal()"><i class="fa-solid fa-crown"></i> Admin Panel</button>
         </nav>
 
         <div style="display: flex; align-items: center; gap: 12px;">
@@ -1175,7 +1205,7 @@
       </div>
     </header>
 
-    <!-- MOBILE MENU -->
+    <!-- MOBILE DRAWER -->
     <div id="mobile-drawer">
       <a class="nav-item" href="#view-home" onclick="toggleMobileMenu()"><i class="fa-solid fa-house"></i> Home</a>
       <a class="nav-item" href="#view-features" onclick="toggleMobileMenu()"><i class="fa-solid fa-wand-magic-sparkles"></i> Features</a>
@@ -1193,14 +1223,16 @@
       <a class="nav-item" href="#view-staffapply" onclick="toggleMobileMenu()"><i class="fa-solid fa-clipboard-user"></i> Staff Apply</a>
       <a class="nav-item" href="#view-suggestion" onclick="toggleMobileMenu()"><i class="fa-solid fa-lightbulb"></i> Suggestion</a>
       <a class="nav-item" href="#view-reviews" onclick="toggleMobileMenu()"><i class="fa-solid fa-star"></i> Reviews</a>
-      <a id="mobile-staff-btn" class="nav-item staff-only" href="#view-staffpanel" onclick="toggleMobileMenu()"><i class="fa-solid fa-user-shield"></i> Staff Panel</a>
-      <a id="mobile-admin-btn" class="nav-item admin-only" href="#view-adminpanel" onclick="toggleMobileMenu()"><i class="fa-solid fa-crown"></i> Admin Panel</a>
+      
+      <button id="mobile-staff-btn" class="nav-item staff-only" onclick="openStaffModal(); toggleMobileMenu();"><i class="fa-solid fa-user-shield"></i> Staff Panel</button>
+      <button id="mobile-admin-btn" class="nav-item admin-only" onclick="openAdminModal(); toggleMobileMenu();"><i class="fa-solid fa-crown"></i> Admin Panel</button>
+      
       <button class="btn-crimson" style="margin-top: 14px;" onclick="handleLogout()">
         <i class="fa-solid fa-right-from-bracket"></i> Logout
       </button>
     </div>
 
-    <!-- MAIN VIEW CONTAINER: ALL 16 CATEGORIES RENDERED DIRECTLY ON SCREEN -->
+    <!-- MAIN HOME CONTAINER: ALL 16 CATEGORIES RENDERED DIRECTLY ON SCREEN -->
     <main class="view-container">
 
       <!-- =========================================================
@@ -2093,124 +2125,6 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
         <div id="reviews-feed-list" class="grid-3"></div>
       </section>
 
-      <!-- =========================================================
-           17. STAFF PANEL (Staff & Admin)
-           ========================================================= -->
-      <section id="view-staffpanel" class="page-section staff-only">
-        <div class="section-header">
-          <span class="badge-crimson" style="border-color: #3b82f6; color: #60a5fa;">Staff Area</span>
-          <h2>STAFF MODERATION DESK</h2>
-          <p>Operational console for official FearSteal Helpers, Moderators, and Admins.</p>
-        </div>
-
-        <div class="glass-card" style="margin-bottom: 24px;">
-          <h3 style="margin-bottom: 12px;"><i class="fa-solid fa-ticket" style="color: #60a5fa;"></i> Pending Staff Applications Queue</h3>
-          <table class="leaderboard-table">
-            <thead>
-              <tr><th>IGN</th><th>Discord</th><th>Role</th><th>Age</th><th>Status</th></tr>
-            </thead>
-            <tbody id="staff-panel-apps-body"></tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- =========================================================
-           18. ADMIN PANEL (Strictly for ItzVeltriex / Admin role)
-           ========================================================= -->
-      <section id="view-adminpanel" class="page-section admin-only">
-        <div class="section-header">
-          <span class="badge-crimson" style="border-color: var(--gold); color: var(--gold);"><i class="fa-solid fa-crown"></i> High Command</span>
-          <h2>FEARSTEAL ADMIN PANEL</h2>
-          <p>Executive controls for Founder <strong>ItzVeltriex</strong> and network administrators.</p>
-        </div>
-
-        <div class="admin-subnav">
-          <button class="admin-tab-btn active" onclick="switchAdminTab('users')"><i class="fa-solid fa-users-gear"></i> User Manager</button>
-          <button class="admin-tab-btn" onclick="switchAdminTab('announcement')"><i class="fa-solid fa-bullhorn"></i> Post 24h Announcement</button>
-          <button class="admin-tab-btn" onclick="switchAdminTab('apps')"><i class="fa-solid fa-file-signature"></i> Staff Applications</button>
-          <button class="admin-tab-btn" onclick="switchAdminTab('suggestions')"><i class="fa-solid fa-inbox"></i> Member Suggestions</button>
-        </div>
-
-        <!-- TAB 1: USERS -->
-        <div id="admin-tab-users" class="admin-tab-content">
-          <div class="glass-card" style="margin-bottom: 24px;">
-            <h3 style="margin-bottom: 12px;"><i class="fa-solid fa-user-plus" style="color: var(--gold);"></i> Create Or Update User Credentials & Role</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
-              Admin role gives Admin Panel access. Staff role opens the Staff Panel.
-            </p>
-
-            <form onsubmit="handleAdminCreateUser(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
-              <div><label style="font-size:0.78rem; color:var(--text-muted);">Username</label><input type="text" id="adm-user-name" placeholder="IGN" required /></div>
-              <div><label style="font-size:0.78rem; color:var(--text-muted);">Email</label><input type="email" id="adm-user-email" placeholder="user@fearsteal.fun" required /></div>
-              <div><label style="font-size:0.78rem; color:var(--text-muted);">Password</label><input type="text" id="adm-user-pass" placeholder="Set password" required /></div>
-              <div>
-                <label style="font-size:0.78rem; color:var(--text-muted);">Role</label>
-                <select id="adm-user-role" required>
-                  <option value="user">User (Standard)</option>
-                  <option value="staff">Staff (Staff Panel)</option>
-                  <option value="admin">Admin (Admin + Staff Panels)</option>
-                </select>
-              </div>
-              <div style="display:flex; align-items:flex-end;">
-                <button type="submit" class="btn-crimson" style="height:44px;"><i class="fa-solid fa-floppy-disk"></i> Save Account</button>
-              </div>
-            </form>
-          </div>
-
-          <div class="glass-card">
-            <h3 style="margin-bottom: 14px;">All Registered System Accounts</h3>
-            <table class="leaderboard-table">
-              <thead>
-                <tr><th>Head</th><th>Username</th><th>Email</th><th>Role</th><th>Action</th></tr>
-              </thead>
-              <tbody id="admin-users-list-body"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- TAB 2: 24H ANNOUNCEMENT -->
-        <div id="admin-tab-announcement" class="admin-tab-content" style="display: none;">
-          <div class="glass-card" style="max-width: 750px;">
-            <h3 style="margin-bottom: 8px;"><i class="fa-solid fa-bullhorn" style="color: var(--crimson);"></i> Post 24-Hour Home Announcement</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
-              Automatically expires after 24 hours. Signed with: <strong>Author by ItzVeltriex and Notslayer</strong>.
-            </p>
-
-            <form onsubmit="handlePostAnnouncement(event)">
-              <div class="form-group"><label>Headline</label><input type="text" id="ann-input-title" required placeholder="Announcement Title" /></div>
-              <div class="form-group"><label>Content</label><textarea id="ann-input-body" rows="4" required placeholder="Write message here..."></textarea></div>
-              <button type="submit" class="btn-crimson"><i class="fa-solid fa-paper-plane"></i> Publish 24h Announcement</button>
-            </form>
-          </div>
-        </div>
-
-        <!-- TAB 3: APPS -->
-        <div id="admin-tab-apps" class="admin-tab-content" style="display: none;">
-          <div class="glass-card">
-            <h3 style="margin-bottom: 14px;">Review Staff Applications</h3>
-            <table class="leaderboard-table">
-              <thead>
-                <tr><th>Applicant</th><th>Role</th><th>Age</th><th>Discord</th><th>Details</th><th>Decision</th></tr>
-              </thead>
-              <tbody id="admin-apps-list-body"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- TAB 4: SUGGESTIONS -->
-        <div id="admin-tab-suggestions" class="admin-tab-content" style="display: none;">
-          <div class="glass-card">
-            <h3 style="margin-bottom: 14px;">Incoming Member Suggestions</h3>
-            <table class="leaderboard-table">
-              <thead>
-                <tr><th>User</th><th>Category</th><th>Title</th><th>Description</th><th>Time</th></tr>
-              </thead>
-              <tbody id="admin-suggestions-list-body"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
       <!-- DISCORD COMMUNITY CTA & LIVE WIDGET -->
       <div class="discord-hero-box" style="margin-top: 50px;">
         <div style="max-width: 600px;">
@@ -2246,6 +2160,137 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
         </div>
       </div>
     </main>
+
+    <!-- =========================================================
+         STAFF PANEL (RESTRICTED TO STAFF & ADMIN ROLE ONLY)
+         ========================================================= -->
+    <div id="modal-staffpanel" class="panel-modal">
+      <div class="panel-modal-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <span class="badge-crimson" style="border-color: #3b82f6; color: #60a5fa;">Staff Area</span>
+            <h2 style="font-size: 1.8rem; margin-top: 6px;">STAFF MODERATION DESK</h2>
+          </div>
+          <button class="btn-crimson" style="width: auto; padding: 8px 16px;" onclick="closeStaffModal()">Close Panel</button>
+        </div>
+
+        <div class="glass-card" style="margin-bottom: 24px;">
+          <h3 style="margin-bottom: 12px;"><i class="fa-solid fa-ticket" style="color: #60a5fa;"></i> Pending Staff Applications Queue</h3>
+          <table class="leaderboard-table">
+            <thead>
+              <tr><th>IGN</th><th>Discord</th><th>Role</th><th>Age</th><th>Status</th></tr>
+            </thead>
+            <tbody id="staff-panel-apps-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         ADMIN PANEL (RESTRICTED TO ADMIN ROLE: ItzVeltriex)
+         ========================================================= -->
+    <div id="modal-adminpanel" class="panel-modal">
+      <div class="panel-modal-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <span class="badge-crimson" style="border-color: var(--gold); color: var(--gold);"><i class="fa-solid fa-crown"></i> High Command</span>
+            <h2 style="font-size: 1.8rem; margin-top: 6px;">FEARSTEAL ADMIN PANEL</h2>
+          </div>
+          <button class="btn-crimson" style="width: auto; padding: 8px 16px;" onclick="closeAdminModal()">Close Panel</button>
+        </div>
+
+        <div class="admin-subnav">
+          <button class="admin-tab-btn active" onclick="switchAdminTab('users')"><i class="fa-solid fa-users-gear"></i> User Manager</button>
+          <button class="admin-tab-btn" onclick="switchAdminTab('announcement')"><i class="fa-solid fa-bullhorn"></i> Post 24h Announcement</button>
+          <button class="admin-tab-btn" onclick="switchAdminTab('apps')"><i class="fa-solid fa-file-signature"></i> Staff Applications</button>
+          <button class="admin-tab-btn" onclick="switchAdminTab('suggestions')"><i class="fa-solid fa-inbox"></i> Member Suggestions</button>
+        </div>
+
+        <!-- TAB 1: USERS (USERNAME/EMAIL, PASSWORD, ROLE PICKER) -->
+        <div id="admin-tab-users" class="admin-tab-content">
+          <div class="glass-card" style="margin-bottom: 24px;">
+            <h3 style="margin-bottom: 8px;"><i class="fa-solid fa-user-plus" style="color: var(--gold);"></i> User Account Manager</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+              Create or edit user credentials manually. Giving the <strong>admin</strong> role opens the Admin Panel. Giving the <strong>staff</strong> role opens the dedicated Staff Panel.
+            </p>
+
+            <form onsubmit="handleAdminCreateUser(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+              <div>
+                <label style="font-size:0.78rem; color:var(--text-muted);">Username or Email</label>
+                <input type="text" id="adm-user-name" placeholder="IGN or Email" required />
+              </div>
+              <div>
+                <label style="font-size:0.78rem; color:var(--text-muted);">Set Password</label>
+                <input type="text" id="adm-user-pass" placeholder="Set custom password" required />
+              </div>
+              <div>
+                <label style="font-size:0.78rem; color:var(--text-muted);">Administrator / Staff Role</label>
+                <select id="adm-user-role" required>
+                  <option value="user">Standard Member (No Panel Access)</option>
+                  <option value="staff">Staff (Unlocks Staff Panel)</option>
+                  <option value="admin">Administrator (Unlocks Admin & Staff Panels)</option>
+                </select>
+              </div>
+              <div style="display:flex; align-items:flex-end;">
+                <button type="submit" class="btn-crimson" style="height:44px;"><i class="fa-solid fa-floppy-disk"></i> Save User Role</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="glass-card">
+            <h3 style="margin-bottom: 14px;">All Registered System Accounts</h3>
+            <table class="leaderboard-table">
+              <thead>
+                <tr><th>Head</th><th>Username</th><th>Email</th><th>Role</th><th>Action</th></tr>
+              </thead>
+              <tbody id="admin-users-list-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 2: 24H ANNOUNCEMENT -->
+        <div id="admin-tab-announcement" class="admin-tab-content" style="display: none;">
+          <div class="glass-card" style="max-width: 750px;">
+            <h3 style="margin-bottom: 8px;"><i class="fa-solid fa-bullhorn" style="color: var(--crimson);"></i> Post 24-Hour Home Announcement</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+              Automatically expires after 24 hours. Displays relative time ago and includes the official signature: <strong>Author by ItzVeltriex and Notslayer</strong>.
+            </p>
+
+            <form onsubmit="handlePostAnnouncement(event)">
+              <div class="form-group"><label>Headline</label><input type="text" id="ann-input-title" required placeholder="Announcement Title" /></div>
+              <div class="form-group"><label>Content</label><textarea id="ann-input-body" rows="4" required placeholder="Write message here..."></textarea></div>
+              <button type="submit" class="btn-crimson"><i class="fa-solid fa-paper-plane"></i> Publish 24h Announcement</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- TAB 3: APPS -->
+        <div id="admin-tab-apps" class="admin-tab-content" style="display: none;">
+          <div class="glass-card">
+            <h3 style="margin-bottom: 14px;">Review Staff Applications</h3>
+            <table class="leaderboard-table">
+              <thead>
+                <tr><th>Applicant</th><th>Role</th><th>Age</th><th>Discord</th><th>Details</th><th>Decision</th></tr>
+              </thead>
+              <tbody id="admin-apps-list-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 4: SUGGESTIONS -->
+        <div id="admin-tab-suggestions" class="admin-tab-content" style="display: none;">
+          <div class="glass-card">
+            <h3 style="margin-bottom: 14px;">Incoming Member Suggestions</h3>
+            <table class="leaderboard-table">
+              <thead>
+                <tr><th>User</th><th>Category</th><th>Title</th><th>Description</th><th>Time</th></tr>
+              </thead>
+              <tbody id="admin-suggestions-list-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>
@@ -2293,7 +2338,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
     </footer>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- JAVASCRIPT CONTROLLER -->
   <script>
     document.getElementById('year-disp').textContent = new Date().getFullYear();
 
@@ -2396,7 +2441,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
             username: 'ItzVeltriex',
             email: 'fearstealsupport@gmail.com',
             password: 'thakuree@2064',
-            role: 'admin',
+            role: 'admin', // Full Admin & Staff access
             joined: '2025-01-01',
             hearts: 32
           },
@@ -2457,11 +2502,14 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       startEventCountdown();
       startLeaderboardTicker();
 
+      // Periodic check for announcement expiry and relative time updates
+      setInterval(checkActiveAnnouncement, 60000);
+
       fetchLiveServerStatus();
       setInterval(fetchLiveServerStatus, 45000);
     });
 
-    /* TOAST NOTIFICATIONS */
+    /* TOAST NOTIFICATION */
     function toast(message, type = 'info') {
       const shelf = document.getElementById('toast-shelf');
       const toastEl = document.createElement('div');
@@ -2537,11 +2585,12 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
         return;
       }
 
+      // New user receives Member role automatically!
       const newUser = {
         username,
         email,
         password: pass,
-        role: 'user',
+        role: 'user', // standard member
         joined: new Date().toISOString().split('T')[0],
         hearts: 10
       };
@@ -2562,6 +2611,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
 
       usersDB = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
 
+      // Master admin check for ItzVeltriex / fearstealsupport@gmail.com
       const matched = usersDB.find(u => 
         (u.username.toLowerCase() === ident || u.email.toLowerCase() === ident) && u.password === pass
       );
@@ -2587,11 +2637,14 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       const roleBadge = document.getElementById('nav-user-role-badge');
       roleBadge.textContent = user.role.toUpperCase();
 
-      const isAdmin = user.role === 'admin';
+      // ROLE BASED VISIBILITY:
+      // Staff Panel: visible ONLY if user has 'staff' role or 'admin' role
+      // Admin Panel: visible ONLY if user has 'admin' role
+      const isAdmin = user.role === 'admin' || user.username.toLowerCase() === 'itzveltriex';
       const isStaff = user.role === 'staff' || isAdmin;
 
-      document.querySelectorAll('.admin-only').forEach(el => el.style.display = isAdmin ? 'block' : 'none');
-      document.querySelectorAll('.staff-only').forEach(el => el.style.display = isStaff ? 'block' : 'none');
+      document.querySelectorAll('.admin-only').forEach(el => el.style.display = isAdmin ? 'inline-flex' : 'none');
+      document.querySelectorAll('.staff-only').forEach(el => el.style.display = isStaff ? 'inline-flex' : 'none');
 
       initHeartSimulator(user.username);
       renderMembersTable();
@@ -2621,6 +2674,8 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       document.getElementById('main-portal').style.display = 'none';
       document.getElementById('auth-screen').style.display = 'flex';
       switchAuthTab('login');
+      closeAdminModal();
+      closeStaffModal();
       toast("Successfully logged out.", "info");
     }
 
@@ -2746,7 +2801,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       item.classList.toggle('open');
     }
 
-    /* 24-HOUR AUTO EXPIRING ANNOUNCEMENT */
+    /* 24-HOUR AUTO-EXPIRING ANNOUNCEMENT WITH RELATIVE TIME */
     function checkActiveAnnouncement() {
       const saved = localStorage.getItem(STORAGE_KEYS.ANNOUNCEMENT);
       const card = document.getElementById('home-announcement-card');
@@ -2757,8 +2812,10 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
 
       try {
         const ann = JSON.parse(saved);
-        const diffHours = (Date.now() - ann.timestamp) / (1000 * 60 * 60);
+        const diffMs = Date.now() - ann.timestamp;
+        const diffHours = diffMs / (1000 * 60 * 60);
 
+        // Expire automatically after 24h
         if (diffHours >= 24) {
           localStorage.removeItem(STORAGE_KEYS.ANNOUNCEMENT);
           card.style.display = 'none';
@@ -2769,7 +2826,8 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
         document.getElementById('ann-title-text').textContent = ann.title;
         document.getElementById('ann-body-text').textContent = ann.content;
 
-        const mins = Math.floor((Date.now() - ann.timestamp) / (1000 * 60));
+        // Relative time calculations
+        const mins = Math.floor(diffMs / (1000 * 60));
         let timeStr = 'Just now';
         if (mins >= 60) {
           const h = Math.floor(mins / 60);
@@ -2797,7 +2855,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
 
       checkActiveAnnouncement();
       toast("24-Hour Announcement published to Home Screen!", "success");
-      location.hash = '#view-home';
+      closeAdminModal();
     }
 
     /* NOVICE FREE RANK: STARTS STRICTLY AT 0 */
@@ -2854,7 +2912,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       toast("Novice Rank Claimed! Verify with staff in Discord.", "success");
     }
 
-    /* 24H CRATE */
+    /* 24H MYSTERY CRATE */
     function openDailyCrate() {
       const lastClaim = parseInt(localStorage.getItem(STORAGE_KEYS.CRATE_COOLDOWN) || '0', 10);
       const diffHours = (Date.now() - lastClaim) / (1000 * 60 * 60);
@@ -3100,7 +3158,33 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       renderAdminSuggestionsTable();
     }
 
-    /* ADMIN & STAFF CONTROLLERS */
+    /* MODAL PANELS (STAFF & ADMIN ONLY) */
+    function openStaffModal() {
+      if (!currentUser || (currentUser.role !== 'staff' && currentUser.role !== 'admin')) {
+        toast("Access Denied: Staff role required!", "error");
+        return;
+      }
+      document.getElementById('modal-staffpanel').classList.add('open');
+      renderStaffAppsTables();
+    }
+    function closeStaffModal() {
+      document.getElementById('modal-staffpanel').classList.remove('open');
+    }
+
+    function openAdminModal() {
+      if (!currentUser || currentUser.role !== 'admin') {
+        toast("Access Denied: Administrator permissions required!", "error");
+        return;
+      }
+      document.getElementById('modal-adminpanel').classList.add('open');
+      renderAdminUsersList();
+      renderStaffAppsTables();
+      renderAdminSuggestionsTable();
+    }
+    function closeAdminModal() {
+      document.getElementById('modal-adminpanel').classList.remove('open');
+    }
+
     function switchAdminTab(tab) {
       document.getElementById('admin-tab-users').style.display = tab === 'users' ? 'block' : 'none';
       document.getElementById('admin-tab-announcement').style.display = tab === 'announcement' ? 'block' : 'none';
@@ -3112,27 +3196,28 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
 
       if (tab === 'apps') renderStaffAppsTables();
       if (tab === 'suggestions') renderAdminSuggestionsTable();
+      if (tab === 'users') renderAdminUsersList();
     }
 
+    /* ADMIN USER MANAGEMENT: USERNAME/EMAIL, PASSWORD, ROLE ASSIGNMENT */
     function handleAdminCreateUser(e) {
       e.preventDefault();
       const uName = document.getElementById('adm-user-name').value.trim();
-      const uEmail = document.getElementById('adm-user-email').value.trim();
       const uPass = document.getElementById('adm-user-pass').value.trim();
       const uRole = document.getElementById('adm-user-role').value;
 
       usersDB = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-      let idx = usersDB.findIndex(u => u.username.toLowerCase() === uName.toLowerCase());
+      let idx = usersDB.findIndex(u => u.username.toLowerCase() === uName.toLowerCase() || u.email.toLowerCase() === uName.toLowerCase());
 
       if (idx >= 0) {
-        usersDB[idx].email = uEmail;
         usersDB[idx].password = uPass;
         usersDB[idx].role = uRole;
-        toast(`Account ${uName} role set to: ${uRole.toUpperCase()}`, "success");
+        toast(`Account '${uName}' updated with role: ${uRole.toUpperCase()}`, "success");
       } else {
+        const isEmail = uName.includes('@');
         usersDB.push({
-          username: uName,
-          email: uEmail,
+          username: isEmail ? uName.split('@')[0] : uName,
+          email: isEmail ? uName : `${uName.toLowerCase()}@fearsteal.fun`,
           password: uPass,
           role: uRole,
           joined: new Date().toISOString().split('T')[0],
