@@ -15,8 +15,8 @@
   <style>
     :root {
       --bg-main: #050508;
-      --bg-panel: rgba(13, 13, 18, 0.85);
-      --bg-glass: rgba(20, 20, 28, 0.7);
+      --bg-panel: rgba(13, 13, 18, 0.88);
+      --bg-glass: rgba(20, 20, 28, 0.72);
       --crimson: #e6193c;
       --crimson-glow: rgba(230, 25, 60, 0.45);
       --crimson-subtle: rgba(230, 25, 60, 0.12);
@@ -40,6 +40,10 @@
       box-sizing: border-box;
       font-family: 'Plus Jakarta Sans', sans-serif;
       -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -224,7 +228,7 @@
     .toast-close { cursor: pointer; color: var(--text-dim); transition: color 0.2s; }
     .toast-close:hover { color: #fff; }
 
-    /* AUTHENTICATION GATE */
+    /* AUTHENTICATION GATE SCREEN */
     #auth-screen {
       min-height: 100vh;
       display: flex;
@@ -409,7 +413,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(7, 7, 11, 0.9);
+      background: rgba(7, 7, 11, 0.92);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
       padding: 0 24px;
@@ -450,7 +454,7 @@
 
     .nav-search {
       position: relative;
-      width: 230px;
+      width: 220px;
       display: none;
     }
     @media (min-width: 1200px) { .nav-search { display: block; } }
@@ -469,7 +473,7 @@
     .nav-search input:focus {
       border-color: var(--crimson);
       background: rgba(0,0,0,0.6);
-      width: 260px;
+      width: 250px;
     }
     .nav-search i {
       position: absolute;
@@ -569,10 +573,9 @@
     }
 
     .page-section {
-      display: none;
       animation: fadeIn 0.35s ease forwards;
+      margin-bottom: 70px;
     }
-    .page-section.active { display: block; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(12px); }
@@ -740,104 +743,6 @@
     .ann-time-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-dim); background: rgba(0,0,0,0.4); padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border); }
     .ann-content { color: #e5e7eb; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
     .ann-signature { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; border-top: 1px solid var(--border); padding-top: 8px; display: flex; align-items: center; gap: 6px; }
-
-    /* ALL 16 CATEGORIES PORTAL DECK (HOME SCREEN) */
-    .home-deck-header { text-align: center; margin: 50px 0 26px; }
-    .category-deck-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-bottom: 50px;
-    }
-
-    .deck-card {
-      background: var(--bg-panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px 20px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition);
-      backdrop-filter: blur(14px);
-    }
-
-    .deck-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: transparent;
-      transition: var(--transition);
-    }
-
-    .deck-card:hover {
-      border-color: var(--border-red);
-      transform: translateY(-5px);
-      box-shadow: 0 14px 35px rgba(0,0,0,0.7), 0 0 22px var(--crimson-subtle);
-    }
-
-    .deck-card:hover::before {
-      background: var(--crimson);
-      box-shadow: 0 0 12px var(--crimson);
-    }
-
-    .deck-icon-wrap {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 14px;
-      font-size: 1.4rem;
-      color: var(--gold-bright);
-      transition: var(--transition);
-    }
-
-    .deck-card:hover .deck-icon-wrap {
-      background: rgba(230, 25, 60, 0.16);
-      border-color: var(--border-red);
-      color: #fff;
-      transform: scale(1.05);
-    }
-
-    .deck-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .deck-desc {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-      margin-bottom: 14px;
-    }
-
-    .deck-action-link {
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--red-bright);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: gap 0.2s;
-    }
-    .deck-card:hover .deck-action-link { gap: 10px; color: #fff; }
 
     /* CARDS & GRIDS */
     .glass-card {
@@ -1217,7 +1122,7 @@
     <!-- STICKY NAVBAR -->
     <header class="sticky-nav">
       <div class="nav-inner">
-        <a class="nav-brand" onclick="navigateTo('home')">
+        <a class="nav-brand" href="#view-home">
           <img id="nav-logo-img" class="fs-logo-img" alt="FearSteal" />
           <div class="nav-brand-text">
             <span class="title">FEARSTEAL</span>
@@ -1233,24 +1138,24 @@
 
         <!-- Links -->
         <nav class="nav-links-wrap">
-          <button class="nav-item active" onclick="navigateTo('home')"><i class="fa-solid fa-house"></i> Home</button>
-          <button class="nav-item" onclick="navigateTo('features')"><i class="fa-solid fa-wand-magic-sparkles"></i> Features</button>
-          <button class="nav-item" onclick="navigateTo('store')"><i class="fa-solid fa-cart-shopping"></i> Store</button>
-          <button class="nav-item" onclick="navigateTo('status')"><i class="fa-solid fa-signal"></i> Status</button>
-          <button class="nav-item" onclick="navigateTo('staff')"><i class="fa-solid fa-shield-cat"></i> Staff</button>
-          <button class="nav-item" onclick="navigateTo('members')"><i class="fa-solid fa-users"></i> Members</button>
-          <button class="nav-item" onclick="navigateTo('leaderboard')"><i class="fa-solid fa-trophy"></i> Leaderboard</button>
-          <button class="nav-item" onclick="navigateTo('events')"><i class="fa-solid fa-calendar-star"></i> Events</button>
-          <button class="nav-item" onclick="navigateTo('upcoming')"><i class="fa-solid fa-clock-rotate-left"></i> Upcoming</button>
-          <button class="nav-item" onclick="navigateTo('rules')"><i class="fa-solid fa-scroll"></i> Rules</button>
-          <button class="nav-item" onclick="navigateTo('howtoplay')"><i class="fa-solid fa-gamepad"></i> How To Play</button>
-          <button class="nav-item" onclick="navigateTo('faq')"><i class="fa-solid fa-circle-question"></i> FAQ</button>
-          <button class="nav-item" onclick="navigateTo('media')"><i class="fa-solid fa-video"></i> Media Apply</button>
-          <button class="nav-item" onclick="navigateTo('staffapply')"><i class="fa-solid fa-clipboard-user"></i> Staff Apply</button>
-          <button class="nav-item" onclick="navigateTo('suggestion')"><i class="fa-solid fa-lightbulb"></i> Suggestion</button>
-          <button class="nav-item" onclick="navigateTo('reviews')"><i class="fa-solid fa-star"></i> Reviews</button>
-          <button id="nav-item-staffpanel" class="nav-item staff-only" onclick="navigateTo('staffpanel')"><i class="fa-solid fa-user-shield"></i> Staff Panel</button>
-          <button id="nav-item-adminpanel" class="nav-item admin-only" onclick="navigateTo('adminpanel')"><i class="fa-solid fa-crown"></i> Admin Panel</button>
+          <a class="nav-item" href="#view-home"><i class="fa-solid fa-house"></i> Home</a>
+          <a class="nav-item" href="#view-features"><i class="fa-solid fa-wand-magic-sparkles"></i> Features</a>
+          <a class="nav-item" href="#view-store"><i class="fa-solid fa-cart-shopping"></i> Store</a>
+          <a class="nav-item" href="#view-status"><i class="fa-solid fa-signal"></i> Status</a>
+          <a class="nav-item" href="#view-staff"><i class="fa-solid fa-shield-cat"></i> Staff</a>
+          <a class="nav-item" href="#view-members"><i class="fa-solid fa-users"></i> Members</a>
+          <a class="nav-item" href="#view-leaderboard"><i class="fa-solid fa-trophy"></i> Leaderboard</a>
+          <a class="nav-item" href="#view-events"><i class="fa-solid fa-calendar-star"></i> Events</a>
+          <a class="nav-item" href="#view-upcoming"><i class="fa-solid fa-clock-rotate-left"></i> Upcoming</a>
+          <a class="nav-item" href="#view-rules"><i class="fa-solid fa-scroll"></i> Rules</a>
+          <a class="nav-item" href="#view-howtoplay"><i class="fa-solid fa-gamepad"></i> How To Play</a>
+          <a class="nav-item" href="#view-faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+          <a class="nav-item" href="#view-media"><i class="fa-solid fa-video"></i> Media Apply</a>
+          <a class="nav-item" href="#view-staffapply"><i class="fa-solid fa-clipboard-user"></i> Staff Apply</a>
+          <a class="nav-item" href="#view-suggestion"><i class="fa-solid fa-lightbulb"></i> Suggestion</a>
+          <a class="nav-item" href="#view-reviews"><i class="fa-solid fa-star"></i> Reviews</a>
+          <a id="nav-item-staffpanel" class="nav-item staff-only" href="#view-staffpanel"><i class="fa-solid fa-user-shield"></i> Staff Panel</a>
+          <a id="nav-item-adminpanel" class="nav-item admin-only" href="#view-adminpanel"><i class="fa-solid fa-crown"></i> Admin Panel</a>
         </nav>
 
         <div style="display: flex; align-items: center; gap: 12px;">
@@ -1272,36 +1177,36 @@
 
     <!-- MOBILE MENU -->
     <div id="mobile-drawer">
-      <button class="nav-item" onclick="navigateTo('home'); toggleMobileMenu();"><i class="fa-solid fa-house"></i> Home</button>
-      <button class="nav-item" onclick="navigateTo('features'); toggleMobileMenu();"><i class="fa-solid fa-wand-magic-sparkles"></i> Features</button>
-      <button class="nav-item" onclick="navigateTo('store'); toggleMobileMenu();"><i class="fa-solid fa-cart-shopping"></i> Store</button>
-      <button class="nav-item" onclick="navigateTo('status'); toggleMobileMenu();"><i class="fa-solid fa-signal"></i> Status</button>
-      <button class="nav-item" onclick="navigateTo('staff'); toggleMobileMenu();"><i class="fa-solid fa-shield-cat"></i> Staff</button>
-      <button class="nav-item" onclick="navigateTo('members'); toggleMobileMenu();"><i class="fa-solid fa-users"></i> Members</button>
-      <button class="nav-item" onclick="navigateTo('leaderboard'); toggleMobileMenu();"><i class="fa-solid fa-trophy"></i> Leaderboard</button>
-      <button class="nav-item" onclick="navigateTo('events'); toggleMobileMenu();"><i class="fa-solid fa-calendar-star"></i> Events</button>
-      <button class="nav-item" onclick="navigateTo('upcoming'); toggleMobileMenu();"><i class="fa-solid fa-clock-rotate-left"></i> Upcoming</button>
-      <button class="nav-item" onclick="navigateTo('rules'); toggleMobileMenu();"><i class="fa-solid fa-scroll"></i> Rules</button>
-      <button class="nav-item" onclick="navigateTo('howtoplay'); toggleMobileMenu();"><i class="fa-solid fa-gamepad"></i> How To Play</button>
-      <button class="nav-item" onclick="navigateTo('faq'); toggleMobileMenu();"><i class="fa-solid fa-circle-question"></i> FAQ</button>
-      <button class="nav-item" onclick="navigateTo('media'); toggleMobileMenu();"><i class="fa-solid fa-video"></i> Media Apply</button>
-      <button class="nav-item" onclick="navigateTo('staffapply'); toggleMobileMenu();"><i class="fa-solid fa-clipboard-user"></i> Staff Apply</button>
-      <button class="nav-item" onclick="navigateTo('suggestion'); toggleMobileMenu();"><i class="fa-solid fa-lightbulb"></i> Suggestion</button>
-      <button class="nav-item" onclick="navigateTo('reviews'); toggleMobileMenu();"><i class="fa-solid fa-star"></i> Reviews</button>
-      <button id="mobile-staff-btn" class="nav-item staff-only" onclick="navigateTo('staffpanel'); toggleMobileMenu();"><i class="fa-solid fa-user-shield"></i> Staff Panel</button>
-      <button id="mobile-admin-btn" class="nav-item admin-only" onclick="navigateTo('adminpanel'); toggleMobileMenu();"><i class="fa-solid fa-crown"></i> Admin Panel</button>
+      <a class="nav-item" href="#view-home" onclick="toggleMobileMenu()"><i class="fa-solid fa-house"></i> Home</a>
+      <a class="nav-item" href="#view-features" onclick="toggleMobileMenu()"><i class="fa-solid fa-wand-magic-sparkles"></i> Features</a>
+      <a class="nav-item" href="#view-store" onclick="toggleMobileMenu()"><i class="fa-solid fa-cart-shopping"></i> Store</a>
+      <a class="nav-item" href="#view-status" onclick="toggleMobileMenu()"><i class="fa-solid fa-signal"></i> Status</a>
+      <a class="nav-item" href="#view-staff" onclick="toggleMobileMenu()"><i class="fa-solid fa-shield-cat"></i> Staff</a>
+      <a class="nav-item" href="#view-members" onclick="toggleMobileMenu()"><i class="fa-solid fa-users"></i> Members</a>
+      <a class="nav-item" href="#view-leaderboard" onclick="toggleMobileMenu()"><i class="fa-solid fa-trophy"></i> Leaderboard</a>
+      <a class="nav-item" href="#view-events" onclick="toggleMobileMenu()"><i class="fa-solid fa-calendar-star"></i> Events</a>
+      <a class="nav-item" href="#view-upcoming" onclick="toggleMobileMenu()"><i class="fa-solid fa-clock-rotate-left"></i> Upcoming</a>
+      <a class="nav-item" href="#view-rules" onclick="toggleMobileMenu()"><i class="fa-solid fa-scroll"></i> Rules</a>
+      <a class="nav-item" href="#view-howtoplay" onclick="toggleMobileMenu()"><i class="fa-solid fa-gamepad"></i> How To Play</a>
+      <a class="nav-item" href="#view-faq" onclick="toggleMobileMenu()"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+      <a class="nav-item" href="#view-media" onclick="toggleMobileMenu()"><i class="fa-solid fa-video"></i> Media Apply</a>
+      <a class="nav-item" href="#view-staffapply" onclick="toggleMobileMenu()"><i class="fa-solid fa-clipboard-user"></i> Staff Apply</a>
+      <a class="nav-item" href="#view-suggestion" onclick="toggleMobileMenu()"><i class="fa-solid fa-lightbulb"></i> Suggestion</a>
+      <a class="nav-item" href="#view-reviews" onclick="toggleMobileMenu()"><i class="fa-solid fa-star"></i> Reviews</a>
+      <a id="mobile-staff-btn" class="nav-item staff-only" href="#view-staffpanel" onclick="toggleMobileMenu()"><i class="fa-solid fa-user-shield"></i> Staff Panel</a>
+      <a id="mobile-admin-btn" class="nav-item admin-only" href="#view-adminpanel" onclick="toggleMobileMenu()"><i class="fa-solid fa-crown"></i> Admin Panel</a>
       <button class="btn-crimson" style="margin-top: 14px;" onclick="handleLogout()">
         <i class="fa-solid fa-right-from-bracket"></i> Logout
       </button>
     </div>
 
-    <!-- MAIN VIEW CONTAINER -->
+    <!-- MAIN VIEW CONTAINER: ALL 16 CATEGORIES RENDERED DIRECTLY ON SCREEN -->
     <main class="view-container">
 
       <!-- =========================================================
-           1. HOME VIEW (Contains Hero + All 16 Categories Deck)
+           1. HERO SECTION
            ========================================================= -->
-      <section id="view-home" class="page-section active">
+      <section id="view-home" class="page-section">
         <!-- 24h Auto Expiring Announcement Card -->
         <div id="home-announcement-card">
           <div class="announcement-top-bar">
@@ -1318,7 +1223,6 @@
           </div>
         </div>
 
-        <!-- HERO CINEMATIC -->
         <div class="hero-banner">
           <img id="hero-logo-img" class="hero-big-logo" alt="FearSteal Core" />
           <div class="badge-crimson" style="margin-bottom: 16px;">
@@ -1352,178 +1256,9 @@
             <a href="https://store.cryzormc.in/" target="_blank" class="btn-action-hero btn-action-store">
               <i class="fa-solid fa-gem"></i> Visit Store
             </a>
-            <button class="btn-action-hero" style="background: rgba(255,255,255,0.08); color: #fff;" onclick="navigateTo('store')">
+            <a href="#view-store" class="btn-action-hero" style="background: rgba(255,255,255,0.08); color: #fff;">
               <i class="fa-solid fa-gift"></i> Claim Free Novice
-            </button>
-          </div>
-        </div>
-
-        <!-- ALL 16 CATEGORIES PORTAL DECK -->
-        <div class="home-deck-header">
-          <span class="badge-gold"><i class="fa-solid fa-layer-group"></i> COMPLETE NETWORK COMMAND DECK</span>
-          <h2 style="font-size: 2.2rem; margin-top: 8px;">ALL 16 NETWORK HUBS & CATEGORIES</h2>
-          <p style="color: var(--text-muted); font-size: 0.95rem;">Every feature and system in FearSteal is fully accessible directly from your home deck.</p>
-        </div>
-
-        <div class="category-deck-grid">
-          <!-- 1. Features -->
-          <div class="deck-card" onclick="navigateTo('features')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-            <div>
-              <div class="deck-title">Network Features <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Custom LifeSteal heart mechanics, high-performance combat hitboxes & velocity proxy.</p>
-            </div>
-            <div class="deck-action-link">View Features <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 2. Store -->
-          <div class="deck-card" onclick="navigateTo('store')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div>
-              <div class="deck-title">Store & Ranks <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Ranks from $5 Lord to $25 FearSteal, plus the 0/100 limited Free Novice rank.</p>
-            </div>
-            <div class="deck-action-link">Explore Store <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 3. Status -->
-          <div class="deck-card" onclick="navigateTo('status')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-signal"></i></div>
-            <div>
-              <div class="deck-title">Live Status <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Real-time ping telemetry, max player slots, Bedrock version & server MOTD preview.</p>
-            </div>
-            <div class="deck-action-link">Check Status <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 4. Staff Team -->
-          <div class="deck-card" onclick="navigateTo('staff')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-shield-cat"></i></div>
-            <div>
-              <div class="deck-title">Staff Team <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Meet Founders ItzVeltriex, Notslayer, and our active network staff team with avatar heads.</p>
-            </div>
-            <div class="deck-action-link">Meet Staff <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 5. Members -->
-          <div class="deck-card" onclick="navigateTo('members')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-users"></i></div>
-            <div>
-              <div class="deck-title">Members Roster <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Auto-synchronized list of registered users with player avatar heads & join dates.</p>
-            </div>
-            <div class="deck-action-link">View Members <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 6. Leaderboard & Simulator -->
-          <div class="deck-card" onclick="navigateTo('leaderboard')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-trophy"></i></div>
-            <div>
-              <div class="deck-title">Leaderboard & Simulator <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Top 3 podium, live player stats, and interactive Heart Forge LifeSteal simulator.</p>
-            </div>
-            <div class="deck-action-link">View Rankings <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 7. 15-Day Events -->
-          <div class="deck-card" onclick="navigateTo('events')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-calendar-star"></i></div>
-            <div>
-              <div class="deck-title">15-Day Events <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Bi-weekly rotating Minecraft tournaments and Discord contests with countdown clocks.</p>
-            </div>
-            <div class="deck-action-link">View Events <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 8. Lifetime Upcoming -->
-          <div class="deck-card" onclick="navigateTo('upcoming')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-clock-rotate-left"></i></div>
-            <div>
-              <div class="deck-title">Lifetime Upcoming <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Explore upcoming major updates, Season 2 PvP leagues, and custom rune expansions.</p>
-            </div>
-            <div class="deck-action-link">View Roadmap <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 9. Server Rules -->
-          <div class="deck-card" onclick="navigateTo('rules')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-scroll"></i></div>
-            <div>
-              <div class="deck-title">Server Rules <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Code of conduct, anti-cheat policies, combat restrictions, and punishment tiers.</p>
-            </div>
-            <div class="deck-action-link">Read Rules <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 10. How To Play -->
-          <div class="deck-card" onclick="navigateTo('howtoplay')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-gamepad"></i></div>
-            <div>
-              <div class="deck-title">How To Play <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Connection guide for Bedrock, PE, Windows, and Java editions with 1-click IP copy.</p>
-            </div>
-            <div class="deck-action-link">Read Guide <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 11. FAQ -->
-          <div class="deck-card" onclick="navigateTo('faq')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-circle-question"></i></div>
-            <div>
-              <div class="deck-title">FAQ Accordion <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Instant expandable answers to common questions regarding servers, ranks, and events.</p>
-            </div>
-            <div class="deck-action-link">Browse FAQ <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 12. Media Apply -->
-          <div class="deck-card" onclick="navigateTo('media')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-video"></i></div>
-            <div>
-              <div class="deck-title">Media Apply <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Creator program requirements for Smol to Famous ranks, plus official description box.</p>
-            </div>
-            <div class="deck-action-link">Creator Program <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 13. Staff Apply -->
-          <div class="deck-card" onclick="navigateTo('staffapply')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-clipboard-user"></i></div>
-            <div>
-              <div class="deck-title">Staff Apply <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">12-Question application to join Helper, Junior Mod, or Junior Admin moderation team.</p>
-            </div>
-            <div class="deck-action-link">Apply Now <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 14. Suggestion -->
-          <div class="deck-card" onclick="navigateTo('suggestion')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-lightbulb"></i></div>
-            <div>
-              <div class="deck-title">Suggestions <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Submit ideas for LifeSteal gameplay, Discord bots, or events directly to Admin Panel.</p>
-            </div>
-            <div class="deck-action-link">Submit Idea <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 15. Reviews & Ratings -->
-          <div class="deck-card" onclick="navigateTo('reviews')">
-            <div class="deck-icon-wrap"><i class="fa-solid fa-star"></i></div>
-            <div>
-              <div class="deck-title">Reviews & Ratings <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Rate server 0 to 10 stars and browse the community reviews leaderboard.</p>
-            </div>
-            <div class="deck-action-link">Leave Review <i class="fa-solid fa-chevron-right"></i></div>
-          </div>
-
-          <!-- 16. Management Desk (Staff & Admin) -->
-          <div class="deck-card" onclick="checkPanelRedirect()">
-            <div class="deck-icon-wrap" style="color:var(--gold);"><i class="fa-solid fa-shield-halved"></i></div>
-            <div>
-              <div class="deck-title">Management Desk <i class="fa-solid fa-arrow-right" style="font-size:0.8rem; color:var(--text-dim);"></i></div>
-              <p class="deck-desc">Moderation console for staff and Founder ItzVeltriex high-command user management.</p>
-            </div>
-            <div class="deck-action-link" style="color:var(--gold);">Access Console <i class="fa-solid fa-chevron-right"></i></div>
+            </a>
           </div>
         </div>
 
@@ -1542,7 +1277,7 @@
       </section>
 
       <!-- =========================================================
-           2. FEATURES VIEW
+           2. FEATURES SECTION
            ========================================================= -->
       <section id="view-features" class="page-section">
         <div class="section-header">
@@ -1596,7 +1331,7 @@
       </section>
 
       <!-- =========================================================
-           3. STORE VIEW
+           3. STORE & NOVICE RANK SECTION
            ========================================================= -->
       <section id="view-store" class="page-section">
         <div class="section-header">
@@ -1750,7 +1485,7 @@
       </section>
 
       <!-- =========================================================
-           4. STATUS VIEW
+           4. STATUS DASHBOARD SECTION
            ========================================================= -->
       <section id="view-status" class="page-section">
         <div class="section-header">
@@ -1800,7 +1535,7 @@
       </section>
 
       <!-- =========================================================
-           5. STAFF VIEW
+           5. STAFF SECTION
            ========================================================= -->
       <section id="view-staff" class="page-section">
         <div class="section-header">
@@ -1892,7 +1627,7 @@
       </section>
 
       <!-- =========================================================
-           6. MEMBERS VIEW
+           6. MEMBERS SECTION
            ========================================================= -->
       <section id="view-members" class="page-section">
         <div class="section-header">
@@ -1924,7 +1659,7 @@
       </section>
 
       <!-- =========================================================
-           7. LEADERBOARD & SIMULATOR VIEW
+           7. LEADERBOARD & SIMULATOR SECTION
            ========================================================= -->
       <section id="view-leaderboard" class="page-section">
         <div class="section-header">
@@ -2038,7 +1773,7 @@
       </section>
 
       <!-- =========================================================
-           8. EVENTS VIEW
+           8. EVENTS SECTION
            ========================================================= -->
       <section id="view-events" class="page-section">
         <div class="section-header">
@@ -2068,7 +1803,7 @@
       </section>
 
       <!-- =========================================================
-           9. LIFETIME UPCOMING VIEW
+           9. LIFETIME UPCOMING SECTION
            ========================================================= -->
       <section id="view-upcoming" class="page-section">
         <div class="section-header">
@@ -2111,7 +1846,7 @@
       </section>
 
       <!-- =========================================================
-           10. SERVER RULES VIEW
+           10. SERVER RULES SECTION
            ========================================================= -->
       <section id="view-rules" class="page-section">
         <div class="section-header">
@@ -2142,7 +1877,7 @@
       </section>
 
       <!-- =========================================================
-           11. HOW TO PLAY VIEW
+           11. HOW TO PLAY SECTION
            ========================================================= -->
       <section id="view-howtoplay" class="page-section">
         <div class="section-header">
@@ -2169,7 +1904,7 @@
       </section>
 
       <!-- =========================================================
-           12. FAQ VIEW
+           12. FAQ SECTION
            ========================================================= -->
       <section id="view-faq" class="page-section">
         <div class="section-header">
@@ -2207,7 +1942,7 @@
       </section>
 
       <!-- =========================================================
-           13. MEDIA APPLY VIEW
+           13. MEDIA APPLY SECTION
            ========================================================= -->
       <section id="view-media" class="page-section">
         <div class="section-header">
@@ -2246,7 +1981,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       </section>
 
       <!-- =========================================================
-           14. STAFF APPLICATION VIEW
+           14. STAFF APPLICATION SECTION
            ========================================================= -->
       <section id="view-staffapply" class="page-section">
         <div class="section-header">
@@ -2286,7 +2021,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       </section>
 
       <!-- =========================================================
-           15. SUGGESTIONS VIEW
+           15. SUGGESTIONS SECTION
            ========================================================= -->
       <section id="view-suggestion" class="page-section">
         <div class="section-header">
@@ -2315,7 +2050,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       </section>
 
       <!-- =========================================================
-           16. REVIEWS & RATINGS VIEW
+           16. REVIEWS & RATINGS SECTION
            ========================================================= -->
       <section id="view-reviews" class="page-section">
         <div class="section-header">
@@ -2361,7 +2096,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       <!-- =========================================================
            17. STAFF PANEL (Staff & Admin)
            ========================================================= -->
-      <section id="view-staffpanel" class="page-section">
+      <section id="view-staffpanel" class="page-section staff-only">
         <div class="section-header">
           <span class="badge-crimson" style="border-color: #3b82f6; color: #60a5fa;">Staff Area</span>
           <h2>STAFF MODERATION DESK</h2>
@@ -2382,7 +2117,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       <!-- =========================================================
            18. ADMIN PANEL (Strictly for ItzVeltriex / Admin role)
            ========================================================= -->
-      <section id="view-adminpanel" class="page-section">
+      <section id="view-adminpanel" class="page-section admin-only">
         <div class="section-header">
           <span class="badge-crimson" style="border-color: var(--gold); color: var(--gold);"><i class="fa-solid fa-crown"></i> High Command</span>
           <h2>FEARSTEAL ADMIN PANEL</h2>
@@ -2531,11 +2266,11 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
         <div>
           <h4 style="color: #fff; margin-bottom: 12px; font-size: 0.95rem;">Quick Navigation</h4>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-muted);">
-            <li><a onclick="navigateTo('store')" style="cursor: pointer; color: inherit;">Store & Ranks</a></li>
-            <li><a onclick="navigateTo('leaderboard')" style="cursor: pointer; color: inherit;">Leaderboard & Simulator</a></li>
-            <li><a onclick="navigateTo('rules')" style="cursor: pointer; color: inherit;">Server Rules</a></li>
-            <li><a onclick="navigateTo('media')" style="cursor: pointer; color: inherit;">Creator Program</a></li>
-            <li><a onclick="navigateTo('staffapply')" style="cursor: pointer; color: inherit;">Staff Application</a></li>
+            <li><a href="#view-store" style="cursor: pointer; color: inherit;">Store & Ranks</a></li>
+            <li><a href="#view-leaderboard" style="cursor: pointer; color: inherit;">Leaderboard & Simulator</a></li>
+            <li><a href="#view-rules" style="cursor: pointer; color: inherit;">Server Rules</a></li>
+            <li><a href="#view-media" style="cursor: pointer; color: inherit;">Creator Program</a></li>
+            <li><a href="#view-staffapply" style="cursor: pointer; color: inherit;">Staff Application</a></li>
           </ul>
         </div>
 
@@ -2562,8 +2297,8 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
   <script>
     document.getElementById('year-disp').textContent = new Date().getFullYear();
 
-    /* EMBEDDED HIGH-FIDELITY 3D PIXEL FS LOGO */
-    const FS_LOGO_URL = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><linearGradient id="goldTop" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fff47d"/><stop offset="25%" stop-color="%23ffd000"/><stop offset="85%" stop-color="%23e69500"/><stop offset="100%" stop-color="%23c27000"/></linearGradient><linearGradient id="red3D" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23d60c28"/><stop offset="100%" stop-color="%235c000c"/></linearGradient><linearGradient id="redSide" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="%23ff2a4b"/><stop offset="100%" stop-color="%238a0314"/></linearGradient></defs><g stroke="%23000" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"><path d="M 120,180 L 120,380 L 195,380 L 195,310 L 235,310 L 235,380 L 250,380 L 250,180 Z" fill="url(%23red3D)"/><path d="M 270,180 L 270,380 L 400,380 L 400,240 L 330,240 L 330,220 L 400,220 L 400,180 Z" fill="url(%23red3D)"/><path d="M 100,140 L 240,140 L 240,200 L 170,200 L 170,230 L 230,230 L 230,280 L 170,280 L 170,350 L 100,350 Z" fill="url(%23goldTop)"/><path d="M 260,140 L 390,140 L 390,200 L 320,200 L 320,230 L 390,230 L 390,350 L 260,350 L 260,290 L 330,290 L 330,270 L 260,270 Z" fill="url(%23goldTop)"/><polygon points="100,140 120,165 240,165 240,140" fill="%23fffeb3" opacity="0.6"/><polygon points="260,140 280,165 390,165 390,140" fill="%23fffeb3" opacity="0.6"/></g></svg>`;
+    /* EMBEDDED 3D PIXEL FS LOGO */
+    const FS_LOGO_URL = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><linearGradient id="goldTop" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fff47d"/><stop offset="25%" stop-color="%23ffd000"/><stop offset="85%" stop-color="%23e69500"/><stop offset="100%" stop-color="%23c27000"/></linearGradient><linearGradient id="red3D" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23d60c28"/><stop offset="100%" stop-color="%235c000c"/></linearGradient></defs><g stroke="%23000" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"><path d="M 120,180 L 120,380 L 195,380 L 195,310 L 235,310 L 235,380 L 250,380 L 250,180 Z" fill="url(%23red3D)"/><path d="M 270,180 L 270,380 L 400,380 L 400,240 L 330,240 L 330,220 L 400,220 L 400,180 Z" fill="url(%23red3D)"/><path d="M 100,140 L 240,140 L 240,200 L 170,200 L 170,230 L 230,230 L 230,280 L 170,280 L 170,350 L 100,350 Z" fill="url(%23goldTop)"/><path d="M 260,140 L 390,140 L 390,200 L 320,200 L 320,230 L 390,230 L 390,350 L 260,350 L 260,290 L 330,290 L 330,270 L 260,270 Z" fill="url(%23goldTop)"/><polygon points="100,140 120,165 240,165 240,140" fill="%23fffeb3" opacity="0.6"/><polygon points="260,140 280,165 390,165 390,140" fill="%23fffeb3" opacity="0.6"/></g></svg>`;
 
     function applyLogoAssets() {
       const loaderLogo = document.getElementById('loader-logo');
@@ -2640,7 +2375,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       render();
     })();
 
-    /* STORAGE & SEED ACCOUNTS */
+    /* STORAGE KEYS & SEED ACCOUNTS */
     const STORAGE_KEYS = {
       AUTH_USER: 'fearsteal_current_user',
       USERS: 'fearsteal_users_db',
@@ -2726,7 +2461,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       setInterval(fetchLiveServerStatus, 45000);
     });
 
-    /* TOAST NOTIFICATION */
+    /* TOAST NOTIFICATIONS */
     function toast(message, type = 'info') {
       const shelf = document.getElementById('toast-shelf');
       const toastEl = document.createElement('div');
@@ -2855,18 +2590,14 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       const isAdmin = user.role === 'admin';
       const isStaff = user.role === 'staff' || isAdmin;
 
-      document.getElementById('nav-item-adminpanel').style.display = isAdmin ? 'flex' : 'none';
-      document.getElementById('mobile-admin-btn').style.display = isAdmin ? 'flex' : 'none';
-
-      document.getElementById('nav-item-staffpanel').style.display = isStaff ? 'flex' : 'none';
-      document.getElementById('mobile-staff-btn').style.display = isStaff ? 'flex' : 'none';
+      document.querySelectorAll('.admin-only').forEach(el => el.style.display = isAdmin ? 'block' : 'none');
+      document.querySelectorAll('.staff-only').forEach(el => el.style.display = isStaff ? 'block' : 'none');
 
       initHeartSimulator(user.username);
       renderMembersTable();
       renderAdminUsersList();
 
       toast(`Welcome back, ${user.username}! Portal unlocked.`, "success");
-      navigateTo('home');
     }
 
     function checkExistingSession() {
@@ -2995,41 +2726,6 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       });
     }
 
-    /* ROUTING */
-    function navigateTo(viewId) {
-      if (!currentUser) {
-        toast("Please register first and second login than you can visit our website otherwise you can't see anything for server related.", "error");
-        return;
-      }
-
-      if (viewId === 'adminpanel' && currentUser.role !== 'admin') {
-        toast("Access Denied: Admin role required.", "error");
-        return;
-      }
-      if (viewId === 'staffpanel' && currentUser.role !== 'staff' && currentUser.role !== 'admin') {
-        toast("Access Denied: Staff role required.", "error");
-        return;
-      }
-
-      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-      const target = document.getElementById('view-' + viewId);
-      if (target) {
-        target.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
-      document.querySelectorAll('.nav-links-wrap .nav-item').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.getAttribute('onclick')?.includes(viewId)) btn.classList.add('active');
-      });
-    }
-
-    function checkPanelRedirect() {
-      if (currentUser?.role === 'admin') navigateTo('adminpanel');
-      else if (currentUser?.role === 'staff') navigateTo('staffpanel');
-      else toast("Management Desk is restricted to Staff and Admin accounts.", "info");
-    }
-
     function toggleMobileMenu() {
       document.getElementById('mobile-drawer').classList.toggle('open');
     }
@@ -3037,20 +2733,20 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
     function handleGlobalSearch(query) {
       const q = query.trim().toLowerCase();
       if (!q) return;
-      if (q.includes('rule')) navigateTo('rules');
-      else if (q.includes('faq')) navigateTo('faq');
-      else if (q.includes('staff')) navigateTo('staff');
-      else if (q.includes('store') || q.includes('rank') || q.includes('novice')) navigateTo('store');
-      else if (q.includes('leader') || q.includes('heart')) navigateTo('leaderboard');
-      else if (q.includes('event')) navigateTo('events');
-      else if (q.includes('media')) navigateTo('media');
+      if (q.includes('rule')) location.hash = '#view-rules';
+      else if (q.includes('faq')) location.hash = '#view-faq';
+      else if (q.includes('staff')) location.hash = '#view-staff';
+      else if (q.includes('store') || q.includes('rank') || q.includes('novice')) location.hash = '#view-store';
+      else if (q.includes('leader') || q.includes('heart')) location.hash = '#view-leaderboard';
+      else if (q.includes('event')) location.hash = '#view-events';
+      else if (q.includes('media')) location.hash = '#view-media';
     }
 
     function toggleFaq(item) {
       item.classList.toggle('open');
     }
 
-    /* 24-HOUR AUTO-EXPIRING ANNOUNCEMENT */
+    /* 24-HOUR AUTO EXPIRING ANNOUNCEMENT */
     function checkActiveAnnouncement() {
       const saved = localStorage.getItem(STORAGE_KEYS.ANNOUNCEMENT);
       const card = document.getElementById('home-announcement-card');
@@ -3101,10 +2797,10 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
 
       checkActiveAnnouncement();
       toast("24-Hour Announcement published to Home Screen!", "success");
-      navigateTo('home');
+      location.hash = '#view-home';
     }
 
-    /* NOVICE FREE RANK */
+    /* NOVICE FREE RANK: STARTS STRICTLY AT 0 */
     function updateNoviceCounterUI() {
       let claims = parseInt(localStorage.getItem(STORAGE_KEYS.NOVICE_CLAIMS) || '0', 10);
       if (claims > 100) claims = 100;
@@ -3121,7 +2817,13 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
     }
 
     function handleClaimNovice() {
-      if (!currentUser) return;
+      if (!currentUser) {
+        toast("Please register first and second login than you can visit our website otherwise you can't see anything for server related.", "error");
+        document.getElementById('main-portal').style.display = 'none';
+        document.getElementById('auth-screen').style.display = 'flex';
+        switchAuthTab('login');
+        return;
+      }
 
       let claimedUsers = JSON.parse(localStorage.getItem(STORAGE_KEYS.NOVICE_USER_CLAIMED) || '[]');
       let claims = parseInt(localStorage.getItem(STORAGE_KEYS.NOVICE_CLAIMS) || '0', 10);
@@ -3241,7 +2943,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       toast("Simulator reset to default 10 hearts.", "info");
     }
 
-    /* MEMBERS */
+    /* MEMBERS TABLE */
     function renderMembersTable() {
       usersDB = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
       const tbody = document.getElementById('members-table-body');
@@ -3262,7 +2964,7 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       });
     }
 
-    /* REVIEWS (0-10 Stars) */
+    /* REVIEWS */
     let selectedRating = 10;
     function initStarPicker() {
       const wrap = document.getElementById('star-picker');
@@ -3283,7 +2985,10 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
     }
 
     function handleReviewSubmit() {
-      if (!currentUser) return;
+      if (!currentUser) {
+        toast("Please login first to submit a review.", "error");
+        return;
+      }
       const msg = document.getElementById('review-input-msg').value.trim();
       if (!msg) {
         toast("Please enter your review message!", "error");
@@ -3346,10 +3051,13 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
       });
     }
 
-    /* STAFF APPS & SUGGESTIONS */
+    /* STAFF APPLICATIONS & SUGGESTIONS */
     function handleStaffAppSubmit(e) {
       e.preventDefault();
-      if (!currentUser) return;
+      if (!currentUser) {
+        toast("Please login first to submit an application.", "error");
+        return;
+      }
 
       let apps = JSON.parse(localStorage.getItem(STORAGE_KEYS.STAFF_APPS) || '[]');
       apps.unshift({
@@ -3372,7 +3080,10 @@ Survive, kill players, and steal hearts in the ultimate LifeSteal realm!</pre>
 
     function handleSuggestionSubmit(e) {
       e.preventDefault();
-      if (!currentUser) return;
+      if (!currentUser) {
+        toast("Please login first to send a suggestion.", "error");
+        return;
+      }
 
       let sugs = JSON.parse(localStorage.getItem(STORAGE_KEYS.SUGGESTIONS) || '[]');
       sugs.unshift({
