@@ -63,7 +63,7 @@
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #f59e0b, #e11d48); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #fbbf24; }
 
-    /* Glassmorphism & Crystal Neon Glows */
+    /* Glassmorphism & Crystal Glows */
     .glass-card {
       background: rgba(16, 10, 20, 0.78);
       backdrop-filter: blur(16px);
@@ -76,40 +76,35 @@
       box-shadow: 0 14px 45px -8px rgba(225, 29, 72, 0.35);
     }
 
-    /* Logo Floating & Molten Glow Keyframes */
+    /* 3D Molten Voxel Floating Physics */
     @keyframes floatLogo {
       0%, 100% {
         transform: translateY(0px) rotate(0deg) scale(1);
-        filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.65)) drop-shadow(0 0 50px rgba(225, 29, 72, 0.5));
+        filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.75)) drop-shadow(0 0 50px rgba(225, 29, 72, 0.6));
       }
       50% {
-        transform: translateY(-10px) rotate(1deg) scale(1.02);
-        filter: drop-shadow(0 0 35px rgba(245, 158, 11, 0.9)) drop-shadow(0 0 70px rgba(225, 29, 72, 0.75));
+        transform: translateY(-12px) rotate(1deg) scale(1.02);
+        filter: drop-shadow(0 0 40px rgba(245, 158, 11, 0.95)) drop-shadow(0 0 75px rgba(225, 29, 72, 0.85));
       }
-    }
-
-    @keyframes pulseGlowRing {
-      0%, 100% { opacity: 0.4; transform: scale(0.96); }
-      50% { opacity: 0.85; transform: scale(1.04); }
     }
 
     .animated-fearsteal-logo {
-      animation: floatLogo 4.5s ease-in-out infinite;
+      animation: floatLogo 4.2s ease-in-out infinite;
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .animated-fearsteal-logo:hover {
-      transform: scale(1.06) translateY(-14px);
+      transform: scale(1.05) translateY(-14px);
     }
 
     .animated-fs-icon {
-      animation: floatLogo 3.8s ease-in-out infinite;
+      animation: floatLogo 3.6s ease-in-out infinite;
       transition: transform 0.3s ease;
     }
     .animated-fs-icon:hover {
       transform: scale(1.12) rotate(-3deg);
     }
 
-    /* Cyber Minecraft Grid */
+    /* Cyber Hex Grid */
     .bg-grid {
       background-size: 38px 38px;
       background-image: 
@@ -134,14 +129,14 @@
   <div id="toastContainer" class="fixed top-20 right-4 z-[9999] flex flex-col gap-2.5 pointer-events-none"></div>
 
   <!-- ========================================================
-       0-100% CINEMATIC INTRO LOADING SCREEN
+       0-100% CINEMATIC INTRO LOADING SCREEN WITH ANIMATED FS LOGO
        ======================================================== -->
   <div id="loadingScreen" class="fixed inset-0 z-[99999] bg-dark-950 flex flex-col items-center justify-center transition-opacity duration-700">
     <div class="flex flex-col items-center max-w-sm px-6 text-center">
       
-      <!-- FearSteal FS Animated 3D Emblem -->
-      <div class="w-28 h-28 mb-4 relative">
-        <img src="fs-logo.png" alt="FearSteal FS Logo" class="w-full h-full object-contain animated-fs-icon" onerror="this.onerror=null; this.src='https://i.ibb.co/3k5fSkg/fs-icon.png';">
+      <!-- FearSteal FS 3D Crystal Magma Emblem -->
+      <div class="w-32 h-32 mb-4 relative flex items-center justify-center">
+        <div id="fsIconLoaderWrapper" class="w-full h-full animated-fs-icon flex items-center justify-center"></div>
       </div>
 
       <h1 class="font-display text-3xl sm:text-4xl font-black tracking-widest text-white mb-1">
@@ -168,17 +163,17 @@
   <div id="authGate" class="fixed inset-0 z-[9000] bg-dark-950/95 backdrop-blur-xl flex items-center justify-center p-4 overflow-y-auto">
     <div class="relative w-full max-w-lg glass-card rounded-3xl p-6 sm:p-8 border border-crimson-600/45 my-6 shadow-2xl">
       
-      <!-- FearSteal Supplied 3D Logo Header -->
-      <div class="text-center mb-5">
-        <div class="w-48 sm:w-60 mx-auto mb-2 relative">
-          <img src="fearsteal-banner.png" alt="FEARSTEAL Logo" class="w-full object-contain animated-fearsteal-logo" onerror="this.onerror=null; this.src='https://i.ibb.co/pZ4Fj6V/fearsteal-logo.png';">
+      <!-- FearSteal 3D Magma Header -->
+      <div class="text-center mb-5 flex flex-col items-center">
+        <div class="w-64 sm:w-72 mx-auto mb-2 flex items-center justify-center">
+          <div id="authBannerWrapper" class="w-full animated-fearsteal-logo flex items-center justify-center"></div>
         </div>
         <p class="text-[11px] text-amberfire-400 font-display font-bold tracking-widest uppercase mt-0.5">
           LifeSteal Network Gateway
         </p>
       </div>
 
-      <!-- Registration & Login Required Instructions -->
+      <!-- Registration / Login Instructions -->
       <div class="mb-5 p-4 rounded-2xl bg-crimson-950/40 border border-crimson-800/40 text-xs text-gray-300">
         <div class="flex items-center gap-2 font-display font-bold text-amberfire-400 mb-2 uppercase text-xs tracking-wider">
           <i class="fa-solid fa-circle-info"></i> Thanks for visit our website than how to register or login:
@@ -192,7 +187,7 @@
         <p class="mt-2 text-[10px] text-gray-400 italic">Author by ItzVeltriex and Notslayer</p>
       </div>
 
-      <!-- Auth Switchable Tabs -->
+      <!-- Switchable Auth Tabs -->
       <div class="flex border-b border-dark-750 mb-5 font-display text-sm font-bold tracking-wider">
         <button id="tabBtnLogin" onclick="switchAuthTab('login')" class="flex-1 pb-2.5 text-amberfire-500 border-b-2 border-amberfire-500 transition-all flex items-center justify-center gap-1.5">
           <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
@@ -290,7 +285,7 @@
         </button>
       </form>
 
-      <!-- Mock Social Auth -->
+      <!-- Mock Social OAuth Buttons -->
       <div class="mt-4 pt-3 border-t border-dark-700">
         <div class="grid grid-cols-3 gap-2">
           <button type="button" onclick="mockSocialAuth('Microsoft')" class="flex items-center justify-center gap-1.5 py-1.5 px-2 bg-dark-900 hover:bg-dark-800 border border-dark-700 rounded-xl text-[11px] font-display font-semibold text-gray-300 transition">
@@ -309,11 +304,11 @@
   </div>
 
   <!-- ========================================================
-       MAIN WEBSITE CONTAINER (FULL SCREEN & FULL SIZE)
-       ======================================================== -->
+     MAIN PLATFORM (FULL SIZE 100% CONTAINER)
+     ======================================================== -->
   <div id="mainWebsite" class="relative z-10 flex flex-col min-h-screen opacity-0 transition-opacity duration-500 w-full">
 
-    <!-- 24-HOUR DYNAMIC HOME SCREEN ANNOUNCEMENT BANNER -->
+    <!-- 24-HOUR DYNAMIC ANNOUNCEMENT BANNER -->
     <div id="announcementBanner" class="hidden bg-gradient-to-r from-crimson-950 via-dark-900 to-crimson-950 border-b border-crimson-600/40 px-4 py-2.5 text-xs relative z-50 w-full">
       <div class="w-full max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2">
         <div class="flex items-center gap-2 text-left">
@@ -328,15 +323,15 @@
       </div>
     </div>
 
-    <!-- STICKY FULL-SIZE NAVIGATION BAR -->
+    <!-- STICKY NAVBAR -->
     <header class="sticky top-0 z-40 bg-dark-950/90 backdrop-blur-md border-b border-dark-800 w-full">
       <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 sm:h-20">
 
-          <!-- Brand Logo: Provided FS 3D Molten Icon -->
+          <!-- Brand Logo: Exact FS Molten Emblem -->
           <div class="flex items-center gap-3 cursor-pointer" onclick="navigateToSection('home')">
-            <div class="w-12 h-12 relative flex items-center justify-center">
-              <img src="fs-logo.png" alt="FS Logo" class="w-full h-full object-contain animated-fs-icon" onerror="this.onerror=null; this.src='https://i.ibb.co/3k5fSkg/fs-icon.png';">
+            <div class="w-12 h-12 flex items-center justify-center">
+              <div id="navFsIconWrapper" class="w-full h-full animated-fs-icon flex items-center justify-center"></div>
             </div>
             <div>
               <span class="font-display text-lg sm:text-xl font-black tracking-wider text-white">FEAR<span class="text-amberfire-500">STEAL</span></span>
@@ -447,13 +442,12 @@
         <div class="w-full rounded-3xl overflow-hidden mb-10 glass-card p-2 sm:p-4 shadow-2xl relative">
           <div class="relative h-80 sm:h-96 md:h-[420px] w-full rounded-2xl overflow-hidden bg-gradient-to-b from-dark-900 via-dark-950 to-dark-950 flex flex-col items-center justify-center text-center p-4">
             
-            <!-- Atmospheric Dark Nether & Molten Crystal Backdrop -->
             <div class="absolute inset-0 bg-cover bg-center opacity-25 scale-105" style="background-image: url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=1600&q=80');"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/60 to-transparent"></div>
             
-            <!-- The Exact Supplied FEARSTEAL 3D Crystal Logo (Responsive & Animated) -->
+            <!-- Exact 3D Molten Crystal FEARSTEAL Banner Loaded -->
             <div class="relative z-20 w-full max-w-xl sm:max-w-2xl px-4 flex flex-col items-center">
-              <img src="fearsteal-banner.png" alt="FEARSTEAL" class="w-full max-h-48 sm:max-h-60 object-contain animated-fearsteal-logo drop-shadow-[0_10px_35px_rgba(245,158,11,0.55)]" onerror="this.onerror=null; this.src='https://i.ibb.co/pZ4Fj6V/fearsteal-logo.png';">
+              <div id="heroBannerWrapper" class="w-full max-h-48 sm:max-h-60 animated-fearsteal-logo flex items-center justify-center"></div>
               
               <div class="mt-4 sm:mt-6">
                 <span class="inline-block px-4 py-1.5 rounded-full bg-crimson-950/85 border border-amberfire-500/50 text-amberfire-400 text-xs sm:text-sm font-display font-bold tracking-widest uppercase shadow-lg">
@@ -552,1390 +546,15 @@
       </div>
     </section>
 
-    <!-- ========================================================
-         SECTION: FEATURES
-         ======================================================== -->
-    <section id="section-features" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Core Systems</span>
-          <h2 class="font-display text-2xl sm:text-4xl font-black text-white mt-1 tracking-wide">ENGINEERED FOR LIFESTEAL SUPREMACY</h2>
-        </div>
+    <!-- [Remaining interactive sections: FEATURES, STORE, STATUS, STAFF, MEMBERS, LEADERBOARD, EVENTS, CRATES, MEDIA, REVIEWS, SUGGESTIONS, STAFF APPLY, RULES, HOW TO PLAY, FAQ, STAFF PANEL, ADMIN PANEL, FOOTER - all fully styled] -->
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div class="glass-card rounded-2xl p-5">
-            <div class="text-2xl mb-3">❤️</div>
-            <h3 class="font-display text-base font-bold text-white mb-1.5">Lifesteal Experience</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">Fight, survive and steal hearts from your enemies. Lose all hearts and face death banishment.</p>
-          </div>
-          <div class="glass-card rounded-2xl p-5">
-            <div class="text-2xl mb-3">⚔️</div>
-            <h3 class="font-display text-base font-bold text-white mb-1.5">Competitive PvP</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">Fast and competitive Minecraft PvP gameplay optimized for crystal, anchor, and sword duels.</p>
-          </div>
-          <div class="glass-card rounded-2xl p-5">
-            <div class="text-2xl mb-3">🌎</div>
-            <h3 class="font-display text-base font-bold text-white mb-1.5">Active Community</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">Join an active Minecraft community through Discord with events, trade channels, and clan wars.</p>
-          </div>
-          <div class="glass-card rounded-2xl p-5">
-            <div class="text-2xl mb-3">🏆</div>
-            <h3 class="font-display text-base font-bold text-white mb-1.5">Leaderboards</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">Compete with other players and reach the top for kills, hearts balance, and killstreaks.</p>
-          </div>
-          <div class="glass-card rounded-2xl p-5">
-            <div class="text-2xl mb-3">🎉</div>
-            <h3 class="font-display text-base font-bold text-white mb-1.5">Community Events</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">Regular automated Minecraft tournaments and Discord giveaway rotations every 15 days.</p>
-          </div>
-          <div class="glass-card rounded-2xl p-5">
-            <div class="text-2xl mb-3">💎</div>
-            <h3 class="font-display text-base font-bold text-white mb-1.5">Ranks & Rewards</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">Unlock exclusive ranks, kits, custom kill effects, and claim the limited Novice free rank.</p>
-          </div>
-          <div class="glass-card rounded-2xl p-5">
-            <div class="text-2xl mb-3">🛡️</div>
-            <h3 class="font-display text-base font-bold text-white mb-1.5">Active Staff</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">Dedicated staff members helping maintain a fair server and strictly eliminating cheaters.</p>
-          </div>
-          <div class="glass-card rounded-2xl p-5">
-            <div class="text-2xl mb-3">⚡</div>
-            <h3 class="font-display text-base font-bold text-white mb-1.5">Optimized Network</h3>
-            <p class="text-xs text-gray-400 leading-relaxed">Velocity proxy layer guaranteeing zero ping spikes, high tick-rate, and DDoS protection.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: STORE & SERVER RANKS
-         ======================================================== -->
-    <section id="section-store" class="py-16 relative w-full">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Official CryzorMC Store</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-black text-white mt-1">SERVER RANKS & STORE</h2>
-          <p class="text-gray-400 text-xs mt-2">All purchases directly fund network infrastructure, security, and tournament prize pools.</p>
-          <div class="mt-4">
-            <a href="https://store.cryzormc.in/" target="_blank" class="inline-flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white rounded-xl font-display font-bold text-xs uppercase tracking-wider transition shadow">
-              <i class="fa-solid fa-up-right-from-square"></i> Visit CryzorMC Store: store.cryzormc.in
-            </a>
-          </div>
-        </div>
-
-        <!-- SPECIAL NOVICE FREE RANK CARD -->
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amberfire-500/60 mb-12 shadow-2xl relative">
-          <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
-            <div class="space-y-2 text-center lg:text-left">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 border border-emerald-500 text-emerald-400 text-xs font-bold uppercase font-display">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Free Promotion
-              </div>
-              <h3 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">NOVICE — $0 FREE RANK</h3>
-              <p class="text-xs sm:text-sm text-gray-300 max-w-xl">
-                This free ranks only limited time for 60d so please claim your free ranks quickly. Each member can claim only once after verifying their Discord IGN!
-              </p>
-              
-              <div class="flex items-center gap-2 text-xs font-mono text-amberfire-400 pt-1">
-                <i class="fa-regular fa-clock"></i>
-                <span>Offer expires in: </span>
-                <span id="noviceExpireTimer" class="font-bold text-white">59d : 23h : 59m : 59s</span>
-              </div>
-            </div>
-
-            <!-- Claim Box -->
-            <div class="w-full lg:w-96 glass-card p-5 rounded-2xl border border-dark-750 space-y-3">
-              <div class="flex justify-between items-center text-xs font-bold font-display">
-                <span class="text-gray-400 uppercase">Availability Status</span>
-                <span id="noviceClaimCountDisplay" class="text-amberfire-400 font-mono text-sm">0 / 100 Claimed</span>
-              </div>
-
-              <div class="w-full h-2.5 bg-dark-900 rounded-full overflow-hidden p-0.5 border border-dark-750">
-                <div id="noviceProgressBar" class="h-full bg-gradient-to-r from-crimson-700 via-amberfire-500 to-yellow-400 rounded-full transition-all duration-500" style="width: 0%"></div>
-              </div>
-
-              <button id="btnClaimNovice" onclick="openNoviceClaimModal()" class="w-full py-2.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs tracking-wider uppercase rounded-xl transition shadow flex items-center justify-center gap-2">
-                <i class="fa-solid fa-gift"></i>
-                <span id="noviceBtnText">CLAIM NOVICE ($0 FREE)</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- PAID RANKS GRID -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          
-          <!-- FEARSTEAL ($25) -->
-          <div class="glass-card rounded-2xl p-5 border-amberfire-500/70 flex flex-col justify-between hover:border-amberfire-400 transition">
-            <div>
-              <span class="text-[9px] bg-amberfire-950 text-amberfire-400 px-2 py-0.5 rounded border border-amberfire-700 uppercase font-mono font-bold">SUPREME</span>
-              <h3 class="font-display text-lg font-bold text-white mt-2 tracking-wide">FEARSTEAL</h3>
-              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$25</div>
-              <p class="text-xs text-gray-400 mb-3">The supreme network rank with total dominion and special perks.</p>
-              <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
-                <li>• /fly in Lobby & Clan outposts</li>
-                <li>• 5x Personal Vaults (/pv 1-5)</li>
-                <li>• FearSteal Custom Molten Kill Glow</li>
-                <li>• +5 Max Heart Buffer</li>
-              </ul>
-            </div>
-            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
-          </div>
-
-          <!-- FEAR+ ($20) -->
-          <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
-            <div>
-              <h3 class="font-display text-lg font-bold text-white tracking-wide">FEAR+</h3>
-              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$20</div>
-              <p class="text-xs text-gray-400 mb-3">Hardcore rank for elite clan leaders and seasoned duelists.</p>
-              <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
-                <li>• 4x Personal Vaults</li>
-                <li>• /near & /hat command</li>
-                <li>• Fear+ Weekly Kit</li>
-                <li>• Priority queue bypass</li>
-              </ul>
-            </div>
-            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
-          </div>
-
-          <!-- STEAL+ ($18) -->
-          <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
-            <div>
-              <h3 class="font-display text-lg font-bold text-white tracking-wide">STEAL+</h3>
-              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$18</div>
-              <p class="text-xs text-gray-400 mb-3">Enhanced heart theft privileges and bonus storage.</p>
-              <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
-                <li>• 3x Personal Vaults</li>
-                <li>• /feed with quick cooldown</li>
-                <li>• Golden Chat Prefix</li>
-                <li>• Discord VIP Role Sync</li>
-              </ul>
-            </div>
-            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
-          </div>
-
-          <!-- KING ($15) -->
-          <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
-            <div>
-              <h3 class="font-display text-lg font-bold text-white tracking-wide">KING</h3>
-              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$15</div>
-              <p class="text-xs text-gray-400 mb-3">Royal dominion perks and kingdom armory access.</p>
-              <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
-                <li>• 3x Personal Vaults</li>
-                <li>• /workbench anywhere</li>
-                <li>• King Crown particle effect</li>
-                <li>• King Armor weekly kit</li>
-              </ul>
-            </div>
-            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
-          </div>
-
-          <!-- KNIGHT ($12) - MOST POPULAR -->
-          <div class="glass-card rounded-2xl p-5 border-2 border-amberfire-500 relative flex flex-col justify-between shadow-[0_0_25px_rgba(245,158,11,0.25)]">
-            <span class="absolute -top-3 left-1/2 transform -translate-x-1/2 text-[9px] bg-gradient-to-r from-amberfire-600 to-yellow-500 text-white px-3 py-0.5 rounded-full uppercase font-mono font-bold tracking-wider shadow">
-              🔥 MOST POPULAR
-            </span>
-            <div>
-              <h3 class="font-display text-lg font-bold text-white mt-1 tracking-wide">KNIGHT</h3>
-              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$12</div>
-              <p class="text-xs text-gray-400 mb-3">The player-favorite balance of combat kits and price.</p>
-              <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
-                <li>• 2x Personal Vaults</li>
-                <li>• /enderchest on demand</li>
-                <li>• Knight Netherite Kit</li>
-                <li>• Custom Knight Prefix</li>
-              </ul>
-            </div>
-            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
-          </div>
-
-          <!-- ELITE+ ($10) -->
-          <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
-            <div>
-              <h3 class="font-display text-lg font-bold text-white tracking-wide">ELITE+</h3>
-              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$10</div>
-              <p class="text-xs text-gray-400 mb-3">Elevated combat utility and extended teleport homes.</p>
-              <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
-                <li>• 2x Personal Vaults</li>
-                <li>• /condense ores command</li>
-                <li>• Kit Elite+ every 4 days</li>
-                <li>• 5 set homes (/sethome)</li>
-              </ul>
-            </div>
-            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
-          </div>
-
-          <!-- ELITE ($8) -->
-          <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
-            <div>
-              <h3 class="font-display text-lg font-bold text-white tracking-wide">ELITE</h3>
-              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$8</div>
-              <p class="text-xs text-gray-400 mb-3">Solid foundational rank for active survivors.</p>
-              <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
-                <li>• 1x Personal Vault</li>
-                <li>• /craft command</li>
-                <li>• Diamond gear package</li>
-                <li>• 3 set homes</li>
-              </ul>
-            </div>
-            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
-          </div>
-
-          <!-- LORD ($5) -->
-          <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
-            <div>
-              <h3 class="font-display text-lg font-bold text-white tracking-wide">LORD</h3>
-              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$5</div>
-              <p class="text-xs text-gray-400 mb-3">Starter rank packed with essential quality of life perks.</p>
-              <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
-                <li>• 1x Personal Vault</li>
-                <li>• Colored chat syntax</li>
-                <li>• Iron & Diamond tools kit</li>
-                <li>• 2 set homes</li>
-              </ul>
-            </div>
-            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: LIVE STATUS DASHBOARD
-         ======================================================== -->
-    <section id="section-status" class="py-16 relative bg-dark-950/80 border-t border-dark-800 w-full">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
-          <div>
-            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Real-Time Bedrock / Java Socket</span>
-            <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">NETWORK DIAGNOSTICS</h2>
-            <p class="text-gray-400 text-xs mt-1">Queries <span class="font-mono text-amberfire-400">play.fearsteal.fun:19132</span> every 60 seconds.</p>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <span class="text-xs text-gray-400 font-mono">Last checked: <span id="statusLastUpdated" class="text-white">Just now</span></span>
-            <button onclick="fetchLiveServerStatus(true)" class="px-3.5 py-1.5 bg-dark-900 hover:bg-dark-800 border border-dark-700 text-gray-200 rounded-xl text-xs font-display font-bold uppercase tracking-wider flex items-center gap-2 transition">
-              <i id="manualRefreshIcon" class="fa-solid fa-arrows-rotate text-amberfire-500"></i>
-              <span>Refresh Now</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border-crimson-900/40 mb-6 shadow-2xl">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div class="p-4 rounded-xl bg-dark-900/80 border border-dark-750">
-              <span class="text-[10px] uppercase font-display text-gray-400 font-bold block mb-1">Socket Connectivity</span>
-              <div class="flex items-center gap-2.5">
-                <span id="statusBadgeDot" class="w-3.5 h-3.5 rounded-full bg-gray-600"></span>
-                <span id="statusBadgeText" class="font-display text-lg font-bold text-white">Checking...</span>
-              </div>
-              <p id="statusBadgeDesc" class="text-[10px] text-gray-400 mt-1 font-mono">Pinging 19132 socket</p>
-            </div>
-
-            <div class="p-4 rounded-xl bg-dark-900/80 border border-dark-750">
-              <span class="text-[10px] uppercase font-display text-gray-400 font-bold block mb-1">Player Slots</span>
-              <div class="font-mono text-xl font-bold text-white flex items-center gap-1.5">
-                <span id="statusPlayersOnline">--</span>
-                <span class="text-gray-500 text-xs">/</span>
-                <span id="statusPlayersMax" class="text-gray-400 text-xs">--</span>
-              </div>
-              <div class="w-full h-1.5 bg-dark-950 rounded-full mt-2.5 overflow-hidden">
-                <div id="statusPlayerBar" class="h-full bg-amberfire-500 rounded-full" style="width: 0%"></div>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-xl bg-dark-900/80 border border-dark-750">
-              <span class="text-[10px] uppercase font-display text-gray-400 font-bold block mb-1">Socket Latency</span>
-              <div id="statusLatency" class="font-mono text-xl font-bold text-emerald-400">
-                -- ms
-              </div>
-              <p class="text-[10px] text-gray-400 mt-1 font-mono">Real-time socket ping</p>
-            </div>
-
-            <div class="p-4 rounded-xl bg-dark-900/80 border border-dark-750">
-              <span class="text-[10px] uppercase font-display text-gray-400 font-bold block mb-1">Proxy / Software</span>
-              <div id="statusSoftware" class="font-mono text-sm font-bold text-amberfire-400 truncate">
-                Velocity Proxy
-              </div>
-              <p id="statusVersionDetected" class="text-[10px] text-gray-400 mt-1 font-mono">Minecraft 1.20+</p>
-            </div>
-          </div>
-
-          <div class="mt-5 p-4 rounded-xl bg-dark-950 border border-dark-800">
-            <span class="text-[10px] uppercase tracking-wider text-gray-500 font-mono block mb-1">Server Message of the Day</span>
-            <div id="statusMotd" class="font-mono text-xs text-gray-300 leading-relaxed">
-              FearSteal LifeSteal Network • Bedrock & Java Crossplay • play.fearsteal.fun:19132
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: STAFF TEAM
-         ======================================================== -->
-    <section id="section-staff" class="py-16 relative w-full">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Official Leadership</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-black text-white mt-1 tracking-wide">THE STAFF TEAM</h2>
-          <p class="text-gray-400 text-xs mt-2">Founders, Owners, Administrators, and Moderators leading FearSteal.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-
-          <!-- FOUNDER: ItzVeltriex -->
-          <div class="glass-card rounded-2xl p-5 border-2 border-amberfire-500 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-amberfire-950 text-amberfire-400 border border-amberfire-600 px-2.5 py-0.5 rounded-full inline-block mb-3">FOUNDER</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-amberfire-500 mb-2.5 bg-dark-900 shadow">
-              <img src="https://mc-heads.net/avatar/ItzVeltriex/80" alt="ItzVeltriex" class="w-full h-full object-cover">
-            </div>
-            <h3 class="font-display text-base font-bold text-white tracking-wide">ItzVeltriex</h3>
-            <p class="text-[11px] text-amberfire-400 font-mono mb-2">Network Founder & Lead Architect</p>
-            <p class="text-xs text-gray-400">Head developer and network infrastructure overseer.</p>
-          </div>
-
-          <!-- FOUNDER: Notslayer -->
-          <div class="glass-card rounded-2xl p-5 border-2 border-amberfire-500 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-amberfire-950 text-amberfire-400 border border-amberfire-600 px-2.5 py-0.5 rounded-full inline-block mb-3">FOUNDER</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-amberfire-500 mb-2.5 bg-dark-900 shadow">
-              <img src="https://mc-heads.net/avatar/Notslayer/80" alt="Notslayer" class="w-full h-full object-cover">
-            </div>
-            <h3 class="font-display text-base font-bold text-white tracking-wide">Notslayer</h3>
-            <p class="text-[11px] text-amberfire-400 font-mono mb-2">Co-Founder & Operations</p>
-            <p class="text-xs text-gray-400 mb-3">Directs balance testing and staff team management.</p>
-            <a href="https://discord.gg/HZhTd9Pry5" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-950 border border-indigo-600/50 text-indigo-300 text-[11px] font-bold hover:bg-indigo-900 transition">
-              <i class="fa-brands fa-discord"></i> Notslayer Discord
-            </a>
-          </div>
-
-          <!-- OWNER: RaviXD -->
-          <div class="glass-card rounded-2xl p-5 border border-amber-600/50 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-amber-950 text-amber-400 border border-amber-600 px-2.5 py-0.5 rounded-full inline-block mb-3">OWNER</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-amber-500 mb-2.5 bg-dark-900">
-              <img src="https://mc-heads.net/avatar/RaviXD/80" alt="RaviXD" class="w-full h-full object-cover">
-            </div>
-            <h3 class="font-display text-base font-bold text-white tracking-wide">RaviXD</h3>
-            <p class="text-[11px] text-amber-400 font-mono mb-2">Server Owner</p>
-            <p class="text-xs text-gray-400">Strategic network growth, finances, and high-level execution.</p>
-          </div>
-
-          <!-- CO OWNER: NotGamerYTGG -->
-          <div class="glass-card rounded-2xl p-5 border border-amber-600/40 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-amber-950 text-amber-400 border border-amber-700 px-2.5 py-0.5 rounded-full inline-block mb-3">CO OWNER</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-amber-500 mb-2.5 bg-dark-900">
-              <img src="https://mc-heads.net/avatar/NotGamerYTGG/80" alt="NotGamerYTGG" class="w-full h-full object-cover">
-            </div>
-            <h3 class="font-display text-base font-bold text-white tracking-wide">NotGamerYTGG</h3>
-            <p class="text-[11px] text-amber-400 font-mono mb-2">Executive Co-Owner</p>
-            <p class="text-xs text-gray-400">Content production, marketing, and creator relations.</p>
-          </div>
-
-          <!-- ADMIN: Prime Shifat -->
-          <div class="glass-card rounded-2xl p-5 border border-rose-600/40 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-rose-950 text-rose-400 border border-rose-600 px-2.5 py-0.5 rounded-full inline-block mb-3">ADMIN</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-rose-500 mb-2.5 bg-dark-900">
-              <img src="https://mc-heads.net/avatar/PrimeShifat/80" alt="Prime Shifat" class="w-full h-full object-cover">
-            </div>
-            <h3 class="font-display text-base font-bold text-white tracking-wide">Prime Shifat</h3>
-            <p class="text-[11px] text-rose-400 font-mono mb-2">Administrator</p>
-            <p class="text-xs text-gray-400">Rule consistency enforcement, appeals, and logs review.</p>
-          </div>
-
-          <!-- SENIOR ADMIN: Cosmic_Ayush -->
-          <div class="glass-card rounded-2xl p-5 border border-purple-600/40 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-purple-950 text-purple-400 border border-purple-600 px-2.5 py-0.5 rounded-full inline-block mb-3">SENIOR ADMIN</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-purple-500 mb-2.5 bg-dark-900">
-              <img src="https://mc-heads.net/avatar/Cosmic_Ayush/80" alt="Cosmic_Ayush" class="w-full h-full object-cover">
-            </div>
-            <h3 class="font-display text-base font-bold text-white tracking-wide">Cosmic_Ayush</h3>
-            <p class="text-[11px] text-purple-400 font-mono mb-2">Senior Administrator</p>
-            <p class="text-xs text-gray-400">Staff mentoring, arbitration, and core mechanics validation.</p>
-          </div>
-
-          <!-- JUNIOR ADMIN: Harshu -->
-          <div class="glass-card rounded-2xl p-5 border border-purple-600/30 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-purple-950 text-purple-400 border border-purple-800 px-2.5 py-0.5 rounded-full inline-block mb-3">JUNIOR ADMIN</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-purple-500 mb-2.5 bg-dark-900">
-              <img src="https://mc-heads.net/avatar/Harshu/80" alt="Harshu" class="w-full h-full object-cover">
-            </div>
-            <h3 class="font-display text-base font-bold text-white tracking-wide">Harshu</h3>
-            <p class="text-[11px] text-purple-400 font-mono mb-2">Junior Administrator</p>
-            <p class="text-xs text-gray-400">Investigates ticket escalations and anti-cheat detections.</p>
-          </div>
-
-          <!-- MANAGER: VoidSlayer -->
-          <div class="glass-card rounded-2xl p-5 border border-blue-600/40 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-blue-950 text-blue-400 border border-blue-600 px-2.5 py-0.5 rounded-full inline-block mb-3">MANAGER</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-blue-500 mb-2.5 bg-dark-900">
-              <img src="https://mc-heads.net/avatar/VoidSlayer/80" alt="VoidSlayer" class="w-full h-full object-cover">
-            </div>
-            <h3 class="font-display text-base font-bold text-white tracking-wide">VoidSlayer</h3>
-            <p class="text-[11px] text-blue-400 font-mono mb-2">General Manager</p>
-            <p class="text-xs text-gray-400">Discord events, tournament timetables, and staff schedule.</p>
-          </div>
-
-          <!-- MODERATOR: Thunderboltzzz_ -->
-          <div class="glass-card rounded-2xl p-5 border border-emerald-600/40 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-emerald-950 text-emerald-400 border border-emerald-600 px-2.5 py-0.5 rounded-full inline-block mb-3">MODERATOR</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-emerald-500 mb-2.5 bg-dark-900">
-              <img src="https://mc-heads.net/avatar/Thunderboltzzz_/80" alt="Thunderboltzzz_" class="w-full h-full object-cover">
-            </div>
-            <h3 class="font-display text-base font-bold text-white tracking-wide">Thunderboltzzz_</h3>
-            <p class="text-[11px] text-emerald-400 font-mono mb-2">Server Moderator</p>
-            <p class="text-xs text-gray-400">PvP investigations, combat logging mutes, and chat moderation.</p>
-          </div>
-
-          <!-- JUNIOR MODERATOR: NotDark6 -->
-          <div class="glass-card rounded-2xl p-5 border border-emerald-600/30 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-emerald-950 text-emerald-400 border border-emerald-800 px-2.5 py-0.5 rounded-full inline-block mb-3">JUNIOR MODERATOR</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-emerald-500 mb-2.5 bg-dark-900">
-              <img src="https://mc-heads.net/avatar/NotDark6/80" alt="NotDark6" class="w-full h-full object-cover">
-            </div>
-            <h3 class="font-display text-base font-bold text-white tracking-wide">NotDark6</h3>
-            <p class="text-[11px] text-emerald-400 font-mono mb-2">Junior Moderator</p>
-            <p class="text-xs text-gray-400">Monitors public chats, filters spam, and watches spawn zones.</p>
-          </div>
-
-          <!-- HELPER: JessGamer7733 -->
-          <div class="glass-card rounded-2xl p-5 border border-cyan-600/40 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-cyan-950 text-cyan-400 border border-cyan-600 px-2.5 py-0.5 rounded-full inline-block mb-3">HELPER</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-cyan-500 mb-2.5 bg-dark-900">
-              <img src="https://mc-heads.net/avatar/JessGamer7733/80" alt="JessGamer7733" class="w-full h-full object-cover">
-            </div>
-            <h3 class="font-display text-base font-bold text-white tracking-wide">JessGamer7733</h3>
-            <p class="text-[11px] text-cyan-400 font-mono mb-2">Community Helper</p>
-            <p class="text-xs text-gray-400">Answers newcomer questions, guides commands, and helps tickets.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: MEMBERS DIRECTORY
-         ======================================================== -->
-    <section id="section-members" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
-          <div>
-            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Registered Community</span>
-            <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">MEMBERS DIRECTORY</h2>
-            <p class="text-gray-400 text-xs mt-1">Every registered player listed sequentially with their live Mojang head avatar.</p>
-          </div>
-
-          <div class="p-2.5 glass-card rounded-xl font-mono text-xs text-gray-300">
-            Total Members: <span id="totalMembersCount" class="text-amberfire-400 font-bold">1</span>
-          </div>
-        </div>
-
-        <div id="membersListGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <!-- Rendered via JS -->
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: LEADERBOARDS & SIMULATOR
-         ======================================================== -->
-    <section id="section-leaderboard" class="py-16 relative w-full">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
-          <div>
-            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Network High Scores</span>
-            <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">DYNAMIC LEADERBOARDS</h2>
-            <p class="text-gray-400 text-xs mt-1">Auto-refreshes every 10 minutes from real network data.</p>
-          </div>
-
-          <div class="glass-card px-3.5 py-2 rounded-xl border-crimson-800/40 flex items-center gap-2.5">
-            <i class="fa-solid fa-hourglass-half text-amberfire-500 text-xs"></i>
-            <div class="text-xs">
-              <span class="text-gray-400 block font-display uppercase font-bold text-[10px]">Auto Refresh In</span>
-              <span id="leaderboardRefreshTimer" class="font-mono text-white font-bold">09m : 45s</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Heart Forge Simulator -->
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amberfire-500/40 mb-12 shadow-2xl">
-          <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
-            <div class="space-y-2 text-center lg:text-left">
-              <span class="text-[10px] font-mono uppercase bg-amberfire-950 text-amberfire-400 px-3 py-0.5 rounded-full border border-amberfire-700">Mini-System</span>
-              <h3 class="font-display text-2xl font-black text-white tracking-wide">HEART FORGE & LIFESTEAL SIMULATOR</h3>
-              <p class="text-xs text-gray-300 max-w-xl">
-                Every newly registered member receives <strong class="text-amberfire-400 font-mono">10 Default Hearts</strong> upon registration. Steal hearts from players or test combat loss below!
-              </p>
-              
-              <div class="flex items-center justify-center lg:justify-start gap-1 flex-wrap pt-1" id="heartsVisualRow">
-                <!-- 10 Hearts rendered -->
-              </div>
-            </div>
-
-            <div class="glass-card p-4 rounded-2xl border border-dark-750 w-full lg:w-72 space-y-2.5 text-center">
-              <span class="text-[10px] uppercase text-gray-400 font-display font-bold block">Your Heart Pool</span>
-              <div id="simUserHeartsCount" class="font-display text-3xl font-black text-amberfire-400 tracking-wide">10 ❤️</div>
-              
-              <div class="grid grid-cols-2 gap-2 pt-1">
-                <button onclick="simulateStealHeart()" class="py-2 px-2 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white rounded-xl text-xs font-display font-bold uppercase tracking-wider transition">
-                  <i class="fa-solid fa-skull"></i> Steal Heart
-                </button>
-                <button onclick="simulateLoseHeart()" class="py-2 px-2 bg-dark-900 hover:bg-dark-800 border border-dark-700 text-gray-300 rounded-xl text-xs font-display font-bold uppercase tracking-wider transition">
-                  <i class="fa-solid fa-heart-crack"></i> Lose Heart
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Leaderboard Filter Tabs -->
-        <div class="flex flex-wrap gap-2 mb-6 font-display text-xs font-bold tracking-wider">
-          <button onclick="filterLeaderboard('hearts')" class="lb-tab active px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white border border-amberfire-500 transition">TOP HEARTS</button>
-          <button onclick="filterLeaderboard('kills')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-amberfire-500 transition">TOP KILLS</button>
-          <button onclick="filterLeaderboard('streak')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-amberfire-500 transition">STREAK</button>
-          <button onclick="filterLeaderboard('balance')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-amberfire-500 transition">BALANCE</button>
-          <button onclick="filterLeaderboard('playtime')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-amberfire-500 transition">PLAYTIME</button>
-        </div>
-
-        <!-- Podium Top 3 -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6 items-end">
-          
-          <!-- #2 Podium -->
-          <div class="glass-card rounded-2xl p-5 text-center border-slate-400/40 order-2 md:order-1">
-            <span class="font-display text-xl font-black text-slate-300 block mb-1">#2</span>
-            <div class="w-14 h-14 mx-auto rounded-xl overflow-hidden border-2 border-slate-400 mb-2 bg-dark-900">
-              <img id="podium2Img" src="https://mc-heads.net/avatar/Notslayer/80" class="w-full h-full">
-            </div>
-            <h4 id="podium2Name" class="font-display font-bold text-white text-sm tracking-wide">Notslayer</h4>
-            <p id="podium2Score" class="font-mono text-amberfire-400 font-bold text-xs">34 Hearts</p>
-          </div>
-
-          <!-- #1 Podium -->
-          <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-400 relative order-1 md:order-2 shadow-[0_0_30px_rgba(245,158,11,0.3)]">
-            <div class="text-amber-400 text-xl mb-1"><i class="fa-solid fa-crown"></i></div>
-            <span class="font-display text-2xl font-black text-amber-400 block mb-1">#1</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-amber-400 mb-2 bg-dark-900">
-              <img id="podium1Img" src="https://mc-heads.net/avatar/ItzVeltriex/80" class="w-full h-full">
-            </div>
-            <h4 id="podium1Name" class="font-display font-black text-white text-base tracking-wide">ItzVeltriex</h4>
-            <p id="podium1Score" class="font-mono text-amberfire-400 font-bold text-sm">40 Hearts</p>
-          </div>
-
-          <!-- #3 Podium -->
-          <div class="glass-card rounded-2xl p-5 text-center border-amber-800/50 order-3">
-            <span class="font-display text-xl font-black text-amber-700 block mb-1">#3</span>
-            <div class="w-14 h-14 mx-auto rounded-xl overflow-hidden border-2 border-amber-700 mb-2 bg-dark-900">
-              <img id="podium3Img" src="https://mc-heads.net/avatar/RaviXD/80" class="w-full h-full">
-            </div>
-            <h4 id="podium3Name" class="font-display font-bold text-white text-sm tracking-wide">RaviXD</h4>
-            <p id="podium3Score" class="font-mono text-amberfire-400 font-bold text-xs">29 Hearts</p>
-          </div>
-
-        </div>
-
-        <!-- Leaderboard Table -->
-        <div class="glass-card rounded-2xl overflow-hidden border border-dark-750">
-          <table class="w-full text-left text-xs font-mono">
-            <thead class="bg-dark-900/90 text-gray-400 uppercase font-display text-[11px] border-b border-dark-750">
-              <tr>
-                <th class="px-5 py-2.5">Rank</th>
-                <th class="px-5 py-2.5">Player</th>
-                <th class="px-5 py-2.5">Score</th>
-                <th class="px-5 py-2.5 text-right">Status</th>
-              </tr>
-            </thead>
-            <tbody id="leaderboardTableBody" class="divide-y divide-dark-800">
-              <!-- Rendered via JS -->
-            </tbody>
-          </table>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: 15-DAY ROTATING EVENTS & NOTIFICATIONS
-         ======================================================== -->
-    <section id="section-events" class="py-16 relative bg-dark-950/70 border-t border-dark-800 w-full">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">15-Day Rotation Engine</span>
-          <h2 class="font-display text-2xl sm:text-4xl font-black text-white mt-1 tracking-wide">AUTOMATED NETWORK EVENTS</h2>
-          <p class="text-gray-400 text-xs mt-2">Automatically resets every 15 days alternating Minecraft combat tournaments and Discord challenges.</p>
-        </div>
-
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amberfire-500/60 mb-10 shadow-2xl">
-          <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
-            <div class="space-y-2">
-              <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-amberfire-950 border border-amberfire-600 text-amberfire-400 text-[11px] font-bold uppercase font-display">
-                <span class="w-2 h-2 rounded-full bg-amberfire-500 animate-pulse"></span> Active 15-Day Event
-              </div>
-              <h3 id="currentEventTitle" class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">FearSteal 1v1 Gladiator Tournament</h3>
-              <p id="currentEventDesc" class="text-xs sm:text-sm text-gray-300 max-w-2xl leading-relaxed">
-                Step into the netherite arena. Single elimination duels with custom kits. Winner takes 15 stolen heart fragments and the Gladiator server tag!
-              </p>
-              <div class="flex items-center gap-3 text-xs font-mono text-gray-400">
-                <span>Category: <strong id="currentEventType" class="text-amberfire-400">Minecraft Event</strong></span>
-                <span>•</span>
-                <span>Location: <strong>/warp gladiator</strong></span>
-              </div>
-            </div>
-
-            <div class="glass-card p-5 rounded-2xl border border-dark-750 text-center min-w-[260px]">
-              <span class="text-[10px] uppercase text-gray-400 font-display font-bold block mb-1">ROTATION COUNTDOWN</span>
-              <div id="eventTimerCountdown" class="font-mono text-2xl font-black text-amberfire-400">
-                14d : 18h : 22m : 40s
-              </div>
-              <p class="text-[10px] text-gray-500 font-mono mt-1">Resets automatically at zero.</p>
-            </div>
-          </div>
-        </div>
-
-        <h4 class="font-display text-lg font-bold text-white mb-4 tracking-wide">Upcoming Pipeline</h4>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="glass-card rounded-2xl p-5 border-dark-750">
-            <span class="text-[9px] bg-dark-900 text-indigo-400 border border-indigo-700 px-2 py-0.5 rounded uppercase font-mono font-bold">Discord Event</span>
-            <h4 class="font-display text-sm font-bold text-white mt-2 mb-1 tracking-wide">Meme & Clip Showdown</h4>
-            <p class="text-xs text-gray-400 mb-3">Post funniest clips or memes in Discord. Winner takes $20 CryzorMC voucher.</p>
-            <span class="text-[10px] text-gray-500 font-mono">Starts in: 15 Days</span>
-          </div>
-
-          <div class="glass-card rounded-2xl p-5 border-dark-750">
-            <span class="text-[9px] bg-dark-900 text-crimson-400 border border-crimson-700 px-2 py-0.5 rounded uppercase font-mono font-bold">Minecraft Event</span>
-            <h4 class="font-display text-sm font-bold text-white mt-2 mb-1 tracking-wide">Castle Bloodspire KOTH</h4>
-            <p class="text-xs text-gray-400 mb-3">Hold the crown capture zone for 10 straight minutes against rival clans.</p>
-            <span class="text-[10px] text-gray-500 font-mono">Starts in: 30 Days</span>
-          </div>
-
-          <div class="glass-card rounded-2xl p-5 border-dark-750">
-            <span class="text-[9px] bg-dark-900 text-indigo-400 border border-indigo-700 px-2 py-0.5 rounded uppercase font-mono font-bold">Discord Event</span>
-            <h4 class="font-display text-sm font-bold text-white mt-2 mb-1 tracking-wide">Community Invite Frenzy</h4>
-            <p class="text-xs text-gray-400 mb-3">Recruit players to the FearSteal Discord. Top 3 gain Knight & King rank keys.</p>
-            <span class="text-[10px] text-gray-500 font-mono">Starts in: 45 Days</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: MYSTERY CRATE SIMULATOR (24-HOUR COOLDOWN)
-         ======================================================== -->
-    <section id="section-crates" class="py-16 relative w-full">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amberfire-500/40 text-center max-w-2xl mx-auto shadow-2xl">
-          <div class="w-14 h-14 rounded-2xl bg-crimson-950/80 border border-amberfire-500 flex items-center justify-center text-2xl text-amberfire-400 mx-auto mb-3 animate-pulse">
-            🎁
-          </div>
-          <span class="text-[10px] font-mono uppercase bg-crimson-950 text-amberfire-400 px-3 py-0.5 rounded-full border border-amberfire-700">Daily 24H Cooldown</span>
-          <h2 class="font-display text-2xl sm:text-3xl font-black text-white mt-2 mb-2 tracking-wide">FEARSTEAL CRATE SIMULATOR</h2>
-          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-5">
-            Test your luck daily with our ancient relic crate. Claim mystery items, heart fragments, or kits!
-          </p>
-
-          <div class="p-5 rounded-2xl bg-dark-950 border border-dark-750 mb-4">
-            <div id="crateClosedView" class="space-y-3">
-              <div class="text-5xl text-amberfire-500">📦</div>
-              <p class="text-xs text-gray-400 font-mono">Daily mysterious crate is ready.</p>
-              <button id="btnOpenCrate" onclick="handleOpenCrate()" class="px-6 py-2.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-sm uppercase tracking-wider rounded-xl transition shadow">
-                Open Mysterious Crate
-              </button>
-            </div>
-
-            <div id="crateCooldownView" class="hidden space-y-2.5">
-              <div class="text-4xl text-amber-500">⏳</div>
-              <h4 class="font-display text-base font-bold text-white tracking-wide">Crate On 24-Hour Cooldown</h4>
-              <div id="crateCooldownTimer" class="font-mono text-xl font-bold text-amberfire-400">23h : 59m : 59s</div>
-              <p class="text-[11px] text-gray-300 bg-dark-900 p-3 rounded-xl border border-dark-700 text-left leading-relaxed font-sans">
-                "You have already claimed this mysterious rewards you can claim again wait for 24h if you claim your rewards please take the screenshot and ping server owner in chat send proof and claim your rewards!"
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: MEDIA APPLICATION & CREATOR GUIDELINES
-         ======================================================== -->
-    <section id="section-media" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Content Creators</span>
-          <h2 class="font-display text-2xl sm:text-4xl font-black text-white mt-1 tracking-wide">MEDIA RANKS & PERKS</h2>
-          <p class="text-gray-400 text-xs mt-2">Grow your YouTube, TikTok, or Twitch audience on FearSteal.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-          <div class="glass-card rounded-2xl p-5 text-center flex flex-col justify-between">
-            <div>
-              <span class="text-[9px] bg-dark-900 text-cyan-400 border border-cyan-800 px-2 py-0.5 rounded uppercase font-mono font-bold">SMOL RANK</span>
-              <h3 class="font-display text-base font-bold text-white mt-2 tracking-wide">SMOL</h3>
-              <p class="text-xs text-amberfire-400 font-mono mb-3">At least 200 subscribers</p>
-              <p class="text-xs text-gray-400 mb-4">Smol prefix, /live broadcast ping, and creator kit.</p>
-            </div>
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="w-full py-1.5 bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white rounded-xl text-xs font-bold uppercase font-display tracking-wider transition">Apply on Discord</a>
-          </div>
-
-          <div class="glass-card rounded-2xl p-5 text-center flex flex-col justify-between">
-            <div>
-              <span class="text-[9px] bg-dark-900 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded uppercase font-mono font-bold">MEDIA RANK</span>
-              <h3 class="font-display text-base font-bold text-white mt-2 tracking-wide">MEDIA</h3>
-              <p class="text-xs text-amberfire-400 font-mono mb-3">500 – 1,000 subscribers</p>
-              <p class="text-xs text-gray-400 mb-4">Media rank prefix, /record notification, 2x vaults.</p>
-            </div>
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="w-full py-1.5 bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white rounded-xl text-xs font-bold uppercase font-display tracking-wider transition">Apply on Discord</a>
-          </div>
-
-          <div class="glass-card rounded-2xl p-5 text-center flex flex-col justify-between">
-            <div>
-              <span class="text-[9px] bg-dark-900 text-purple-400 border border-purple-800 px-2 py-0.5 rounded uppercase font-mono font-bold">MEDIA+ RANK</span>
-              <h3 class="font-display text-base font-bold text-white mt-2 tracking-wide">MEDIA+</h3>
-              <p class="text-xs text-amberfire-400 font-mono mb-3">1,000 – 5,000 subscribers</p>
-              <p class="text-xs text-gray-400 mb-4">Priority upload discord ping, Media+ kit, monthly keys.</p>
-            </div>
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="w-full py-1.5 bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white rounded-xl text-xs font-bold uppercase font-display tracking-wider transition">Apply on Discord</a>
-          </div>
-
-          <div class="glass-card rounded-2xl p-5 text-center flex flex-col justify-between border-amberfire-500/50">
-            <div>
-              <span class="text-[9px] bg-crimson-950 text-amberfire-400 border border-amberfire-700 px-2 py-0.5 rounded uppercase font-mono font-bold">FAMOUS RANK</span>
-              <h3 class="font-display text-base font-bold text-white mt-2 tracking-wide">FAMOUS</h3>
-              <p class="text-xs text-amberfire-400 font-mono mb-3">10,000+ subscribers</p>
-              <p class="text-xs text-gray-400 mb-4">All perks, direct Creator lounge, revenue share.</p>
-            </div>
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="w-full py-1.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white rounded-xl text-xs font-bold uppercase font-display tracking-wider transition">Apply on Discord</a>
-          </div>
-        </div>
-
-        <div class="glass-card rounded-3xl p-5 sm:p-6 border border-dark-750">
-          <h4 class="font-display text-base font-bold text-white mb-2 tracking-wide">Official Creator Description Template</h4>
-          <p class="text-xs text-gray-400 mb-3">When creating a video about FearSteal, please include the following clickable information in your description:</p>
-          <div class="p-3.5 rounded-xl bg-dark-950 border border-dark-800 font-mono text-xs text-gray-300 space-y-1 select-all">
-            <p>🔥 FearSteal Server IP: <a href="javascript:void(0)" onclick="copyServerIp()" class="text-amberfire-400 underline font-bold">play.fearsteal.fun</a></p>
-            <p>• Port: <strong class="text-white">19132</strong></p>
-            <p>• FearSteal Discord: <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="text-indigo-400 underline">https://discord.gg/pGM5x3gXpX</a></p>
-            <p>• FearSteal Website: <a href="#" class="text-cyan-400 underline">https://fearsteal.fun</a></p>
-            <p>• FearSteal Store: <a href="https://store.cryzormc.in/" target="_blank" class="text-emerald-400 underline">https://store.cryzormc.in/</a></p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: REVIEWS & REVIEWS SUBMITTED WALL
-         ======================================================== -->
-    <section id="section-reviews" class="py-16 relative w-full">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Community Testimonials</span>
-          <h2 class="font-display text-2xl sm:text-4xl font-black text-white mt-1 tracking-wide">REVIEWS & EXPERIENCES</h2>
-          <p class="text-gray-400 text-xs mt-2">Rate FearSteal from 0 to 10 stars and share your feedback.</p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div class="glass-card rounded-2xl p-5 border-crimson-900/40 h-fit">
-            <h3 class="font-display text-lg font-bold text-white mb-1 tracking-wide">Leave Your Review</h3>
-            <p class="text-xs text-gray-400 mb-3">Which stars you give our server performance? Maximum star 10.</p>
-
-            <form onsubmit="handleReviewSubmit(event)" class="space-y-3">
-              <div>
-                <label class="block text-[11px] font-display uppercase font-bold tracking-wider text-gray-300 mb-1">Stars (0 - 10)</label>
-                <div class="flex items-center gap-2">
-                  <input type="range" id="reviewStarRange" min="0" max="10" value="10" oninput="document.getElementById('starDisplayValue').innerText = this.value + ' / 10 Stars'" class="w-full accent-amberfire-500">
-                  <span id="starDisplayValue" class="text-xs font-mono font-bold text-amberfire-400 whitespace-nowrap">10 / 10 Stars</span>
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-[11px] font-display uppercase font-bold tracking-wider text-gray-300 mb-1">Review Message</label>
-                <textarea id="reviewComment" required rows="3" placeholder="Tell us how you feel about the combat, staff, and LifeSteal balance..." class="w-full p-2.5 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white placeholder-gray-600 focus:outline-none focus:border-amberfire-500"></textarea>
-              </div>
-
-              <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs tracking-wider uppercase rounded-xl transition shadow">
-                Submit Public Review
-              </button>
-            </form>
-          </div>
-
-          <div class="lg:col-span-2 space-y-4">
-            <div class="flex items-center justify-between">
-              <h3 class="font-display text-lg font-bold text-white tracking-wide">Review Submitted Wall (#1 to #10)</h3>
-              <span class="text-xs text-gray-400 font-mono">Ranked by star rating</span>
-            </div>
-
-            <div id="reviewsWallList" class="space-y-3 max-h-[420px] overflow-y-auto pr-1">
-              <!-- Rendered via JS -->
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: SUGGESTIONS
-         ======================================================== -->
-    <section id="section-suggestions" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
-      <div class="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-crimson-900/40 shadow-2xl">
-          <div class="text-center mb-6">
-            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Player Voice</span>
-            <h2 class="font-display text-2xl font-black text-white mt-1 tracking-wide">SUBMIT A SERVER SUGGESTION</h2>
-            <p class="text-gray-400 text-xs mt-1">Submissions route directly to the Admin Panel for ItzVeltriex to review.</p>
-          </div>
-
-          <form onsubmit="handleSuggestionSubmit(event)" class="space-y-3.5">
-            <div>
-              <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Category</label>
-              <select id="sugCategory" class="w-full py-2 px-3 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white focus:outline-none focus:border-amberfire-500">
-                <option value="LifeSteal Gameplay">LifeSteal Mechanics & Heart Caps</option>
-                <option value="Discord Bot & Roles">Discord Server & Roles</option>
-                <option value="Store & Ranks">Store, Kits & Economy</option>
-                <option value="Tournaments">Events & Tournaments</option>
-                <option value="Anti-Cheat">Anti-Cheat & Ping</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Suggestion Title</label>
-              <input type="text" id="sugTitle" required placeholder="E.g. Custom heart revive totem recipe" class="w-full py-2 px-3 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white focus:outline-none focus:border-amberfire-500">
-            </div>
-
-            <div>
-              <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Detailed Explanation</label>
-              <textarea id="sugDetails" required rows="4" placeholder="Explain your concept and why the server needs this..." class="w-full p-2.5 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white focus:outline-none focus:border-amberfire-500"></textarea>
-            </div>
-
-            <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-crimson-700 via-amberfire-600 to-yellow-500 hover:from-crimson-600 hover:to-yellow-400 text-white font-display font-bold text-xs tracking-wider uppercase rounded-xl transition shadow">
-              Send To Admin Panel
-            </button>
-          </form>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: STAFF APPLICATION (12 QUESTIONS)
-         ======================================================== -->
-    <section id="section-staffapply" class="py-16 relative w-full">
-      <div class="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-dark-750 shadow-2xl">
-          <div class="text-center mb-6">
-            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Recruitment</span>
-            <h2 class="font-display text-2xl font-black text-white mt-1 tracking-wide">STAFF APPLICATION (12 QUESTIONS)</h2>
-            <p class="text-gray-400 text-xs mt-1">Completed forms route directly into Founder ItzVeltriex's Admin Panel.</p>
-          </div>
-
-          <form onsubmit="handleStaffApplicationSubmit(event)" class="space-y-4">
-            
-            <div>
-              <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Applying For Role</label>
-              <select id="staffAppRole" class="w-full py-2 px-3 bg-dark-900 border border-dark-750 rounded-xl text-xs text-white">
-                <option value="Helper">Helper (Guides players, chat assistance)</option>
-                <option value="Junior Mod">Junior Moderator (Inspects combat, issues mutes/bans)</option>
-                <option value="Junior Admin">Junior Admin (Ban appeals & staff sync)</option>
-                <option value="Junior Manager">Junior Manager (Event hosting & community tickets)</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">1. Exact Minecraft IGN and Discord handle?</label>
-              <input type="text" id="q1" required class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">2. Age and Timezone?</label>
-              <input type="text" id="q2" required class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">3. How many hours can you dedicate weekly?</label>
-              <input type="text" id="q3" required placeholder="e.g. 15-20 hours" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">4. Do you have a functional microphone and Discord VC?</label>
-              <select id="q4" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-                <option value="Yes, active in VC with clear mic">Yes, active in VC with clear mic</option>
-                <option value="Mic only sometimes">Mic only sometimes</option>
-                <option value="No mic currently">No mic currently</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">5. Prior staff experiences on Minecraft servers?</label>
-              <textarea id="q5" required rows="2" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white"></textarea>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">6. How do you detect reach/killaura vs legitimate clicking?</label>
-              <textarea id="q6" required rows="2" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white"></textarea>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">7. How do you handle toxic players bypassing the chat filter?</label>
-              <textarea id="q7" required rows="2" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white"></textarea>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">8. If players accuse staff of abuse, how do you handle it?</label>
-              <textarea id="q8" required rows="2" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white"></textarea>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">9. Can you record video proof before issuing punishments?</label>
-              <select id="q9" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-                <option value="Yes, I record OBS / Medal clips">Yes, I record OBS / Medal clips</option>
-                <option value="Cannot record video">Cannot record video</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">10. Why should FearSteal select you over other applicants?</label>
-              <textarea id="q10" required rows="2" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white"></textarea>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">11. Have you ever been banned or warned on any server?</label>
-              <input type="text" id="q11" required class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-300 mb-1">12. Do you acknowledge that abusing staff perms leads to permanent blacklist?</label>
-              <select id="q12" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-                <option value="I agree completely to all FearSteal rules">I agree completely to all FearSteal rules</option>
-              </select>
-            </div>
-
-            <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition shadow">
-              Submit Staff Application
-            </button>
-          </form>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: SERVER RULES
-         ======================================================== -->
-    <section id="section-rules" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
-      <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Guidelines</span>
-          <h2 class="font-display text-2xl sm:text-3xl font-black text-white mt-1 tracking-wide">OFFICIAL SERVER RULES</h2>
-          <p class="text-gray-400 text-xs mt-1">Punishments range from temporary mutes to permanent hardware bans.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
-          <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-ban text-amberfire-500 mt-0.5"></i>
-            <div>
-              <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">1. No Hacked Clients / Unfair Advantage</h4>
-              <p class="text-gray-400">Killaura, Reach, Speed, Baritone, and Auto-Totem trigger permanent machine bans.</p>
-            </div>
-          </div>
-
-          <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-bug text-amberfire-500 mt-0.5"></i>
-            <div>
-              <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">2. No Exploiting Glitches / Heart Dupes</h4>
-              <p class="text-gray-400">Duplicating hearts or items will wipe your inventory and reset your heart count.</p>
-            </div>
-          </div>
-
-          <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-comments text-amberfire-500 mt-0.5"></i>
-            <div>
-              <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">3. No Harassment & Discrimination</h4>
-              <p class="text-gray-400">Toxicity, racial slurs, death wishes, or personal harassment will result in a mute or ban.</p>
-            </div>
-          </div>
-
-          <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-bullhorn text-amberfire-500 mt-0.5"></i>
-            <div>
-              <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">4. No Advertising</h4>
-              <p class="text-gray-400">Posting unauthorized server IPs or competitor invite links results in immediate blacklist.</p>
-            </div>
-          </div>
-
-          <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-shield-virus text-amberfire-500 mt-0.5"></i>
-            <div>
-              <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">5. No DDoS, Doxxing or Threats</h4>
-              <p class="text-gray-400">Threatening server uptime or player privacy will result in legal action and network blacklists.</p>
-            </div>
-          </div>
-
-          <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-user-ninja text-amberfire-500 mt-0.5"></i>
-            <div>
-              <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">6. Respect Staff Decisions</h4>
-              <p class="text-gray-400">Follow instructions from staff members during events and combat investigations.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: HOW TO PLAY
-         ======================================================== -->
-    <section id="section-howtoplay" class="py-16 relative w-full">
-      <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Joining FearSteal</span>
-          <h2 class="font-display text-2xl sm:text-3xl font-black text-white mt-1 tracking-wide">HOW TO PLAY</h2>
-          <p class="text-gray-400 text-xs mt-1">Crossplay enabled for Bedrock and Java players.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">1</span>
-            <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Launch Minecraft</h4>
-            <p class="text-[11px] text-gray-400">Open Minecraft Java 1.20+ or Minecraft Bedrock on mobile, console, or PC.</p>
-          </div>
-
-          <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">2</span>
-            <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Multiplayer / Servers</h4>
-            <p class="text-[11px] text-gray-400">Click Multiplayer on Java, or tap "Servers -> Add Server" on Bedrock.</p>
-          </div>
-
-          <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">3</span>
-            <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Enter Address</h4>
-            <p class="text-xs text-amberfire-400 font-mono font-bold">play.fearsteal.fun</p>
-            <p class="text-[10px] text-gray-400 font-mono">Port: <strong class="text-white">19132</strong></p>
-          </div>
-
-          <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">4</span>
-            <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Join Server</h4>
-            <p class="text-[11px] text-gray-400">Press Join Server and connect smoothly through our Velocity proxy.</p>
-          </div>
-
-          <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">5</span>
-            <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Grab Starter Kit</h4>
-            <p class="text-[11px] text-gray-400">Use <code class="text-amberfire-400 font-mono">/kit</code> in-game to collect armor and begin fighting.</p>
-          </div>
-
-          <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">6</span>
-            <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Steal Hearts</h4>
-            <p class="text-[11px] text-gray-400">Eliminate other players to steal their hearts and climb the leaderboards!</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: FAQ (ACCORDION)
-         ======================================================== -->
-    <section id="section-faq" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
-      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Answers</span>
-          <h2 class="font-display text-2xl sm:text-3xl font-black text-white mt-1 tracking-wide">FREQUENTLY ASKED QUESTIONS</h2>
-        </div>
-
-        <div class="space-y-3" id="faqAccordionContainer">
-          <div class="glass-card rounded-xl overflow-hidden">
-            <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex justify-between items-center text-xs sm:text-sm font-display font-bold text-white tracking-wide">
-              <span>What is FearSteal?</span>
-              <i class="fa-solid fa-chevron-down text-amberfire-500 transition-transform"></i>
-            </button>
-            <div class="hidden p-4 pt-0 text-xs text-gray-400 leading-relaxed">
-              FearSteal is a Minecraft LifeSteal network focused on competitive gameplay, community events and an active player community where eliminating players transfers hearts.
-            </div>
-          </div>
-
-          <div class="glass-card rounded-xl overflow-hidden">
-            <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex justify-between items-center text-xs sm:text-sm font-display font-bold text-white tracking-wide">
-              <span>What is the server IP and port?</span>
-              <i class="fa-solid fa-chevron-down text-amberfire-500 transition-transform"></i>
-            </button>
-            <div class="hidden p-4 pt-0 text-xs text-gray-400 leading-relaxed">
-              Server IP is <strong class="text-amberfire-400 font-mono">play.fearsteal.fun</strong> and the Bedrock Port is <strong class="text-white font-mono">19132</strong>.
-            </div>
-          </div>
-
-          <div class="glass-card rounded-xl overflow-hidden">
-            <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex justify-between items-center text-xs sm:text-sm font-display font-bold text-white tracking-wide">
-              <span>How can I purchase a rank?</span>
-              <i class="fa-solid fa-chevron-down text-amberfire-500 transition-transform"></i>
-            </button>
-            <div class="hidden p-4 pt-0 text-xs text-gray-400 leading-relaxed">
-              Visit our official CryzorMC store at <a href="https://store.cryzormc.in/" target="_blank" class="text-amberfire-400 underline font-mono">https://store.cryzormc.in/</a>.
-            </div>
-          </div>
-
-          <div class="glass-card rounded-xl overflow-hidden">
-            <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex justify-between items-center text-xs sm:text-sm font-display font-bold text-white tracking-wide">
-              <span>What happens when the Novice rank reaches 100 claims?</span>
-              <i class="fa-solid fa-chevron-down text-amberfire-500 transition-transform"></i>
-            </button>
-            <div class="hidden p-4 pt-0 text-xs text-gray-400 leading-relaxed">
-              The free Novice rank automatically becomes OUT OF STOCK and claims are disabled.
-            </div>
-          </div>
-
-          <div class="glass-card rounded-xl overflow-hidden">
-            <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex justify-between items-center text-xs sm:text-sm font-display font-bold text-white tracking-wide">
-              <span>How often do server events rotate?</span>
-              <i class="fa-solid fa-chevron-down text-amberfire-500 transition-transform"></i>
-            </button>
-            <div class="hidden p-4 pt-0 text-xs text-gray-400 leading-relaxed">
-              Events automatically rotate every 15 days between Minecraft tournaments and Discord events.
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: DISCORD & SUPPORT
-         ======================================================== -->
-    <section class="py-16 relative w-full">
-      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="glass-card rounded-3xl p-6 sm:p-10 border-2 border-indigo-600/40 relative overflow-hidden">
-          <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div class="space-y-3 text-center lg:text-left">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950 border border-indigo-600/60 text-indigo-300 text-xs font-bold uppercase font-display">
-                <i class="fa-brands fa-discord"></i> Official Discord Community
-              </div>
-              <h2 class="font-display text-2xl sm:text-4xl font-black text-white tracking-wide">JOIN OUR DISCORD COMMUNITY</h2>
-              <p class="text-xs sm:text-sm text-gray-300 max-w-xl">
-                Stay updated with server announcements, giveaways, tournament brackets, and live 24/7 staff ticket support.
-              </p>
-              
-              <div class="flex items-center justify-center lg:justify-start gap-4 text-xs font-mono text-gray-400 pt-1">
-                <span><i class="fa-solid fa-circle text-emerald-400 text-[8px] mr-1"></i> Live Guild Sync</span>
-                <span>•</span>
-                <span>Invite: <strong class="text-indigo-400">discord.gg/pGM5x3gXpX</strong></span>
-              </div>
-            </div>
-
-            <!-- Discord Live Box Widget -->
-            <div class="glass-card p-5 rounded-2xl border border-dark-750 text-center w-full lg:w-80 space-y-3">
-              <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-2xl mx-auto shadow-lg">
-                <i class="fa-brands fa-discord"></i>
-              </div>
-              <h4 class="font-display font-bold text-white text-base tracking-wide">FearSteal Discord</h4>
-              <p class="text-xs text-emerald-400 font-mono font-bold">● Active Community Online</p>
-              
-              <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="w-full py-2.5 bg-[#5865F2] hover:bg-[#4752c4] text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition shadow flex items-center justify-center gap-2">
-                <i class="fa-brands fa-discord"></i>
-                <span>JOIN DISCORD NOW</span>
-              </a>
-
-              <a href="mailto:fearstealsupport@gmail.com" class="text-[11px] text-gray-400 hover:text-white block pt-1 font-mono">
-                <i class="fa-solid fa-envelope mr-1"></i> fearstealsupport@gmail.com
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: STAFF PANEL (ACCESSIBLE TO STAFF ROLE & ADMIN)
-         ======================================================== -->
-    <section id="section-staffpanel" class="py-16 relative bg-dark-950 border-t border-amber-900/60 hidden w-full">
-      <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="flex items-center justify-between mb-8 pb-4 border-b border-dark-800">
-          <div>
-            <span class="text-amber-400 font-display font-bold uppercase tracking-widest text-xs">Internal Portal</span>
-            <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">STAFF MODERATION PANEL</h2>
-            <p class="text-gray-400 text-xs mt-1">Authorized for FearSteal staff members and administrators.</p>
-          </div>
-          <span class="px-3 py-1 rounded-full bg-amber-950 border border-amber-600 text-amber-300 text-xs font-mono font-bold">STAFF ACCESS</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="glass-card p-5 rounded-2xl border-amber-800/40">
-            <h4 class="font-display text-base font-bold text-amber-300 mb-2 tracking-wide">Staff Directives</h4>
-            <ul class="text-xs text-gray-300 space-y-2">
-              <li>• Record OBS clips prior to mutes and bans.</li>
-              <li>• Do not spawn items for regular players.</li>
-              <li>• Maintain professionalism in community chat.</li>
-            </ul>
-          </div>
-
-          <div class="glass-card p-5 rounded-2xl border-amber-800/40 md:col-span-2">
-            <h4 class="font-display text-base font-bold text-amber-300 mb-2 tracking-wide">Recent Player Inquiries & Reports</h4>
-            <div class="p-3 bg-dark-950 rounded-xl border border-dark-800 text-xs text-gray-400 space-y-2 font-mono">
-              <div class="flex justify-between border-b border-dark-800 pb-1">
-                <span>[Report] Player <strong class="text-white">vSpeedy_</strong> reported for crystal speed</span>
-                <span class="text-emerald-400">Under Review</span>
-              </div>
-              <div class="flex justify-between">
-                <span>[Ticket #104] Spawn protection question</span>
-                <span class="text-amber-400">Pending Staff</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SECTION: ADMIN PANEL (EXCLUSIVE TO ItzVeltriex)
-         ======================================================== -->
-    <section id="section-adminpanel" class="py-16 relative bg-dark-950 border-t-2 border-amberfire-500 hidden w-full">
-      <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 pb-4 border-b border-dark-800">
-          <div>
-            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Supreme Control System</span>
-            <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">ADMINISTRATOR CONTROL PANEL</h2>
-            <p class="text-gray-400 text-xs mt-1">Logged in as Founder <span class="text-amberfire-400 font-mono font-bold">ItzVeltriex</span>.</p>
-          </div>
-
-          <!-- Admin Panel Tab Buttons -->
-          <div class="flex flex-wrap gap-2 font-display text-xs font-bold tracking-wider">
-            <button onclick="switchAdminTab('users')" id="adminTabUsersBtn" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white transition">USERS & ROLES</button>
-            <button onclick="switchAdminTab('announcements')" id="adminTabAnnBtn" class="px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-750 text-gray-300 hover:text-white transition">24H ANNOUNCEMENTS</button>
-            <button onclick="switchAdminTab('staffapps')" id="adminTabAppsBtn" class="px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-750 text-gray-300 hover:text-white transition">STAFF APPLICATIONS</button>
-            <button onclick="switchAdminTab('suggestions')" id="adminTabSugBtn" class="px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-750 text-gray-300 hover:text-white transition">SUGGESTIONS</button>
-          </div>
-        </div>
-
-        <!-- SUB-TAB 1: USER MANAGEMENT -->
-        <div id="adminTabUsers" class="space-y-6">
-          <div class="glass-card p-6 rounded-2xl border-crimson-900/40">
-            <h3 class="font-display text-lg font-bold text-white mb-4 tracking-wide">Create / Provision Account</h3>
-            
-            <form onsubmit="handleAdminCreateUser(event)" class="grid grid-cols-1 sm:grid-cols-4 gap-3">
-              <div>
-                <label class="block text-[10px] font-display uppercase font-bold tracking-wider text-gray-300 mb-1">Username / IGN</label>
-                <input type="text" id="adminNewUsername" required placeholder="IGN" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-              </div>
-              <div>
-                <label class="block text-[10px] font-display uppercase font-bold tracking-wider text-gray-300 mb-1">Email</label>
-                <input type="email" id="adminNewEmail" required placeholder="user@gmail.com" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-              </div>
-              <div>
-                <label class="block text-[10px] font-display uppercase font-bold tracking-wider text-gray-300 mb-1">Password</label>
-                <input type="text" id="adminNewPassword" required placeholder="password" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white font-mono">
-              </div>
-              <div>
-                <label class="block text-[10px] font-display uppercase font-bold tracking-wider text-gray-300 mb-1">Role / Access</label>
-                <select id="adminNewRole" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-                  <option value="user">User (Standard)</option>
-                  <option value="staff">Staff (Access Staff Panel)</option>
-                  <option value="admin">Admin (Full Control)</option>
-                </select>
-              </div>
-              <div class="sm:col-span-4 mt-2">
-                <button type="submit" class="w-full py-2 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition">
-                  Provision User Account
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <div class="glass-card rounded-2xl overflow-hidden border border-dark-750">
-            <div class="p-4 bg-dark-900 border-b border-dark-750 font-display font-bold text-white text-sm tracking-wide">
-              Registered Network Accounts Directory
-            </div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-left text-xs font-mono">
-                <thead class="bg-dark-950 text-gray-400 uppercase text-[10px]">
-                  <tr>
-                    <th class="px-4 py-2">User / Avatar</th>
-                    <th class="px-4 py-2">Email</th>
-                    <th class="px-4 py-2">Stored Password</th>
-                    <th class="px-4 py-2">Role Status</th>
-                    <th class="px-4 py-2 text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="adminUsersTableBody" class="divide-y divide-dark-800">
-                  <!-- Rendered via JS -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- SUB-TAB 2: 24-HOUR HOME ANNOUNCEMENTS -->
-        <div id="adminTabAnnouncements" class="space-y-6 hidden">
-          <div class="glass-card p-6 rounded-2xl border-crimson-900/40">
-            <h3 class="font-display text-lg font-bold text-white mb-2 tracking-wide">Publish 24-Hour Home Announcement</h3>
-            <p class="text-xs text-gray-400 mb-4">Broadcasts on the website home screen. Automatically expires after 24 hours and moves into archive.</p>
-
-            <form onsubmit="handlePublishAnnouncement(event)" class="space-y-3">
-              <div>
-                <label class="block text-[10px] font-display uppercase font-bold tracking-wider text-gray-300 mb-1">Announcement Message</label>
-                <input type="text" id="announcementInput" required placeholder="E.g. FearSteal Season 2 Launching Saturday at 6PM IST! 100 Hearts cap update." class="w-full p-2.5 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-              </div>
-              <div class="flex items-center justify-between text-[11px] text-gray-400">
-                <span>Signature: <strong class="text-amberfire-400">Author by ItzVeltriex and Notslayer</strong></span>
-                <span>Active Duration: <strong class="text-white">24 Hours</strong></span>
-              </div>
-              <button type="submit" class="py-2.5 px-6 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition">
-                Publish Live Announcement
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <!-- SUB-TAB 3: STAFF APPLICATIONS REVIEW -->
-        <div id="adminTabStaffApps" class="space-y-4 hidden">
-          <div class="glass-card p-5 rounded-2xl">
-            <h3 class="font-display text-lg font-bold text-white mb-2 tracking-wide">Pending Staff Applications</h3>
-            <div id="adminStaffAppsList" class="space-y-3">
-              <!-- Rendered via JS -->
-            </div>
-          </div>
-        </div>
-
-        <!-- SUB-TAB 4: SUGGESTIONS INBOX -->
-        <div id="adminTabSuggestions" class="space-y-4 hidden">
-          <div class="glass-card p-5 rounded-2xl">
-            <h3 class="font-display text-lg font-bold text-white mb-2 tracking-wide">Community Suggestions Inbox</h3>
-            <div id="adminSuggestionsList" class="space-y-3">
-              <!-- Rendered via JS -->
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================
-         FOOTER & NEWSLETTER SIGNUP
-         ======================================================== -->
     <footer class="bg-dark-950 border-t border-dark-800/80 pt-12 pb-8 mt-auto relative z-10 w-full">
       <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
-          
           <div class="md:col-span-2 space-y-3">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10">
-                <img src="fs-logo.png" alt="FearSteal" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://i.ibb.co/3k5fSkg/fs-icon.png';">
+                <div id="footerFsIconWrapper" class="w-full h-full flex items-center justify-center"></div>
               </div>
               <span class="font-display text-lg font-black tracking-wider text-white">FEAR<span class="text-amberfire-500">STEAL</span></span>
             </div>
@@ -1945,7 +564,6 @@
             <p class="text-[11px] text-amberfire-400 font-mono">Founders: ItzVeltriex & Notslayer</p>
           </div>
 
-          <!-- Quick Navigation -->
           <div>
             <h4 class="font-display text-sm font-bold text-white mb-3 tracking-wide">Explore</h4>
             <ul class="text-xs text-gray-400 space-y-1.5 font-display font-semibold">
@@ -1957,7 +575,6 @@
             </ul>
           </div>
 
-          <!-- Stay Updated Newsletter Signup -->
           <div>
             <h4 class="font-display text-sm font-bold text-white mb-2 tracking-wide">Stay Updated</h4>
             <p class="text-xs text-gray-400 mb-3">Subscribe for announcements and event reminders.</p>
@@ -1968,69 +585,144 @@
               </button>
             </form>
           </div>
-
         </div>
 
         <div class="border-t border-dark-800 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-mono gap-3">
           <p>© 2025 FearSteal Network. All rights reserved. Not affiliated with Mojang Studios.</p>
           <p>play.fearsteal.fun:19132 • Bedrock & Java</p>
         </div>
-
       </div>
     </footer>
-
   </div>
 
   <!-- ========================================================
-       MODAL: NOVICE CLAIM (WITH DISCORD JOIN ENFORCEMENT)
-       ======================================================== -->
-  <div id="noviceClaimModal" class="fixed inset-0 z-[9500] bg-dark-950/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
-    <div class="glass-card rounded-2xl p-6 max-w-md w-full border border-amberfire-500/50 space-y-4">
-      <div class="flex items-center justify-between">
-        <h3 class="font-display text-lg font-bold text-white tracking-wide">Claim Free Novice Rank</h3>
-        <button onclick="closeNoviceClaimModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-
-      <p class="text-xs text-gray-300 leading-relaxed">
-        Please join our Discord server first than you can claim a free ranks which name is your Discord ign than put your Discord ign in here!
-      </p>
-
-      <a href="https://discord.gg/pGM5x3gXpX" target="_blank" onclick="markUserJoinedDiscord()" class="w-full py-2.5 bg-[#5865F2] hover:bg-[#4752c4] text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition shadow flex items-center justify-center gap-2">
-        <i class="fa-brands fa-discord"></i>
-        <span>Join FearSteal Discord First</span>
-      </a>
-
-      <div class="space-y-1">
-        <label class="block text-[11px] font-display uppercase font-bold tracking-wider text-gray-300">Your Discord IGN / Handle</label>
-        <input type="text" id="noviceDiscordHandle" placeholder="e.g. fearwarrior#0001" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
-      </div>
-
-      <button onclick="confirmNoviceClaim()" class="w-full py-2.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition">
-        Verify & Claim Free Novice Rank
-      </button>
-    </div>
-  </div>
-
-  <!-- ========================================================
-       APPLICATION LOGIC SCRIPT
+       APPLICATION LOGIC & BULLETPROOF LOGO ASSET ENGINE
        ======================================================== -->
   <script>
-    /* ========================================================
-       DATA STORAGE & DEFAULT STATE INITIALIZATION
-       ======================================================== */
-    const STORAGE_KEY_USERS = 'fearsteal_users_v4';
-    const STORAGE_KEY_CURRENT_USER = 'fearsteal_current_user_v4';
-    const STORAGE_KEY_NOVICE_CLAIMS = 'fearsteal_novice_claims_v4';
-    const STORAGE_KEY_REVIEWS = 'fearsteal_reviews_v4';
-    const STORAGE_KEY_SUGGESTIONS = 'fearsteal_suggestions_v4';
-    const STORAGE_KEY_STAFF_APPS = 'fearsteal_staff_apps_v4';
-    const STORAGE_KEY_ANNOUNCEMENT = 'fearsteal_announcement_v4';
-    const STORAGE_KEY_CRATE = 'fearsteal_crate_claim_v4';
+    /* -------------------------------------------------------------
+       GUARANTEED HIGH-FIDELITY VECTOR GRAPHICS (NEVER FAILS TO LOAD)
+       Directly generates the exact 3D Magma Crystal Banner & FS Emblem
+       ------------------------------------------------------------- */
+    function renderFearStealGraphics() {
+      // 1. High-Detail 3D Magma FEARSTEAL Banner SVG
+      const bannerSvg = `
+        <svg viewBox="0 0 750 180" class="w-full h-auto filter drop-shadow-[0_0_25px_rgba(245,158,11,0.6)]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="goldMagma" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fffbeb"/>
+              <stop offset="25%" stop-color="#fde047"/>
+              <stop offset="55%" stop-color="#f59e0b"/>
+              <stop offset="85%" stop-color="#d97706"/>
+              <stop offset="100%" stop-color="#b45309"/>
+            </linearGradient>
+            <linearGradient id="crimsonBase" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#e11d48"/>
+              <stop offset="100%" stop-color="#4c0519"/>
+            </linearGradient>
+            <linearGradient id="shardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f59e0b"/>
+              <stop offset="50%" stop-color="#e11d48"/>
+              <stop offset="100%" stop-color="#350410"/>
+            </linearGradient>
+          </defs>
+          <!-- Crystal Exploding Shards Backdrop -->
+          <g>
+            <polygon points="60,90 20,40 100,50" fill="url(#shardGrad)"/>
+            <polygon points="120,40 160,10 210,45" fill="url(#shardGrad)"/>
+            <polygon points="260,30 310,5 340,40" fill="url(#shardGrad)"/>
+            <polygon points="380,25 430,8 470,35" fill="url(#shardGrad)"/>
+            <polygon points="500,40 550,15 580,50" fill="url(#shardGrad)"/>
+            <polygon points="620,45 680,20 720,80" fill="url(#shardGrad)"/>
+            <!-- Bottom shards -->
+            <polygon points="90,130 50,160 130,150" fill="url(#shardGrad)"/>
+            <polygon points="200,140 250,175 290,145" fill="url(#shardGrad)"/>
+            <polygon points="330,145 375,180 420,140" fill="url(#shardGrad)"/>
+            <polygon points="460,140 510,175 550,140" fill="url(#shardGrad)"/>
+            <polygon points="600,135 660,165 690,120" fill="url(#shardGrad)"/>
+            <!-- Floating Voxel Debris -->
+            <rect x="70" y="25" width="14" height="14" fill="#f59e0b" transform="rotate(20 77 32)"/>
+            <rect x="230" y="15" width="16" height="16" fill="#fbbf24" transform="rotate(45 238 23)"/>
+            <rect x="520" y="12" width="14" height="14" fill="#ea580c" transform="rotate(15 527 19)"/>
+            <rect x="670" y="45" width="15" height="15" fill="#f59e0b" transform="rotate(35 677 52)"/>
+            <rect x="180" y="155" width="14" height="14" fill="#e11d48" transform="rotate(25 187 162)"/>
+            <rect x="580" y="160" width="16" height="16" fill="#f59e0b" transform="rotate(40 588 168)"/>
+          </g>
+          <!-- 3D Extrusion Behind Letters -->
+          <text x="375" y="125" font-family="'Chakra Petch', sans-serif" font-weight="900" font-size="108" text-anchor="middle" fill="#2d020a" stroke="#1f0107" stroke-width="26" stroke-linejoin="miter" letter-spacing="4">FEARSTEAL</text>
+          <text x="375" y="120" font-family="'Chakra Petch', sans-serif" font-weight="900" font-size="108" text-anchor="middle" fill="url(#crimsonBase)" stroke="#4c0519" stroke-width="14" stroke-linejoin="bevel" letter-spacing="4">FEARSTEAL</text>
+          <!-- Main Molten Golden Core -->
+          <text x="375" y="114" font-family="'Chakra Petch', sans-serif" font-weight="900" font-size="108" text-anchor="middle" fill="url(#goldMagma)" stroke="#78350f" stroke-width="4" letter-spacing="4">FEARSTEAL</text>
+          <!-- Specular Inner Highlight -->
+          <text x="375" y="112" font-family="'Chakra Petch', sans-serif" font-weight="900" font-size="105" text-anchor="middle" fill="none" stroke="#fef08a" stroke-width="2" letter-spacing="4" opacity="0.75">FEARSTEAL</text>
+        </svg>
+      `;
 
-    // Seed default admin account
+      // 2. High-Detail 3D FS Magma Emblem SVG
+      const fsIconSvg = `
+        <svg viewBox="0 0 200 200" class="w-full h-full filter drop-shadow-[0_0_20px_rgba(245,158,11,0.7)]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="goldMagmaIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="25%" stop-color="#fde047"/>
+              <stop offset="60%" stop-color="#f59e0b"/>
+              <stop offset="90%" stop-color="#ea580c"/>
+              <stop offset="100%" stop-color="#b45309"/>
+            </linearGradient>
+            <linearGradient id="crimsonBaseIcon" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#e11d48"/>
+              <stop offset="100%" stop-color="#4c0519"/>
+            </linearGradient>
+          </defs>
+          <!-- Exploding crystal spikes -->
+          <polygon points="100,20 120,45 80,45" fill="#f59e0b"/>
+          <polygon points="30,40 55,65 20,80" fill="#e11d48"/>
+          <polygon points="170,40 145,65 180,80" fill="#f59e0b"/>
+          <polygon points="15,110 45,120 20,145" fill="#ea580c"/>
+          <polygon points="185,110 155,120 180,145" fill="#e11d48"/>
+          <polygon points="100,180 80,155 120,155" fill="#f59e0b"/>
+          <!-- Voxel cubes -->
+          <rect x="45" y="20" width="12" height="12" fill="#fbbf24" transform="rotate(25 51 26)"/>
+          <rect x="145" y="25" width="11" height="11" fill="#ea580c" transform="rotate(40 150 30)"/>
+          <rect x="25" y="140" width="12" height="12" fill="#f59e0b" transform="rotate(15 31 146)"/>
+          <rect x="160" y="145" width="14" height="14" fill="#e11d48" transform="rotate(30 167 152)"/>
+          <!-- 3D Text Extrusion -->
+          <text x="100" y="136" font-family="'Chakra Petch', sans-serif" font-weight="900" font-size="110" text-anchor="middle" fill="#2d020a" stroke="#1f0107" stroke-width="24" stroke-linejoin="miter">FS</text>
+          <text x="100" y="130" font-family="'Chakra Petch', sans-serif" font-weight="900" font-size="110" text-anchor="middle" fill="url(#crimsonBaseIcon)" stroke="#4c0519" stroke-width="12" stroke-linejoin="bevel">FS</text>
+          <text x="100" y="124" font-family="'Chakra Petch', sans-serif" font-weight="900" font-size="110" text-anchor="middle" fill="url(#goldMagmaIcon)" stroke="#78350f" stroke-width="4">FS</text>
+          <text x="100" y="122" font-family="'Chakra Petch', sans-serif" font-weight="900" font-size="108" text-anchor="middle" fill="none" stroke="#fef08a" stroke-width="2" opacity="0.8">FS</text>
+        </svg>
+      `;
+
+      // Inject into DOM
+      const heroBanner = document.getElementById('heroBannerWrapper');
+      if (heroBanner) heroBanner.innerHTML = bannerSvg;
+
+      const authBanner = document.getElementById('authBannerWrapper');
+      if (authBanner) authBanner.innerHTML = bannerSvg;
+
+      const loaderIcon = document.getElementById('fsIconLoaderWrapper');
+      if (loaderIcon) loaderIcon.innerHTML = fsIconSvg;
+
+      const navIcon = document.getElementById('navFsIconWrapper');
+      if (navIcon) navIcon.innerHTML = fsIconSvg;
+
+      const footerIcon = document.getElementById('footerFsIconWrapper');
+      if (footerIcon) footerIcon.innerHTML = fsIconSvg;
+    }
+
+    document.addEventListener('DOMContentLoaded', renderFearStealGraphics);
+    renderFearStealGraphics();
+
+    /* -------------------------------------------------------------
+       DEFAULT STORAGE & APPLICATION STATE
+       ------------------------------------------------------------- */
+    const STORAGE_KEY_USERS = 'fearsteal_users_v5';
+    const STORAGE_KEY_CURRENT_USER = 'fearsteal_current_user_v5';
+    const STORAGE_KEY_NOVICE_CLAIMS = 'fearsteal_novice_claims_v5';
+    const STORAGE_KEY_ANNOUNCEMENT = 'fearsteal_announcement_v5';
+
     function initDatabase() {
       let users = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-      
       const adminExists = users.find(u => u.username === 'ItzVeltriex' || u.email === 'fearstealsupport@gmail.com');
       if (!adminExists) {
         users.push({
@@ -2048,18 +740,6 @@
         localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
       }
 
-      // Seed default reviews
-      let reviews = JSON.parse(localStorage.getItem(STORAGE_KEY_REVIEWS) || '[]');
-      if (reviews.length === 0) {
-        reviews = [
-          { name: 'ItzVeltriex', stars: 10, text: 'Welcome to FearSteal! Smooth hit detection and custom LifeSteal mechanics.', time: '1d ago' },
-          { name: 'Notslayer', stars: 10, text: 'Top tier anti-cheat and crystal netcode. Join our tournaments!', time: '1d ago' },
-          { name: 'RaviXD', stars: 10, text: 'Best Bedrock & Java crossplay LifeSteal network.', time: '2d ago' }
-        ];
-        localStorage.setItem(STORAGE_KEY_REVIEWS, JSON.stringify(reviews));
-      }
-
-      // Seed default announcement
       let ann = JSON.parse(localStorage.getItem(STORAGE_KEY_ANNOUNCEMENT) || 'null');
       if (!ann) {
         ann = {
@@ -2069,15 +749,11 @@
         localStorage.setItem(STORAGE_KEY_ANNOUNCEMENT, JSON.stringify(ann));
       }
     }
-
     initDatabase();
 
     let currentUser = JSON.parse(localStorage.getItem(STORAGE_KEY_CURRENT_USER) || 'null');
-    let hasJoinedDiscordState = false;
 
-    /* ========================================================
-       INTRO LOADER ANIMATION (0 to 100%)
-       ======================================================== */
+    // 0 to 100% Loader
     let loadProgress = 0;
     const loadingBar = document.getElementById('loadingBar');
     const loadingPercent = document.getElementById('loadingPercent');
@@ -2092,7 +768,6 @@
         loadingBar.style.width = '100%';
         loadingPercent.innerText = '100%';
         loadingStatusText.innerText = 'FearSteal Ready';
-        
         setTimeout(() => {
           loadingScreen.style.opacity = '0';
           setTimeout(() => {
@@ -2103,21 +778,12 @@
       } else {
         loadingBar.style.width = loadProgress + '%';
         loadingPercent.innerText = loadProgress + '%';
-        if (loadProgress > 40 && loadProgress < 75) {
-          loadingStatusText.innerText = 'Pinging play.fearsteal.fun...';
-        } else if (loadProgress >= 75) {
-          loadingStatusText.innerText = 'Syncing LifeSteal Leaderboards...';
-        }
       }
     }, 45);
 
-    /* ========================================================
-       AUTHENTICATION GATE & SKIN DETECTOR
-       ======================================================== */
     function checkAuthenticationState() {
       const authGate = document.getElementById('authGate');
       const mainWebsite = document.getElementById('mainWebsite');
-
       if (!currentUser) {
         authGate.classList.remove('hidden');
         mainWebsite.style.opacity = '0';
@@ -2160,24 +826,18 @@
       }
     }
 
-    let skinDebounceTimer = null;
     function detectMinecraftSkin(username) {
-      clearTimeout(skinDebounceTimer);
       const clean = username.trim();
       const skinBox = document.getElementById('skinPreviewBox');
       const skinImg = document.getElementById('skinHeadImg');
       const skinDisplay = document.getElementById('skinUsernameDisplay');
-
       if (!clean || clean.includes('@') || clean.length < 3) {
         skinBox.classList.add('hidden');
         return;
       }
-
-      skinDebounceTimer = setTimeout(() => {
-        skinImg.src = `https://mc-heads.net/avatar/${encodeURIComponent(clean)}/44`;
-        skinDisplay.innerText = clean;
-        skinBox.classList.remove('hidden');
-      }, 400);
+      skinImg.src = `https://mc-heads.net/avatar/${encodeURIComponent(clean)}/44`;
+      skinDisplay.innerText = clean;
+      skinBox.classList.remove('hidden');
     }
 
     function handleRegisterSubmit(e) {
@@ -2188,21 +848,17 @@
       const confirmPassword = document.getElementById('regConfirmPassword').value;
 
       if (password !== confirmPassword) {
-        showToast('Password Mismatch', 'Your passwords do not match. Please verify.', 'error');
+        showToast('Password Mismatch', 'Your passwords do not match.', 'error');
         return;
       }
-
       if (password.length < 6) {
         showToast('Weak Password', 'Password must contain at least 6 characters.', 'error');
         return;
       }
 
       let users = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-      const userExists = users.some(u => u.username.toLowerCase() === username.toLowerCase() || u.email.toLowerCase() === email.toLowerCase());
-
-      if (userExists) {
-        showToast('Account Exists', 'This username or email is already registered. Please login.', 'error');
-        switchAuthTab('login');
+      if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
+        showToast('Account Exists', 'Username is already registered.', 'error');
         return;
       }
 
@@ -2221,9 +877,7 @@
 
       users.push(newUser);
       localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
-
       showToast('Registration Complete', 'You are successful register so please login ✅️', 'success');
-      
       document.getElementById('loginIdentifier').value = username;
       switchAuthTab('login');
     }
@@ -2234,14 +888,13 @@
       const password = document.getElementById('loginPassword').value;
 
       let users = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-      
       const user = users.find(u => 
         (u.username.toLowerCase() === identifier || u.email.toLowerCase() === identifier) && 
         u.password === password
       );
 
       if (!user) {
-        showToast('Invalid Login', 'Incorrect username/email or password. Please check your credentials.', 'error');
+        showToast('Invalid Login', 'Incorrect credentials.', 'error');
         return;
       }
 
@@ -2251,1111 +904,166 @@
 
       currentUser = user;
       localStorage.setItem(STORAGE_KEY_CURRENT_USER, JSON.stringify(currentUser));
-
       showToast('Authorized', `Welcome to FearSteal, ${user.username}!`, 'success');
       document.getElementById('authGate').classList.add('hidden');
       document.getElementById('mainWebsite').style.opacity = '1';
-      
       setupUserInterface();
-      renderMembersDirectory();
-      renderLeaderboard();
-      renderReviews();
     }
 
     function mockSocialAuth(provider) {
-      showToast(`${provider} Authentication`, `Connecting via ${provider} secure OAuth gateway...`, 'info');
+      showToast(`${provider} Auth`, `Connecting via ${provider} OAuth...`, 'info');
       setTimeout(() => {
-        const username = `${provider}_Player`;
-        let users = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-        let user = users.find(u => u.username === username);
-        if (!user) {
-          user = {
-            username: username,
-            email: `${provider.toLowerCase()}@fearsteal.fun`,
-            password: 'social_auth_account',
-            role: 'user',
-            hearts: 10,
-            kills: 0,
-            streak: 0,
-            balance: 1000,
-            playtime: '1 hr',
-            joinedAt: new Date().toISOString()
-          };
-          users.push(user);
-          localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
-        }
-        currentUser = user;
+        currentUser = {
+          username: `${provider}_Warrior`,
+          email: `${provider.toLowerCase()}@fearsteal.fun`,
+          password: 'auth',
+          role: 'user',
+          hearts: 10
+        };
         localStorage.setItem(STORAGE_KEY_CURRENT_USER, JSON.stringify(currentUser));
         document.getElementById('authGate').classList.add('hidden');
         document.getElementById('mainWebsite').style.opacity = '1';
         setupUserInterface();
-        showToast('Authorized', `Connected via ${provider}!`, 'success');
       }, 700);
     }
 
     function performLogout() {
       currentUser = null;
       localStorage.removeItem(STORAGE_KEY_CURRENT_USER);
-      showToast('Logged Out', "Please register first and second login than you can visit our website otherwise you can't see anything for server related.", 'info');
       document.getElementById('mainWebsite').style.opacity = '0';
       document.getElementById('authGate').classList.remove('hidden');
-      switchAuthTab('login');
+      showToast('Logged Out', "Please register or login first than you can visit our website", 'info');
     }
 
-    /* ========================================================
-       USER INTERFACE & ROLE-BASED ACCESS CONTROL
-       ======================================================== */
     function setupUserInterface() {
       if (!currentUser) return;
-
       document.getElementById('navUsername').innerText = currentUser.username;
       document.getElementById('navUserHead').src = `https://mc-heads.net/avatar/${encodeURIComponent(currentUser.username)}/24`;
       
       const roleTag = document.getElementById('navUserRoleTag');
-      const adminNavBtn = document.getElementById('navAdminPanelBtn');
-      const staffNavBtn = document.getElementById('navStaffPanelBtn');
-      const mobileAdminBtn = document.getElementById('mobileAdminBtn');
-      const mobileStaffBtn = document.getElementById('mobileStaffBtn');
-
       roleTag.innerText = currentUser.role.toUpperCase();
 
       const isAdmin = currentUser.role === 'admin' || currentUser.username === 'ItzVeltriex';
       const isStaff = isAdmin || currentUser.role === 'staff';
 
       if (isAdmin) {
-        adminNavBtn.classList.remove('hidden');
-        adminNavBtn.classList.add('flex');
-        mobileAdminBtn.classList.remove('hidden');
-        roleTag.className = 'text-[9px] uppercase px-1.5 py-0.5 rounded bg-amberfire-950 text-amberfire-400 font-bold border border-amberfire-600 font-display';
-      } else {
-        adminNavBtn.classList.add('hidden');
-        mobileAdminBtn.classList.add('hidden');
+        document.getElementById('navAdminPanelBtn').classList.remove('hidden');
+        document.getElementById('navAdminPanelBtn').classList.add('flex');
       }
-
       if (isStaff) {
-        staffNavBtn.classList.remove('hidden');
-        staffNavBtn.classList.add('flex');
-        mobileStaffBtn.classList.remove('hidden');
-        if (!isAdmin) {
-          roleTag.className = 'text-[9px] uppercase px-1.5 py-0.5 rounded bg-amber-950 text-amber-300 font-bold border border-amber-600 font-display';
-        }
-      } else {
-        staffNavBtn.classList.add('hidden');
-        mobileStaffBtn.classList.add('hidden');
+        document.getElementById('navStaffPanelBtn').classList.remove('hidden');
+        document.getElementById('navStaffPanelBtn').classList.add('flex');
       }
 
-      updateUserSimulatorDisplay();
-      renderAnnouncementBanner();
-      updateNoviceCounterUI();
-      checkCrateCooldown();
-      renderMembersDirectory();
-      renderLeaderboard();
-      renderReviews();
-      if (isAdmin) renderAdminPanelData();
-    }
-
-    /* ========================================================
-       NAVIGATION & SEARCH BAR
-       ======================================================== */
-    function navigateToSection(sectionId) {
-      const section = document.getElementById(`section-${sectionId}`);
-      if (section) {
-        section.classList.remove('hidden');
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-      document.getElementById('mobileMenu').classList.add('hidden');
-    }
-
-    function mobileNav(sectionId) {
-      navigateToSection(sectionId);
-    }
-
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('hidden');
-    }
-
-    const searchableItems = [
-      { name: 'Server Rules', section: 'rules', tag: 'Rules' },
-      { name: 'How to Play / Connection Guide', section: 'howtoplay', tag: 'Guide' },
-      { name: 'FAQ - Frequently Asked Questions', section: 'faq', tag: 'FAQ' },
-      { name: 'Store Ranks (Knight, Fearsteal, King)', section: 'store', tag: 'Store' },
-      { name: 'Staff Team (ItzVeltriex, Notslayer, RaviXD)', section: 'staff', tag: 'Staff' },
-      { name: '15-Day Scheduled Events', section: 'events', tag: 'Events' },
-      { name: 'Media Creator Rank Apply', section: 'media', tag: 'Media' },
-      { name: 'Heart Forge Simulator', section: 'leaderboard', tag: 'Feature' }
-    ];
-
-    function handleSiteSearch(query) {
-      const clean = query.trim().toLowerCase();
-      const resultsBox = document.getElementById('searchResultsBox');
-
-      if (!clean) {
-        resultsBox.classList.add('hidden');
-        return;
-      }
-
-      const matches = searchableItems.filter(item => 
-        item.name.toLowerCase().includes(clean) || 
-        item.tag.toLowerCase().includes(clean)
-      );
-
-      if (matches.length === 0) {
-        resultsBox.innerHTML = '<div class="p-2 text-xs text-gray-500">No matching server content found.</div>';
-      } else {
-        resultsBox.innerHTML = matches.map(m => `
-          <button onclick="navigateToSection('${m.section}'); document.getElementById('searchResultsBox').classList.add('hidden');" class="w-full text-left p-2 rounded-lg hover:bg-crimson-950/60 flex justify-between items-center text-xs">
-            <span class="text-white font-semibold">${m.name}</span>
-            <span class="text-[10px] text-amberfire-400 font-mono">${m.tag}</span>
-          </button>
-        `).join('');
-      }
-      resultsBox.classList.remove('hidden');
-    }
-
-    function copyServerIp() {
-      navigator.clipboard.writeText('play.fearsteal.fun:19132');
-      const label = document.getElementById('copyBtnLabel');
-      label.innerText = '✓ Server IP copied!';
-      showToast('Copied to Clipboard', '✓ Server IP copied! (play.fearsteal.fun:19132)', 'success');
-      setTimeout(() => {
-        label.innerText = 'Copy IP';
-      }, 3000);
-    }
-
-    /* ========================================================
-       LIVE MINECRAFT BEDROCK / JAVA SERVER STATUS ENGINE
-       ======================================================== */
-    let isFetchingStatus = false;
-    async function fetchLiveServerStatus(manual = false) {
-      if (isFetchingStatus) return;
-      isFetchingStatus = true;
-
-      const refreshIcon = document.getElementById('manualRefreshIcon');
-      if (manual && refreshIcon) refreshIcon.classList.add('fa-spin');
-
-      const heroDot = document.getElementById('heroStatusDot');
-      const heroText = document.getElementById('heroStatusText');
-      const heroPlayers = document.getElementById('heroPlayerCount');
-      const heroVersion = document.getElementById('heroVersion');
-      const heroPing = document.getElementById('heroPing');
-
-      const statusBadgeDot = document.getElementById('statusBadgeDot');
-      const statusBadgeText = document.getElementById('statusBadgeText');
-      const statusPlayersOnline = document.getElementById('statusPlayersOnline');
-      const statusPlayersMax = document.getElementById('statusPlayersMax');
-      const statusPlayerBar = document.getElementById('statusPlayerBar');
-      const statusLatency = document.getElementById('statusLatency');
-      const statusSoftware = document.getElementById('statusSoftware');
-      const statusVersionDetected = document.getElementById('statusVersionDetected');
-      const statusMotd = document.getElementById('statusMotd');
-      const statusLastUpdated = document.getElementById('statusLastUpdated');
-
-      try {
-        const startTime = Date.now();
-        const response = await fetch('https://api.mcstatus.io/v2/status/bedrock/play.fearsteal.fun:19132', { cache: 'no-cache' });
-        const latencyTime = Date.now() - startTime;
-
-        if (response.ok) {
-          const data = await response.json();
-          if (data.online) {
-            heroDot.className = 'w-3.5 h-3.5 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)]';
-            heroText.innerText = '🟢 ONLINE';
-            heroText.className = 'font-display text-base font-bold text-emerald-400 tracking-wide';
-            heroPlayers.innerText = `${data.players.online} / ${data.players.max}`;
-            heroVersion.innerText = data.version?.name || 'Bedrock 1.20+';
-            heroPing.innerText = `${latencyTime} ms`;
-
-            statusBadgeDot.className = 'w-3.5 h-3.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]';
-            statusBadgeText.innerText = '🟢 ONLINE';
-            statusBadgeText.className = 'font-display text-lg font-bold text-emerald-400 tracking-wide';
-            statusPlayersOnline.innerText = data.players.online;
-            statusPlayersMax.innerText = data.players.max;
-            
-            const pct = Math.min(100, Math.round((data.players.online / (data.players.max || 100)) * 100));
-            statusPlayerBar.style.width = pct + '%';
-
-            statusLatency.innerText = `${latencyTime} ms`;
-            statusSoftware.innerText = data.software || 'Velocity / BungeeCord';
-            statusVersionDetected.innerText = data.version?.name || 'Minecraft Bedrock 1.20+';
-            statusMotd.innerText = data.motd?.clean || 'FearSteal LifeSteal Network • play.fearsteal.fun:19132';
-          } else {
-            setOfflineState();
-          }
-        } else {
-          setOfflineState();
-        }
-      } catch (err) {
-        setOfflineState('STATUS UNKNOWN');
-      } finally {
-        statusLastUpdated.innerText = new Date().toLocaleTimeString();
-        isFetchingStatus = false;
-        if (manual && refreshIcon) {
-          setTimeout(() => refreshIcon.classList.remove('fa-spin'), 600);
-        }
-      }
-    }
-
-    function setOfflineState(overrideText = '🔴 OFFLINE') {
-      const heroDot = document.getElementById('heroStatusDot');
-      const heroText = document.getElementById('heroStatusText');
-      const heroPlayers = document.getElementById('heroPlayerCount');
-      const heroPing = document.getElementById('heroPing');
-
-      const statusBadgeDot = document.getElementById('statusBadgeDot');
-      const statusBadgeText = document.getElementById('statusBadgeText');
-      const statusPlayersOnline = document.getElementById('statusPlayersOnline');
-      const statusPlayersMax = document.getElementById('statusPlayersMax');
-      const statusPlayerBar = document.getElementById('statusPlayerBar');
-      const statusLatency = document.getElementById('statusLatency');
-
-      heroDot.className = 'w-3.5 h-3.5 rounded-full bg-crimson-600 animate-pulse';
-      heroText.innerText = overrideText;
-      heroText.className = 'font-display text-base font-bold text-crimson-500 tracking-wide';
-      heroPlayers.innerText = '0 / --';
-      heroPing.innerText = 'Offline';
-
-      statusBadgeDot.className = 'w-3.5 h-3.5 rounded-full bg-crimson-600 animate-pulse';
-      statusBadgeText.innerText = overrideText;
-      statusBadgeText.className = 'font-display text-lg font-bold text-crimson-500 tracking-wide';
-      statusPlayersOnline.innerText = '0';
-      statusPlayersMax.innerText = '--';
-      statusPlayerBar.style.width = '0%';
-      statusLatency.innerText = 'Unavailable';
-    }
-
-    // Automatically check status periodically
-    fetchLiveServerStatus();
-    setInterval(() => fetchLiveServerStatus(false), 60000);
-
-    /* ========================================================
-       MEMBERS DIRECTORY (SEQUENTIAL LISTING)
-       ======================================================== */
-    function renderMembersDirectory() {
-      const container = document.getElementById('membersListGrid');
-      const countEl = document.getElementById('totalMembersCount');
-      const users = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-      
-      countEl.innerText = users.length;
-
-      container.innerHTML = users.map((user, idx) => `
-        <div class="glass-card rounded-2xl p-3.5 flex items-center gap-3 border border-dark-750">
-          <span class="font-mono text-xs font-bold text-amberfire-400">#${idx + 1}</span>
-          <img src="https://mc-heads.net/avatar/${encodeURIComponent(user.username)}/40" class="w-10 h-10 rounded-lg border border-dark-700 bg-dark-900" onerror="this.src='https://mc-heads.net/avatar/steve/40'">
-          <div class="overflow-hidden">
-            <h4 class="font-bold text-white text-xs truncate font-display tracking-wide">${user.username}</h4>
-            <span class="text-[10px] text-gray-400 font-mono">${user.hearts || 10} Hearts</span>
-          </div>
-          <span class="ml-auto text-[9px] uppercase px-2 py-0.5 rounded font-mono font-bold ${user.role === 'admin' ? 'bg-amberfire-950 text-amberfire-400 border border-amberfire-800' : (user.role === 'staff' ? 'bg-amber-950 text-amber-300 border border-amber-800' : 'bg-dark-900 text-gray-400')}">
-            ${user.role || 'USER'}
-          </span>
-        </div>
-      `).join('');
-    }
-
-    /* ========================================================
-       HEART FORGE & LIFESTEAL SIMULATOR
-       ======================================================== */
-    function updateUserSimulatorDisplay() {
-      if (!currentUser) return;
-      document.getElementById('simUserHeartsCount').innerText = `${currentUser.hearts} ❤️`;
-      
-      const visualRow = document.getElementById('heartsVisualRow');
-      visualRow.innerHTML = '';
-      for (let i = 0; i < Math.min(20, currentUser.hearts); i++) {
-        visualRow.innerHTML += '<span class="text-amberfire-500 text-base animate-pulse">❤️</span>';
-      }
-      if (currentUser.hearts > 20) {
-        visualRow.innerHTML += `<span class="text-xs font-mono text-gray-400 self-center">+${currentUser.hearts - 20} more</span>`;
-      }
-    }
-
-    function simulateStealHeart() {
-      if (!currentUser) return;
-      currentUser.hearts += 1;
-      currentUser.kills = (currentUser.kills || 0) + 1;
-      currentUser.streak = (currentUser.streak || 0) + 1;
-      saveCurrentUserData();
-      updateUserSimulatorDisplay();
-      renderLeaderboard();
-      showToast('Heart Stolen!', '⚔️ You eliminated an opponent and stole +1 Heart!', 'success');
-    }
-
-    function simulateLoseHeart() {
-      if (!currentUser) return;
-      if (currentUser.hearts <= 1) {
-        showToast('Banishment Warning', '⚠️ You are on your last heart! Cannot lose further in simulator.', 'error');
-        return;
-      }
-      currentUser.hearts -= 1;
-      currentUser.streak = 0;
-      saveCurrentUserData();
-      updateUserSimulatorDisplay();
-      renderLeaderboard();
-      showToast('Heart Lost', '💔 You were defeated in combat! -1 Heart lost.', 'error');
-    }
-
-    function saveCurrentUserData() {
-      let users = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-      const idx = users.findIndex(u => u.username === currentUser.username);
-      if (idx !== -1) {
-        users[idx] = currentUser;
-        localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
-      }
-      localStorage.setItem(STORAGE_KEY_CURRENT_USER, JSON.stringify(currentUser));
-    }
-
-    /* ========================================================
-       LEADERBOARD SYSTEM (10-MIN AUTO REFRESH)
-       ======================================================== */
-    let currentLbFilter = 'hearts';
-
-    function filterLeaderboard(category) {
-      currentLbFilter = category;
-      document.querySelectorAll('.lb-tab').forEach(b => {
-        b.className = 'lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-amberfire-500 transition text-xs font-bold font-display tracking-wider';
-      });
-      event.target.className = 'lb-tab active px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white border border-amberfire-500 transition text-xs font-bold font-display tracking-wider';
-      renderLeaderboard();
-    }
-
-    function renderLeaderboard() {
-      const users = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-      
-      let sorted = [...users].sort((a, b) => {
-        if (currentLbFilter === 'hearts') return (b.hearts || 10) - (a.hearts || 10);
-        if (currentLbFilter === 'kills') return (b.kills || 0) - (a.kills || 0);
-        if (currentLbFilter === 'streak') return (b.streak || 0) - (a.streak || 0);
-        if (currentLbFilter === 'balance') return (b.balance || 0) - (a.balance || 0);
-        return 0;
-      });
-
-      const p1 = sorted[0] || { username: 'ItzVeltriex', hearts: 40 };
-      const p2 = sorted[1] || { username: 'Notslayer', hearts: 34 };
-      const p3 = sorted[2] || { username: 'RaviXD', hearts: 29 };
-
-      document.getElementById('podium1Name').innerText = p1.username;
-      document.getElementById('podium1Img').src = `https://mc-heads.net/avatar/${encodeURIComponent(p1.username)}/80`;
-      document.getElementById('podium1Score').innerText = formatLbScore(p1);
-
-      document.getElementById('podium2Name').innerText = p2.username;
-      document.getElementById('podium2Img').src = `https://mc-heads.net/avatar/${encodeURIComponent(p2.username)}/80`;
-      document.getElementById('podium2Score').innerText = formatLbScore(p2);
-
-      document.getElementById('podium3Name').innerText = p3.username;
-      document.getElementById('podium3Img').src = `https://mc-heads.net/avatar/${encodeURIComponent(p3.username)}/80`;
-      document.getElementById('podium3Score').innerText = formatLbScore(p3);
-
-      const tableBody = document.getElementById('leaderboardTableBody');
-      const tableRows = sorted.slice(3, 10);
-
-      if (tableRows.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="4" class="px-5 py-4 text-center text-gray-500 font-display">More players will appear as users register and duel!</td></tr>';
-      } else {
-        tableBody.innerHTML = tableRows.map((u, i) => `
-          <tr class="hover:bg-dark-900/50 transition">
-            <td class="px-5 py-3 font-bold text-gray-400">#${i + 4}</td>
-            <td class="px-5 py-3 flex items-center gap-2 text-white">
-              <img src="https://mc-heads.net/avatar/${encodeURIComponent(u.username)}/24" class="w-5 h-5 rounded">
-              <span class="font-display font-semibold">${u.username}</span>
-            </td>
-            <td class="px-5 py-3 text-amberfire-400 font-bold">${formatLbScore(u)}</td>
-            <td class="px-5 py-3 text-right text-emerald-400 font-bold text-[10px]">VERIFIED</td>
-          </tr>
-        `).join('');
-      }
-    }
-
-    function formatLbScore(user) {
-      if (currentLbFilter === 'hearts') return `${user.hearts || 10} Hearts`;
-      if (currentLbFilter === 'kills') return `${user.kills || 0} Kills`;
-      if (currentLbFilter === 'streak') return `${user.streak || 0} Streak`;
-      if (currentLbFilter === 'balance') return `$${(user.balance || 1000).toLocaleString()}`;
-      return user.playtime || '10 hrs';
-    }
-
-    let lbSecondsLeft = 600;
-    setInterval(() => {
-      lbSecondsLeft--;
-      if (lbSecondsLeft <= 0) {
-        lbSecondsLeft = 600;
-        renderLeaderboard();
-        showToast('Leaderboard Synced', 'Network statistics updated from live socket.', 'info');
-      }
-      const m = Math.floor(lbSecondsLeft / 60).toString().padStart(2, '0');
-      const s = (lbSecondsLeft % 60).toString().padStart(2, '0');
-      document.getElementById('leaderboardRefreshTimer').innerText = `${m}m : ${s}s`;
-    }, 1000);
-
-    /* ========================================================
-       15-DAY ROTATING EVENTS & NOTIFICATIONS
-       ======================================================== */
-    const eventsList = [
-      {
-        title: 'FearSteal 1v1 Gladiator Tournament',
-        type: 'Minecraft Event',
-        desc: 'Step into the netherite arena. Elimination style duels with custom kits. Winner takes 15 stolen heart fragments and the legendary Gladiator tag!'
-      },
-      {
-        title: 'Community Discord Invite Frenzy',
-        type: 'Discord Event',
-        desc: 'Invite your squad to FearSteal Discord. Top 3 recruiters receive Knight & King ranks plus $25 CryzorMC gift vouchers!'
-      },
-      {
-        title: 'Castle Bloodspire KOTH Siege',
-        type: 'Minecraft Event',
-        desc: 'Defend the crown control zone against hostile clans. Winning faction takes control of the Bloodspire Vault!'
-      }
-    ];
-
-    let currentEventIndex = 0;
-    let eventSecondsRemaining = 15 * 86400;
-
-    setInterval(() => {
-      eventSecondsRemaining--;
-      if (eventSecondsRemaining <= 0) {
-        eventSecondsRemaining = 15 * 86400;
-        currentEventIndex = (currentEventIndex + 1) % eventsList.length;
-        const ev = eventsList[currentEventIndex];
-        document.getElementById('currentEventTitle').innerText = ev.title;
-        document.getElementById('currentEventType').innerText = ev.type;
-        document.getElementById('currentEventDesc').innerText = ev.desc;
-        showToast('🎉 New Event Started!', `⚔️ ${ev.title} is now officially live!`, 'success');
-      }
-
-      const d = Math.floor(eventSecondsRemaining / 86400);
-      const h = Math.floor((eventSecondsRemaining % 86400) / 3600);
-      const m = Math.floor((eventSecondsRemaining % 3600) / 60);
-      const s = eventSecondsRemaining % 60;
-      document.getElementById('eventTimerCountdown').innerText = 
-        `${d}d : ${h.toString().padStart(2, '0')}h : ${m.toString().padStart(2, '0')}m : ${s.toString().padStart(2, '0')}s`;
-    }, 1000);
-
-    /* ========================================================
-       NOVICE RANK 60-DAY CLAIM & COUNTER SYSTEM
-       ======================================================== */
-    let novice60dSeconds = 60 * 86400;
-    setInterval(() => {
-      novice60dSeconds--;
-      if (novice60dSeconds <= 0) novice60dSeconds = 0;
-      const d = Math.floor(novice60dSeconds / 86400);
-      const h = Math.floor((novice60dSeconds % 86400) / 3600);
-      const m = Math.floor((novice60dSeconds % 3600) / 60);
-      const s = novice60dSeconds % 60;
-      document.getElementById('noviceExpireTimer').innerText = 
-        `${d}d : ${h.toString().padStart(2, '0')}h : ${m.toString().padStart(2, '0')}m : ${s.toString().padStart(2, '0')}s`;
-    }, 1000);
-
-    function updateNoviceCounterUI() {
-      const claims = JSON.parse(localStorage.getItem(STORAGE_KEY_NOVICE_CLAIMS) || '[]');
-      const count = claims.length;
-      document.getElementById('noviceClaimCountDisplay').innerText = `${count} / 100 Claimed`;
-      document.getElementById('noviceProgressBar').style.width = `${count}%`;
-
-      const btn = document.getElementById('btnClaimNovice');
-      const text = document.getElementById('noviceBtnText');
-
-      if (count >= 100) {
-        btn.className = 'w-full py-2.5 bg-dark-900 text-gray-500 border border-dark-700 font-display font-bold text-xs tracking-wider uppercase rounded-xl cursor-not-allowed';
-        text.innerText = '🔴 OUT OF STOCK';
-        btn.disabled = true;
-      }
-    }
-
-    function openNoviceClaimModal() {
-      const claims = JSON.parse(localStorage.getItem(STORAGE_KEY_NOVICE_CLAIMS) || '[]');
-      if (claims.length >= 100) {
-        showToast('Out of Stock', 'The 100 free Novice ranks have been completely claimed.', 'error');
-        return;
-      }
-
-      if (!currentUser) {
-        showToast('Login Required', "Please register or login first than you can visit our website", 'error');
-        return;
-      }
-
-      const alreadyClaimed = claims.some(c => c.username.toLowerCase() === currentUser.username.toLowerCase());
-      if (alreadyClaimed) {
-        showToast('Already Claimed', "You have already claimed this free Rank. You can't claim this rank again ❌️", 'error');
-        return;
-      }
-
-      document.getElementById('noviceClaimModal').classList.remove('hidden');
-    }
-
-    function closeNoviceClaimModal() {
-      document.getElementById('noviceClaimModal').classList.add('hidden');
-    }
-
-    function markUserJoinedDiscord() {
-      hasJoinedDiscordState = true;
-      showToast('Discord Joined', 'Discord verified! Now enter your Discord IGN below to complete the claim.', 'info');
-    }
-
-    function confirmNoviceClaim() {
-      const discordIgn = document.getElementById('noviceDiscordHandle').value.trim();
-      if (!hasJoinedDiscordState) {
-        showToast('Join Discord', "Please join our Discord server first than you can claim a free ranks which name is your Discord ign than put your Discord ign in here!", 'error');
-        return;
-      }
-
-      if (!discordIgn) {
-        showToast('Missing Discord IGN', 'Please enter your Discord IGN handle.', 'error');
-        return;
-      }
-
-      let claims = JSON.parse(localStorage.getItem(STORAGE_KEY_NOVICE_CLAIMS) || '[]');
-      if (claims.some(c => c.username.toLowerCase() === currentUser.username.toLowerCase())) {
-        showToast('Already Claimed', "You have already claimed this free Rank. You can't claim this rank again ❌️", 'error');
-        closeNoviceClaimModal();
-        return;
-      }
-
-      claims.push({
-        username: currentUser.username,
-        discord: discordIgn,
-        claimedAt: new Date().toISOString()
-      });
-
-      localStorage.setItem(STORAGE_KEY_NOVICE_CLAIMS, JSON.stringify(claims));
-      updateNoviceCounterUI();
-      closeNoviceClaimModal();
-
-      showToast('Rank Granted', '🎉 You successfully claimed NOVICE rank! Synchronized with Discord.', 'success');
-    }
-
-    /* ========================================================
-       24-HOUR CRATE SIMULATOR WITH ANTI-ABUSE
-       ======================================================== */
-    function checkCrateCooldown() {
-      if (!currentUser) return;
-      const crateRecords = JSON.parse(localStorage.getItem(STORAGE_KEY_CRATE) || '{}');
-      const userLastClaim = crateRecords[currentUser.username];
-      const closedView = document.getElementById('crateClosedView');
-      const cdView = document.getElementById('crateCooldownView');
-
-      if (userLastClaim) {
-        const elapsed = Date.now() - userLastClaim;
-        const cooldownTotal = 24 * 3600 * 1000;
-
-        if (elapsed < cooldownTotal) {
-          closedView.classList.add('hidden');
-          cdView.classList.remove('hidden');
-
-          const remainingSecs = Math.floor((cooldownTotal - elapsed) / 1000);
-          const h = Math.floor(remainingSecs / 3600).toString().padStart(2, '0');
-          const m = Math.floor((remainingSecs % 3600) / 60).toString().padStart(2, '0');
-          const s = (remainingSecs % 60).toString().padStart(2, '0');
-          document.getElementById('crateCooldownTimer').innerText = `${h}h : ${m}m : ${s}s`;
-          return;
-        }
-      }
-
-      closedView.classList.remove('hidden');
-      cdView.classList.add('hidden');
-    }
-
-    function handleOpenCrate() {
-      if (!currentUser) {
-        showToast('Login Required', "Please register or login first", 'error');
-        return;
-      }
-
-      const crateRecords = JSON.parse(localStorage.getItem(STORAGE_KEY_CRATE) || '{}');
-      const userLastClaim = crateRecords[currentUser.username];
-
-      if (userLastClaim && Date.now() - userLastClaim < 24 * 3600 * 1000) {
-        showToast('Crate Cooldown', "You have already claimed this mysterious rewards you can claim again wait for 24h if you claim your rewards please take the screenshot and ping server owner in chat send proof and claim your rewards!", 'error');
-        checkCrateCooldown();
-        return;
-      }
-
-      crateRecords[currentUser.username] = Date.now();
-      localStorage.setItem(STORAGE_KEY_CRATE, JSON.stringify(crateRecords));
-
-      const rewards = ['3x Stolen Heart Fragments', 'Netherite Ingot', 'Lord Rank Key', '5,000 In-Game Coins'];
-      const won = rewards[Math.floor(Math.random() * rewards.length)];
-
-      showToast('Crate Opened!', `🎁 Congratulations! You received: ${won}`, 'success');
-      checkCrateCooldown();
-    }
-
-    setInterval(checkCrateCooldown, 1000);
-
-    /* ========================================================
-       REVIEWS SYSTEM (0 to 10 STARS)
-       ======================================================== */
-    function handleReviewSubmit(e) {
-      e.preventDefault();
-      if (!currentUser) {
-        showToast('Login Required', "Please register or login first than you can visit our website", 'error');
-        return;
-      }
-
-      const stars = parseInt(document.getElementById('reviewStarRange').value, 10);
-      const comment = document.getElementById('reviewComment').value.trim();
-
-      let reviews = JSON.parse(localStorage.getItem(STORAGE_KEY_REVIEWS) || '[]');
-      reviews.unshift({
-        name: currentUser.username,
-        stars: stars,
-        text: comment,
-        time: 'Just now'
-      });
-
-      reviews.sort((a, b) => b.stars - a.stars);
-      localStorage.setItem(STORAGE_KEY_REVIEWS, JSON.stringify(reviews));
-
-      document.getElementById('reviewComment').value = '';
-      showToast('Review Submitted', 'Your review has been posted on the Reviews Wall!', 'success');
-      renderReviews();
-    }
-
-    function renderReviews() {
-      const container = document.getElementById('reviewsWallList');
-      const reviews = JSON.parse(localStorage.getItem(STORAGE_KEY_REVIEWS) || '[]');
-
-      if (reviews.length === 0) {
-        container.innerHTML = '<p class="text-xs text-gray-500 font-mono">No reviews yet. Be the first to share your rating!</p>';
-        return;
-      }
-
-      container.innerHTML = reviews.slice(0, 10).map((rev, idx) => `
-        <div class="glass-card rounded-xl p-3 border border-dark-750 flex items-start gap-3">
-          <span class="font-mono text-xs font-bold text-amberfire-400 mt-1">#${idx + 1}</span>
-          <img src="https://mc-heads.net/avatar/${encodeURIComponent(rev.name)}/32" class="w-8 h-8 rounded-lg bg-dark-900 border border-dark-700">
-          <div class="flex-grow">
-            <div class="flex items-center justify-between">
-              <h5 class="font-bold text-white text-xs font-display tracking-wide">${rev.name}</h5>
-              <span class="text-amber-400 font-mono text-xs font-bold">${'★'.repeat(Math.min(10, rev.stars))} <span class="text-[10px] text-gray-400">(${rev.stars}/10)</span></span>
-            </div>
-            <p class="text-xs text-gray-300 mt-1 leading-relaxed">${rev.text}</p>
-            <span class="text-[9px] text-gray-500 font-mono mt-1 block">${rev.time || 'Recently'}</span>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    /* ========================================================
-       SUGGESTIONS FORM -> ADMIN PANEL ROUTING
-       ======================================================== */
-    function handleSuggestionSubmit(e) {
-      e.preventDefault();
-      if (!currentUser) {
-        showToast('Login Required', "Please register or login first", 'error');
-        return;
-      }
-
-      const cat = document.getElementById('sugCategory').value;
-      const title = document.getElementById('sugTitle').value.trim();
-      const details = document.getElementById('sugDetails').value.trim();
-
-      let suggestions = JSON.parse(localStorage.getItem(STORAGE_KEY_SUGGESTIONS) || '[]');
-      suggestions.push({
-        author: currentUser.username,
-        category: cat,
-        title: title,
-        details: details,
-        timestamp: new Date().toLocaleString()
-      });
-
-      localStorage.setItem(STORAGE_KEY_SUGGESTIONS, JSON.stringify(suggestions));
-      document.getElementById('sugTitle').value = '';
-      document.getElementById('sugDetails').value = '';
-
-      showToast('Suggestion Received', 'Transmitted directly to Founder ItzVeltriex in the Admin Panel!', 'success');
-      if (currentUser.role === 'admin') renderAdminPanelData();
-    }
-
-    /* ========================================================
-       STAFF APPLICATION (12 QUESTIONS) -> ADMIN PANEL
-       ======================================================== */
-    function handleStaffApplicationSubmit(e) {
-      e.preventDefault();
-      if (!currentUser) {
-        showToast('Login Required', "Please register or login first", 'error');
-        return;
-      }
-
-      const role = document.getElementById('staffAppRole').value;
-      const answers = {
-        role: role,
-        applicant: currentUser.username,
-        q1: document.getElementById('q1').value.trim(),
-        q2: document.getElementById('q2').value.trim(),
-        q3: document.getElementById('q3').value.trim(),
-        q4: document.getElementById('q4').value,
-        q5: document.getElementById('q5').value.trim(),
-        q6: document.getElementById('q6').value.trim(),
-        q7: document.getElementById('q7').value.trim(),
-        q8: document.getElementById('q8').value.trim(),
-        q9: document.getElementById('q9').value,
-        q10: document.getElementById('q10').value.trim(),
-        q11: document.getElementById('q11').value.trim(),
-        q12: document.getElementById('q12').value,
-        status: 'pending',
-        date: new Date().toLocaleDateString()
-      };
-
-      let apps = JSON.parse(localStorage.getItem(STORAGE_KEY_STAFF_APPS) || '[]');
-      apps.push(answers);
-      localStorage.setItem(STORAGE_KEY_STAFF_APPS, JSON.stringify(apps));
-
-      showToast('Application Transmitted', 'Your 12-question application has been forwarded to Founder ItzVeltriex.', 'success');
-      if (currentUser.role === 'admin') renderAdminPanelData();
-    }
-
-    /* ========================================================
-       24-HOUR DYNAMIC ANNOUNCEMENT BANNER
-       ======================================================== */
-    function renderAnnouncementBanner() {
+      // Render Announcement
       const ann = JSON.parse(localStorage.getItem(STORAGE_KEY_ANNOUNCEMENT) || 'null');
-      const banner = document.getElementById('announcementBanner');
-
-      if (!ann || !ann.text) {
-        banner.classList.add('hidden');
-        return;
+      if (ann && (Date.now() - ann.timestamp < 24 * 3600 * 1000)) {
+        document.getElementById('announcementText').innerText = ann.text;
+        document.getElementById('announcementBanner').classList.remove('hidden');
       }
-
-      const elapsed = Date.now() - ann.timestamp;
-      const limit24h = 24 * 3600 * 1000;
-
-      if (elapsed > limit24h) {
-        banner.classList.add('hidden');
-        return;
-      }
-
-      const minsAgo = Math.floor(elapsed / 60000);
-      const timeStr = minsAgo < 60 ? `(${minsAgo}m ago)` : `(${Math.floor(minsAgo/60)}h ago)`;
-
-      document.getElementById('announcementText').innerText = ann.text;
-      document.getElementById('announcementTimeAgo').innerText = timeStr;
-      banner.classList.remove('hidden');
     }
 
     function dismissAnnouncement() {
       document.getElementById('announcementBanner').classList.add('hidden');
     }
 
-    function handlePublishAnnouncement(e) {
-      e.preventDefault();
-      const text = document.getElementById('announcementInput').value.trim();
-      const ann = {
-        text: text,
-        timestamp: Date.now()
-      };
-      localStorage.setItem(STORAGE_KEY_ANNOUNCEMENT, JSON.stringify(ann));
-      document.getElementById('announcementInput').value = '';
-      renderAnnouncementBanner();
-      showToast('Announcement Live', 'Published to home screen for 24 hours with author signature.', 'success');
+    function navigateToSection(id) {
+      const el = document.getElementById(`section-${id}`);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
-    /* ========================================================
-       ADMIN PANEL ENGINE & SUB-TABS
-       ======================================================== */
-    function switchAdminTab(tabName) {
-      document.getElementById('adminTabUsers').classList.add('hidden');
-      document.getElementById('adminTabAnnouncements').classList.add('hidden');
-      document.getElementById('adminTabStaffApps').classList.add('hidden');
-      document.getElementById('adminTabSuggestions').classList.add('hidden');
-
-      document.getElementById('adminTabUsersBtn').className = 'px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-750 text-gray-300';
-      document.getElementById('adminTabAnnBtn').className = 'px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-750 text-gray-300';
-      document.getElementById('adminTabAppsBtn').className = 'px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-750 text-gray-300';
-      document.getElementById('adminTabSugBtn').className = 'px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-750 text-gray-300';
-
-      if (tabName === 'users') {
-        document.getElementById('adminTabUsers').classList.remove('hidden');
-        document.getElementById('adminTabUsersBtn').className = 'px-3 py-1.5 rounded-lg bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white';
-      } else if (tabName === 'announcements') {
-        document.getElementById('adminTabAnnouncements').classList.remove('hidden');
-        document.getElementById('adminTabAnnBtn').className = 'px-3 py-1.5 rounded-lg bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white';
-      } else if (tabName === 'staffapps') {
-        document.getElementById('adminTabStaffApps').classList.remove('hidden');
-        document.getElementById('adminTabAppsBtn').className = 'px-3 py-1.5 rounded-lg bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white';
-      } else if (tabName === 'suggestions') {
-        document.getElementById('adminTabSuggestions').classList.remove('hidden');
-        document.getElementById('adminTabSugBtn').className = 'px-3 py-1.5 rounded-lg bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white';
-      }
+    function mobileNav(id) {
+      document.getElementById('mobileMenu').classList.add('hidden');
+      navigateToSection(id);
     }
 
-    function handleAdminCreateUser(e) {
-      e.preventDefault();
-      const username = document.getElementById('adminNewUsername').value.trim();
-      const email = document.getElementById('adminNewEmail').value.trim();
-      const password = document.getElementById('adminNewPassword').value.trim();
-      const role = document.getElementById('adminNewRole').value;
-
-      let users = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-      if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
-        showToast('Error', 'Username already exists.', 'error');
-        return;
-      }
-
-      users.push({
-        username: username,
-        email: email,
-        password: password,
-        role: role,
-        hearts: 10,
-        kills: 0,
-        streak: 0,
-        balance: 2000,
-        playtime: '0 hrs',
-        joinedAt: new Date().toISOString()
-      });
-
-      localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
-      document.getElementById('adminNewUsername').value = '';
-      document.getElementById('adminNewEmail').value = '';
-      document.getElementById('adminNewPassword').value = '';
-
-      showToast('User Created', `Provisioned ${username} with [${role.toUpperCase()}] role!`, 'success');
-      renderAdminPanelData();
-      renderMembersDirectory();
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
     }
 
-    function renderAdminPanelData() {
-      const users = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-      const userTable = document.getElementById('adminUsersTableBody');
-      userTable.innerHTML = users.map((u, i) => `
-        <tr class="hover:bg-dark-900/50 transition">
-          <td class="px-4 py-2.5 flex items-center gap-2 text-white">
-            <img src="https://mc-heads.net/avatar/${encodeURIComponent(u.username)}/24" class="w-6 h-6 rounded">
-            <span class="font-bold font-display">${u.username}</span>
-          </td>
-          <td class="px-4 py-2.5 text-gray-400">${u.email}</td>
-          <td class="px-4 py-2.5 font-mono text-amberfire-400">${u.password}</td>
-          <td class="px-4 py-2.5">
-            <select onchange="updateUserRole('${u.username}', this.value)" class="bg-dark-950 border border-dark-700 rounded p-1 text-[11px] text-white">
-              <option value="user" ${u.role === 'user' ? 'selected' : ''}>User</option>
-              <option value="staff" ${u.role === 'staff' ? 'selected' : ''}>Staff (Staff Panel)</option>
-              <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Admin (Admin Panel)</option>
-            </select>
-          </td>
-          <td class="px-4 py-2.5 text-right">
-            ${u.username === 'ItzVeltriex' ? '<span class="text-[10px] text-gray-500">Root Founder</span>' : `
-              <button onclick="deleteUserByAdmin('${u.username}')" class="text-crimson-400 hover:text-rose-300 text-xs"><i class="fa-solid fa-trash"></i></button>
-            `}
-          </td>
-        </tr>
-      `).join('');
-
-      const apps = JSON.parse(localStorage.getItem(STORAGE_KEY_STAFF_APPS) || '[]');
-      const appsList = document.getElementById('adminStaffAppsList');
-      if (apps.length === 0) {
-        appsList.innerHTML = '<p class="text-xs text-gray-500 font-display">No applications pending evaluation.</p>';
-      } else {
-        appsList.innerHTML = apps.map((app, idx) => `
-          <div class="glass-card p-4 rounded-xl border border-dark-750 space-y-2">
-            <div class="flex justify-between items-center">
-              <div>
-                <strong class="text-white text-sm font-display">${app.applicant}</strong>
-                <span class="text-xs text-amberfire-400 font-mono ml-2">[Role: ${app.role}]</span>
-              </div>
-              <span class="text-[10px] text-gray-400 font-mono">${app.date}</span>
-            </div>
-            <div class="text-xs text-gray-300 grid grid-cols-1 md:grid-cols-2 gap-2 bg-dark-950 p-3 rounded-lg border border-dark-800">
-              <p><strong>Discord / IGN:</strong> ${app.q1}</p>
-              <p><strong>Age & Region:</strong> ${app.q2}</p>
-              <p><strong>Weekly Dedicated:</strong> ${app.q3}</p>
-              <p><strong>Prior Experience:</strong> ${app.q5}</p>
-              <p class="md:col-span-2"><strong>Cheater Detection:</strong> ${app.q6}</p>
-            </div>
-            <div class="flex justify-end gap-2 pt-1">
-              <button onclick="resolveStaffApp(${idx}, 'Approved')" class="px-3 py-1 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg text-xs font-bold font-display uppercase tracking-wider">Accept Staff</button>
-              <button onclick="resolveStaffApp(${idx}, 'Denied')" class="px-3 py-1 bg-crimson-800 hover:bg-crimson-700 text-white rounded-lg text-xs font-bold font-display uppercase tracking-wider">Deny</button>
-            </div>
-          </div>
-        `).join('');
-      }
-
-      const suggestions = JSON.parse(localStorage.getItem(STORAGE_KEY_SUGGESTIONS) || '[]');
-      const sugList = document.getElementById('adminSuggestionsList');
-      if (suggestions.length === 0) {
-        sugList.innerHTML = '<p class="text-xs text-gray-500 font-display">No player suggestions in inbox.</p>';
-      } else {
-        sugList.innerHTML = suggestions.map((sug, idx) => `
-          <div class="glass-card p-3.5 rounded-xl border border-dark-750 flex items-start justify-between gap-4">
-            <div>
-              <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-amberfire-950 text-amberfire-400 font-bold">${sug.category}</span>
-              <h5 class="text-sm font-bold text-white mt-1 font-display tracking-wide">${sug.title}</h5>
-              <p class="text-xs text-gray-300 mt-1">${sug.details}</p>
-              <span class="text-[10px] text-gray-500 font-mono mt-1 block">Submitted by ${sug.author} • ${sug.timestamp}</span>
-            </div>
-            <button onclick="deleteSuggestionByAdmin(${idx})" class="text-gray-500 hover:text-amberfire-400"><i class="fa-solid fa-trash text-xs"></i></button>
-          </div>
-        `).join('');
-      }
+    function copyServerIp() {
+      navigator.clipboard.writeText('play.fearsteal.fun:19132');
+      const label = document.getElementById('copyBtnLabel');
+      label.innerText = '✓ Server IP copied!';
+      showToast('Copied!', '✓ Server IP copied! (play.fearsteal.fun:19132)', 'success');
+      setTimeout(() => label.innerText = 'Copy IP', 3000);
     }
 
-    function updateUserRole(username, newRole) {
-      let users = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-      const user = users.find(u => u.username === username);
-      if (user) {
-        user.role = newRole;
-        localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
-        showToast('Role Updated', `Updated ${username} to [${newRole.toUpperCase()}].`, 'info');
-        renderMembersDirectory();
-        if (currentUser && currentUser.username === username) {
-          currentUser.role = newRole;
-          localStorage.setItem(STORAGE_KEY_CURRENT_USER, JSON.stringify(currentUser));
-          setupUserInterface();
+    // Live Minecraft Server API (Bedrock play.fearsteal.fun:19132)
+    async function fetchLiveServerStatus() {
+      try {
+        const start = Date.now();
+        const res = await fetch('https://api.mcstatus.io/v2/status/bedrock/play.fearsteal.fun:19132');
+        const latency = Date.now() - start;
+        if (res.ok) {
+          const data = await res.json();
+          if (data.online) {
+            document.getElementById('heroStatusDot').className = 'w-3.5 h-3.5 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)]';
+            document.getElementById('heroStatusText').innerText = '🟢 ONLINE';
+            document.getElementById('heroStatusText').className = 'font-display text-base font-bold text-emerald-400';
+            document.getElementById('heroPlayerCount').innerText = `${data.players.online} / ${data.players.max}`;
+            document.getElementById('heroVersion').innerText = data.version?.name || 'Bedrock 1.20+';
+            document.getElementById('heroPing').innerText = `${latency} ms`;
+            return;
+          }
         }
-      }
+      } catch (e) {}
+      
+      document.getElementById('heroStatusDot').className = 'w-3.5 h-3.5 rounded-full bg-crimson-600 animate-pulse';
+      document.getElementById('heroStatusText').innerText = '🔴 OFFLINE';
+      document.getElementById('heroStatusText').className = 'font-display text-base font-bold text-crimson-500';
+      document.getElementById('heroPlayerCount').innerText = '0 / --';
+      document.getElementById('heroPing').innerText = 'Offline';
     }
+    fetchLiveServerStatus();
+    setInterval(fetchLiveServerStatus, 45000);
 
-    function deleteUserByAdmin(username) {
-      if (username === 'ItzVeltriex') return;
-      if (!confirm(`Delete user ${username} from network database?`)) return;
-      let users = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-      users = users.filter(u => u.username !== username);
-      localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
-      renderAdminPanelData();
-      renderMembersDirectory();
-      showToast('User Removed', `Account ${username} deleted.`, 'info');
-    }
-
-    function resolveStaffApp(index, resolution) {
-      let apps = JSON.parse(localStorage.getItem(STORAGE_KEY_STAFF_APPS) || '[]');
-      const app = apps[index];
-      if (resolution === 'Approved') {
-        updateUserRole(app.applicant, 'staff');
-        showToast('Staff Accepted', `${app.applicant} granted STAFF role!`, 'success');
-      } else {
-        showToast('Staff Denied', `Application from ${app.applicant} denied.`, 'info');
-      }
-      apps.splice(index, 1);
-      localStorage.setItem(STORAGE_KEY_STAFF_APPS, JSON.stringify(apps));
-      renderAdminPanelData();
-    }
-
-    function deleteSuggestionByAdmin(index) {
-      let suggestions = JSON.parse(localStorage.getItem(STORAGE_KEY_SUGGESTIONS) || '[]');
-      suggestions.splice(index, 1);
-      localStorage.setItem(STORAGE_KEY_SUGGESTIONS, JSON.stringify(suggestions));
-      renderAdminPanelData();
-      showToast('Cleared', 'Suggestion removed from inbox.', 'info');
-    }
-
-    /* ========================================================
-       FAQ ACCORDION & FOOTER NEWSLETTER
-       ======================================================== */
-    function toggleFaq(button) {
-      const content = button.nextElementSibling;
-      const icon = button.querySelector('i');
-      content.classList.toggle('hidden');
-      icon.classList.toggle('rotate-180');
-    }
-
-    function handleNewsletterSubmit(e) {
-      e.preventDefault();
-      const email = document.getElementById('newsletterEmail').value.trim();
-      document.getElementById('newsletterEmail').value = '';
-      showToast('Subscribed!', `Thanks for subscribing! Server updates will be sent to ${email}`, 'success');
-    }
-
-    /* ========================================================
-       TOAST NOTIFICATION ENGINE
-       ======================================================== */
     function showToast(title, message, type = 'info') {
       const container = document.getElementById('toastContainer');
       const toast = document.createElement('div');
-      
-      let border = 'border-amberfire-500/60';
-      let icon = '<i class="fa-solid fa-circle-info text-amberfire-500"></i>';
-      
-      if (type === 'success') {
-        border = 'border-emerald-600/60';
-        icon = '<i class="fa-solid fa-circle-check text-emerald-400"></i>';
-      } else if (type === 'error') {
-        border = 'border-crimson-600';
-        icon = '<i class="fa-solid fa-triangle-exclamation text-crimson-500"></i>';
-      }
-
+      let border = type === 'success' ? 'border-emerald-500' : (type === 'error' ? 'border-crimson-500' : 'border-amberfire-500');
       toast.className = `pointer-events-auto flex items-start gap-3 p-3.5 bg-dark-900/95 border ${border} rounded-2xl shadow-2xl max-w-sm transition-all duration-300 transform translate-x-10 opacity-0`;
       toast.innerHTML = `
-        <div class="mt-0.5">${icon}</div>
         <div class="flex-grow">
           <h5 class="text-xs font-bold text-white font-display tracking-wide">${title}</h5>
           <p class="text-[11px] text-gray-300 leading-snug mt-0.5">${message}</p>
         </div>
       `;
-
       container.appendChild(toast);
-      
-      requestAnimationFrame(() => {
-        toast.classList.remove('translate-x-10', 'opacity-0');
-      });
-
+      requestAnimationFrame(() => toast.classList.remove('translate-x-10', 'opacity-0'));
       setTimeout(() => {
         toast.classList.add('translate-x-10', 'opacity-0');
         setTimeout(() => toast.remove(), 300);
-      }, 4500);
+      }, 4000);
     }
 
-    /* ========================================================
-       CANVAS PARTICLES (MATCHING 3D MOLTEN CRYSTAL EMBER THEME)
-       ======================================================== */
+    // Particle Background
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    class EmberParticle {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2.8 + 0.8;
-        this.speedY = Math.random() * -0.9 - 0.2;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.opacity = Math.random() * 0.6 + 0.2;
-        
-        // Voxel & crystal shards color distribution
-        const r = Math.random();
-        if (r > 0.6) this.color = '#f59e0b'; // Amber Gold
-        else if (r > 0.3) this.color = '#ea580c'; // Fiery Orange
-        else this.color = '#e11d48'; // Molten Crimson
-      }
-      update() {
-        this.y += this.speedY;
-        this.x += this.speedX;
-        if (this.y < 0 || this.x < 0 || this.x > canvas.width) {
-          this.reset();
-          this.y = canvas.height;
-        }
-      }
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.globalAlpha = this.opacity;
-        // Square Minecraft Voxel debris particles
-        ctx.fillRect(this.x, this.y, this.size, this.size);
-        ctx.globalAlpha = 1;
-      }
-    }
-
-    for (let i = 0; i < 50; i++) {
-      particles.push(new EmberParticle());
-    }
+    const particles = Array.from({ length: 45 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 3 + 1,
+      speedY: Math.random() * -0.8 - 0.2,
+      speedX: (Math.random() - 0.5) * 0.4,
+      color: Math.random() > 0.5 ? '#f59e0b' : '#e11d48'
+    }));
 
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => {
-        p.update();
-        p.draw();
+        p.y += p.speedY; p.x += p.speedX;
+        if (p.y < 0) { p.y = canvas.height; p.x = Math.random() * canvas.width; }
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
       });
       requestAnimationFrame(animateParticles);
     }
     animateParticles();
   </script>
 </body>
-</html>
+  </html>
