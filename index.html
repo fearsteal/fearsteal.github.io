@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home • FearSteal</title>
-  <meta name="description" content="FearSteal LifeSteal Network. Competitive Minecraft PvP, heart stealing, 15-day rotating tournaments, custom ranks. IP: play.fearsteal.fun:19132">
+  <meta name="description" content="FearSteal LifeSteal Network. Competitive Minecraft Bedrock & Java PvP, heart stealing, 15-day rotating tournaments, custom ranks. IP: play.fearsteal.fun:19132">
   
-  <!-- Modern Gaming Typography Stack -->
+  <!-- Modern Gaming Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,600;0,700;1,700&family=JetBrains+Mono:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
@@ -30,13 +30,19 @@
               900: '#881337',
               950: '#4c0519',
             },
+            amberfire: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309'
+            },
             dark: {
-              950: '#060407',
-              900: '#0c080e',
-              850: '#120d15',
-              800: '#19121d',
-              750: '#231a29',
-              700: '#2d2235'
+              950: '#050306',
+              900: '#0a060d',
+              850: '#100a14',
+              800: '#170f1c',
+              750: '#201527',
+              700: '#2b1c34'
             }
           },
           fontFamily: {
@@ -53,81 +59,105 @@
   <style>
     /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 7px; }
-    ::-webkit-scrollbar-track { background: #060407; }
-    ::-webkit-scrollbar-thumb { background: #e11d48; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #fb7185; }
+    ::-webkit-scrollbar-track { background: #050306; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #f59e0b, #e11d48); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #fbbf24; }
 
-    /* Glassmorphism & Cyber Crimson Glow */
+    /* Glassmorphism & Crystal Neon Glows */
     .glass-card {
-      background: rgba(18, 13, 21, 0.78);
+      background: rgba(16, 10, 20, 0.78);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(225, 29, 72, 0.22);
-      box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.7);
     }
     .glass-card:hover {
-      border-color: rgba(225, 29, 72, 0.48);
-      box-shadow: 0 14px 45px -8px rgba(225, 29, 72, 0.28);
+      border-color: rgba(245, 158, 11, 0.45);
+      box-shadow: 0 14px 45px -8px rgba(225, 29, 72, 0.35);
     }
 
-    .neon-text {
-      text-shadow: 0 0 14px rgba(225, 29, 72, 0.75);
+    /* Logo Floating & Molten Glow Keyframes */
+    @keyframes floatLogo {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg) scale(1);
+        filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.65)) drop-shadow(0 0 50px rgba(225, 29, 72, 0.5));
+      }
+      50% {
+        transform: translateY(-10px) rotate(1deg) scale(1.02);
+        filter: drop-shadow(0 0 35px rgba(245, 158, 11, 0.9)) drop-shadow(0 0 70px rgba(225, 29, 72, 0.75));
+      }
     }
 
-    .text-gradient {
-      background: linear-gradient(135deg, #ffffff 15%, #fda4af 60%, #e11d48 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    @keyframes pulseGlowRing {
+      0%, 100% { opacity: 0.4; transform: scale(0.96); }
+      50% { opacity: 0.85; transform: scale(1.04); }
     }
 
-    /* Ambient Hex Grid */
+    .animated-fearsteal-logo {
+      animation: floatLogo 4.5s ease-in-out infinite;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .animated-fearsteal-logo:hover {
+      transform: scale(1.06) translateY(-14px);
+    }
+
+    .animated-fs-icon {
+      animation: floatLogo 3.8s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+    .animated-fs-icon:hover {
+      transform: scale(1.12) rotate(-3deg);
+    }
+
+    /* Cyber Minecraft Grid */
     .bg-grid {
-      background-size: 36px 36px;
+      background-size: 38px 38px;
       background-image: 
         linear-gradient(to right, rgba(225, 29, 72, 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(225, 29, 72, 0.04) 1px, transparent 1px);
+        linear-gradient(to bottom, rgba(245, 158, 11, 0.03) 1px, transparent 1px);
+    }
+
+    .text-gradient-magma {
+      background: linear-gradient(135deg, #ffffff 15%, #fde047 45%, #ea580c 75%, #e11d48 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   </style>
 </head>
 <body class="bg-dark-950 text-gray-200 font-sans antialiased overflow-x-hidden min-h-screen relative selection:bg-crimson-600 selection:text-white bg-grid">
 
-  <!-- Interactive Particles Canvas -->
+  <!-- Interactive Magma & Crystal Ember Particle Canvas -->
   <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
-  <div class="fixed inset-0 bg-gradient-to-b from-dark-950/65 via-dark-900/90 to-dark-950 pointer-events-none z-0"></div>
+  <div class="fixed inset-0 bg-gradient-to-b from-dark-950/60 via-dark-900/85 to-dark-950 pointer-events-none z-0"></div>
 
   <!-- Real-time Web Notifications / Toast Container -->
   <div id="toastContainer" class="fixed top-20 right-4 z-[9999] flex flex-col gap-2.5 pointer-events-none"></div>
 
   <!-- ========================================================
-       0-100% CINEMATIC INTRO LOADING SCREEN WITH FEARSTEAL LOGO
+       0-100% CINEMATIC INTRO LOADING SCREEN
        ======================================================== -->
   <div id="loadingScreen" class="fixed inset-0 z-[99999] bg-dark-950 flex flex-col items-center justify-center transition-opacity duration-700">
     <div class="flex flex-col items-center max-w-sm px-6 text-center">
       
-      <!-- FearSteal Crest Emblem SVG -->
-      <div class="w-20 h-20 mb-5 relative animate-pulse">
-        <svg class="w-full h-full filter drop-shadow-[0_0_22px_rgba(225,29,72,0.9)]" viewBox="0 0 100 100" fill="none">
-          <polygon points="50,4 96,27 96,73 50,96 4,73 4,27" fill="#120d15" stroke="#e11d48" stroke-width="4.5"/>
-          <path d="M50 18 L76 33 V67 L50 82 L24 67 V33 Z" fill="#2d0510" stroke="#f43f5e" stroke-width="2"/>
-          <path d="M50 27 C44 27 35 33 35 45 C35 60 50 72 50 72 C50 72 65 60 65 45 C65 33 56 27 50 27 Z" fill="#e11d48"/>
-          <path d="M44 42 L56 54 M56 42 L44 54" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
-        </svg>
+      <!-- FearSteal FS Animated 3D Emblem -->
+      <div class="w-28 h-28 mb-4 relative">
+        <img src="fs-logo.png" alt="FearSteal FS Logo" class="w-full h-full object-contain animated-fs-icon" onerror="this.onerror=null; this.src='https://i.ibb.co/3k5fSkg/fs-icon.png';">
       </div>
 
       <h1 class="font-display text-3xl sm:text-4xl font-black tracking-widest text-white mb-1">
-        FEAR<span class="text-crimson-600">STEAL</span>
+        FEAR<span class="text-amberfire-500">STEAL</span>
       </h1>
       <p class="text-xs uppercase tracking-widest text-gray-400 mb-6 font-display font-bold">
-        Next-Generation LifeSteal Network
+        Next-Gen LifeSteal Network
       </p>
 
-      <div class="w-64 h-2 bg-dark-800 rounded-full overflow-hidden border border-crimson-900/40 p-[1px]">
-        <div id="loadingBar" class="h-full bg-gradient-to-r from-crimson-800 via-crimson-600 to-rose-400 w-0 rounded-full transition-all duration-75"></div>
+      <div class="w-72 h-2.5 bg-dark-800 rounded-full overflow-hidden border border-crimson-900/40 p-[1px]">
+        <div id="loadingBar" class="h-full bg-gradient-to-r from-crimson-700 via-amberfire-500 to-yellow-300 w-0 rounded-full transition-all duration-75"></div>
       </div>
       
-      <div class="flex justify-between w-64 mt-2 text-xs font-mono text-gray-400">
+      <div class="flex justify-between w-72 mt-2 text-xs font-mono text-gray-400">
         <span id="loadingStatusText">Connecting play.fearsteal.fun...</span>
-        <span id="loadingPercent" class="text-crimson-500 font-bold">0%</span>
+        <span id="loadingPercent" class="text-amberfire-400 font-bold">0%</span>
       </div>
     </div>
   </div>
@@ -138,22 +168,19 @@
   <div id="authGate" class="fixed inset-0 z-[9000] bg-dark-950/95 backdrop-blur-xl flex items-center justify-center p-4 overflow-y-auto">
     <div class="relative w-full max-w-lg glass-card rounded-3xl p-6 sm:p-8 border border-crimson-600/45 my-6 shadow-2xl">
       
-      <!-- FearSteal Emblem & Title -->
+      <!-- FearSteal Supplied 3D Logo Header -->
       <div class="text-center mb-5">
-        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-crimson-950/80 border border-crimson-600/50 mb-2 shadow-[0_0_20px_rgba(225,29,72,0.4)]">
-          <i class="fa-solid fa-heart-crack text-crimson-500 text-2xl animate-pulse"></i>
+        <div class="w-48 sm:w-60 mx-auto mb-2 relative">
+          <img src="fearsteal-banner.png" alt="FEARSTEAL Logo" class="w-full object-contain animated-fearsteal-logo" onerror="this.onerror=null; this.src='https://i.ibb.co/pZ4Fj6V/fearsteal-logo.png';">
         </div>
-        <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wider">
-          FEAR<span class="text-crimson-600">STEAL</span>
-        </h2>
-        <p class="text-[11px] text-crimson-400 font-display font-bold tracking-widest uppercase mt-0.5">
-          Access Control Gateway
+        <p class="text-[11px] text-amberfire-400 font-display font-bold tracking-widest uppercase mt-0.5">
+          LifeSteal Network Gateway
         </p>
       </div>
 
-      <!-- Registration / Login Instructions Box -->
+      <!-- Registration & Login Required Instructions -->
       <div class="mb-5 p-4 rounded-2xl bg-crimson-950/40 border border-crimson-800/40 text-xs text-gray-300">
-        <div class="flex items-center gap-2 font-display font-bold text-crimson-400 mb-2 uppercase text-xs tracking-wider">
+        <div class="flex items-center gap-2 font-display font-bold text-amberfire-400 mb-2 uppercase text-xs tracking-wider">
           <i class="fa-solid fa-circle-info"></i> Thanks for visit our website than how to register or login:
         </div>
         <ol class="space-y-1 pl-4 list-decimal text-[11px] text-gray-300 font-medium">
@@ -165,9 +192,9 @@
         <p class="mt-2 text-[10px] text-gray-400 italic">Author by ItzVeltriex and Notslayer</p>
       </div>
 
-      <!-- Switchable Auth Tabs -->
+      <!-- Auth Switchable Tabs -->
       <div class="flex border-b border-dark-750 mb-5 font-display text-sm font-bold tracking-wider">
-        <button id="tabBtnLogin" onclick="switchAuthTab('login')" class="flex-1 pb-2.5 text-crimson-500 border-b-2 border-crimson-500 transition-all flex items-center justify-center gap-1.5">
+        <button id="tabBtnLogin" onclick="switchAuthTab('login')" class="flex-1 pb-2.5 text-amberfire-500 border-b-2 border-amberfire-500 transition-all flex items-center justify-center gap-1.5">
           <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
         </button>
         <button id="tabBtnRegister" onclick="switchAuthTab('register')" class="flex-1 pb-2.5 text-gray-400 hover:text-white transition-all flex items-center justify-center gap-1.5">
@@ -191,7 +218,7 @@
           <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Username or Email</label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fa-solid fa-user text-xs"></i></span>
-            <input type="text" id="loginIdentifier" required oninput="detectMinecraftSkin(this.value)" placeholder="Enter your username or email" class="w-full pl-9 pr-3 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-crimson-500 text-xs text-white placeholder-gray-600 transition">
+            <input type="text" id="loginIdentifier" required oninput="detectMinecraftSkin(this.value)" placeholder="Enter username or email" class="w-full pl-9 pr-3 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-amberfire-500 text-xs text-white placeholder-gray-600 transition">
           </div>
         </div>
 
@@ -199,7 +226,7 @@
           <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Password</label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fa-solid fa-lock text-xs"></i></span>
-            <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full pl-9 pr-9 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-crimson-500 text-xs text-white placeholder-gray-600 transition">
+            <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full pl-9 pr-9 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-amberfire-500 text-xs text-white placeholder-gray-600 transition">
             <button type="button" onclick="togglePasswordVisibility('loginPassword', this)" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-white">
               <i class="fa-regular fa-eye text-xs"></i>
             </button>
@@ -208,13 +235,13 @@
 
         <div class="flex items-center justify-between text-xs text-gray-400 font-medium">
           <label class="flex items-center gap-1.5 cursor-pointer select-none text-[11px]">
-            <input type="checkbox" id="rememberMe" class="rounded bg-dark-900 border-dark-700 text-crimson-600">
+            <input type="checkbox" id="rememberMe" class="rounded bg-dark-900 border-dark-700 text-amberfire-500">
             Remember Me
           </label>
-          <button type="button" onclick="showToast('Password Recovery', 'Contact network staff on our official Discord server to reset credentials.', 'info')" class="text-[11px] hover:text-crimson-400">Forgot Password?</button>
+          <button type="button" onclick="showToast('Password Recovery', 'Contact network staff on our official Discord server to reset credentials.', 'info')" class="text-[11px] hover:text-amberfire-400">Forgot Password?</button>
         </div>
 
-        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-crimson-700 to-crimson-600 hover:from-crimson-600 hover:to-crimson-500 text-white font-display font-bold text-sm tracking-wider rounded-xl shadow-lg transition-all uppercase flex items-center justify-center gap-2">
+        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-crimson-700 via-amberfire-600 to-yellow-500 hover:from-crimson-600 hover:to-yellow-400 text-white font-display font-bold text-sm tracking-wider rounded-xl shadow-lg transition-all uppercase flex items-center justify-center gap-2">
           <span>Authorize Access</span>
           <i class="fa-solid fa-shield-halved"></i>
         </button>
@@ -226,7 +253,7 @@
           <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Minecraft Username / IGN</label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fa-solid fa-gamepad text-xs"></i></span>
-            <input type="text" id="regUsername" required oninput="detectMinecraftSkin(this.value)" placeholder="Enter your Minecraft username" class="w-full pl-9 pr-3 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-crimson-500 text-xs text-white placeholder-gray-600 transition">
+            <input type="text" id="regUsername" required oninput="detectMinecraftSkin(this.value)" placeholder="Enter your in-game name" class="w-full pl-9 pr-3 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-amberfire-500 text-xs text-white placeholder-gray-600 transition">
           </div>
         </div>
 
@@ -234,7 +261,7 @@
           <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Email Address</label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fa-solid fa-envelope text-xs"></i></span>
-            <input type="email" id="regEmail" required placeholder="player@gmail.com" class="w-full pl-9 pr-3 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-crimson-500 text-xs text-white placeholder-gray-600 transition">
+            <input type="email" id="regEmail" required placeholder="player@gmail.com" class="w-full pl-9 pr-3 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-amberfire-500 text-xs text-white placeholder-gray-600 transition">
           </div>
         </div>
 
@@ -242,7 +269,7 @@
           <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Password</label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fa-solid fa-lock text-xs"></i></span>
-            <input type="password" id="regPassword" required placeholder="Minimum 6 characters" class="w-full pl-9 pr-9 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-crimson-500 text-xs text-white placeholder-gray-600 transition">
+            <input type="password" id="regPassword" required placeholder="Minimum 6 characters" class="w-full pl-9 pr-9 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-amberfire-500 text-xs text-white placeholder-gray-600 transition">
             <button type="button" onclick="togglePasswordVisibility('regPassword', this)" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-white">
               <i class="fa-regular fa-eye text-xs"></i>
             </button>
@@ -253,17 +280,17 @@
           <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Confirm Password</label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fa-solid fa-shield-check text-xs"></i></span>
-            <input type="password" id="regConfirmPassword" required placeholder="Confirm password" class="w-full pl-9 pr-3 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-crimson-500 text-xs text-white placeholder-gray-600 transition">
+            <input type="password" id="regConfirmPassword" required placeholder="Confirm password" class="w-full pl-9 pr-3 py-2 bg-dark-900 border border-dark-700 rounded-xl focus:outline-none focus:border-amberfire-500 text-xs text-white placeholder-gray-600 transition">
           </div>
         </div>
 
-        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-crimson-700 to-crimson-600 hover:from-crimson-600 hover:to-crimson-500 text-white font-display font-bold text-sm tracking-wider rounded-xl shadow-lg transition-all uppercase flex items-center justify-center gap-2">
+        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-crimson-700 via-amberfire-600 to-yellow-500 hover:from-crimson-600 hover:to-yellow-400 text-white font-display font-bold text-sm tracking-wider rounded-xl shadow-lg transition-all uppercase flex items-center justify-center gap-2">
           <span>Create Free Account</span>
           <i class="fa-solid fa-user-check"></i>
         </button>
       </form>
 
-      <!-- Mock Social OAuth Buttons -->
+      <!-- Mock Social Auth -->
       <div class="mt-4 pt-3 border-t border-dark-700">
         <div class="grid grid-cols-3 gap-2">
           <button type="button" onclick="mockSocialAuth('Microsoft')" class="flex items-center justify-center gap-1.5 py-1.5 px-2 bg-dark-900 hover:bg-dark-800 border border-dark-700 rounded-xl text-[11px] font-display font-semibold text-gray-300 transition">
@@ -282,37 +309,37 @@
   </div>
 
   <!-- ========================================================
-       MAIN PLATFORM (AUTHENTICATED ONLY)
+       MAIN WEBSITE CONTAINER (FULL SCREEN & FULL SIZE)
        ======================================================== -->
-  <div id="mainWebsite" class="relative z-10 flex flex-col min-h-screen opacity-0 transition-opacity duration-500">
+  <div id="mainWebsite" class="relative z-10 flex flex-col min-h-screen opacity-0 transition-opacity duration-500 w-full">
 
     <!-- 24-HOUR DYNAMIC HOME SCREEN ANNOUNCEMENT BANNER -->
-    <div id="announcementBanner" class="hidden bg-gradient-to-r from-crimson-950 via-dark-900 to-crimson-950 border-b border-crimson-600/40 px-4 py-2 text-xs relative z-50">
-      <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2">
+    <div id="announcementBanner" class="hidden bg-gradient-to-r from-crimson-950 via-dark-900 to-crimson-950 border-b border-crimson-600/40 px-4 py-2.5 text-xs relative z-50 w-full">
+      <div class="w-full max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2">
         <div class="flex items-center gap-2 text-left">
-          <span class="bg-crimson-600 text-white text-[10px] font-display font-black uppercase px-2 py-0.5 rounded tracking-wider">Announcement</span>
+          <span class="bg-gradient-to-r from-amberfire-500 to-crimson-600 text-white text-[10px] font-display font-black uppercase px-2 py-0.5 rounded tracking-wider shadow">Official Broadcast</span>
           <span id="announcementText" class="font-medium text-gray-200"></span>
-          <span id="announcementTimeAgo" class="text-crimson-400 text-[11px] font-mono"></span>
+          <span id="announcementTimeAgo" class="text-amberfire-400 text-[11px] font-mono"></span>
         </div>
         <div class="flex items-center gap-3">
-          <span class="text-[11px] text-gray-400 italic">Author by ItzVeltriex and Notslayer</span>
+          <span class="text-[11px] text-gray-400 italic font-mono">Author by ItzVeltriex and Notslayer</span>
           <button onclick="dismissAnnouncement()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
         </div>
       </div>
     </div>
 
-    <!-- STICKY NAVBAR -->
-    <header class="sticky top-0 z-40 bg-dark-950/90 backdrop-blur-md border-b border-dark-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- STICKY FULL-SIZE NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-dark-950/90 backdrop-blur-md border-b border-dark-800 w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 sm:h-20">
 
-          <!-- Brand Logo -->
-          <div class="flex items-center gap-2.5 cursor-pointer" onclick="navigateToSection('home')">
-            <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-crimson-950/80 border border-crimson-600/60 shadow-[0_0_12px_rgba(225,29,72,0.4)]">
-              <i class="fa-solid fa-heart-crack text-crimson-500 text-lg"></i>
+          <!-- Brand Logo: Provided FS 3D Molten Icon -->
+          <div class="flex items-center gap-3 cursor-pointer" onclick="navigateToSection('home')">
+            <div class="w-12 h-12 relative flex items-center justify-center">
+              <img src="fs-logo.png" alt="FS Logo" class="w-full h-full object-contain animated-fs-icon" onerror="this.onerror=null; this.src='https://i.ibb.co/3k5fSkg/fs-icon.png';">
             </div>
             <div>
-              <span class="font-display text-lg sm:text-xl font-black tracking-wider text-white">FEAR<span class="text-crimson-600">STEAL</span></span>
+              <span class="font-display text-lg sm:text-xl font-black tracking-wider text-white">FEAR<span class="text-amberfire-500">STEAL</span></span>
               <span class="block text-[9px] uppercase font-display font-bold tracking-widest text-gray-400">LifeSteal Network</span>
             </div>
           </div>
@@ -322,35 +349,35 @@
             <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500">
               <i class="fa-solid fa-magnifying-glass text-xs"></i>
             </span>
-            <input type="text" id="siteSearchBar" oninput="handleSiteSearch(this.value)" placeholder="Search rules, staff, ranks, FAQ..." class="w-full pl-8 pr-3 py-1.5 bg-dark-900 border border-dark-700 rounded-full text-xs text-white placeholder-gray-500 focus:outline-none focus:border-crimson-600 transition">
+            <input type="text" id="siteSearchBar" oninput="handleSiteSearch(this.value)" placeholder="Search rules, staff, ranks, FAQ..." class="w-full pl-8 pr-3 py-1.5 bg-dark-900 border border-dark-700 rounded-full text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amberfire-500 transition">
             <div id="searchResultsBox" class="absolute top-full left-0 right-0 mt-2 bg-dark-900 border border-dark-700 rounded-xl shadow-2xl p-2 hidden z-50 max-h-56 overflow-y-auto"></div>
           </div>
 
           <!-- Desktop Navigation -->
           <nav class="hidden xl:flex items-center space-x-1 text-xs font-display font-bold tracking-wider">
-            <button onclick="navigateToSection('home')" class="px-2.5 py-1.5 text-gray-300 hover:text-crimson-500 transition">HOME</button>
-            <button onclick="navigateToSection('features')" class="px-2.5 py-1.5 text-gray-300 hover:text-crimson-500 transition">FEATURES</button>
-            <button onclick="navigateToSection('store')" class="px-2.5 py-1.5 text-gray-300 hover:text-crimson-500 transition">STORE</button>
-            <button onclick="navigateToSection('status')" class="px-2.5 py-1.5 text-gray-300 hover:text-crimson-500 transition">STATUS</button>
-            <button onclick="navigateToSection('staff')" class="px-2.5 py-1.5 text-gray-300 hover:text-crimson-500 transition">STAFF</button>
-            <button onclick="navigateToSection('members')" class="px-2.5 py-1.5 text-gray-300 hover:text-crimson-500 transition">MEMBERS</button>
-            <button onclick="navigateToSection('leaderboard')" class="px-2.5 py-1.5 text-gray-300 hover:text-crimson-500 transition">LEADERBOARD</button>
-            <button onclick="navigateToSection('events')" class="px-2.5 py-1.5 text-gray-300 hover:text-crimson-500 transition">EVENTS</button>
+            <button onclick="navigateToSection('home')" class="px-2.5 py-1.5 text-gray-300 hover:text-amberfire-400 transition">HOME</button>
+            <button onclick="navigateToSection('features')" class="px-2.5 py-1.5 text-gray-300 hover:text-amberfire-400 transition">FEATURES</button>
+            <button onclick="navigateToSection('store')" class="px-2.5 py-1.5 text-gray-300 hover:text-amberfire-400 transition">STORE</button>
+            <button onclick="navigateToSection('status')" class="px-2.5 py-1.5 text-gray-300 hover:text-amberfire-400 transition">STATUS</button>
+            <button onclick="navigateToSection('staff')" class="px-2.5 py-1.5 text-gray-300 hover:text-amberfire-400 transition">STAFF</button>
+            <button onclick="navigateToSection('members')" class="px-2.5 py-1.5 text-gray-300 hover:text-amberfire-400 transition">MEMBERS</button>
+            <button onclick="navigateToSection('leaderboard')" class="px-2.5 py-1.5 text-gray-300 hover:text-amberfire-400 transition">LEADERBOARD</button>
+            <button onclick="navigateToSection('events')" class="px-2.5 py-1.5 text-gray-300 hover:text-amberfire-400 transition">EVENTS</button>
 
             <!-- More Categories Dropdown -->
             <div class="relative group">
-              <button class="px-2.5 py-1.5 text-gray-300 group-hover:text-crimson-500 flex items-center gap-1">
+              <button class="px-2.5 py-1.5 text-gray-300 group-hover:text-amberfire-400 flex items-center gap-1">
                 <span>EXPLORE</span> <i class="fa-solid fa-chevron-down text-[9px]"></i>
               </button>
-              <div class="absolute right-0 mt-1 w-44 bg-dark-900 border border-dark-750 rounded-xl shadow-2xl py-1.5 hidden group-hover:block z-50">
-                <button onclick="navigateToSection('rules')" class="w-full text-left px-3 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-crimson-400">📜 Server Rules</button>
-                <button onclick="navigateToSection('howtoplay')" class="w-full text-left px-3 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-crimson-400">🎮 How To Play</button>
-                <button onclick="navigateToSection('faq')" class="w-full text-left px-3 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-crimson-400">❓ FAQ</button>
-                <button onclick="navigateToSection('media')" class="w-full text-left px-3 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-crimson-400">🎥 Media Apply</button>
-                <button onclick="navigateToSection('suggestions')" class="w-full text-left px-3 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-crimson-400">💡 Suggestions</button>
-                <button onclick="navigateToSection('reviews')" class="w-full text-left px-3 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-crimson-400">⭐ Reviews Wall</button>
-                <button onclick="navigateToSection('staffapply')" class="w-full text-left px-3 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-crimson-400">🛡️ Staff Apply</button>
-                <button onclick="navigateToSection('crates')" class="w-full text-left px-3 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-crimson-400">🎁 Crate Simulator</button>
+              <div class="absolute right-0 mt-1 w-48 bg-dark-900 border border-dark-750 rounded-xl shadow-2xl py-1.5 hidden group-hover:block z-50">
+                <button onclick="navigateToSection('rules')" class="w-full text-left px-3.5 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-amberfire-400">📜 Server Rules</button>
+                <button onclick="navigateToSection('howtoplay')" class="w-full text-left px-3.5 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-amberfire-400">🎮 How To Play</button>
+                <button onclick="navigateToSection('faq')" class="w-full text-left px-3.5 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-amberfire-400">❓ FAQ</button>
+                <button onclick="navigateToSection('media')" class="w-full text-left px-3.5 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-amberfire-400">🎥 Media Apply</button>
+                <button onclick="navigateToSection('suggestions')" class="w-full text-left px-3.5 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-amberfire-400">💡 Suggestions</button>
+                <button onclick="navigateToSection('reviews')" class="w-full text-left px-3.5 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-amberfire-400">⭐ Reviews Wall</button>
+                <button onclick="navigateToSection('staffapply')" class="w-full text-left px-3.5 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-amberfire-400">🛡️ Staff Apply</button>
+                <button onclick="navigateToSection('crates')" class="w-full text-left px-3.5 py-1.5 text-xs hover:bg-crimson-950/50 hover:text-amberfire-400">🎁 Crate Simulator</button>
               </div>
             </div>
 
@@ -358,7 +385,7 @@
             <button id="navStaffPanelBtn" onclick="navigateToSection('staffpanel')" class="hidden px-2.5 py-1 bg-amber-950/80 border border-amber-600/60 text-amber-300 hover:bg-amber-900 rounded-lg transition text-[11px] items-center gap-1">
               <i class="fa-solid fa-clipboard-user"></i> STAFF PANEL
             </button>
-            <button id="navAdminPanelBtn" onclick="navigateToSection('adminpanel')" class="hidden px-2.5 py-1 bg-crimson-950/90 border border-crimson-500 text-crimson-300 hover:bg-crimson-900 rounded-lg transition text-[11px] items-center gap-1 animate-pulse">
+            <button id="navAdminPanelBtn" onclick="navigateToSection('adminpanel')" class="hidden px-2.5 py-1 bg-gradient-to-r from-crimson-900 to-amberfire-700 border border-amberfire-500 text-yellow-200 hover:bg-crimson-900 rounded-lg transition text-[11px] items-center gap-1 animate-pulse">
               <i class="fa-solid fa-crown"></i> ADMIN PANEL
             </button>
           </nav>
@@ -368,10 +395,10 @@
             <div id="navUserBadge" class="hidden sm:flex items-center gap-2 px-2.5 py-1 bg-dark-900 border border-dark-750 rounded-xl">
               <img id="navUserHead" src="https://mc-heads.net/avatar/steve/24" class="w-5 h-5 rounded">
               <span id="navUsername" class="text-xs font-bold font-mono text-gray-300">Player</span>
-              <span id="navUserRoleTag" class="text-[9px] uppercase px-1.5 py-0.5 rounded bg-crimson-950 text-crimson-400 font-bold border border-crimson-800 font-display">USER</span>
+              <span id="navUserRoleTag" class="text-[9px] uppercase px-1.5 py-0.5 rounded bg-crimson-950 text-amberfire-400 font-bold border border-crimson-800 font-display">USER</span>
             </div>
 
-            <button onclick="performLogout()" title="Logout from FearSteal" class="p-2 rounded-xl bg-dark-900 hover:bg-crimson-950 border border-dark-750 hover:border-crimson-600/50 text-gray-400 hover:text-crimson-400 transition text-xs">
+            <button onclick="performLogout()" title="Logout from FearSteal" class="p-2 rounded-xl bg-dark-900 hover:bg-crimson-950 border border-dark-750 hover:border-crimson-600/50 text-gray-400 hover:text-amberfire-400 transition text-xs">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </button>
 
@@ -405,49 +432,54 @@
           <button onclick="mobileNav('staffpanel')" class="w-full text-left py-1 text-amber-400 font-bold">STAFF PANEL</button>
         </div>
         <div id="mobileAdminBtn" class="hidden">
-          <button onclick="mobileNav('adminpanel')" class="w-full text-left py-1 text-crimson-400 font-bold">ADMIN PANEL</button>
+          <button onclick="mobileNav('adminpanel')" class="w-full text-left py-1 text-amberfire-400 font-bold">ADMIN PANEL</button>
         </div>
       </div>
     </header>
 
     <!-- ========================================================
-         SECTION: HOME / HERO
+         SECTION: HOME / HERO (FULL SIZE CINEMATIC WITH SUPPLIED 3D LOGO)
          ======================================================== -->
-    <section id="section-home" class="relative pt-8 pb-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="section-home" class="relative pt-6 pb-16 w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        <!-- FearSteal Banner Presentation -->
-        <div class="w-full rounded-3xl overflow-hidden mb-10 glass-card p-2 shadow-2xl">
-          <div class="relative h-64 sm:h-80 md:h-96 w-full rounded-2xl overflow-hidden bg-dark-900 flex items-center justify-center">
-            <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=1600&q=80');"></div>
+        <!-- Full-Size Hero Banner with FearSteal Logo -->
+        <div class="w-full rounded-3xl overflow-hidden mb-10 glass-card p-2 sm:p-4 shadow-2xl relative">
+          <div class="relative h-80 sm:h-96 md:h-[420px] w-full rounded-2xl overflow-hidden bg-gradient-to-b from-dark-900 via-dark-950 to-dark-950 flex flex-col items-center justify-center text-center p-4">
+            
+            <!-- Atmospheric Dark Nether & Molten Crystal Backdrop -->
+            <div class="absolute inset-0 bg-cover bg-center opacity-25 scale-105" style="background-image: url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=1600&q=80');"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/60 to-transparent"></div>
             
-            <div class="relative z-20 text-center px-4">
-              <span class="inline-block px-3 py-1 rounded-full bg-crimson-950/85 border border-crimson-600/50 text-crimson-400 text-[11px] font-display font-bold tracking-widest uppercase mb-3 shadow-lg">
-                Bedrock & Java Supported • Port: 19132
-              </span>
-              <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-widest leading-none drop-shadow-[0_4px_22px_rgba(0,0,0,0.85)]">
-                FEAR<span class="text-crimson-600">STEAL</span>
-              </h1>
-              <p class="font-display text-base sm:text-2xl font-bold uppercase tracking-widest text-gray-300 mt-2 text-gradient">
-                The Next Generation LifeSteal Network
-              </p>
+            <!-- The Exact Supplied FEARSTEAL 3D Crystal Logo (Responsive & Animated) -->
+            <div class="relative z-20 w-full max-w-xl sm:max-w-2xl px-4 flex flex-col items-center">
+              <img src="fearsteal-banner.png" alt="FEARSTEAL" class="w-full max-h-48 sm:max-h-60 object-contain animated-fearsteal-logo drop-shadow-[0_10px_35px_rgba(245,158,11,0.55)]" onerror="this.onerror=null; this.src='https://i.ibb.co/pZ4Fj6V/fearsteal-logo.png';">
+              
+              <div class="mt-4 sm:mt-6">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-crimson-950/85 border border-amberfire-500/50 text-amberfire-400 text-xs sm:text-sm font-display font-bold tracking-widest uppercase shadow-lg">
+                  Bedrock & Java Supported • Port: 19132
+                </span>
+                <p class="font-display text-base sm:text-2xl font-bold uppercase tracking-widest text-gray-200 mt-2 text-gradient-magma">
+                  The Next Generation LifeSteal Network
+                </p>
+              </div>
             </div>
+
           </div>
         </div>
 
-        <!-- Live Server Status Diagnostics Bar -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <!-- Live Server Status Diagnostics Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 w-full">
           <div class="glass-card rounded-2xl p-4 flex items-center gap-3">
             <div id="heroStatusDot" class="w-3.5 h-3.5 rounded-full bg-gray-500 animate-pulse"></div>
             <div>
-              <span class="text-[10px] uppercase font-display text-gray-400 font-bold block">Status</span>
+              <span class="text-[10px] uppercase font-display text-gray-400 font-bold block">Network State</span>
               <span id="heroStatusText" class="font-display text-base font-bold text-gray-300">Checking API...</span>
             </div>
           </div>
 
           <div class="glass-card rounded-2xl p-4 flex items-center gap-3">
-            <div class="p-2.5 rounded-xl bg-crimson-950/60 border border-crimson-800/40 text-crimson-400">
+            <div class="p-2.5 rounded-xl bg-crimson-950/60 border border-crimson-800/40 text-amberfire-400">
               <i class="fa-solid fa-users text-lg"></i>
             </div>
             <div>
@@ -461,7 +493,7 @@
               <i class="fa-solid fa-code-branch text-lg"></i>
             </div>
             <div>
-              <span class="text-[10px] uppercase font-display text-gray-400 font-bold block">Network Architecture</span>
+              <span class="text-[10px] uppercase font-display text-gray-400 font-bold block">Proxy System</span>
               <span id="heroVersion" class="font-mono text-xs font-bold text-gray-200">Velocity Proxy</span>
             </div>
           </div>
@@ -471,25 +503,25 @@
               <i class="fa-solid fa-gauge-high text-lg"></i>
             </div>
             <div>
-              <span class="text-[10px] uppercase font-display text-gray-400 font-bold block">Server Ping</span>
+              <span class="text-[10px] uppercase font-display text-gray-400 font-bold block">Network Ping</span>
               <span id="heroPing" class="font-mono text-base font-bold text-emerald-400">-- ms</span>
             </div>
           </div>
         </div>
 
         <!-- Connection IP Copy Box -->
-        <div class="glass-card rounded-3xl p-6 sm:p-8 text-center max-w-3xl mx-auto shadow-2xl">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 text-center max-w-3xl mx-auto shadow-2xl w-full">
           <h3 class="font-display text-xl sm:text-2xl font-black text-white mb-2 tracking-wide">CONNECT TO FEARSTEAL</h3>
           <p class="text-xs sm:text-sm text-gray-400 mb-6">Click the box below to automatically copy the server IP address to your clipboard.</p>
 
-          <div onclick="copyServerIp()" class="cursor-pointer group flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-dark-950 border border-crimson-900/60 hover:border-crimson-500 transition-all mb-6">
+          <div onclick="copyServerIp()" class="cursor-pointer group flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-dark-950 border border-crimson-900/60 hover:border-amberfire-500 transition-all mb-6">
             <div class="flex items-center gap-3 text-left">
-              <div class="w-10 h-10 rounded-xl bg-crimson-950 flex items-center justify-center text-crimson-500">
+              <div class="w-10 h-10 rounded-xl bg-crimson-950 flex items-center justify-center text-amberfire-400">
                 <i class="fa-solid fa-server"></i>
               </div>
               <div>
                 <span class="text-[10px] uppercase font-display tracking-wider text-gray-400 block font-bold">Server Address</span>
-                <span class="font-mono font-bold text-white text-sm sm:text-base group-hover:text-crimson-400 transition">play.fearsteal.fun</span>
+                <span class="font-mono font-bold text-white text-sm sm:text-base group-hover:text-amberfire-400 transition">play.fearsteal.fun</span>
               </div>
             </div>
 
@@ -498,7 +530,7 @@
                 <span class="text-[10px] uppercase font-display tracking-wider text-gray-400 block font-bold">Bedrock Port</span>
                 <span class="font-mono font-bold text-white text-sm sm:text-base">19132</span>
               </div>
-              <button class="px-3.5 py-2 bg-crimson-600 group-hover:bg-crimson-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider font-display transition flex items-center gap-1.5">
+              <button class="px-4 py-2 bg-gradient-to-r from-crimson-600 to-amberfire-600 group-hover:from-crimson-500 group-hover:to-amberfire-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider font-display transition flex items-center gap-1.5 shadow">
                 <i class="fa-regular fa-copy"></i>
                 <span id="copyBtnLabel">Copy IP</span>
               </button>
@@ -510,7 +542,7 @@
               <i class="fa-brands fa-discord text-base"></i>
               <span>Join Official Discord</span>
             </a>
-            <a href="https://store.cryzormc.in/" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-crimson-700 to-crimson-600 hover:from-crimson-600 hover:to-crimson-500 text-white font-display font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg transition">
+            <a href="https://store.cryzormc.in/" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-crimson-700 via-amberfire-600 to-yellow-500 hover:from-crimson-600 hover:to-yellow-400 text-white font-display font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg transition">
               <i class="fa-solid fa-cart-shopping text-sm"></i>
               <span>Visit Official Store</span>
             </a>
@@ -523,11 +555,11 @@
     <!-- ========================================================
          SECTION: FEATURES
          ======================================================== -->
-    <section id="section-features" class="py-16 relative bg-dark-950/60 border-t border-dark-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-features" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Core Systems</span>
-          <h2 class="font-display text-2xl sm:text-4xl font-black text-white mt-1">ENGINEERED FOR LIFESTEAL SUPREMACY</h2>
+          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Core Systems</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-black text-white mt-1 tracking-wide">ENGINEERED FOR LIFESTEAL SUPREMACY</h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -578,21 +610,21 @@
     <!-- ========================================================
          SECTION: STORE & SERVER RANKS
          ======================================================== -->
-    <section id="section-store" class="py-16 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-store" class="py-16 relative w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Official CryzorMC Store</span>
+          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Official CryzorMC Store</span>
           <h2 class="font-display text-3xl sm:text-4xl font-black text-white mt-1">SERVER RANKS & STORE</h2>
           <p class="text-gray-400 text-xs mt-2">All purchases directly fund network infrastructure, security, and tournament prize pools.</p>
           <div class="mt-4">
-            <a href="https://store.cryzormc.in/" target="_blank" class="inline-flex items-center gap-2 px-5 py-2 bg-crimson-600 hover:bg-crimson-500 text-white rounded-xl font-display font-bold text-xs uppercase tracking-wider transition">
+            <a href="https://store.cryzormc.in/" target="_blank" class="inline-flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white rounded-xl font-display font-bold text-xs uppercase tracking-wider transition shadow">
               <i class="fa-solid fa-up-right-from-square"></i> Visit CryzorMC Store: store.cryzormc.in
             </a>
           </div>
         </div>
 
         <!-- SPECIAL NOVICE FREE RANK CARD -->
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-crimson-500/60 mb-12 shadow-2xl relative">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amberfire-500/60 mb-12 shadow-2xl relative">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
             <div class="space-y-2 text-center lg:text-left">
               <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 border border-emerald-500 text-emerald-400 text-xs font-bold uppercase font-display">
@@ -603,7 +635,7 @@
                 This free ranks only limited time for 60d so please claim your free ranks quickly. Each member can claim only once after verifying their Discord IGN!
               </p>
               
-              <div class="flex items-center gap-2 text-xs font-mono text-crimson-400 pt-1">
+              <div class="flex items-center gap-2 text-xs font-mono text-amberfire-400 pt-1">
                 <i class="fa-regular fa-clock"></i>
                 <span>Offer expires in: </span>
                 <span id="noviceExpireTimer" class="font-bold text-white">59d : 23h : 59m : 59s</span>
@@ -614,14 +646,14 @@
             <div class="w-full lg:w-96 glass-card p-5 rounded-2xl border border-dark-750 space-y-3">
               <div class="flex justify-between items-center text-xs font-bold font-display">
                 <span class="text-gray-400 uppercase">Availability Status</span>
-                <span id="noviceClaimCountDisplay" class="text-crimson-400 font-mono text-sm">0 / 100 Claimed</span>
+                <span id="noviceClaimCountDisplay" class="text-amberfire-400 font-mono text-sm">0 / 100 Claimed</span>
               </div>
 
               <div class="w-full h-2.5 bg-dark-900 rounded-full overflow-hidden p-0.5 border border-dark-750">
-                <div id="noviceProgressBar" class="h-full bg-gradient-to-r from-crimson-700 to-rose-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+                <div id="noviceProgressBar" class="h-full bg-gradient-to-r from-crimson-700 via-amberfire-500 to-yellow-400 rounded-full transition-all duration-500" style="width: 0%"></div>
               </div>
 
-              <button id="btnClaimNovice" onclick="openNoviceClaimModal()" class="w-full py-2.5 bg-gradient-to-r from-crimson-600 to-rose-600 hover:from-crimson-500 hover:to-rose-500 text-white font-display font-bold text-xs tracking-wider uppercase rounded-xl transition shadow flex items-center justify-center gap-2">
+              <button id="btnClaimNovice" onclick="openNoviceClaimModal()" class="w-full py-2.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs tracking-wider uppercase rounded-xl transition shadow flex items-center justify-center gap-2">
                 <i class="fa-solid fa-gift"></i>
                 <span id="noviceBtnText">CLAIM NOVICE ($0 FREE)</span>
               </button>
@@ -633,27 +665,27 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           
           <!-- FEARSTEAL ($25) -->
-          <div class="glass-card rounded-2xl p-5 border-crimson-600/70 flex flex-col justify-between hover:border-crimson-500 transition">
+          <div class="glass-card rounded-2xl p-5 border-amberfire-500/70 flex flex-col justify-between hover:border-amberfire-400 transition">
             <div>
-              <span class="text-[9px] bg-crimson-950 text-crimson-400 px-2 py-0.5 rounded border border-crimson-700 uppercase font-mono font-bold">SUPREME</span>
+              <span class="text-[9px] bg-amberfire-950 text-amberfire-400 px-2 py-0.5 rounded border border-amberfire-700 uppercase font-mono font-bold">SUPREME</span>
               <h3 class="font-display text-lg font-bold text-white mt-2 tracking-wide">FEARSTEAL</h3>
-              <div class="font-mono text-2xl font-black text-crimson-500 my-2">$25</div>
+              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$25</div>
               <p class="text-xs text-gray-400 mb-3">The supreme network rank with total dominion and special perks.</p>
               <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
                 <li>• /fly in Lobby & Clan outposts</li>
                 <li>• 5x Personal Vaults (/pv 1-5)</li>
-                <li>• FearSteal Custom Kill Glow</li>
+                <li>• FearSteal Custom Molten Kill Glow</li>
                 <li>• +5 Max Heart Buffer</li>
               </ul>
             </div>
-            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-crimson-600 hover:bg-crimson-500 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
+            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
           </div>
 
           <!-- FEAR+ ($20) -->
           <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
             <div>
               <h3 class="font-display text-lg font-bold text-white tracking-wide">FEAR+</h3>
-              <div class="font-mono text-2xl font-black text-crimson-500 my-2">$20</div>
+              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$20</div>
               <p class="text-xs text-gray-400 mb-3">Hardcore rank for elite clan leaders and seasoned duelists.</p>
               <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
                 <li>• 4x Personal Vaults</li>
@@ -669,7 +701,7 @@
           <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
             <div>
               <h3 class="font-display text-lg font-bold text-white tracking-wide">STEAL+</h3>
-              <div class="font-mono text-2xl font-black text-crimson-500 my-2">$18</div>
+              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$18</div>
               <p class="text-xs text-gray-400 mb-3">Enhanced heart theft privileges and bonus storage.</p>
               <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
                 <li>• 3x Personal Vaults</li>
@@ -685,7 +717,7 @@
           <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
             <div>
               <h3 class="font-display text-lg font-bold text-white tracking-wide">KING</h3>
-              <div class="font-mono text-2xl font-black text-crimson-500 my-2">$15</div>
+              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$15</div>
               <p class="text-xs text-gray-400 mb-3">Royal dominion perks and kingdom armory access.</p>
               <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
                 <li>• 3x Personal Vaults</li>
@@ -698,13 +730,13 @@
           </div>
 
           <!-- KNIGHT ($12) - MOST POPULAR -->
-          <div class="glass-card rounded-2xl p-5 border-2 border-crimson-500 relative flex flex-col justify-between shadow-[0_0_25px_rgba(225,29,72,0.25)]">
-            <span class="absolute -top-3 left-1/2 transform -translate-x-1/2 text-[9px] bg-crimson-600 text-white px-3 py-0.5 rounded-full uppercase font-mono font-bold tracking-wider">
+          <div class="glass-card rounded-2xl p-5 border-2 border-amberfire-500 relative flex flex-col justify-between shadow-[0_0_25px_rgba(245,158,11,0.25)]">
+            <span class="absolute -top-3 left-1/2 transform -translate-x-1/2 text-[9px] bg-gradient-to-r from-amberfire-600 to-yellow-500 text-white px-3 py-0.5 rounded-full uppercase font-mono font-bold tracking-wider shadow">
               🔥 MOST POPULAR
             </span>
             <div>
               <h3 class="font-display text-lg font-bold text-white mt-1 tracking-wide">KNIGHT</h3>
-              <div class="font-mono text-2xl font-black text-crimson-500 my-2">$12</div>
+              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$12</div>
               <p class="text-xs text-gray-400 mb-3">The player-favorite balance of combat kits and price.</p>
               <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
                 <li>• 2x Personal Vaults</li>
@@ -713,14 +745,14 @@
                 <li>• Custom Knight Prefix</li>
               </ul>
             </div>
-            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-crimson-600 hover:bg-crimson-500 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
+            <a href="https://store.cryzormc.in/" target="_blank" class="w-full py-2 rounded-xl bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white text-center font-display font-bold text-xs uppercase tracking-wider block transition">Purchase Rank</a>
           </div>
 
           <!-- ELITE+ ($10) -->
           <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
             <div>
               <h3 class="font-display text-lg font-bold text-white tracking-wide">ELITE+</h3>
-              <div class="font-mono text-2xl font-black text-crimson-500 my-2">$10</div>
+              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$10</div>
               <p class="text-xs text-gray-400 mb-3">Elevated combat utility and extended teleport homes.</p>
               <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
                 <li>• 2x Personal Vaults</li>
@@ -736,7 +768,7 @@
           <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
             <div>
               <h3 class="font-display text-lg font-bold text-white tracking-wide">ELITE</h3>
-              <div class="font-mono text-2xl font-black text-crimson-500 my-2">$8</div>
+              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$8</div>
               <p class="text-xs text-gray-400 mb-3">Solid foundational rank for active survivors.</p>
               <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
                 <li>• 1x Personal Vault</li>
@@ -752,7 +784,7 @@
           <div class="glass-card rounded-2xl p-5 border-dark-750 flex flex-col justify-between">
             <div>
               <h3 class="font-display text-lg font-bold text-white tracking-wide">LORD</h3>
-              <div class="font-mono text-2xl font-black text-crimson-500 my-2">$5</div>
+              <div class="font-mono text-2xl font-black text-amberfire-400 my-2">$5</div>
               <p class="text-xs text-gray-400 mb-3">Starter rank packed with essential quality of life perks.</p>
               <ul class="text-xs text-gray-300 space-y-1.5 mb-4">
                 <li>• 1x Personal Vault</li>
@@ -772,20 +804,20 @@
     <!-- ========================================================
          SECTION: LIVE STATUS DASHBOARD
          ======================================================== -->
-    <section id="section-status" class="py-16 relative bg-dark-950/80 border-t border-dark-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-status" class="py-16 relative bg-dark-950/80 border-t border-dark-800 w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
           <div>
-            <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Real-Time Bedrock / Java Socket</span>
+            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Real-Time Bedrock / Java Socket</span>
             <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">NETWORK DIAGNOSTICS</h2>
-            <p class="text-gray-400 text-xs mt-1">Queries <span class="font-mono text-crimson-400">play.fearsteal.fun:19132</span> every 60 seconds.</p>
+            <p class="text-gray-400 text-xs mt-1">Queries <span class="font-mono text-amberfire-400">play.fearsteal.fun:19132</span> every 60 seconds.</p>
           </div>
 
           <div class="flex items-center gap-3">
             <span class="text-xs text-gray-400 font-mono">Last checked: <span id="statusLastUpdated" class="text-white">Just now</span></span>
             <button onclick="fetchLiveServerStatus(true)" class="px-3.5 py-1.5 bg-dark-900 hover:bg-dark-800 border border-dark-700 text-gray-200 rounded-xl text-xs font-display font-bold uppercase tracking-wider flex items-center gap-2 transition">
-              <i id="manualRefreshIcon" class="fa-solid fa-arrows-rotate text-crimson-500"></i>
+              <i id="manualRefreshIcon" class="fa-solid fa-arrows-rotate text-amberfire-500"></i>
               <span>Refresh Now</span>
             </button>
           </div>
@@ -810,7 +842,7 @@
                 <span id="statusPlayersMax" class="text-gray-400 text-xs">--</span>
               </div>
               <div class="w-full h-1.5 bg-dark-950 rounded-full mt-2.5 overflow-hidden">
-                <div id="statusPlayerBar" class="h-full bg-crimson-500 rounded-full" style="width: 0%"></div>
+                <div id="statusPlayerBar" class="h-full bg-amberfire-500 rounded-full" style="width: 0%"></div>
               </div>
             </div>
 
@@ -824,7 +856,7 @@
 
             <div class="p-4 rounded-xl bg-dark-900/80 border border-dark-750">
               <span class="text-[10px] uppercase font-display text-gray-400 font-bold block mb-1">Proxy / Software</span>
-              <div id="statusSoftware" class="font-mono text-sm font-bold text-crimson-400 truncate">
+              <div id="statusSoftware" class="font-mono text-sm font-bold text-amberfire-400 truncate">
                 Velocity Proxy
               </div>
               <p id="statusVersionDetected" class="text-[10px] text-gray-400 mt-1 font-mono">Minecraft 1.20+</p>
@@ -845,10 +877,10 @@
     <!-- ========================================================
          SECTION: STAFF TEAM
          ======================================================== -->
-    <section id="section-staff" class="py-16 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-staff" class="py-16 relative w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Official Leadership</span>
+          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Official Leadership</span>
           <h2 class="font-display text-3xl sm:text-4xl font-black text-white mt-1 tracking-wide">THE STAFF TEAM</h2>
           <p class="text-gray-400 text-xs mt-2">Founders, Owners, Administrators, and Moderators leading FearSteal.</p>
         </div>
@@ -856,24 +888,24 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
 
           <!-- FOUNDER: ItzVeltriex -->
-          <div class="glass-card rounded-2xl p-5 border-2 border-crimson-600 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-crimson-950 text-crimson-400 border border-crimson-600 px-2.5 py-0.5 rounded-full inline-block mb-3">FOUNDER</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-crimson-500 mb-2.5 bg-dark-900 shadow">
+          <div class="glass-card rounded-2xl p-5 border-2 border-amberfire-500 text-center">
+            <span class="text-[9px] uppercase font-mono font-bold bg-amberfire-950 text-amberfire-400 border border-amberfire-600 px-2.5 py-0.5 rounded-full inline-block mb-3">FOUNDER</span>
+            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-amberfire-500 mb-2.5 bg-dark-900 shadow">
               <img src="https://mc-heads.net/avatar/ItzVeltriex/80" alt="ItzVeltriex" class="w-full h-full object-cover">
             </div>
             <h3 class="font-display text-base font-bold text-white tracking-wide">ItzVeltriex</h3>
-            <p class="text-[11px] text-crimson-400 font-mono mb-2">Network Founder & Lead Architect</p>
+            <p class="text-[11px] text-amberfire-400 font-mono mb-2">Network Founder & Lead Architect</p>
             <p class="text-xs text-gray-400">Head developer and network infrastructure overseer.</p>
           </div>
 
           <!-- FOUNDER: Notslayer -->
-          <div class="glass-card rounded-2xl p-5 border-2 border-crimson-600 text-center">
-            <span class="text-[9px] uppercase font-mono font-bold bg-crimson-950 text-crimson-400 border border-crimson-600 px-2.5 py-0.5 rounded-full inline-block mb-3">FOUNDER</span>
-            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-crimson-500 mb-2.5 bg-dark-900 shadow">
+          <div class="glass-card rounded-2xl p-5 border-2 border-amberfire-500 text-center">
+            <span class="text-[9px] uppercase font-mono font-bold bg-amberfire-950 text-amberfire-400 border border-amberfire-600 px-2.5 py-0.5 rounded-full inline-block mb-3">FOUNDER</span>
+            <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-amberfire-500 mb-2.5 bg-dark-900 shadow">
               <img src="https://mc-heads.net/avatar/Notslayer/80" alt="Notslayer" class="w-full h-full object-cover">
             </div>
             <h3 class="font-display text-base font-bold text-white tracking-wide">Notslayer</h3>
-            <p class="text-[11px] text-crimson-400 font-mono mb-2">Co-Founder & Operations</p>
+            <p class="text-[11px] text-amberfire-400 font-mono mb-2">Co-Founder & Operations</p>
             <p class="text-xs text-gray-400 mb-3">Directs balance testing and staff team management.</p>
             <a href="https://discord.gg/HZhTd9Pry5" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-950 border border-indigo-600/50 text-indigo-300 text-[11px] font-bold hover:bg-indigo-900 transition">
               <i class="fa-brands fa-discord"></i> Notslayer Discord
@@ -986,18 +1018,18 @@
     <!-- ========================================================
          SECTION: MEMBERS DIRECTORY
          ======================================================== -->
-    <section id="section-members" class="py-16 relative bg-dark-950/60 border-t border-dark-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-members" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
           <div>
-            <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Registered Community</span>
+            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Registered Community</span>
             <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">MEMBERS DIRECTORY</h2>
             <p class="text-gray-400 text-xs mt-1">Every registered player listed sequentially with their live Mojang head avatar.</p>
           </div>
 
           <div class="p-2.5 glass-card rounded-xl font-mono text-xs text-gray-300">
-            Total Members: <span id="totalMembersCount" class="text-crimson-400 font-bold">1</span>
+            Total Members: <span id="totalMembersCount" class="text-amberfire-400 font-bold">1</span>
           </div>
         </div>
 
@@ -1011,18 +1043,18 @@
     <!-- ========================================================
          SECTION: LEADERBOARDS & SIMULATOR
          ======================================================== -->
-    <section id="section-leaderboard" class="py-16 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-leaderboard" class="py-16 relative w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
           <div>
-            <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Network High Scores</span>
+            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Network High Scores</span>
             <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">DYNAMIC LEADERBOARDS</h2>
             <p class="text-gray-400 text-xs mt-1">Auto-refreshes every 10 minutes from real network data.</p>
           </div>
 
           <div class="glass-card px-3.5 py-2 rounded-xl border-crimson-800/40 flex items-center gap-2.5">
-            <i class="fa-solid fa-hourglass-half text-crimson-500 text-xs"></i>
+            <i class="fa-solid fa-hourglass-half text-amberfire-500 text-xs"></i>
             <div class="text-xs">
               <span class="text-gray-400 block font-display uppercase font-bold text-[10px]">Auto Refresh In</span>
               <span id="leaderboardRefreshTimer" class="font-mono text-white font-bold">09m : 45s</span>
@@ -1031,13 +1063,13 @@
         </div>
 
         <!-- Heart Forge Simulator -->
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-crimson-600/40 mb-12 shadow-2xl">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amberfire-500/40 mb-12 shadow-2xl">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
             <div class="space-y-2 text-center lg:text-left">
-              <span class="text-[10px] font-mono uppercase bg-crimson-950 text-crimson-400 px-3 py-0.5 rounded-full border border-crimson-700">Mini-System</span>
+              <span class="text-[10px] font-mono uppercase bg-amberfire-950 text-amberfire-400 px-3 py-0.5 rounded-full border border-amberfire-700">Mini-System</span>
               <h3 class="font-display text-2xl font-black text-white tracking-wide">HEART FORGE & LIFESTEAL SIMULATOR</h3>
               <p class="text-xs text-gray-300 max-w-xl">
-                Every newly registered member receives <strong class="text-crimson-400 font-mono">10 Default Hearts</strong> upon registration. Steal hearts from players or test combat loss below!
+                Every newly registered member receives <strong class="text-amberfire-400 font-mono">10 Default Hearts</strong> upon registration. Steal hearts from players or test combat loss below!
               </p>
               
               <div class="flex items-center justify-center lg:justify-start gap-1 flex-wrap pt-1" id="heartsVisualRow">
@@ -1047,10 +1079,10 @@
 
             <div class="glass-card p-4 rounded-2xl border border-dark-750 w-full lg:w-72 space-y-2.5 text-center">
               <span class="text-[10px] uppercase text-gray-400 font-display font-bold block">Your Heart Pool</span>
-              <div id="simUserHeartsCount" class="font-display text-3xl font-black text-crimson-500 tracking-wide">10 ❤️</div>
+              <div id="simUserHeartsCount" class="font-display text-3xl font-black text-amberfire-400 tracking-wide">10 ❤️</div>
               
               <div class="grid grid-cols-2 gap-2 pt-1">
-                <button onclick="simulateStealHeart()" class="py-2 px-2 bg-crimson-700 hover:bg-crimson-600 text-white rounded-xl text-xs font-display font-bold uppercase tracking-wider transition">
+                <button onclick="simulateStealHeart()" class="py-2 px-2 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white rounded-xl text-xs font-display font-bold uppercase tracking-wider transition">
                   <i class="fa-solid fa-skull"></i> Steal Heart
                 </button>
                 <button onclick="simulateLoseHeart()" class="py-2 px-2 bg-dark-900 hover:bg-dark-800 border border-dark-700 text-gray-300 rounded-xl text-xs font-display font-bold uppercase tracking-wider transition">
@@ -1063,11 +1095,11 @@
 
         <!-- Leaderboard Filter Tabs -->
         <div class="flex flex-wrap gap-2 mb-6 font-display text-xs font-bold tracking-wider">
-          <button onclick="filterLeaderboard('hearts')" class="lb-tab active px-3.5 py-1.5 rounded-xl bg-crimson-600 text-white border border-crimson-500 transition">TOP HEARTS</button>
-          <button onclick="filterLeaderboard('kills')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-crimson-500 transition">TOP KILLS</button>
-          <button onclick="filterLeaderboard('streak')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-crimson-500 transition">STREAK</button>
-          <button onclick="filterLeaderboard('balance')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-crimson-500 transition">BALANCE</button>
-          <button onclick="filterLeaderboard('playtime')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-crimson-500 transition">PLAYTIME</button>
+          <button onclick="filterLeaderboard('hearts')" class="lb-tab active px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white border border-amberfire-500 transition">TOP HEARTS</button>
+          <button onclick="filterLeaderboard('kills')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-amberfire-500 transition">TOP KILLS</button>
+          <button onclick="filterLeaderboard('streak')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-amberfire-500 transition">STREAK</button>
+          <button onclick="filterLeaderboard('balance')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-amberfire-500 transition">BALANCE</button>
+          <button onclick="filterLeaderboard('playtime')" class="lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-amberfire-500 transition">PLAYTIME</button>
         </div>
 
         <!-- Podium Top 3 -->
@@ -1080,18 +1112,18 @@
               <img id="podium2Img" src="https://mc-heads.net/avatar/Notslayer/80" class="w-full h-full">
             </div>
             <h4 id="podium2Name" class="font-display font-bold text-white text-sm tracking-wide">Notslayer</h4>
-            <p id="podium2Score" class="font-mono text-crimson-400 font-bold text-xs">34 Hearts</p>
+            <p id="podium2Score" class="font-mono text-amberfire-400 font-bold text-xs">34 Hearts</p>
           </div>
 
           <!-- #1 Podium -->
-          <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-400 relative order-1 md:order-2 shadow-[0_0_30px_rgba(245,158,11,0.25)]">
+          <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-400 relative order-1 md:order-2 shadow-[0_0_30px_rgba(245,158,11,0.3)]">
             <div class="text-amber-400 text-xl mb-1"><i class="fa-solid fa-crown"></i></div>
             <span class="font-display text-2xl font-black text-amber-400 block mb-1">#1</span>
             <div class="w-16 h-16 mx-auto rounded-xl overflow-hidden border-2 border-amber-400 mb-2 bg-dark-900">
               <img id="podium1Img" src="https://mc-heads.net/avatar/ItzVeltriex/80" class="w-full h-full">
             </div>
             <h4 id="podium1Name" class="font-display font-black text-white text-base tracking-wide">ItzVeltriex</h4>
-            <p id="podium1Score" class="font-mono text-crimson-400 font-bold text-sm">40 Hearts</p>
+            <p id="podium1Score" class="font-mono text-amberfire-400 font-bold text-sm">40 Hearts</p>
           </div>
 
           <!-- #3 Podium -->
@@ -1101,7 +1133,7 @@
               <img id="podium3Img" src="https://mc-heads.net/avatar/RaviXD/80" class="w-full h-full">
             </div>
             <h4 id="podium3Name" class="font-display font-bold text-white text-sm tracking-wide">RaviXD</h4>
-            <p id="podium3Score" class="font-mono text-crimson-400 font-bold text-xs">29 Hearts</p>
+            <p id="podium3Score" class="font-mono text-amberfire-400 font-bold text-xs">29 Hearts</p>
           </div>
 
         </div>
@@ -1129,26 +1161,26 @@
     <!-- ========================================================
          SECTION: 15-DAY ROTATING EVENTS & NOTIFICATIONS
          ======================================================== -->
-    <section id="section-events" class="py-16 relative bg-dark-950/70 border-t border-dark-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-events" class="py-16 relative bg-dark-950/70 border-t border-dark-800 w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">15-Day Rotation Engine</span>
+          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">15-Day Rotation Engine</span>
           <h2 class="font-display text-2xl sm:text-4xl font-black text-white mt-1 tracking-wide">AUTOMATED NETWORK EVENTS</h2>
           <p class="text-gray-400 text-xs mt-2">Automatically resets every 15 days alternating Minecraft combat tournaments and Discord challenges.</p>
         </div>
 
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-crimson-600/60 mb-10 shadow-2xl">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amberfire-500/60 mb-10 shadow-2xl">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
             <div class="space-y-2">
-              <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-crimson-950 border border-crimson-600 text-crimson-400 text-[11px] font-bold uppercase font-display">
-                <span class="w-2 h-2 rounded-full bg-crimson-500 animate-pulse"></span> Active 15-Day Event
+              <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-amberfire-950 border border-amberfire-600 text-amberfire-400 text-[11px] font-bold uppercase font-display">
+                <span class="w-2 h-2 rounded-full bg-amberfire-500 animate-pulse"></span> Active 15-Day Event
               </div>
               <h3 id="currentEventTitle" class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">FearSteal 1v1 Gladiator Tournament</h3>
               <p id="currentEventDesc" class="text-xs sm:text-sm text-gray-300 max-w-2xl leading-relaxed">
                 Step into the netherite arena. Single elimination duels with custom kits. Winner takes 15 stolen heart fragments and the Gladiator server tag!
               </p>
               <div class="flex items-center gap-3 text-xs font-mono text-gray-400">
-                <span>Category: <strong id="currentEventType" class="text-crimson-400">Minecraft Event</strong></span>
+                <span>Category: <strong id="currentEventType" class="text-amberfire-400">Minecraft Event</strong></span>
                 <span>•</span>
                 <span>Location: <strong>/warp gladiator</strong></span>
               </div>
@@ -1156,7 +1188,7 @@
 
             <div class="glass-card p-5 rounded-2xl border border-dark-750 text-center min-w-[260px]">
               <span class="text-[10px] uppercase text-gray-400 font-display font-bold block mb-1">ROTATION COUNTDOWN</span>
-              <div id="eventTimerCountdown" class="font-mono text-2xl font-black text-crimson-500">
+              <div id="eventTimerCountdown" class="font-mono text-2xl font-black text-amberfire-400">
                 14d : 18h : 22m : 40s
               </div>
               <p class="text-[10px] text-gray-500 font-mono mt-1">Resets automatically at zero.</p>
@@ -1194,14 +1226,14 @@
     <!-- ========================================================
          SECTION: MYSTERY CRATE SIMULATOR (24-HOUR COOLDOWN)
          ======================================================== -->
-    <section id="section-crates" class="py-16 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-crates" class="py-16 relative w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-crimson-600/40 text-center max-w-2xl mx-auto shadow-2xl">
-          <div class="w-14 h-14 rounded-2xl bg-crimson-950/80 border border-crimson-500 flex items-center justify-center text-2xl text-crimson-400 mx-auto mb-3 animate-pulse">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amberfire-500/40 text-center max-w-2xl mx-auto shadow-2xl">
+          <div class="w-14 h-14 rounded-2xl bg-crimson-950/80 border border-amberfire-500 flex items-center justify-center text-2xl text-amberfire-400 mx-auto mb-3 animate-pulse">
             🎁
           </div>
-          <span class="text-[10px] font-mono uppercase bg-crimson-950 text-crimson-400 px-3 py-0.5 rounded-full border border-crimson-700">Daily 24H Cooldown</span>
+          <span class="text-[10px] font-mono uppercase bg-crimson-950 text-amberfire-400 px-3 py-0.5 rounded-full border border-amberfire-700">Daily 24H Cooldown</span>
           <h2 class="font-display text-2xl sm:text-3xl font-black text-white mt-2 mb-2 tracking-wide">FEARSTEAL CRATE SIMULATOR</h2>
           <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-5">
             Test your luck daily with our ancient relic crate. Claim mystery items, heart fragments, or kits!
@@ -1209,9 +1241,9 @@
 
           <div class="p-5 rounded-2xl bg-dark-950 border border-dark-750 mb-4">
             <div id="crateClosedView" class="space-y-3">
-              <div class="text-5xl text-crimson-500">📦</div>
+              <div class="text-5xl text-amberfire-500">📦</div>
               <p class="text-xs text-gray-400 font-mono">Daily mysterious crate is ready.</p>
-              <button id="btnOpenCrate" onclick="handleOpenCrate()" class="px-6 py-2.5 bg-gradient-to-r from-crimson-600 to-rose-600 hover:from-crimson-500 hover:to-rose-500 text-white font-display font-bold text-sm uppercase tracking-wider rounded-xl transition shadow">
+              <button id="btnOpenCrate" onclick="handleOpenCrate()" class="px-6 py-2.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-sm uppercase tracking-wider rounded-xl transition shadow">
                 Open Mysterious Crate
               </button>
             </div>
@@ -1219,7 +1251,7 @@
             <div id="crateCooldownView" class="hidden space-y-2.5">
               <div class="text-4xl text-amber-500">⏳</div>
               <h4 class="font-display text-base font-bold text-white tracking-wide">Crate On 24-Hour Cooldown</h4>
-              <div id="crateCooldownTimer" class="font-mono text-xl font-bold text-crimson-400">23h : 59m : 59s</div>
+              <div id="crateCooldownTimer" class="font-mono text-xl font-bold text-amberfire-400">23h : 59m : 59s</div>
               <p class="text-[11px] text-gray-300 bg-dark-900 p-3 rounded-xl border border-dark-700 text-left leading-relaxed font-sans">
                 "You have already claimed this mysterious rewards you can claim again wait for 24h if you claim your rewards please take the screenshot and ping server owner in chat send proof and claim your rewards!"
               </p>
@@ -1233,11 +1265,11 @@
     <!-- ========================================================
          SECTION: MEDIA APPLICATION & CREATOR GUIDELINES
          ======================================================== -->
-    <section id="section-media" class="py-16 relative bg-dark-950/60 border-t border-dark-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-media" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Content Creators</span>
+          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Content Creators</span>
           <h2 class="font-display text-2xl sm:text-4xl font-black text-white mt-1 tracking-wide">MEDIA RANKS & PERKS</h2>
           <p class="text-gray-400 text-xs mt-2">Grow your YouTube, TikTok, or Twitch audience on FearSteal.</p>
         </div>
@@ -1247,7 +1279,7 @@
             <div>
               <span class="text-[9px] bg-dark-900 text-cyan-400 border border-cyan-800 px-2 py-0.5 rounded uppercase font-mono font-bold">SMOL RANK</span>
               <h3 class="font-display text-base font-bold text-white mt-2 tracking-wide">SMOL</h3>
-              <p class="text-xs text-crimson-400 font-mono mb-3">At least 200 subscribers</p>
+              <p class="text-xs text-amberfire-400 font-mono mb-3">At least 200 subscribers</p>
               <p class="text-xs text-gray-400 mb-4">Smol prefix, /live broadcast ping, and creator kit.</p>
             </div>
             <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="w-full py-1.5 bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white rounded-xl text-xs font-bold uppercase font-display tracking-wider transition">Apply on Discord</a>
@@ -1257,7 +1289,7 @@
             <div>
               <span class="text-[9px] bg-dark-900 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded uppercase font-mono font-bold">MEDIA RANK</span>
               <h3 class="font-display text-base font-bold text-white mt-2 tracking-wide">MEDIA</h3>
-              <p class="text-xs text-crimson-400 font-mono mb-3">500 – 1,000 subscribers</p>
+              <p class="text-xs text-amberfire-400 font-mono mb-3">500 – 1,000 subscribers</p>
               <p class="text-xs text-gray-400 mb-4">Media rank prefix, /record notification, 2x vaults.</p>
             </div>
             <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="w-full py-1.5 bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white rounded-xl text-xs font-bold uppercase font-display tracking-wider transition">Apply on Discord</a>
@@ -1267,20 +1299,20 @@
             <div>
               <span class="text-[9px] bg-dark-900 text-purple-400 border border-purple-800 px-2 py-0.5 rounded uppercase font-mono font-bold">MEDIA+ RANK</span>
               <h3 class="font-display text-base font-bold text-white mt-2 tracking-wide">MEDIA+</h3>
-              <p class="text-xs text-crimson-400 font-mono mb-3">1,000 – 5,000 subscribers</p>
+              <p class="text-xs text-amberfire-400 font-mono mb-3">1,000 – 5,000 subscribers</p>
               <p class="text-xs text-gray-400 mb-4">Priority upload discord ping, Media+ kit, monthly keys.</p>
             </div>
             <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="w-full py-1.5 bg-dark-900 hover:bg-dark-800 border border-dark-700 text-white rounded-xl text-xs font-bold uppercase font-display tracking-wider transition">Apply on Discord</a>
           </div>
 
-          <div class="glass-card rounded-2xl p-5 text-center flex flex-col justify-between border-crimson-600/50">
+          <div class="glass-card rounded-2xl p-5 text-center flex flex-col justify-between border-amberfire-500/50">
             <div>
-              <span class="text-[9px] bg-crimson-950 text-crimson-400 border border-crimson-700 px-2 py-0.5 rounded uppercase font-mono font-bold">FAMOUS RANK</span>
+              <span class="text-[9px] bg-crimson-950 text-amberfire-400 border border-amberfire-700 px-2 py-0.5 rounded uppercase font-mono font-bold">FAMOUS RANK</span>
               <h3 class="font-display text-base font-bold text-white mt-2 tracking-wide">FAMOUS</h3>
-              <p class="text-xs text-crimson-400 font-mono mb-3">10,000+ subscribers</p>
+              <p class="text-xs text-amberfire-400 font-mono mb-3">10,000+ subscribers</p>
               <p class="text-xs text-gray-400 mb-4">All perks, direct Creator lounge, revenue share.</p>
             </div>
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="w-full py-1.5 bg-crimson-600 hover:bg-crimson-500 text-white rounded-xl text-xs font-bold uppercase font-display tracking-wider transition">Apply on Discord</a>
+            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="w-full py-1.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white rounded-xl text-xs font-bold uppercase font-display tracking-wider transition">Apply on Discord</a>
           </div>
         </div>
 
@@ -1288,7 +1320,7 @@
           <h4 class="font-display text-base font-bold text-white mb-2 tracking-wide">Official Creator Description Template</h4>
           <p class="text-xs text-gray-400 mb-3">When creating a video about FearSteal, please include the following clickable information in your description:</p>
           <div class="p-3.5 rounded-xl bg-dark-950 border border-dark-800 font-mono text-xs text-gray-300 space-y-1 select-all">
-            <p>🔥 FearSteal Server IP: <a href="javascript:void(0)" onclick="copyServerIp()" class="text-crimson-400 underline font-bold">play.fearsteal.fun</a></p>
+            <p>🔥 FearSteal Server IP: <a href="javascript:void(0)" onclick="copyServerIp()" class="text-amberfire-400 underline font-bold">play.fearsteal.fun</a></p>
             <p>• Port: <strong class="text-white">19132</strong></p>
             <p>• FearSteal Discord: <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="text-indigo-400 underline">https://discord.gg/pGM5x3gXpX</a></p>
             <p>• FearSteal Website: <a href="#" class="text-cyan-400 underline">https://fearsteal.fun</a></p>
@@ -1302,11 +1334,11 @@
     <!-- ========================================================
          SECTION: REVIEWS & REVIEWS SUBMITTED WALL
          ======================================================== -->
-    <section id="section-reviews" class="py-16 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-reviews" class="py-16 relative w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Community Testimonials</span>
+          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Community Testimonials</span>
           <h2 class="font-display text-2xl sm:text-4xl font-black text-white mt-1 tracking-wide">REVIEWS & EXPERIENCES</h2>
           <p class="text-gray-400 text-xs mt-2">Rate FearSteal from 0 to 10 stars and share your feedback.</p>
         </div>
@@ -1320,17 +1352,17 @@
               <div>
                 <label class="block text-[11px] font-display uppercase font-bold tracking-wider text-gray-300 mb-1">Stars (0 - 10)</label>
                 <div class="flex items-center gap-2">
-                  <input type="range" id="reviewStarRange" min="0" max="10" value="10" oninput="document.getElementById('starDisplayValue').innerText = this.value + ' / 10 Stars'" class="w-full accent-crimson-600">
-                  <span id="starDisplayValue" class="text-xs font-mono font-bold text-crimson-400 whitespace-nowrap">10 / 10 Stars</span>
+                  <input type="range" id="reviewStarRange" min="0" max="10" value="10" oninput="document.getElementById('starDisplayValue').innerText = this.value + ' / 10 Stars'" class="w-full accent-amberfire-500">
+                  <span id="starDisplayValue" class="text-xs font-mono font-bold text-amberfire-400 whitespace-nowrap">10 / 10 Stars</span>
                 </div>
               </div>
 
               <div>
                 <label class="block text-[11px] font-display uppercase font-bold tracking-wider text-gray-300 mb-1">Review Message</label>
-                <textarea id="reviewComment" required rows="3" placeholder="Tell us how you feel about the combat, staff, and LifeSteal balance..." class="w-full p-2.5 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white placeholder-gray-600 focus:outline-none focus:border-crimson-500"></textarea>
+                <textarea id="reviewComment" required rows="3" placeholder="Tell us how you feel about the combat, staff, and LifeSteal balance..." class="w-full p-2.5 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white placeholder-gray-600 focus:outline-none focus:border-amberfire-500"></textarea>
               </div>
 
-              <button type="submit" class="w-full py-2.5 bg-crimson-600 hover:bg-crimson-500 text-white font-display font-bold text-xs tracking-wider uppercase rounded-xl transition shadow">
+              <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs tracking-wider uppercase rounded-xl transition shadow">
                 Submit Public Review
               </button>
             </form>
@@ -1354,12 +1386,12 @@
     <!-- ========================================================
          SECTION: SUGGESTIONS
          ======================================================== -->
-    <section id="section-suggestions" class="py-16 relative bg-dark-950/60 border-t border-dark-800">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-suggestions" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
+      <div class="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="glass-card rounded-3xl p-6 sm:p-8 border border-crimson-900/40 shadow-2xl">
           <div class="text-center mb-6">
-            <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Player Voice</span>
+            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Player Voice</span>
             <h2 class="font-display text-2xl font-black text-white mt-1 tracking-wide">SUBMIT A SERVER SUGGESTION</h2>
             <p class="text-gray-400 text-xs mt-1">Submissions route directly to the Admin Panel for ItzVeltriex to review.</p>
           </div>
@@ -1367,7 +1399,7 @@
           <form onsubmit="handleSuggestionSubmit(event)" class="space-y-3.5">
             <div>
               <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Category</label>
-              <select id="sugCategory" class="w-full py-2 px-3 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white focus:outline-none focus:border-crimson-500">
+              <select id="sugCategory" class="w-full py-2 px-3 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white focus:outline-none focus:border-amberfire-500">
                 <option value="LifeSteal Gameplay">LifeSteal Mechanics & Heart Caps</option>
                 <option value="Discord Bot & Roles">Discord Server & Roles</option>
                 <option value="Store & Ranks">Store, Kits & Economy</option>
@@ -1378,15 +1410,15 @@
 
             <div>
               <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Suggestion Title</label>
-              <input type="text" id="sugTitle" required placeholder="E.g. Custom heart revive totem recipe" class="w-full py-2 px-3 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white focus:outline-none focus:border-crimson-500">
+              <input type="text" id="sugTitle" required placeholder="E.g. Custom heart revive totem recipe" class="w-full py-2 px-3 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white focus:outline-none focus:border-amberfire-500">
             </div>
 
             <div>
               <label class="block text-[11px] uppercase font-display font-bold tracking-wider text-gray-300 mb-1">Detailed Explanation</label>
-              <textarea id="sugDetails" required rows="4" placeholder="Explain your concept and why the server needs this..." class="w-full p-2.5 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white focus:outline-none focus:border-crimson-500"></textarea>
+              <textarea id="sugDetails" required rows="4" placeholder="Explain your concept and why the server needs this..." class="w-full p-2.5 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white focus:outline-none focus:border-amberfire-500"></textarea>
             </div>
 
-            <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-crimson-700 to-crimson-600 hover:from-crimson-600 hover:to-crimson-500 text-white font-display font-bold text-xs tracking-wider uppercase rounded-xl transition shadow">
+            <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-crimson-700 via-amberfire-600 to-yellow-500 hover:from-crimson-600 hover:to-yellow-400 text-white font-display font-bold text-xs tracking-wider uppercase rounded-xl transition shadow">
               Send To Admin Panel
             </button>
           </form>
@@ -1398,12 +1430,12 @@
     <!-- ========================================================
          SECTION: STAFF APPLICATION (12 QUESTIONS)
          ======================================================== -->
-    <section id="section-staffapply" class="py-16 relative">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-staffapply" class="py-16 relative w-full">
+      <div class="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="glass-card rounded-3xl p-6 sm:p-8 border border-dark-750 shadow-2xl">
           <div class="text-center mb-6">
-            <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Recruitment</span>
+            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Recruitment</span>
             <h2 class="font-display text-2xl font-black text-white mt-1 tracking-wide">STAFF APPLICATION (12 QUESTIONS)</h2>
             <p class="text-gray-400 text-xs mt-1">Completed forms route directly into Founder ItzVeltriex's Admin Panel.</p>
           </div>
@@ -1489,7 +1521,7 @@
               </select>
             </div>
 
-            <button type="submit" class="w-full py-2.5 bg-crimson-600 hover:bg-crimson-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition shadow">
+            <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition shadow">
               Submit Staff Application
             </button>
           </form>
@@ -1501,17 +1533,17 @@
     <!-- ========================================================
          SECTION: SERVER RULES
          ======================================================== -->
-    <section id="section-rules" class="py-16 relative bg-dark-950/60 border-t border-dark-800">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-rules" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
+      <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
-          <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Guidelines</span>
+          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Guidelines</span>
           <h2 class="font-display text-2xl sm:text-3xl font-black text-white mt-1 tracking-wide">OFFICIAL SERVER RULES</h2>
           <p class="text-gray-400 text-xs mt-1">Punishments range from temporary mutes to permanent hardware bans.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
           <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-ban text-crimson-500 mt-0.5"></i>
+            <i class="fa-solid fa-ban text-amberfire-500 mt-0.5"></i>
             <div>
               <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">1. No Hacked Clients / Unfair Advantage</h4>
               <p class="text-gray-400">Killaura, Reach, Speed, Baritone, and Auto-Totem trigger permanent machine bans.</p>
@@ -1519,7 +1551,7 @@
           </div>
 
           <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-bug text-crimson-500 mt-0.5"></i>
+            <i class="fa-solid fa-bug text-amberfire-500 mt-0.5"></i>
             <div>
               <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">2. No Exploiting Glitches / Heart Dupes</h4>
               <p class="text-gray-400">Duplicating hearts or items will wipe your inventory and reset your heart count.</p>
@@ -1527,7 +1559,7 @@
           </div>
 
           <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-comments text-crimson-500 mt-0.5"></i>
+            <i class="fa-solid fa-comments text-amberfire-500 mt-0.5"></i>
             <div>
               <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">3. No Harassment & Discrimination</h4>
               <p class="text-gray-400">Toxicity, racial slurs, death wishes, or personal harassment will result in a mute or ban.</p>
@@ -1535,7 +1567,7 @@
           </div>
 
           <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-bullhorn text-crimson-500 mt-0.5"></i>
+            <i class="fa-solid fa-bullhorn text-amberfire-500 mt-0.5"></i>
             <div>
               <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">4. No Advertising</h4>
               <p class="text-gray-400">Posting unauthorized server IPs or competitor invite links results in immediate blacklist.</p>
@@ -1543,7 +1575,7 @@
           </div>
 
           <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-shield-virus text-crimson-500 mt-0.5"></i>
+            <i class="fa-solid fa-shield-virus text-amberfire-500 mt-0.5"></i>
             <div>
               <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">5. No DDoS, Doxxing or Threats</h4>
               <p class="text-gray-400">Threatening server uptime or player privacy will result in legal action and network blacklists.</p>
@@ -1551,7 +1583,7 @@
           </div>
 
           <div class="glass-card p-3.5 rounded-xl flex items-start gap-2.5">
-            <i class="fa-solid fa-user-ninja text-crimson-500 mt-0.5"></i>
+            <i class="fa-solid fa-user-ninja text-amberfire-500 mt-0.5"></i>
             <div>
               <h4 class="font-bold text-white mb-0.5 font-display tracking-wide">6. Respect Staff Decisions</h4>
               <p class="text-gray-400">Follow instructions from staff members during events and combat investigations.</p>
@@ -1565,48 +1597,48 @@
     <!-- ========================================================
          SECTION: HOW TO PLAY
          ======================================================== -->
-    <section id="section-howtoplay" class="py-16 relative">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-howtoplay" class="py-16 relative w-full">
+      <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
-          <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Joining FearSteal</span>
+          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Joining FearSteal</span>
           <h2 class="font-display text-2xl sm:text-3xl font-black text-white mt-1 tracking-wide">HOW TO PLAY</h2>
           <p class="text-gray-400 text-xs mt-1">Crossplay enabled for Bedrock and Java players.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-crimson-400 border border-crimson-800 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">1</span>
+            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">1</span>
             <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Launch Minecraft</h4>
             <p class="text-[11px] text-gray-400">Open Minecraft Java 1.20+ or Minecraft Bedrock on mobile, console, or PC.</p>
           </div>
 
           <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-crimson-400 border border-crimson-800 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">2</span>
+            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">2</span>
             <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Multiplayer / Servers</h4>
             <p class="text-[11px] text-gray-400">Click Multiplayer on Java, or tap "Servers -> Add Server" on Bedrock.</p>
           </div>
 
           <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-crimson-400 border border-crimson-800 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">3</span>
+            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">3</span>
             <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Enter Address</h4>
-            <p class="text-xs text-crimson-400 font-mono font-bold">play.fearsteal.fun</p>
+            <p class="text-xs text-amberfire-400 font-mono font-bold">play.fearsteal.fun</p>
             <p class="text-[10px] text-gray-400 font-mono">Port: <strong class="text-white">19132</strong></p>
           </div>
 
           <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-crimson-400 border border-crimson-800 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">4</span>
+            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">4</span>
             <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Join Server</h4>
             <p class="text-[11px] text-gray-400">Press Join Server and connect smoothly through our Velocity proxy.</p>
           </div>
 
           <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-crimson-400 border border-crimson-800 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">5</span>
+            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">5</span>
             <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Grab Starter Kit</h4>
-            <p class="text-[11px] text-gray-400">Use <code class="text-crimson-400 font-mono">/kit</code> in-game to collect armor and begin fighting.</p>
+            <p class="text-[11px] text-gray-400">Use <code class="text-amberfire-400 font-mono">/kit</code> in-game to collect armor and begin fighting.</p>
           </div>
 
           <div class="glass-card p-4 rounded-xl text-center">
-            <span class="w-8 h-8 rounded-full bg-crimson-950 text-crimson-400 border border-crimson-800 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">6</span>
+            <span class="w-8 h-8 rounded-full bg-crimson-950 text-amberfire-400 border border-amberfire-700 flex items-center justify-center mx-auto mb-2 font-mono font-bold text-xs">6</span>
             <h4 class="font-display font-bold text-white text-sm mb-1 tracking-wide">Steal Hearts</h4>
             <p class="text-[11px] text-gray-400">Eliminate other players to steal their hearts and climb the leaderboards!</p>
           </div>
@@ -1618,10 +1650,10 @@
     <!-- ========================================================
          SECTION: FAQ (ACCORDION)
          ======================================================== -->
-    <section id="section-faq" class="py-16 relative bg-dark-950/60 border-t border-dark-800">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-faq" class="py-16 relative bg-dark-950/60 border-t border-dark-800 w-full">
+      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
-          <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Answers</span>
+          <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Answers</span>
           <h2 class="font-display text-2xl sm:text-3xl font-black text-white mt-1 tracking-wide">FREQUENTLY ASKED QUESTIONS</h2>
         </div>
 
@@ -1629,7 +1661,7 @@
           <div class="glass-card rounded-xl overflow-hidden">
             <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex justify-between items-center text-xs sm:text-sm font-display font-bold text-white tracking-wide">
               <span>What is FearSteal?</span>
-              <i class="fa-solid fa-chevron-down text-crimson-500 transition-transform"></i>
+              <i class="fa-solid fa-chevron-down text-amberfire-500 transition-transform"></i>
             </button>
             <div class="hidden p-4 pt-0 text-xs text-gray-400 leading-relaxed">
               FearSteal is a Minecraft LifeSteal network focused on competitive gameplay, community events and an active player community where eliminating players transfers hearts.
@@ -1639,27 +1671,27 @@
           <div class="glass-card rounded-xl overflow-hidden">
             <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex justify-between items-center text-xs sm:text-sm font-display font-bold text-white tracking-wide">
               <span>What is the server IP and port?</span>
-              <i class="fa-solid fa-chevron-down text-crimson-500 transition-transform"></i>
+              <i class="fa-solid fa-chevron-down text-amberfire-500 transition-transform"></i>
             </button>
             <div class="hidden p-4 pt-0 text-xs text-gray-400 leading-relaxed">
-              Server IP is <strong class="text-crimson-400 font-mono">play.fearsteal.fun</strong> and the Bedrock Port is <strong class="text-white font-mono">19132</strong>.
+              Server IP is <strong class="text-amberfire-400 font-mono">play.fearsteal.fun</strong> and the Bedrock Port is <strong class="text-white font-mono">19132</strong>.
             </div>
           </div>
 
           <div class="glass-card rounded-xl overflow-hidden">
             <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex justify-between items-center text-xs sm:text-sm font-display font-bold text-white tracking-wide">
               <span>How can I purchase a rank?</span>
-              <i class="fa-solid fa-chevron-down text-crimson-500 transition-transform"></i>
+              <i class="fa-solid fa-chevron-down text-amberfire-500 transition-transform"></i>
             </button>
             <div class="hidden p-4 pt-0 text-xs text-gray-400 leading-relaxed">
-              Visit our official CryzorMC store at <a href="https://store.cryzormc.in/" target="_blank" class="text-crimson-400 underline font-mono">https://store.cryzormc.in/</a>.
+              Visit our official CryzorMC store at <a href="https://store.cryzormc.in/" target="_blank" class="text-amberfire-400 underline font-mono">https://store.cryzormc.in/</a>.
             </div>
           </div>
 
           <div class="glass-card rounded-xl overflow-hidden">
             <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex justify-between items-center text-xs sm:text-sm font-display font-bold text-white tracking-wide">
               <span>What happens when the Novice rank reaches 100 claims?</span>
-              <i class="fa-solid fa-chevron-down text-crimson-500 transition-transform"></i>
+              <i class="fa-solid fa-chevron-down text-amberfire-500 transition-transform"></i>
             </button>
             <div class="hidden p-4 pt-0 text-xs text-gray-400 leading-relaxed">
               The free Novice rank automatically becomes OUT OF STOCK and claims are disabled.
@@ -1669,7 +1701,7 @@
           <div class="glass-card rounded-xl overflow-hidden">
             <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex justify-between items-center text-xs sm:text-sm font-display font-bold text-white tracking-wide">
               <span>How often do server events rotate?</span>
-              <i class="fa-solid fa-chevron-down text-crimson-500 transition-transform"></i>
+              <i class="fa-solid fa-chevron-down text-amberfire-500 transition-transform"></i>
             </button>
             <div class="hidden p-4 pt-0 text-xs text-gray-400 leading-relaxed">
               Events automatically rotate every 15 days between Minecraft tournaments and Discord events.
@@ -1683,8 +1715,8 @@
     <!-- ========================================================
          SECTION: DISCORD & SUPPORT
          ======================================================== -->
-    <section class="py-16 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-16 relative w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="glass-card rounded-3xl p-6 sm:p-10 border-2 border-indigo-600/40 relative overflow-hidden">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
             <div class="space-y-3 text-center lg:text-left">
@@ -1728,8 +1760,8 @@
     <!-- ========================================================
          SECTION: STAFF PANEL (ACCESSIBLE TO STAFF ROLE & ADMIN)
          ======================================================== -->
-    <section id="section-staffpanel" class="py-16 relative bg-dark-950 border-t border-amber-900/60 hidden">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-staffpanel" class="py-16 relative bg-dark-950 border-t border-amber-900/60 hidden w-full">
+      <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="flex items-center justify-between mb-8 pb-4 border-b border-dark-800">
           <div>
@@ -1771,19 +1803,19 @@
     <!-- ========================================================
          SECTION: ADMIN PANEL (EXCLUSIVE TO ItzVeltriex)
          ======================================================== -->
-    <section id="section-adminpanel" class="py-16 relative bg-dark-950 border-t-2 border-crimson-600 hidden">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="section-adminpanel" class="py-16 relative bg-dark-950 border-t-2 border-amberfire-500 hidden w-full">
+      <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 pb-4 border-b border-dark-800">
           <div>
-            <span class="text-crimson-500 font-display font-bold uppercase tracking-widest text-xs">Supreme Control System</span>
+            <span class="text-amberfire-500 font-display font-bold uppercase tracking-widest text-xs">Supreme Control System</span>
             <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">ADMINISTRATOR CONTROL PANEL</h2>
-            <p class="text-gray-400 text-xs mt-1">Logged in as Founder <span class="text-crimson-400 font-mono font-bold">ItzVeltriex</span>.</p>
+            <p class="text-gray-400 text-xs mt-1">Logged in as Founder <span class="text-amberfire-400 font-mono font-bold">ItzVeltriex</span>.</p>
           </div>
 
           <!-- Admin Panel Tab Buttons -->
           <div class="flex flex-wrap gap-2 font-display text-xs font-bold tracking-wider">
-            <button onclick="switchAdminTab('users')" id="adminTabUsersBtn" class="px-3 py-1.5 rounded-lg bg-crimson-600 text-white transition">USERS & ROLES</button>
+            <button onclick="switchAdminTab('users')" id="adminTabUsersBtn" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white transition">USERS & ROLES</button>
             <button onclick="switchAdminTab('announcements')" id="adminTabAnnBtn" class="px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-750 text-gray-300 hover:text-white transition">24H ANNOUNCEMENTS</button>
             <button onclick="switchAdminTab('staffapps')" id="adminTabAppsBtn" class="px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-750 text-gray-300 hover:text-white transition">STAFF APPLICATIONS</button>
             <button onclick="switchAdminTab('suggestions')" id="adminTabSugBtn" class="px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-750 text-gray-300 hover:text-white transition">SUGGESTIONS</button>
@@ -1817,7 +1849,7 @@
                 </select>
               </div>
               <div class="sm:col-span-4 mt-2">
-                <button type="submit" class="w-full py-2 bg-crimson-600 hover:bg-crimson-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition">
+                <button type="submit" class="w-full py-2 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition">
                   Provision User Account
                 </button>
               </div>
@@ -1859,10 +1891,10 @@
                 <input type="text" id="announcementInput" required placeholder="E.g. FearSteal Season 2 Launching Saturday at 6PM IST! 100 Hearts cap update." class="w-full p-2.5 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
               </div>
               <div class="flex items-center justify-between text-[11px] text-gray-400">
-                <span>Signature: <strong class="text-crimson-400">Author by ItzVeltriex and Notslayer</strong></span>
+                <span>Signature: <strong class="text-amberfire-400">Author by ItzVeltriex and Notslayer</strong></span>
                 <span>Active Duration: <strong class="text-white">24 Hours</strong></span>
               </div>
-              <button type="submit" class="py-2.5 px-6 bg-crimson-600 hover:bg-crimson-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition">
+              <button type="submit" class="py-2.5 px-6 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition">
                 Publish Live Announcement
               </button>
             </form>
@@ -1895,33 +1927,33 @@
     <!-- ========================================================
          FOOTER & NEWSLETTER SIGNUP
          ======================================================== -->
-    <footer class="bg-dark-950 border-t border-dark-800/80 pt-12 pb-8 mt-auto relative z-10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer class="bg-dark-950 border-t border-dark-800/80 pt-12 pb-8 mt-auto relative z-10 w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           
           <div class="md:col-span-2 space-y-3">
-            <div class="flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-lg bg-crimson-950 border border-crimson-600/50 flex items-center justify-center text-crimson-500">
-                <i class="fa-solid fa-heart-crack text-sm"></i>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10">
+                <img src="fs-logo.png" alt="FearSteal" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://i.ibb.co/3k5fSkg/fs-icon.png';">
               </div>
-              <span class="font-display text-lg font-black tracking-wider text-white">FEAR<span class="text-crimson-600">STEAL</span></span>
+              <span class="font-display text-lg font-black tracking-wider text-white">FEAR<span class="text-amberfire-500">STEAL</span></span>
             </div>
             <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
               The Next Generation Minecraft LifeSteal Network. Dominate opponents, harvest hearts, and conquer 15-day rotating seasonal tournaments.
             </p>
-            <p class="text-[11px] text-crimson-400 font-mono">Founders: ItzVeltriex & Notslayer</p>
+            <p class="text-[11px] text-amberfire-400 font-mono">Founders: ItzVeltriex & Notslayer</p>
           </div>
 
           <!-- Quick Navigation -->
           <div>
             <h4 class="font-display text-sm font-bold text-white mb-3 tracking-wide">Explore</h4>
             <ul class="text-xs text-gray-400 space-y-1.5 font-display font-semibold">
-              <li><button onclick="navigateToSection('home')" class="hover:text-crimson-400">Home</button></li>
-              <li><button onclick="navigateToSection('store')" class="hover:text-crimson-400">CryzorMC Store</button></li>
-              <li><button onclick="navigateToSection('status')" class="hover:text-crimson-400">Live Status</button></li>
-              <li><button onclick="navigateToSection('rules')" class="hover:text-crimson-400">Server Rules</button></li>
-              <li><button onclick="navigateToSection('media')" class="hover:text-crimson-400">Media Rank Application</button></li>
+              <li><button onclick="navigateToSection('home')" class="hover:text-amberfire-400">Home</button></li>
+              <li><button onclick="navigateToSection('store')" class="hover:text-amberfire-400">CryzorMC Store</button></li>
+              <li><button onclick="navigateToSection('status')" class="hover:text-amberfire-400">Live Status</button></li>
+              <li><button onclick="navigateToSection('rules')" class="hover:text-amberfire-400">Server Rules</button></li>
+              <li><button onclick="navigateToSection('media')" class="hover:text-amberfire-400">Media Rank Application</button></li>
             </ul>
           </div>
 
@@ -1930,8 +1962,8 @@
             <h4 class="font-display text-sm font-bold text-white mb-2 tracking-wide">Stay Updated</h4>
             <p class="text-xs text-gray-400 mb-3">Subscribe for announcements and event reminders.</p>
             <form onsubmit="handleNewsletterSubmit(event)" class="space-y-2">
-              <input type="email" id="newsletterEmail" required placeholder="yourname@gmail.com" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white placeholder-gray-600 focus:outline-none focus:border-crimson-500">
-              <button type="submit" class="w-full py-2 bg-crimson-600 hover:bg-crimson-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition">
+              <input type="email" id="newsletterEmail" required placeholder="yourname@gmail.com" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white placeholder-gray-600 focus:outline-none focus:border-amberfire-500">
+              <button type="submit" class="w-full py-2 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition">
                 Subscribe
               </button>
             </form>
@@ -1953,7 +1985,7 @@
        MODAL: NOVICE CLAIM (WITH DISCORD JOIN ENFORCEMENT)
        ======================================================== -->
   <div id="noviceClaimModal" class="fixed inset-0 z-[9500] bg-dark-950/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
-    <div class="glass-card rounded-2xl p-6 max-w-md w-full border border-crimson-600/50 space-y-4">
+    <div class="glass-card rounded-2xl p-6 max-w-md w-full border border-amberfire-500/50 space-y-4">
       <div class="flex items-center justify-between">
         <h3 class="font-display text-lg font-bold text-white tracking-wide">Claim Free Novice Rank</h3>
         <button onclick="closeNoviceClaimModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
@@ -1973,7 +2005,7 @@
         <input type="text" id="noviceDiscordHandle" placeholder="e.g. fearwarrior#0001" class="w-full p-2 bg-dark-900 border border-dark-700 rounded-xl text-xs text-white">
       </div>
 
-      <button onclick="confirmNoviceClaim()" class="w-full py-2.5 bg-crimson-600 hover:bg-crimson-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition">
+      <button onclick="confirmNoviceClaim()" class="w-full py-2.5 bg-gradient-to-r from-crimson-600 to-amberfire-600 hover:from-crimson-500 hover:to-amberfire-500 text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl transition">
         Verify & Claim Free Novice Rank
       </button>
     </div>
@@ -1986,14 +2018,14 @@
     /* ========================================================
        DATA STORAGE & DEFAULT STATE INITIALIZATION
        ======================================================== */
-    const STORAGE_KEY_USERS = 'fearsteal_users_v3';
-    const STORAGE_KEY_CURRENT_USER = 'fearsteal_current_user_v3';
-    const STORAGE_KEY_NOVICE_CLAIMS = 'fearsteal_novice_claims_v3';
-    const STORAGE_KEY_REVIEWS = 'fearsteal_reviews_v3';
-    const STORAGE_KEY_SUGGESTIONS = 'fearsteal_suggestions_v3';
-    const STORAGE_KEY_STAFF_APPS = 'fearsteal_staff_apps_v3';
-    const STORAGE_KEY_ANNOUNCEMENT = 'fearsteal_announcement_v3';
-    const STORAGE_KEY_CRATE = 'fearsteal_crate_claim_v3';
+    const STORAGE_KEY_USERS = 'fearsteal_users_v4';
+    const STORAGE_KEY_CURRENT_USER = 'fearsteal_current_user_v4';
+    const STORAGE_KEY_NOVICE_CLAIMS = 'fearsteal_novice_claims_v4';
+    const STORAGE_KEY_REVIEWS = 'fearsteal_reviews_v4';
+    const STORAGE_KEY_SUGGESTIONS = 'fearsteal_suggestions_v4';
+    const STORAGE_KEY_STAFF_APPS = 'fearsteal_staff_apps_v4';
+    const STORAGE_KEY_ANNOUNCEMENT = 'fearsteal_announcement_v4';
+    const STORAGE_KEY_CRATE = 'fearsteal_crate_claim_v4';
 
     // Seed default admin account
     function initDatabase() {
@@ -2005,7 +2037,7 @@
           username: 'ItzVeltriex',
           email: 'fearstealsupport@gmail.com',
           password: 'thakuree@2064',
-          role: 'admin', // Full Admin & Staff access
+          role: 'admin',
           hearts: 40,
           kills: 412,
           streak: 18,
@@ -2016,7 +2048,7 @@
         localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
       }
 
-      // Seed default reviews if none
+      // Seed default reviews
       let reviews = JSON.parse(localStorage.getItem(STORAGE_KEY_REVIEWS) || '[]');
       if (reviews.length === 0) {
         reviews = [
@@ -2027,7 +2059,7 @@
         localStorage.setItem(STORAGE_KEY_REVIEWS, JSON.stringify(reviews));
       }
 
-      // Seed default announcements if none
+      // Seed default announcement
       let ann = JSON.parse(localStorage.getItem(STORAGE_KEY_ANNOUNCEMENT) || 'null');
       if (!ann) {
         ann = {
@@ -2106,12 +2138,12 @@
       if (tab === 'login') {
         loginForm.classList.remove('hidden');
         registerForm.classList.add('hidden');
-        tabBtnLogin.className = 'flex-1 pb-2.5 text-crimson-500 border-b-2 border-crimson-500 transition-all flex items-center justify-center gap-1.5';
+        tabBtnLogin.className = 'flex-1 pb-2.5 text-amberfire-500 border-b-2 border-amberfire-500 transition-all flex items-center justify-center gap-1.5';
         tabBtnRegister.className = 'flex-1 pb-2.5 text-gray-400 hover:text-white transition-all flex items-center justify-center gap-1.5';
       } else {
         loginForm.classList.add('hidden');
         registerForm.classList.remove('hidden');
-        tabBtnRegister.className = 'flex-1 pb-2.5 text-crimson-500 border-b-2 border-crimson-500 transition-all flex items-center justify-center gap-1.5';
+        tabBtnRegister.className = 'flex-1 pb-2.5 text-amberfire-500 border-b-2 border-amberfire-500 transition-all flex items-center justify-center gap-1.5';
         tabBtnLogin.className = 'flex-1 pb-2.5 text-gray-400 hover:text-white transition-all flex items-center justify-center gap-1.5';
       }
     }
@@ -2294,7 +2326,7 @@
         adminNavBtn.classList.remove('hidden');
         adminNavBtn.classList.add('flex');
         mobileAdminBtn.classList.remove('hidden');
-        roleTag.className = 'text-[9px] uppercase px-1.5 py-0.5 rounded bg-crimson-950 text-crimson-400 font-bold border border-crimson-600 font-display';
+        roleTag.className = 'text-[9px] uppercase px-1.5 py-0.5 rounded bg-amberfire-950 text-amberfire-400 font-bold border border-amberfire-600 font-display';
       } else {
         adminNavBtn.classList.add('hidden');
         mobileAdminBtn.classList.add('hidden');
@@ -2374,7 +2406,7 @@
         resultsBox.innerHTML = matches.map(m => `
           <button onclick="navigateToSection('${m.section}'); document.getElementById('searchResultsBox').classList.add('hidden');" class="w-full text-left p-2 rounded-lg hover:bg-crimson-950/60 flex justify-between items-center text-xs">
             <span class="text-white font-semibold">${m.name}</span>
-            <span class="text-[10px] text-crimson-400 font-mono">${m.tag}</span>
+            <span class="text-[10px] text-amberfire-400 font-mono">${m.tag}</span>
           </button>
         `).join('');
       }
@@ -2508,13 +2540,13 @@
 
       container.innerHTML = users.map((user, idx) => `
         <div class="glass-card rounded-2xl p-3.5 flex items-center gap-3 border border-dark-750">
-          <span class="font-mono text-xs font-bold text-crimson-500">#${idx + 1}</span>
+          <span class="font-mono text-xs font-bold text-amberfire-400">#${idx + 1}</span>
           <img src="https://mc-heads.net/avatar/${encodeURIComponent(user.username)}/40" class="w-10 h-10 rounded-lg border border-dark-700 bg-dark-900" onerror="this.src='https://mc-heads.net/avatar/steve/40'">
           <div class="overflow-hidden">
             <h4 class="font-bold text-white text-xs truncate font-display tracking-wide">${user.username}</h4>
             <span class="text-[10px] text-gray-400 font-mono">${user.hearts || 10} Hearts</span>
           </div>
-          <span class="ml-auto text-[9px] uppercase px-2 py-0.5 rounded font-mono font-bold ${user.role === 'admin' ? 'bg-crimson-950 text-crimson-400 border border-crimson-800' : (user.role === 'staff' ? 'bg-amber-950 text-amber-300 border border-amber-800' : 'bg-dark-900 text-gray-400')}">
+          <span class="ml-auto text-[9px] uppercase px-2 py-0.5 rounded font-mono font-bold ${user.role === 'admin' ? 'bg-amberfire-950 text-amberfire-400 border border-amberfire-800' : (user.role === 'staff' ? 'bg-amber-950 text-amber-300 border border-amber-800' : 'bg-dark-900 text-gray-400')}">
             ${user.role || 'USER'}
           </span>
         </div>
@@ -2531,7 +2563,7 @@
       const visualRow = document.getElementById('heartsVisualRow');
       visualRow.innerHTML = '';
       for (let i = 0; i < Math.min(20, currentUser.hearts); i++) {
-        visualRow.innerHTML += '<span class="text-crimson-500 text-base animate-pulse">❤️</span>';
+        visualRow.innerHTML += '<span class="text-amberfire-500 text-base animate-pulse">❤️</span>';
       }
       if (currentUser.hearts > 20) {
         visualRow.innerHTML += `<span class="text-xs font-mono text-gray-400 self-center">+${currentUser.hearts - 20} more</span>`;
@@ -2581,9 +2613,9 @@
     function filterLeaderboard(category) {
       currentLbFilter = category;
       document.querySelectorAll('.lb-tab').forEach(b => {
-        b.className = 'lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-crimson-500 transition text-xs font-bold font-display tracking-wider';
+        b.className = 'lb-tab px-3.5 py-1.5 rounded-xl bg-dark-900 text-gray-300 border border-dark-750 hover:border-amberfire-500 transition text-xs font-bold font-display tracking-wider';
       });
-      event.target.className = 'lb-tab active px-3.5 py-1.5 rounded-xl bg-crimson-600 text-white border border-crimson-500 transition text-xs font-bold font-display tracking-wider';
+      event.target.className = 'lb-tab active px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white border border-amberfire-500 transition text-xs font-bold font-display tracking-wider';
       renderLeaderboard();
     }
 
@@ -2627,7 +2659,7 @@
               <img src="https://mc-heads.net/avatar/${encodeURIComponent(u.username)}/24" class="w-5 h-5 rounded">
               <span class="font-display font-semibold">${u.username}</span>
             </td>
-            <td class="px-5 py-3 text-crimson-400 font-bold">${formatLbScore(u)}</td>
+            <td class="px-5 py-3 text-amberfire-400 font-bold">${formatLbScore(u)}</td>
             <td class="px-5 py-3 text-right text-emerald-400 font-bold text-[10px]">VERIFIED</td>
           </tr>
         `).join('');
@@ -2890,7 +2922,7 @@
 
       container.innerHTML = reviews.slice(0, 10).map((rev, idx) => `
         <div class="glass-card rounded-xl p-3 border border-dark-750 flex items-start gap-3">
-          <span class="font-mono text-xs font-bold text-crimson-400 mt-1">#${idx + 1}</span>
+          <span class="font-mono text-xs font-bold text-amberfire-400 mt-1">#${idx + 1}</span>
           <img src="https://mc-heads.net/avatar/${encodeURIComponent(rev.name)}/32" class="w-8 h-8 rounded-lg bg-dark-900 border border-dark-700">
           <div class="flex-grow">
             <div class="flex items-center justify-between">
@@ -3034,16 +3066,16 @@
 
       if (tabName === 'users') {
         document.getElementById('adminTabUsers').classList.remove('hidden');
-        document.getElementById('adminTabUsersBtn').className = 'px-3 py-1.5 rounded-lg bg-crimson-600 text-white';
+        document.getElementById('adminTabUsersBtn').className = 'px-3 py-1.5 rounded-lg bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white';
       } else if (tabName === 'announcements') {
         document.getElementById('adminTabAnnouncements').classList.remove('hidden');
-        document.getElementById('adminTabAnnBtn').className = 'px-3 py-1.5 rounded-lg bg-crimson-600 text-white';
+        document.getElementById('adminTabAnnBtn').className = 'px-3 py-1.5 rounded-lg bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white';
       } else if (tabName === 'staffapps') {
         document.getElementById('adminTabStaffApps').classList.remove('hidden');
-        document.getElementById('adminTabAppsBtn').className = 'px-3 py-1.5 rounded-lg bg-crimson-600 text-white';
+        document.getElementById('adminTabAppsBtn').className = 'px-3 py-1.5 rounded-lg bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white';
       } else if (tabName === 'suggestions') {
         document.getElementById('adminTabSuggestions').classList.remove('hidden');
-        document.getElementById('adminTabSugBtn').className = 'px-3 py-1.5 rounded-lg bg-crimson-600 text-white';
+        document.getElementById('adminTabSugBtn').className = 'px-3 py-1.5 rounded-lg bg-gradient-to-r from-crimson-600 to-amberfire-600 text-white';
       }
     }
 
@@ -3093,7 +3125,7 @@
             <span class="font-bold font-display">${u.username}</span>
           </td>
           <td class="px-4 py-2.5 text-gray-400">${u.email}</td>
-          <td class="px-4 py-2.5 font-mono text-crimson-400">${u.password}</td>
+          <td class="px-4 py-2.5 font-mono text-amberfire-400">${u.password}</td>
           <td class="px-4 py-2.5">
             <select onchange="updateUserRole('${u.username}', this.value)" class="bg-dark-950 border border-dark-700 rounded p-1 text-[11px] text-white">
               <option value="user" ${u.role === 'user' ? 'selected' : ''}>User</option>
@@ -3119,7 +3151,7 @@
             <div class="flex justify-between items-center">
               <div>
                 <strong class="text-white text-sm font-display">${app.applicant}</strong>
-                <span class="text-xs text-crimson-400 font-mono ml-2">[Role: ${app.role}]</span>
+                <span class="text-xs text-amberfire-400 font-mono ml-2">[Role: ${app.role}]</span>
               </div>
               <span class="text-[10px] text-gray-400 font-mono">${app.date}</span>
             </div>
@@ -3146,12 +3178,12 @@
         sugList.innerHTML = suggestions.map((sug, idx) => `
           <div class="glass-card p-3.5 rounded-xl border border-dark-750 flex items-start justify-between gap-4">
             <div>
-              <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-crimson-950 text-crimson-400 font-bold">${sug.category}</span>
+              <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-amberfire-950 text-amberfire-400 font-bold">${sug.category}</span>
               <h5 class="text-sm font-bold text-white mt-1 font-display tracking-wide">${sug.title}</h5>
               <p class="text-xs text-gray-300 mt-1">${sug.details}</p>
               <span class="text-[10px] text-gray-500 font-mono mt-1 block">Submitted by ${sug.author} • ${sug.timestamp}</span>
             </div>
-            <button onclick="deleteSuggestionByAdmin(${idx})" class="text-gray-500 hover:text-crimson-400"><i class="fa-solid fa-trash text-xs"></i></button>
+            <button onclick="deleteSuggestionByAdmin(${idx})" class="text-gray-500 hover:text-amberfire-400"><i class="fa-solid fa-trash text-xs"></i></button>
           </div>
         `).join('');
       }
@@ -3230,15 +3262,15 @@
       const container = document.getElementById('toastContainer');
       const toast = document.createElement('div');
       
-      let border = 'border-crimson-600/60';
-      let icon = '<i class="fa-solid fa-circle-info text-crimson-500"></i>';
+      let border = 'border-amberfire-500/60';
+      let icon = '<i class="fa-solid fa-circle-info text-amberfire-500"></i>';
       
       if (type === 'success') {
         border = 'border-emerald-600/60';
         icon = '<i class="fa-solid fa-circle-check text-emerald-400"></i>';
       } else if (type === 'error') {
-        border = 'border-rose-700';
-        icon = '<i class="fa-solid fa-triangle-exclamation text-rose-500"></i>';
+        border = 'border-crimson-600';
+        icon = '<i class="fa-solid fa-triangle-exclamation text-crimson-500"></i>';
       }
 
       toast.className = `pointer-events-auto flex items-start gap-3 p-3.5 bg-dark-900/95 border ${border} rounded-2xl shadow-2xl max-w-sm transition-all duration-300 transform translate-x-10 opacity-0`;
@@ -3263,7 +3295,7 @@
     }
 
     /* ========================================================
-       CANVAS PARTICLE ENGINE (CRIMSON/DARK LIFESTEAL THEME)
+       CANVAS PARTICLES (MATCHING 3D MOLTEN CRYSTAL EMBER THEME)
        ======================================================== */
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
@@ -3276,18 +3308,23 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    class Particle {
+    class EmberParticle {
       constructor() {
         this.reset();
       }
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2.2 + 0.6;
-        this.speedY = Math.random() * -0.7 - 0.2;
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.opacity = Math.random() * 0.5 + 0.2;
-        this.color = Math.random() > 0.3 ? '#e11d48' : '#fb7185';
+        this.size = Math.random() * 2.8 + 0.8;
+        this.speedY = Math.random() * -0.9 - 0.2;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.6 + 0.2;
+        
+        // Voxel & crystal shards color distribution
+        const r = Math.random();
+        if (r > 0.6) this.color = '#f59e0b'; // Amber Gold
+        else if (r > 0.3) this.color = '#ea580c'; // Fiery Orange
+        else this.color = '#e11d48'; // Molten Crimson
       }
       update() {
         this.y += this.speedY;
@@ -3300,15 +3337,14 @@
       draw() {
         ctx.fillStyle = this.color;
         ctx.globalAlpha = this.opacity;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+        // Square Minecraft Voxel debris particles
+        ctx.fillRect(this.x, this.y, this.size, this.size);
         ctx.globalAlpha = 1;
       }
     }
 
-    for (let i = 0; i < 45; i++) {
-      particles.push(new Particle());
+    for (let i = 0; i < 50; i++) {
+      particles.push(new EmberParticle());
     }
 
     function animateParticles() {
