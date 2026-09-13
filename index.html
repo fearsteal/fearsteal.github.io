@@ -58,19 +58,17 @@
       line-height: 1.55;
     }
 
-    /* Stop all unwanted spinning icons */
+    /* Stop unwanted icon spinning */
     i, .fa-spin, [class*="fa-"] {
       animation: none !important;
       transform: none !important;
     }
 
-    /* Scrollbars */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--bg-pure); }
     ::-webkit-scrollbar-thumb { background: var(--crimson-deep); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--crimson-base); }
 
-    /* Particle Canvas */
     #particles-canvas {
       position: fixed;
       top: 0;
@@ -91,7 +89,7 @@
       z-index: -1;
     }
 
-    /* Official 3D FS Logo Display */
+    /* 3D FS Logo bobbing animation */
     .fs-official-logo {
       display: inline-block;
       vertical-align: middle;
@@ -1238,9 +1236,7 @@
       </div>
     </section>
 
-    <!-- ==========================================================================
-         USER PRIVATE SUPPORT TICKET HUB (ONLY CREATOR SEES IT)
-         ========================================================================== -->
+    <!-- USER PRIVATE SUPPORT TICKET HUB (ONLY CREATOR SEES IT) -->
     <section class="section-wrap" id="my-tickets-hub">
       <div class="section-headline">
         <h2>🎫 SUPPORT <span>TICKETS</span></h2>
@@ -1285,9 +1281,7 @@
         <!-- Exclusive Private Chat for User -->
         <div class="fs-card">
           <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:12px;"><i class="fa-solid fa-lock"></i> YOUR PRIVATE TICKETS</h4>
-          <div class="ticket-chat-feed" id="user-private-tickets-list">
-            <!-- Rendered via JS -->
-          </div>
+          <div class="ticket-chat-feed" id="user-private-tickets-list"></div>
         </div>
       </div>
     </section>
@@ -1462,9 +1456,7 @@
       </div>
     </section>
 
-    <!-- ==========================================================================
-         ADMIN PANEL (EXCLUSIVE TO ItzVeltriex)
-         ========================================================================== -->
+    <!-- ADMIN PANEL (EXCLUSIVE TO ItzVeltriex) -->
     <section class="section-wrap" id="admin-panel" style="display:none;">
       <div class="section-headline">
         <h2>FOUNDER <span>ADMIN PANEL</span></h2>
@@ -1479,13 +1471,13 @@
           <button class="btn-fs btn-fs-secondary" style="padding:8px 16px; font-size:0.85rem;" onclick="switchAdminSubTab('broadcast')">24h Announcements</button>
         </div>
 
-        <!-- 1. TICKET VIEW (ADMIN CAN SEE AND REPLY TO ALL TICKETS) -->
+        <!-- 1. TICKET VIEW -->
         <div id="adm-tab-ticket-view">
           <h4 style="margin-bottom:12px;">All Network Tickets (Ticket View)</h4>
           <div id="admin-all-tickets-feed" style="display:flex; flex-direction:column; gap:14px;"></div>
         </div>
 
-        <!-- 2. STAFF APPLICATIONS (ACCEPT, REJECT, ACCEPT W/ REASON, REJECT W/ REASON) -->
+        <!-- 2. STAFF APPLICATIONS -->
         <div id="adm-tab-staff-apps" style="display:none;">
           <h4 style="margin-bottom:12px;">Pending Staff Applications (Review & Actions)</h4>
           <div id="admin-staff-apps-feed" style="display:flex; flex-direction:column; gap:14px;"></div>
@@ -1560,11 +1552,11 @@
   </div>
 
   <!-- ==========================================================================
-       JAVASCRIPT: ALL ASSETS & LOGIC
+       JAVASCRIPT: ENGINE & STATE PIPELINE
        ========================================================================== -->
   <script>
     /* ==========================================================================
-       ASSETS (EXACT REPRODUCTION OF SUPPLIED LOGO AND BANNER)
+       OFFICIAL ASSETS
        ========================================================================== */
     const FEARSTEAL_OFFICIAL_LOGO = `data:image/svg+xml;utf8,${encodeURIComponent(`
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
@@ -1855,7 +1847,6 @@
       const pass = document.getElementById('login-pass').value;
       const errBox = document.getElementById('auth-error-box');
 
-      // Hardcoded Admin Access for Founder ItzVeltriex
       if ((id === 'itzveltriex' || id === 'fearstealsupport@gmail.com') && pass === 'thakuree@2064') {
         const adminObj = { username: 'ItzVeltriex', email: 'fearstealsupport@gmail.com', role: 'admin', hearts: 20 };
         localStorage.setItem('fs_user_session', JSON.stringify(adminObj));
@@ -1883,7 +1874,6 @@
       if (email) showToast(`Reset instructions sent to ${email} (simulated).`);
     }
 
-    // Immediate Logout & Kick to Login
     function executeLogout() {
       localStorage.removeItem('fs_user_session');
       showToast('✓ YOU HAVE BEEN LOGGED OUT');
@@ -1903,7 +1893,6 @@
       const drawerAdmin = document.getElementById('drawer-item-admin');
       const drawerStaff = document.getElementById('drawer-item-staff');
 
-      // Admin role (Founder) automatically gets BOTH Admin and Staff Panel access
       if (user.role === 'admin' || user.username.toLowerCase() === 'itzveltriex') {
         adminNav.style.display = 'block';
         staffNav.style.display = 'block';
@@ -1983,7 +1972,7 @@
     setInterval(() => queryLiveMinecraftStatus(false), 60000);
 
     /* ==========================================================================
-       PRIVATE SUPPORT TICKET ENGINE (EXCLUSIVE FOR TICKET CREATOR & STAFF)
+       PRIVATE SUPPORT TICKET ENGINE
        ========================================================================== */
     function handleCreateTicket(e) {
       e.preventDefault();
@@ -2024,7 +2013,6 @@
       const tickets = JSON.parse(localStorage.getItem('fs_tickets_data') || '[]');
       const container = document.getElementById('user-private-tickets-list');
 
-      // Filter: regular players ONLY see their own tickets!
       const myTickets = tickets.filter(t => t.creator.toLowerCase() === user.username.toLowerCase());
 
       if (myTickets.length === 0) {
@@ -2076,7 +2064,7 @@
     }
 
     /* ==========================================================================
-       ADMIN "TICKET VIEW" & APPLICATION ACTIONS WITH PERSONAL NOTIFICATIONS
+       ADMIN "TICKET VIEW" & STAFF APPLICATIONS
        ========================================================================== */
     function renderAdminTickets() {
       const tickets = JSON.parse(localStorage.getItem('fs_tickets_data') || '[]');
@@ -2125,12 +2113,11 @@
         });
         localStorage.setItem('fs_tickets_data', JSON.stringify(tickets));
 
-        // Push targeted notification specifically for the ticket creator
         pushTargetedNotification(creatorName, `🎟️ Staff replied to your Ticket #${ticketId}: "${text}"`);
 
         renderAdminTickets();
         renderUserPrivateTickets();
-        showToast(`Reply sent to ${creatorName}! Notification generated.`);
+        showToast(`Reply sent to ${creatorName}!`);
       }
     }
 
@@ -2146,9 +2133,6 @@
       }
     }
 
-    /* ==========================================================================
-       STAFF APPLICATION SUBMISSION & 4-WAY ADMIN REVIEW
-       ========================================================================== */
     function handleStaffAppSubmit(e) {
       e.preventDefault();
       const user = JSON.parse(localStorage.getItem('fs_user_session'));
@@ -2211,7 +2195,7 @@
         app.status = 'REJECTED';
         pushTargetedNotification(app.applicant, `❌ Your Staff Application for ${app.role} has been REJECTED.`);
       } else if (actionType === 'AcceptReason') {
-        reason = prompt(`Enter acceptance reason/instructions for ${app.applicant}:`);
+        reason = prompt(`Enter acceptance reason for ${app.applicant}:`);
         if (reason === null) return;
         app.status = 'ACCEPTED';
         pushTargetedNotification(app.applicant, `🎉 Your Staff Application for ${app.role} was ACCEPTED ✔️ Reason: "${reason}"`);
@@ -2223,13 +2207,10 @@
       }
 
       localStorage.setItem('fs_staff_apps_data', JSON.stringify(apps));
-      showToast(`Application decision executed! Personal notification sent to ${app.applicant}.`);
+      showToast(`Decision executed! Notification sent to ${app.applicant}.`);
       renderAdminStaffApps();
     }
 
-    /* ==========================================================================
-       TARGETED PERSONAL NOTIFICATION PIPELINE
-       ========================================================================== */
     function pushTargetedNotification(targetUsername, text) {
       const notifs = JSON.parse(localStorage.getItem('fs_notifications_data') || '[]');
       notifs.unshift({ target: targetUsername.toLowerCase(), text: text });
@@ -2242,7 +2223,6 @@
       if (!user) return;
 
       const notifs = JSON.parse(localStorage.getItem('fs_notifications_data') || '[]');
-      // Filter: notifications meant for this specific user OR broadcasted to all
       const myNotifs = notifs.filter(n => n.target === 'all' || n.target === user.username.toLowerCase());
 
       document.getElementById('notif-count').innerText = myNotifs.length;
