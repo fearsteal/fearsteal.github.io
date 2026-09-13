@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Home • FearSteal</title></title>
+  <title>Home • FearSteal</title>
   <meta name="description" content="FearSteal Minecraft LifeSteal Network. Steal hearts, dominate tournaments, build power, survive. Java & Bedrock: play.fearsteal.fun:19132" />
 
   <!-- Fonts & Icons -->
@@ -13,14 +13,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
-    /* ==========================================================================
-       1. THEME VARIABLES & CORE DESIGN TOKENS
-       ========================================================================== */
     :root {
       --bg-pure: #030104;
       --bg-surface: #0a040a;
-      --bg-card: rgba(18, 8, 18, 0.82);
-      --bg-card-hover: rgba(30, 12, 28, 0.94);
+      --bg-card: rgba(18, 8, 18, 0.85);
+      --bg-card-hover: rgba(30, 12, 28, 0.95);
       --border-crimson: rgba(230, 25, 55, 0.35);
       --border-glow: rgba(255, 60, 40, 0.65);
       --crimson-base: #e61937;
@@ -61,7 +58,7 @@
       line-height: 1.55;
     }
 
-    /* Prevent unwanted icon spinning or rolling */
+    /* Stop all unwanted spinning icons */
     i, .fa-spin, [class*="fa-"] {
       animation: none !important;
       transform: none !important;
@@ -73,7 +70,7 @@
     ::-webkit-scrollbar-thumb { background: var(--crimson-deep); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--crimson-base); }
 
-    /* Canvas Particle System */
+    /* Particle Canvas */
     #particles-canvas {
       position: fixed;
       top: 0;
@@ -84,26 +81,25 @@
       pointer-events: none;
     }
 
-    /* Ambient Glow Background */
     .ambient-fog {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at 50% 8%, rgba(255, 119, 0, 0.15), transparent 45%),
+      background: radial-gradient(circle at 50% 8%, rgba(255, 119, 0, 0.16), transparent 45%),
                   radial-gradient(circle at 10% 40%, rgba(230, 25, 55, 0.14), transparent 50%),
                   radial-gradient(circle at 90% 80%, rgba(255, 42, 75, 0.1), transparent 50%);
       pointer-events: none;
       z-index: -1;
     }
 
-    /* 3D Animated Logo Class */
-    .animated-fs-logo {
+    /* Official 3D FS Logo Display */
+    .fs-official-logo {
       display: inline-block;
       vertical-align: middle;
       filter: drop-shadow(0 0 20px rgba(255, 42, 75, 0.75)) drop-shadow(0 0 45px rgba(255, 145, 0, 0.5));
-      animation: logoFloatGlow 3.5s ease-in-out infinite !important;
+      animation: logoBobbing 3.5s ease-in-out infinite !important;
       transition: var(--transition);
     }
-    @keyframes logoFloatGlow {
+    @keyframes logoBobbing {
       0%, 100% {
         transform: translateY(0px) scale(1) !important;
         filter: drop-shadow(0 0 20px rgba(255, 42, 75, 0.75)) drop-shadow(0 0 35px rgba(255, 145, 0, 0.4));
@@ -114,9 +110,7 @@
       }
     }
 
-    /* ==========================================================================
-       2. CINEMATIC PRELOADER (0 TO 100%)
-       ========================================================================== */
+    /* Preloader */
     #preloader {
       position: fixed;
       inset: 0;
@@ -160,9 +154,7 @@
       text-transform: uppercase;
     }
 
-    /* ==========================================================================
-       3. FULLSCREEN AUTHENTICATION GATE
-       ========================================================================== */
+    /* Auth Gate Modal */
     #auth-screen-gate {
       position: fixed;
       inset: 0;
@@ -235,9 +227,7 @@
       color: #fff;
       box-shadow: 0 0 15px rgba(230,25,55,0.5);
     }
-    .auth-form-group {
-      margin-bottom: 14px;
-    }
+    .auth-form-group { margin-bottom: 14px; }
     .auth-form-group label {
       display: block;
       font-size: 0.8rem;
@@ -322,9 +312,7 @@
       cursor: pointer;
     }
 
-    /* ==========================================================================
-       4. TOP ANNOUNCEMENT BAR & NAVBAR
-       ========================================================================== */
+    /* Broadcast Bar */
     #top-broadcast-bar {
       background: linear-gradient(90deg, #780815, #e61937, #780815);
       color: #fff;
@@ -348,6 +336,7 @@
       text-transform: uppercase;
     }
 
+    /* Navbar */
     nav.master-navbar {
       position: sticky;
       top: 0;
@@ -378,10 +367,7 @@
     .nav-brand img { width: 40px; height: 40px; }
     .nav-brand span { color: var(--crimson-base); }
 
-    .nav-search-wrap {
-      position: relative;
-      width: 200px;
-    }
+    .nav-search-wrap { position: relative; width: 190px; }
     .nav-search-wrap input {
       width: 100%;
       background: rgba(255, 255, 255, 0.06);
@@ -395,7 +381,7 @@
     }
     .nav-search-wrap input:focus {
       border-color: var(--crimson-base);
-      width: 230px;
+      width: 220px;
       box-shadow: 0 0 12px rgba(230,25,55,0.3);
     }
     .nav-search-wrap i {
@@ -410,7 +396,7 @@
     .nav-menu-links {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       list-style: none;
     }
     .nav-menu-links a {
@@ -432,7 +418,6 @@
       text-shadow: 0 0 10px var(--crimson-glow);
     }
 
-    /* Notification Bell & User Cluster */
     .nav-user-cluster {
       display: flex;
       align-items: center;
@@ -472,11 +457,11 @@
       position: absolute;
       top: 50px;
       right: 0;
-      width: 320px;
+      width: 330px;
       background: var(--bg-card);
       border: 1px solid var(--border-glow);
       border-radius: var(--radius-md);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.85);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.9);
       padding: 14px;
       display: none;
       flex-direction: column;
@@ -494,18 +479,22 @@
       padding-bottom: 8px;
     }
     .notif-list-items {
-      max-height: 240px;
+      max-height: 250px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
     .notif-item {
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.5);
       padding: 8px 10px;
       border-radius: 4px;
       font-size: 0.78rem;
       border-left: 3px solid var(--crimson-base);
+    }
+    .notif-item.targeted {
+      border-left-color: var(--magma-orange);
+      background: rgba(255, 119, 0, 0.15);
     }
 
     .user-profile-badge {
@@ -530,9 +519,7 @@
     .role-staff { background: #0284c7; color: #fff; }
     .role-user { background: #374151; color: #d1d5db; }
 
-    /* ==========================================================================
-       5. MOBILE 3-LINE DRAWER NAVIGATION
-       ========================================================================== */
+    /* Mobile Drawer */
     .mobile-hamburger-btn {
       display: none;
       background: rgba(255,255,255,0.06);
@@ -612,9 +599,7 @@
     }
     .drawer-backdrop.open { display: block; }
 
-    /* ==========================================================================
-       6. HERO & OFFICIAL "FEARSTEAL NETWORK" BANNER
-       ========================================================================== */
+    /* Hero Section */
     .hero-container {
       max-width: 1440px;
       margin: 0 auto;
@@ -785,9 +770,7 @@
     }
     .ip-sub-item button:hover { background: var(--crimson-base); }
 
-    /* ==========================================================================
-       7. SECTION LAYOUTS & CARD MATRICES
-       ========================================================================== */
+    /* Sections */
     .section-wrap {
       max-width: 1440px;
       margin: 75px auto;
@@ -835,55 +818,53 @@
       box-shadow: 0 10px 30px rgba(230,25,55,0.2);
     }
 
-    /* Support Ticket System Specific Styling */
-    .ticket-system-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      gap: 24px;
-    }
-    .ticket-msg-feed {
-      max-height: 460px;
-      overflow-y: auto;
+    /* Private Tickets Chat View */
+    .ticket-chat-feed {
       display: flex;
       flex-direction: column;
       gap: 12px;
+      max-height: 480px;
+      overflow-y: auto;
       padding-right: 6px;
     }
-    .ticket-card-entry {
-      background: rgba(0,0,0,0.45);
-      border: 1px solid var(--border-crimson);
-      padding: 14px;
+    .chat-bubble {
+      padding: 10px 14px;
       border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      max-width: 85%;
+    }
+    .chat-bubble.creator {
+      background: rgba(230, 25, 55, 0.2);
+      border: 1px solid var(--border-crimson);
+      align-self: flex-end;
+    }
+    .chat-bubble.staff {
+      background: rgba(2, 132, 199, 0.2);
+      border: 1px solid #0284c7;
+      align-self: flex-start;
     }
 
-    /* News Reaction Buttons */
-    .reaction-bar {
-      display: flex;
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .reaction-btn {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--border-crimson);
-      color: #fff;
-      padding: 4px 10px;
+    /* Action buttons for admin review */
+    .btn-action-pill {
+      padding: 6px 12px;
       border-radius: 4px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
+      font-weight: 700;
       cursor: pointer;
-      display: flex;
+      border: none;
+      display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       transition: var(--transition);
     }
-    .reaction-btn:hover {
-      background: var(--crimson-base);
-    }
+    .btn-act-accept { background: #10b981; color: #fff; }
+    .btn-act-reject { background: #ef4444; color: #fff; }
+    .btn-act-accept-reason { background: #059669; color: #fff; }
+    .btn-act-reject-reason { background: #b91c1c; color: #fff; }
 
-    /* Media queries */
     @media (max-width: 1024px) {
       .nav-menu-links { display: none; }
       .mobile-hamburger-btn { display: block; }
-      .ticket-system-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .hero-title-main { font-size: 2.4rem; }
@@ -894,7 +875,7 @@
 </head>
 <body>
 
-  <!-- Animated Particle Canvas & Ambient Atmosphere -->
+  <!-- Background Canvas -->
   <canvas id="particles-canvas"></canvas>
   <div class="ambient-fog"></div>
 
@@ -904,11 +885,11 @@
   <!-- Mobile Drawer Backdrop -->
   <div class="drawer-backdrop" id="drawer-backdrop" onclick="toggleMobileDrawer()"></div>
 
-  <!-- Mobile Drawer Navigation -->
+  <!-- Mobile Drawer Menu (3 Lines) -->
   <div id="mobile-drawer">
     <div class="drawer-header">
       <div style="display:flex; align-items:center; gap:8px;">
-        <img src="" class="animated-fs-logo fs-target-logo" style="width:30px;" alt="Logo" />
+        <img src="" class="fs-official-logo fs-target-logo" style="width:30px;" alt="Logo" />
         <span style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;">FEARSTEAL</span>
       </div>
       <button class="drawer-close-btn" onclick="toggleMobileDrawer()">&times;</button>
@@ -918,33 +899,26 @@
       <li><a href="#features" onclick="toggleMobileDrawer()"><i class="fa-solid fa-bolt"></i> Features</a></li>
       <li><a href="#store" onclick="toggleMobileDrawer()"><i class="fa-solid fa-cart-shopping"></i> Store & Ranks</a></li>
       <li><a href="#status-dashboard" onclick="toggleMobileDrawer()"><i class="fa-solid fa-server"></i> Server Status</a></li>
-      <li><a href="#support-system" onclick="toggleMobileDrawer()"><i class="fa-solid fa-ticket"></i> Support Tickets</a></li>
-      <li><a href="#player-report" onclick="toggleMobileDrawer()"><i class="fa-solid fa-triangle-exclamation"></i> Player Report</a></li>
-      <li><a href="#ban-appeal" onclick="toggleMobileDrawer()"><i class="fa-solid fa-gavel"></i> Ban Appeal</a></li>
-      <li><a href="#news-section" onclick="toggleMobileDrawer()"><i class="fa-solid fa-newspaper"></i> News & Devs</a></li>
+      <li><a href="#my-tickets-hub" onclick="toggleMobileDrawer()"><i class="fa-solid fa-ticket"></i> Support Ticket</a></li>
+      <li><a href="#staff-apply" onclick="toggleMobileDrawer()"><i class="fa-solid fa-file-pen"></i> Staff Apply</a></li>
       <li><a href="#staff" onclick="toggleMobileDrawer()"><i class="fa-solid fa-shield-halved"></i> Staff Team</a></li>
       <li><a href="#leaderboard" onclick="toggleMobileDrawer()"><i class="fa-solid fa-trophy"></i> Leaderboard</a></li>
-      <li><a href="#members" onclick="toggleMobileDrawer()"><i class="fa-solid fa-users"></i> Members Directory</a></li>
-      <li><a href="#events" onclick="toggleMobileDrawer()"><i class="fa-solid fa-calendar-days"></i> Events (15d)</a></li>
       <li><a href="#crate-sim" onclick="toggleMobileDrawer()"><i class="fa-solid fa-box-open"></i> Crate Simulator</a></li>
       <li><a href="#reviews" onclick="toggleMobileDrawer()"><i class="fa-solid fa-star"></i> Reviews</a></li>
       <li><a href="#rules" onclick="toggleMobileDrawer()"><i class="fa-solid fa-book"></i> Rules</a></li>
       <li><a href="#how-to-play" onclick="toggleMobileDrawer()"><i class="fa-solid fa-gamepad"></i> How to Play</a></li>
       <li><a href="#faq" onclick="toggleMobileDrawer()"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
-      <li><a href="#suggestions" onclick="toggleMobileDrawer()"><i class="fa-solid fa-lightbulb"></i> Suggestion</a></li>
-      <li><a href="#staff-apply" onclick="toggleMobileDrawer()"><i class="fa-solid fa-file-pen"></i> Staff Apply</a></li>
-      <!-- Admin & Staff mobile items -->
       <li id="drawer-item-admin" style="display:none;"><a href="#admin-panel" style="color:#ff2a4b;" onclick="toggleMobileDrawer()"><i class="fa-solid fa-crown"></i> Admin Panel</a></li>
       <li id="drawer-item-staff" style="display:none;"><a href="#staff-panel" style="color:#38bdf8;" onclick="toggleMobileDrawer()"><i class="fa-solid fa-user-shield"></i> Staff Panel</a></li>
     </ul>
   </div>
 
   <!-- ==========================================================================
-       01. PRELOADER SCREEN WITH ANIMATED LOGO
+       PRELOADER SCREEN (0 TO 100%)
        ========================================================================== -->
   <div id="preloader">
     <div class="preloader-logo-wrap">
-      <img src="" class="animated-fs-logo fs-target-logo" alt="FearSteal 3D Logo" style="width:160px;" />
+      <img src="" class="fs-official-logo fs-target-logo" alt="FearSteal 3D Logo" style="width:160px;" />
     </div>
     <div class="loader-progress-track">
       <div class="loader-progress-fill" id="loader-bar"></div>
@@ -953,23 +927,18 @@
   </div>
 
   <!-- ==========================================================================
-       02. STRICT AUTHENTICATION GATE
+       AUTHENTICATION GATE
        ========================================================================== -->
   <div id="auth-screen-gate">
     <div class="auth-glass-box">
       <div class="auth-logo-header">
-        <img src="" class="animated-fs-logo fs-target-logo" alt="FearSteal Logo" />
+        <img src="" class="fs-official-logo fs-target-logo" alt="FearSteal Logo" />
         <h1>WELCOME TO FEAR<span>STEAL</span></h1>
         <p>THE NEXT GENERATION LIFESTEAL NETWORK</p>
       </div>
 
-      <div class="auth-instructions-block">
-        <strong>Important Instructions:</strong><br>
-        • Step 1: Choose a username or email<br>
-        • Step 2: Register your account<br>
-        • Step 3: Login with the registered credentials<br>
-        • Step 4: Access all FearSteal features!<br>
-        <span style="font-size:0.7rem; color:var(--text-muted);">Author by ItzVeltriex and Notslayer</span>
+      <div class="auth-instructions-block" id="auth-info-banner">
+        Please register or login first than you can visit our website
       </div>
 
       <div class="auth-nav-tabs">
@@ -1047,7 +1016,7 @@
   </div>
 
   <!-- ==========================================================================
-       03. FEARSTEAL HOMEPAGE (UNLOCKED POST-AUTHENTICATION)
+       FEARSTEAL HOMEPAGE (UNLOCKED ONLY WHEN AUTHENTICATED)
        ========================================================================== -->
   <div id="fearsteal-homepage-root" style="display:none;">
 
@@ -1062,50 +1031,40 @@
     <nav class="master-navbar">
       <div class="nav-inner">
         <a href="#home" class="nav-brand">
-          <img src="" class="animated-fs-logo fs-target-logo" alt="FS Logo" />
+          <img src="" class="fs-official-logo fs-target-logo" alt="FS Logo" />
           <span>FEARSTEAL</span>
         </a>
 
-        <!-- Global Search -->
         <div class="nav-search-wrap">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" id="global-search" placeholder="Search rules, staff, faq..." onkeyup="executeGlobalSearch(this.value)" />
         </div>
 
-        <!-- Desktop Navigation Links -->
         <ul class="nav-menu-links">
           <li><a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
           <li><a href="#features"><i class="fa-solid fa-bolt"></i> Features</a></li>
           <li><a href="#store"><i class="fa-solid fa-cart-shopping"></i> Store</a></li>
           <li><a href="#status-dashboard"><i class="fa-solid fa-server"></i> Status</a></li>
-          <li><a href="#support-system"><i class="fa-solid fa-ticket"></i> Support</a></li>
-          <li><a href="#player-report"><i class="fa-solid fa-triangle-exclamation"></i> Report</a></li>
-          <li><a href="#ban-appeal"><i class="fa-solid fa-gavel"></i> Appeal</a></li>
-          <li><a href="#news-section"><i class="fa-solid fa-newspaper"></i> News</a></li>
+          <li><a href="#my-tickets-hub"><i class="fa-solid fa-ticket"></i> Tickets</a></li>
+          <li><a href="#staff-apply"><i class="fa-solid fa-file-pen"></i> Staff Apply</a></li>
           <li><a href="#staff"><i class="fa-solid fa-shield-halved"></i> Staff</a></li>
-          <!-- Admin / Staff Links -->
-          <li id="nav-item-admin-panel" style="display:none;"><a href="#admin-panel" style="color:#ff2a4b; font-weight:800;"><i class="fa-solid fa-crown"></i> Admin</a></li>
-          <li id="nav-item-staff-panel" style="display:none;"><a href="#staff-panel" style="color:#38bdf8; font-weight:800;"><i class="fa-solid fa-user-shield"></i> Staff</a></li>
+          <!-- Exclusive Panels -->
+          <li id="nav-item-admin-panel" style="display:none;"><a href="#admin-panel" style="color:#ff2a4b; font-weight:800;"><i class="fa-solid fa-crown"></i> Admin Panel</a></li>
+          <li id="nav-item-staff-panel" style="display:none;"><a href="#staff-panel" style="color:#38bdf8; font-weight:800;"><i class="fa-solid fa-user-shield"></i> Staff Panel</a></li>
         </ul>
 
-        <!-- User Controls + Notification Bell + Mobile 3-Line Menu -->
         <div class="nav-user-cluster">
           <!-- Notification Bell -->
           <button class="notif-bell-btn" onclick="toggleNotifDropdown()">
             <i class="fa-solid fa-bell"></i>
-            <span class="notif-badge-count" id="notif-count">4</span>
+            <span class="notif-badge-count" id="notif-count">0</span>
           </button>
           <div class="notif-dropdown" id="notif-box">
             <div class="notif-dropdown-header">
               <span>LIVE NOTIFICATIONS</span>
-              <a onclick="clearAllNotifications()" style="color:var(--crimson-glow); cursor:pointer;">CLEAR</a>
+              <a onclick="clearMyNotifications()" style="color:var(--crimson-glow); cursor:pointer;">CLEAR</a>
             </div>
-            <div class="notif-list-items" id="notif-items-body">
-              <div class="notif-item">⚔️ You reached Rank #10 on the PvP ladder!</div>
-              <div class="notif-item">❤️ You gained a heart via Heart Forge.</div>
-              <div class="notif-item">🏆 Achievement unlocked: Heart Collector!</div>
-              <div class="notif-item">📢 Tournament Registration is now live!</div>
-            </div>
+            <div class="notif-list-items" id="notif-items-body"></div>
           </div>
 
           <div class="user-profile-badge">
@@ -1118,7 +1077,6 @@
             <i class="fa-solid fa-power-off"></i>
           </button>
 
-          <!-- 3-Line Mobile Button -->
           <button class="mobile-hamburger-btn" onclick="toggleMobileDrawer()">
             <i class="fa-solid fa-bars"></i>
           </button>
@@ -1126,14 +1084,13 @@
       </div>
     </nav>
 
-    <!-- 1. HOME & HERO SECTION (FEATURING OFFICIAL BANNER & LOGO) -->
+    <!-- HERO & 3D BANNER -->
     <header class="hero-container" id="home">
-      <!-- High-res 3D Minecraft "FEARSTEAL NETWORK" Banner -->
       <div class="hero-banner-frame">
         <img src="" class="fs-target-banner" alt="FearSteal Network Banner" />
       </div>
 
-      <img src="" class="hero-logo-emblem animated-fs-logo fs-target-logo" alt="FearSteal Emblem" />
+      <img src="" class="hero-logo-emblem fs-official-logo fs-target-logo" alt="FearSteal Emblem" />
       <h1 class="hero-title-main">FEAR<span>STEAL</span></h1>
       <div class="hero-slogan-line">STEAL HEARTS. BUILD POWER. SURVIVE.</div>
 
@@ -1169,7 +1126,7 @@
       </div>
     </header>
 
-    <!-- 2. FEATURES -->
+    <!-- FEATURES -->
     <section class="section-wrap" id="features">
       <div class="section-headline">
         <h2>NETWORK <span>FEATURES</span></h2>
@@ -1193,21 +1150,20 @@
         </div>
         <div class="fs-card">
           <div style="font-size:1.8rem; color:var(--crimson-glow); margin-bottom:8px;"><i class="fa-solid fa-bolt"></i></div>
-          <h4 style="font-family:var(--font-heading); font-size:1.2rem;">Optimized Velocity Proxy</h4>
+          <h4 style="font-family:var(--font-heading); font-size:1.2rem;">Velocity Proxy</h4>
           <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">High-speed routing with robust DDoS protection.</p>
         </div>
       </div>
     </section>
 
-    <!-- 3. STORE & SERVER RANKS -->
+    <!-- STORE & NOVICE RANK -->
     <section class="section-wrap" id="store">
       <div class="section-headline">
         <h2>STORE & <span>SERVER RANKS</span></h2>
-        <p>Unlock elite perks, extra heart capacities, and commands. External checkout via official CryzorMC Store.</p>
+        <p>Unlock elite perks, extra heart capacities, and commands. External checkout via CryzorMC Store.</p>
       </div>
 
       <div class="grid-cards-4">
-        <!-- NOVICE FREE RANK (0/100 LIMIT & 60D TIMER) -->
         <div class="fs-card" style="border:2px solid var(--crimson-base); background:linear-gradient(180deg, rgba(35, 12, 25, 0.9), rgba(12, 5, 12, 0.9));">
           <div style="font-family:var(--font-display); font-size:1.6rem;">NOVICE</div>
           <div style="font-size:2rem; font-weight:800; color:var(--crimson-base); font-family:var(--font-heading); margin:4px 0;">$0 FREE</div>
@@ -1222,7 +1178,6 @@
           <button class="btn-fs btn-fs-primary" id="btn-novice-claim" style="width:100%;" onclick="processNoviceClaim()">CLAIM NOVICE</button>
         </div>
 
-        <!-- KNIGHT (POPULAR) -->
         <div class="fs-card" style="border:2px solid var(--gold-accent);">
           <span class="role-tag" style="background:var(--gold-accent); color:#000;">MOST POPULAR</span>
           <div style="font-family:var(--font-display); font-size:1.6rem; margin-top:4px;">KNIGHT</div>
@@ -1231,7 +1186,6 @@
           <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-primary" style="width:100%; justify-content:center;">PURCHASE</a>
         </div>
 
-        <!-- FEARSTEAL (TOP TIER) -->
         <div class="fs-card" style="border:2px solid var(--crimson-glow);">
           <span class="role-tag" style="background:var(--crimson-gradient); color:#fff;">ULTIMATE</span>
           <div style="font-family:var(--font-display); font-size:1.6rem; margin-top:4px;">FEARSTEAL</div>
@@ -1240,16 +1194,15 @@
           <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-primary" style="width:100%; justify-content:center;">PURCHASE</a>
         </div>
 
-        <!-- VIEW MORE -->
         <div class="fs-card" style="display:flex; flex-direction:column; justify-content:center; text-align:center;">
-          <h4 style="font-family:var(--font-heading); font-size:1.3rem;">EXPLORE ALL RANKS</h4>
-          <p style="font-size:0.85rem; color:var(--text-muted); margin:8px 0 16px;">Lord, Elite, Elite+, King, Steal+, Fear+ on CryzorMC Store.</p>
+          <h4 style="font-family:var(--font-heading); font-size:1.3rem;">ALL RANKS</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin:8px 0 16px;">Lord, Elite, Elite+, King, Steal+, Fear+ on CryzorMC.</p>
           <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-secondary" style="justify-content:center;">VISIT STORE</a>
         </div>
       </div>
     </section>
 
-    <!-- 4. LIVE STATUS & MONITORING -->
+    <!-- LIVE STATUS DASHBOARD -->
     <section class="section-wrap" id="status-dashboard">
       <div class="section-headline">
         <h2>LIVE <span>STATUS MONITORING</span></h2>
@@ -1277,7 +1230,7 @@
 
       <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg-card); border:1px solid var(--border-crimson); padding:14px 20px; border-radius:var(--radius-md); margin-top:20px; flex-wrap:wrap; gap:12px;">
         <div style="font-size:0.85rem; color:var(--text-muted);">
-          <i class="fa-solid fa-clock"></i> Last updated: <span id="stat-updated-time">Never</span> (Auto-refreshes every 60s)
+          <i class="fa-solid fa-clock"></i> Last updated: <span id="stat-updated-time">Never</span>
         </div>
         <button class="btn-fs btn-fs-secondary" style="padding:8px 16px; font-size:0.85rem;" onclick="queryLiveMinecraftStatus(true)">
           <i class="fa-solid fa-arrows-rotate"></i> REFRESH NOW
@@ -1285,22 +1238,24 @@
       </div>
     </section>
 
-    <!-- 5. 🎫 SUPPORT TICKET SYSTEM (/support) -->
-    <section class="section-wrap" id="support-system">
+    <!-- ==========================================================================
+         USER PRIVATE SUPPORT TICKET HUB (ONLY CREATOR SEES IT)
+         ========================================================================== -->
+    <section class="section-wrap" id="my-tickets-hub">
       <div class="section-headline">
-        <h2>🎫 SUPPORT <span>TICKET SYSTEM</span></h2>
-        <p>Open support tickets, report bugs, dispute purchases, or request partnerships.</p>
+        <h2>🎫 SUPPORT <span>TICKETS</span></h2>
+        <p>Private support communication. Only you and FearSteal staff can view your tickets.</p>
       </div>
 
-      <div class="ticket-system-grid">
-        <!-- New Ticket Form -->
+      <div style="display:grid; grid-template-columns: 1fr 1.3fr; gap:24px;">
+        <!-- Create Ticket Form -->
         <div class="fs-card">
-          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:14px;"><i class="fa-solid fa-ticket"></i> CREATE A TICKET</h4>
+          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:14px;"><i class="fa-solid fa-ticket"></i> OPEN NEW TICKET</h4>
           <form onsubmit="handleCreateTicket(event)">
             <div class="auth-form-group">
-              <label>Ticket Category</label>
+              <label>Category</label>
               <div class="input-field-wrap">
-                <select id="ticket-cat-select">
+                <select id="user-ticket-cat">
                   <option value="General Support">General Support</option>
                   <option value="Player Report">Player Report</option>
                   <option value="Bug Report">Bug Report</option>
@@ -1313,138 +1268,94 @@
             <div class="auth-form-group">
               <label>Priority</label>
               <div class="input-field-wrap">
-                <select id="ticket-prio-select">
-                  <option value="Low">Low Priority</option>
-                  <option value="Normal" selected>Normal Priority</option>
-                  <option value="Urgent">Urgent (Purchase/Compromised)</option>
+                <select id="user-ticket-prio">
+                  <option value="Normal">Normal</option>
+                  <option value="Urgent">Urgent</option>
                 </select>
               </div>
             </div>
             <div class="auth-form-group">
-              <label>Message & Description</label>
-              <textarea id="ticket-msg-input" rows="4" placeholder="Detail your issue..." required></textarea>
+              <label>Message</label>
+              <textarea id="user-ticket-msg" rows="4" placeholder="Describe your issue..." required></textarea>
             </div>
-            <div class="auth-form-group">
-              <label>Attachment URL / Screenshot Link</label>
-              <input type="text" id="ticket-attach-input" placeholder="e.g. imgur.com/proof.png" />
-            </div>
-            <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-paper-plane"></i> OPEN TICKET</button>
+            <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-paper-plane"></i> SUBMIT TICKET</button>
           </form>
         </div>
 
-        <!-- Tickets Feed & Thread Viewer -->
+        <!-- Exclusive Private Chat for User -->
         <div class="fs-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <h4 style="font-family:var(--font-heading); font-size:1.3rem;"><i class="fa-solid fa-comments"></i> YOUR TICKETS LOG</h4>
-            <button class="btn-fs btn-fs-secondary" style="padding:4px 10px; font-size:0.75rem;" onclick="downloadTicketTranscript()"><i class="fa-solid fa-download"></i> TRANSCRIPT</button>
-          </div>
-          <div class="ticket-msg-feed" id="ticket-feed-container"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. 🚨 PLAYER REPORT SYSTEM -->
-    <section class="section-wrap" id="player-report">
-      <div class="section-headline">
-        <h2>🚨 PLAYER <span>REPORT SYSTEM</span></h2>
-        <p>Report cheaters, glitch abusers, and toxicity directly to the staff queue.</p>
-      </div>
-
-      <div class="fs-card" style="max-width:700px; margin:0 auto;">
-        <form onsubmit="handlePlayerReport(event)">
-          <div class="auth-form-group">
-            <label>Reported Player IGN</label>
-            <input type="text" id="rep-target-ign" placeholder="Minecraft username" required />
-          </div>
-          <div class="auth-form-group">
-            <label>Reason for Report</label>
-            <div class="input-field-wrap">
-              <select id="rep-reason-select">
-                <option value="Cheating (Killaura/Velocity/Reach)">Cheating (Killaura / Velocity / Reach)</option>
-                <option value="Exploiting / Duping">Exploiting / Duping Glitches</option>
-                <option value="Scamming">In-game Scamming</option>
-                <option value="Harassment / Toxicity">Harassment / Severe Toxicity</option>
-                <option value="Advertising">Advertising other servers</option>
-                <option value="Bug abuse">Bug Abuse</option>
-                <option value="Other">Other Infraction</option>
-              </select>
-            </div>
-          </div>
-          <div class="auth-form-group">
-            <label>Evidence Link (Video / Screenshot)</label>
-            <input type="text" id="rep-evidence-url" placeholder="e.g. youtube.com/watch?v=xxx or imgur.com/xxx" required />
-          </div>
-          <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-flag"></i> SUBMIT PLAYER REPORT</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- 7. 🔨 BAN APPEAL SYSTEM (/ban-appeal) -->
-    <section class="section-wrap" id="ban-appeal">
-      <div class="section-headline">
-        <h2>🔨 BAN <span>APPEAL SYSTEM</span></h2>
-        <p>Falsely banned or seeking a second chance? File your ban appeal below.</p>
-      </div>
-
-      <div class="fs-card" style="max-width:750px; margin:0 auto;">
-        <form onsubmit="handleBanAppeal(event)">
-          <div class="auth-form-group">
-            <label>Minecraft Username</label>
-            <input type="text" id="appeal-ign" placeholder="Your banned IGN" required />
-          </div>
-          <div class="auth-form-group">
-            <label>Ban Reason (as stated on ban screen)</label>
-            <input type="text" id="appeal-reason" placeholder="e.g. Unfair Advantage - Reach" required />
-          </div>
-          <div class="auth-form-group">
-            <label>Why should you be unbanned?</label>
-            <textarea id="appeal-explanation" rows="4" placeholder="Explain your perspective truthfully..." required></textarea>
-          </div>
-          <div class="auth-form-group">
-            <label>Additional Information</label>
-            <textarea id="appeal-extra" rows="2" placeholder="Any logs, video recordings, or context..."></textarea>
-          </div>
-          <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-scale-balanced"></i> SUBMIT BAN APPEAL</button>
-        </form>
-
-        <div style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.08); padding-top:16px;">
-          <h5 style="font-family:var(--font-heading); margin-bottom:8px;">Appeal Status Tracker:</h5>
-          <div id="appeal-status-box" style="font-size:0.85rem; color:var(--text-muted);">
-            No pending appeals submitted in this session.
+          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:12px;"><i class="fa-solid fa-lock"></i> YOUR PRIVATE TICKETS</h4>
+          <div class="ticket-chat-feed" id="user-private-tickets-list">
+            <!-- Rendered via JS -->
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 8. 📰 NEWS & ANNOUNCEMENTS -->
-    <section class="section-wrap" id="news-section">
+    <!-- STAFF APPLICATION FORM -->
+    <section class="section-wrap" id="staff-apply">
       <div class="section-headline">
-        <h2>📰 NEWS & <span>DEV UPDATES</span></h2>
-        <p>Patch notes, tournament results, and community announcements.</p>
+        <h2>STAFF <span>APPLICATION FORM</span></h2>
+        <p>Answer all questions. Applications route directly to the Admin Panel for review.</p>
       </div>
 
-      <div class="grid-cards-3" id="news-cards-container">
-        <!-- Injected via JavaScript -->
+      <div class="fs-card" style="max-width:850px; margin:0 auto;">
+        <form onsubmit="handleStaffAppSubmit(event)">
+          <div class="auth-form-group"><label>1. Minecraft IGN & Discord Tag</label><input type="text" id="sq1" required /></div>
+          <div class="auth-form-group"><label>2. Your Age & Timezone</label><input type="text" id="sq2" required /></div>
+          <div class="auth-form-group"><label>3. Desired Role</label>
+            <select id="sq3">
+              <option value="Helper">Helper</option>
+              <option value="Junior Mod">Junior Mod</option>
+              <option value="Junior Admin">Junior Admin</option>
+              <option value="Junior Manager">Junior Manager</option>
+            </select>
+          </div>
+          <div class="auth-form-group"><label>4. Weekly available hours</label><input type="text" id="sq4" required /></div>
+          <div class="auth-form-group"><label>5. Past Minecraft staffing experience</label><textarea id="sq5" rows="2" required></textarea></div>
+          <div class="auth-form-group"><label>6. How do you identify Killaura, Velocity, and Reach?</label><textarea id="sq6" rows="2" required></textarea></div>
+          <div class="auth-form-group"><label>7. How do you handle a dupe accusation between two clans?</label><textarea id="sq7" rows="2" required></textarea></div>
+          <div class="auth-form-group"><label>8. What if a close friend breaks server rules?</label><textarea id="sq8" rows="2" required></textarea></div>
+          <div class="auth-form-group"><label>9. Can you record 60FPS video proof of punishments?</label><input type="text" id="sq9" placeholder="Yes / No" required /></div>
+          <div class="auth-form-group"><label>10. Have you ever been banned or warned on FearSteal?</label><input type="text" id="sq10" required /></div>
+          <div class="auth-form-group"><label>11. Why should we choose you over other candidates?</label><textarea id="sq11" rows="3" required></textarea></div>
+          <div class="auth-form-group"><label>12. Do you agree that leaking staff discussions results in an instant blacklist?</label>
+            <select id="sq12"><option value="I Agree">I Agree Fully</option></select>
+          </div>
+          <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-paper-plane"></i> SUBMIT APPLICATION</button>
+        </form>
       </div>
     </section>
 
-    <!-- 9. STAFF TEAM ROSTER -->
-    <section class="section-wrap" id="staff">
+    <!-- CRATE SIMULATOR -->
+    <section class="section-wrap" id="crate-sim">
       <div class="section-headline">
-        <h2>FEARSTEAL <span>STAFF TEAM</span></h2>
-        <p>Our dedicated administration and moderation roster with live Minecraft avatars.</p>
+        <h2>FEARSTEAL <span>CRATE SIMULATOR</span></h2>
+        <p>Claim mysterious rewards once every 24 hours.</p>
       </div>
 
-      <div class="grid-cards-4" id="staff-grid-root">
-        <!-- Rendered with mc-heads -->
+      <div class="fs-card" style="max-width:620px; margin:0 auto; text-align:center; border:2px solid var(--border-glow);">
+        <div style="font-size:3.5rem; color:var(--crimson-glow); margin-bottom:14px;"><i class="fa-solid fa-box-open"></i></div>
+        <h3 style="font-family:var(--font-heading); font-size:1.8rem; margin-bottom:10px;">DAILY LIFESTEAL MYSTERY CRATE</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">
+          Unlock mystery rewards, tokens, revive beacon fragments, or custom titles.
+        </p>
+
+        <div id="crate-timer-notice" style="display:none; margin-bottom:16px; color:#ff99aa; font-weight:700;">
+          <i class="fa-solid fa-lock"></i> 24-Hour Cooldown Active
+        </div>
+
+        <button class="btn-fs btn-fs-primary" id="btn-claim-crate" onclick="handleClaimCrateReward()">
+          <i class="fa-solid fa-key"></i> OPEN CRATE NOW
+        </button>
       </div>
     </section>
 
-    <!-- 10. LEADERBOARDS & HEART FORGE -->
+    <!-- LEADERBOARDS & HEARTS -->
     <section class="section-wrap" id="leaderboard">
       <div class="section-headline">
         <h2>REALM <span>LEADERBOARD & FORGE</span></h2>
-        <p>Rankings refresh automatically every 10 minutes. New members initiate with default 10 hearts.</p>
+        <p>Rankings refresh automatically every 10 minutes. Starting capacity: 10 hearts.</p>
       </div>
 
       <div class="grid-cards-3">
@@ -1480,125 +1391,20 @@
       </div>
     </section>
 
-    <!-- 11. MEMBERS DIRECTORY -->
-    <section class="section-wrap" id="members">
+    <!-- STAFF TEAM -->
+    <section class="section-wrap" id="staff">
       <div class="section-headline">
-        <h2>REGISTERED <span>MEMBERS DIRECTORY</span></h2>
-        <p>List of all verified player accounts on FearSteal Network.</p>
+        <h2>FEARSTEAL <span>STAFF TEAM</span></h2>
+        <p>Leadership and moderation units with live Minecraft avatars.</p>
       </div>
-
-      <div class="fs-card" style="overflow-x:auto;">
-        <table style="width:100%; border-collapse:collapse; font-size:0.9rem; text-align:left;">
-          <thead>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:var(--text-muted);">
-              <th style="padding:12px;">#</th>
-              <th>AVATAR</th>
-              <th>IGN / USERNAME</th>
-              <th>ROLE</th>
-              <th>HEARTS</th>
-              <th>REGISTERED DATE</th>
-            </tr>
-          </thead>
-          <tbody id="registered-members-tbody"></tbody>
-        </table>
-      </div>
+      <div class="grid-cards-4" id="staff-grid-root"></div>
     </section>
 
-    <!-- 12. SCHEDULED EVENTS & LIFETIME UPCOMING -->
-    <section class="section-wrap" id="events">
-      <div class="section-headline">
-        <h2>SCHEDULED <span>15-DAY EVENTS</span></h2>
-        <p>Events cycle automatically every 15 days across Minecraft and Discord.</p>
-      </div>
-
-      <div class="grid-cards-3">
-        <div class="fs-card">
-          <span class="role-tag" style="background:#dc2626; color:#fff;">MINECRAFT EVENT</span>
-          <h3 style="font-family:var(--font-heading); font-size:1.5rem; margin-top:8px;">FEARSTEAL PVP TOURNAMENT</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted); margin:6px 0 14px;">Compete for the 50,000 Coin Prize Pool & Champion Tag!</p>
-          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; text-align:center; margin-bottom:16px;">
-            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong id="ev-days">14</strong><div style="font-size:0.65rem; color:var(--text-muted);">Days</div></div>
-            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong id="ev-hours">23</strong><div style="font-size:0.65rem; color:var(--text-muted);">Hours</div></div>
-            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong id="ev-mins">59</strong><div style="font-size:0.65rem; color:var(--text-muted);">Mins</div></div>
-            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong id="ev-secs">59</strong><div style="font-size:0.65rem; color:var(--text-muted);">Secs</div></div>
-          </div>
-          <button class="btn-fs btn-fs-primary" style="width:100%;" onclick="showToast('Event reminder set! Check announcements.')">SET REMINDER</button>
-        </div>
-
-        <div class="fs-card">
-          <span class="role-tag" style="background:#5865f2; color:#fff;">DISCORD EVENT</span>
-          <h3 style="font-family:var(--font-heading); font-size:1.5rem; margin-top:8px;">COMMUNITY MEME GIVEAWAY</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted); margin:6px 0 14px;">Post your funniest clips and memes in Discord for free rank upgrades.</p>
-          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; text-align:center; margin-bottom:16px;">
-            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong>14</strong><div style="font-size:0.65rem; color:var(--text-muted);">Days</div></div>
-            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong>23</strong><div style="font-size:0.65rem; color:var(--text-muted);">Hours</div></div>
-            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong>59</strong><div style="font-size:0.65rem; color:var(--text-muted);">Mins</div></div>
-            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong>59</strong><div style="font-size:0.65rem; color:var(--text-muted);">Secs</div></div>
-          </div>
-          <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn-fs btn-fs-discord" style="width:100%;"><i class="fa-brands fa-discord"></i> ENTER DISCORD</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 13. CRATE SIMULATOR (24H COOLDOWN) -->
-    <section class="section-wrap" id="crate-sim">
-      <div class="section-headline">
-        <h2>FEARSTEAL <span>CRATE SIMULATOR</span></h2>
-        <p>Claim mysterious rewards once every 24 hours.</p>
-      </div>
-
-      <div class="fs-card" style="max-width:620px; margin:0 auto; text-align:center; border:2px solid var(--border-glow);">
-        <div style="font-size:3.5rem; color:var(--crimson-glow); margin-bottom:14px;"><i class="fa-solid fa-box-open"></i></div>
-        <h3 style="font-family:var(--font-heading); font-size:1.8rem; margin-bottom:10px;">DAILY LIFESTEAL MYSTERY CRATE</h3>
-        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">
-          Unlock mystery rewards, tokens, revive beacon fragments, or custom titles.
-        </p>
-
-        <div id="crate-timer-notice" style="display:none; margin-bottom:16px; color:#ff99aa; font-weight:700;">
-          <i class="fa-solid fa-lock"></i> 24-Hour Cooldown Active
-        </div>
-
-        <button class="btn-fs btn-fs-primary" id="btn-claim-crate" onclick="handleClaimCrateReward()">
-          <i class="fa-solid fa-key"></i> OPEN CRATE NOW
-        </button>
-      </div>
-    </section>
-
-    <!-- 14. REVIEWS & TESTIMONIALS -->
-    <section class="section-wrap" id="reviews">
-      <div class="section-headline">
-        <h2>SERVER <span>REVIEWS & FEEDBACK</span></h2>
-        <p>Which stars do you give our server performance? (0 to 10 stars)</p>
-      </div>
-
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
-        <div class="fs-card">
-          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:8px;">LEAVE A REVIEW</h4>
-          <form onsubmit="handleReviewSubmit(event)">
-            <div>
-              <label style="font-size:0.8rem; color:var(--text-muted);">Select Stars: <strong id="star-score-num" style="color:var(--gold-accent);">10</strong> / 10</label>
-              <div id="star-row-container" style="display:flex; gap:6px; font-size:1.3rem; margin:10px 0 16px; cursor:pointer;"></div>
-            </div>
-            <div class="auth-form-group">
-              <label>Your Feedback Message</label>
-              <textarea id="review-msg-input" rows="4" placeholder="How is your experience on FearSteal?" required></textarea>
-            </div>
-            <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-paper-plane"></i> SUBMIT REVIEW</button>
-          </form>
-        </div>
-
-        <div class="fs-card">
-          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:12px;">RECENT TESTIMONIALS</h4>
-          <div id="reviews-feed-list" style="display:flex; flex-direction:column; gap:12px; max-height:360px; overflow-y:auto;"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 15. RULES -->
+    <!-- RULES -->
     <section class="section-wrap" id="rules">
       <div class="section-headline">
         <h2>OFFICIAL <span>SERVER RULES</span></h2>
-        <p>Zero tolerance for cheating or exploiting.</p>
+        <p>Zero tolerance for cheating, exploiting, or harassment.</p>
       </div>
       <div class="grid-cards-4">
         <div class="fs-card"><strong style="color:var(--crimson-glow);">#1 No Cheating/Hacks</strong><p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">No Killaura, Velocity, or Reach.</p></div>
@@ -1608,7 +1414,7 @@
       </div>
     </section>
 
-    <!-- 16. HOW TO PLAY -->
+    <!-- HOW TO PLAY -->
     <section class="section-wrap" id="how-to-play">
       <div class="section-headline">
         <h2>HOW TO <span>CONNECT & PLAY</span></h2>
@@ -1618,7 +1424,7 @@
         <div class="fs-card">
           <span class="role-tag" style="background:var(--crimson-base); color:#fff;">STEP 1 & 2</span>
           <h4 style="font-family:var(--font-heading); font-size:1.2rem; margin-top:6px;">Launch & Multiplayer</h4>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Launch Minecraft (Java or Bedrock) and open Multiplayer.</p>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Launch Minecraft and open Multiplayer.</p>
         </div>
         <div class="fs-card">
           <span class="role-tag" style="background:var(--crimson-base); color:#fff;">STEP 3 & 4</span>
@@ -1628,121 +1434,70 @@
         <div class="fs-card">
           <span class="role-tag" style="background:var(--crimson-base); color:#fff;">STEP 5</span>
           <h4 style="font-family:var(--font-heading); font-size:1.2rem; margin-top:6px;">Click Join Server</h4>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Connect to the proxy and land in our custom LifeSteal spawn.</p>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Connect to the proxy and land in LifeSteal spawn.</p>
         </div>
         <div class="fs-card">
           <span class="role-tag" style="background:var(--crimson-base); color:#fff;">STEP 6</span>
           <h4 style="font-family:var(--font-heading); font-size:1.2rem; margin-top:6px;">Start Stealing Hearts</h4>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Form clans, build bases, and conquer the leaderboard!</p>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Build bases and climb the leaderboards!</p>
         </div>
       </div>
     </section>
 
-    <!-- 17. FAQ -->
+    <!-- FAQ -->
     <section class="section-wrap" id="faq">
       <div class="section-headline">
         <h2>FREQUENTLY ASKED <span>QUESTIONS</span></h2>
-        <p>Everything you need to know about the network.</p>
+        <p>Everything you need to know about the server.</p>
       </div>
       <div class="fs-card" style="max-width:850px; margin:0 auto;">
         <div style="border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:12px; margin-bottom:12px;">
           <strong>What is FearSteal?</strong>
-          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">A competitive Minecraft LifeSteal realm focused on heart stealing, custom PvP, and community tournaments.</p>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">A competitive Minecraft LifeSteal realm focused on heart stealing, PvP, and tournaments.</p>
         </div>
-        <div style="border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:12px; margin-bottom:12px;">
+        <div>
           <strong>What is the server address and Bedrock port?</strong>
           <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Address: <code>play.fearsteal.fun</code> | Port: <code>19132</code></p>
         </div>
-        <div>
-          <strong>What happens when the Novice rank reaches 100 claims?</strong>
-          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">It becomes OUT OF STOCK automatically and no further claims are permitted.</p>
-        </div>
       </div>
     </section>
 
-    <!-- 18. SUGGESTIONS -->
-    <section class="section-wrap" id="suggestions">
-      <div class="section-headline">
-        <h2>SUBMIT A <span>SUGGESTION</span></h2>
-        <p>Your ideas are submitted directly to the Founder Admin Panel.</p>
-      </div>
-      <div class="fs-card" style="max-width:650px; margin:0 auto;">
-        <form onsubmit="handleSuggestionSubmit(event)">
-          <div class="auth-form-group">
-            <label>Category</label>
-            <div class="input-field-wrap">
-              <select id="sugg-category">
-                <option value="Server Mechanics">LifeSteal Mechanics</option>
-                <option value="Discord Feature">Discord Feature</option>
-                <option value="Store & Ranks">Store & Ranks</option>
-                <option value="Events">Events & Tournaments</option>
-              </select>
-            </div>
-          </div>
-          <div class="auth-form-group">
-            <label>Details</label>
-            <textarea id="sugg-text" rows="4" placeholder="Explain your proposal..." required></textarea>
-          </div>
-          <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-lightbulb"></i> SEND SUGGESTION</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- 19. STAFF APPLICATION (12 QUESTIONS) -->
-    <section class="section-wrap" id="staff-apply">
-      <div class="section-headline">
-        <h2>STAFF <span>APPLICATION FORM</span></h2>
-        <p>Answer all 12 questions. Submissions route directly to the Admin Panel.</p>
-      </div>
-      <div class="fs-card" style="max-width:850px; margin:0 auto;">
-        <form onsubmit="handleStaffAppSubmit(event)">
-          <div class="auth-form-group"><label>1. Minecraft IGN & Discord Tag</label><input type="text" id="sq1" required /></div>
-          <div class="auth-form-group"><label>2. Your Age & Timezone</label><input type="text" id="sq2" required /></div>
-          <div class="auth-form-group"><label>3. Desired Role</label>
-            <select id="sq3">
-              <option value="Helper">Helper (Chat support & player questions)</option>
-              <option value="Junior Mod">Junior Mod (Basic moderation & mute powers)</option>
-              <option value="Junior Admin">Junior Admin (Ban escalations & grief checks)</option>
-              <option value="Junior Manager">Junior Manager (Team workflow management)</option>
-            </select>
-          </div>
-          <div class="auth-form-group"><label>4. Weekly available hours</label><input type="text" id="sq4" required /></div>
-          <div class="auth-form-group"><label>5. Past Minecraft staffing experience</label><textarea id="sq5" rows="2" required></textarea></div>
-          <div class="auth-form-group"><label>6. How do you identify Killaura, Velocity, and Reach?</label><textarea id="sq6" rows="2" required></textarea></div>
-          <div class="auth-form-group"><label>7. How do you handle a dupe accusation between two clans?</label><textarea id="sq7" rows="2" required></textarea></div>
-          <div class="auth-form-group"><label>8. What if a close friend breaks server rules?</label><textarea id="sq8" rows="2" required></textarea></div>
-          <div class="auth-form-group"><label>9. Can you record 60FPS video proof of punishments?</label><input type="text" id="sq9" placeholder="Yes / No" required /></div>
-          <div class="auth-form-group"><label>10. Have you ever been banned or warned on FearSteal?</label><input type="text" id="sq10" required /></div>
-          <div class="auth-form-group"><label>11. Why should we choose you over other candidates?</label><textarea id="sq11" rows="3" required></textarea></div>
-          <div class="auth-form-group"><label>12. Do you agree that leaking staff discussions results in an instant blacklist?</label>
-            <select id="sq12"><option value="I Agree">I Agree Fully</option></select>
-          </div>
-          <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-paper-plane"></i> SUBMIT STAFF APPLICATION</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- ADMIN PANEL (EXCLUSIVE TO FOUNDER ItzVeltriex) -->
+    <!-- ==========================================================================
+         ADMIN PANEL (EXCLUSIVE TO ItzVeltriex)
+         ========================================================================== -->
     <section class="section-wrap" id="admin-panel" style="display:none;">
       <div class="section-headline">
         <h2>FOUNDER <span>ADMIN PANEL</span></h2>
-        <p>Exclusive access for <code>ItzVeltriex</code>.</p>
+        <p>Full control over website accounts, tickets, applications, and announcements.</p>
       </div>
 
       <div class="fs-card" style="border:2px solid var(--border-glow);">
         <div style="display:flex; gap:10px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:14px; margin-bottom:24px; overflow-x:auto;">
-          <button class="btn-fs btn-fs-primary" style="padding:8px 16px; font-size:0.85rem;" onclick="switchAdminSubTab('users')">User Management</button>
+          <button class="btn-fs btn-fs-primary" style="padding:8px 16px; font-size:0.85rem;" onclick="switchAdminSubTab('ticket-view')">Ticket View</button>
+          <button class="btn-fs btn-fs-secondary" style="padding:8px 16px; font-size:0.85rem;" onclick="switchAdminSubTab('staff-apps')">Staff Applications</button>
+          <button class="btn-fs btn-fs-secondary" style="padding:8px 16px; font-size:0.85rem;" onclick="switchAdminSubTab('users')">User Management</button>
           <button class="btn-fs btn-fs-secondary" style="padding:8px 16px; font-size:0.85rem;" onclick="switchAdminSubTab('broadcast')">24h Announcements</button>
-          <button class="btn-fs btn-fs-secondary" style="padding:8px 16px; font-size:0.85rem;" onclick="switchAdminSubTab('apps')">Staff Applications</button>
-          <button class="btn-fs btn-fs-secondary" style="padding:8px 16px; font-size:0.85rem;" onclick="switchAdminSubTab('suggestions')">Suggestions</button>
         </div>
 
-        <div id="adm-tab-users">
-          <h4 style="margin-bottom:12px;">User Directory & Permissions</h4>
+        <!-- 1. TICKET VIEW (ADMIN CAN SEE AND REPLY TO ALL TICKETS) -->
+        <div id="adm-tab-ticket-view">
+          <h4 style="margin-bottom:12px;">All Network Tickets (Ticket View)</h4>
+          <div id="admin-all-tickets-feed" style="display:flex; flex-direction:column; gap:14px;"></div>
+        </div>
+
+        <!-- 2. STAFF APPLICATIONS (ACCEPT, REJECT, ACCEPT W/ REASON, REJECT W/ REASON) -->
+        <div id="adm-tab-staff-apps" style="display:none;">
+          <h4 style="margin-bottom:12px;">Pending Staff Applications (Review & Actions)</h4>
+          <div id="admin-staff-apps-feed" style="display:flex; flex-direction:column; gap:14px;"></div>
+        </div>
+
+        <!-- 3. USER MANAGEMENT -->
+        <div id="adm-tab-users" style="display:none;">
+          <h4 style="margin-bottom:12px;">User Directory & Role Assignment</h4>
           <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
             <thead>
               <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:var(--text-muted); text-align:left;">
-                <th style="padding:10px;">USERNAME / EMAIL</th>
+                <th style="padding:10px;">IGN / EMAIL</th>
                 <th>PASSWORD</th>
                 <th>ROLE</th>
                 <th>ASSIGN ACCESS</th>
@@ -1752,6 +1507,7 @@
           </table>
         </div>
 
+        <!-- 4. BROADCAST ANNOUNCEMENTS -->
         <div id="adm-tab-broadcast" style="display:none;">
           <h4 style="margin-bottom:12px;">Publish 24-Hour Announcement</h4>
           <form onsubmit="handleBroadcastAnnouncement(event)">
@@ -1762,41 +1518,31 @@
             <button type="submit" class="btn-fs btn-fs-primary"><i class="fa-solid fa-bullhorn"></i> BROADCAST</button>
           </form>
         </div>
-
-        <div id="adm-tab-apps" style="display:none;">
-          <h4 style="margin-bottom:12px;">Pending Staff Applications</h4>
-          <div id="admin-apps-queue" style="display:flex; flex-direction:column; gap:12px;"></div>
-        </div>
-
-        <div id="adm-tab-suggestions" style="display:none;">
-          <h4 style="margin-bottom:12px;">Player Suggestions Queue</h4>
-          <div id="admin-suggestions-queue" style="display:flex; flex-direction:column; gap:12px;"></div>
-        </div>
       </div>
     </section>
 
-    <!-- STAFF PANEL (VISIBLE TO STAFF ROLES BELOW ADMIN) -->
+    <!-- STAFF PANEL (VISIBLE TO STAFF & ADMIN) -->
     <section class="section-wrap" id="staff-panel" style="display:none;">
       <div class="section-headline">
         <h2>STAFF <span>CONTROL PANEL</span></h2>
         <p>Operations dashboard for FearSteal staff members.</p>
       </div>
       <div class="fs-card">
-        <h4>Staff Operations Hub</h4>
+        <h4>Staff Operations Notice</h4>
         <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px;">
-          • Log all bans with 60FPS video proof in Discord.<br>
-          • Check tickets and reports regularly.<br>
-          • Escalations route to Founder ItzVeltriex or Co-Founder Notslayer.
+          • Video proof is mandatory for every punishment.<br>
+          • Check your assigned tickets regularly.<br>
+          • Founder ItzVeltriex handles final escalations.
         </p>
       </div>
     </section>
 
-    <!-- FOOTER WITH ANIMATED LOGO -->
+    <!-- FOOTER -->
     <footer style="background:#020102; border-top:1px solid var(--border-crimson); padding:50px 24px 30px; margin-top:80px;">
       <div style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:30px; margin-bottom:40px;">
         <div>
           <div class="nav-brand" style="margin-bottom:12px;">
-            <img src="" class="animated-fs-logo fs-target-logo" alt="Logo" />
+            <img src="" class="fs-official-logo fs-target-logo" alt="Logo" />
             <span>FEARSTEAL</span>
           </div>
           <p style="font-size:0.85rem; color:var(--text-muted);">The premier competitive Minecraft LifeSteal realm. Steal hearts, build power, survive.</p>
@@ -1814,13 +1560,12 @@
   </div>
 
   <!-- ==========================================================================
-       JAVASCRIPT: ENGINE & STATE PIPELINE
+       JAVASCRIPT: ALL ASSETS & LOGIC
        ========================================================================== -->
   <script>
     /* ==========================================================================
-       OFFICIAL FEARSTEAL ASSETS (3D LOGO & 3D BANNER)
+       ASSETS (EXACT REPRODUCTION OF SUPPLIED LOGO AND BANNER)
        ========================================================================== */
-    // 3D Voxel "FS" Logo
     const FEARSTEAL_OFFICIAL_LOGO = `data:image/svg+xml;utf8,${encodeURIComponent(`
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
         <defs>
@@ -1861,7 +1606,6 @@
       </svg>
     `)}`;
 
-    // Official 3D Minecraft "FEARSTEAL NETWORK" Banner
     const FEARSTEAL_OFFICIAL_BANNER = `data:image/svg+xml;utf8,${encodeURIComponent(`
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260" width="100%" height="100%">
         <defs>
@@ -1878,18 +1622,14 @@
         </defs>
         <rect width="1000" height="260" fill="url(#bgGrad)"/>
         <line x1="500" y1="0" x2="500" y2="260" stroke="#ff7700" stroke-width="4" opacity="0.6"/>
-        <!-- Floating Magma Voxel Cubes -->
         <rect x="50" y="70" width="18" height="18" fill="#ff5500" transform="rotate(15 59 79)"/>
         <rect x="920" y="60" width="22" height="22" fill="#ff7700" transform="rotate(-25 931 71)"/>
         <rect x="80" y="180" width="14" height="14" fill="#ff2200"/>
         <rect x="890" y="190" width="16" height="16" fill="#ff8800" transform="rotate(12 898 198)"/>
         <g filter="url(#glowBanner)">
-          <!-- 3D Extrusion Layer -->
           <text x="500" y="138" font-family="'Cinzel', serif" font-weight="900" font-size="108" fill="url(#extrude3D)" text-anchor="middle" letter-spacing="8">FEARSTEAL</text>
-          <!-- Front Voxel Text -->
           <text x="500" y="130" font-family="'Cinzel', serif" font-weight="900" font-size="108" fill="url(#magmaFront)" text-anchor="middle" letter-spacing="8" stroke="#550000" stroke-width="3">FEARSTEAL</text>
         </g>
-        <!-- Pixel Ribbon for "NETWORK" -->
         <g transform="translate(340, 160)">
           <path d="M -30,20 L 0,0 L 350,0 L 380,20 L 350,40 L 0,40 Z" fill="#b32d00"/>
           <rect x="0" y="5" width="350" height="30" fill="#e64a00" stroke="#ff8800" stroke-width="2"/>
@@ -1904,7 +1644,7 @@
     }
 
     /* ==========================================================================
-       CANVAS EMBER PARTICLES
+       CANVAS PARTICLES
        ========================================================================== */
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
@@ -1942,7 +1682,6 @@
         ctx.globalAlpha = 1.0;
       }
     }
-
     for (let i = 0; i < 70; i++) particles.push(new EmberParticle());
 
     function animateParticles() {
@@ -1985,10 +1724,10 @@
         const phrase = loaderPhrases[Math.floor((loadProgress / 100) * loaderPhrases.length)];
         loaderStatus.innerText = `${phrase} ${loadProgress}%`;
       }
-    }, 38);
+    }, 35);
 
     /* ==========================================================================
-       DATA SEEDING & DATABASE STATE
+       DATABASE INITIALIZATION
        ========================================================================== */
     if (!localStorage.getItem('fs_accounts')) {
       const initialUsers = [
@@ -2002,32 +1741,20 @@
 
     if (!localStorage.getItem('fs_novice_claims')) localStorage.setItem('fs_novice_claims', '0');
     if (!localStorage.getItem('fs_claimed_novice_users')) localStorage.setItem('fs_claimed_novice_users', JSON.stringify([]));
-    if (!localStorage.getItem('fs_reviews_data')) {
-      localStorage.setItem('fs_reviews_data', JSON.stringify([
-        { username: 'ItzVeltriex', stars: 10, msg: 'Welcome to Season 1 of FearSteal! Enjoy stealing hearts.', time: '1 day ago' },
-        { username: 'VoidSlayer', stars: 10, msg: 'Ultra crisp PvP hitboxes and smooth latency.', time: '2 days ago' }
-      ]));
-    }
-    if (!localStorage.getItem('fs_suggestions_data')) localStorage.setItem('fs_suggestions_data', JSON.stringify([]));
-    if (!localStorage.getItem('fs_staff_apps_data')) localStorage.setItem('fs_staff_apps_data', JSON.stringify([]));
     if (!localStorage.getItem('fs_tickets_data')) {
       localStorage.setItem('fs_tickets_data', JSON.stringify([
-        { id: 'FS-4821', sender: 'PlayerA', category: 'General Support', priority: 'Normal', msg: 'Need help linking discord to in-game account', status: 'OPEN', replies: ['Staff: Please make sure your IGN is matching in /verify.'] }
+        { id: 'FS-9812', creator: 'ItzVeltriex', category: 'General Support', priority: 'Normal', messages: [{ sender: 'ItzVeltriex', role: 'Founder', text: 'Official support system initiated.', time: '12:00' }] }
+      ]));
+    }
+    if (!localStorage.getItem('fs_staff_apps_data')) localStorage.setItem('fs_staff_apps_data', JSON.stringify([]));
+    if (!localStorage.getItem('fs_notifications_data')) {
+      localStorage.setItem('fs_notifications_data', JSON.stringify([
+        { target: 'all', text: '📢 Welcome to FearSteal Season 1 LifeSteal!' }
       ]));
     }
 
     /* ==========================================================================
-       MOBILE DRAWER CONTROLLER
-       ========================================================================== */
-    function toggleMobileDrawer() {
-      const drawer = document.getElementById('mobile-drawer');
-      const backdrop = document.getElementById('drawer-backdrop');
-      drawer.classList.toggle('open');
-      backdrop.classList.toggle('open');
-    }
-
-    /* ==========================================================================
-       AUTH GATE & ROLE VISIBILITY
+       AUTH VERIFICATION & STRICT GATEWAY
        ========================================================================== */
     function verifyAuthenticationState() {
       const activeSession = JSON.parse(localStorage.getItem('fs_user_session'));
@@ -2037,6 +1764,7 @@
       if (!activeSession) {
         authGate.style.display = 'flex';
         homepage.style.display = 'none';
+        document.getElementById('auth-info-banner').innerText = "Please register or login first than you can visit our website";
       } else {
         authGate.style.display = 'none';
         homepage.style.display = 'block';
@@ -2131,7 +1859,7 @@
       if ((id === 'itzveltriex' || id === 'fearstealsupport@gmail.com') && pass === 'thakuree@2064') {
         const adminObj = { username: 'ItzVeltriex', email: 'fearstealsupport@gmail.com', role: 'admin', hearts: 20 };
         localStorage.setItem('fs_user_session', JSON.stringify(adminObj));
-        showToast('✓ Welcome Founder ItzVeltriex! Admin Panel unlocked.');
+        showToast('✓ Welcome Founder ItzVeltriex! Admin & Staff Access Unlocked.');
         verifyAuthenticationState();
         return;
       }
@@ -2151,10 +1879,11 @@
     }
 
     function showForgotPasswordPrompt() {
-      const email = prompt("Enter your email address to receive a password reset link:");
-      if (email) showToast(`Reset link dispatched to ${email} (simulated).`);
+      const email = prompt("Enter your registered email address:");
+      if (email) showToast(`Reset instructions sent to ${email} (simulated).`);
     }
 
+    // Immediate Logout & Kick to Login
     function executeLogout() {
       localStorage.removeItem('fs_user_session');
       showToast('✓ YOU HAVE BEEN LOGGED OUT');
@@ -2174,7 +1903,7 @@
       const drawerAdmin = document.getElementById('drawer-item-admin');
       const drawerStaff = document.getElementById('drawer-item-staff');
 
-      // Admin Panel visible ONLY to Founder/Admin role (ItzVeltriex)
+      // Admin role (Founder) automatically gets BOTH Admin and Staff Panel access
       if (user.role === 'admin' || user.username.toLowerCase() === 'itzveltriex') {
         adminNav.style.display = 'block';
         staffNav.style.display = 'block';
@@ -2197,7 +1926,7 @@
     }
 
     /* ==========================================================================
-       REAL SERVER STATUS (play.fearsteal.fun:19132)
+       REAL-TIME MINECRAFT SERVER STATUS (play.fearsteal.fun:19132)
        ========================================================================== */
     async function queryLiveMinecraftStatus(manual = false) {
       const pulse = document.getElementById('live-pulse-dot');
@@ -2254,158 +1983,366 @@
     setInterval(() => queryLiveMinecraftStatus(false), 60000);
 
     /* ==========================================================================
-       SUPPORT TICKETS SYSTEM (/support)
+       PRIVATE SUPPORT TICKET ENGINE (EXCLUSIVE FOR TICKET CREATOR & STAFF)
        ========================================================================== */
     function handleCreateTicket(e) {
       e.preventDefault();
       const user = JSON.parse(localStorage.getItem('fs_user_session'));
       if (!user) return;
 
-      const category = document.getElementById('ticket-cat-select').value;
-      const priority = document.getElementById('ticket-prio-select').value;
-      const msg = document.getElementById('ticket-msg-input').value.trim();
-      const attachment = document.getElementById('ticket-attach-input').value.trim();
+      const cat = document.getElementById('user-ticket-cat').value;
+      const prio = document.getElementById('user-ticket-prio').value;
+      const text = document.getElementById('user-ticket-msg').value.trim();
       const tickets = JSON.parse(localStorage.getItem('fs_tickets_data') || '[]');
 
+      const newId = 'FS-' + Math.floor(1000 + Math.random() * 9000);
       const newTicket = {
-        id: 'FS-' + Math.floor(1000 + Math.random() * 9000),
-        sender: user.username,
-        category,
-        priority,
-        msg,
-        attachment,
+        id: newId,
+        creator: user.username,
+        category: cat,
+        priority: prio,
         status: 'OPEN',
-        replies: []
+        messages: [{
+          sender: user.username,
+          role: user.role,
+          text: text,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        }]
       };
 
       tickets.unshift(newTicket);
       localStorage.setItem('fs_tickets_data', JSON.stringify(tickets));
-      document.getElementById('ticket-msg-input').value = '';
-      document.getElementById('ticket-attach-input').value = '';
-      showToast(`✓ Ticket ${newTicket.id} opened successfully!`);
-      renderTicketsFeed();
+      document.getElementById('user-ticket-msg').value = '';
+      showToast(`✓ Ticket ${newId} created! Private discussion unlocked.`);
+      renderUserPrivateTickets();
+      if (user.role === 'admin') renderAdminTickets();
     }
 
-    function renderTicketsFeed() {
+    function renderUserPrivateTickets() {
+      const user = JSON.parse(localStorage.getItem('fs_user_session'));
+      if (!user) return;
       const tickets = JSON.parse(localStorage.getItem('fs_tickets_data') || '[]');
-      const container = document.getElementById('ticket-feed-container');
-      container.innerHTML = tickets.map((t, idx) => `
-        <div class="ticket-card-entry">
-          <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px;">
-            <strong>${t.id} &bull; ${t.category} (${t.priority})</strong>
+      const container = document.getElementById('user-private-tickets-list');
+
+      // Filter: regular players ONLY see their own tickets!
+      const myTickets = tickets.filter(t => t.creator.toLowerCase() === user.username.toLowerCase());
+
+      if (myTickets.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">No active private tickets for your account.</p>';
+        return;
+      }
+
+      container.innerHTML = myTickets.map((t) => `
+        <div style="background:rgba(0,0,0,0.5); border:1px solid var(--border-crimson); border-radius:var(--radius-sm); padding:12px; margin-bottom:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <strong>${t.id} - ${t.category} (${t.priority})</strong>
             <span class="role-tag" style="background:${t.status === 'OPEN' ? 'var(--status-online)' : '#444'}; color:#fff;">${t.status}</span>
           </div>
-          <p style="font-size:0.85rem; color:#eee; margin:4px 0;">"${t.msg}"</p>
-          ${t.attachment ? `<div style="font-size:0.75rem; color:var(--crimson-glow);"><i class="fa-solid fa-paperclip"></i> Evidence: ${t.attachment}</div>` : ''}
-          <div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px;">By: ${t.sender} &bull; Assigned Staff: RaviXD</div>
-          <div style="margin-top:8px; display:flex; gap:6px;">
-            <button class="btn-fs btn-fs-secondary" style="padding:2px 8px; font-size:0.7rem;" onclick="replyTicketPrompt(${idx})">Reply</button>
-            <button class="btn-fs btn-fs-secondary" style="padding:2px 8px; font-size:0.7rem;" onclick="toggleTicketStatus(${idx})">${t.status === 'OPEN' ? 'Close' : 'Reopen'}</button>
+          <div style="display:flex; flex-direction:column; gap:6px; margin:8px 0;">
+            ${t.messages.map(m => `
+              <div class="chat-bubble ${m.sender === user.username ? 'creator' : 'staff'}">
+                <strong>${m.sender}:</strong> ${m.text} <span style="font-size:0.65rem; color:#aaa; margin-left:6px;">${m.time}</span>
+              </div>
+            `).join('')}
           </div>
-          ${t.replies && t.replies.length ? `<div style="margin-top:6px; font-size:0.75rem; color:#a5b4fc; background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px;">${t.replies.join('<br>')}</div>` : ''}
+          <div style="display:flex; gap:8px; margin-top:8px;">
+            <input type="text" id="user-reply-input-${t.id}" placeholder="Reply to staff..." style="flex:1; background:#000; color:#fff; border:1px solid var(--border-crimson); padding:6px 10px; border-radius:4px; font-size:0.8rem;" />
+            <button class="btn-fs btn-fs-primary" style="padding:6px 12px; font-size:0.75rem;" onclick="handleUserReply('${t.id}')">SEND</button>
+          </div>
         </div>
       `).join('');
     }
 
-    function replyTicketPrompt(idx) {
-      const rep = prompt("Enter your reply message:");
-      if (!rep) return;
-      const tickets = JSON.parse(localStorage.getItem('fs_tickets_data') || '[]');
+    function handleUserReply(ticketId) {
       const user = JSON.parse(localStorage.getItem('fs_user_session'));
-      tickets[idx].replies = tickets[idx].replies || [];
-      tickets[idx].replies.push(`${user.username}: ${rep}`);
-      localStorage.setItem('fs_tickets_data', JSON.stringify(tickets));
-      showToast('Reply appended to ticket thread.');
-      renderTicketsFeed();
-    }
+      const input = document.getElementById(`user-reply-input-${ticketId}`);
+      const val = input.value.trim();
+      if (!val) return;
 
-    function toggleTicketStatus(idx) {
       const tickets = JSON.parse(localStorage.getItem('fs_tickets_data') || '[]');
-      tickets[idx].status = tickets[idx].status === 'OPEN' ? 'CLOSED' : 'OPEN';
-      localStorage.setItem('fs_tickets_data', JSON.stringify(tickets));
-      showToast(`Ticket status changed to ${tickets[idx].status}`);
-      renderTicketsFeed();
-    }
-
-    function downloadTicketTranscript() {
-      const tickets = JSON.parse(localStorage.getItem('fs_tickets_data') || '[]');
-      const blob = new Blob([JSON.stringify(tickets, null, 2)], { type: 'text/plain' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'fearsteal-ticket-transcript.txt';
-      a.click();
-      showToast('Transcript exported successfully.');
-    }
-
-    /* ==========================================================================
-       PLAYER REPORT & BAN APPEAL
-       ========================================================================== */
-    function handlePlayerReport(e) {
-      e.preventDefault();
-      const user = JSON.parse(localStorage.getItem('fs_user_session'));
-      const target = document.getElementById('rep-target-ign').value.trim();
-      const reason = document.getElementById('rep-reason-select').value;
-      const proof = document.getElementById('rep-evidence-url').value.trim();
-
-      showToast(`✓ Player Report for ${target} logged. Staff will review evidence.`);
-      e.target.reset();
-    }
-
-    function handleBanAppeal(e) {
-      e.preventDefault();
-      const ign = document.getElementById('appeal-ign').value.trim();
-      const reason = document.getElementById('appeal-reason').value.trim();
-
-      document.getElementById('appeal-status-box').innerHTML = `
-        <span class="role-tag" style="background:#f59e0b; color:#000;">PENDING REVIEW</span>
-        Appeal for <strong>${ign}</strong> (Reason: ${reason}) is queued in the Staff System.
-      `;
-      showToast('✓ Ban Appeal submitted successfully! Status: PENDING.');
-      e.target.reset();
-    }
-
-    /* ==========================================================================
-       NEWS & ANNOUNCEMENTS WITH REACTIONS & SHARE
-       ========================================================================== */
-    const NEWS_DATABASE = [
-      { id: 1, title: 'Season 1 Blood Moon Commences', category: 'Season Updates', date: 'Jan 15, 2025', desc: 'Heart steal rates doubled during nighttime cycles. Experience true LifeSteal anarchy.', reactions: { heart: 28, fire: 45, sword: 31 } },
-      { id: 2, title: 'New Duels Arena & Hit Reg Overhaul', category: 'Patch Notes', date: 'Jan 12, 2025', desc: 'Zero ping delays and crisp hitboxes added to /warp duels. Compete in 1v1 ladder.', reactions: { heart: 14, fire: 39, sword: 22 } },
-      { id: 3, title: 'Official CryzorMC Store Opening', category: 'Server Updates', date: 'Jan 10, 2025', desc: 'Unlock exclusive ranks, bundles, and cosmetic trails safely through CryzorMC.', reactions: { heart: 19, fire: 24, sword: 18 } }
-    ];
-
-    function renderNewsCards() {
-      const container = document.getElementById('news-cards-container');
-      container.innerHTML = NEWS_DATABASE.map(n => `
-        <div class="fs-card">
-          <span class="role-tag" style="background:var(--crimson-deep); color:#fff;">${n.category}</span>
-          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin:8px 0;">${n.title}</h4>
-          <p style="font-size:0.85rem; color:var(--text-muted);">${n.desc}</p>
-          <div class="reaction-bar">
-            <button class="reaction-btn" onclick="reactNews(${n.id}, 'heart')">❤️ ${n.reactions.heart}</button>
-            <button class="reaction-btn" onclick="reactNews(${n.id}, 'fire')">🔥 ${n.reactions.fire}</button>
-            <button class="reaction-btn" onclick="reactNews(${n.id}, 'sword')">⚔️ ${n.reactions.sword}</button>
-            <button class="reaction-btn" onclick="shareNews('${n.title}')"><i class="fa-solid fa-share-nodes"></i> Share</button>
-          </div>
-          <div style="font-size:0.75rem; color:var(--text-dark); margin-top:10px;">${n.date} &bull; Author by ItzVeltriex and Notslayer</div>
-        </div>
-      `).join('');
-    }
-
-    function reactNews(id, type) {
-      const post = NEWS_DATABASE.find(p => p.id === id);
-      if (post) {
-        post.reactions[type]++;
-        renderNewsCards();
-        showToast('Reaction recorded!');
+      const ticket = tickets.find(t => t.id === ticketId);
+      if (ticket) {
+        ticket.messages.push({
+          sender: user.username,
+          role: user.role,
+          text: val,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        });
+        localStorage.setItem('fs_tickets_data', JSON.stringify(tickets));
+        renderUserPrivateTickets();
+        if (user.role === 'admin') renderAdminTickets();
+        showToast('Message sent to ticket thread.');
       }
     }
 
-    function shareNews(title) {
-      copyAddress(window.location.href, `Link for "${title}"`);
+    /* ==========================================================================
+       ADMIN "TICKET VIEW" & APPLICATION ACTIONS WITH PERSONAL NOTIFICATIONS
+       ========================================================================== */
+    function renderAdminTickets() {
+      const tickets = JSON.parse(localStorage.getItem('fs_tickets_data') || '[]');
+      const box = document.getElementById('admin-all-tickets-feed');
+
+      if (tickets.length === 0) {
+        box.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">No tickets available in Ticket View.</p>';
+        return;
+      }
+
+      box.innerHTML = tickets.map((t) => `
+        <div style="background:rgba(0,0,0,0.6); border:1px solid var(--border-crimson); padding:14px; border-radius:var(--radius-sm);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <strong>${t.id} &bull; Creator: ${t.creator} &bull; ${t.category}</strong>
+            <span class="role-tag" style="background:${t.status === 'OPEN' ? 'var(--status-online)' : '#444'}; color:#fff;">${t.status}</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px; margin:10px 0;">
+            ${t.messages.map(m => `
+              <div class="chat-bubble ${m.sender === t.creator ? 'creator' : 'staff'}">
+                <strong>${m.sender}:</strong> ${m.text} <span style="font-size:0.65rem; color:#aaa; margin-left:6px;">${m.time}</span>
+              </div>
+            `).join('')}
+          </div>
+          <div style="display:flex; gap:8px; margin-top:8px;">
+            <input type="text" id="admin-reply-input-${t.id}" placeholder="Type staff answer to ${t.creator}..." style="flex:1; background:#000; color:#fff; border:1px solid var(--border-crimson); padding:6px 10px; border-radius:4px; font-size:0.8rem;" />
+            <button class="btn-fs btn-fs-primary" style="padding:6px 12px; font-size:0.75rem;" onclick="handleAdminReplyTicket('${t.id}', '${t.creator}')">REPLY</button>
+            <button class="btn-fs btn-fs-secondary" style="padding:6px 10px; font-size:0.75rem;" onclick="toggleAdminTicketClose('${t.id}')">${t.status === 'OPEN' ? 'Close' : 'Reopen'}</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function handleAdminReplyTicket(ticketId, creatorName) {
+      const input = document.getElementById(`admin-reply-input-${ticketId}`);
+      const text = input.value.trim();
+      if (!text) return;
+
+      const tickets = JSON.parse(localStorage.getItem('fs_tickets_data') || '[]');
+      const ticket = tickets.find(t => t.id === ticketId);
+      if (ticket) {
+        ticket.messages.push({
+          sender: 'Founder ItzVeltriex',
+          role: 'admin',
+          text: text,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        });
+        localStorage.setItem('fs_tickets_data', JSON.stringify(tickets));
+
+        // Push targeted notification specifically for the ticket creator
+        pushTargetedNotification(creatorName, `🎟️ Staff replied to your Ticket #${ticketId}: "${text}"`);
+
+        renderAdminTickets();
+        renderUserPrivateTickets();
+        showToast(`Reply sent to ${creatorName}! Notification generated.`);
+      }
+    }
+
+    function toggleAdminTicketClose(ticketId) {
+      const tickets = JSON.parse(localStorage.getItem('fs_tickets_data') || '[]');
+      const ticket = tickets.find(t => t.id === ticketId);
+      if (ticket) {
+        ticket.status = ticket.status === 'OPEN' ? 'CLOSED' : 'OPEN';
+        localStorage.setItem('fs_tickets_data', JSON.stringify(tickets));
+        pushTargetedNotification(ticket.creator, `🎟️ Your Ticket #${ticketId} status was set to ${ticket.status}.`);
+        renderAdminTickets();
+        renderUserPrivateTickets();
+      }
     }
 
     /* ==========================================================================
-       STAFF ROSTER WITH MC HEADS
+       STAFF APPLICATION SUBMISSION & 4-WAY ADMIN REVIEW
+       ========================================================================== */
+    function handleStaffAppSubmit(e) {
+      e.preventDefault();
+      const user = JSON.parse(localStorage.getItem('fs_user_session'));
+      if (!user) return;
+
+      const appData = {
+        id: 'APP-' + Math.floor(100 + Math.random() * 900),
+        applicant: user.username,
+        role: document.getElementById('sq3').value,
+        details: `${document.getElementById('sq1').value} | Age/TZ: ${document.getElementById('sq2').value} | Hours: ${document.getElementById('sq4').value}`,
+        why: document.getElementById('sq11').value,
+        status: 'PENDING',
+        time: new Date().toLocaleDateString()
+      };
+
+      const apps = JSON.parse(localStorage.getItem('fs_staff_apps_data') || '[]');
+      apps.push(appData);
+      localStorage.setItem('fs_staff_apps_data', JSON.stringify(apps));
+
+      showToast('✓ Staff Application submitted to Admin Panel queue!');
+      e.target.reset();
+      if (user.role === 'admin') renderAdminStaffApps();
+    }
+
+    function renderAdminStaffApps() {
+      const apps = JSON.parse(localStorage.getItem('fs_staff_apps_data') || '[]');
+      const box = document.getElementById('admin-staff-apps-feed');
+
+      if (apps.length === 0) {
+        box.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">No staff applications in queue.</p>';
+        return;
+      }
+
+      box.innerHTML = apps.map((app, idx) => `
+        <div style="background:rgba(0,0,0,0.5); padding:14px; border-radius:var(--radius-sm); border:1px solid var(--border-crimson);">
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <strong>${app.applicant} — Applying for ${app.role}</strong>
+            <span class="role-tag" style="background:#444;">${app.status}</span>
+          </div>
+          <p style="font-size:0.8rem; color:#ccc;">${app.details}<br><strong>Why:</strong> "${app.why}"</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">
+            <button class="btn-action-pill btn-act-accept" onclick="actionStaffApp(${idx}, 'Accept')">Accept ✅</button>
+            <button class="btn-action-pill btn-act-reject" onclick="actionStaffApp(${idx}, 'Reject')">Reject ❌</button>
+            <button class="btn-action-pill btn-act-accept-reason" onclick="actionStaffApp(${idx}, 'AcceptReason')">Accept with reason ✔️</button>
+            <button class="btn-action-pill btn-act-reject-reason" onclick="actionStaffApp(${idx}, 'RejectReason')">Reject with reason ❌</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function actionStaffApp(index, actionType) {
+      const apps = JSON.parse(localStorage.getItem('fs_staff_apps_data') || '[]');
+      const app = apps[index];
+      let reason = "";
+
+      if (actionType === 'Accept') {
+        app.status = 'ACCEPTED';
+        pushTargetedNotification(app.applicant, `🎉 Congratulations! Your Staff Application for ${app.role} has been ACCEPTED ✅`);
+      } else if (actionType === 'Reject') {
+        app.status = 'REJECTED';
+        pushTargetedNotification(app.applicant, `❌ Your Staff Application for ${app.role} has been REJECTED.`);
+      } else if (actionType === 'AcceptReason') {
+        reason = prompt(`Enter acceptance reason/instructions for ${app.applicant}:`);
+        if (reason === null) return;
+        app.status = 'ACCEPTED';
+        pushTargetedNotification(app.applicant, `🎉 Your Staff Application for ${app.role} was ACCEPTED ✔️ Reason: "${reason}"`);
+      } else if (actionType === 'RejectReason') {
+        reason = prompt(`Enter rejection feedback for ${app.applicant}:`);
+        if (reason === null) return;
+        app.status = 'REJECTED';
+        pushTargetedNotification(app.applicant, `❌ Your Staff Application for ${app.role} was REJECTED. Reason: "${reason}"`);
+      }
+
+      localStorage.setItem('fs_staff_apps_data', JSON.stringify(apps));
+      showToast(`Application decision executed! Personal notification sent to ${app.applicant}.`);
+      renderAdminStaffApps();
+    }
+
+    /* ==========================================================================
+       TARGETED PERSONAL NOTIFICATION PIPELINE
+       ========================================================================== */
+    function pushTargetedNotification(targetUsername, text) {
+      const notifs = JSON.parse(localStorage.getItem('fs_notifications_data') || '[]');
+      notifs.unshift({ target: targetUsername.toLowerCase(), text: text });
+      localStorage.setItem('fs_notifications_data', JSON.stringify(notifs));
+      updateNotificationBell();
+    }
+
+    function updateNotificationBell() {
+      const user = JSON.parse(localStorage.getItem('fs_user_session'));
+      if (!user) return;
+
+      const notifs = JSON.parse(localStorage.getItem('fs_notifications_data') || '[]');
+      // Filter: notifications meant for this specific user OR broadcasted to all
+      const myNotifs = notifs.filter(n => n.target === 'all' || n.target === user.username.toLowerCase());
+
+      document.getElementById('notif-count').innerText = myNotifs.length;
+      const listEl = document.getElementById('notif-items-body');
+
+      if (myNotifs.length === 0) {
+        listEl.innerHTML = '<div style="font-size:0.8rem; color:#666; text-align:center;">No notifications.</div>';
+        return;
+      }
+
+      listEl.innerHTML = myNotifs.map(n => `
+        <div class="notif-item ${n.target !== 'all' ? 'targeted' : ''}">
+          ${n.text}
+        </div>
+      `).join('');
+    }
+
+    function clearMyNotifications() {
+      const user = JSON.parse(localStorage.getItem('fs_user_session'));
+      if (!user) return;
+      let notifs = JSON.parse(localStorage.getItem('fs_notifications_data') || '[]');
+      notifs = notifs.filter(n => n.target !== user.username.toLowerCase());
+      localStorage.setItem('fs_notifications_data', JSON.stringify(notifs));
+      updateNotificationBell();
+    }
+
+    /* ==========================================================================
+       ADMIN PANEL TAB SWITCHING & USER MANAGEMENT
+       ========================================================================== */
+    function switchAdminSubTab(tab) {
+      document.getElementById('adm-tab-ticket-view').style.display = tab === 'ticket-view' ? 'block' : 'none';
+      document.getElementById('adm-tab-staff-apps').style.display = tab === 'staff-apps' ? 'block' : 'none';
+      document.getElementById('adm-tab-users').style.display = tab === 'users' ? 'block' : 'none';
+      document.getElementById('adm-tab-broadcast').style.display = tab === 'broadcast' ? 'block' : 'none';
+
+      if (tab === 'ticket-view') renderAdminTickets();
+      if (tab === 'staff-apps') renderAdminStaffApps();
+      if (tab === 'users') renderAdminUsersTable();
+    }
+
+    function renderAdminUsersTable() {
+      const db = JSON.parse(localStorage.getItem('fs_accounts') || '[]');
+      const tbody = document.getElementById('admin-users-table');
+      tbody.innerHTML = db.map((u, idx) => `
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+          <td style="padding:10px;"><strong>${u.username}</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">${u.email}</span></td>
+          <td><code>${u.pass}</code></td>
+          <td><span class="role-tag role-${u.role}">${u.role.toUpperCase()}</span></td>
+          <td>
+            <select onchange="changeUserRole(${idx}, this.value)" style="background:#000; color:#fff; border:1px solid var(--border-crimson); padding:4px 8px; font-size:0.8rem; border-radius:4px;">
+              <option value="user" ${u.role === 'user' ? 'selected' : ''}>User Role</option>
+              <option value="staff" ${u.role === 'staff' ? 'selected' : ''}>Staff Role (Staff Panel)</option>
+              <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Admin Role (Full Access)</option>
+            </select>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function changeUserRole(idx, newRole) {
+      const db = JSON.parse(localStorage.getItem('fs_accounts') || '[]');
+      db[idx].role = newRole;
+      localStorage.setItem('fs_accounts', JSON.stringify(db));
+      showToast(`Role updated for ${db[idx].username} to ${newRole.toUpperCase()}`);
+    }
+
+    function handleBroadcastAnnouncement(e) {
+      e.preventDefault();
+      const text = document.getElementById('broadcast-input').value.trim();
+      const ann = { text, time: Date.now() };
+      localStorage.setItem('fs_broadcast_announcement', JSON.stringify(ann));
+      document.getElementById('broadcast-input').value = '';
+      showToast('✓ Announcement broadcasted for 24h!');
+      checkActiveBroadcast();
+    }
+
+    function checkActiveBroadcast() {
+      const raw = localStorage.getItem('fs_broadcast_announcement');
+      const bar = document.getElementById('top-broadcast-bar');
+      if (!raw) {
+        bar.style.display = 'none';
+        return;
+      }
+      const data = JSON.parse(raw);
+      const elapsed = Date.now() - data.time;
+      const twentyFourHours = 24 * 60 * 60 * 1000;
+
+      if (elapsed > twentyFourHours) {
+        localStorage.removeItem('fs_broadcast_announcement');
+        bar.style.display = 'none';
+      } else {
+        bar.style.display = 'flex';
+        document.getElementById('broadcast-msg-text').innerText = `📢 ${data.text}`;
+        const mins = Math.floor(elapsed / (1000 * 60));
+        document.getElementById('broadcast-time-ago').innerText = `${mins}m ago`;
+      }
+    }
+
+    /* ==========================================================================
+       STAFF ROSTER RENDERING
        ========================================================================== */
     const STAFF_ROSTER = [
       { name: 'ItzVeltriex', role: 'FOUNDER', badgeClass: 'role-founder', desc: 'Network Founder & Lead Architecture.', discord: 'https://discord.gg/pGM5x3gXpX' },
@@ -2435,7 +2372,7 @@
     }
 
     /* ==========================================================================
-       LEADERBOARDS & HEARTS SIMULATOR
+       LEADERBOARDS & HEARTS
        ========================================================================== */
     const MOCK_LEADERS = [
       { rank: '#1', name: 'ItzVeltriex', hearts: 20, kills: 310, deaths: 8, kd: '38.7' },
@@ -2461,11 +2398,6 @@
       `).join('');
     }
 
-    setInterval(() => {
-      renderLeaderboard();
-      showToast('Leaderboards synced with realm logs (10m).');
-    }, 600000);
-
     function updateHeartsUI(h) {
       document.getElementById('user-hearts-count').innerText = `${h} / 20`;
       const icons = document.getElementById('user-hearts-icons');
@@ -2482,17 +2414,17 @@
 
       if (action === 'steal' && u.hearts < 20) {
         u.hearts++;
-        showToast(`⚔️ Eliminated an enemy! Stole 1 Heart (Total: ${u.hearts})`);
+        showToast(`⚔️ Stole 1 Heart! (Total: ${u.hearts})`);
       } else if (action === 'lose' && u.hearts > 1) {
         u.hearts--;
-        showToast(`💀 Slain in combat! Lost 1 Heart (Total: ${u.hearts})`);
+        showToast(`💀 Slain! Lost 1 Heart. (Total: ${u.hearts})`);
       }
       localStorage.setItem('fs_user_session', JSON.stringify(u));
       updateHeartsUI(u.hearts);
     }
 
     /* ==========================================================================
-       NOVICE FREE RANK & CRATE SIMULATOR
+       NOVICE RANK & CRATE SIMULATOR
        ========================================================================== */
     function processNoviceClaim() {
       const user = JSON.parse(localStorage.getItem('fs_user_session'));
@@ -2511,11 +2443,9 @@
         return;
       }
 
-      const discordIgn = prompt(
-        "Please join our Discord server first than you can claim a free ranks which name is your Discord ign than put your Discord ign in here!"
-      );
+      const discordIgn = prompt("Please join our Discord server first than you can claim a free ranks which name is your Discord ign than put your Discord ign in here!");
       if (!discordIgn || discordIgn.trim().length === 0) {
-        showToast('Verification cancelled. Discord verification required.');
+        showToast('Verification cancelled.');
         return;
       }
 
@@ -2549,18 +2479,17 @@
 
       const lastClaim = localStorage.getItem(`fs_crate_time_${user.username}`);
       const now = Date.now();
-      const twentyFourHours = 24 * 60 * 60 * 1000;
 
-      if (lastClaim && (now - parseInt(lastClaim, 10) < twentyFourHours)) {
+      if (lastClaim && (now - parseInt(lastClaim, 10) < 24 * 60 * 60 * 1000)) {
         alert("You have already claimed this mysterious rewards you can claim again wait for 24h if you claim your rewards please take the screenshot and ping server owner in chat send proof and claim your rewards!");
         return;
       }
 
       const prizePool = [
-        '500 Server Coins & 1x Revive Beacon Fragment',
-        '1x LifeSteal Extra Heart Slot Token',
-        '2x Epic Crate Keys for /warp crates',
-        'Exclusive [Predator] In-game Title'
+        '500 Coins & 1x Revive Beacon Fragment',
+        '1x LifeSteal Extra Heart Slot',
+        '2x Epic Crate Keys',
+        '[Predator] In-game Title'
       ];
       const win = prizePool[Math.floor(Math.random() * prizePool.length)];
 
@@ -2588,204 +2517,6 @@
     }
 
     /* ==========================================================================
-       REVIEWS & ADMIN CONTROLS
-       ========================================================================== */
-    let selectedStars = 10;
-    function initStarSelector() {
-      const row = document.getElementById('star-row-container');
-      row.innerHTML = '';
-      for (let i = 1; i <= 10; i++) {
-        row.innerHTML += `<i class="fa-solid fa-star active" data-val="${i}" onclick="selectReviewStars(${i})"></i>`;
-      }
-    }
-
-    function selectReviewStars(val) {
-      selectedStars = val;
-      document.getElementById('star-score-num').innerText = val;
-      const stars = document.querySelectorAll('#star-row-container i');
-      stars.forEach((s, idx) => {
-        if (idx < val) s.className = 'fa-solid fa-star active';
-        else s.className = 'fa-regular fa-star';
-      });
-    }
-
-    function handleReviewSubmit(e) {
-      e.preventDefault();
-      const user = JSON.parse(localStorage.getItem('fs_user_session'));
-      if (!user) return;
-      const msg = document.getElementById('review-msg-input').value.trim();
-      const revs = JSON.parse(localStorage.getItem('fs_reviews_data') || '[]');
-
-      revs.unshift({ username: user.username, stars: selectedStars, msg, time: 'Just now' });
-      localStorage.setItem('fs_reviews_data', JSON.stringify(revs));
-      document.getElementById('review-msg-input').value = '';
-      showToast('✓ Review submitted successfully!');
-      renderReviewsList();
-    }
-
-    function renderReviewsList() {
-      const revs = JSON.parse(localStorage.getItem('fs_reviews_data') || '[]');
-      const container = document.getElementById('reviews-feed-list');
-      container.innerHTML = revs.map(r => `
-        <div style="background:rgba(0,0,0,0.4); border:1px solid var(--border-crimson); padding:12px; border-radius:var(--radius-sm);">
-          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-            <div style="display:flex; align-items:center; gap:6px;">
-              <img src="https://mc-heads.net/avatar/${encodeURIComponent(r.username)}/20" style="border-radius:3px;" />
-              <strong>${r.username}</strong>
-            </div>
-            <span style="color:var(--gold-accent); font-weight:700;">★ ${r.stars}/10</span>
-          </div>
-          <p style="font-size:0.85rem; color:#ddd;">"${r.msg}"</p>
-          <div style="font-size:0.7rem; color:var(--text-muted); text-align:right; margin-top:4px;">${r.time}</div>
-        </div>
-      `).join('');
-    }
-
-    function renderMembersDirectory() {
-      const db = JSON.parse(localStorage.getItem('fs_accounts') || '[]');
-      const tbody = document.getElementById('registered-members-tbody');
-      tbody.innerHTML = db.map((u, i) => `
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-          <td style="padding:10px;"><strong>#${i + 1}</strong></td>
-          <td><img src="https://mc-heads.net/avatar/${encodeURIComponent(u.username)}/26" style="border-radius:4px;" /></td>
-          <td><strong>${u.username}</strong></td>
-          <td><span class="role-tag role-${u.role}">${u.role.toUpperCase()}</span></td>
-          <td>${u.hearts || 10} ❤️</td>
-          <td>${u.registeredAt || '2025-01-10'}</td>
-        </tr>
-      `).join('');
-    }
-
-    function switchAdminSubTab(tab) {
-      document.getElementById('adm-tab-users').style.display = tab === 'users' ? 'block' : 'none';
-      document.getElementById('adm-tab-broadcast').style.display = tab === 'broadcast' ? 'block' : 'none';
-      document.getElementById('adm-tab-apps').style.display = tab === 'apps' ? 'block' : 'none';
-      document.getElementById('adm-tab-suggestions').style.display = tab === 'suggestions' ? 'block' : 'none';
-
-      if (tab === 'users') renderAdminUsersTable();
-      if (tab === 'apps') renderAdminAppsQueue();
-      if (tab === 'suggestions') renderAdminSuggestionsQueue();
-    }
-
-    function renderAdminUsersTable() {
-      const db = JSON.parse(localStorage.getItem('fs_accounts') || '[]');
-      const tbody = document.getElementById('admin-users-table');
-      tbody.innerHTML = db.map((u, idx) => `
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-          <td style="padding:10px;"><strong>${u.username}</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">${u.email}</span></td>
-          <td><code>${u.pass}</code></td>
-          <td><span class="role-tag role-${u.role}">${u.role.toUpperCase()}</span></td>
-          <td>
-            <select onchange="changeUserRole(${idx}, this.value)" style="background:#000; color:#fff; border:1px solid var(--border-crimson); padding:4px 8px; font-size:0.8rem; border-radius:4px;">
-              <option value="user" ${u.role === 'user' ? 'selected' : ''}>User Role</option>
-              <option value="staff" ${u.role === 'staff' ? 'selected' : ''}>Staff Role (Staff Panel)</option>
-              <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Admin Role (Full Access)</option>
-            </select>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    function changeUserRole(idx, newRole) {
-      const db = JSON.parse(localStorage.getItem('fs_accounts') || '[]');
-      db[idx].role = newRole;
-      localStorage.setItem('fs_accounts', JSON.stringify(db));
-      showToast(`Role updated for ${db[idx].username} to ${newRole.toUpperCase()}`);
-      renderMembersDirectory();
-    }
-
-    function handleBroadcastAnnouncement(e) {
-      e.preventDefault();
-      const text = document.getElementById('broadcast-input').value.trim();
-      const ann = { text, time: Date.now() };
-      localStorage.setItem('fs_broadcast_announcement', JSON.stringify(ann));
-      document.getElementById('broadcast-input').value = '';
-      showToast('✓ Announcement broadcasted for 24h!');
-      checkActiveBroadcast();
-    }
-
-    function checkActiveBroadcast() {
-      const raw = localStorage.getItem('fs_broadcast_announcement');
-      const bar = document.getElementById('top-broadcast-bar');
-      if (!raw) {
-        bar.style.display = 'none';
-        return;
-      }
-      const data = JSON.parse(raw);
-      const elapsed = Date.now() - data.time;
-      if (elapsed > 24 * 60 * 60 * 1000) {
-        localStorage.removeItem('fs_broadcast_announcement');
-        bar.style.display = 'none';
-      } else {
-        bar.style.display = 'flex';
-        document.getElementById('broadcast-msg-text').innerText = `📢 ${data.text}`;
-        const mins = Math.floor(elapsed / (1000 * 60));
-        document.getElementById('broadcast-time-ago').innerText = `${mins}m ago`;
-      }
-    }
-
-    function handleSuggestionSubmit(e) {
-      e.preventDefault();
-      const user = JSON.parse(localStorage.getItem('fs_user_session'));
-      const cat = document.getElementById('sugg-category').value;
-      const text = document.getElementById('sugg-text').value.trim();
-      const suggs = JSON.parse(localStorage.getItem('fs_suggestions_data') || '[]');
-
-      suggs.push({ sender: user.username, category: cat, text, time: new Date().toLocaleString() });
-      localStorage.setItem('fs_suggestions_data', JSON.stringify(suggs));
-      document.getElementById('sugg-text').value = '';
-      showToast('✓ Suggestion forwarded to Founder Admin Panel.');
-    }
-
-    function handleStaffAppSubmit(e) {
-      e.preventDefault();
-      const user = JSON.parse(localStorage.getItem('fs_user_session'));
-      const app = {
-        applicant: user.username,
-        role: document.getElementById('sq3').value,
-        details: document.getElementById('sq1').value + ' | ' + document.getElementById('sq2').value,
-        why: document.getElementById('sq11').value,
-        status: 'PENDING',
-        time: new Date().toLocaleString()
-      };
-      const apps = JSON.parse(localStorage.getItem('fs_staff_apps_data') || '[]');
-      apps.push(app);
-      localStorage.setItem('fs_staff_apps_data', JSON.stringify(apps));
-      showToast('✓ Staff Application submitted to Admin Panel queue!');
-      e.target.reset();
-    }
-
-    function renderAdminAppsQueue() {
-      const apps = JSON.parse(localStorage.getItem('fs_staff_apps_data') || '[]');
-      const box = document.getElementById('admin-apps-queue');
-      if (!apps.length) {
-        box.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">No staff applications pending.</p>';
-        return;
-      }
-      box.innerHTML = apps.map((a, i) => `
-        <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:4px; border:1px solid var(--border-crimson);">
-          <strong>${a.applicant} (${a.role})</strong> - <span>${a.status}</span>
-          <p style="font-size:0.8rem; color:#ccc;">${a.details}<br>"${a.why}"</p>
-        </div>
-      `).join('');
-    }
-
-    function renderAdminSuggestionsQueue() {
-      const suggs = JSON.parse(localStorage.getItem('fs_suggestions_data') || '[]');
-      const box = document.getElementById('admin-suggestions-queue');
-      if (!suggs.length) {
-        box.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">No suggestions submitted.</p>';
-        return;
-      }
-      box.innerHTML = suggs.map(s => `
-        <div style="background:rgba(0,0,0,0.5); padding:10px; border-radius:4px; border:1px solid var(--border-crimson);">
-          <span style="color:var(--crimson-glow); font-size:0.75rem;">${s.category} &bull; ${s.sender}</span>
-          <p style="font-size:0.85rem; color:#fff;">"${s.text}"</p>
-        </div>
-      `).join('');
-    }
-
-    /* ==========================================================================
        UTILITIES & HELPERS
        ========================================================================== */
     function showToast(msg, icon = 'fa-circle-check') {
@@ -2810,13 +2541,13 @@
       }
     }
 
-    function toggleNotifDropdown() {
-      document.getElementById('notif-box').classList.toggle('show');
+    function toggleMobileDrawer() {
+      document.getElementById('mobile-drawer').classList.toggle('open');
+      document.getElementById('drawer-backdrop').classList.toggle('open');
     }
 
-    function clearAllNotifications() {
-      document.getElementById('notif-items-body').innerHTML = '<div style="font-size:0.8rem; color:#666; text-align:center;">No notifications.</div>';
-      document.getElementById('notif-count').innerText = '0';
+    function toggleNotifDropdown() {
+      document.getElementById('notif-box').classList.toggle('show');
     }
 
     function executeGlobalSearch(q) {
@@ -2834,14 +2565,17 @@
       renderNoviceUI();
       renderStaffRoster();
       renderLeaderboard();
-      renderMembersDirectory();
-      initStarSelector();
-      renderReviewsList();
-      renderTicketsFeed();
-      renderNewsCards();
+      renderUserPrivateTickets();
       checkCrateUI();
       checkActiveBroadcast();
+      updateNotificationBell();
       queryLiveMinecraftStatus();
+
+      const user = JSON.parse(localStorage.getItem('fs_user_session'));
+      if (user && user.role === 'admin') {
+        renderAdminTickets();
+        renderAdminStaffApps();
+      }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
