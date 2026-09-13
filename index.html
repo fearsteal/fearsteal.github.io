@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Home • FearSteal</title>
-  <meta name="description" content="FearSteal Minecraft LifeSteal Network. Steal hearts, dominate tournaments, build power, survive. Java & Bedrock: play.fearsteal.fun:19132" />
+  <meta name="description" content="FearSteal Network - Elite Minecraft LifeSteal experience. Competitive PvP, Custom Hearts, Crates, and Tournaments. Join play.fearsteal.fun:19132" />
 
   <!-- Google Fonts: Cinzel, Rajdhani, Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,21 +16,22 @@
 
   <style>
     /* ==========================================================================
-       1. CSS VARIABLES & THEME TOKENS
+       1. DESIGN SYSTEM & CRIMSON THEME TOKENS
        ========================================================================== */
     :root {
-      --bg-pure: #030204;
-      --bg-surface: #0a050b;
-      --bg-card: rgba(18, 10, 18, 0.76);
-      --bg-card-hover: rgba(28, 14, 27, 0.9);
-      --border-crimson: rgba(230, 25, 55, 0.32);
-      --border-glow: rgba(255, 42, 75, 0.6);
+      --bg-pure: #030104;
+      --bg-surface: #0a040b;
+      --bg-card: rgba(18, 9, 18, 0.78);
+      --bg-card-hover: rgba(30, 12, 28, 0.92);
+      --border-crimson: rgba(230, 25, 55, 0.35);
+      --border-glow: rgba(255, 42, 75, 0.65);
       --crimson-base: #e61937;
       --crimson-glow: #ff2a4b;
       --crimson-deep: #780815;
       --crimson-gradient: linear-gradient(135deg, #ff1744 0%, #b30f24 100%);
       --fire-gradient: linear-gradient(135deg, #ff9100 0%, #e61937 60%, #990014 100%);
       --gold-accent: #f59e0b;
+      --cyan-accent: #06b6d4;
       --status-online: #10b981;
       --status-offline: #ef4444;
       --text-main: #f9fafb;
@@ -73,7 +74,7 @@
     ::-webkit-scrollbar-thumb { background: var(--crimson-deep); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--crimson-base); }
 
-    /* Animated Canvas Background */
+    /* Animated Canvas Particle Background */
     #particles-canvas {
       position: fixed;
       top: 0;
@@ -96,18 +97,24 @@
     }
 
     /* ==========================================================================
-       LOGO COMPONENT (DYNAMIC RENDERER)
+       ANIMATED 3D MINECRAFT FS LOGO STYLING
        ========================================================================== */
-    .fs-brand-logo-img {
-      object-fit: contain;
-      filter: drop-shadow(0 0 16px rgba(255, 42, 75, 0.65)) drop-shadow(0 0 30px rgba(255, 145, 0, 0.45));
-      transition: var(--transition);
+    .animated-fs-logo {
       display: inline-block;
       vertical-align: middle;
+      filter: drop-shadow(0 0 20px rgba(255, 42, 75, 0.75)) drop-shadow(0 0 45px rgba(255, 145, 0, 0.5));
+      animation: logoFloatGlow 3.5s ease-in-out infinite !important;
+      transition: var(--transition);
     }
-    .fs-brand-logo-img:hover {
-      filter: drop-shadow(0 0 25px rgba(255, 42, 75, 0.9)) drop-shadow(0 0 45px rgba(255, 145, 0, 0.7));
-      transform: scale(1.04) !important;
+    @keyframes logoFloatGlow {
+      0%, 100% {
+        transform: translateY(0px) scale(1) !important;
+        filter: drop-shadow(0 0 20px rgba(255, 42, 75, 0.75)) drop-shadow(0 0 35px rgba(255, 145, 0, 0.4));
+      }
+      50% {
+        transform: translateY(-8px) scale(1.03) !important;
+        filter: drop-shadow(0 0 35px rgba(255, 42, 75, 1)) drop-shadow(0 0 60px rgba(255, 145, 0, 0.7));
+      }
     }
 
     /* ==========================================================================
@@ -116,7 +123,7 @@
     #preloader {
       position: fixed;
       inset: 0;
-      background: #040205;
+      background: #040105;
       z-index: 100000;
       display: flex;
       flex-direction: column;
@@ -132,13 +139,6 @@
       align-items: center;
       justify-content: center;
       position: relative;
-    }
-    .preloader-logo-wrap::after {
-      content: '';
-      position: absolute;
-      inset: -15px;
-      background: radial-gradient(circle, rgba(230, 25, 55, 0.35) 0%, transparent 70%);
-      z-index: -1;
     }
     .loader-progress-track {
       width: 320px;
@@ -170,7 +170,7 @@
     #auth-screen-gate {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #180612 0%, #030204 88%);
+      background: radial-gradient(circle at center, #180512 0%, #030104 88%);
       z-index: 50000;
       display: flex;
       align-items: center;
@@ -180,26 +180,31 @@
     }
     .auth-glass-box {
       width: 100%;
-      max-width: 490px;
+      max-width: 500px;
       background: var(--bg-card);
       border: 1px solid var(--border-glow);
       border-radius: var(--radius-lg);
       padding: 35px 30px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.95), 0 0 40px rgba(230,25,55,0.3);
       position: relative;
+      animation: authCardEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes authCardEnter {
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
     .auth-logo-header {
       text-align: center;
       margin-bottom: 20px;
     }
     .auth-logo-header img {
-      width: 110px;
+      width: 105px;
       height: auto;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .auth-logo-header h1 {
       font-family: var(--font-display);
-      font-size: 2rem;
+      font-size: 1.95rem;
       letter-spacing: 3px;
     }
     .auth-logo-header h1 span { color: var(--crimson-base); }
@@ -210,12 +215,22 @@
       text-transform: uppercase;
       margin-top: 2px;
     }
+    .auth-instructions-block {
+      background: rgba(230, 25, 55, 0.08);
+      border-left: 3px solid var(--crimson-base);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      color: #fca5a5;
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
     .auth-nav-tabs {
       display: flex;
       background: rgba(0, 0, 0, 0.5);
       border: 1px solid var(--border-crimson);
       border-radius: var(--radius-sm);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       overflow: hidden;
     }
     .auth-nav-tab {
@@ -236,14 +251,40 @@
       color: #fff;
       box-shadow: 0 0 15px rgba(230,25,55,0.5);
     }
+    .oauth-social-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .oauth-btn {
+      padding: 9px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .oauth-btn:hover {
+      background: rgba(230,25,55,0.2);
+      border-color: var(--crimson-base);
+    }
     .auth-form-group {
-      margin-bottom: 15px;
+      margin-bottom: 14px;
     }
     .auth-form-group label {
       display: block;
       font-size: 0.8rem;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       font-weight: 600;
     }
     .input-field-wrap {
@@ -262,7 +303,7 @@
       background: rgba(0, 0, 0, 0.55);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-sm);
-      padding: 12px 14px 12px 42px;
+      padding: 11px 14px 11px 40px;
       color: #fff;
       font-size: 0.9rem;
       outline: none;
@@ -324,7 +365,7 @@
     }
 
     /* ==========================================================================
-       4. TOP NOTIFICATION BAR & ANNOUNCEMENT
+       4. TOP NOTIFICATION BAR & ANNOUNCEMENTS
        ========================================================================== */
     #top-broadcast-bar {
       background: linear-gradient(90deg, #780815, #e61937, #780815);
@@ -356,7 +397,7 @@
       position: sticky;
       top: 0;
       z-index: 9999;
-      background: rgba(6, 3, 6, 0.94);
+      background: rgba(6, 2, 6, 0.94);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border-crimson);
     }
@@ -380,8 +421,8 @@
       color: #fff;
     }
     .nav-brand img {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
     }
     .nav-brand span { color: var(--crimson-base); }
 
@@ -417,7 +458,7 @@
     .nav-menu-links {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       list-style: none;
     }
     .nav-menu-links a {
@@ -445,35 +486,6 @@
       gap: 12px;
       position: relative;
     }
-    .notif-bell-btn {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-crimson);
-      color: #fff;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      position: relative;
-    }
-    .notif-badge-count {
-      position: absolute;
-      top: -3px;
-      right: -3px;
-      background: var(--crimson-base);
-      color: #fff;
-      font-size: 0.65rem;
-      font-weight: 800;
-      width: 17px;
-      height: 17px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--bg-pure);
-    }
     .user-profile-badge {
       display: flex;
       align-items: center;
@@ -500,49 +512,11 @@
       padding: 2px 6px;
       border-radius: 4px;
     }
+    .role-founder { background: linear-gradient(135deg, #ff0033 0%, #800010 100%); color: #fff; }
     .role-admin { background: var(--crimson-gradient); color: #fff; }
     .role-staff { background: #0284c7; color: #fff; }
     .role-user { background: #374151; color: #d1d5db; }
 
-    .notif-dropdown {
-      position: absolute;
-      top: 50px;
-      right: 0;
-      width: 320px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-glow);
-      border-radius: var(--radius-md);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.85);
-      padding: 14px;
-      display: none;
-      flex-direction: column;
-      gap: 8px;
-      z-index: 10002;
-    }
-    .notif-dropdown.show { display: flex; }
-    .notif-dropdown-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding-bottom: 8px;
-    }
-    .notif-list-items {
-      max-height: 240px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .notif-item {
-      background: rgba(0,0,0,0.4);
-      padding: 8px 10px;
-      border-radius: 4px;
-      font-size: 0.78rem;
-      border-left: 3px solid var(--crimson-base);
-    }
     .mobile-hamburger-btn {
       display: none;
       background: none;
@@ -558,15 +532,36 @@
     .hero-container {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 30px 24px 60px;
+      padding: 35px 24px 60px;
       text-align: center;
+      position: relative;
+    }
+    .hero-banner-wrap {
+      max-width: 1240px;
+      height: 250px;
+      margin: 0 auto 30px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-glow);
+      box-shadow: 0 15px 50px rgba(230,25,55,0.25);
+    }
+    .hero-banner-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.85);
+    }
+    .hero-banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(3,1,4,0.95) 100%);
     }
     .hero-logo-emblem {
       width: 220px;
       height: auto;
       margin: 0 auto 16px;
       display: block;
-      filter: drop-shadow(0 0 25px rgba(255, 42, 75, 0.7)) drop-shadow(0 0 45px rgba(255, 145, 0, 0.5));
     }
     .hero-title-main {
       font-family: var(--font-display);
@@ -710,11 +705,11 @@
     }
 
     /* ==========================================================================
-       7. CONTENT SECTIONS (CARDS & GRIDS)
+       7. SECTION LAYOUTS & CARD MATRICES
        ========================================================================== */
     .section-wrap {
       max-width: 1440px;
-      margin: 70px auto;
+      margin: 75px auto;
       padding: 0 24px;
     }
     .section-headline {
@@ -760,107 +755,7 @@
     }
 
     /* ==========================================================================
-       8. TOURNAMENTS & BRACKETS
-       ========================================================================== */
-    .tournament-banner {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(230, 25, 55, 0.15));
-      border: 1px solid var(--gold-accent);
-      border-radius: var(--radius-lg);
-      padding: 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-    .bracket-tree-wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      overflow-x: auto;
-      padding: 20px 0;
-    }
-    .bracket-round {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      min-width: 220px;
-    }
-    .bracket-match {
-      background: rgba(0,0,0,0.6);
-      border: 1px solid var(--border-crimson);
-      border-radius: var(--radius-sm);
-      padding: 10px 14px;
-    }
-    .bracket-team {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      padding: 4px 0;
-    }
-    .bracket-team.winner {
-      color: var(--gold-accent);
-      font-weight: 700;
-    }
-
-    /* ==========================================================================
-       9. LIVE MAP RADAR
-       ========================================================================== */
-    .dynmap-frame-box {
-      width: 100%;
-      height: 500px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-crimson);
-      background: #000;
-      overflow: hidden;
-      position: relative;
-    }
-    .map-fallback-overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, #180912 0%, #060205 90%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-    }
-
-    /* ==========================================================================
-       10. TICKETS & SUPPORT
-       ========================================================================== */
-    .ticket-system-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 24px;
-    }
-    .ticket-feed-box {
-      max-height: 480px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding-right: 6px;
-    }
-    .ticket-item-card {
-      background: rgba(0,0,0,0.5);
-      border: 1px solid var(--border-crimson);
-      border-radius: var(--radius-sm);
-      padding: 14px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .ticket-item-card:hover {
-      border-color: var(--crimson-glow);
-    }
-    .ticket-badge-open { background: var(--status-online); color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
-    .ticket-badge-closed { background: #4b5563; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
-
-    /* ==========================================================================
-       11. STORE, RANKS & NOVICE CLAIM (0-100)
+       STORE & RANKS
        ========================================================================== */
     .store-ranks-grid {
       display: grid;
@@ -938,7 +833,7 @@
     }
 
     /* ==========================================================================
-       12. STAFF DIRECTORY & HEADS
+       STAFF ROSTER
        ========================================================================== */
     .staff-roster-grid {
       display: grid;
@@ -965,29 +860,44 @@
     }
 
     /* ==========================================================================
-       13. NEWS POSTS
+       CRATE SIMULATOR
        ========================================================================== */
-    .news-article-card {
+    .crate-box-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
       background: var(--bg-card);
-      border: 1px solid var(--border-crimson);
-      border-radius: var(--radius-md);
-      overflow: hidden;
+      border: 2px solid var(--border-glow);
+      border-radius: var(--radius-lg);
+      padding: 40px 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
     }
-    .news-thumb-box {
-      height: 160px;
-      overflow: hidden;
-    }
-    .news-thumb-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .news-content-box {
-      padding: 20px;
+    .crate-icon-huge {
+      font-size: 3.6rem;
+      color: var(--crimson-glow);
+      margin-bottom: 16px;
     }
 
     /* ==========================================================================
-       14. ADMIN PANEL (EXCLUSIVE)
+       REVIEWS & TESTIMONIALS
+       ========================================================================== */
+    .review-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
+    }
+    .star-select-row {
+      display: flex;
+      gap: 6px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      margin: 10px 0 16px;
+    }
+    .star-select-row i.active { color: var(--gold-accent); }
+    .star-select-row i { color: #444; }
+
+    /* ==========================================================================
+       ADMIN & STAFF PANELS
        ========================================================================== */
     .panel-master-container {
       background: var(--bg-card);
@@ -1021,7 +931,7 @@
     }
 
     /* ==========================================================================
-       15. TOAST MESSAGES
+       TOAST NOTIFICATIONS
        ========================================================================== */
     #toast-wrap {
       position: fixed;
@@ -1055,10 +965,9 @@
       to { transform: translateX(0); opacity: 1; }
     }
 
-    /* Responsive adjustments */
+    /* Responsive */
     @media (max-width: 992px) {
-      .ticket-system-grid { grid-template-columns: 1fr; }
-      .bracket-tree-wrap { flex-direction: column; }
+      .review-split-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .hero-title-main { font-size: 2.5rem; }
@@ -1071,7 +980,7 @@
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(6, 3, 6, 0.98);
+        background: rgba(6, 2, 6, 0.98);
         border-bottom: 1px solid var(--border-crimson);
         flex-direction: column;
         padding: 20px;
@@ -1082,19 +991,19 @@
 </head>
 <body>
 
-  <!-- Particle Background Canvas & Ambient Fog -->
+  <!-- Animated Particle Canvas & Ambient Atmosphere -->
   <canvas id="particles-canvas"></canvas>
   <div class="ambient-fog"></div>
 
-  <!-- Toast Notification Container -->
+  <!-- Toast Notification Wrapper -->
   <div id="toast-wrap"></div>
 
   <!-- ==========================================================================
-       STEP 01: PRELOADER (0 TO 100%) WITH OFFICIAL FEARSTEAL LOGO
+       01. PRELOADER SCREEN WITH ANIMATED LOGO
        ========================================================================== -->
   <div id="preloader">
     <div class="preloader-logo-wrap">
-      <img src="" class="fs-brand-logo-img fs-target-logo" alt="FearSteal Logo" style="width:160px;" />
+      <img src="" class="animated-fs-logo fs-target-logo" alt="FearSteal 3D Logo" style="width:160px;" />
     </div>
     <div class="loader-progress-track">
       <div class="loader-progress-fill" id="loader-bar"></div>
@@ -1103,14 +1012,24 @@
   </div>
 
   <!-- ==========================================================================
-       STEP 02 & 03: FULLSCREEN AUTHENTICATION GATE
+       02. STRICT AUTHENTICATION GATE
        ========================================================================== -->
   <div id="auth-screen-gate">
     <div class="auth-glass-box">
       <div class="auth-logo-header">
-        <img src="" class="fs-brand-logo-img fs-target-logo" alt="FearSteal Logo" />
+        <img src="" class="animated-fs-logo fs-target-logo" alt="FearSteal Logo" />
         <h1>WELCOME TO FEAR<span>STEAL</span></h1>
         <p>THE NEXT GENERATION LIFESTEAL NETWORK</p>
+      </div>
+
+      <!-- Registration Steps Instructions -->
+      <div class="auth-instructions-block">
+        <strong>Important Notes:</strong> Thanks for visiting our website!<br>
+        • Step 1: Choose a username or email<br>
+        • Step 2: If successfully registered, proceed to login<br>
+        • Step 3: Login with the same credentials you registered<br>
+        • Step 4: Access all FearSteal features!<br>
+        <span style="font-size:0.7rem; color:var(--text-muted);">Author by ItzVeltriex and Notslayer</span>
       </div>
 
       <div class="auth-nav-tabs">
@@ -1118,15 +1037,22 @@
         <button class="auth-nav-tab" id="btn-tab-register" onclick="switchAuthMode('register')">REGISTER</button>
       </div>
 
+      <!-- Social Login Simulation (Microsoft, Discord, Google) -->
+      <div class="oauth-social-row">
+        <button type="button" class="oauth-btn" onclick="handleSocialAuth('Microsoft')"><i class="fa-brands fa-microsoft"></i> Microsoft</button>
+        <button type="button" class="oauth-btn" onclick="handleSocialAuth('Discord')"><i class="fa-brands fa-discord"></i> Discord</button>
+        <button type="button" class="oauth-btn" onclick="handleSocialAuth('Google')"><i class="fa-brands fa-google"></i> Google</button>
+      </div>
+
       <div class="auth-error-badge" id="auth-error-box"></div>
 
       <!-- LOGIN FORM -->
       <form id="form-auth-login" onsubmit="handleAuthLogin(event)">
         <div class="auth-form-group">
-          <label>Email or Minecraft Username</label>
+          <label>Minecraft Username or Email</label>
           <div class="input-field-wrap">
             <i class="fa-solid fa-user lead-icon"></i>
-            <input type="text" id="login-user" placeholder="Enter your username or email" required />
+            <input type="text" id="login-user" placeholder="e.g. ItzVeltriex or email" required />
           </div>
         </div>
         <div class="auth-form-group">
@@ -1139,7 +1065,7 @@
         </div>
         <button type="submit" class="auth-btn-main">LOGIN TO FEARSTEAL</button>
         <div class="auth-links-row">
-          <span onclick="switchAuthMode('register')">Don't have an account? <a>CREATE ACCOUNT</a></span>
+          <span onclick="switchAuthMode('register')">New player? <a>CREATE ACCOUNT</a></span>
           <a onclick="showForgotPasswordPrompt()">Forgot Password?</a>
         </div>
       </form>
@@ -1188,11 +1114,11 @@
   </div>
 
   <!-- ==========================================================================
-       STEP 05: FEARSTEAL HOMEPAGE (REVEALED ONLY AFTER AUTH)
+       03. ALL CATEGORIES ON THE HOMEPAGE
        ========================================================================== -->
   <div id="fearsteal-homepage-root" style="display:none;">
 
-    <!-- TOP ANNOUNCEMENT BAR -->
+    <!-- TOP 24H EXPIRING ANNOUNCEMENT BAR -->
     <div id="top-broadcast-bar">
       <span id="broadcast-msg-text"></span>
       <span class="tag-pill" id="broadcast-time-ago">Just now</span>
@@ -1203,7 +1129,7 @@
     <nav class="master-navbar">
       <div class="nav-inner">
         <a href="#home" class="nav-brand">
-          <img src="" class="fs-brand-logo-img fs-target-logo" alt="FS Logo" />
+          <img src="" class="animated-fs-logo fs-target-logo" alt="FS Logo" />
           <span>FEARSTEAL</span>
         </a>
 
@@ -1217,44 +1143,32 @@
 
         <ul class="nav-menu-links" id="nav-links-cluster">
           <li><a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="#features"><i class="fa-solid fa-bolt"></i> Features</a></li>
           <li><a href="#store"><i class="fa-solid fa-cart-shopping"></i> Store</a></li>
-          <li><a href="#tournaments"><i class="fa-solid fa-trophy"></i> Tournaments</a></li>
-          <li><a href="#leaderboard"><i class="fa-solid fa-chart-simple"></i> Leaderboard</a></li>
-          <li><a href="#dynmap"><i class="fa-solid fa-map"></i> Live Map</a></li>
+          <li><a href="#status-dashboard"><i class="fa-solid fa-server"></i> Status</a></li>
           <li><a href="#staff"><i class="fa-solid fa-shield-halved"></i> Staff</a></li>
-          <li><a href="#support"><i class="fa-solid fa-ticket"></i> Support</a></li>
-          <li><a href="#news"><i class="fa-solid fa-newspaper"></i> News</a></li>
+          <li><a href="#leaderboard"><i class="fa-solid fa-trophy"></i> Leaderboard</a></li>
+          <li><a href="#members"><i class="fa-solid fa-users"></i> Members</a></li>
+          <li><a href="#events"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
+          <li><a href="#crate-sim"><i class="fa-solid fa-box-open"></i> Crate Sim</a></li>
+          <li><a href="#reviews"><i class="fa-solid fa-star"></i> Reviews</a></li>
           <li><a href="#rules"><i class="fa-solid fa-book"></i> Rules</a></li>
-          <!-- Dynamic Role Panels -->
-          <li id="nav-item-staff-panel" style="display:none;"><a href="#staff-panel" style="color:#38bdf8;"><i class="fa-solid fa-user-shield"></i> Staff Panel</a></li>
-          <li id="nav-item-admin-panel" style="display:none;"><a href="#admin-panel" style="color:#ff2a4b;"><i class="fa-solid fa-crown"></i> Admin Panel</a></li>
+          <li><a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
+          <li><a href="#suggestions"><i class="fa-solid fa-lightbulb"></i> Suggestion</a></li>
+          <li><a href="#staff-apply"><i class="fa-solid fa-file-pen"></i> Staff Apply</a></li>
+          <!-- Admin Panel visible ONLY to Founder ItzVeltriex -->
+          <li id="nav-item-admin-panel" style="display:none;"><a href="#admin-panel" style="color:#ff2a4b; font-weight:800;"><i class="fa-solid fa-crown"></i> Admin Panel</a></li>
+          <!-- Staff Panel visible to roles below Admin -->
+          <li id="nav-item-staff-panel" style="display:none;"><a href="#staff-panel" style="color:#38bdf8; font-weight:800;"><i class="fa-solid fa-user-shield"></i> Staff Panel</a></li>
         </ul>
 
         <!-- User Controls -->
         <div class="nav-user-cluster">
-          <!-- Notification Bell -->
-          <button class="notif-bell-btn" onclick="toggleNotifDropdown()">
-            <i class="fa-solid fa-bell"></i>
-            <span class="notif-badge-count" id="notif-count">3</span>
-          </button>
-          <div class="notif-dropdown" id="notif-box">
-            <div class="notif-dropdown-header">
-              <span>NOTIFICATIONS</span>
-              <a onclick="clearAllNotifications()" style="color:var(--crimson-glow); cursor:pointer;">CLEAR</a>
-            </div>
-            <div class="notif-list-items" id="notif-items-body">
-              <div class="notif-item">⚔️ You reached Rank #10 on the PvP ladder!</div>
-              <div class="notif-item">❤️ You gained +1 Heart via heart forge.</div>
-              <div class="notif-item">📢 Tournament Registration is now live!</div>
-            </div>
-          </div>
-
           <div class="user-profile-badge">
             <img src="https://mc-heads.net/avatar/steve/26" id="nav-user-avatar" alt="Avatar" />
             <span class="uname" id="nav-user-name">Player</span>
             <span class="role-tag" id="nav-user-role">USER</span>
           </div>
-
           <button class="btn-fs btn-fs-secondary" style="padding:6px 12px; font-size:0.85rem;" onclick="executeLogout()">
             <i class="fa-solid fa-power-off"></i>
           </button>
@@ -1262,15 +1176,18 @@
       </div>
     </nav>
 
-    <!-- HERO SECTION WITH OFFICIAL LOGO -->
+    <!-- 1. HOME & HERO SECTION -->
     <header class="hero-container" id="home">
-      <!-- 3D Fiery FS Logo Display -->
-      <img src="" class="hero-logo-emblem fs-brand-logo-img fs-target-logo" alt="FearSteal Emblem" />
+      <div class="hero-banner-wrap">
+        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1600&q=80" alt="FearSteal Banner" />
+        <div class="hero-banner-overlay"></div>
+      </div>
 
+      <img src="" class="hero-logo-emblem animated-fs-logo fs-target-logo" alt="FearSteal Emblem" />
       <h1 class="hero-title-main">FEAR<span>STEAL</span></h1>
       <div class="hero-slogan-line">STEAL HEARTS. BUILD POWER. SURVIVE.</div>
 
-      <!-- Real Live Server Status Pill -->
+      <!-- Real Live Minecraft Server Status Pill -->
       <div class="hero-live-status-pill">
         <div class="pulsing-indicator" id="live-pulse-dot"></div>
         <span id="hero-live-text">QUERYING PLAY.FEARSTEAL.FUN:19132...</span>
@@ -1302,92 +1219,241 @@
       </div>
     </header>
 
-    <!-- LIVE MONITORING / STATUS SECTION -->
+    <!-- 2. FEATURES -->
+    <section class="section-wrap" id="features">
+      <div class="section-headline">
+        <h2>NETWORK <span>FEATURES</span></h2>
+        <p>Built for elite combat, intense heart-stealing adrenaline, and maximum performance.</p>
+      </div>
+      <div class="grid-cards-4">
+        <div class="fs-card">
+          <div style="font-size:1.8rem; color:var(--crimson-glow); margin-bottom:8px;"><i class="fa-solid fa-heart-pulse"></i></div>
+          <h4 style="font-family:var(--font-heading); font-size:1.2rem;">LifeSteal Mode</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Kill opponents to steal their hearts. Run out of hearts and face elimination.</p>
+        </div>
+        <div class="fs-card">
+          <div style="font-size:1.8rem; color:var(--crimson-glow); margin-bottom:8px;"><i class="fa-solid fa-crosshairs"></i></div>
+          <h4 style="font-family:var(--font-heading); font-size:1.2rem;">Competitive PvP</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Custom hit registration and zero tick delay for intense combat.</p>
+        </div>
+        <div class="fs-card">
+          <div style="font-size:1.8rem; color:var(--crimson-glow); margin-bottom:8px;"><i class="fa-solid fa-trophy"></i></div>
+          <h4 style="font-family:var(--font-heading); font-size:1.2rem;">Live Leaderboards</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Live automatic refreshes every 10 minutes tracking top players.</p>
+        </div>
+        <div class="fs-card">
+          <div style="font-size:1.8rem; color:var(--crimson-glow); margin-bottom:8px;"><i class="fa-solid fa-bolt"></i></div>
+          <h4 style="font-family:var(--font-heading); font-size:1.2rem;">Optimized Velocity Proxy</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">High-speed routing with robust DDoS protection.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. STORE & SERVER RANKS (WITH 0-100 NOVICE CLAIM) -->
+    <section class="section-wrap" id="store">
+      <div class="section-headline">
+        <h2>STORE & <span>SERVER RANKS</span></h2>
+        <p>Unlock elite perks, extra heart capacities, and in-game commands. External checkout via official CryzorMC Store.</p>
+      </div>
+
+      <div class="store-ranks-grid">
+        <!-- NOVICE FREE RANK (0/100 LIMIT & 60D TIMER) -->
+        <div class="rank-card-fs novice-special-card">
+          <div>
+            <div class="r-name">NOVICE</div>
+            <div class="r-price">$0 FREE</div>
+            <p style="font-size:0.8rem; color:#fca5a5;">This free rank is only limited time for 60d so please claim your free rank quickly! (Max 100 Claims)</p>
+            <div class="novice-bar-wrap">
+              <div class="novice-bar-fill" id="novice-fill-bar"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted); margin-bottom:15px;">
+              <span id="novice-count-text">0 / 100 Claimed</span>
+              <span>60d Limited Time</span>
+            </div>
+            <ul class="rank-features-list">
+              <li><i class="fa-solid fa-check"></i> Free Novice Discord Role</li>
+              <li><i class="fa-solid fa-check"></i> 1x Extra Heart Slot</li>
+              <li><i class="fa-solid fa-check"></i> /kit novice in Minecraft</li>
+            </ul>
+          </div>
+          <button class="btn-fs btn-fs-primary" id="btn-novice-claim" onclick="processNoviceClaim()">CLAIM NOVICE</button>
+        </div>
+
+        <!-- LORD -->
+        <div class="rank-card-fs">
+          <div>
+            <div class="r-name">LORD</div>
+            <div class="r-price">$5</div>
+            <ul class="rank-features-list">
+              <li><i class="fa-solid fa-check"></i> [Lord] Chat Prefix</li>
+              <li><i class="fa-solid fa-check"></i> Access to /fly in claims</li>
+              <li><i class="fa-solid fa-check"></i> +2 Private Vaults</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-secondary">PURCHASE</a>
+        </div>
+
+        <!-- ELITE -->
+        <div class="rank-card-fs">
+          <div>
+            <div class="r-name">ELITE</div>
+            <div class="r-price">$8</div>
+            <ul class="rank-features-list">
+              <li><i class="fa-solid fa-check"></i> [Elite] Chat Prefix</li>
+              <li><i class="fa-solid fa-check"></i> /feed command access</li>
+              <li><i class="fa-solid fa-check"></i> +3 Private Vaults</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-secondary">PURCHASE</a>
+        </div>
+
+        <!-- ELITE+ -->
+        <div class="rank-card-fs">
+          <div>
+            <div class="r-name">ELITE+</div>
+            <div class="r-price">$10</div>
+            <ul class="rank-features-list">
+              <li><i class="fa-solid fa-check"></i> [Elite+] Chat Prefix</li>
+              <li><i class="fa-solid fa-check"></i> Priority server queue</li>
+              <li><i class="fa-solid fa-check"></i> /near radar command</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-secondary">PURCHASE</a>
+        </div>
+
+        <!-- KNIGHT (MOST POPULAR) -->
+        <div class="rank-card-fs popular">
+          <div class="popular-tag-badge">MOST POPULAR</div>
+          <div>
+            <div class="r-name">KNIGHT</div>
+            <div class="r-price">$12</div>
+            <ul class="rank-features-list">
+              <li><i class="fa-solid fa-check"></i> [Knight] Golden Prefix</li>
+              <li><i class="fa-solid fa-check"></i> /craft & /enderchest anywhere</li>
+              <li><i class="fa-solid fa-check"></i> +5 Private Vaults</li>
+              <li><i class="fa-solid fa-check"></i> 1x Monthly Revive Beacon</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-primary">PURCHASE</a>
+        </div>
+
+        <!-- KING -->
+        <div class="rank-card-fs">
+          <div>
+            <div class="r-name">KING</div>
+            <div class="r-price">$15</div>
+            <ul class="rank-features-list">
+              <li><i class="fa-solid fa-check"></i> [King] Blood Prefix</li>
+              <li><i class="fa-solid fa-check"></i> /heal command access</li>
+              <li><i class="fa-solid fa-check"></i> Death coordinates notice</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-secondary">PURCHASE</a>
+        </div>
+
+        <!-- STEAL+ -->
+        <div class="rank-card-fs">
+          <div>
+            <div class="r-name">STEAL+</div>
+            <div class="r-price">$18</div>
+            <ul class="rank-features-list">
+              <li><i class="fa-solid fa-check"></i> [Steal+] Crimson Glow</li>
+              <li><i class="fa-solid fa-check"></i> 1.25x Heart XP bonus</li>
+              <li><i class="fa-solid fa-check"></i> /repair all commands</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-secondary">PURCHASE</a>
+        </div>
+
+        <!-- FEAR+ -->
+        <div class="rank-card-fs">
+          <div>
+            <div class="r-name">FEAR+</div>
+            <div class="r-price">$20</div>
+            <ul class="rank-features-list">
+              <li><i class="fa-solid fa-check"></i> [Fear+] Neon Red Prefix</li>
+              <li><i class="fa-solid fa-check"></i> Keep XP upon PvP deaths</li>
+              <li><i class="fa-solid fa-check"></i> Custom join messages</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-secondary">PURCHASE</a>
+        </div>
+
+        <!-- FEARSTEAL (ULTIMATE) -->
+        <div class="rank-card-fs" style="border:2px solid var(--crimson-glow);">
+          <div>
+            <div class="r-name">FEARSTEAL</div>
+            <div class="r-price">$25</div>
+            <ul class="rank-features-list">
+              <li><i class="fa-solid fa-check"></i> Ultimate [FEARSTEAL] Prefix</li>
+              <li><i class="fa-solid fa-check"></i> All commands unlocked</li>
+              <li><i class="fa-solid fa-check"></i> Custom Heart Particle trails</li>
+              <li><i class="fa-solid fa-check"></i> Unlimited Private Vaults</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-primary">PURCHASE</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. LIVE SERVER MONITORING DASHBOARD -->
     <section class="section-wrap" id="status-dashboard">
       <div class="section-headline">
-        <h2>LIVE REAL-TIME <span>SERVER MONITOR</span></h2>
-        <p>Direct API telemetry from <code>play.fearsteal.fun:19132</code> via MCStatus.io.</p>
+        <h2>LIVE <span>STATUS & MONITORING</span></h2>
+        <p>Direct API telemetry from <code>play.fearsteal.fun:19132</code>. Software and ping appear only when online.</p>
       </div>
 
       <div class="grid-cards-4">
         <div class="fs-card">
-          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Network Reachability</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Server State</div>
           <div style="font-size:1.4rem; font-weight:800; margin-top:4px;" id="stat-reachability">Checking...</div>
         </div>
         <div class="fs-card">
-          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Connected Players</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Players Online</div>
           <div style="font-size:1.4rem; font-weight:800; margin-top:4px;" id="stat-slots">-- / --</div>
         </div>
         <div class="fs-card">
-          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Proxy Latency</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Proxy Ping</div>
           <div style="font-size:1.4rem; font-weight:800; margin-top:4px;" id="stat-ping">-- ms</div>
         </div>
         <div class="fs-card">
-          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Software & Engine</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Detected Software</div>
           <div style="font-size:1.1rem; font-weight:700; margin-top:4px;" id="stat-software">Velocity / Bedrock 19132</div>
         </div>
       </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg-card); border:1px solid var(--border-crimson); padding:14px 20px; border-radius:var(--radius-md); margin-top:20px; flex-wrap:wrap; gap:12px;">
+        <div style="font-size:0.85rem; color:var(--text-muted);">
+          <i class="fa-solid fa-clock"></i> Last updated: <span id="stat-updated-time">Never</span> (Auto-refreshes every 1m)
+        </div>
+        <button class="btn-fs btn-fs-secondary" style="padding:8px 16px; font-size:0.85rem;" onclick="queryLiveMinecraftStatus(true)">
+          <i class="fa-solid fa-arrows-rotate"></i> REFRESH NOW
+        </button>
+      </div>
     </section>
 
-    <!-- TOURNAMENTS & BRACKETS -->
-    <section class="section-wrap" id="tournaments">
+    <!-- 5. STAFF TEAM SECTION -->
+    <section class="section-wrap" id="staff">
       <div class="section-headline">
-        <h2>PVP TOURNAMENTS & <span>LIVE BRACKETS</span></h2>
-        <p>Compete in scheduled network showdowns for Coins, Rank Upgrades, and Hall of Fame glory.</p>
+        <h2>FEARSTEAL <span>STAFF TEAM</span></h2>
+        <p>Our dedicated leadership and moderation roster with live Minecraft avatars.</p>
       </div>
 
-      <div class="tournament-banner">
-        <div>
-          <span class="role-tag" style="background:var(--gold-accent); color:#000;">FEATURED EVENT</span>
-          <h3 style="font-family:var(--font-heading); font-size:1.8rem; margin-top:6px;">FEARSTEAL LIFESTEAL INVITATIONAL</h3>
-          <p style="font-size:0.85rem; color:#d1d5db;">Prize Pool: <strong>50,000 Coins + [Predator] Tag</strong> &bull; Mode: 1v1 Elimination</p>
-        </div>
-        <button class="btn-fs btn-fs-primary" onclick="showToast('Registered for FearSteal Invitational! Check Discord for bracket seeding.')">REGISTER NOW</button>
-      </div>
-
-      <!-- Elimination Brackets -->
-      <div class="fs-card">
-        <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:15px;"><i class="fa-solid fa-sitemap"></i> TOURNAMENT ELIMINATION BRACKET</h4>
-        <div class="bracket-tree-wrap">
-          <div class="bracket-round">
-            <div style="font-size:0.8rem; color:var(--text-muted); text-align:center;">QUARTERFINALS</div>
-            <div class="bracket-match">
-              <div class="bracket-team winner"><span>ItzVeltriex</span><span>2</span></div>
-              <div class="bracket-team"><span>NotDark6</span><span>0</span></div>
-            </div>
-            <div class="bracket-match">
-              <div class="bracket-team winner"><span>VoidSlayer</span><span>2</span></div>
-              <div class="bracket-team"><span>JessGamer7733</span><span>1</span></div>
-            </div>
-          </div>
-          <div class="bracket-round">
-            <div style="font-size:0.8rem; color:var(--text-muted); text-align:center;">SEMIFINALS</div>
-            <div class="bracket-match">
-              <div class="bracket-team winner"><span>ItzVeltriex</span><span>3</span></div>
-              <div class="bracket-team"><span>VoidSlayer</span><span>1</span></div>
-            </div>
-          </div>
-          <div class="bracket-round">
-            <div style="font-size:0.8rem; color:var(--gold-accent); text-align:center;">FINALS (CHAMPION)</div>
-            <div class="bracket-match" style="border:2px solid var(--gold-accent);">
-              <div class="bracket-team winner"><span>🏆 ItzVeltriex</span><span>3</span></div>
-              <div class="bracket-team"><span>RaviXD</span><span>2</span></div>
-            </div>
-          </div>
-        </div>
+      <div class="staff-roster-grid" id="staff-grid-root">
+        <!-- Injected Dynamically -->
       </div>
     </section>
 
-    <!-- LEADERBOARD & HEARTS SIMULATOR -->
+    <!-- 6. LEADERBOARD & HEART FORGE SIMULATOR -->
     <section class="section-wrap" id="leaderboard">
       <div class="section-headline">
-        <h2>NETWORK <span>LEADERBOARD & FORGE</span></h2>
-        <p>Top warriors fighting in the LifeSteal realm. Starting players initiate with default 10 hearts.</p>
+        <h2>REALM <span>LEADERBOARD & FORGE</span></h2>
+        <p>Rankings refresh automatically every 10 minutes. New registered members start with default 10 hearts.</p>
       </div>
 
       <div class="grid-cards-3">
         <div class="fs-card" style="grid-column: span 2;">
-          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:14px;"><i class="fa-solid fa-trophy"></i> TOP SURVIVORS</h4>
+          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:14px;"><i class="fa-solid fa-trophy"></i> TOP SURVIVORS PODIUM & LADDER</h4>
           <table style="width:100%; border-collapse:collapse; font-size:0.88rem; text-align:left;">
             <thead>
               <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:var(--text-muted);">
@@ -1407,253 +1473,409 @@
 
         <!-- Heart Forge Simulator -->
         <div class="fs-card">
-          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:6px;"><i class="fa-solid fa-heart-pulse" style="color:var(--crimson-glow);"></i> HEART FORGE</h4>
-          <p style="font-size:0.8rem; color:var(--text-muted);">Steal hearts from fallen combatants or forge them via fragments.</p>
+          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:6px;"><i class="fa-solid fa-heart-pulse" style="color:var(--crimson-glow);"></i> HEART FORGE & SIMULATOR</h4>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Default starting capacity: 10 Hearts. Test combat steals and losses.</p>
           <div style="margin:20px 0; text-align:center;">
             <div style="font-size:2.8rem; font-family:var(--font-heading); font-weight:800;" id="user-hearts-count">10 / 20</div>
             <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin:10px 0;" id="user-hearts-icons"></div>
           </div>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-            <button class="btn-fs btn-fs-secondary" style="padding:8px;" onclick="simulateHearts('steal')"><i class="fa-solid fa-plus"></i> STEAL</button>
-            <button class="btn-fs btn-fs-secondary" style="padding:8px;" onclick="simulateHearts('lose')"><i class="fa-solid fa-minus"></i> LOSE</button>
+            <button class="btn-fs btn-fs-secondary" style="padding:8px;" onclick="simulateHearts('steal')"><i class="fa-solid fa-plus"></i> STEAL HEART</button>
+            <button class="btn-fs btn-fs-secondary" style="padding:8px;" onclick="simulateHearts('lose')"><i class="fa-solid fa-minus"></i> LOSE HEART</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- LIVE DYNMAP / WORLD RADAR -->
-    <section class="section-wrap" id="dynmap">
+    <!-- 7. REGISTERED MEMBERS DIRECTORY -->
+    <section class="section-wrap" id="members">
       <div class="section-headline">
-        <h2>LIVE REALM <span>WORLD MAP (DYNMAP)</span></h2>
-        <p>Explore player bases, claims, and terrain live in 3D/2D projection.</p>
+        <h2>REGISTERED <span>MEMBERS DIRECTORY</span></h2>
+        <p>Every adventurer registered on the FearSteal portal with live avatar head detection.</p>
       </div>
-      <div class="dynmap-frame-box">
-        <div class="map-fallback-overlay">
-          <i class="fa-solid fa-map-location-dot" style="font-size:3rem; color:var(--crimson-glow); margin-bottom:12px;"></i>
-          <h3 style="font-family:var(--font-heading); font-size:1.6rem;">LIVE MAP RADAR READY</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted); max-width:500px; margin:6px 0 16px;">
-            Dynmap connector configured for <code>play.fearsteal.fun</code>. When server administrators bind the public web port, the live world will stream directly inside this frame.
-          </p>
-          <button class="btn-fs btn-fs-primary" onclick="showToast('Querying Dynmap port 8123 on play.fearsteal.fun...')">RECONNECT RADAR</button>
+
+      <div class="fs-card" style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem; text-align:left;">
+          <thead>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:var(--text-muted);">
+              <th style="padding:12px;">#</th>
+              <th>AVATAR</th>
+              <th>USERNAME / IGN</th>
+              <th>ROLE</th>
+              <th>HEARTS</th>
+              <th>REGISTERED DATE</th>
+            </tr>
+          </thead>
+          <tbody id="registered-members-tbody">
+            <!-- Dynamic Registered Users -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 8. SCHEDULED EVENTS & LIFETIME UPCOMING -->
+    <section class="section-wrap" id="events">
+      <div class="section-headline">
+        <h2>SCHEDULED <span>15-DAY EVENTS</span></h2>
+        <p>Events automatically rotate every 15 days across Minecraft tournaments and Discord activities.</p>
+      </div>
+
+      <div class="grid-cards-3">
+        <div class="fs-card">
+          <span class="role-tag" style="background:#dc2626; color:#fff;">MINECRAFT EVENT</span>
+          <h3 style="font-family:var(--font-heading); font-size:1.5rem; margin-top:8px;">FEARSTEAL PVP TOURNAMENT</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin:6px 0 14px;">Compete for the 50,000 Coin Prize Pool & Champion Tag!</p>
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; text-align:center; margin-bottom:16px;">
+            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong id="ev-days">14</strong><div style="font-size:0.65rem; color:var(--text-muted);">Days</div></div>
+            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong id="ev-hours">23</strong><div style="font-size:0.65rem; color:var(--text-muted);">Hours</div></div>
+            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong id="ev-mins">59</strong><div style="font-size:0.65rem; color:var(--text-muted);">Mins</div></div>
+            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong id="ev-secs">59</strong><div style="font-size:0.65rem; color:var(--text-muted);">Secs</div></div>
+          </div>
+          <button class="btn-fs btn-fs-primary" style="width:100%;" onclick="showToast('Event reminder set! Check announcements.')">SET REMINDER</button>
+        </div>
+
+        <div class="fs-card">
+          <span class="role-tag" style="background:#5865f2; color:#fff;">DISCORD EVENT</span>
+          <h3 style="font-family:var(--font-heading); font-size:1.5rem; margin-top:8px;">COMMUNITY MEME GIVEAWAY</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin:6px 0 14px;">Post your funniest clips and memes in Discord for free rank upgrades.</p>
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; text-align:center; margin-bottom:16px;">
+            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong>14</strong><div style="font-size:0.65rem; color:var(--text-muted);">Days</div></div>
+            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong>23</strong><div style="font-size:0.65rem; color:var(--text-muted);">Hours</div></div>
+            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong>59</strong><div style="font-size:0.65rem; color:var(--text-muted);">Mins</div></div>
+            <div style="background:rgba(0,0,0,0.5); padding:6px; border-radius:4px;"><strong>59</strong><div style="font-size:0.65rem; color:var(--text-muted);">Secs</div></div>
+          </div>
+          <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn-fs btn-fs-discord" style="width:100%;"><i class="fa-brands fa-discord"></i> ENTER DISCORD</a>
         </div>
       </div>
     </section>
 
-    <!-- SUPPORT TICKETS & BAN APPEALS -->
-    <section class="section-wrap" id="support">
+    <!-- 9. FEARSTEAL CRATE SIMULATOR (24H COOLDOWN) -->
+    <section class="section-wrap" id="crate-sim">
       <div class="section-headline">
-        <h2>SUPPORT <span>TICKETS & BAN APPEALS</span></h2>
-        <p>Need staff mediation or filing an appeal? Submit your query through our official desk.</p>
+        <h2>FEARSTEAL <span>CRATE SIMULATOR</span></h2>
+        <p>Claim mysterious rewards once every 24 hours.</p>
       </div>
 
-      <div class="ticket-system-grid">
-        <!-- New Ticket Form -->
+      <div class="crate-box-wrap">
+        <div class="crate-icon-huge"><i class="fa-solid fa-box-open"></i></div>
+        <h3 style="font-family:var(--font-heading); font-size:1.8rem; margin-bottom:10px;">DAILY LIFESTEAL MYSTERY CRATE</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">
+          Unlock mystery rewards, tokens, revive beacon fragments, or custom in-game titles.
+        </p>
+
+        <div id="crate-timer-notice" style="display:none; margin-bottom:16px; color:#ff99aa; font-weight:700;">
+          <i class="fa-solid fa-lock"></i> 24-Hour Cooldown Active
+        </div>
+
+        <button class="btn-fs btn-fs-primary" id="btn-claim-crate" onclick="handleClaimCrateReward()">
+          <i class="fa-solid fa-key"></i> OPEN CRATE NOW
+        </button>
+      </div>
+    </section>
+
+    <!-- 10. REVIEWS & TESTIMONIALS (0-10 STARS) -->
+    <section class="section-wrap" id="reviews">
+      <div class="section-headline">
+        <h2>SERVER <span>REVIEWS & FEEDBACK</span></h2>
+        <p>Which score do you give our server performance? Rate from 0 to 10 stars.</p>
+      </div>
+
+      <div class="review-split-grid">
         <div class="fs-card">
-          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:14px;"><i class="fa-solid fa-ticket"></i> OPEN NEW TICKET</h4>
-          <form onsubmit="handleCreateTicket(event)">
-            <div class="auth-form-group">
-              <label>Category</label>
-              <div class="input-field-wrap">
-                <select id="ticket-category">
-                  <option value="General Support">General Support</option>
-                  <option value="Player Report">Player Report</option>
-                  <option value="Bug Report">Bug Report</option>
-                  <option value="Ban Appeal">Ban Appeal</option>
-                  <option value="Purchase Issue">Purchase Issue</option>
-                  <option value="Partnership">Partnership</option>
-                </select>
-              </div>
+          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:8px;">LEAVE A REVIEW</h4>
+          <form onsubmit="handleReviewSubmit(event)">
+            <div>
+              <label style="font-size:0.8rem; color:var(--text-muted);">Select Stars: <strong id="star-score-num" style="color:var(--gold-accent);">10</strong> / 10</label>
+              <div class="star-select-row" id="star-row-container"></div>
             </div>
             <div class="auth-form-group">
-              <label>Priority</label>
-              <div class="input-field-wrap">
-                <select id="ticket-priority">
-                  <option value="NORMAL">Normal Priority</option>
-                  <option value="URGENT">Urgent (Account / Payment)</option>
-                </select>
-              </div>
+              <label>Your Feedback Message</label>
+              <textarea id="review-msg-input" rows="4" placeholder="How is your experience on FearSteal?" required></textarea>
             </div>
-            <div class="auth-form-group">
-              <label>Message / Details</label>
-              <textarea id="ticket-desc" rows="4" placeholder="Explain your situation clearly..." required></textarea>
-            </div>
-            <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-paper-plane"></i> SUBMIT TICKET</button>
+            <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-paper-plane"></i> SUBMIT REVIEW</button>
           </form>
         </div>
 
-        <!-- Active Tickets Feed -->
         <div class="fs-card">
-          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:14px;"><i class="fa-solid fa-list-check"></i> YOUR TICKETS ARCHIVE</h4>
-          <div class="ticket-feed-box" id="ticket-list-body">
-            <!-- Populated via JS -->
-          </div>
+          <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:12px;">RECENT TESTIMONIALS</h4>
+          <div id="reviews-feed-list" style="display:flex; flex-direction:column; gap:12px; max-height:360px; overflow-y:auto;"></div>
         </div>
       </div>
     </section>
 
-    <!-- STORE & RANKS (FEATURING 0-100 NOVICE CLAIM) -->
-    <section class="section-wrap" id="store">
-      <div class="section-headline">
-        <h2>FEARSTEAL <span>OFFICIAL STORE</span></h2>
-        <p>Unlock custom particle trails, /fly in claims, and extra heart capacities.</p>
-      </div>
-
-      <div class="store-ranks-grid">
-        <!-- NOVICE FREE RANK (0/100 LIMIT) -->
-        <div class="rank-card-fs novice-special-card">
-          <div>
-            <div class="r-name">NOVICE</div>
-            <div class="r-price">$0 FREE</div>
-            <p style="font-size:0.8rem; color:#fca5a5;">Limited time for 60d. Strictly capped at 100 players total.</p>
-            <div class="novice-bar-wrap">
-              <div class="novice-bar-fill" id="novice-fill-bar"></div>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted); margin-bottom:15px;">
-              <span id="novice-count-text">0 / 100 Claimed</span>
-              <span>60d Window</span>
-            </div>
-            <ul class="rank-features-list">
-              <li><i class="fa-solid fa-check"></i> Free Novice Discord Role</li>
-              <li><i class="fa-solid fa-check"></i> 1x Extra Heart Slot</li>
-              <li><i class="fa-solid fa-check"></i> /kit novice</li>
-            </ul>
-          </div>
-          <button class="btn-fs btn-fs-primary" id="btn-novice-claim" onclick="processNoviceClaim()">CLAIM NOVICE</button>
-        </div>
-
-        <!-- KNIGHT (POPULAR) -->
-        <div class="rank-card-fs popular">
-          <div class="popular-tag-badge">MOST POPULAR</div>
-          <div>
-            <div class="r-name">KNIGHT</div>
-            <div class="r-price">$12</div>
-            <ul class="rank-features-list">
-              <li><i class="fa-solid fa-check"></i> [Knight] Golden Prefix</li>
-              <li><i class="fa-solid fa-check"></i> /craft & /enderchest anywhere</li>
-              <li><i class="fa-solid fa-check"></i> +5 Private Vaults</li>
-            </ul>
-          </div>
-          <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-primary">BUY KNIGHT</a>
-        </div>
-
-        <!-- FEARSTEAL (TOP TIER) -->
-        <div class="rank-card-fs" style="border:2px solid var(--crimson-glow);">
-          <div>
-            <div class="r-name">FEARSTEAL</div>
-            <div class="r-price">$25</div>
-            <ul class="rank-features-list">
-              <li><i class="fa-solid fa-check"></i> Ultimate [FEARSTEAL] Tag</li>
-              <li><i class="fa-solid fa-check"></i> All commands unlocked</li>
-              <li><i class="fa-solid fa-check"></i> Unlimited Private Vaults</li>
-            </ul>
-          </div>
-          <a href="https://store.cryzormc.in/" target="_blank" class="btn-fs btn-fs-primary">BUY FEARSTEAL</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- STAFF ROSTER -->
-    <section class="section-wrap" id="staff">
-      <div class="section-headline">
-        <h2>FEARSTEAL <span>STAFF DIRECTORY</span></h2>
-        <p>Our dedicated administration and moderation units.</p>
-      </div>
-
-      <div class="staff-roster-grid" id="staff-grid-root">
-        <!-- Rendered with live Minecraft Heads -->
-      </div>
-    </section>
-
-    <!-- NEWS & UPDATES -->
-    <section class="section-wrap" id="news">
-      <div class="section-headline">
-        <h2>NEWS & <span>DEV UPDATES</span></h2>
-        <p>Read the latest release notes, patch alerts, and community notices.</p>
-      </div>
-
-      <div class="grid-cards-3" id="news-grid-root">
-        <!-- Injected Dynamically -->
-      </div>
-    </section>
-
-    <!-- SERVER RULES -->
+    <!-- 11. SERVER RULES -->
     <section class="section-wrap" id="rules">
       <div class="section-headline">
-        <h2>SERVER RULES & <span>GUIDELINES</span></h2>
-        <p>Zero-tolerance cheating policy. Respect staff and maintain fair combat.</p>
+        <h2>OFFICIAL <span>SERVER RULES</span></h2>
+        <p>Violating rules leads to permanent bans. Severity decides punishment length.</p>
       </div>
 
       <div class="grid-cards-4">
-        <div class="fs-card"><strong style="color:var(--crimson-glow);">#1 No Hacked Clients</strong><p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">Killaura, Reach, Speed, and Velocity modifications result in instant bans.</p></div>
-        <div class="fs-card"><strong style="color:var(--crimson-glow);">#2 No Duplicating</strong><p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">Exploiting heart or block duplication glitch yields account wiping.</p></div>
-        <div class="fs-card"><strong style="color:var(--crimson-glow);">#3 No Toxicity / Doxxing</strong><p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">Keep chat clean. Severe harassment incurs permanent network blacklisting.</p></div>
-        <div class="fs-card"><strong style="color:var(--crimson-glow);">#4 No DDoS Threats</strong><p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">Attempting to disrupt network services will be prosecuted legally.</p></div>
+        <div class="fs-card"><strong style="color:var(--crimson-glow);">#1 No Cheating/Hacks</strong><p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">No Killaura, Velocity, or Reach.</p></div>
+        <div class="fs-card"><strong style="color:var(--crimson-glow);">#2 No Duplication</strong><p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">No glitch or item duping exploits.</p></div>
+        <div class="fs-card"><strong style="color:var(--crimson-glow);">#3 No Toxicity/Doxxing</strong><p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">Zero harassment tolerated.</p></div>
+        <div class="fs-card"><strong style="color:var(--crimson-glow);">#4 No DDoS Threats</strong><p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">Instant blacklist & legal report.</p></div>
       </div>
     </section>
 
-    <!-- ADMIN PANEL -->
+    <!-- 12. HOW TO PLAY -->
+    <section class="section-wrap" id="how-to-play">
+      <div class="section-headline">
+        <h2>HOW TO <span>CONNECT & PLAY</span></h2>
+        <p>Follow these simple steps to join FearSteal on Java or Bedrock edition.</p>
+      </div>
+
+      <div class="grid-cards-4">
+        <div class="fs-card">
+          <span class="role-tag" style="background:var(--crimson-base); color:#fff;">STEP 1 & 2</span>
+          <h4 style="font-family:var(--font-heading); font-size:1.2rem; margin-top:6px;">Launch & Multiplayer</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Launch Minecraft (Java or Bedrock) and open Multiplayer.</p>
+        </div>
+        <div class="fs-card">
+          <span class="role-tag" style="background:var(--crimson-base); color:#fff;">STEP 3 & 4</span>
+          <h4 style="font-family:var(--font-heading); font-size:1.2rem; margin-top:6px;">Add Server Address</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Address: <code>play.fearsteal.fun</code><br>Port: <code>19132</code></p>
+        </div>
+        <div class="fs-card">
+          <span class="role-tag" style="background:var(--crimson-base); color:#fff;">STEP 5</span>
+          <h4 style="font-family:var(--font-heading); font-size:1.2rem; margin-top:6px;">Click Join Server</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Connect to the proxy and land in our custom LifeSteal spawn.</p>
+        </div>
+        <div class="fs-card">
+          <span class="role-tag" style="background:var(--crimson-base); color:#fff;">STEP 6</span>
+          <h4 style="font-family:var(--font-heading); font-size:1.2rem; margin-top:6px;">Start Stealing Hearts</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Form clans, build bases, and conquer the leaderboard!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. FAQ ACCORDION -->
+    <section class="section-wrap" id="faq">
+      <div class="section-headline">
+        <h2>FREQUENTLY ASKED <span>QUESTIONS</span></h2>
+        <p>Quick answers regarding our server setup and game rules.</p>
+      </div>
+
+      <div class="fs-card" style="max-width:850px; margin:0 auto;">
+        <div style="border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:12px; margin-bottom:12px;">
+          <strong>What is FearSteal?</strong>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">FearSteal is a competitive Minecraft LifeSteal network focused on PvP battles, community events, and heart mechanics.</p>
+        </div>
+        <div style="border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:12px; margin-bottom:12px;">
+          <strong>What is the server address and Bedrock port?</strong>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Address: <code>play.fearsteal.fun</code> | Port: <code>19132</code></p>
+        </div>
+        <div>
+          <strong>What happens when the Novice rank reaches 100 claims?</strong>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">It automatically becomes OUT OF STOCK and further claims are disabled permanently.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. MEDIA APPLY & VIDEO DESCRIPTION -->
+    <section class="section-wrap" id="media-apply">
+      <div class="section-headline">
+        <h2>CONTENT CREATOR <span>MEDIA RANKS</span></h2>
+        <p>Apply for Media ranks via our Discord server.</p>
+      </div>
+
+      <div class="grid-cards-4">
+        <div class="fs-card"><h4>SMOL RANK</h4><p style="color:var(--text-muted); font-size:0.85rem;">200+ completed subscribers</p></div>
+        <div class="fs-card"><h4>MEDIA RANK</h4><p style="color:var(--text-muted); font-size:0.85rem;">500–1,000 subscribers</p></div>
+        <div class="fs-card"><h4>MEDIA+ RANK</h4><p style="color:var(--text-muted); font-size:0.85rem;">1,000–5,000 subscribers</p></div>
+        <div class="fs-card"><h4>FAMOUS RANK</h4><p style="color:var(--text-muted); font-size:0.85rem;">10,000+ subscribers</p></div>
+      </div>
+
+      <div class="fs-card" style="margin-top:24px;">
+        <h4 style="font-family:var(--font-heading); font-size:1.2rem; margin-bottom:8px;">Mandatory Video Description Template:</h4>
+        <div style="background:rgba(0,0,0,0.5); padding:14px; border-radius:4px; font-family:monospace; font-size:0.85rem; line-height:1.8;">
+          Server IP: play.fearsteal.fun<br>
+          Server Port: 19132<br>
+          FearSteal Discord: <a href="https://discord.gg/pGM5x3gXpX" target="_blank" style="color:var(--crimson-glow);">https://discord.gg/pGM5x3gXpX</a><br>
+          FearSteal Website: play.fearsteal.fun<br>
+          FearSteal Store: <a href="https://store.cryzormc.in/" target="_blank" style="color:var(--crimson-glow);">https://store.cryzormc.in/</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. SUGGESTIONS (SENT TO ADMIN PANEL) -->
+    <section class="section-wrap" id="suggestions">
+      <div class="section-headline">
+        <h2>SUBMIT A <span>SUGGESTION</span></h2>
+        <p>Proposals are sent directly to the Admin Panel for review.</p>
+      </div>
+
+      <div class="fs-card" style="max-width:650px; margin:0 auto;">
+        <form onsubmit="handleSuggestionSubmit(event)">
+          <div class="auth-form-group">
+            <label>Category</label>
+            <div class="input-field-wrap">
+              <select id="sugg-category">
+                <option value="Server Mechanics">LifeSteal Mechanics</option>
+                <option value="Discord Feature">Discord Feature</option>
+                <option value="Store & Ranks">Store & Ranks</option>
+                <option value="Events">Events & Tournaments</option>
+              </select>
+            </div>
+          </div>
+          <div class="auth-form-group">
+            <label>Suggestion Details</label>
+            <textarea id="sugg-text" rows="4" placeholder="Explain your proposal..." required></textarea>
+          </div>
+          <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-lightbulb"></i> SEND SUGGESTION</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 16. STAFF APPLICATION (12 QUESTIONS) -->
+    <section class="section-wrap" id="staff-apply">
+      <div class="section-headline">
+        <h2>STAFF <span>APPLICATION FORM</span></h2>
+        <p>Answer all 12 questions. Submissions route directly to the Admin Panel.</p>
+      </div>
+
+      <div class="fs-card" style="max-width:850px; margin:0 auto;">
+        <form onsubmit="handleStaffAppSubmit(event)">
+          <div class="auth-form-group"><label>1. Minecraft IGN & Discord Tag</label><input type="text" id="sq1" required /></div>
+          <div class="auth-form-group"><label>2. Your Age & Timezone</label><input type="text" id="sq2" required /></div>
+          <div class="auth-form-group"><label>3. Desired Role</label>
+            <select id="sq3">
+              <option value="Helper">Helper (Chat support & player questions)</option>
+              <option value="Junior Mod">Junior Mod (Basic moderation & mute powers)</option>
+              <option value="Junior Admin">Junior Admin (Ban escalations & grief checks)</option>
+              <option value="Junior Manager">Junior Manager (Team workflow management)</option>
+            </select>
+          </div>
+          <div class="auth-form-group"><label>4. Weekly available hours</label><input type="text" id="sq4" required /></div>
+          <div class="auth-form-group"><label>5. Past Minecraft staffing experience</label><textarea id="sq5" rows="2" required></textarea></div>
+          <div class="auth-form-group"><label>6. How do you identify Killaura, Velocity, and Reach?</label><textarea id="sq6" rows="2" required></textarea></div>
+          <div class="auth-form-group"><label>7. How do you handle a dupe accusation between two clans?</label><textarea id="sq7" rows="2" required></textarea></div>
+          <div class="auth-form-group"><label>8. What if a close friend breaks server rules?</label><textarea id="sq8" rows="2" required></textarea></div>
+          <div class="auth-form-group"><label>9. Can you record 60FPS video proof of punishments?</label><input type="text" id="sq9" placeholder="Yes / No" required /></div>
+          <div class="auth-form-group"><label>10. Have you ever been banned or warned on FearSteal?</label><input type="text" id="sq10" required /></div>
+          <div class="auth-form-group"><label>11. Why should we choose you over other candidates?</label><textarea id="sq11" rows="3" required></textarea></div>
+          <div class="auth-form-group"><label>12. Do you agree that leaking staff discussions results in an instant blacklist?</label>
+            <select id="sq12"><option value="I Agree">I Agree Fully</option></select>
+          </div>
+          <button type="submit" class="btn-fs btn-fs-primary" style="width:100%;"><i class="fa-solid fa-paper-plane"></i> SUBMIT STAFF APPLICATION</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 17. DISCORD COMMUNITY & LIVE WIDGET -->
+    <section class="section-wrap" id="discord-section">
+      <div style="background:linear-gradient(90deg, rgba(88,101,242,0.18), rgba(230,25,55,0.18)); border:1px solid #5865f2; border-radius:var(--radius-lg); padding:35px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+            <i class="fa-brands fa-discord" style="font-size:2rem; color:#5865f2;"></i>
+            <h3 style="font-family:var(--font-heading); font-size:1.8rem; color:#fff;">JOIN FEARSTEAL DISCORD</h3>
+          </div>
+          <p style="font-size:0.85rem; color:#d1d5db; max-width:600px;">
+            Stay updated with server announcements, tournaments, rank giveaways, and live community voice channels.
+          </p>
+          <div style="margin-top:10px; font-size:0.85rem; color:#a5b4fc;">
+            Official Link: <strong>https://discord.gg/pGM5x3gXpX</strong>
+          </div>
+        </div>
+        <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn-fs btn-fs-discord" style="padding:15px 30px; font-size:1.1rem;">
+          <i class="fa-brands fa-discord"></i> JOIN DISCORD SERVER
+        </a>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       PROTECTED: ADMIN PANEL (VISIBLE ONLY TO FOUNDER ItzVeltriex)
+       ========================================================================== -->
     <section class="section-wrap" id="admin-panel" style="display:none;">
       <div class="section-headline">
-        <h2>ADMIN <span>COMMAND CENTER</span></h2>
-        <p>Privileged management console exclusively for Founder <code>ItzVeltriex</code>.</p>
+        <h2>FOUNDER <span>ADMIN PANEL</span></h2>
+        <p>Exclusive management dashboard accessible only to <code>ItzVeltriex</code>.</p>
       </div>
 
       <div class="panel-master-container">
         <div class="panel-nav-tabs">
-          <button class="panel-tab-btn active" onclick="switchAdminSubTab('users')">User Directory</button>
-          <button class="panel-tab-btn" onclick="switchAdminSubTab('broadcast')">Broadcast Announcement</button>
-          <button class="panel-tab-btn" onclick="switchAdminSubTab('tickets')">Tickets & Appeals</button>
+          <button class="panel-tab-btn active" onclick="switchAdminSubTab('users')">User Management</button>
+          <button class="panel-tab-btn" onclick="switchAdminSubTab('broadcast')">24h Announcements</button>
+          <button class="panel-tab-btn" onclick="switchAdminSubTab('apps')">Staff Applications</button>
+          <button class="panel-tab-btn" onclick="switchAdminSubTab('suggestions')">Suggestions</button>
         </div>
 
-        <!-- Tab 1: Users -->
+        <!-- 1. USER MANAGEMENT (Admin vs Staff role assignment) -->
         <div id="adm-tab-users">
-          <h4 style="margin-bottom:14px;">All Registered Player Accounts</h4>
+          <h4 style="margin-bottom:12px;">Website User Accounts & Role Permissions</h4>
           <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
             <thead>
               <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:var(--text-muted); text-align:left;">
-                <th style="padding:8px;">IGN / USERNAME</th>
-                <th>EMAIL</th>
-                <th>ROLE</th>
-                <th>ACTION</th>
+                <th style="padding:10px;">USERNAME / EMAIL</th>
+                <th>PASSWORD</th>
+                <th>CURRENT ROLE</th>
+                <th>ASSIGN ACCESS</th>
               </tr>
             </thead>
             <tbody id="admin-users-table">
-              <!-- Rendered JS -->
+              <!-- Dynamically populated -->
             </tbody>
           </table>
         </div>
 
-        <!-- Tab 2: 24h Broadcast Announcement -->
+        <!-- 2. 24-HOUR BROADCAST ANNOUNCEMENTS -->
         <div id="adm-tab-broadcast" style="display:none;">
-          <h4 style="margin-bottom:12px;">Publish 24-Hour Top Announcement</h4>
+          <h4 style="margin-bottom:12px;">Publish 24-Hour Network Announcement</h4>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:15px;">
+            Displays on the homepage header with relative time. Automatically expires after 24 hours.
+          </p>
           <form onsubmit="handleBroadcastAnnouncement(event)">
             <div class="auth-form-group">
-              <label>Message Content</label>
-              <textarea id="broadcast-input" rows="3" placeholder="e.g. Server maintenance scheduled tonight at 12:00 AM UTC..." required></textarea>
+              <label>Announcement Message</label>
+              <textarea id="broadcast-input" rows="3" placeholder="e.g. Double Heart drop rates this weekend across all warps!" required></textarea>
             </div>
-            <button type="submit" class="btn-fs btn-fs-primary"><i class="fa-solid fa-bullhorn"></i> BROADCAST NOTICE</button>
+            <button type="submit" class="btn-fs btn-fs-primary"><i class="fa-solid fa-bullhorn"></i> BROADCAST ANNOUNCEMENT</button>
           </form>
         </div>
 
-        <!-- Tab 3: Tickets Queue -->
-        <div id="adm-tab-tickets" style="display:none;">
-          <h4 style="margin-bottom:12px;">Active Moderation Queues</h4>
-          <div id="admin-tickets-queue">
-            <!-- Injected -->
-          </div>
+        <!-- 3. STAFF APPLICATIONS QUEUE -->
+        <div id="adm-tab-apps" style="display:none;">
+          <h4 style="margin-bottom:12px;">Submitted Staff Applications</h4>
+          <div id="admin-apps-queue" style="display:flex; flex-direction:column; gap:14px;"></div>
+        </div>
+
+        <!-- 4. SUGGESTIONS QUEUE -->
+        <div id="adm-tab-suggestions" style="display:none;">
+          <h4 style="margin-bottom:12px;">Player Suggestions Feed</h4>
+          <div id="admin-suggestions-queue" style="display:flex; flex-direction:column; gap:12px;"></div>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER WITH OFFICIAL LOGO -->
+    <!-- ==========================================================================
+       PROTECTED: STAFF PANEL (VISIBLE TO STAFF BELOW ADMIN)
+       ========================================================================== */
+    -->
+    <section class="section-wrap" id="staff-panel" style="display:none;">
+      <div class="section-headline">
+        <h2>STAFF <span>CONTROL PANEL</span></h2>
+        <p>Operations dashboard for certified FearSteal Staff members.</p>
+      </div>
+
+      <div class="panel-master-container">
+        <h4>Staff Notice & Rules of Engagement</h4>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px;">
+          1. Record 60FPS video proof for every ban.<br>
+          2. No abuse of moderation commands during active combat.<br>
+          3. For ban escalations, contact Founder ItzVeltriex or Co-Founder Notslayer.
+        </p>
+      </div>
+    </section>
+
+    <!-- FOOTER WITH ANIMATED LOGO -->
     <footer style="background:#020102; border-top:1px solid var(--border-crimson); padding:50px 24px 30px; margin-top:80px;">
       <div style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:30px; margin-bottom:40px;">
         <div>
           <div class="nav-brand" style="margin-bottom:12px;">
-            <img src="" class="fs-brand-logo-img fs-target-logo" alt="Logo" />
+            <img src="" class="animated-fs-logo fs-target-logo" alt="Logo" />
             <span>FEARSTEAL</span>
           </div>
-          <p style="font-size:0.85rem; color:var(--text-muted);">The premier competitive Minecraft LifeSteal realm. Survive, dominate, steal hearts.</p>
+          <p style="font-size:0.85rem; color:var(--text-muted);">The premier competitive Minecraft LifeSteal realm. Steal hearts, build power, survive.</p>
         </div>
         <div>
           <h4 style="font-family:var(--font-heading); margin-bottom:10px;">DIRECT SUPPORT</h4>
@@ -1668,13 +1890,12 @@
   </div>
 
   <!-- ==========================================================================
-       16. MASTER SCRIPT WITH OFFICIAL EMBEDDED LOGO PIPELINE
+       JAVASCRIPT: CLIENT LOGIC & REAL-TIME DATA PIPELINE
        ========================================================================== -->
   <script>
     /* ==========================================================================
-       OFFICIAL FEARSTEAL 3D VOXEL FS LOGO DATA
+       OFFICIAL FEARSTEAL 3D VOXEL FS LOGO DATA URI
        ========================================================================== */
-    // SVG representation of the provided 3D Minecraft voxel FS with crimson fire crystals
     const FEARSTEAL_OFFICIAL_LOGO = `data:image/svg+xml;utf8,${encodeURIComponent(`
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
         <defs>
@@ -1702,7 +1923,6 @@
           </filter>
         </defs>
         
-        <!-- Glow Backdrop -->
         <circle cx="250" cy="250" r="230" fill="url(#glow)"/>
         
         <!-- Exploding Crimson Minecraft Crystals -->
@@ -1713,7 +1933,7 @@
         <polygon points="160,420 190,400 170,450 140,440" fill="url(#crystalShine)"/>
         <polygon points="320,430 360,410 340,460 310,450" fill="url(#crystalShine)"/>
 
-        <!-- Pixel Cubes Shards -->
+        <!-- Pixel Cube Shards -->
         <rect x="130" y="70" width="22" height="22" fill="#ff7700" transform="rotate(15 141 81)"/>
         <rect x="375" y="110" width="20" height="20" fill="#ff3300" transform="rotate(-20 385 120)"/>
         <rect x="75" y="210" width="18" height="18" fill="#ffaa00" transform="rotate(25 84 219)"/>
@@ -1723,15 +1943,12 @@
 
         <!-- 3D Isometric "F" -->
         <g filter="url(#shadow)">
-          <!-- F Extrusions (Red/Dark Sides) -->
           <polygon points="120,120 160,150 160,380 120,350" fill="url(#redSide)"/>
           <polygon points="120,350 160,380 230,380 200,350" fill="#440008"/>
           <polygon points="200,120 250,150 250,200 200,180" fill="url(#redSide)"/>
           <polygon points="190,230 240,260 240,300 190,280" fill="url(#redSide)"/>
 
-          <!-- F Front Faces (Voxel Golden Yellow) -->
           <polygon points="100,140 230,140 230,200 160,200 160,240 220,240 220,290 160,290 160,380 100,380" fill="url(#goldFront)"/>
-          <!-- Voxel Pixel Shading on F -->
           <rect x="105" y="145" width="25" height="25" fill="#fff" opacity="0.3"/>
           <rect x="135" y="145" width="25" height="25" fill="#fff" opacity="0.15"/>
           <rect x="105" y="175" width="25" height="25" fill="#ffcc00" opacity="0.4"/>
@@ -1740,14 +1957,11 @@
 
         <!-- 3D Isometric "S" -->
         <g filter="url(#shadow)">
-          <!-- S Extrusions -->
           <polygon points="250,150 280,170 280,410 250,380" fill="url(#redSide)"/>
           <polygon points="270,140 400,140 430,170 300,170" fill="url(#redSide)"/>
           <polygon points="380,240 420,270 420,400 380,380" fill="url(#redSide)"/>
 
-          <!-- S Front Faces -->
           <polygon points="270,160 390,160 390,220 320,220 320,250 390,250 390,380 260,380 260,320 330,320 330,290 270,290" fill="url(#goldFront)"/>
-          <!-- Voxel Pixel Shading on S -->
           <rect x="275" y="165" width="25" height="25" fill="#fff" opacity="0.35"/>
           <rect x="305" y="165" width="25" height="25" fill="#fff" opacity="0.2"/>
           <rect x="360" y="255" width="25" height="25" fill="#ffbb00" opacity="0.4"/>
@@ -1756,8 +1970,7 @@
       </svg>
     `)}`;
 
-    // Inject Logo to all designated slots
-    function injectOfficialLogo() {
+    function injectLogos() {
       document.querySelectorAll('.fs-target-logo').forEach(img => {
         img.src = FEARSTEAL_OFFICIAL_LOGO;
       });
@@ -1813,7 +2026,7 @@
     animateParticles();
 
     /* ==========================================================================
-       PRELOADER SIMULATION
+       PRELOADER PROGRESS (0 TO 100%)
        ========================================================================== */
     let loadProgress = 0;
     const loaderBar = document.getElementById('loader-bar');
@@ -1848,26 +2061,32 @@
     }, 38);
 
     /* ==========================================================================
-       AUTHENTICATION STATE & ACCOUNTS
+       DATABASE INITIALIZATION & SEEDING
        ========================================================================== */
     if (!localStorage.getItem('fs_accounts')) {
       const initialUsers = [
-        { username: 'ItzVeltriex', email: 'fearstealsupport@gmail.com', pass: 'thakuree@2064', role: 'admin', hearts: 20 },
-        { username: 'Notslayer', email: 'notslayer@fearsteal.fun', pass: 'admin123', role: 'admin', hearts: 20 },
-        { username: 'RaviXD', email: 'ravixd@fearsteal.fun', pass: 'staff123', role: 'staff', hearts: 18 },
-        { username: 'VoidSlayer', email: 'void@fearsteal.fun', pass: 'staff123', role: 'staff', hearts: 19 }
+        { username: 'ItzVeltriex', email: 'fearstealsupport@gmail.com', pass: 'thakuree@2064', role: 'admin', hearts: 20, registeredAt: '2025-01-01' },
+        { username: 'Notslayer', email: 'notslayer@fearsteal.fun', pass: 'admin123', role: 'admin', hearts: 20, registeredAt: '2025-01-02' },
+        { username: 'RaviXD', email: 'ravixd@fearsteal.fun', pass: 'staff123', role: 'staff', hearts: 18, registeredAt: '2025-01-05' },
+        { username: 'VoidSlayer', email: 'void@fearsteal.fun', pass: 'staff123', role: 'staff', hearts: 19, registeredAt: '2025-01-08' }
       ];
       localStorage.setItem('fs_accounts', JSON.stringify(initialUsers));
     }
 
     if (!localStorage.getItem('fs_novice_claims')) localStorage.setItem('fs_novice_claims', '0');
     if (!localStorage.getItem('fs_claimed_novice_users')) localStorage.setItem('fs_claimed_novice_users', JSON.stringify([]));
-    if (!localStorage.getItem('fs_tickets')) {
-      localStorage.setItem('fs_tickets', JSON.stringify([
-        { id: 'FS-9812', sender: 'PlayerA', category: 'General Support', priority: 'NORMAL', msg: 'Need help linking discord to in-game account', status: 'OPEN' }
+    if (!localStorage.getItem('fs_reviews_data')) {
+      localStorage.setItem('fs_reviews_data', JSON.stringify([
+        { username: 'ItzVeltriex', stars: 10, msg: 'Welcome to Season 1 of FearSteal! Enjoy stealing hearts.', time: '1 day ago' },
+        { username: 'VoidSlayer', stars: 10, msg: 'Ultra crisp PvP hitboxes and smooth latency.', time: '2 days ago' }
       ]));
     }
+    if (!localStorage.getItem('fs_suggestions_data')) localStorage.setItem('fs_suggestions_data', JSON.stringify([]));
+    if (!localStorage.getItem('fs_staff_apps_data')) localStorage.setItem('fs_staff_apps_data', JSON.stringify([]));
 
+    /* ==========================================================================
+       AUTHENTICATION & ROLE ROUTING
+       ========================================================================== */
     function verifyAuthenticationState() {
       const activeSession = JSON.parse(localStorage.getItem('fs_user_session'));
       const authGate = document.getElementById('auth-screen-gate');
@@ -1920,6 +2139,22 @@
       }
     }
 
+    function handleSocialAuth(provider) {
+      showToast(`Redirecting to ${provider} OAuth authentication...`);
+      setTimeout(() => {
+        const dummyUser = {
+          username: provider + 'Player',
+          email: provider.toLowerCase() + '@fearsteal.fun',
+          pass: 'oauth',
+          role: 'user',
+          hearts: 10,
+          registeredAt: new Date().toISOString().split('T')[0]
+        };
+        localStorage.setItem('fs_user_session', JSON.stringify(dummyUser));
+        verifyAuthenticationState();
+      }, 1000);
+    }
+
     function handleAuthRegister(e) {
       e.preventDefault();
       const ign = document.getElementById('reg-ign').value.trim();
@@ -1943,10 +2178,18 @@
         return;
       }
 
-      const newUser = { username: ign, email: mail, pass: pass, role: 'user', hearts: 10 };
+      const newUser = {
+        username: ign,
+        email: mail,
+        pass: pass,
+        role: 'user',
+        hearts: 10,
+        registeredAt: new Date().toISOString().split('T')[0]
+      };
       db.push(newUser);
       localStorage.setItem('fs_accounts', JSON.stringify(db));
-      showToast('✓ ACCOUNT CREATED SUCCESSFULLY! Please login.');
+
+      showToast('You are successful register so please login ✅');
       switchAuthMode('login');
       document.getElementById('login-user').value = ign;
       document.getElementById('login-pass').value = '';
@@ -1958,11 +2201,11 @@
       const pass = document.getElementById('login-pass').value;
       const errBox = document.getElementById('auth-error-box');
 
-      // Hardcoded Admin Bypass for Founder ItzVeltriex
+      // Hardcoded Admin Access for Founder ItzVeltriex
       if ((id === 'itzveltriex' || id === 'fearstealsupport@gmail.com') && pass === 'thakuree@2064') {
         const adminObj = { username: 'ItzVeltriex', email: 'fearstealsupport@gmail.com', role: 'admin', hearts: 20 };
         localStorage.setItem('fs_user_session', JSON.stringify(adminObj));
-        showToast('✓ AUTHENTICATION SUCCESSFUL! Welcome Founder ItzVeltriex.');
+        showToast('✓ Welcome Founder ItzVeltriex! Admin Panel unlocked.');
         verifyAuthenticationState();
         return;
       }
@@ -1982,8 +2225,8 @@
     }
 
     function showForgotPasswordPrompt() {
-      const email = prompt("Enter your registered email address to receive a password reset link:");
-      if (email) showToast(`Reset token sent to ${email} (simulated).`);
+      const email = prompt("Enter your email address to receive a password reset link:");
+      if (email) showToast(`Reset link dispatched to ${email} (simulated).`);
     }
 
     function executeLogout() {
@@ -2000,18 +2243,19 @@
       roleTag.innerText = user.role.toUpperCase();
       roleTag.className = `role-tag role-${user.role}`;
 
-      const staffNav = document.getElementById('nav-item-staff-panel');
       const adminNav = document.getElementById('nav-item-admin-panel');
+      const staffNav = document.getElementById('nav-item-staff-panel');
 
-      if (user.role === 'admin') {
-        staffNav.style.display = 'block';
+      // Admin Panel visible ONLY to Admin role (ItzVeltriex)
+      if (user.role === 'admin' || user.username.toLowerCase() === 'itzveltriex') {
         adminNav.style.display = 'block';
+        staffNav.style.display = 'block'; // Admin also has staff panel
       } else if (user.role === 'staff') {
-        staffNav.style.display = 'block';
         adminNav.style.display = 'none';
+        staffNav.style.display = 'block'; // Staff below admin sees Staff Panel only
       } else {
-        staffNav.style.display = 'none';
         adminNav.style.display = 'none';
+        staffNav.style.display = 'none';
       }
 
       updateHeartsUI(user.hearts || 10);
@@ -2019,9 +2263,9 @@
     }
 
     /* ==========================================================================
-       REAL SERVER STATUS (play.fearsteal.fun:19132)
+       REAL-TIME MINECRAFT SERVER STATUS (play.fearsteal.fun:19132)
        ========================================================================== */
-    async function queryLiveMinecraftStatus() {
+    async function queryLiveMinecraftStatus(manual = false) {
       const pulse = document.getElementById('live-pulse-dot');
       const heroText = document.getElementById('hero-live-text');
       const heroSlots = document.getElementById('hero-live-players');
@@ -2029,8 +2273,11 @@
       const statSlots = document.getElementById('stat-slots');
       const statPing = document.getElementById('stat-ping');
       const statSoft = document.getElementById('stat-software');
+      const statTime = document.getElementById('stat-updated-time');
 
+      if (manual) showToast('Querying play.fearsteal.fun:19132...', 'fa-arrows-rotate');
       const start = performance.now();
+
       try {
         const res = await fetch('https://api.mcstatus.io/v2/status/bedrock/play.fearsteal.fun:19132');
         const data = await res.json();
@@ -2053,9 +2300,9 @@
           heroText.style.color = 'var(--status-offline)';
           heroSlots.innerText = '0 / 0';
 
-          statReach.innerText = '🔴 OFFLINE';
+          statReach.innerText = '🔴 SERVER OFFLINE';
           statReach.style.color = 'var(--status-offline)';
-          statSlots.innerText = 'Unavailable';
+          statSlots.innerText = '0 / Unavailable';
           statPing.innerText = '--';
           statSoft.innerText = 'Server Offline';
         }
@@ -2065,12 +2312,16 @@
         heroText.style.color = 'var(--gold-accent)';
         statReach.innerText = '🟡 UNKNOWN';
         statSlots.innerText = 'Unavailable';
+      } finally {
+        statTime.innerText = new Date().toLocaleTimeString();
+        if (manual) showToast('Live status updated!');
       }
     }
-    setInterval(queryLiveMinecraftStatus, 45000);
+    // Auto-refresh every 60 seconds
+    setInterval(() => queryLiveMinecraftStatus(false), 60000);
 
     /* ==========================================================================
-       NOVICE RANK (0/100 LIMIT)
+       NOVICE FREE RANK (0/100 LIMIT & 60D TIMER)
        ========================================================================== */
     function processNoviceClaim() {
       const user = JSON.parse(localStorage.getItem('fs_user_session'));
@@ -2080,7 +2331,7 @@
       let claimedUsers = JSON.parse(localStorage.getItem('fs_claimed_novice_users') || '[]');
 
       if (claimedUsers.includes(user.username.toLowerCase())) {
-        alert("You have already claimed this rank. You cannot claim this free rank again ❌");
+        alert("You have already claimed this free Rank. You can't claim this rank again ❌️");
         return;
       }
 
@@ -2089,7 +2340,9 @@
         return;
       }
 
-      const discordIgn = prompt("Please join our Discord server first, then enter your Discord IGN to verify and claim Novice Rank:");
+      const discordIgn = prompt(
+        "Please join our Discord server first than you can claim a free ranks which name is your Discord ign than put your Discord ign in here!"
+      );
       if (!discordIgn || discordIgn.trim().length === 0) {
         showToast('Verification cancelled. Discord verification required.');
         return;
@@ -2120,80 +2373,84 @@
     }
 
     /* ==========================================================================
-       SUPPORT TICKETS
+       CRATE SIMULATOR (24H COOLDOWN)
        ========================================================================== */
-    function handleCreateTicket(e) {
-      e.preventDefault();
+    function handleClaimCrateReward() {
       const user = JSON.parse(localStorage.getItem('fs_user_session'));
       if (!user) return;
 
-      const category = document.getElementById('ticket-category').value;
-      const priority = document.getElementById('ticket-priority').value;
-      const desc = document.getElementById('ticket-desc').value.trim();
-      const tickets = JSON.parse(localStorage.getItem('fs_tickets') || '[]');
+      const lastClaim = localStorage.getItem(`fs_crate_time_${user.username}`);
+      const now = Date.now();
+      const twentyFourHours = 24 * 60 * 60 * 1000;
 
-      const newTicket = {
-        id: 'FS-' + Math.floor(1000 + Math.random() * 9000),
-        sender: user.username,
-        category,
-        priority,
-        msg: desc,
-        status: 'OPEN'
-      };
+      if (lastClaim && (now - parseInt(lastClaim, 10) < twentyFourHours)) {
+        alert("You have already claimed this mysterious rewards you can claim again wait for 24h if you claim your rewards please take the screenshot and ping server owner in chat send proof and claim your rewards!");
+        return;
+      }
 
-      tickets.unshift(newTicket);
-      localStorage.setItem('fs_tickets', JSON.stringify(tickets));
-      document.getElementById('ticket-desc').value = '';
-      showToast(`✓ Ticket ${newTicket.id} created!`);
-      renderTicketsList();
+      const prizePool = [
+        '500 Server Coins & 1x Revive Beacon Fragment',
+        '1x LifeSteal Extra Heart Slot Token',
+        '2x Epic Crate Keys for /warp crates',
+        'Exclusive [Predator] In-game Title'
+      ];
+      const win = prizePool[Math.floor(Math.random() * prizePool.length)];
+
+      localStorage.setItem(`fs_crate_time_${user.username}`, now.toString());
+      alert(`🎉 CONGRATULATIONS! You won:\n${win}\n\nImportant: Please take a screenshot right now and ping the server owner in chat, send proof, and claim your rewards!`);
+      checkCrateUI();
     }
 
-    function renderTicketsList() {
-      const tickets = JSON.parse(localStorage.getItem('fs_tickets') || '[]');
-      const body = document.getElementById('ticket-list-body');
-      body.innerHTML = tickets.map(t => `
-        <div class="ticket-item-card">
-          <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px;">
-            <strong>${t.id} &bull; ${t.category}</strong>
-            <span class="${t.status === 'OPEN' ? 'ticket-badge-open' : 'ticket-badge-closed'}">${t.status}</span>
-          </div>
-          <p style="font-size:0.82rem; color:#ccc;">"${t.msg}"</p>
-          <div style="font-size:0.7rem; color:var(--text-dark); margin-top:6px;">Sender: ${t.sender} | Priority: ${t.priority}</div>
-        </div>
-      `).join('');
+    function checkCrateUI() {
+      const user = JSON.parse(localStorage.getItem('fs_user_session'));
+      if (!user) return;
+      const last = localStorage.getItem(`fs_crate_time_${user.username}`);
+      const notice = document.getElementById('crate-timer-notice');
+      const btn = document.getElementById('btn-claim-crate');
+
+      if (last && Date.now() - parseInt(last, 10) < 24 * 3600 * 1000) {
+        notice.style.display = 'block';
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+      } else {
+        notice.style.display = 'none';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
     }
 
     /* ==========================================================================
-       STAFF DIRECTORY WITH MC HEADS
+       STAFF ROSTER WITH REAL MC HEADS
        ========================================================================== */
-    const STAFF_DATA = [
-      { name: 'ItzVeltriex', role: 'FOUNDER', discord: 'https://discord.gg/pGM5x3gXpX' },
-      { name: 'Notslayer', role: 'FOUNDER', discord: 'https://discord.gg/HZhTd9Pry5' },
-      { name: 'RaviXD', role: 'OWNER', discord: null },
-      { name: 'NotGamerYTGG', role: 'CO OWNER', discord: null },
-      { name: 'Prime Shifat', role: 'ADMIN', discord: null },
-      { name: 'Cosmic_Ayush', role: 'SENIOR ADMIN', discord: null },
-      { name: 'Harshu', role: 'JUNIOR ADMIN', discord: null },
-      { name: 'VoidSlayer', role: 'MANAGER', discord: null },
-      { name: 'Thunderboltzzz_', role: 'MODERATOR', discord: null },
-      { name: 'NotDark6', role: 'JUNIOR MODERATOR', discord: null },
-      { name: 'JessGamer7733', role: 'HELPER', discord: null }
+    const STAFF_ROSTER = [
+      { name: 'ItzVeltriex', role: 'FOUNDER', badgeClass: 'role-founder', desc: 'Network Founder & Lead Architecture.', discord: 'https://discord.gg/pGM5x3gXpX' },
+      { name: 'Notslayer', role: 'FOUNDER', badgeClass: 'role-founder', desc: 'Co-Founder & Systems Lead.', discord: 'https://discord.gg/HZhTd9Pry5' },
+      { name: 'RaviXD', role: 'OWNER', badgeClass: 'role-admin', desc: 'Network Owner managing daily operations.', discord: null },
+      { name: 'NotGamerYTGG', role: 'CO OWNER', badgeClass: 'role-admin', desc: 'Co-Owner orchestrating events.', discord: null },
+      { name: 'Prime Shifat', role: 'ADMIN', badgeClass: 'role-admin', desc: 'Senior Server Administrator.', discord: null },
+      { name: 'Cosmic_Ayush', role: 'SENIOR ADMIN', badgeClass: 'role-admin', desc: 'Watchdog monitoring anti-cheat.', discord: null },
+      { name: 'Harshu', role: 'JUNIOR ADMIN', badgeClass: 'role-admin', desc: 'Junior Administrator.', discord: null },
+      { name: 'VoidSlayer', role: 'MANAGER', badgeClass: 'role-staff', desc: 'Operations Manager.', discord: null },
+      { name: 'Thunderboltzzz_', role: 'MODERATOR', badgeClass: 'role-staff', desc: 'Combat moderator.', discord: null },
+      { name: 'NotDark6', role: 'JUNIOR MODERATOR', badgeClass: 'role-staff', desc: 'Junior Moderator keeping chat peaceful.', discord: null },
+      { name: 'JessGamer7733', role: 'HELPER', badgeClass: 'role-staff', desc: 'Community Helper guiding players.', discord: null }
     ];
 
     function renderStaffRoster() {
       const root = document.getElementById('staff-grid-root');
-      root.innerHTML = STAFF_DATA.map(s => `
+      root.innerHTML = STAFF_ROSTER.map(s => `
         <div class="staff-profile-card">
           <img class="head-avatar" src="https://mc-heads.net/avatar/${encodeURIComponent(s.name)}/76" alt="${s.name}" />
           <h4 style="font-family:var(--font-heading); font-size:1.25rem;">${s.name}</h4>
-          <span class="role-tag" style="background:var(--crimson-gradient); color:#fff; margin:6px 0 10px;">${s.role}</span>
+          <span class="role-tag ${s.badgeClass}" style="margin:6px 0 10px;">${s.role}</span>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px;">${s.desc}</p>
           ${s.discord ? `<a href="${s.discord}" target="_blank" class="btn-fs btn-fs-discord" style="padding:6px 14px; font-size:0.75rem;"><i class="fa-brands fa-discord"></i> DISCORD</a>` : ''}
         </div>
       `).join('');
     }
 
     /* ==========================================================================
-       LEADERBOARDS & HEARTS
+       LEADERBOARDS (10M AUTO-REFRESH) & HEARTS FORGE
        ========================================================================== */
     const MOCK_LEADERS = [
       { rank: '#1', name: 'ItzVeltriex', hearts: 20, kills: 310, deaths: 8, kd: '38.7' },
@@ -2218,6 +2475,12 @@
         </tr>
       `).join('');
     }
+
+    // Refresh leaderboards every 10 minutes (600,000ms)
+    setInterval(() => {
+      renderLeaderboard();
+      showToast('Leaderboards synced with realm logs.');
+    }, 600000);
 
     function updateHeartsUI(h) {
       document.getElementById('user-hearts-count').innerText = `${h} / 20`;
@@ -2245,43 +2508,170 @@
     }
 
     /* ==========================================================================
-       NEWS
+       REGISTERED MEMBERS DIRECTORY
        ========================================================================== */
-    const NEWS_POSTS = [
-      { title: 'Season 1 Blood Moon Commences', date: 'Jan 2025', desc: 'Heart steal rates doubled during nighttime cycles. Experience true LifeSteal anarchy.', img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80' },
-      { title: 'New Duels Arena & Hit Reg Overhaul', date: 'Jan 2025', desc: 'Zero ping delays and crisp hitboxes added to /warp duels.', img: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80' }
-    ];
+    function renderMembersDirectory() {
+      const db = JSON.parse(localStorage.getItem('fs_accounts') || '[]');
+      const tbody = document.getElementById('registered-members-tbody');
+      tbody.innerHTML = db.map((u, i) => `
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+          <td style="padding:10px;"><strong>#${i + 1}</strong></td>
+          <td><img src="https://mc-heads.net/avatar/${encodeURIComponent(u.username)}/26" style="border-radius:4px;" /></td>
+          <td><strong>${u.username}</strong></td>
+          <td><span class="role-tag role-${u.role}">${u.role.toUpperCase()}</span></td>
+          <td>${u.hearts || 10} ❤️</td>
+          <td>${u.registeredAt || '2025-01-10'}</td>
+        </tr>
+      `).join('');
+    }
 
-    function renderNews() {
-      const root = document.getElementById('news-grid-root');
-      root.innerHTML = NEWS_POSTS.map(n => `
-        <div class="news-article-card">
-          <div class="news-thumb-box"><img src="${n.img}" alt="${n.title}" /></div>
-          <div class="news-content-box">
-            <span class="role-tag" style="background:var(--crimson-deep); color:#fff;">UPDATE</span>
-            <h4 style="font-family:var(--font-heading); font-size:1.3rem; margin:8px 0;">${n.title}</h4>
-            <p style="font-size:0.85rem; color:var(--text-muted);">${n.desc}</p>
-            <div style="font-size:0.75rem; color:var(--text-dark); margin-top:10px;">${n.date} &bull; Author by ItzVeltriex</div>
+    /* ==========================================================================
+       REVIEWS SYSTEM (0-10 STARS)
+       ========================================================================== */
+    let selectedStars = 10;
+    function initStarSelector() {
+      const row = document.getElementById('star-row-container');
+      row.innerHTML = '';
+      for (let i = 1; i <= 10; i++) {
+        row.innerHTML += `<i class="fa-solid fa-star active" data-val="${i}" onclick="selectReviewStars(${i})"></i>`;
+      }
+    }
+
+    function selectReviewStars(val) {
+      selectedStars = val;
+      document.getElementById('star-score-num').innerText = val;
+      const stars = document.querySelectorAll('#star-row-container i');
+      stars.forEach((s, idx) => {
+        if (idx < val) s.className = 'fa-solid fa-star active';
+        else s.className = 'fa-regular fa-star';
+      });
+    }
+
+    function handleReviewSubmit(e) {
+      e.preventDefault();
+      const user = JSON.parse(localStorage.getItem('fs_user_session'));
+      if (!user) return;
+      const msg = document.getElementById('review-msg-input').value.trim();
+      const revs = JSON.parse(localStorage.getItem('fs_reviews_data') || '[]');
+
+      revs.unshift({ username: user.username, stars: selectedStars, msg, time: 'Just now' });
+      localStorage.setItem('fs_reviews_data', JSON.stringify(revs));
+      document.getElementById('review-msg-input').value = '';
+      showToast('✓ Review submitted successfully!');
+      renderReviewsList();
+    }
+
+    function renderReviewsList() {
+      const revs = JSON.parse(localStorage.getItem('fs_reviews_data') || '[]');
+      const container = document.getElementById('reviews-feed-list');
+      container.innerHTML = revs.map(r => `
+        <div style="background:rgba(0,0,0,0.4); border:1px solid var(--border-crimson); padding:12px; border-radius:var(--radius-sm);">
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <img src="https://mc-heads.net/avatar/${encodeURIComponent(r.username)}/20" style="border-radius:3px;" />
+              <strong>${r.username}</strong>
+            </div>
+            <span style="color:var(--gold-accent); font-weight:700;">★ ${r.stars}/10</span>
           </div>
+          <p style="font-size:0.85rem; color:#ddd;">"${r.msg}"</p>
+          <div style="font-size:0.7rem; color:var(--text-muted); text-align:right; margin-top:4px;">${r.time}</div>
         </div>
       `).join('');
     }
 
     /* ==========================================================================
-       ADMIN BROADCASTS & CONTROLS
+       SUGGESTIONS & STAFF APPLICATIONS
        ========================================================================== */
+    function handleSuggestionSubmit(e) {
+      e.preventDefault();
+      const user = JSON.parse(localStorage.getItem('fs_user_session'));
+      if (!user) return;
+      const category = document.getElementById('sugg-category').value;
+      const text = document.getElementById('sugg-text').value.trim();
+
+      const suggs = JSON.parse(localStorage.getItem('fs_suggestions_data') || '[]');
+      suggs.push({ sender: user.username, category, text, time: new Date().toLocaleString() });
+      localStorage.setItem('fs_suggestions_data', JSON.stringify(suggs));
+
+      document.getElementById('sugg-text').value = '';
+      showToast('✓ Suggestion forwarded to Founder Admin Panel.');
+    }
+
+    function handleStaffAppSubmit(e) {
+      e.preventDefault();
+      const user = JSON.parse(localStorage.getItem('fs_user_session'));
+      if (!user) return;
+
+      const app = {
+        applicant: user.username,
+        role: document.getElementById('sq3').value,
+        details: document.getElementById('sq1').value + ' | ' + document.getElementById('sq2').value,
+        why: document.getElementById('sq11').value,
+        status: 'PENDING',
+        time: new Date().toLocaleString()
+      };
+
+      const apps = JSON.parse(localStorage.getItem('fs_staff_apps_data') || '[]');
+      apps.push(app);
+      localStorage.setItem('fs_staff_apps_data', JSON.stringify(apps));
+
+      showToast('✓ Staff Application submitted to Admin Panel queue!');
+      e.target.reset();
+    }
+
+    /* ==========================================================================
+       ADMIN PANEL: USER MANAGEMENT & 24H ANNOUNCEMENTS
+       ========================================================================== */
+    function switchAdminSubTab(tab) {
+      document.getElementById('adm-tab-users').style.display = tab === 'users' ? 'block' : 'none';
+      document.getElementById('adm-tab-broadcast').style.display = tab === 'broadcast' ? 'block' : 'none';
+      document.getElementById('adm-tab-apps').style.display = tab === 'apps' ? 'block' : 'none';
+      document.getElementById('adm-tab-suggestions').style.display = tab === 'suggestions' ? 'block' : 'none';
+
+      if (tab === 'users') renderAdminUsersTable();
+      if (tab === 'apps') renderAdminAppsQueue();
+      if (tab === 'suggestions') renderAdminSuggestionsQueue();
+    }
+
+    function renderAdminUsersTable() {
+      const db = JSON.parse(localStorage.getItem('fs_accounts') || '[]');
+      const tbody = document.getElementById('admin-users-table');
+      tbody.innerHTML = db.map((u, idx) => `
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+          <td style="padding:10px;"><strong>${u.username}</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">${u.email}</span></td>
+          <td><code>${u.pass}</code></td>
+          <td><span class="role-tag role-${u.role}">${u.role.toUpperCase()}</span></td>
+          <td>
+            <select onchange="changeUserRole(${idx}, this.value)" style="background:#000; color:#fff; border:1px solid var(--border-crimson); padding:4px 8px; font-size:0.8rem; border-radius:4px;">
+              <option value="user" ${u.role === 'user' ? 'selected' : ''}>User Role</option>
+              <option value="staff" ${u.role === 'staff' ? 'selected' : ''}>Staff Role (Staff Panel Access)</option>
+              <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Admin Role (Full Access)</option>
+            </select>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function changeUserRole(idx, newRole) {
+      const db = JSON.parse(localStorage.getItem('fs_accounts') || '[]');
+      db[idx].role = newRole;
+      localStorage.setItem('fs_accounts', JSON.stringify(db));
+      showToast(`Role updated for ${db[idx].username} to ${newRole.toUpperCase()}`);
+      renderMembersDirectory();
+    }
+
     function handleBroadcastAnnouncement(e) {
       e.preventDefault();
       const text = document.getElementById('broadcast-input').value.trim();
       const ann = { text, time: Date.now() };
-      localStorage.setItem('fs_announcement', JSON.stringify(ann));
+      localStorage.setItem('fs_broadcast_announcement', JSON.stringify(ann));
       document.getElementById('broadcast-input').value = '';
-      showToast('✓ Announcement broadcasted for 24h!');
+      showToast('✓ Announcement broadcasted! Active for 24h.');
       checkActiveBroadcast();
     }
 
     function checkActiveBroadcast() {
-      const raw = localStorage.getItem('fs_announcement');
+      const raw = localStorage.getItem('fs_broadcast_announcement');
       const bar = document.getElementById('top-broadcast-bar');
       if (!raw) {
         bar.style.display = 'none';
@@ -2289,8 +2679,10 @@
       }
       const data = JSON.parse(raw);
       const elapsed = Date.now() - data.time;
-      if (elapsed > 24 * 60 * 60 * 1000) {
-        localStorage.removeItem('fs_announcement');
+      const twentyFourHours = 24 * 60 * 60 * 1000;
+
+      if (elapsed > twentyFourHours) {
+        localStorage.removeItem('fs_broadcast_announcement');
         bar.style.display = 'none';
       } else {
         bar.style.display = 'flex';
@@ -2300,72 +2692,59 @@
       }
     }
 
-    function switchAdminSubTab(tab) {
-      document.getElementById('adm-tab-users').style.display = tab === 'users' ? 'block' : 'none';
-      document.getElementById('adm-tab-broadcast').style.display = tab === 'broadcast' ? 'block' : 'none';
-      document.getElementById('adm-tab-tickets').style.display = tab === 'tickets' ? 'block' : 'none';
-      if (tab === 'users') renderAdminUsers();
-      if (tab === 'tickets') renderAdminTickets();
-    }
-
-    function renderAdminUsers() {
-      const db = JSON.parse(localStorage.getItem('fs_accounts') || '[]');
-      const tbody = document.getElementById('admin-users-table');
-      tbody.innerHTML = db.map((u, i) => `
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-          <td style="padding:8px;"><strong>${u.username}</strong></td>
-          <td>${u.email}</td>
-          <td><span class="role-tag role-${u.role}">${u.role.toUpperCase()}</span></td>
-          <td>
-            <select onchange="updateRole(${i}, this.value)" style="background:#000; color:#fff; border:1px solid var(--border-crimson); font-size:0.75rem; padding:4px;">
-              <option value="user" ${u.role === 'user' ? 'selected' : ''}>User</option>
-              <option value="staff" ${u.role === 'staff' ? 'selected' : ''}>Staff</option>
-              <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Admin</option>
-            </select>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    function updateRole(idx, r) {
-      const db = JSON.parse(localStorage.getItem('fs_accounts') || '[]');
-      db[idx].role = r;
-      localStorage.setItem('fs_accounts', JSON.stringify(db));
-      showToast(`Updated role of ${db[idx].username} to ${r.toUpperCase()}`);
-    }
-
-    function renderAdminTickets() {
-      const tickets = JSON.parse(localStorage.getItem('fs_tickets') || '[]');
-      const box = document.getElementById('admin-tickets-queue');
-      box.innerHTML = tickets.map((t, i) => `
-        <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:4px; margin-bottom:8px; border:1px solid var(--border-crimson);">
-          <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
-            <strong>${t.id} - ${t.sender} (${t.category})</strong>
-            <span>${t.status}</span>
+    function renderAdminAppsQueue() {
+      const apps = JSON.parse(localStorage.getItem('fs_staff_apps_data') || '[]');
+      const box = document.getElementById('admin-apps-queue');
+      if (apps.length === 0) {
+        box.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">No staff applications pending.</p>';
+        return;
+      }
+      box.innerHTML = apps.map((a, i) => `
+        <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:4px; border:1px solid var(--border-crimson);">
+          <div style="display:flex; justify-content:space-between;">
+            <strong>${a.applicant} (${a.role})</strong>
+            <span class="role-tag" style="background:#444;">${a.status}</span>
           </div>
-          <p style="font-size:0.82rem; color:#ddd; margin:6px 0;">"${t.msg}"</p>
-          <button class="btn-fs btn-fs-primary" style="padding:4px 10px; font-size:0.75rem;" onclick="closeTicket(${i})">RESOLVE & CLOSE</button>
+          <p style="font-size:0.82rem; color:#ccc; margin:4px 0;">${a.details}<br>"${a.why}"</p>
+          <div style="margin-top:8px;">
+            <button class="btn-fs btn-fs-primary" style="padding:4px 10px; font-size:0.75rem;" onclick="resolveApp(${i}, 'ACCEPTED')">ACCEPT</button>
+            <button class="btn-fs btn-fs-secondary" style="padding:4px 10px; font-size:0.75rem;" onclick="resolveApp(${i}, 'DENIED')">DENY</button>
+          </div>
         </div>
       `).join('');
     }
 
-    function closeTicket(idx) {
-      const tickets = JSON.parse(localStorage.getItem('fs_tickets') || '[]');
-      tickets[idx].status = 'RESOLVED';
-      localStorage.setItem('fs_tickets', JSON.stringify(tickets));
-      showToast('Ticket marked as resolved.');
-      renderAdminTickets();
-      renderTicketsList();
+    function resolveApp(idx, state) {
+      const apps = JSON.parse(localStorage.getItem('fs_staff_apps_data') || '[]');
+      apps[idx].status = state;
+      localStorage.setItem('fs_staff_apps_data', JSON.stringify(apps));
+      showToast(`Application marked as ${state}.`);
+      renderAdminAppsQueue();
+    }
+
+    function renderAdminSuggestionsQueue() {
+      const suggs = JSON.parse(localStorage.getItem('fs_suggestions_data') || '[]');
+      const box = document.getElementById('admin-suggestions-queue');
+      if (suggs.length === 0) {
+        box.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">No suggestions submitted.</p>';
+        return;
+      }
+      box.innerHTML = suggs.map(s => `
+        <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:4px; border:1px solid var(--border-crimson);">
+          <span style="font-size:0.72rem; color:var(--crimson-glow); text-transform:uppercase;">${s.category} &bull; ${s.sender} (${s.time})</span>
+          <p style="font-size:0.85rem; color:#fff; margin-top:4px;">"${s.text}"</p>
+        </div>
+      `).join('');
     }
 
     /* ==========================================================================
        UTILITIES & HELPERS
        ========================================================================== */
-    function showToast(msg) {
+    function showToast(msg, icon = 'fa-circle-check') {
       const wrap = document.getElementById('toast-wrap');
       const t = document.createElement('div');
       t.className = 'toast-msg';
-      t.innerHTML = `<i class="fa-solid fa-bell" style="color:var(--crimson-glow);"></i> <span>${msg}</span>`;
+      t.innerHTML = `<i class="fa-solid ${icon}" style="color:var(--crimson-glow);"></i> <span>${msg}</span>`;
       wrap.appendChild(t);
       setTimeout(() => {
         t.style.opacity = '0';
@@ -2387,15 +2766,6 @@
       document.getElementById('nav-links-cluster').classList.toggle('show');
     }
 
-    function toggleNotifDropdown() {
-      document.getElementById('notif-box').classList.toggle('show');
-    }
-
-    function clearAllNotifications() {
-      document.getElementById('notif-items-body').innerHTML = '<div style="font-size:0.8rem; color:#666; text-align:center;">No notifications.</div>';
-      document.getElementById('notif-count').innerText = '0';
-    }
-
     function executeGlobalSearch(q) {
       if (!q || q.length < 2) return;
       q = q.toLowerCase();
@@ -2411,16 +2781,17 @@
       renderNoviceUI();
       renderStaffRoster();
       renderLeaderboard();
-      renderTicketsList();
-      renderNews();
+      renderMembersDirectory();
+      initStarSelector();
+      renderReviewsList();
+      checkCrateUI();
       checkActiveBroadcast();
       queryLiveMinecraftStatus();
     }
 
-    // Initialize state on load
     window.addEventListener('DOMContentLoaded', () => {
-      injectOfficialLogo();
+      injectLogos();
     });
   </script>
 </body>
-          </html>
+</html>
