@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FEARSTEAL NETWORK — Official Minecraft LifeSteal Platform</title>
+  <title>Home • FearSteal</title>
   <meta name="description" content="Steal Hearts, Build Power, Survive. The ultimate Minecraft LifeSteal PvP Network.">
-  <meta name="theme-color" content="#080305">
+  <meta name="theme-color" content="#060204">
 
-  <!-- Google Fonts -->
+  <!-- Fonts: Rajdhani (Esports/Headings), Inter (UI Body), JetBrains Mono (Telemetry/Code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
-       THEME VARIABLES & VISUAL IDENTITY
+       DESIGN SYSTEM & CSS VARIABLES
        ========================================================================== */
     :root {
       --bg-void: #050204;
-      --bg-obsidian: rgba(10, 4, 7, 0.88);
-      --bg-card: rgba(18, 9, 14, 0.82);
-      --bg-card-hover: rgba(28, 12, 20, 0.94);
-      --bg-glass: rgba(10, 4, 7, 0.78);
+      --bg-obsidian: rgba(10, 4, 7, 0.92);
+      --bg-card: rgba(18, 9, 14, 0.85);
+      --bg-card-hover: rgba(28, 12, 20, 0.95);
+      --bg-glass: rgba(10, 4, 7, 0.82);
 
       --crimson-pure: #ff1c36;
       --crimson-blood: #c40c1e;
@@ -34,7 +34,7 @@
       --ruby-offline: #ef4444;
 
       --text-main: #fcfcfc;
-      --text-muted: #aba0a6;
+      --text-muted: #aca1a7;
       --text-dim: #73676e;
 
       --border-subtle: rgba(255, 28, 54, 0.22);
@@ -73,19 +73,19 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      position: relative;
       background-color: var(--bg-void);
+      position: relative;
     }
 
-    /* Full-Screen Mountain Backdrop Layer */
+    /* Fixed Mountain Wallpaper Layer */
     .bg-mountain-fixed {
       position: fixed;
       inset: 0;
       background: linear-gradient(180deg, rgba(6, 2, 4, 0.72) 0%, rgba(6, 2, 4, 0.88) 55%, var(--bg-void) 100%),
-                  url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat;
+                  url('assets/background.png') center center / cover no-repeat;
       z-index: 1;
       pointer-events: none;
-      filter: brightness(0.65) saturate(1.25);
+      filter: brightness(0.7) saturate(1.2);
     }
 
     #ambientCanvas {
@@ -102,6 +102,84 @@
       background: radial-gradient(ellipse at center, transparent 30%, rgba(4, 1, 3, 0.92) 100%);
       pointer-events: none;
       z-index: 3;
+    }
+
+    /* ==========================================================================
+       CINEMATIC ENTRY LOADER SCREEN
+       ========================================================================== */
+    #entryLoader {
+      position: fixed;
+      inset: 0;
+      background: #060204;
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .loader-cube-wrap {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 24px;
+    }
+
+    .loader-cube {
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--crimson-pure);
+      border-radius: 12px;
+      box-shadow: 0 0 35px var(--crimson-pure);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      animation: pulseCube 1.6s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseCube {
+      0% { transform: scale(0.92); border-color: var(--crimson-blood); }
+      100% { transform: scale(1.08); border-color: var(--crimson-pure); }
+    }
+
+    .loader-title {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .loader-title span {
+      color: var(--crimson-pure);
+      text-shadow: 0 0 20px var(--crimson-glow);
+    }
+
+    .loader-progress-track {
+      width: 240px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      margin-top: 16px;
+      overflow: hidden;
+    }
+
+    .loader-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--crimson-blood), var(--crimson-pure));
+      box-shadow: 0 0 10px var(--crimson-pure);
+      animation: loadFill 1.3s ease-out forwards;
+    }
+
+    @keyframes loadFill {
+      0% { width: 0%; }
+      60% { width: 75%; }
+      100% { width: 100%; }
     }
 
     /* ==========================================================================
@@ -179,10 +257,10 @@
     }
 
     .brand-logo-img {
-      height: 48px;
+      height: 50px;
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4));
+      filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.5));
       transition: transform var(--transition);
     }
 
@@ -214,7 +292,7 @@
     .nav-item a {
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 0.96rem;
+      font-size: 0.94rem;
       text-transform: uppercase;
       letter-spacing: 0.8px;
       padding: 8px 12px;
@@ -222,6 +300,7 @@
       border-radius: var(--radius-sm);
       transition: all var(--transition);
       cursor: pointer;
+      text-decoration: none;
     }
 
     .nav-item a:hover {
@@ -240,6 +319,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      text-decoration: none;
       transition: all var(--transition);
     }
 
@@ -388,6 +468,23 @@
       text-transform: uppercase;
     }
 
+    /* Live Announcement Banner from Admin */
+    .live-broadcast-box {
+      background: rgba(255, 28, 54, 0.08);
+      border-left: 4px solid var(--crimson-pure);
+      border-top: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin: 0 auto 24px;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+
     .copy-strip-hub {
       max-width: 780px;
       margin: 30px auto 0;
@@ -435,7 +532,7 @@
     .auth-wall-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(5, 2, 4, 0.92);
+      background: rgba(5, 2, 4, 0.94);
       backdrop-filter: blur(18px);
       z-index: 9999;
       display: flex;
@@ -628,13 +725,25 @@
 </head>
 <body>
 
-  <!-- Full-Screen Mountain Landscape Backdrop Layer -->
+  <!-- Full-Screen Mountain Wallpaper Layer -->
   <div class="bg-mountain-fixed"></div>
   <canvas id="ambientCanvas"></canvas>
   <div class="vignette-screen"></div>
   <div class="toast-deck" id="toastDeck"></div>
 
-  <!-- Mandatory Authentication Wall (Locks down the site until signed in) -->
+  <!-- Cinematic Entry Loader -->
+  <div id="entryLoader">
+    <div class="loader-cube-wrap">
+      <div class="loader-cube">FS</div>
+    </div>
+    <div class="loader-title">FEAR<span>STEAL</span></div>
+    <div style="color:var(--text-dim); font-size:0.85rem; font-family:var(--font-mono); margin-top:8px;">SYNCHRONIZING LIFESTEAL PROTOCOLS...</div>
+    <div class="loader-progress-track">
+      <div class="loader-progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- Mandatory Authentication Wall -->
   <div class="auth-wall-overlay" id="authWallModal">
     <div class="auth-wall-card">
       <div class="auth-head-box">
@@ -703,26 +812,30 @@
       <div style="display:flex; align-items:center; gap:10px;">
         <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn-discord-nav">Discord</a>
 
-        <!-- Notifications Bell -->
+        <!-- Personal Notifications Bell -->
         <button class="bell-badge-btn" onclick="openPersonalNotifications()" title="Notifications">
           🔔 <span class="bell-count" id="notifCountBadge">0</span>
         </button>
 
-        <!-- Dynamic Portal Buttons (Only shown if authorized) -->
+        <!-- Dynamic Portal Buttons (Only visible to authorized roles) -->
         <div id="staffPortalNavSlot" style="display:flex; gap:8px;"></div>
       </div>
     </div>
   </header>
 
   <!-- ==========================================================================
-       ALL CATEGORIES DISPLAYED DIRECTLY ON THE FULL-SCREEN HOME DASHBOARD
+       ALL CATEGORIES ON FULL-SCREEN HOME DASHBOARD
        ========================================================================== -->
   <main class="app-viewport">
 
     <!-- 1. HERO SECTION -->
     <section class="hero-stage" id="hero">
       <div class="container">
-        <!-- Exact Banner Artwork -->
+        
+        <!-- Live Admin Announcement Broadcast Banner -->
+        <div id="announcementBroadcastContainer"></div>
+
+        <!-- Banner Artwork -->
         <div class="hero-banner-container">
           <img src="assets/banner.jpeg" onerror="this.src='https://via.placeholder.com/900x220/080305/ff5511?text=FEARSTEAL+NETWORK'" class="hero-banner-img" alt="FearSteal Network Banner">
         </div>
@@ -760,7 +873,7 @@
           <div>
             <span class="badge-sub">LIVE TELEMETRY ENGINE</span>
             <h2 class="section-title">SERVER <span>STATUS MONITOR</span></h2>
-            <p class="section-subtitle">Real-time status check pinged directly from play.fearsteal.fun:19132.</p>
+            <p class="section-subtitle">Real-time status check pinged directly from play.fearsteal.fun:19132. Auto-refreshes every 60 seconds.</p>
           </div>
           <button class="btn-crimson-cta" onclick="fetchMinecraftStatus(true)">🔄 REFRESH NOW</button>
         </div>
@@ -1108,22 +1221,42 @@
       </div>
 
       <!-- Admin Tabs -->
-      <div style="display:flex; gap:10px; margin-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:10px;">
+      <div style="display:flex; gap:10px; margin-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:10px; flex-wrap:wrap;">
+        <button class="btn-copy-chip" onclick="switchAdminTab('broadcast')">📢 New Announcement</button>
         <button class="btn-copy-chip" onclick="switchAdminTab('users')">👥 User & Role Manager</button>
         <button class="btn-copy-chip" onclick="switchAdminTab('tickets')">🎫 Ticket View & Chat</button>
         <button class="btn-copy-chip" onclick="switchAdminTab('apps')">📝 Staff Applications</button>
         <button class="btn-copy-chip" onclick="switchAdminTab('sugs')">💡 Suggestions View</button>
       </div>
 
+      <!-- Tab: Broadcast -->
+      <div id="adminTabBroadcast" class="glass-card">
+        <h3 style="font-family:var(--font-heading); font-size:1.4rem; margin-bottom:12px;">BROADCAST HOME ANNOUNCEMENT</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:16px;">
+          Broadcasts display live on the Home section for 24 hours with the signature: <em>"Author by ItzVeltriex and Notslayer"</em>.
+        </p>
+        <form onsubmit="postBroadcast(event)">
+          <div>
+            <label style="font-weight:700; font-size:0.9rem;">Announcement Title:</label>
+            <input type="text" class="form-input-standard" id="bcTitle" required placeholder="e.g. NETHER WARZONE RESET & DOUBLE HEARTS!">
+          </div>
+          <div style="margin-top:14px;">
+            <label style="font-weight:700; font-size:0.9rem;">Announcement Content:</label>
+            <textarea class="form-input-standard" id="bcBody" rows="4" required placeholder="Write details..."></textarea>
+          </div>
+          <button type="submit" class="btn-crimson-cta" style="margin-top:16px;">PUBLISH BROADCAST</button>
+        </form>
+      </div>
+
       <!-- Tab: Users & Roles -->
-      <div id="adminTabUsers" class="glass-card">
+      <div id="adminTabUsers" class="glass-card" style="display:none;">
         <h3 style="font-family:var(--font-heading); font-size:1.4rem; margin-bottom:12px;">USER MANAGEMENT (ALTER ROLES OR REMOVE STAFF)</h3>
         <table style="width:100%; border-collapse:collapse;" class="members-list-table">
           <thead>
-            <tr style="color:var(--text-dim);">
-              <th style="padding:10px; text-align:left;">USERNAME</th>
-              <th style="padding:10px; text-align:left;">CURRENT ROLE</th>
-              <th style="padding:10px; text-align:left;">ACTIONS</th>
+            <tr style="color:var(--text-dim); text-align:left;">
+              <th style="padding:10px;">USERNAME</th>
+              <th style="padding:10px;">CURRENT ROLE</th>
+              <th style="padding:10px;">ACTIONS</th>
             </tr>
           </thead>
           <tbody id="adminUserTable"></tbody>
@@ -1187,19 +1320,33 @@
     <div class="auth-wall-card" style="max-width:480px; text-align:left;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
         <h3 style="font-family:var(--font-heading); font-size:1.5rem;">YOUR <span>NOTIFICATIONS</span></h3>
-        <button onclick="closePersonalNotifications()" style="color:#fff; font-size:1.4rem;">&times;</button>
+        <button onclick="closePersonalNotifications()" style="color:#fff; font-size:1.4rem; background:none; border:none; cursor:pointer;">&times;</button>
       </div>
       <div id="notifListContainer" style="display:flex; flex-direction:column; gap:10px; max-height:300px; overflow-y:auto;"></div>
     </div>
   </div>
 
+  <!-- FOOTER -->
+  <footer style="background:#040203; border-top:1px solid var(--border-subtle); padding:60px 0 30px; margin-top:80px; position:relative; z-index:10;">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+      <div class="brand-cluster">
+        <img src="assets/logo.png" onerror="this.src='https://via.placeholder.com/80x80/080305/ff5511?text=FS'" class="brand-logo-img" alt="FS Logo">
+        <div class="brand-name">FEAR<span>STEAL</span></div>
+      </div>
+      <div style="color:var(--text-dim); font-size:0.85rem;">
+        © 2026 FearSteal Network. All rights reserved. Not associated with Mojang or Microsoft.
+      </div>
+    </div>
+  </footer>
+
   <!-- ==========================================================================
-       CORE CLIENT DATA & LOGIC ENGINE
+       CORE SCRIPT ENGINE
        ========================================================================== -->
   <script>
     // State Store
     const APP_STATE = {
       currentUser: null,
+      activeBroadcast: null,
       membersList: [
         { id: 1, name: "ItzVeltriex", hearts: 30, role: "admin" },
         { id: 2, name: "Notslayer", hearts: 30, role: "admin" },
@@ -1210,12 +1357,12 @@
       tickets: [],
       applications: [],
       suggestions: [],
-      notifications: {}, // keyed by username: array of {id, text, time}
+      notifications: {},
       reasonTargetAppId: null,
       reasonTargetDecision: null
     };
 
-    // Load Local Storage
+    // Load Persistent Storage
     try {
       const u = localStorage.getItem('fs_curr_user');
       if (u) APP_STATE.currentUser = JSON.parse(u);
@@ -1234,9 +1381,17 @@
 
       const n = localStorage.getItem('fs_notifs');
       if (n) APP_STATE.notifications = JSON.parse(n);
+
+      const bc = localStorage.getItem('fs_broadcast');
+      if (bc) {
+        const parsed = JSON.parse(bc);
+        if (Date.now() - parsed.timestamp < 86400000) {
+          APP_STATE.activeBroadcast = parsed;
+        }
+      }
     } catch(e) {}
 
-    // --- 1. MANDATORY AUTHENTICATION WALL LOGIC ---
+    // --- 1. AUTHENTICATION GATE & LOGIN WALL ---
     function checkAuthWall() {
       const modal = document.getElementById('authWallModal');
       if (!APP_STATE.currentUser) {
@@ -1246,6 +1401,7 @@
         updateNavElements();
         renderUserNotifications();
         checkActiveUserTicket();
+        renderAnnouncementBanner();
       }
     }
 
@@ -1260,7 +1416,6 @@
       if (isMasterAdmin) {
         APP_STATE.currentUser = { name: "ItzVeltriex", role: "admin", hearts: 30 };
       } else {
-        // Check if user already exists in members list to inherit assigned role
         const existing = APP_STATE.membersList.find(m => m.name.toLowerCase() === user.toLowerCase());
         const role = existing ? existing.role : 'member';
 
@@ -1326,6 +1481,7 @@
     }
 
     function switchAdminTab(tab) {
+      document.getElementById('adminTabBroadcast').style.display = tab === 'broadcast' ? 'block' : 'none';
       document.getElementById('adminTabUsers').style.display = tab === 'users' ? 'block' : 'none';
       document.getElementById('adminTabTickets').style.display = tab === 'tickets' ? 'block' : 'none';
       document.getElementById('adminTabApps').style.display = tab === 'apps' ? 'block' : 'none';
@@ -1333,7 +1489,7 @@
     }
 
     function renderAdminDashboard() {
-      // 1. Users Table
+      // Users Table
       const userTbody = document.getElementById('adminUserTable');
       if (userTbody) {
         userTbody.innerHTML = APP_STATE.membersList.map(m => `
@@ -1349,13 +1505,10 @@
         `).join('');
       }
 
-      // 2. Tickets View
       renderAdminTicketsView();
-
-      // 3. Applications View
       renderAdminAppsView();
 
-      // 4. Suggestions View
+      // Suggestions View
       const sugList = document.getElementById('adminSugsList');
       if (sugList) {
         sugList.innerHTML = APP_STATE.suggestions.map(s => `
@@ -1399,6 +1552,7 @@
         `).join('') || '<div style="color:var(--text-dim);">No active tickets in queue.</div>';
       }
     }
+
     function closeStaffPortal() {
       document.getElementById('staffPortalFullscreen').classList.remove('open');
     }
@@ -1429,7 +1583,6 @@
     function checkActiveUserTicket() {
       if (!APP_STATE.currentUser) return;
       const card = document.getElementById('ticketActiveThreadCard');
-      const form = document.getElementById('ticketFormContainer');
       const userTicket = APP_STATE.tickets.find(t => t.author.toLowerCase() === APP_STATE.currentUser.name.toLowerCase());
 
       if (userTicket) {
@@ -1502,7 +1655,7 @@
       `).join('') || '<div style="color:var(--text-dim);">No active tickets.</div>';
     }
 
-    // --- 5. STAFF APPLICATIONS: 4 DECISION OPTIONS & PRIVATE NOTIFICATION ---
+    // --- 5. STAFF APPLICATIONS: 4 DECISION OPTIONS & PRIVATE NOTIFICATIONS ---
     function submitStaffApp(e) {
       e.preventDefault();
       if (!APP_STATE.currentUser) return;
@@ -1625,11 +1778,67 @@
       document.getElementById('notifModal').style.display = 'flex';
       renderUserNotifications();
     }
+
     function closePersonalNotifications() {
       document.getElementById('notifModal').style.display = 'none';
     }
 
-    // --- 7. SUGGESTIONS ENGINE ---
+    // --- 7. HOME BROADCASTS ---
+    function postBroadcast(e) {
+      e.preventDefault();
+      const title = document.getElementById('bcTitle').value.trim();
+      const body = document.getElementById('bcBody').value.trim();
+
+      const broadcastObj = {
+        title,
+        body,
+        timestamp: Date.now()
+      };
+
+      APP_STATE.activeBroadcast = broadcastObj;
+      saveStorage('fs_broadcast', broadcastObj);
+      renderAnnouncementBanner();
+      showToast('Live announcement broadcasted to Homepage!');
+      document.getElementById('bcTitle').value = '';
+      document.getElementById('bcBody').value = '';
+    }
+
+    function renderAnnouncementBanner() {
+      const container = document.getElementById('announcementBroadcastContainer');
+      if (!container) return;
+
+      if (!APP_STATE.activeBroadcast) {
+        container.innerHTML = '';
+        return;
+      }
+
+      const elapsedMs = Date.now() - APP_STATE.activeBroadcast.timestamp;
+      if (elapsedMs >= 86400000) {
+        APP_STATE.activeBroadcast = null;
+        localStorage.removeItem('fs_broadcast');
+        container.innerHTML = '';
+        return;
+      }
+
+      const minutesAgo = Math.floor(elapsedMs / 60000);
+      const timeStr = minutesAgo < 1 ? 'Just now' : `${minutesAgo} minute${minutesAgo > 1 ? 's' : ''} ago`;
+
+      container.innerHTML = `
+        <div class="live-broadcast-box">
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-dim);">
+            <span style="color:var(--crimson-pure); font-weight:800;">📢 NETWORK BROADCAST</span>
+            <span>${timeStr} (Active 24h)</span>
+          </div>
+          <h4 style="font-family:var(--font-heading); font-size:1.4rem; font-weight:800;">${APP_STATE.activeBroadcast.title}</h4>
+          <p style="color:var(--text-main); font-size:0.95rem; line-height:1.5;">${APP_STATE.activeBroadcast.body}</p>
+          <div style="font-size:0.85rem; margin-top:4px; color:var(--gold-magma); font-family:var(--font-mono); font-weight:700;">
+            ✍️ Author by ItzVeltriex and Notslayer
+          </div>
+        </div>
+      `;
+    }
+
+    // --- 8. SUGGESTIONS ---
     function submitSuggestion(e) {
       e.preventDefault();
       if (!APP_STATE.currentUser) return;
@@ -1645,7 +1854,7 @@
       e.target.reset();
     }
 
-    // --- 8. CRATE SIMULATOR WITH 24H LOCKOUT ---
+    // --- 9. CRATE SIMULATOR (24H LOCKOUT) ---
     function claimDailyCrate() {
       localStorage.setItem('fs_crate_cooldown', Date.now().toString());
       updateCrateState();
@@ -1659,8 +1868,8 @@
       const timer = document.getElementById('crateCooldownTimer');
 
       if (!time) {
-        active.style.display = 'block';
-        locked.style.display = 'none';
+        if (active) active.style.display = 'block';
+        if (locked) locked.style.display = 'none';
         return;
       }
 
@@ -1668,18 +1877,18 @@
       const remaining = 86400000 - diff;
 
       if (remaining > 0) {
-        active.style.display = 'none';
-        locked.style.display = 'block';
+        if (active) active.style.display = 'none';
+        if (locked) locked.style.display = 'block';
         const hours = Math.floor(remaining / 3600000);
         const mins = Math.floor((remaining % 3600000) / 60000);
-        timer.innerText = `Cooldown: ${hours}h ${mins}m`;
+        if (timer) timer.innerText = `Cooldown: ${hours}h ${mins}m`;
       } else {
-        active.style.display = 'block';
-        locked.style.display = 'none';
+        if (active) active.style.display = 'block';
+        if (locked) locked.style.display = 'none';
       }
     }
 
-    // --- 9. MEMBERS TABLE & LEADERBOARD RENDERING ---
+    // --- 10. MEMBERS TABLE & LEADERBOARD RENDERING ---
     function renderMembersTable() {
       const tbody = document.getElementById('membersListBody');
       if (tbody) {
@@ -1720,7 +1929,7 @@
       }
     }
 
-    // --- 10. REAL MINECRAFT STATUS CHECK ---
+    // --- 11. REAL MINECRAFT STATUS CHECK ---
     async function fetchMinecraftStatus(manual = false) {
       if (manual) showToast('Querying play.fearsteal.fun:19132...');
       try {
@@ -1772,7 +1981,7 @@
       }
     }, 1000);
 
-    // --- 11. REUSABLE UTILITIES ---
+    // --- 12. UTILITIES & HELPERS ---
     function copyIP(text, name, btn) {
       navigator.clipboard.writeText(text).then(() => {
         const orig = btn.innerHTML;
@@ -1857,15 +2066,24 @@
       render();
     }
 
-    // Initialization
+    // DOM Ready Initializer
     window.addEventListener('DOMContentLoaded', () => {
+      // Hide entry loader after initialization
+      setTimeout(() => {
+        const loader = document.getElementById('entryLoader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.style.display = 'none', 600);
+        }
+      }, 1400);
+
       initCanvas();
       checkAuthWall();
       renderMembersTable();
       updateCrateState();
       fetchMinecraftStatus();
 
-      // Navbar scroll listener
+      // Navbar scroll behavior
       window.addEventListener('scroll', () => {
         const nav = document.getElementById('navbar');
         if (window.scrollY > 30) nav.classList.add('scrolled');
@@ -1874,4 +2092,4 @@
     });
   </script>
 </body>
-  </html>
+        </html>
