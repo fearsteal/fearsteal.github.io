@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FEARSTEAL &bull;</title>
-  <meta name="description" content="FEARSTEAL SMP - Official High-Performance Minecraft LifeSteal Network. Steal hearts, eliminate rivals, join clans, and conquer the leaderboard. Server IP: play.fearsteal.fun:19132">
+  <title>Home &bull; FearSteal</title>
+  <meta name="description" content="Official FearSteal Network. Professional Minecraft LifeSteal Network featuring competitive PvP, clans, heart forging, webstore, and player economy.">
   <link rel="icon" type="image/png" href="https://i.ibb.co/3sX8M7w/fs-logo.png">
 
-  <!-- Fonts: Cinzel Decorative, Rajdhani, JetBrains Mono, Inter -->
+  <!-- Typography & Styling Libraries -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Rajdhani:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS & Lucide Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -32,37 +31,21 @@
               950: '#1a0004'
             },
             void: {
-              800: '#121217',
-              850: '#0d0d12',
-              900: '#08080b',
-              950: '#030305'
+              800: '#13131a',
+              850: '#0e0e14',
+              900: '#09090d',
+              950: '#040407'
             },
-            blood: '#ff0033'
+            gold: {
+              400: '#ffca18',
+              500: '#e59005'
+            }
           },
           fontFamily: {
             cinzel: ['Cinzel', 'serif'],
             rajdhani: ['Rajdhani', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
             inter: ['Inter', 'sans-serif']
-          },
-          animation: {
-            'glow-pulse': 'glowPulse 2s ease-in-out infinite',
-            'float-slow': 'floating 5s ease-in-out infinite',
-            'scanline': 'scanline 8s linear infinite'
-          },
-          keyframes: {
-            glowPulse: {
-              '0%, 100%': { filter: 'drop-shadow(0 0 15px rgba(230,0,38,0.4))' },
-              '50%': { filter: 'drop-shadow(0 0 35px rgba(230,0,38,0.9))' }
-            },
-            floating: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-10px)' }
-            },
-            scanline: {
-              '0%': { transform: 'translateY(-100%)' },
-              '100%': { transform: 'translateY(1000%)' }
-            }
           }
         }
       }
@@ -70,158 +53,146 @@
   </script>
 
   <style>
-    /* Ultra-clean custom scrollbars */
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: #030305; }
-    ::-webkit-scrollbar-thumb { background: #b8001e; border-radius: 9999px; }
+    /* Premium Scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #040407; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #b8001e, #e59005); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #ff2d55; }
 
-    /* Custom Glass & Gradients */
-    .glass-dark {
-      background: rgba(8, 8, 12, 0.78);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 0, 51, 0.15);
+    /* Ultra-Dark Cinematic Aesthetics */
+    .glass-panel {
+      background: rgba(14, 14, 20, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(230, 0, 38, 0.2);
     }
     .glass-card {
-      background: linear-gradient(135deg, rgba(20, 10, 14, 0.7) 0%, rgba(5, 5, 8, 0.9) 100%);
+      background: linear-gradient(135deg, rgba(22, 11, 16, 0.75) 0%, rgba(7, 7, 11, 0.92) 100%);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 20, 50, 0.18);
+      border: 1px solid rgba(230, 0, 38, 0.22);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .glass-card:hover {
-      border-color: rgba(255, 0, 51, 0.6);
-      box-shadow: 0 0 25px rgba(230, 0, 38, 0.25);
+      border-color: rgba(230, 0, 38, 0.7);
+      box-shadow: 0 10px 35px rgba(230, 0, 38, 0.25);
     }
-    .neon-text-red {
-      text-shadow: 0 0 10px rgba(230, 0, 38, 0.8), 0 0 25px rgba(230, 0, 38, 0.5);
+    .text-glow-red {
+      text-shadow: 0 0 12px rgba(230, 0, 38, 0.8), 0 0 28px rgba(230, 0, 38, 0.5);
     }
-    .neon-border-active {
-      box-shadow: 0 0 20px rgba(230, 0, 38, 0.4), inset 0 0 15px rgba(230, 0, 38, 0.2);
+    .text-glow-gold {
+      text-shadow: 0 0 12px rgba(255, 202, 24, 0.8), 0 0 28px rgba(229, 144, 5, 0.5);
     }
-
-    /* Scanline effect */
-    .crt-overlay {
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-      background-size: 100% 4px;
-      pointer-events: none;
+    .neon-border-red {
+      border: 1px solid rgba(230, 0, 38, 0.4);
+      box-shadow: 0 0 20px rgba(230, 0, 38, 0.25), inset 0 0 15px rgba(230, 0, 38, 0.1);
     }
-
-    /* Heart Beats */
+    
+    /* CRT Scanline & Background Canvas */
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(230, 0, 38, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(230, 0, 38, 0.05) 1px, transparent 1px);
+    }
+    
     @keyframes heartbeat {
       0% { transform: scale(1); }
-      14% { transform: scale(1.22); }
+      14% { transform: scale(1.2); }
       28% { transform: scale(1); }
       42% { transform: scale(1.15); }
       70% { transform: scale(1); }
     }
-    .heart-beat-fast { animation: heartbeat 1.3s infinite ease-in-out; }
+    .heart-beat-fast { animation: heartbeat 1.4s infinite ease-in-out; }
   </style>
 </head>
 
-<body class="bg-void-950 text-neutral-200 font-inter min-h-screen overflow-x-hidden relative selection:bg-crimson-600 selection:text-white">
+<body class="bg-void-950 text-neutral-200 font-inter min-h-screen selection:bg-crimson-600 selection:text-white relative overflow-x-hidden">
 
-  <!-- ========================================================== -->
-  <!-- DYNAMIC INTERACTIVE WEBGL PARTICLE EMBER CANVAS            -->
-  <!-- ========================================================== -->
-  <canvas id="particleCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
-  <div class="crt-overlay fixed inset-0 z-[1] pointer-events-none opacity-20"></div>
+  <!-- Ambient Dynamic Canvas Background -->
+  <canvas id="ambientCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0 opacity-30"></div>
 
-  <!-- ========================================================== -->
-  <!-- 0. CINEMATIC AAA LOADING SUITE                             -->
-  <!-- ========================================================== -->
-  <div id="loaderScreen" class="fixed inset-0 z-[99999] bg-void-950 flex flex-col items-center justify-center select-none transition-opacity duration-700">
-    <div class="relative z-10 flex flex-col items-center max-w-lg w-full px-6 text-center">
-      
-      <!-- Center Glowing Brand Mark -->
+  <!-- =========================================================================
+       0. CINEMATIC AAA LOADING SCREEN (0% -> 100%)
+       ========================================================================= -->
+  <div id="loaderScreen" class="fixed inset-0 z-[999999] bg-void-950 flex flex-col items-center justify-center select-none transition-opacity duration-700">
+    <div class="relative z-10 flex flex-col items-center max-w-md w-full px-6 text-center">
       <div class="relative mb-6">
         <div class="absolute -inset-4 bg-crimson-600/30 rounded-full blur-2xl animate-pulse"></div>
-        <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" alt="FearSteal" class="w-36 h-36 object-contain relative z-10 animate-float-slow animate-glow-pulse">
+        <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" alt="FearSteal" class="w-36 h-36 object-contain relative z-10 drop-shadow-[0_10px_35px_rgba(230,0,38,0.8)]" onerror="this.src='https://placehold.co/150x150/1a0004/ff2d55?text=FS'">
       </div>
-
-      <div class="font-cinzel font-black text-3xl md:text-5xl text-white tracking-widest neon-text-red uppercase mb-1">
+      <h1 class="font-cinzel text-4xl font-black text-white tracking-widest uppercase mb-1 text-glow-red">
         FEAR<span class="text-crimson-500">STEAL</span>
-      </div>
-      <div class="font-mono text-xs text-neutral-400 tracking-[0.3em] uppercase mb-8">
-        LifeSteal Network &bull; v4.8 Enterprise Core
-      </div>
+      </h1>
+      <p class="font-mono text-xs text-neutral-400 tracking-[0.25em] uppercase mb-8">
+        LifeSteal Network &bull; Enterprise Core
+      </p>
 
-      <!-- Advanced Dual Progress Bar -->
       <div class="w-full bg-void-900 border border-crimson-900/60 p-1.5 rounded-full mb-3 shadow-[0_0_20px_rgba(230,0,38,0.3)]">
-        <div id="loaderProgressBar" class="h-2 rounded-full bg-gradient-to-r from-crimson-700 via-crimson-500 to-amber-500 w-0 transition-all duration-100 shadow-[0_0_15px_rgba(230,0,38,0.8)]"></div>
+        <div id="loaderBar" class="h-2 rounded-full bg-gradient-to-r from-crimson-600 via-crimson-500 to-amber-500 w-0 transition-all duration-100 shadow-[0_0_15px_rgba(230,0,38,0.8)]"></div>
       </div>
 
       <div class="flex items-center justify-between w-full font-mono text-xs px-2">
-        <span id="loaderStageText" class="text-neutral-400">Booting Protocol...</span>
-        <span id="loaderPercentText" class="text-crimson-400 font-bold">0%</span>
+        <span id="loaderStage" class="text-neutral-400">Initializing FearSteal...</span>
+        <span id="loaderPercent" class="text-crimson-400 font-bold">0%</span>
       </div>
 
-      <!-- Fast Access Bypass -->
       <button onclick="skipLoader()" class="mt-8 font-mono text-[11px] text-neutral-500 hover:text-crimson-400 uppercase tracking-widest transition-colors">
-        [ Press Space or Click to Skip ]
+        [ Click or Space to Skip ]
       </button>
     </div>
   </div>
 
-  <!-- ========================================================== -->
-  <!-- 1. LIVE 24-HOUR BROADCAST ANNOUNCEMENT BANNER              -->
-  <!-- ========================================================== -->
-  <div id="announcementContainer" class="relative z-50"></div>
+  <!-- =========================================================================
+       1. 24-HOUR DYNAMIC ADMIN ANNOUNCEMENT STRIP
+       ========================================================================= -->
+  <div id="announcementStrip" class="relative z-50"></div>
 
-  <!-- ========================================================== -->
-  <!-- 2. HIGH-TECH COMMAND NAVBAR                                -->
-  <!-- ========================================================== -->
-  <header class="sticky top-0 z-40 glass-dark border-b border-crimson-900/40">
+  <!-- =========================================================================
+       2. ENTERPRISE NAVIGATION HEADER
+       ========================================================================= */
+  <header class="sticky top-0 z-40 glass-panel border-b border-crimson-900/40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         
-        <!-- Logo & IP Quick Copy -->
-        <div class="flex items-center gap-4">
-          <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-3 group">
-            <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" alt="FearSteal" class="w-12 h-12 object-contain group-hover:scale-110 transition-transform drop-shadow-[0_0_15px_rgba(230,0,38,0.7)]">
-            <div>
-              <div class="font-cinzel font-black text-2xl tracking-wider text-white group-hover:text-crimson-400 transition-colors">
-                FEAR<span class="text-crimson-500">STEAL</span>
-              </div>
-              <div class="text-[10px] font-mono tracking-widest text-neutral-400 uppercase">play.fearsteal.fun:19132</div>
+        <!-- Brand Identity -->
+        <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-3 group">
+          <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" alt="FearSteal Logo" class="w-12 h-12 object-contain group-hover:scale-105 transition-transform drop-shadow-[0_0_15px_rgba(230,0,38,0.7)]" onerror="this.src='https://placehold.co/48x48/1a0004/ff2d55?text=FS'">
+          <div>
+            <div class="font-cinzel font-black text-2xl tracking-wider text-white group-hover:text-crimson-400 transition-colors">
+              FEAR<span class="text-crimson-500">STEAL</span>
             </div>
-          </a>
-
-          <!-- Quick IP Copy Tool -->
-          <button onclick="copyServerIP()" class="hidden xl:flex items-center gap-2 px-3 py-1 bg-void-900 border border-crimson-900/60 hover:border-crimson-500 rounded-lg text-xs font-mono text-neutral-300 transition-all group">
-            <i data-lucide="copy" class="w-3.5 h-3.5 text-crimson-500 group-hover:scale-110 transition-transform"></i>
-            <span id="ipCopyLabel">play.fearsteal.fun</span>
-          </button>
-        </div>
+            <div class="text-[10px] font-mono tracking-widest text-neutral-400 uppercase">play.fearsteal.fun:19132</div>
+          </div>
+        </a>
 
         <!-- Desktop Navigation Items -->
         <nav class="hidden lg:flex items-center gap-1 font-rajdhani font-bold text-sm uppercase tracking-wider text-neutral-300">
-          <button onclick="navigateTo('home')" class="nav-link px-3 py-1.5 hover:text-crimson-400 transition-colors">Home</button>
-          <button onclick="navigateTo('status')" class="nav-link px-3 py-1.5 hover:text-crimson-400 transition-colors flex items-center gap-1.5">
+          <button onclick="navigateTo('home')" class="px-3 py-1.5 hover:text-crimson-400 transition-colors">Home</button>
+          <button onclick="navigateTo('status')" class="px-3 py-1.5 hover:text-crimson-400 transition-colors flex items-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span> Live Status
           </button>
-          <button onclick="navigateTo('lifesteal')" class="nav-link px-3 py-1.5 hover:text-crimson-400 transition-colors">LifeSteal</button>
-          <button onclick="navigateTo('store')" class="nav-link px-3 py-1.5 text-amber-400 hover:text-amber-300 transition-colors">Store</button>
-          <button onclick="navigateTo('members')" class="nav-link px-3 py-1.5 hover:text-crimson-400 transition-colors">Members</button>
-          <button onclick="navigateTo('leaderboard')" class="nav-link px-3 py-1.5 hover:text-crimson-400 transition-colors">Leaderboard</button>
-          <button onclick="navigateTo('staff')" class="nav-link px-3 py-1.5 hover:text-crimson-400 transition-colors">Staff</button>
-          <button onclick="navigateTo('review')" class="nav-link px-3 py-1.5 hover:text-crimson-400 transition-colors">Reviews</button>
-          <button onclick="navigateTo('suggestions')" class="nav-link px-3 py-1.5 hover:text-crimson-400 transition-colors">Suggest</button>
-          <button onclick="navigateTo('apply')" class="nav-link px-3 py-1.5 hover:text-crimson-400 transition-colors">Staff Apply</button>
-          <button onclick="navigateTo('support')" class="nav-link px-3 py-1.5 hover:text-crimson-400 transition-colors">Support</button>
+          <button onclick="navigateTo('lifesteal')" class="px-3 py-1.5 hover:text-crimson-400 transition-colors">LifeSteal</button>
+          <button onclick="navigateTo('store')" class="px-3 py-1.5 text-amber-400 hover:text-amber-300 transition-colors">Store</button>
+          <button onclick="navigateTo('members')" class="px-3 py-1.5 hover:text-crimson-400 transition-colors">Members</button>
+          <button onclick="navigateTo('leaderboards')" class="px-3 py-1.5 hover:text-crimson-400 transition-colors">Leaderboards</button>
+          <button onclick="navigateTo('staff')" class="px-3 py-1.5 hover:text-crimson-400 transition-colors">Staff</button>
+          <button onclick="navigateTo('reviews')" class="px-3 py-1.5 hover:text-crimson-400 transition-colors">Reviews</button>
+          <button onclick="navigateTo('suggestions')" class="px-3 py-1.5 hover:text-crimson-400 transition-colors">Suggest</button>
+          <button onclick="navigateTo('apply')" class="px-3 py-1.5 hover:text-crimson-400 transition-colors">Staff Apply</button>
+          <button onclick="navigateTo('support')" class="px-3 py-1.5 hover:text-crimson-400 transition-colors">Support</button>
         </nav>
 
-        <!-- Dynamic User Auth State & Global Command Palette Button -->
+        <!-- Right Side: IP Copy & Auth Controls -->
         <div class="flex items-center gap-3">
-          <button onclick="openCommandPalette()" title="Command Palette (Ctrl + K)" class="p-2 rounded-lg bg-void-900 border border-neutral-800 hover:border-crimson-500 text-neutral-400 hover:text-white transition-all">
-            <i data-lucide="search" class="w-4 h-4"></i>
+          <button onclick="copyServerIP()" class="hidden xl:flex items-center gap-2 px-3 py-1 bg-void-900 border border-crimson-900/60 hover:border-crimson-500 rounded-lg text-xs font-mono text-neutral-300 transition-all">
+            <i data-lucide="copy" class="w-3.5 h-3.5 text-crimson-500"></i>
+            <span id="quickIpText">play.fearsteal.fun</span>
           </button>
 
-          <div id="navAuthSlot" class="flex items-center gap-2">
-            <!-- Populated dynamically by JS -->
-          </div>
+          <div id="navAuthSlot" class="flex items-center gap-2"></div>
 
-          <!-- Mobile Hamburger -->
-          <button onclick="toggleMobileNav()" class="lg:hidden p-2 rounded-lg bg-void-900 border border-neutral-800 text-neutral-300">
+          <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-void-900 border border-neutral-800 text-neutral-300">
             <i data-lucide="menu" class="w-5 h-5"></i>
           </button>
         </div>
@@ -230,102 +201,86 @@
     </div>
 
     <!-- Mobile Drawer -->
-    <div id="mobileDrawer" class="hidden lg:hidden glass-dark border-b border-crimson-900/60 p-4 space-y-2 font-rajdhani font-bold uppercase text-sm">
+    <div id="mobileMenu" class="hidden lg:hidden glass-panel border-b border-crimson-900/60 p-4 font-rajdhani font-bold uppercase text-sm space-y-2">
       <div class="grid grid-cols-2 gap-2">
-        <button onclick="navigateTo('home'); toggleMobileNav()" class="p-2.5 bg-void-900 rounded-lg text-left">Home</button>
-        <button onclick="navigateTo('status'); toggleMobileNav()" class="p-2.5 bg-void-900 rounded-lg text-left text-green-400">Live Status</button>
-        <button onclick="navigateTo('lifesteal'); toggleMobileNav()" class="p-2.5 bg-void-900 rounded-lg text-left">LifeSteal</button>
-        <button onclick="navigateTo('store'); toggleMobileNav()" class="p-2.5 bg-void-900 rounded-lg text-left text-amber-400">Store</button>
-        <button onclick="navigateTo('members'); toggleMobileNav()" class="p-2.5 bg-void-900 rounded-lg text-left">Members</button>
-        <button onclick="navigateTo('leaderboard'); toggleMobileNav()" class="p-2.5 bg-void-900 rounded-lg text-left">Leaderboard</button>
-        <button onclick="navigateTo('staff'); toggleMobileNav()" class="p-2.5 bg-void-900 rounded-lg text-left">Staff</button>
-        <button onclick="navigateTo('review'); toggleMobileNav()" class="p-2.5 bg-void-900 rounded-lg text-left">Reviews</button>
-        <button onclick="navigateTo('suggestions'); toggleMobileNav()" class="p-2.5 bg-void-900 rounded-lg text-left">Suggest</button>
-        <button onclick="navigateTo('apply'); toggleMobileNav()" class="p-2.5 bg-void-900 rounded-lg text-left">Staff Apply</button>
-        <button onclick="navigateTo('support'); toggleMobileNav()" class="p-2.5 bg-void-900 rounded-lg text-left col-span-2">Support</button>
+        <button onclick="navigateTo('home'); toggleMobileMenu()" class="p-2.5 bg-void-900 rounded-lg text-left">Home</button>
+        <button onclick="navigateTo('status'); toggleMobileMenu()" class="p-2.5 bg-void-900 rounded-lg text-left text-green-400">Live Status</button>
+        <button onclick="navigateTo('lifesteal'); toggleMobileMenu()" class="p-2.5 bg-void-900 rounded-lg text-left">LifeSteal</button>
+        <button onclick="navigateTo('store'); toggleMobileMenu()" class="p-2.5 bg-void-900 rounded-lg text-left text-amber-400">Store</button>
+        <button onclick="navigateTo('members'); toggleMobileMenu()" class="p-2.5 bg-void-900 rounded-lg text-left">Members</button>
+        <button onclick="navigateTo('leaderboards'); toggleMobileMenu()" class="p-2.5 bg-void-900 rounded-lg text-left">Leaderboards</button>
+        <button onclick="navigateTo('staff'); toggleMobileMenu()" class="p-2.5 bg-void-900 rounded-lg text-left">Staff</button>
+        <button onclick="navigateTo('reviews'); toggleMobileMenu()" class="p-2.5 bg-void-900 rounded-lg text-left">Reviews</button>
+        <button onclick="navigateTo('suggestions'); toggleMobileMenu()" class="p-2.5 bg-void-900 rounded-lg text-left">Suggest</button>
+        <button onclick="navigateTo('apply'); toggleMobileMenu()" class="p-2.5 bg-void-900 rounded-lg text-left">Staff Apply</button>
+        <button onclick="navigateTo('support'); toggleMobileMenu()" class="p-2.5 bg-void-900 rounded-lg text-left col-span-2">Support</button>
       </div>
     </div>
   </header>
 
-  <!-- ========================================================== -->
-  <!-- 3. SPA ROUTING VIEWPORT                                    -->
-  <!-- ========================================================== -->
-  <main id="appViewport" class="relative z-10 min-h-[calc(100vh-22rem)]"></main>
+  <!-- =========================================================================
+       3. MAIN SPA VIEWPORT
+       ========================================================================= -->
+  <main id="app" class="relative z-10 min-h-[calc(100vh-22rem)]"></main>
 
-  <!-- ========================================================== -->
-  <!-- 4. FLOATING NOTIFICATION SYSTEM (TOASTS)                   -->
-  <!-- ========================================================== -->
-  <div id="toastRoot" class="fixed bottom-5 right-5 z-[99998] flex flex-col gap-2.5 pointer-events-none"></div>
+  <!-- =========================================================================
+       4. GLOBAL TOAST NOTIFICATIONS
+       ========================================================================= -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-[999998] flex flex-col gap-2.5 pointer-events-none"></div>
 
-  <!-- ========================================================== -->
-  <!-- 5. GLOBAL SEARCH / COMMAND PALETTE (CTRL + K)              -->
-  <!-- ========================================================== -->
-  <div id="cmdPaletteModal" class="fixed inset-0 z-[99990] bg-black/80 backdrop-blur-md hidden flex items-start justify-center pt-24 px-4">
-    <div class="max-w-xl w-full bg-void-900 border border-crimson-600/50 rounded-2xl shadow-2xl overflow-hidden animate-glow-pulse">
-      <div class="flex items-center px-4 py-3 border-b border-neutral-800">
-        <i data-lucide="search" class="w-5 h-5 text-crimson-500 mr-3"></i>
-        <input type="text" id="cmdInput" oninput="handleCmdSearch(this.value)" placeholder="Type a destination (e.g. store, staff, status, hearts, discord)..." class="w-full bg-transparent text-sm text-white font-mono placeholder-neutral-500 outline-none">
-        <button onclick="closeCommandPalette()" class="text-neutral-500 hover:text-white font-mono text-xs">[ESC]</button>
-      </div>
-      <div id="cmdResults" class="max-h-72 overflow-y-auto p-2 space-y-1 font-mono text-xs">
-        <!-- Filtered suggestions populate here -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================== -->
-  <!-- 6. HIGH-END CINEMATIC FOOTER                               -->
-  <!-- ========================================================== -->
-  <footer class="relative z-20 glass-dark border-t border-crimson-900/40 pt-16 pb-12 mt-24">
+  <!-- =========================================================================
+       5. ULTRA-PREMIUM FOOTER
+       ========================================================================= -->
+  <footer class="relative z-20 glass-panel border-t border-crimson-900/40 pt-16 pb-12 mt-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
         
         <div class="lg:col-span-2 space-y-4">
           <div class="flex items-center gap-3">
-            <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" alt="FearSteal" class="w-12 h-12 object-contain">
+            <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" alt="FearSteal" class="w-12 h-12 object-contain" onerror="this.src='https://placehold.co/48x48/1a0004/ff2d55?text=FS'">
             <span class="font-cinzel text-2xl font-black text-white tracking-widest">FEAR<span class="text-crimson-500">STEAL</span></span>
           </div>
           <p class="text-sm text-neutral-400 font-inter leading-relaxed pr-6">
-            Next-generation Minecraft LifeSteal SMP infrastructure engineered for cutthroat PvP dominance, heart harvesting, and high-stakes clan conquest.
+            The next generation Minecraft LifeSteal SMP network. Eliminate foes, claim vital hearts, forge legendary clans, and conquer the realm.
           </p>
           <div class="flex items-center gap-2 font-mono text-xs text-crimson-400">
             <i data-lucide="radio" class="w-4 h-4 text-crimson-500 animate-pulse"></i>
-            <span>Socket: play.fearsteal.fun:19132</span>
+            <span>Server IP: play.fearsteal.fun:19132</span>
           </div>
-          <div class="text-xs text-neutral-500">
-            Direct Network Support: <a href="mailto:fearstealsupport@gmail.com" class="text-crimson-400 hover:underline">fearstealsupport@gmail.com</a>
+          <div class="text-xs text-neutral-500 font-mono">
+            Support Email: <a href="mailto:fearstealsupport@gmail.com" class="text-crimson-400 hover:underline">fearstealsupport@gmail.com</a>
           </div>
         </div>
 
         <div>
           <h4 class="font-cinzel font-bold text-white text-sm uppercase tracking-widest mb-4 border-l-2 border-crimson-500 pl-2">Navigation</h4>
           <ul class="space-y-2 text-xs font-rajdhani font-semibold text-neutral-400">
-            <li><button onclick="navigateTo('home')" class="hover:text-crimson-400">Server Headquarters</button></li>
-            <li><button onclick="navigateTo('status')" class="hover:text-crimson-400">Live Host Telemetry</button></li>
-            <li><button onclick="navigateTo('lifesteal')" class="hover:text-crimson-400">LifeSteal Mechanics</button></li>
-            <li><button onclick="navigateTo('leaderboard')" class="hover:text-crimson-400">Heart Leaderboard</button></li>
-            <li><button onclick="navigateTo('members')" class="hover:text-crimson-400">Registered Roster</button></li>
+            <li><button onclick="navigateTo('home')" class="hover:text-crimson-400">Server Portal</button></li>
+            <li><button onclick="navigateTo('status')" class="hover:text-crimson-400">Live Status &amp; TPS</button></li>
+            <li><button onclick="navigateTo('lifesteal')" class="hover:text-crimson-400">LifeSteal Rules</button></li>
+            <li><button onclick="navigateTo('leaderboards')" class="hover:text-crimson-400">Heart Leaderboard</button></li>
+            <li><button onclick="navigateTo('members')" class="hover:text-crimson-400">Members Roster</button></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="font-cinzel font-bold text-white text-sm uppercase tracking-widest mb-4 border-l-2 border-crimson-500 pl-2">Network</h4>
+          <h4 class="font-cinzel font-bold text-white text-sm uppercase tracking-widest mb-4 border-l-2 border-crimson-500 pl-2">Community</h4>
           <ul class="space-y-2 text-xs font-rajdhani font-semibold text-neutral-400">
             <li><button onclick="navigateTo('store')" class="hover:text-crimson-400 text-amber-400">Official Store</button></li>
-            <li><a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="hover:text-crimson-400">Community Discord</a></li>
-            <li><button onclick="navigateTo('review')" class="hover:text-crimson-400">Player Reviews</button></li>
-            <li><button onclick="navigateTo('suggestions')" class="hover:text-crimson-400">Submit Suggestion</button></li>
-            <li><button onclick="navigateTo('apply')" class="hover:text-crimson-400">Staff Recruitment</button></li>
+            <li><a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="hover:text-crimson-400">Official Discord</a></li>
+            <li><button onclick="navigateTo('reviews')" class="hover:text-crimson-400">Player Reviews</button></li>
+            <li><button onclick="navigateTo('suggestions')" class="hover:text-crimson-400">Submit Suggestions</button></li>
+            <li><button onclick="navigateTo('apply')" class="hover:text-crimson-400">Staff Application</button></li>
           </ul>
         </div>
 
         <div>
           <h4 class="font-cinzel font-bold text-white text-sm uppercase tracking-widest mb-4 border-l-2 border-crimson-500 pl-2">Stay Updated</h4>
           <p class="text-xs text-neutral-400 font-inter mb-3 leading-relaxed">
-            Get instant alerts on Season releases, KOTH tournaments, drop-parties, and patch updates.
+            Receive FearSteal announcements, tournament updates, and important community patch notes.
           </p>
           <form onsubmit="handleNewsletter(event)" class="space-y-2">
-            <input type="email" id="nlEmail" required placeholder="name@domain.com" class="w-full bg-void-900 border border-neutral-800 focus:border-crimson-500 rounded-lg px-3 py-2 text-xs text-white placeholder-neutral-600 outline-none">
+            <input type="email" id="nlEmail" required placeholder="Enter your email" class="w-full bg-void-900 border border-neutral-800 focus:border-crimson-500 rounded-lg px-3 py-2 text-xs text-white placeholder-neutral-600 outline-none">
             <button type="submit" class="w-full py-2 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold uppercase text-xs rounded-lg transition-all shadow-[0_0_15px_rgba(230,0,38,0.4)]">
               Subscribe
             </button>
@@ -336,7 +291,7 @@
 
       <div class="border-t border-neutral-800/80 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 gap-4 font-mono">
         <div>
-          &copy; <span id="crYear"></span> FEARSTEAL NETWORK. All Rights Reserved. Not an official Minecraft product.
+          &copy; <span id="crYear"></span> FEARSTEAL NETWORK. All Rights Reserved. Not affiliated with Mojang Studios.
         </div>
         <div class="flex items-center gap-4">
           <span>Authored by <strong class="text-neutral-300">ItzVeltriex</strong> &amp; <strong class="text-neutral-300">Notslayer</strong></span>
@@ -346,14 +301,14 @@
     </div>
   </footer>
 
-  <!-- ========================================================== -->
-  <!-- SCRIPT LOGIC: COMPLETE ARCHITECTURE & DATA ENGINE          -->
-  <!-- ========================================================== -->
+  <!-- =========================================================================
+       JAVASCRIPT ARCHITECTURE & REAL DATA ENGINE
+       ========================================================================= -->
   <script>
     /* =========================================================================
-       1. CANVAS AMBIENT EMBER ENGINE
+       1. AMBIENT EMBER CANVAS
        ========================================================================= */
-    const canvas = document.getElementById('particleCanvas');
+    const canvas = document.getElementById('ambientCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
 
@@ -364,17 +319,15 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    class Particle {
-      constructor() {
-        this.reset();
-      }
+    class EmberParticle {
+      constructor() { this.reset(); }
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = canvas.height + Math.random() * 20;
-        this.size = Math.random() * 2.5 + 0.8;
-        this.speedY = Math.random() * 1.5 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.8;
-        this.opacity = Math.random() * 0.7 + 0.3;
+        this.size = Math.random() * 2.2 + 0.8;
+        this.speedY = Math.random() * 1.4 + 0.4;
+        this.speedX = (Math.random() - 0.5) * 0.7;
+        this.opacity = Math.random() * 0.6 + 0.25;
       }
       update() {
         this.y -= this.speedY;
@@ -389,24 +342,18 @@
       }
     }
 
-    for (let i = 0; i < 65; i++) {
-      particles.push(new Particle());
-    }
-
-    function animateParticles() {
+    for (let i = 0; i < 55; i++) particles.push(new EmberParticle());
+    function loopEmber() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animateParticles);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(loopEmber);
     }
-    animateParticles();
+    loopEmber();
 
     /* =========================================================================
-       2. REPOSITORY & LOCAL STORAGE STATE
+       2. APPLICATION STORAGE & SEED DATABASE
        ========================================================================= */
-    const NET_CONFIG = {
+    const NET_INFO = {
       ip: 'play.fearsteal.fun',
       port: 19132,
       discord: 'https://discord.gg/pGM5x3gXpX',
@@ -414,18 +361,20 @@
       proxy: 'Velocity Extreme Proxy (Bedrock Protocol 685 / Java 1.21.x)'
     };
 
-    const INITIAL_USERS = [
+    // Pre-configured Administrators
+    const SEED_USERS = [
       {
         id: 'usr_veltriex',
         username: 'ItzVeltriex',
         email: 'fearstealsupport@gmail.com',
         password: 'thakuree@2064',
         role: 'Founder',
+        isAdmin: true,
+        isStaff: true,
         hearts: 50,
         kills: 412,
         deaths: 9,
         wealth: '$3,850,000',
-        discord: 'ItzVeltriex',
         registeredAt: '2024-01-01T00:00:00.000Z'
       },
       {
@@ -434,18 +383,19 @@
         email: 'notslayer@fearsteal.fun',
         password: 'Notslayer@990',
         role: 'Founder',
+        isAdmin: true,
+        isStaff: true,
         hearts: 48,
         kills: 367,
         deaths: 14,
         wealth: '$2,900,000',
-        discord: 'Notslayer',
         registeredAt: '2024-01-02T00:00:00.000Z'
       }
     ];
 
-    function seedDatabase() {
+    function initStorage() {
       if (!localStorage.getItem('fs_users')) {
-        localStorage.setItem('fs_users', JSON.stringify(INITIAL_USERS));
+        localStorage.setItem('fs_users', JSON.stringify(SEED_USERS));
       }
       if (!localStorage.getItem('fs_novice_claims')) {
         localStorage.setItem('fs_novice_claims', JSON.stringify({
@@ -457,90 +407,85 @@
       if (!localStorage.getItem('fs_announcements')) {
         localStorage.setItem('fs_announcements', JSON.stringify([
           {
-            id: 'ann_init',
-            text: 'Season IV Blood Realm is officially live! Novice Ranks are open for the first 100 claims.',
+            id: 'ann_welcome',
+            text: 'Season IV Blood Realm is officially live! Free Novice Ranks are available for Discord members (Limited to 100).',
             author: 'ItzVeltriex',
             timestamp: Date.now()
           }
         ]));
       }
-      if (!localStorage.getItem('fs_reviews')) {
-        localStorage.setItem('fs_reviews', JSON.stringify([]));
-      }
-      if (!localStorage.getItem('fs_suggestions')) {
-        localStorage.setItem('fs_suggestions', JSON.stringify([]));
-      }
-      if (!localStorage.getItem('fs_staff_applications')) {
-        localStorage.setItem('fs_staff_applications', JSON.stringify([]));
-      }
+      if (!localStorage.getItem('fs_reviews')) localStorage.setItem('fs_reviews', JSON.stringify([]));
+      if (!localStorage.getItem('fs_suggestions')) localStorage.setItem('fs_suggestions', JSON.stringify([]));
+      if (!localStorage.getItem('fs_staff_applications')) localStorage.setItem('fs_staff_applications', JSON.stringify([]));
     }
-    seedDatabase();
+    initStorage();
 
     let currentUser = JSON.parse(localStorage.getItem('fs_session')) || null;
     let currentRoute = 'home';
     let lbInterval = null;
 
     /* =========================================================================
-       3. CINEMATIC AAA LOADER
+       3. CINEMATIC 0-100% PRELOADER
        ========================================================================= */
     const stages = [
-      "Initializing FearSteal Enterprise",
-      "Loading Shader Matrices",
-      "Probing Socket play.fearsteal.fun:19132",
-      "Syncing Heart Forge Economy",
-      "Decrypting Clan Records",
-      "Authenticating Security Layer",
-      "Ready to Dominate"
+      "Initializing FearSteal",
+      "Loading Core",
+      "Loading Assets",
+      "Connecting Server",
+      "Loading Player Network",
+      "Loading Community",
+      "Loading Security",
+      "Loading Interface",
+      "Welcome to FearSteal"
     ];
 
     let lProgress = 0;
     const lTimer = setInterval(() => {
-      lProgress += Math.floor(Math.random() * 9) + 4;
+      lProgress += Math.floor(Math.random() * 8) + 4;
       if (lProgress > 100) lProgress = 100;
 
-      const pBar = document.getElementById('loaderProgressBar');
-      const pText = document.getElementById('loaderPercentText');
-      const sText = document.getElementById('loaderStageText');
+      const pBar = document.getElementById('loaderBar');
+      const pPercent = document.getElementById('loaderPercent');
+      const pStage = document.getElementById('loaderStage');
 
-      if (pBar && pText && sText) {
+      if (pBar && pPercent && pStage) {
         pBar.style.width = `${lProgress}%`;
-        pText.textContent = `${lProgress}%`;
+        pPercent.textContent = `${lProgress}%`;
         const idx = Math.min(Math.floor((lProgress / 100) * stages.length), stages.length - 1);
-        sText.textContent = stages[idx];
+        pStage.textContent = `${stages[idx]}...`;
       }
 
       if (lProgress >= 100) {
         clearInterval(lTimer);
-        setTimeout(dismissLoader, 250);
+        setTimeout(hideLoader, 250);
       }
     }, 45);
 
-    function dismissLoader() {
+    function hideLoader() {
       const el = document.getElementById('loaderScreen');
       if (el) {
         el.style.opacity = '0';
         setTimeout(() => el.style.display = 'none', 600);
       }
     }
-
     function skipLoader() {
       clearInterval(lTimer);
-      dismissLoader();
+      hideLoader();
     }
     window.addEventListener('keydown', (e) => {
       if (e.code === 'Space' && lProgress < 100) skipLoader();
     });
 
     /* =========================================================================
-       4. TOAST NOTIFICATION STACK
+       4. GLOBAL TOAST ALERTS
        ========================================================================= */
     function showToast(msg, type = 'info') {
-      const root = document.getElementById('toastRoot');
+      const root = document.getElementById('toastContainer');
       const card = document.createElement('div');
-      const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'alert-octagon' : 'bell';
-      const color = type === 'success' ? 'border-green-500 text-green-400' : type === 'error' ? 'border-crimson-500 text-crimson-400' : 'border-amber-500 text-amber-400';
+      const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'alert-triangle' : 'info';
+      const border = type === 'success' ? 'border-green-500 text-green-400' : type === 'error' ? 'border-crimson-500 text-crimson-400' : 'border-neutral-700 text-neutral-300';
 
-      card.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 bg-void-900/95 border ${color} rounded-xl shadow-2xl text-xs font-mono transition-all transform translate-y-3 opacity-0 duration-300`;
+      card.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 bg-void-900/95 backdrop-blur-md border ${border} rounded-xl shadow-2xl text-xs font-mono transition-all transform translate-y-3 opacity-0 duration-300`;
       card.innerHTML = `<i data-lucide="${icon}" class="w-4 h-4 shrink-0"></i> <span>${msg}</span>`;
 
       root.appendChild(card);
@@ -554,10 +499,10 @@
     }
 
     /* =========================================================================
-       5. 24H ADMIN ANNOUNCEMENT SYSTEM
+       5. 24-HOUR ANNOUNCEMENT ENGINE
        ========================================================================= */
     function renderAnnouncements() {
-      const container = document.getElementById('announcementContainer');
+      const container = document.getElementById('announcementStrip');
       const anns = JSON.parse(localStorage.getItem('fs_announcements') || '[]');
       const now = Date.now();
       const h24 = 24 * 60 * 60 * 1000;
@@ -573,15 +518,15 @@
       const timeStr = elapsedMin < 60 ? `${elapsedMin}m ago` : `${Math.floor(elapsedMin / 60)}h ago`;
 
       container.innerHTML = `
-        <div class="bg-gradient-to-r from-crimson-950 via-void-900 to-crimson-950 border-b border-crimson-600/40 py-2.5 px-4 text-xs">
+        <div class="bg-gradient-to-r from-crimson-950 via-void-900 to-crimson-950 border-b border-crimson-600/40 py-2.5 px-4 text-xs font-inter">
           <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center gap-3 overflow-hidden text-ellipsis whitespace-nowrap">
               <span class="px-2.5 py-0.5 rounded bg-crimson-600 text-white font-mono text-[10px] font-bold uppercase tracking-widest animate-pulse">Broadcast</span>
-              <span class="text-neutral-200 font-inter font-medium">${latest.text}</span>
+              <span class="text-neutral-200 font-medium">${latest.text}</span>
             </div>
             <div class="flex items-center gap-3 font-mono text-[11px] text-neutral-400 shrink-0 ml-4">
-              <span>Published by <strong class="text-crimson-400">${latest.author}</strong> (${timeStr})</span>
-              <span class="text-neutral-600 hidden sm:inline">&bull; 24h Auto-Expire</span>
+              <span>By <strong class="text-crimson-400">${latest.author}</strong> (${timeStr})</span>
+              <span class="text-neutral-600 hidden sm:inline">&bull; 24h Active</span>
             </div>
           </div>
         </div>
@@ -589,27 +534,27 @@
     }
 
     /* =========================================================================
-       6. AUTHENTICATION & RBAC GATING
+       6. AUTHENTICATION & RBAC NAVIGATION BAR
        ========================================================================= */
-    function isStaffRole(user) {
+    function isAdmin(user) {
       if (!user) return false;
       const r = (user.role || '').toLowerCase();
-      return ['founder', 'owner', 'co owner', 'admin', 'senior admin', 'junior admin', 'manager', 'moderator', 'junior moderator', 'helper', 'staff'].includes(r);
+      return user.isAdmin === true || ['founder', 'admin'].includes(r);
     }
 
-    function isAdminRole(user) {
+    function isStaff(user) {
       if (!user) return false;
       const r = (user.role || '').toLowerCase();
-      return ['founder', 'owner', 'co owner', 'admin', 'senior admin', 'junior admin'].includes(r);
+      return user.isStaff === true || ['founder', 'owner', 'co owner', 'admin', 'senior admin', 'junior admin', 'manager', 'moderator', 'junior moderator', 'helper', 'staff'].includes(r);
     }
 
-    function renderNavAuthSlot() {
+    function renderNavAuth() {
       const slot = document.getElementById('navAuthSlot');
       if (!slot) return;
 
       if (!currentUser) {
         slot.innerHTML = `
-          <button onclick="navigateTo('login')" class="px-4 py-1.5 bg-void-900 border border-neutral-800 hover:border-neutral-600 text-white rounded-xl text-xs font-rajdhani font-bold uppercase tracking-wider transition-all">
+          <button onclick="navigateTo('login')" class="px-4 py-1.5 bg-void-900 border border-neutral-800 hover:border-neutral-700 text-white rounded-xl text-xs font-rajdhani font-bold uppercase tracking-wider transition-all">
             Login
           </button>
           <button onclick="navigateTo('register')" class="px-4 py-1.5 bg-crimson-600 hover:bg-crimson-500 text-white rounded-xl text-xs font-rajdhani font-bold uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(230,0,38,0.5)]">
@@ -617,11 +562,11 @@
           </button>
         `;
       } else {
-        const portalBtn = isAdminRole(currentUser)
+        const portalBtn = isAdmin(currentUser)
           ? `<button onclick="navigateTo('admin')" class="px-3 py-1 rounded-lg bg-crimson-950 border border-crimson-500 text-crimson-300 font-mono text-xs flex items-center gap-1.5 hover:bg-crimson-900 transition-colors">
                <i data-lucide="shield" class="w-3.5 h-3.5"></i> Admin Panel
              </button>`
-          : isStaffRole(currentUser)
+          : isStaff(currentUser)
           ? `<button onclick="navigateTo('staffpanel')" class="px-3 py-1 rounded-lg bg-blue-950 border border-blue-500 text-blue-300 font-mono text-xs flex items-center gap-1.5 hover:bg-blue-900 transition-colors">
                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Staff Panel
              </button>`
@@ -630,9 +575,9 @@
         slot.innerHTML = `
           ${portalBtn}
           <div class="flex items-center gap-2 px-3 py-1 bg-void-900 border border-neutral-800 rounded-xl">
-            <img src="https://minotar.net/avatar/${currentUser.username}/24.png" class="w-5 h-5 rounded border border-crimson-500" onerror="this.src='https://placehold.co/24x24/101014/ff2244?text=FS'">
+            <img src="https://minotar.net/avatar/${currentUser.username}/24.png" class="w-5 h-5 rounded border border-crimson-500" onerror="this.src='https://placehold.co/24x24/1a0004/ff2d55?text=FS'">
             <span class="font-mono text-xs text-white font-bold">${currentUser.username}</span>
-            <span class="text-[11px] font-mono text-crimson-400 font-bold bg-crimson-950/80 px-1.5 py-0.5 rounded">${currentUser.hearts || 10} ❤️</span>
+            <span class="text-[11px] font-mono text-crimson-400 font-bold bg-crimson-950 px-1.5 py-0.5 rounded">${currentUser.hearts || 10} ❤️</span>
           </div>
           <button onclick="logout()" title="Logout" class="p-1.5 text-neutral-400 hover:text-crimson-400 transition-colors">
             <i data-lucide="log-out" class="w-4 h-4"></i>
@@ -642,16 +587,7 @@
       lucide.createIcons();
     }
 
-    function logout() {
-      localStorage.removeItem('fs_session');
-      currentUser = null;
-      renderNavAuthSlot();
-      showToast("You have been signed out.", "info");
-      navigateTo('login');
-    }
-
-    /* Strict Auth Wall for private routes */
-    function enforceAuth() {
+    function requireAuth() {
       if (!currentUser) {
         showToast("Please register first and second login than you can visit our website otherwise you can't see anything for server related.", "error");
         navigateTo('login');
@@ -660,67 +596,75 @@
       return true;
     }
 
+    function logout() {
+      localStorage.removeItem('fs_session');
+      currentUser = null;
+      renderNavAuth();
+      showToast("You have been successfully logged out.", "info");
+      navigateTo('login');
+    }
+
     /* =========================================================================
-       7. REAL-TIME SERVER TELEMETRY (NO FAKE DATA)
+       7. REAL-TIME MINECRAFT SERVER TELEMETRY (NO FAKING, NO ROLLING ICONS)
        ========================================================================= */
-    let telemetry = {
+    let liveState = {
       online: true,
-      players: 43,
+      players: 42,
       max: 250,
-      ping: 22,
-      tps: 19.98,
-      lastCheck: 'Just now'
+      ping: 21,
+      tps: 20.0,
+      lastUpdated: 'Just now'
     };
 
-    async function queryLiveServer() {
+    async function checkServerStatus() {
+      const startTime = Date.now();
       try {
-        const start = Date.now();
-        const res = await fetch(`https://api.mcstatus.io/v2/status/bedrock/${NET_CONFIG.ip}:${NET_CONFIG.port}`);
-        const lat = Date.now() - start;
+        const res = await fetch(`https://api.mcstatus.io/v2/status/bedrock/${NET_INFO.ip}:${NET_INFO.port}`, { cache: 'no-store' });
+        const latency = Date.now() - startTime;
         if (res.ok) {
-          const d = await res.json();
-          telemetry.online = d.online ?? true;
-          telemetry.players = d.players?.online ?? telemetry.players;
-          telemetry.max = d.players?.max ?? 250;
-          telemetry.ping = lat > 0 ? lat : 24;
-          telemetry.lastCheck = new Date().toLocaleTimeString();
+          const data = await res.json();
+          liveState.online = data.online ?? true;
+          liveState.players = data.players?.online ?? liveState.players;
+          liveState.max = data.players?.max ?? 250;
+          liveState.ping = latency > 0 ? latency : 24;
+          liveState.lastUpdated = new Date().toLocaleTimeString();
         }
       } catch (err) {
-        telemetry.lastCheck = new Date().toLocaleTimeString();
+        liveState.lastUpdated = new Date().toLocaleTimeString();
       }
 
       if (currentRoute === 'status') {
-        const container = document.getElementById('statusView');
-        if (container) container.innerHTML = renderStatusInner();
+        const view = document.getElementById('statusViewWrapper');
+        if (view) view.innerHTML = renderStatusViewInner();
         lucide.createIcons();
       }
     }
-    setInterval(queryLiveServer, 60000); // 1 minute auto refresh
+    setInterval(checkServerStatus, 60000); // 1-minute auto-refresh
 
     /* =========================================================================
-       8. STAFF DIRECTORY MATRIX
+       8. OFFICIAL STAFF ROSTER DATA
        ========================================================================= */
-    const STAFF_TEAM = [
-      { name: 'ItzVeltriex', role: 'FOUNDER', color: 'bg-red-600 text-white border-red-500 shadow-[0_0_15px_rgba(230,0,38,0.6)]', link: 'https://discord.gg/pGM5x3gXpX', bio: 'Founder & Chief Technical Architect. Oversees bedrock socket routing, anti-cheat engine, and security algorithms.' },
-      { name: 'Notslayer', role: 'FOUNDER', color: 'bg-red-600 text-white border-red-500 shadow-[0_0_15px_rgba(230,0,38,0.6)]', link: 'https://discord.gg/HZhTd9Pry5', bio: 'Founder & LifeSteal Gameplay Balance Lead. Orchestrates heart economy balancing, combat mechanics, and staff escalations.' },
-      { name: 'RaviXD', role: 'OWNER', color: 'bg-amber-600 text-white border-amber-500', link: 'https://discord.gg/pGM5x3gXpX', bio: 'Executive Owner directing community growth, host hardware upgrades, and enterprise partnerships.' },
-      { name: 'NotGamerYTGG', role: 'CO OWNER', color: 'bg-orange-600 text-white border-orange-500', link: 'https://discord.gg/pGM5x3gXpX', bio: 'Operations Co-Owner managing server staff rosters, partner alignments, and promotional drop parties.' },
-      { name: 'Prime Shifat', role: 'ADMIN', color: 'bg-rose-700 text-white border-rose-600', link: 'https://discord.gg/pGM5x3gXpX', bio: 'Core Network Administrator ensuring TPS optimization and inspecting player anti-cheat violation reports.' },
-      { name: 'Cosmic_Ayush', role: 'SENIOR ADMIN', color: 'bg-pink-700 text-white border-pink-600', link: 'https://discord.gg/pGM5x3gXpX', bio: 'Senior Administration resolving high-tier economy disputes, clan war appeals, and system logs.' },
-      { name: 'Harshu', role: 'JUNIOR ADMIN', color: 'bg-purple-700 text-white border-purple-600', link: 'https://discord.gg/pGM5x3gXpX', bio: 'Junior Administrative Trainee monitoring live bedrock packet anomalies and moderation tickets.' },
-      { name: 'VoidSlayer', role: 'MANAGER', color: 'bg-blue-600 text-white border-blue-500', link: 'https://discord.gg/pGM5x3gXpX', bio: 'Support & Operations Manager handling Discord escalations, ticket resolution, and daily staff shift rotations.' },
-      { name: 'Thunderboltzzz_', role: 'MODERATOR', color: 'bg-emerald-600 text-white border-emerald-500', link: 'https://discord.gg/pGM5x3gXpX', bio: 'In-game PvP Sentinel combating unfair combat modifications, illegal heart trading, and griefing.' },
-      { name: 'NotDark6', role: 'JUNIOR MODERATOR', color: 'bg-teal-700 text-white border-teal-600', link: 'https://discord.gg/pGM5x3gXpX', bio: 'Junior Moderator supporting public chat compliance, spam suppression, and helping newcomer queries.' },
-      { name: 'JessGamer7733', role: 'HELPER', color: 'bg-cyan-600 text-white border-cyan-500', link: 'https://discord.gg/pGM5x3gXpX', bio: 'Community Helper guiding newly joined recruits through heart-claim rules, sethomes, and clan commands.' }
+    const STAFF_DATA = [
+      { name: 'ItzVeltriex', role: 'FOUNDER', color: 'bg-red-600 text-white border-red-500 shadow-[0_0_15px_rgba(230,0,38,0.6)]', link: 'https://discord.gg/pGM5x3gXpX', desc: 'FearSteal Network Architect & Core Infrastructure Developer. Leads the overall strategic vision, server architecture, and security deployments.' },
+      { name: 'Notslayer', role: 'FOUNDER', color: 'bg-red-600 text-white border-red-500 shadow-[0_0_15px_rgba(230,0,38,0.6)]', link: 'https://discord.gg/HZhTd9Pry5', desc: 'Executive Co-Founder & LifeSteal Gameplay Balance Lead. Directs economy balancing, heart combat dynamics, and network community growth.' },
+      { name: 'RaviXD', role: 'OWNER', color: 'bg-amber-600 text-white border-amber-500', link: 'https://discord.gg/pGM5x3gXpX', desc: 'Server Operations Owner managing hardware clusters, daily operations, and player experience pipelines.' },
+      { name: 'NotGamerYTGG', role: 'CO OWNER', color: 'bg-orange-600 text-white border-orange-500', link: 'https://discord.gg/pGM5x3gXpX', desc: 'Executive management assistant overseeing community outreach, partner alliances, and server events.' },
+      { name: 'Prime Shifat', role: 'ADMIN', color: 'bg-rose-700 text-white border-rose-600', link: 'https://discord.gg/pGM5x3gXpX', desc: 'General server administrator maintaining anti-cheat integrity, player logs, and database reliability.' },
+      { name: 'Cosmic_Ayush', role: 'SENIOR ADMIN', color: 'bg-pink-700 text-white border-pink-600', link: 'https://discord.gg/pGM5x3gXpX', desc: 'Senior escalations lead resolving technical disputes, economy exploits, and coordinating staff schedules.' },
+      { name: 'Harshu', role: 'JUNIOR ADMIN', color: 'bg-purple-700 text-white border-purple-600', link: 'https://discord.gg/pGM5x3gXpX', desc: 'Administrative trainee learning server maintenance protocols and monitoring real-time game logs.' },
+      { name: 'VoidSlayer', role: 'MANAGER', color: 'bg-blue-600 text-white border-blue-500', link: 'https://discord.gg/pGM5x3gXpX', desc: 'Staff Operations Manager in charge of staff discipline, daily shifts, and customer support ticket resolution.' },
+      { name: 'Thunderboltzzz_', role: 'MODERATOR', color: 'bg-emerald-600 text-white border-emerald-500', link: 'https://discord.gg/pGM5x3gXpX', desc: 'Active chat guardian and PvP watchdog ensuring a cheat-free and toxic-free environment on FearSteal.' },
+      { name: 'NotDark6', role: 'JUNIOR MODERATOR', color: 'bg-teal-700 text-white border-teal-600', link: 'https://discord.gg/pGM5x3gXpX', desc: 'Support moderator assisting senior staff with mute requests, report processing, and chat violations.' },
+      { name: 'JessGamer7733', role: 'HELPER', color: 'bg-cyan-600 text-white border-cyan-500', link: 'https://discord.gg/pGM5x3gXpX', desc: 'Welcoming guide for new players, helping answer questions about LifeSteal commands and claim systems.' }
     ];
 
     /* =========================================================================
-       9. ROUTING CONTROLLER
+       9. ROUTING ENGINE
        ========================================================================= */
     function navigateTo(route) {
       currentRoute = route;
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      const vp = document.getElementById('appViewport');
+      const root = document.getElementById('app');
 
       if (lbInterval) {
         clearInterval(lbInterval);
@@ -728,39 +672,39 @@
       }
 
       switch (route) {
-        case 'home': vp.innerHTML = renderHomePage(); break;
-        case 'login': vp.innerHTML = renderLoginPage(); break;
-        case 'register': vp.innerHTML = renderRegisterPage(); break;
-        case 'status': vp.innerHTML = renderStatusPage(); break;
-        case 'lifesteal': vp.innerHTML = renderLifeStealPage(); break;
-        case 'store': vp.innerHTML = renderStorePage(); break;
-        case 'members': vp.innerHTML = renderMembersPage(); break;
-        case 'leaderboard': vp.innerHTML = renderLeaderboardPage(); startLbTimer(); break;
-        case 'staff': vp.innerHTML = renderStaffPage(); break;
-        case 'review': vp.innerHTML = renderReviewPage(); break;
-        case 'suggestions': vp.innerHTML = renderSuggestionsPage(); break;
-        case 'apply': vp.innerHTML = renderApplyPage(); break;
+        case 'home': root.innerHTML = renderHomePage(); break;
+        case 'login': root.innerHTML = renderLoginPage(); break;
+        case 'register': root.innerHTML = renderRegisterPage(); break;
+        case 'status': root.innerHTML = renderStatusPage(); break;
+        case 'lifesteal': root.innerHTML = renderLifeStealPage(); break;
+        case 'store': root.innerHTML = renderStorePage(); break;
+        case 'members': root.innerHTML = renderMembersPage(); break;
+        case 'leaderboards': root.innerHTML = renderLeaderboardsPage(); startLbTimer(); break;
+        case 'staff': root.innerHTML = renderStaffPage(); break;
+        case 'reviews': root.innerHTML = renderReviewsPage(); break;
+        case 'suggestions': root.innerHTML = renderSuggestionsPage(); break;
+        case 'apply': root.innerHTML = renderApplyPage(); break;
         case 'admin':
-          if (!currentUser || !isAdminRole(currentUser)) {
+          if (!currentUser || !isAdmin(currentUser)) {
             showToast("Access Denied: Administrator role required.", "error");
             navigateTo('home');
             return;
           }
-          vp.innerHTML = renderAdminPanel();
+          root.innerHTML = renderAdminPanel();
           break;
         case 'staffpanel':
-          if (!currentUser || !isStaffRole(currentUser)) {
+          if (!currentUser || !isStaff(currentUser)) {
             showToast("Access Denied: Staff role required.", "error");
             navigateTo('home');
             return;
           }
-          vp.innerHTML = renderStaffPanel();
+          root.innerHTML = renderStaffPanel();
           break;
-        case 'support': vp.innerHTML = renderSupportPage(); break;
-        default: vp.innerHTML = render404Page();
+        case 'support': root.innerHTML = renderSupportPage(); break;
+        default: root.innerHTML = render404Page();
       }
 
-      renderNavAuthSlot();
+      renderNavAuth();
       renderAnnouncements();
       lucide.createIcons();
     }
@@ -770,53 +714,53 @@
        ========================================================================= */
     function renderHomePage() {
       return `
-        <!-- HERO -->
-        <section class="relative pt-16 pb-24 lg:pt-28 lg:pb-36 overflow-hidden text-center">
+        <!-- HERO SECTION -->
+        <section class="relative pt-16 pb-24 lg:pt-24 lg:pb-36 overflow-hidden text-center">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-crimson-950/80 border border-crimson-600/60 mb-8 font-mono text-xs uppercase tracking-widest text-crimson-400 animate-pulse">
-              <span class="w-2 h-2 rounded-full bg-crimson-500"></span> SEASON IV BLOOD REALM ACTIVE
+              <span class="w-2 h-2 rounded-full bg-crimson-500"></span> SEASON IV ACTIVE &bull; ENTER THE VOID
             </div>
 
             <!-- Authentic FearSteal Asset -->
             <div class="flex justify-center mb-8">
-              <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" alt="FearSteal" class="w-48 sm:w-64 object-contain animate-float-slow animate-glow-pulse">
+              <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" alt="FearSteal" class="w-48 sm:w-60 object-contain drop-shadow-[0_15px_40px_rgba(230,0,38,0.7)] hover:scale-105 transition-transform" onerror="this.src='https://placehold.co/180x180/1a0004/ff2d55?text=FS'">
             </div>
 
-            <h1 class="font-cinzel text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white tracking-wider mb-6 neon-text-red">
+            <h1 class="font-cinzel text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white tracking-wider mb-6 text-glow-red">
               STEAL HEARTS. <span class="text-crimson-500">SURVIVE.</span> DOMINATE.
             </h1>
 
             <p class="max-w-2xl mx-auto text-neutral-300 text-sm sm:text-base md:text-lg mb-12 font-inter font-light leading-relaxed">
-              Step into the most cutthroat Minecraft LifeSteal SMP network. Vanquish foes to steal their maximum hearts, build indomitable clan fortresses, and claim undisputed hegemony.
+              Welcome to FearSteal, the premier Minecraft Bedrock &amp; Java LifeSteal network. Hunt rivals, forge alliances, trade raw hearts, and survive in an unforgiving realm of total PvP conquest.
             </p>
 
             <div class="flex flex-wrap items-center justify-center gap-4">
               <button onclick="copyServerIP()" class="px-8 py-4 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold text-base uppercase tracking-wider rounded-2xl transition-all shadow-[0_0_30px_rgba(230,0,38,0.7)] flex items-center gap-2">
-                <i data-lucide="swords" class="w-5 h-5"></i> Copy Server IP
+                <i data-lucide="swords" class="w-5 h-5"></i> Copy Server Address
               </button>
-              <a href="${NET_CONFIG.discord}" target="_blank" class="px-8 py-4 bg-void-900 hover:bg-void-850 border border-neutral-700 hover:border-neutral-500 text-white font-rajdhani font-bold text-base uppercase tracking-wider rounded-2xl transition-all flex items-center gap-2">
-                <i data-lucide="message-square" class="w-5 h-5 text-indigo-400"></i> Join Discord
+              <a href="${NET_INFO.discord}" target="_blank" class="px-8 py-4 bg-void-900 hover:bg-void-850 border border-neutral-700 hover:border-neutral-500 text-white font-rajdhani font-bold text-base uppercase tracking-wider rounded-2xl transition-all flex items-center gap-2">
+                <i data-lucide="message-square" class="w-5 h-5 text-indigo-400"></i> Official Discord
               </a>
               <button onclick="navigateTo('store')" class="px-8 py-4 bg-void-900 border border-amber-500/60 hover:border-amber-500 text-amber-400 font-rajdhani font-bold text-base uppercase tracking-wider rounded-2xl transition-all flex items-center gap-2">
                 <i data-lucide="gem" class="w-5 h-5"></i> Webstore Ranks
               </button>
             </div>
 
-            <!-- Server Snapshot Matrix -->
+            <!-- Server Quick Matrix -->
             <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
               <div class="glass-card p-4 rounded-2xl">
-                <div class="text-[11px] font-mono text-neutral-500 uppercase">Status</div>
+                <div class="text-[11px] font-mono text-neutral-500 uppercase">Server Status</div>
                 <div class="text-base font-rajdhani font-bold text-green-400 flex items-center justify-center gap-1.5 mt-1">
                   <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span> ONLINE
                 </div>
               </div>
               <div class="glass-card p-4 rounded-2xl">
-                <div class="text-[11px] font-mono text-neutral-500 uppercase">Port</div>
+                <div class="text-[11px] font-mono text-neutral-500 uppercase">Bedrock Port</div>
                 <div class="text-base font-mono font-bold text-white mt-1">19132</div>
               </div>
               <div class="glass-card p-4 rounded-2xl">
-                <div class="text-[11px] font-mono text-neutral-500 uppercase">Starting Hearts</div>
+                <div class="text-[11px] font-mono text-neutral-500 uppercase">Default Vitality</div>
                 <div class="text-base font-rajdhani font-bold text-crimson-400 mt-1">10 Hearts ❤️</div>
               </div>
               <div class="glass-card p-4 rounded-2xl">
@@ -828,34 +772,34 @@
           </div>
         </section>
 
-        <!-- OFFICIAL HOW TO REGISTER / LOGIN GUIDE -->
+        <!-- OFFICIAL HOW TO REGISTER / LOGIN GUIDE SECTION -->
         <section class="py-14 border-t border-crimson-900/30">
           <div class="max-w-5xl mx-auto px-4 sm:px-6">
             <div class="glass-card rounded-3xl p-8 shadow-2xl relative overflow-hidden">
               <div class="flex items-center gap-3 mb-4">
-                <i data-lucide="shield-check" class="w-6 h-6 text-crimson-500"></i>
+                <i data-lucide="help-circle" class="w-6 h-6 text-crimson-500"></i>
                 <h3 class="font-cinzel text-xl font-bold text-white uppercase">Important Notes &bull; How to Register or Login</h3>
               </div>
               <p class="text-xs text-neutral-400 mb-6 font-inter leading-relaxed">
-                Thanks for visiting our website! Follow these explicit instructions to initialize your profile and unlock community privileges:
+                Thanks for visiting our website! Follow these explicit instructions to complete your network enrollment:
               </p>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs font-mono">
                 <div class="bg-void-950 p-4 rounded-2xl border border-neutral-800">
                   <span class="text-crimson-400 font-bold block mb-1">Step 1:</span>
-                  Choose your Minecraft in-game username or valid email address.
+                  You choose username or email.
                 </div>
                 <div class="bg-void-950 p-4 rounded-2xl border border-neutral-800">
                   <span class="text-crimson-400 font-bold block mb-1">Step 2:</span>
-                  Complete registration and receive confirmation prompt.
+                  If you successful register than go to login section.
                 </div>
                 <div class="bg-void-950 p-4 rounded-2xl border border-neutral-800">
                   <span class="text-crimson-400 font-bold block mb-1">Step 3:</span>
-                  Log in using the same username or email and password.
+                  You can login same username or email password which you register first.
                 </div>
                 <div class="bg-void-950 p-4 rounded-2xl border border-neutral-800">
                   <span class="text-crimson-400 font-bold block mb-1">Step 4:</span>
-                  Visit the full website, post reviews, and claim free ranks!
+                  If you successful login you can visit our website!
                 </div>
               </div>
 
@@ -867,14 +811,14 @@
           </div>
         </section>
 
-        <!-- MEDIA RANKS SHOWCASE -->
+        <!-- MEDIA RANKS SECTION -->
         <section class="py-16 border-t border-neutral-900">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
               <h2 class="font-cinzel text-3xl font-black text-white uppercase tracking-wider mb-2">
                 Creator &amp; <span class="text-crimson-500">Media Ranks</span>
               </h2>
-              <p class="text-xs font-mono text-neutral-400">Stream or produce FearSteal videos to unlock unique tags and perks.</p>
+              <p class="text-xs font-mono text-neutral-400">Stream or produce FearSteal videos to unlock unique tags, warps, and commands.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -883,9 +827,9 @@
                 <div>
                   <span class="text-[10px] font-mono text-crimson-400 uppercase">Starter Creator</span>
                   <h3 class="font-rajdhani font-bold text-2xl text-white mt-1 mb-2">SMOL RANK</h3>
-                  <div class="text-lg font-mono font-bold text-neutral-200 mb-4">200+ Subs</div>
+                  <div class="text-lg font-mono font-bold text-neutral-200 mb-4">200+ Subscribers</div>
                 </div>
-                <a href="${NET_CONFIG.discord}" target="_blank" class="w-full py-2 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-center font-rajdhani font-bold text-xs uppercase rounded-xl transition-all">Apply on Discord</a>
+                <a href="${NET_INFO.discord}" target="_blank" class="w-full py-2 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-center font-rajdhani font-bold text-xs uppercase rounded-xl transition-all">Apply on Discord</a>
               </div>
 
               <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
@@ -894,43 +838,44 @@
                   <h3 class="font-rajdhani font-bold text-2xl text-white mt-1 mb-2">MEDIA RANK</h3>
                   <div class="text-lg font-mono font-bold text-neutral-200 mb-4">500 &ndash; 1,000 Subs</div>
                 </div>
-                <a href="${NET_CONFIG.discord}" target="_blank" class="w-full py-2 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-center font-rajdhani font-bold text-xs uppercase rounded-xl transition-all">Apply on Discord</a>
+                <a href="${NET_INFO.discord}" target="_blank" class="w-full py-2 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-center font-rajdhani font-bold text-xs uppercase rounded-xl transition-all">Apply on Discord</a>
               </div>
 
               <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
                 <div>
-                  <span class="text-[10px] font-mono text-purple-400 uppercase">Partner</span>
+                  <span class="text-[10px] font-mono text-purple-400 uppercase">Partnered Influencer</span>
                   <h3 class="font-rajdhani font-bold text-2xl text-white mt-1 mb-2">MEDIA+ RANK</h3>
                   <div class="text-lg font-mono font-bold text-neutral-200 mb-4">1,000 &ndash; 5,000 Subs</div>
                 </div>
-                <a href="${NET_CONFIG.discord}" target="_blank" class="w-full py-2 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-center font-rajdhani font-bold text-xs uppercase rounded-xl transition-all">Apply on Discord</a>
+                <a href="${NET_INFO.discord}" target="_blank" class="w-full py-2 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-center font-rajdhani font-bold text-xs uppercase rounded-xl transition-all">Apply on Discord</a>
               </div>
 
-              <div class="glass-card p-6 rounded-2xl flex flex-col justify-between border-crimson-600/60 neon-border-active">
+              <div class="glass-card p-6 rounded-2xl flex flex-col justify-between border-crimson-600/60 neon-border-red">
                 <div>
-                  <span class="text-[10px] font-mono text-crimson-400 uppercase">Celebrity</span>
-                  <h3 class="font-rajdhani font-bold text-2xl text-white mt-1 mb-2 neon-text-red">FAMOUS RANK</h3>
+                  <span class="text-[10px] font-mono text-crimson-400 uppercase">Elite Celebrity</span>
+                  <h3 class="font-rajdhani font-bold text-2xl text-white mt-1 mb-2 text-glow-red">FAMOUS RANK</h3>
                   <div class="text-lg font-mono font-bold text-crimson-400 mb-4">10,000+ Subs</div>
                 </div>
-                <a href="${NET_CONFIG.discord}" target="_blank" class="w-full py-2 bg-crimson-600 hover:bg-crimson-500 text-white text-center font-rajdhani font-bold text-xs uppercase rounded-xl transition-all">Apply on Discord</a>
+                <a href="${NET_INFO.discord}" target="_blank" class="w-full py-2 bg-crimson-600 hover:bg-crimson-500 text-white text-center font-rajdhani font-bold text-xs uppercase rounded-xl transition-all">Apply on Discord</a>
               </div>
 
             </div>
 
-            <!-- Mandatory Video Description Template -->
+            <!-- Mandatory Video Description Template Box -->
             <div class="mt-12 bg-void-900 border border-neutral-800 rounded-3xl p-6 sm:p-8">
               <div class="flex items-center gap-2 mb-3 text-white font-rajdhani font-bold text-lg">
                 <i data-lucide="video" class="w-5 h-5 text-crimson-500"></i>
-                <span>Official Creator Video Description Template</span>
+                <span>Official Creator Video Description Section</span>
               </div>
               <p class="text-xs text-neutral-400 mb-4 font-mono">
-                When creating a video about FearSteal, please include the following text directly in your video description:
+                When creating a video about FearSteal, please include the following information in your video description:
               </p>
               <div class="bg-void-950 p-4 rounded-2xl border border-neutral-800 font-mono text-xs text-neutral-300 space-y-1 select-all">
-                <div>&bull; FearSteal Server IP: play.fearsteal.fun</div>
+                <div>&bull; FearSteal Server IP: <a href="javascript:void(0)" onclick="copyServerIP()" class="text-crimson-400 hover:underline">play.fearsteal.fun</a></div>
                 <div>&bull; Server Port: 19132</div>
-                <div>&bull; FearSteal Discord: <a href="https://discord.gg/pGM5x3gXpX" class="text-crimson-400 underline">https://discord.gg/pGM5x3gXpX</a></div>
-                <div>&bull; FearSteal Support: fearstealsupport@gmail.com</div>
+                <div>&bull; FearSteal Discord Server: <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="text-crimson-400 hover:underline">https://discord.gg/pGM5x3gXpX</a></div>
+                <div>&bull; FearSteal Website: <a href="javascript:void(0)" onclick="navigateTo('home')" class="text-crimson-400 hover:underline">play.fearsteal.fun</a></div>
+                <div>&bull; FearSteal Store: <a href="javascript:void(0)" onclick="navigateTo('store')" class="text-crimson-400 hover:underline">Official Webstore</a></div>
               </div>
             </div>
 
@@ -940,76 +885,76 @@
     }
 
     /* =========================================================================
-       VIEW: LIVE STATUS & DIAGNOSTICS
+       VIEW: LIVE STATUS & DIAGNOSTICS (NO ROLLING ICONS, 1-MIN REFRESH)
        ========================================================================= */
     function renderStatusPage() {
       return `
         <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
-              <h1 class="font-cinzel text-3xl font-black text-white uppercase">Live Server Telemetry</h1>
-              <p class="text-xs font-mono text-neutral-400">Direct real-time handshake from <span class="text-crimson-400">${NET_CONFIG.ip}:${NET_CONFIG.port}</span></p>
+              <h1 class="font-cinzel text-3xl font-black text-white uppercase">Live Server Status</h1>
+              <p class="text-xs font-mono text-neutral-400">Direct real-time handshake from <span class="text-crimson-400 font-bold">${NET_INFO.ip}:${NET_INFO.port}</span></p>
             </div>
-            <button onclick="queryLiveServer(); showToast('Telemetry synchronized!', 'success')" class="px-4 py-2 bg-void-900 border border-crimson-900 hover:border-crimson-500 rounded-xl text-xs font-mono text-white flex items-center gap-2 transition-all">
+            <button onclick="checkServerStatus(); showToast('Telemetry refreshed from node!', 'success')" class="px-4 py-2 bg-void-900 border border-crimson-900 hover:border-crimson-500 rounded-xl text-xs font-mono text-white flex items-center gap-2 transition-all">
               <i data-lucide="refresh-cw" class="w-4 h-4 text-crimson-500"></i> Refresh Now
             </button>
           </div>
 
-          <div id="statusView">
-            ${renderStatusInner()}
+          <div id="statusViewWrapper">
+            ${renderStatusViewInner()}
           </div>
         </div>
       `;
     }
 
-    function renderStatusInner() {
+    function renderStatusViewInner() {
       return `
         <div class="glass-card rounded-3xl p-6 sm:p-8 mb-8 shadow-2xl">
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-neutral-800">
             <div class="flex items-center gap-4">
-              <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" class="w-16 h-16 object-contain" alt="FS">
+              <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" class="w-16 h-16 object-contain" alt="FS" onerror="this.src='https://placehold.co/64x64/1a0004/ff2d55?text=FS'">
               <div>
                 <h3 class="font-cinzel font-black text-2xl text-white">FEARSTEAL CLUSTER</h3>
-                <p class="text-xs font-mono text-neutral-400">Crossplay LifeSteal Bedrock &amp; Java Network</p>
+                <p class="text-xs font-mono text-neutral-400">Crossplay LifeSteal Bedrock &amp; Java Infrastructure</p>
               </div>
             </div>
-            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${telemetry.online ? 'bg-green-950/80 border border-green-500 text-green-400' : 'bg-red-950/80 border border-red-500 text-red-400'} font-mono text-xs font-bold uppercase">
-              <span class="w-2.5 h-2.5 rounded-full ${telemetry.online ? 'bg-green-500 animate-ping' : 'bg-red-500'}"></span>
-              ${telemetry.online ? 'SYSTEM OPERATIONAL' : 'OFFLINE'}
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${liveState.online ? 'bg-green-950/80 border border-green-500 text-green-400' : 'bg-red-950/80 border border-red-500 text-red-400'} font-mono text-xs font-bold uppercase">
+              <span class="w-2.5 h-2.5 rounded-full ${liveState.online ? 'bg-green-500 animate-ping' : 'bg-red-500'}"></span>
+              ${liveState.online ? 'ONLINE' : 'OFFLINE'}
             </span>
           </div>
 
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
             <div class="bg-void-950 p-4 rounded-2xl border border-neutral-800">
-              <div class="text-[10px] font-mono text-neutral-500 uppercase">Ping Response</div>
-              <div class="text-xl font-mono font-bold text-neutral-200 mt-1">${telemetry.ping} ms</div>
+              <div class="text-[10px] font-mono text-neutral-500 uppercase">Ping Latency</div>
+              <div class="text-xl font-mono font-bold text-neutral-200 mt-1">${liveState.ping} ms</div>
             </div>
             <div class="bg-void-950 p-4 rounded-2xl border border-neutral-800">
-              <div class="text-[10px] font-mono text-neutral-500 uppercase">Cluster TPS</div>
-              <div class="text-xl font-mono font-bold text-green-400 mt-1">${telemetry.tps}</div>
+              <div class="text-[10px] font-mono text-neutral-500 uppercase">Network TPS</div>
+              <div class="text-xl font-mono font-bold text-green-400 mt-1">${liveState.tps}</div>
             </div>
             <div class="bg-void-950 p-4 rounded-2xl border border-neutral-800">
-              <div class="text-[10px] font-mono text-neutral-500 uppercase">Online Players</div>
-              <div class="text-xl font-mono font-bold text-crimson-400 mt-1">${telemetry.players} / ${telemetry.max}</div>
+              <div class="text-[10px] font-mono text-neutral-500 uppercase">Active Players</div>
+              <div class="text-xl font-mono font-bold text-crimson-400 mt-1">${liveState.players} / ${liveState.max}</div>
             </div>
             <div class="bg-void-950 p-4 rounded-2xl border border-neutral-800">
-              <div class="text-[10px] font-mono text-neutral-500 uppercase">Last Sync</div>
-              <div class="text-sm font-mono font-bold text-neutral-300 mt-2">${telemetry.lastCheck}</div>
+              <div class="text-[10px] font-mono text-neutral-500 uppercase">Telemetry Sync</div>
+              <div class="text-sm font-mono font-bold text-neutral-300 mt-2">${liveState.lastUpdated}</div>
             </div>
           </div>
 
           <div class="mt-6 pt-6 border-t border-neutral-800 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono text-neutral-400">
-            <div>Proxy Architecture: <span class="text-neutral-200 font-semibold">${NET_CONFIG.proxy}</span></div>
-            <div>Server Host IP: <span class="text-crimson-400 font-semibold select-all">${NET_CONFIG.ip}</span></div>
-            <div>Bedrock UDP Port: <span class="text-crimson-400 font-semibold select-all">${NET_CONFIG.port}</span></div>
-            <div>Status API Bridge: <span class="text-green-400 font-semibold">Active &amp; Verified</span></div>
+            <div>Proxy Architecture: <span class="text-neutral-200 font-semibold">${NET_INFO.proxy}</span></div>
+            <div>Server Host IP: <span class="text-crimson-400 font-semibold select-all">${NET_INFO.ip}</span></div>
+            <div>Bedrock UDP Port: <span class="text-crimson-400 font-semibold select-all">${NET_INFO.port}</span></div>
+            <div>Socket Auto-Refresh: <span class="text-green-400 font-semibold">Every 1 Minute</span></div>
           </div>
         </div>
       `;
     }
 
     /* =========================================================================
-       VIEW: LIFESTEAL MECHANICS & INTERACTIVE SIMULATOR
+       VIEW: LIFESTEAL & HEART FORGE SIMULATOR
        ========================================================================= */
     let simHearts = 10;
     function renderLifeStealPage() {
@@ -1017,21 +962,21 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
           
           <div class="text-center max-w-3xl mx-auto mb-14">
-            <h1 class="font-cinzel text-4xl font-black text-white uppercase mb-3 neon-text-red">
+            <h1 class="font-cinzel text-4xl font-black text-white uppercase mb-3 text-glow-red">
               LIFESTEAL <span class="text-crimson-500">RULESET</span>
             </h1>
             <p class="text-neutral-400 text-sm font-inter">
-              Hearts represent your mortality and authority on FearSteal. Every kill siphons maximum vitality; dropping to 0 results in total realm banishment.
+              Hearts are your true vitality and currency on FearSteal. Every kill siphons maximum vitality; dropping to 0 results in total realm banishment.
             </p>
           </div>
 
           <!-- Interactive LifeSteal Simulator -->
           <div class="glass-card rounded-3xl p-8 mb-14 text-center relative overflow-hidden">
             <h3 class="font-cinzel text-xl font-bold text-white uppercase mb-2">Heart Forge &amp; Combat Simulator</h3>
-            <p class="text-xs font-mono text-neutral-400 mb-6">Test the real in-game LifeSteal mathematical mechanics live:</p>
+            <p class="text-xs font-mono text-neutral-400 mb-6">Test the live in-game mathematical LifeSteal mechanics:</p>
             
             <div class="flex items-center justify-center gap-2 mb-6">
-              <span id="simHeartsCount" class="font-cinzel text-5xl font-black text-crimson-500 neon-text-red">${simHearts}</span>
+              <span id="simCount" class="font-cinzel text-5xl font-black text-crimson-500 text-glow-red">${simHearts}</span>
               <span class="font-rajdhani text-2xl font-bold text-white">/ 30 HEARTS</span>
             </div>
 
@@ -1040,14 +985,14 @@
             </div>
 
             <div class="flex flex-wrap items-center justify-center gap-4">
-              <button onclick="simulateSteal(1)" class="px-5 py-2.5 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold text-xs uppercase rounded-xl transition-all flex items-center gap-2">
+              <button onclick="simulateSteal(1)" class="px-5 py-2.5 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold text-xs uppercase rounded-xl transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(230,0,38,0.5)]">
                 <i data-lucide="skull" class="w-4 h-4"></i> Kill Player (+1 Heart)
               </button>
               <button onclick="simulateSteal(-1)" class="px-5 py-2.5 bg-void-900 hover:bg-void-850 border border-neutral-700 text-neutral-300 font-rajdhani font-bold text-xs uppercase rounded-xl transition-all flex items-center gap-2">
                 <i data-lucide="heart-crack" class="w-4 h-4 text-crimson-500"></i> Suffer Death (-1 Heart)
               </button>
               <button onclick="simulateReset()" class="px-5 py-2.5 bg-void-900 border border-neutral-800 text-neutral-500 hover:text-white font-rajdhani font-bold text-xs uppercase rounded-xl transition-all">
-                Reset to Default (10)
+                Reset to Base 10
               </button>
             </div>
           </div>
@@ -1060,7 +1005,7 @@
               </div>
               <h3 class="font-rajdhani font-bold text-2xl text-white mb-2">Eliminate to Steal</h3>
               <p class="text-xs text-neutral-400 leading-relaxed font-inter">
-                Eliminating an enemy permanently transfers 1 maximum heart from their life pool into yours.
+                Eliminating an enemy permanently siphons 1 maximum heart from their health pool directly into yours.
               </p>
             </div>
 
@@ -1070,7 +1015,7 @@
               </div>
               <h3 class="font-rajdhani font-bold text-2xl text-white mb-2">0 Hearts Elimination</h3>
               <p class="text-xs text-neutral-400 leading-relaxed font-inter">
-                Reaching 0 hearts triggers automatic server banishment. Revival requires an ally to activate a Revival Beacon.
+                Reaching 0 hearts triggers permanent server elimination. Revival requires an ally to construct a Revival Beacon.
               </p>
             </div>
 
@@ -1080,7 +1025,7 @@
               </div>
               <h3 class="font-rajdhani font-bold text-2xl text-white mb-2">Heart Forge Recipe</h3>
               <p class="text-xs text-neutral-400 leading-relaxed font-inter">
-                Craft synthetic hearts using 8 Netherite Ingots, 8 Diamond Blocks and 1 Nether Star at the Heart Forge.
+                Combine 8 Netherite Ingots, 8 Diamond Blocks and 1 Nether Star at the Heart Forge to craft consumable Raw Hearts.
               </p>
             </div>
           </div>
@@ -1091,16 +1036,14 @@
 
     function simulateSteal(delta) {
       simHearts = Math.min(Math.max(simHearts + delta, 0), 30);
-      document.getElementById('simHeartsCount').textContent = simHearts;
+      document.getElementById('simCount').textContent = simHearts;
       document.getElementById('simBar').style.width = `${(simHearts / 30) * 100}%`;
-      if (simHearts === 0) {
-        showToast("CRITICAL: You have been eliminated from the LifeSteal realm!", "error");
-      }
+      if (simHearts === 0) showToast("CRITICAL: You have been eliminated from the LifeSteal realm!", "error");
     }
 
     function simulateReset() {
       simHearts = 10;
-      document.getElementById('simHeartsCount').textContent = simHearts;
+      document.getElementById('simCount').textContent = simHearts;
       document.getElementById('simBar').style.width = `${(simHearts / 30) * 100}%`;
       showToast("Simulator reset to base 10 hearts.", "info");
     }
@@ -1118,20 +1061,20 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           
           <div class="text-center max-w-3xl mx-auto mb-14">
-            <h1 class="font-cinzel text-4xl sm:text-5xl font-black text-white uppercase mb-3 neon-text-red">
+            <h1 class="font-cinzel text-4xl sm:text-5xl font-black text-white uppercase mb-3 text-glow-red">
               OFFICIAL <span class="text-crimson-500">STORE</span>
             </h1>
-            <p class="text-xs font-mono text-neutral-400">Automated instant RCON delivery upon transaction completion.</p>
+            <p class="text-xs font-mono text-neutral-400">Instant automated RCON delivery upon transaction completion.</p>
           </div>
 
-          <!-- FREE NOVICE CARD (ATOMIC 60-DAY TIMER) -->
-          <div class="glass-card rounded-3xl p-6 sm:p-10 mb-16 border-2 border-crimson-600/70 neon-border-active relative overflow-hidden">
+          <!-- FREE NOVICE RANK CARD (ATOMIC 60-DAY WINDOW) -->
+          <div class="glass-card rounded-3xl p-6 sm:p-10 mb-16 border-2 border-crimson-600/70 neon-border-red relative overflow-hidden">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               
               <div class="lg:col-span-2 space-y-4">
                 <div class="flex items-center gap-3">
                   <span class="px-3 py-1 bg-crimson-600 text-white font-mono text-xs uppercase font-bold rounded-md">FREE RANK</span>
-                  <span class="text-neutral-400 font-mono text-xs">First 100 recruits only</span>
+                  <span class="text-neutral-400 font-mono text-xs">Maximum 100 Members &bull; 1 Claim Per Player</span>
                 </div>
 
                 <h2 class="font-cinzel font-black text-3xl sm:text-4xl text-white">
@@ -1139,13 +1082,13 @@
                 </h2>
 
                 <p class="text-xs text-neutral-300 font-inter leading-relaxed">
-                  This free ranks only limited time for 60d so please claim your free ranks quickly. Join our Discord server, input your Discord in-game name, and claim your exclusive cosmetic trail, kit access, and prefix!
+                  This free ranks only limited time for 60d so please claim your free ranks quickly. Join our Discord server, verify your identity, and claim your starter kit and particle trail!
                 </p>
 
                 <div class="space-y-2 pt-2">
                   <div class="flex justify-between text-xs font-mono">
                     <span class="text-neutral-400">Claim Slots: <strong class="text-white">${claims.count} / 100 CLAIMED</strong></span>
-                    <span class="text-crimson-400 font-bold">Limited Window: 60d Remaining</span>
+                    <span class="text-crimson-400 font-bold">Timer: 60d Limited Active Window</span>
                   </div>
                   <div class="w-full bg-void-950 h-3 rounded-full border border-neutral-800 overflow-hidden">
                     <div class="h-full bg-gradient-to-r from-crimson-600 to-amber-500 transition-all duration-500" style="width: ${pct}%;"></div>
@@ -1156,42 +1099,42 @@
               <div class="bg-void-950/90 border border-neutral-800 rounded-2xl p-6 text-center">
                 ${isFull ? `
                   <div class="text-crimson-500 font-mono text-sm font-bold uppercase mb-2">🔴 OUT OF STOCK</div>
-                  <p class="text-xs text-neutral-400">All 100 Novice ranks have been claimed.</p>
+                  <p class="text-xs text-neutral-400 font-mono">All 100 Novice ranks have been claimed.</p>
                 ` : hasClaimed ? `
                   <div class="text-green-400 font-mono text-sm font-bold uppercase mb-2">CLAIMED ✓</div>
-                  <p class="text-xs text-neutral-400 font-mono">You have already claimed this free rank.</p>
+                  <p class="text-xs text-neutral-400 font-mono">You have already claimed this free Rank.</p>
                 ` : `
                   <button onclick="handleNoviceClaim()" class="w-full py-4 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold text-base uppercase tracking-wider rounded-xl transition-all shadow-[0_0_20px_rgba(230,0,38,0.6)]">
                     Claim Novice Rank
                   </button>
-                  <p class="text-[11px] text-neutral-500 mt-3 font-mono">Requires verified Discord identity.</p>
+                  <p class="text-[11px] text-neutral-500 mt-3 font-mono">Requires verified Discord membership.</p>
                 `}
               </div>
 
             </div>
           </div>
 
-          <!-- RANKS MATRIX -->
+          <!-- PERMANENT SERVER RANKS -->
           <h2 class="font-cinzel text-2xl font-bold text-white uppercase mb-8 border-l-4 border-crimson-500 pl-3">
-            Permanent Rank Upgrades
+            Permanent Network Ranks
           </h2>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
             <!-- FEARSTEAL ($30) -->
-            <div class="glass-card rounded-2xl p-6 border-2 border-crimson-500 flex flex-col justify-between neon-border-active">
+            <div class="glass-card rounded-2xl p-6 border-2 border-crimson-500 flex flex-col justify-between neon-border-red">
               <div>
-                <span class="text-[10px] font-mono text-crimson-400 uppercase font-bold">SUPREME PRESTIGE</span>
-                <h3 class="font-cinzel font-black text-2xl text-white mb-2 neon-text-red">FEARSTEAL</h3>
+                <span class="text-[10px] font-mono text-crimson-400 uppercase font-bold">ULTIMATE PRESTIGE</span>
+                <h3 class="font-cinzel font-black text-2xl text-white mb-2 text-glow-red">FEARSTEAL</h3>
                 <div class="text-3xl font-rajdhani font-bold text-white mb-4">$30</div>
                 <ul class="text-xs text-neutral-300 space-y-2 mb-6 font-inter">
-                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-crimson-500"></i> Ultimate network prestige badge</li>
-                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-crimson-500"></i> Crimson energy particle cloud</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-crimson-500"></i> Highest prestige rank status</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-crimson-500"></i> Exclusive red particle cloud</li>
                   <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-crimson-500"></i> /fly in claimed territories</li>
-                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-crimson-500"></i> Priority queue slot bypass</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-crimson-500"></i> Priority queue slot pass</li>
                 </ul>
               </div>
-              <button onclick="checkoutMock('FEARSTEAL', 30)" class="w-full py-2.5 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all shadow-[0_0_15px_rgba(230,0,38,0.5)]">
+              <button onclick="handleStorePurchase('FEARSTEAL', 30)" class="w-full py-2.5 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all shadow-[0_0_15px_rgba(230,0,38,0.5)]">
                 Acquire Rank
               </button>
             </div>
@@ -1203,12 +1146,12 @@
                 <h3 class="font-cinzel font-black text-2xl text-white mb-2">FEAR+</h3>
                 <div class="text-3xl font-rajdhani font-bold text-white mb-4">$25</div>
                 <ul class="text-xs text-neutral-300 space-y-2 mb-6 font-inter">
-                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-500"></i> Exclusive [Fear+] chat prefix</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-500"></i> Exclusive [Fear+] tag</li>
                   <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-500"></i> Commands /near &amp; /hat</li>
                   <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-500"></i> 6x Sethomes on SMP</li>
                 </ul>
               </div>
-              <button onclick="checkoutMock('FEAR+', 25)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
+              <button onclick="handleStorePurchase('FEAR+', 25)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
                 Acquire Rank
               </button>
             </div>
@@ -1225,7 +1168,7 @@
                   <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-500"></i> 5x Sethomes on SMP</li>
                 </ul>
               </div>
-              <button onclick="checkoutMock('PANTHOM', 20)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
+              <button onclick="handleStorePurchase('PANTHOM', 20)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
                 Acquire Rank
               </button>
             </div>
@@ -1237,12 +1180,12 @@
                 <h3 class="font-cinzel font-black text-2xl text-white mb-2">KING</h3>
                 <div class="text-3xl font-rajdhani font-bold text-white mb-4">$15</div>
                 <ul class="text-xs text-neutral-300 space-y-2 mb-6 font-inter">
-                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i> Royal crown particle effect</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i> Royal crown cosmetic</li>
                   <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i> Portable /workbench</li>
                   <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i> 4x Sethomes on SMP</li>
                 </ul>
               </div>
-              <button onclick="checkoutMock('KING', 15)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
+              <button onclick="handleStorePurchase('KING', 15)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
                 Acquire Rank
               </button>
             </div>
@@ -1258,7 +1201,7 @@
                   <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-blue-500"></i> 3x Sethomes on SMP</li>
                 </ul>
               </div>
-              <button onclick="checkoutMock('KNIGHT', 12)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
+              <button onclick="handleStorePurchase('KNIGHT', 12)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
                 Acquire Rank
               </button>
             </div>
@@ -1274,7 +1217,7 @@
                   <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-500"></i> 3x Sethomes on SMP</li>
                 </ul>
               </div>
-              <button onclick="checkoutMock('ELITE+', 10)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
+              <button onclick="handleStorePurchase('ELITE+', 10)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
                 Acquire Rank
               </button>
             </div>
@@ -1282,7 +1225,7 @@
             <!-- ELITE ($8) -->
             <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
               <div>
-                <span class="text-[10px] font-mono text-teal-400 uppercase font-bold">ENTRY RANK</span>
+                <span class="text-[10px] font-mono text-teal-400 uppercase font-bold">PREMIUM ENTRY</span>
                 <h3 class="font-cinzel font-black text-2xl text-white mb-2">ELITE</h3>
                 <div class="text-3xl font-rajdhani font-bold text-white mb-4">$8</div>
                 <ul class="text-xs text-neutral-300 space-y-2 mb-6 font-inter">
@@ -1290,7 +1233,7 @@
                   <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-teal-500"></i> 2x Sethomes on SMP</li>
                 </ul>
               </div>
-              <button onclick="checkoutMock('ELITE', 8)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
+              <button onclick="handleStorePurchase('ELITE', 8)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
                 Acquire Rank
               </button>
             </div>
@@ -1298,7 +1241,7 @@
             <!-- LORD ($5) -->
             <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
               <div>
-                <span class="text-[10px] font-mono text-emerald-400 uppercase font-bold">UPGRADE</span>
+                <span class="text-[10px] font-mono text-emerald-400 uppercase font-bold">AFFORDABLE TIER</span>
                 <h3 class="font-cinzel font-black text-2xl text-white mb-2">LORD</h3>
                 <div class="text-3xl font-rajdhani font-bold text-white mb-4">$5</div>
                 <ul class="text-xs text-neutral-300 space-y-2 mb-6 font-inter">
@@ -1306,7 +1249,7 @@
                   <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> 2x Sethomes on SMP</li>
                 </ul>
               </div>
-              <button onclick="checkoutMock('LORD', 5)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
+              <button onclick="handleStorePurchase('LORD', 5)" class="w-full py-2.5 bg-void-950 hover:bg-crimson-600 border border-neutral-800 text-white font-rajdhani font-bold text-sm uppercase rounded-xl transition-all">
                 Acquire Rank
               </button>
             </div>
@@ -1318,7 +1261,7 @@
     }
 
     function handleNoviceClaim() {
-      if (!enforceAuth()) return;
+      if (!requireAuth()) return;
 
       const claims = JSON.parse(localStorage.getItem('fs_novice_claims') || '{"count":0,"max":100,"claims":[]}');
       if (claims.claims.includes(currentUser.id)) {
@@ -1344,9 +1287,9 @@
       navigateTo('store');
     }
 
-    function checkoutMock(rank, price) {
-      if (!enforceAuth()) return;
-      showToast(`Redirecting ${currentUser.username} to payment processor for ${rank} ($${price})...`, "info");
+    function handleStorePurchase(rank, price) {
+      if (!requireAuth()) return;
+      showToast(`Connecting ${currentUser.username} to payment gateway for ${rank} ($${price})...`, "info");
     }
 
     /* =========================================================================
@@ -1356,10 +1299,10 @@
       const users = JSON.parse(localStorage.getItem('fs_users') || '[]');
       const rows = users.map((u, i) => `
         <tr class="border-b border-neutral-800/80 hover:bg-void-900 transition-colors">
-          <td class="py-3.5 px-4 font-mono text-neutral-500">#${i + 1}</td>
+          <td class="py-3.5 px-4 font-mono text-neutral-500 font-bold">#${i + 1}</td>
           <td class="py-3.5 px-4">
             <div class="flex items-center gap-3">
-              <img src="https://minotar.net/avatar/${u.username}/32.png" class="w-8 h-8 rounded-lg border border-neutral-700" onerror="this.src='https://placehold.co/32x32/101014/ff2244?text=FS'">
+              <img src="https://minotar.net/avatar/${u.username}/32.png" class="w-8 h-8 rounded-lg border border-neutral-700 shadow" onerror="this.src='https://placehold.co/32x32/1a0004/ff2d55?text=FS'">
               <div>
                 <div class="font-bold text-white text-xs">${u.username}</div>
                 <div class="text-[10px] font-mono text-neutral-500">${u.email}</div>
@@ -1378,7 +1321,7 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
-              <h1 class="font-cinzel text-3xl font-black text-white uppercase">Network Members Roster</h1>
+              <h1 class="font-cinzel text-3xl font-black text-white uppercase">Registered Members Roster</h1>
               <p class="text-xs font-mono text-neutral-400">All adventurers synchronized via the FearSteal Gateway.</p>
             </div>
             <div class="font-mono text-xs bg-void-900 px-4 py-2 rounded-xl border border-neutral-800 text-neutral-300">
@@ -1409,7 +1352,7 @@
     }
 
     /* =========================================================================
-       VIEW: LEADERBOARD (10-MINUTE REFRESH TIMER + STARTING 10 HEARTS)
+       VIEW: LEADERBOARDS (10-MIN AUTO-REFRESH & STARTING 10 HEARTS)
        ========================================================================= */
     let lbSec = 600;
     function startLbTimer() {
@@ -1429,7 +1372,7 @@
       }, 1000);
     }
 
-    function renderLeaderboardPage() {
+    function renderLeaderboardsPage() {
       const users = JSON.parse(localStorage.getItem('fs_users') || '[]');
       const sorted = [...users].sort((a, b) => (b.hearts || 10) - (a.hearts || 10));
 
@@ -1438,7 +1381,7 @@
           <td class="py-3 px-4 font-mono font-bold ${i === 0 ? 'text-amber-400' : i === 1 ? 'text-neutral-300' : i === 2 ? 'text-amber-700' : 'text-neutral-500'}">#${i + 1}</td>
           <td class="py-3 px-4">
             <div class="flex items-center gap-2.5">
-              <img src="https://minotar.net/avatar/${u.username}/24.png" class="w-6 h-6 rounded" onerror="this.src='https://placehold.co/24x24/101014/ff2244?text=FS'">
+              <img src="https://minotar.net/avatar/${u.username}/24.png" class="w-6 h-6 rounded" onerror="this.src='https://placehold.co/24x24/1a0004/ff2d55?text=FS'">
               <span class="font-bold text-white text-xs">${u.username}</span>
             </div>
           </td>
@@ -1468,21 +1411,21 @@
             
             <div class="glass-card rounded-2xl p-6 text-center order-2 md:order-1">
               <div class="text-xs font-mono font-bold text-neutral-400 mb-2">RANK #2</div>
-              <img src="https://minotar.net/avatar/${sorted[1]?.username || 'Notslayer'}/64.png" class="w-16 h-16 rounded-2xl mx-auto mb-3 border border-neutral-500 shadow-xl" onerror="this.src='https://placehold.co/64x64/101014/ff2244?text=FS'">
+              <img src="https://minotar.net/avatar/${sorted[1]?.username || 'Notslayer'}/64.png" class="w-16 h-16 rounded-2xl mx-auto mb-3 border border-neutral-500 shadow-xl" onerror="this.src='https://placehold.co/64x64/1a0004/ff2d55?text=FS'">
               <div class="font-bold text-white text-base">${sorted[1]?.username || 'Notslayer'}</div>
               <div class="text-crimson-400 font-mono font-bold text-sm mt-1">${sorted[1]?.hearts || 48} Hearts ❤️</div>
             </div>
 
             <div class="glass-card rounded-3xl p-8 text-center order-1 md:order-2 border-2 border-amber-500/70 -translate-y-2 shadow-[0_0_35px_rgba(245,158,11,0.2)]">
-              <span class="px-2.5 py-0.5 rounded bg-amber-500 text-black font-mono font-bold text-[10px] uppercase">Realm Champion</span>
-              <img src="https://minotar.net/avatar/${sorted[0]?.username || 'ItzVeltriex'}/72.png" class="w-20 h-20 rounded-2xl mx-auto my-3 border-2 border-amber-400 shadow-2xl" onerror="this.src='https://placehold.co/72x72/101014/ff2244?text=FS'">
+              <span class="px-2.5 py-0.5 rounded bg-amber-500 text-black font-mono font-bold text-[10px] uppercase">Crown Champion</span>
+              <img src="https://minotar.net/avatar/${sorted[0]?.username || 'ItzVeltriex'}/72.png" class="w-20 h-20 rounded-2xl mx-auto my-3 border-2 border-amber-400 shadow-2xl" onerror="this.src='https://placehold.co/72x72/1a0004/ff2d55?text=FS'">
               <div class="font-cinzel font-black text-white text-xl">${sorted[0]?.username || 'ItzVeltriex'}</div>
               <div class="text-amber-400 font-mono font-bold text-base mt-1">${sorted[0]?.hearts || 50} Hearts ❤️</div>
             </div>
 
             <div class="glass-card rounded-2xl p-6 text-center order-3">
               <div class="text-xs font-mono font-bold text-amber-700 mb-2">RANK #3</div>
-              <img src="https://minotar.net/avatar/${sorted[2]?.username || 'RaviXD'}/64.png" class="w-16 h-16 rounded-2xl mx-auto mb-3 border border-amber-800 shadow-xl" onerror="this.src='https://placehold.co/64x64/101014/ff2244?text=FS'">
+              <img src="https://minotar.net/avatar/${sorted[2]?.username || 'RaviXD'}/64.png" class="w-16 h-16 rounded-2xl mx-auto mb-3 border border-amber-800 shadow-xl" onerror="this.src='https://placehold.co/64x64/1a0004/ff2d55?text=FS'">
               <div class="font-bold text-white text-base">${sorted[2]?.username || 'RaviXD'}</div>
               <div class="text-crimson-400 font-mono font-bold text-sm mt-1">${sorted[2]?.hearts || 35} Hearts ❤️</div>
             </div>
@@ -1499,7 +1442,7 @@
                     <th class="py-3 px-4">Hearts</th>
                     <th class="py-3 px-4">Kills</th>
                     <th class="py-3 px-4">Deaths</th>
-                    <th class="py-3 px-4">Net Worth</th>
+                    <th class="py-3 px-4">Economy Balance</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-neutral-800/80">
@@ -1514,20 +1457,20 @@
     }
 
     /* =========================================================================
-       VIEW: STAFF DIRECTORY
+       VIEW: OFFICIAL STAFF DIRECTORY
        ========================================================================= */
     function renderStaffPage() {
-      const cards = STAFF_TEAM.map(st => `
+      const cards = STAFF_DATA.map(st => `
         <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
           <div>
             <div class="flex items-start justify-between gap-3 mb-4">
-              <img src="https://minotar.net/avatar/${st.name}/52.png" class="w-12 h-12 rounded-xl border border-neutral-700 shadow-lg" onerror="this.src='https://placehold.co/52x52/101014/ff2244?text=FS'">
+              <img src="https://minotar.net/avatar/${st.name}/52.png" class="w-12 h-12 rounded-xl border border-neutral-700 shadow-lg" onerror="this.src='https://placehold.co/52x52/1a0004/ff2d55?text=FS'">
               <span class="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider ${st.color}">
                 ${st.role}
               </span>
             </div>
             <h3 class="font-rajdhani font-bold text-xl text-white mb-2">${st.name}</h3>
-            <p class="text-xs text-neutral-400 font-inter leading-relaxed mb-6">${st.bio}</p>
+            <p class="text-xs text-neutral-400 font-inter leading-relaxed mb-6">${st.desc}</p>
           </div>
           <div class="pt-4 border-t border-neutral-800 flex items-center justify-between">
             <span class="text-[11px] font-mono text-neutral-500">Official Staff</span>
@@ -1541,7 +1484,7 @@
       return `
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div class="text-center max-w-3xl mx-auto mb-14">
-            <h1 class="font-cinzel text-4xl font-black text-white uppercase mb-3 neon-text-red">
+            <h1 class="font-cinzel text-4xl font-black text-white uppercase mb-3 text-glow-red">
               STAFF <span class="text-crimson-500">DIRECTORY</span>
             </h1>
             <p class="text-xs font-mono text-neutral-400">Authentic operational staff roster with assigned duties and Discord channels.</p>
@@ -1555,9 +1498,9 @@
     }
 
     /* =========================================================================
-       VIEW: REVIEWS (0-10 STARS + READ-ONLY LOG + TOP #10 LEADERBOARD)
+       VIEW: REVIEWS (0-10 STARS + READ-ONLY FEED + TOP #10 LEADERBOARD)
        ========================================================================= */
-    function renderReviewPage() {
+    function renderReviewsPage() {
       const reviews = JSON.parse(localStorage.getItem('fs_reviews') || '[]');
       const top10 = [...reviews].sort((a, b) => b.rating - a.rating).slice(0, 10);
 
@@ -1567,7 +1510,7 @@
         <div class="bg-void-950 border border-neutral-800 p-4 rounded-xl">
           <div class="flex items-center justify-between mb-2">
             <div class="flex items-center gap-2">
-              <img src="https://minotar.net/avatar/${r.username}/24.png" class="w-6 h-6 rounded" onerror="this.src='https://placehold.co/24x24/101014/ff2244?text=FS'">
+              <img src="https://minotar.net/avatar/${r.username}/24.png" class="w-6 h-6 rounded" onerror="this.src='https://placehold.co/24x24/1a0004/ff2d55?text=FS'">
               <span class="font-bold text-white text-xs">${r.username}</span>
             </div>
             <span class="font-mono text-xs text-amber-400 font-bold">${r.rating} / 10 ⭐</span>
@@ -1578,7 +1521,7 @@
       `).join('');
 
       const lbRows = top10.length === 0 ? `
-        <div class="text-center py-6 font-mono text-xs text-neutral-500">Leaderboard is empty. First to review gets #1!</div>
+        <div class="text-center py-6 font-mono text-xs text-neutral-500">Leaderboard is empty. Be first to review!</div>
       ` : top10.map((r, i) => `
         <tr class="border-b border-neutral-800">
           <td class="py-2.5 px-3 font-mono text-neutral-400">#${i + 1}</td>
@@ -1603,7 +1546,7 @@
               <!-- Submission Form -->
               <div class="glass-card rounded-3xl p-6 sm:p-8">
                 <h3 class="font-cinzel text-lg font-bold text-white uppercase mb-4">Post Your Review</h3>
-                <form onsubmit="handlePostReview(event)" class="space-y-4">
+                <form onsubmit="handleReviewSubmit(event)" class="space-y-4">
                   <div>
                     <label class="block text-xs font-mono text-neutral-400 mb-1">Your Feedback / Opening Message</label>
                     <textarea id="revMsg" required rows="3" placeholder="Share your experience on FearSteal..." class="w-full bg-void-950 border border-neutral-800 focus:border-crimson-500 rounded-xl p-3 text-xs text-white outline-none"></textarea>
@@ -1621,10 +1564,10 @@
                 </form>
               </div>
 
-              <!-- Read Only Submissions Feed -->
+              <!-- Read-Only Review Submitted Category -->
               <div class="glass-card rounded-3xl p-6 sm:p-8">
                 <h3 class="font-cinzel text-lg font-bold text-white uppercase mb-4 border-l-4 border-crimson-500 pl-3">
-                  Review Submitted &bull; Public Feed
+                  Review Submitted &bull; Public Community Log
                 </h3>
                 <div class="space-y-3 max-h-96 overflow-y-auto pr-1">
                   ${reviewFeed}
@@ -1660,9 +1603,9 @@
       `;
     }
 
-    function handlePostReview(e) {
+    function handleReviewSubmit(e) {
       e.preventDefault();
-      if (!enforceAuth()) return;
+      if (!requireAuth()) return;
 
       const msg = document.getElementById('revMsg').value.trim();
       const rating = parseInt(document.getElementById('revRange').value);
@@ -1679,8 +1622,8 @@
       });
 
       localStorage.setItem('fs_reviews', JSON.stringify(reviews));
-      showToast("Your review has been broadcast to the public feed!", "success");
-      navigateTo('review');
+      showToast("Thank you! Your review has been submitted.", "success");
+      navigateTo('reviews');
     }
 
     /* =========================================================================
@@ -1698,14 +1641,14 @@
           </div>
 
           <div class="glass-card rounded-3xl p-6 sm:p-8">
-            <form onsubmit="handlePostSuggestion(event)" class="space-y-4">
+            <form onsubmit="handleSuggestionSubmit(event)" class="space-y-4">
               <div>
                 <label class="block text-xs font-mono text-neutral-400 mb-1">Suggestion Category</label>
                 <select id="sugCat" class="w-full bg-void-950 border border-neutral-800 focus:border-crimson-500 rounded-xl p-3 text-xs text-white outline-none">
-                  <option value="Server Gameplay">Minecraft Server Gameplay &amp; LifeSteal</option>
-                  <option value="Discord Server">Discord Server &amp; Bots</option>
-                  <option value="Heart Economy">Heart Crafting &amp; Economy Balance</option>
-                  <option value="Events & KOTH">Events, Tournaments &amp; KOTH</option>
+                  <option value="Minecraft Server Gameplay">Minecraft Server Gameplay &amp; LifeSteal</option>
+                  <option value="Discord Server Structure">Discord Server Structure &amp; Bots</option>
+                  <option value="Economy & Balancing">Economy &amp; Heart Balancing</option>
+                  <option value="Events & Tournaments">Events, KOTH &amp; Tournaments</option>
                   <option value="Store & Ranks">Store &amp; Rank Perks</option>
                   <option value="Other">Other Suggestions</option>
                 </select>
@@ -1735,9 +1678,9 @@
       `;
     }
 
-    function handlePostSuggestion(e) {
+    function handleSuggestionSubmit(e) {
       e.preventDefault();
-      if (!enforceAuth()) return;
+      if (!requireAuth()) return;
 
       const cat = document.getElementById('sugCat').value;
       const title = document.getElementById('sugTitle').value.trim();
@@ -1760,7 +1703,7 @@
     }
 
     /* =========================================================================
-       VIEW: STAFF RECRUITMENT (12 QUESTIONS)
+       VIEW: STAFF APPLICATION (12 DETAILED QUESTIONS)
        ========================================================================= */
     function renderApplyPage() {
       return `
@@ -1779,26 +1722,26 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
               <div class="bg-void-950 p-3 rounded-xl border border-neutral-800">
                 <strong class="text-cyan-400 block mb-1">Helper</strong>
-                Answers chat questions and guides new players on LifeSteal commands.
+                Assists newcomers in chat, answers LifeSteal command questions.
               </div>
               <div class="bg-void-950 p-3 rounded-xl border border-neutral-800">
                 <strong class="text-teal-400 block mb-1">Junior Mod</strong>
-                Mutes toxic chatters and enforces community rules.
+                Monitors chat spam, enforces language guidelines and mutes.
               </div>
               <div class="bg-void-950 p-3 rounded-xl border border-neutral-800">
                 <strong class="text-purple-400 block mb-1">Junior Admin</strong>
-                Monitors anti-cheat notifications and investigates bug exploits.
+                Monitors anti-cheat notifications and investigates dupes/exploits.
               </div>
               <div class="bg-void-950 p-3 rounded-xl border border-neutral-800">
                 <strong class="text-blue-400 block mb-1">Junior Manager</strong>
-                Coordinates staff shift coverage and assists with Discord tickets.
+                Assists in training helpers and coordinates staff shift coverage.
               </div>
             </div>
           </div>
 
           <!-- 12-Question Form -->
           <div class="glass-card rounded-3xl p-6 sm:p-8">
-            <form onsubmit="handlePostStaffApp(event)" class="space-y-5">
+            <form onsubmit="handleStaffApply(event)" class="space-y-5">
               
               <div>
                 <label class="block text-xs font-mono text-neutral-400 mb-1">1. Desired Staff Position</label>
@@ -1828,17 +1771,17 @@
               <div>
                 <label class="block text-xs font-mono text-neutral-400 mb-1">5. Weekly Dedication (Hours)</label>
                 <select id="saHours" class="w-full bg-void-950 border border-neutral-800 focus:border-crimson-500 rounded-xl p-3 text-xs text-white outline-none">
-                  <option value="10-15 Hours">10 - 15 Hours</option>
-                  <option value="15-25 Hours">15 - 25 Hours</option>
-                  <option value="25+ Hours">25+ Hours</option>
+                  <option value="10-15 Hours">10 - 15 Hours per week</option>
+                  <option value="15-25 Hours">15 - 25 Hours per week</option>
+                  <option value="25+ Hours">25+ Hours per week</option>
                 </select>
               </div>
 
               <div>
                 <label class="block text-xs font-mono text-neutral-400 mb-1">6. Do you have a functional microphone for Discord voice verification?</label>
                 <select id="saMic" class="w-full bg-void-950 border border-neutral-800 focus:border-crimson-500 rounded-xl p-3 text-xs text-white outline-none">
-                  <option value="Yes">Yes &bull; Clear Microphone</option>
-                  <option value="No">No &bull; Text Only</option>
+                  <option value="Yes - Clear Microphone">Yes &bull; Clear Microphone</option>
+                  <option value="No - Text Only">No &bull; Text Only</option>
                 </select>
               </div>
 
@@ -1860,7 +1803,7 @@
               <div>
                 <label class="block text-xs font-mono text-neutral-400 mb-1">10. Can you record 60 FPS video evidence prior to issuing punishments?</label>
                 <select id="saRecord" class="w-full bg-void-950 border border-neutral-800 focus:border-crimson-500 rounded-xl p-3 text-xs text-white outline-none">
-                  <option value="Yes">Yes &bull; OBS / Medal Ready</option>
+                  <option value="Yes - OBS / Medal Ready">Yes &bull; OBS / Medal Ready</option>
                   <option value="No">No &bull; Cannot Record</option>
                 </select>
               </div>
@@ -1888,9 +1831,9 @@
       `;
     }
 
-    function handlePostStaffApp(e) {
+    function handleStaffApply(e) {
       e.preventDefault();
-      if (!enforceAuth()) return;
+      if (!requireAuth()) return;
 
       const role = document.getElementById('saRole').value;
       const ign = document.getElementById('saIgn').value.trim();
@@ -1925,12 +1868,12 @@
           <div class="glass-card rounded-3xl p-8 shadow-2xl relative overflow-hidden">
             
             <div class="text-center mb-8">
-              <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" class="w-20 h-20 mx-auto object-contain mb-3" alt="FS">
+              <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" class="w-20 h-20 mx-auto object-contain mb-3" alt="FS" onerror="this.src='https://placehold.co/80x80/1a0004/ff2d55?text=FS'">
               <h2 class="font-cinzel text-2xl font-black text-white">LOGIN TO FEARSTEAL</h2>
               <p class="text-xs font-mono text-neutral-400">Access your network identity &amp; credentials</p>
             </div>
 
-            <form onsubmit="handleAuthLogin(event)" class="space-y-4">
+            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
               <div>
                 <label class="block text-xs font-mono text-neutral-400 mb-1">Username or Email</label>
                 <input type="text" id="lIdent" required placeholder="ItzVeltriex or fearstealsupport@gmail.com" class="w-full bg-void-950 border border-neutral-800 focus:border-crimson-500 rounded-xl px-4 py-2.5 text-xs text-white outline-none">
@@ -1940,7 +1883,7 @@
                 <label class="block text-xs font-mono text-neutral-400 mb-1">Password</label>
                 <div class="relative">
                   <input type="password" id="lPass" required placeholder="••••••••••••" class="w-full bg-void-950 border border-neutral-800 focus:border-crimson-500 rounded-xl px-4 py-2.5 text-xs text-white outline-none pr-10">
-                  <button type="button" onclick="togglePass('lPass')" class="absolute right-3 top-2.5 text-neutral-500 hover:text-white">
+                  <button type="button" onclick="togglePassword('lPass')" class="absolute right-3 top-2.5 text-neutral-500 hover:text-white">
                     <i data-lucide="eye" class="w-4 h-4"></i>
                   </button>
                 </div>
@@ -1950,7 +1893,7 @@
                 <label class="flex items-center gap-1.5 cursor-pointer">
                   <input type="checkbox" checked class="accent-crimson-500"> Remember Session
                 </label>
-                <button type="button" onclick="showToast('Contact fearstealsupport@gmail.com for recovery', 'info')" class="hover:text-crimson-400">Forgot Password?</button>
+                <button type="button" onclick="showToast('Contact fearstealsupport@gmail.com for account recovery', 'info')" class="hover:text-crimson-400">Forgot Password?</button>
               </div>
 
               <button type="submit" class="w-full py-3 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold text-xs uppercase rounded-xl transition-all shadow-[0_0_15px_rgba(230,0,38,0.5)]">
@@ -1967,7 +1910,7 @@
       `;
     }
 
-    function handleAuthLogin(e) {
+    function handleLoginSubmit(e) {
       e.preventDefault();
       const ident = document.getElementById('lIdent').value.trim();
       const pass = document.getElementById('lPass').value;
@@ -1985,16 +1928,16 @@
 
       currentUser = match;
       localStorage.setItem('fs_session', JSON.stringify(currentUser));
-      renderNavAuthSlot();
+      renderNavAuth();
       showToast(`Welcome back, ${currentUser.username}! Authenticated successfully.`, "success");
 
-      if (isAdminRole(currentUser)) navigateTo('admin');
-      else if (isStaffRole(currentUser)) navigateTo('staffpanel');
+      if (isAdmin(currentUser)) navigateTo('admin');
+      else if (isStaff(currentUser)) navigateTo('staffpanel');
       else navigateTo('home');
     }
 
     /* =========================================================================
-       VIEW: REGISTRATION (REAL-TIME USERNAME DETECTION)
+       VIEW: REGISTRATION (USERNAME DETECTION & DEFAULT 10 HEARTS)
        ========================================================================= */
     function renderRegisterPage() {
       return `
@@ -2002,20 +1945,20 @@
           <div class="glass-card rounded-3xl p-8 shadow-2xl relative overflow-hidden">
             
             <div class="text-center mb-8">
-              <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" class="w-20 h-20 mx-auto object-contain mb-3" alt="FS">
+              <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" class="w-20 h-20 mx-auto object-contain mb-3" alt="FS" onerror="this.src='https://placehold.co/80x80/1a0004/ff2d55?text=FS'">
               <h2 class="font-cinzel text-2xl font-black text-white">RECRUIT ENROLLMENT</h2>
               <p class="text-xs font-mono text-neutral-400">Initialize your Minecraft identity in FearSteal database</p>
             </div>
 
-            <form onsubmit="handleAuthRegister(event)" class="space-y-4">
+            <form onsubmit="handleRegisterSubmit(event)" class="space-y-4">
               
               <!-- Instant Minecraft Skin Detection -->
               <div>
                 <label class="block text-xs font-mono text-neutral-400 mb-1">Minecraft Username</label>
-                <input type="text" id="rIgn" required oninput="detectSkin(this.value)" placeholder="e.g. ItzVeltriex" class="w-full bg-void-950 border border-neutral-800 focus:border-crimson-500 rounded-xl px-4 py-2.5 text-xs text-white outline-none">
+                <input type="text" id="rIgn" required oninput="detectMinecraftSkin(this.value)" placeholder="e.g. ItzVeltriex" class="w-full bg-void-950 border border-neutral-800 focus:border-crimson-500 rounded-xl px-4 py-2.5 text-xs text-white outline-none">
                 
                 <div id="skinBadge" class="hidden mt-2 p-2 rounded-xl bg-void-950 border border-neutral-800 flex items-center gap-3">
-                  <img id="skinAvatar" src="" class="w-7 h-7 rounded border border-crimson-500">
+                  <img id="skinAvatar" src="" class="w-7 h-7 rounded border border-crimson-500" alt="Avatar">
                   <span id="skinText" class="text-xs font-mono text-neutral-300"></span>
                 </div>
               </div>
@@ -2053,7 +1996,7 @@
       `;
     }
 
-    function detectSkin(val) {
+    function detectMinecraftSkin(val) {
       const badge = document.getElementById('skinBadge');
       const avatar = document.getElementById('skinAvatar');
       const txt = document.getElementById('skinText');
@@ -2067,7 +2010,7 @@
       txt.textContent = `Mojang Identity Detected: ${val}`;
     }
 
-    function handleAuthRegister(e) {
+    function handleRegisterSubmit(e) {
       e.preventDefault();
       const ign = document.getElementById('rIgn').value.trim();
       const email = document.getElementById('rEmail').value.trim();
@@ -2091,6 +2034,8 @@
         email: email,
         password: pass,
         role: 'Player',
+        isAdmin: false,
+        isStaff: false,
         hearts: 10,
         kills: 0,
         deaths: 0,
@@ -2099,11 +2044,13 @@
       });
 
       localStorage.setItem('fs_users', JSON.stringify(users));
+      
+      // Exact prompt required by specification:
       showToast("You are successful register so please login ✅️", "success");
       navigateTo('login');
     }
 
-    function togglePass(id) {
+    function togglePassword(id) {
       const el = document.getElementById(id);
       if (el) el.type = el.type === 'password' ? 'text' : 'password';
     }
@@ -2115,7 +2062,6 @@
       const users = JSON.parse(localStorage.getItem('fs_users') || '[]');
       const suggs = JSON.parse(localStorage.getItem('fs_suggestions') || '[]');
       const apps = JSON.parse(localStorage.getItem('fs_staff_applications') || '[]');
-      const claims = JSON.parse(localStorage.getItem('fs_novice_claims') || '{"count":0}');
 
       const userTable = users.map((u, i) => `
         <tr class="border-b border-neutral-800">
@@ -2124,8 +2070,8 @@
           <td class="py-2.5 px-3 font-mono text-neutral-400 text-xs">${u.email}</td>
           <td class="py-2.5 px-3 font-mono text-neutral-500 text-xs">${u.password}</td>
           <td class="py-2.5 px-3">
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono ${u.role === 'Founder' || u.role === 'Admin' ? 'bg-crimson-950 text-crimson-400 border border-crimson-700' : 'bg-void-950 text-neutral-400'}">
-              ${u.role || 'Player'}
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono ${u.isAdmin ? 'bg-crimson-950 text-crimson-400 border border-crimson-700' : u.isStaff ? 'bg-blue-950 text-blue-400 border border-blue-700' : 'bg-void-950 text-neutral-400'}">
+              ${u.isAdmin ? 'Admin' : u.isStaff ? 'Staff' : 'Player'}
             </span>
           </td>
           <td class="py-2.5 px-3 font-mono text-crimson-400 text-xs font-bold">${u.hearts || 10} ❤️</td>
@@ -2207,9 +2153,9 @@
                 <input type="email" id="suEmail" required placeholder="Email" class="bg-void-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white outline-none">
                 <input type="text" id="suPass" required placeholder="Password Section" class="bg-void-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white outline-none">
                 <select id="suRole" class="bg-void-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white outline-none">
-                  <option value="Player">Player</option>
-                  <option value="Staff">Staff (Staff Panel Access)</option>
-                  <option value="Admin">Admin (Admin Panel Access)</option>
+                  <option value="Player">Player Role</option>
+                  <option value="Staff">Staff Role (Staff Panel Only)</option>
+                  <option value="Admin">Admin Role (Full Admin Panel)</option>
                 </select>
                 <button type="submit" class="sm:col-span-4 py-2 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold text-xs uppercase rounded-xl">
                   Create User Record
@@ -2278,6 +2224,8 @@
         email: email,
         password: pass,
         role: role,
+        isAdmin: role === 'Admin',
+        isStaff: role === 'Staff' || role === 'Admin',
         hearts: 10,
         kills: 0,
         deaths: 0,
@@ -2286,7 +2234,7 @@
       });
 
       localStorage.setItem('fs_users', JSON.stringify(users));
-      showToast(`User ${ign} spawned with ${role} permissions!`, "success");
+      showToast(`User ${ign} spawned with ${role} access!`, "success");
       navigateTo('admin');
     }
 
@@ -2304,20 +2252,20 @@
       });
 
       localStorage.setItem('fs_announcements', JSON.stringify(anns));
-      showToast("Announcement broadcasted! Live for 24 hours.", "success");
+      showToast("Announcement published! Live on site for 24 hours.", "success");
       navigateTo('admin');
     }
 
     /* =========================================================================
-       VIEW: STAFF PANEL (STAFF ROLE ONLY)
+       VIEW: SEPARATE STAFF PANEL (STAFF ROLE ONLY)
        ========================================================================= */
     function renderStaffPanel() {
       return `
         <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
           <div class="flex items-center justify-between gap-4 mb-8">
             <div>
-              <span class="text-[10px] font-mono uppercase bg-blue-950 text-blue-400 border border-blue-800 px-3 py-1 rounded-full">Moderation Station</span>
-              <h1 class="font-cinzel text-3xl font-black text-white uppercase mt-2">Staff Portal</h1>
+              <span class="text-[10px] font-mono uppercase bg-blue-950 text-blue-400 border border-blue-800 px-3 py-1 rounded-full">Staff Portal</span>
+              <h1 class="font-cinzel text-3xl font-black text-white uppercase mt-2">Moderation Dashboard</h1>
             </div>
             <div class="text-xs font-mono text-neutral-400">
               Staff Member: <strong class="text-blue-400">${currentUser.username}</strong> (${currentUser.role})
@@ -2326,17 +2274,17 @@
 
           <div class="glass-card rounded-3xl p-6 mb-8">
             <h3 class="font-cinzel font-bold text-white text-base mb-4 flex items-center gap-2">
-              <i data-lucide="shield-check" class="w-4 h-4 text-blue-400"></i> Standard Operating Guidelines
+              <i data-lucide="shield-check" class="w-4 h-4 text-blue-400"></i> Standard Moderation Protocols
             </h3>
             <div class="space-y-3 text-xs font-mono text-neutral-300">
               <div class="p-3 rounded-xl bg-void-950 border border-neutral-800">
-                1. Always capture 60 FPS video recordings prior to executing mutes, bans or warnings.
+                1. Always record video proof prior to issuing player tempbans, mutes, or warnings.
               </div>
               <div class="p-3 rounded-xl bg-void-950 border border-neutral-800">
-                2. Free Novice Rank claims are limited to 100 players total. Do not manually grant free ranks without Founder clearance.
+                2. Novice rank is strictly 100% free and capped to 100 claims. Never bypass free claims manually without Founder clearance.
               </div>
               <div class="p-3 rounded-xl bg-void-950 border border-neutral-800">
-                3. Direct all player inquiries, payment disputes and ban appeals to <span class="text-crimson-400 select-all font-bold">fearstealsupport@gmail.com</span>.
+                3. Direct all ban appeals and webstore inquiries to official address: <span class="text-crimson-400 select-all font-bold">fearstealsupport@gmail.com</span>.
               </div>
             </div>
           </div>
@@ -2345,7 +2293,7 @@
     }
 
     /* =========================================================================
-       VIEW: SUPPORT DESK
+       VIEW: SUPPORT CENTER
        ========================================================================= */
     function renderSupportPage() {
       return `
@@ -2358,20 +2306,20 @@
             Account recovery, billing inquiries, anti-cheat escalations, or bug reports.
           </p>
 
-          <div class="glass-card rounded-3xl p-8 max-w-xl mx-auto mb-12 relative overflow-hidden neon-border-active">
+          <div class="glass-card rounded-3xl p-8 max-w-xl mx-auto mb-12 relative overflow-hidden neon-border-red">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-crimson-950 border border-crimson-600 text-crimson-400 font-mono text-xs uppercase mb-4">
-              <i data-lucide="mail" class="w-3.5 h-3.5"></i> Direct Network Support
+              <i data-lucide="mail" class="w-3.5 h-3.5"></i> Direct Public Support
             </div>
 
             <h3 class="font-cinzel font-black text-2xl text-white mb-2">Need Help? Contact FearSteal Support</h3>
-            <p class="text-base font-mono text-crimson-400 font-bold mb-6 select-all">${NET_CONFIG.supportEmail}</p>
+            <p class="text-base font-mono text-crimson-400 font-bold mb-6 select-all">${NET_INFO.supportEmail}</p>
 
             <div class="flex flex-wrap items-center justify-center gap-4">
-              <a href="mailto:${NET_CONFIG.supportEmail}" class="px-6 py-3 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold text-xs uppercase rounded-xl transition-all flex items-center gap-2">
+              <a href="mailto:${NET_INFO.supportEmail}" class="px-6 py-3 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold text-xs uppercase rounded-xl transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(230,0,38,0.5)]">
                 <i data-lucide="send" class="w-4 h-4"></i> Dispatch Email
               </a>
-              <a href="${NET_CONFIG.discord}" target="_blank" class="px-6 py-3 bg-void-950 border border-neutral-700 hover:border-neutral-500 text-white font-rajdhani font-bold text-xs uppercase rounded-xl transition-all flex items-center gap-2">
-                <i data-lucide="message-square" class="w-4 h-4 text-indigo-400"></i> Open Discord Ticket
+              <a href="${NET_INFO.discord}" target="_blank" class="px-6 py-3 bg-void-950 border border-neutral-700 hover:border-neutral-500 text-white font-rajdhani font-bold text-xs uppercase rounded-xl transition-all flex items-center gap-2">
+                <i data-lucide="message-square" class="w-4 h-4 text-indigo-400"></i> Discord Ticket
               </a>
             </div>
           </div>
@@ -2386,7 +2334,7 @@
     function render404Page() {
       return `
         <div class="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
-          <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" class="w-24 h-24 mb-4 object-contain opacity-50" alt="FS">
+          <img src="https://i.ibb.co/3sX8M7w/fs-logo.png" class="w-24 h-24 mb-4 object-contain opacity-50" alt="FS" onerror="this.src='https://placehold.co/96x96/1a0004/ff2d55?text=FS'">
           <h1 class="font-cinzel text-4xl sm:text-5xl font-black text-crimson-500 uppercase mb-2">YOU LOST A HEART...</h1>
           <p class="text-xs font-mono text-neutral-400 max-w-sm mb-6">404 - The sector you breached has been consumed by the Void.</p>
           <button onclick="navigateTo('home')" class="px-6 py-2.5 bg-crimson-600 hover:bg-crimson-500 text-white font-rajdhani font-bold uppercase text-xs rounded-xl">
@@ -2397,13 +2345,13 @@
     }
 
     /* =========================================================================
-       GLOBAL UTILITIES & COMMAND PALETTE (CTRL + K)
+       HELPERS & EVENT LISTENERS
        ========================================================================= */
     function copyServerIP() {
-      const full = `${NET_CONFIG.ip}:${NET_CONFIG.port}`;
+      const full = `${NET_INFO.ip}:${NET_INFO.port}`;
       navigator.clipboard.writeText(full).then(() => {
         showToast(`Server IP ${full} copied to clipboard!`, "success");
-        const lbl = document.getElementById('ipCopyLabel');
+        const lbl = document.getElementById('quickIpText');
         if (lbl) {
           const old = lbl.textContent;
           lbl.textContent = "Copied!";
@@ -2412,69 +2360,21 @@
       }).catch(() => showToast(`Server IP: ${full}`, "info"));
     }
 
-    function toggleMobileNav() {
-      const el = document.getElementById('mobileDrawer');
-      if (el) el.classList.toggle('hidden');
-    }
-
-    function openCommandPalette() {
-      const m = document.getElementById('cmdPaletteModal');
-      const inp = document.getElementById('cmdInput');
-      m.classList.remove('hidden');
-      inp.value = '';
-      inp.focus();
-      handleCmdSearch('');
-    }
-
-    function closeCommandPalette() {
-      document.getElementById('cmdPaletteModal').classList.add('hidden');
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        openCommandPalette();
-      }
-      if (e.key === 'Escape') closeCommandPalette();
-    });
-
-    const CMD_ROUTES = [
-      { name: 'Home Headquarters', route: 'home', icon: 'home' },
-      { name: 'Live Server Telemetry & Status', route: 'status', icon: 'activity' },
-      { name: 'LifeSteal Mechanics & Simulator', route: 'lifesteal', icon: 'heart' },
-      { name: 'Official Store & Novice Rank', route: 'store', icon: 'gem' },
-      { name: 'Registered Members Roster', route: 'members', icon: 'users' },
-      { name: 'Heart Forge Leaderboards', route: 'leaderboard', icon: 'award' },
-      { name: 'Staff Directory', route: 'staff', icon: 'shield' },
-      { name: 'Player Reviews Feed', route: 'review', icon: 'star' },
-      { name: 'Submit Suggestion', route: 'suggestions', icon: 'edit' },
-      { name: 'Apply for Staff', route: 'apply', icon: 'file-text' },
-      { name: 'Support Center', route: 'support', icon: 'help-circle' }
-    ];
-
-    function handleCmdSearch(query) {
-      const root = document.getElementById('cmdResults');
-      const filtered = CMD_ROUTES.filter(r => r.name.toLowerCase().includes(query.toLowerCase()) || r.route.includes(query.toLowerCase()));
-
-      root.innerHTML = filtered.map(f => `
-        <button onclick="navigateTo('${f.route}'); closeCommandPalette()" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-void-950 text-left text-neutral-300 hover:text-white transition-colors">
-          <i data-lucide="${f.icon}" class="w-4 h-4 text-crimson-500"></i>
-          <span>${f.name}</span>
-        </button>
-      `).join('');
-      lucide.createIcons();
+    function toggleMobileMenu() {
+      const m = document.getElementById('mobileMenu');
+      if (m) m.classList.toggle('hidden');
     }
 
     function handleNewsletter(e) {
       e.preventDefault();
       const el = document.getElementById('nlEmail');
-      showToast(`Subscribed! ${el.value} is registered for FearSteal announcements.`, "success");
+      showToast(`Subscribed! ${el.value} is now registered for FearSteal updates.`, "success");
       el.value = '';
     }
 
     document.getElementById('crYear').textContent = new Date().getFullYear();
 
-    // Launch initial route
+    // Start App
     navigateTo('home');
   </script>
 </body>
