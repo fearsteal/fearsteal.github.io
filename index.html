@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home | FearSteal</title>
-  <meta name="description" content="FearSteal - The premier Minecraft LifeSteal network featuring competitive PvP, dynamic events, real-time live server tracking, custom ranks, and a vibrant community." />
+  <title>Home • FearSteal</title>
+  <meta name="description" content="FearSteal LifeSteal Network - Steal Hearts, Build Power, Survive. Java & Bedrock play.fearsteal.fun:19132" />
   <meta name="theme-color" content="#dc2626" />
 
   <!-- Fonts & Icons -->
@@ -348,7 +348,7 @@
       color: #ffffff; background: rgba(220, 38, 38, 0.2); box-shadow: inset 0 0 0 1px rgba(220, 38, 38, 0.4);
     }
 
-    /* STRICT ADMIN NAVIGATION BUTTON (Strictly hidden unless authorized) */
+    /* STRICT ADMIN NAVIGATION BUTTON */
     #admin-nav-item { display: none; }
     #admin-nav-item a {
       color: #fff; background: linear-gradient(135deg, #b91c1c, #f59e0b);
@@ -391,9 +391,7 @@
       font-size: 1.4rem; cursor: pointer; padding: 6px;
     }
 
-    /* ========================================================
-       FOUNDER ADMIN PANEL MODAL (LOCKED BY DEFAULT)
-       ======================================================== */
+    /* FOUNDER ADMIN PANEL MODAL */
     #admin-panel-overlay {
       position: fixed; inset: 0; background: rgba(3, 3, 6, 0.96);
       backdrop-filter: blur(24px); z-index: 10005; display: none;
@@ -521,7 +519,7 @@
     .status-stat-label { font-size: 0.84rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); }
     .status-meta-list {
       margin-top: 20px; display: flex; justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 16px; font-size: 0.84rem; color: var(--text-muted);
+      padding-top: 16px; font-size: 0.84rem; color: var(--text-muted); flex-wrap: wrap; gap: 10px;
     }
 
     /* FEATURES */
@@ -632,6 +630,8 @@
     .podium-box.rank-3 { order: 3; border-color: #b45309; }
     .podium-avatar { width: 72px; height: 72px; border-radius: 12px; margin: 0 auto 12px; background: #111; }
     .podium-rank-num { font-family: var(--font-display); font-size: 2rem; font-weight: 900; }
+    .podium-name { font-weight: 800; font-size: 1.1rem; color: #fff; margin-bottom: 4px; }
+    .podium-score { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: #fca5a5; margin-bottom: 4px; }
     .rank-1 .podium-rank-num { color: #f59e0b; }
     .rank-2 .podium-rank-num { color: #cbd5e1; }
     .rank-3 .podium-rank-num { color: #d97706; }
@@ -646,6 +646,8 @@
       font-weight: 800; color: var(--text-muted); padding: 16px 22px;
     }
     table.lb-table td { padding: 16px 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); font-size: 0.95rem; }
+    .lb-user-cell { display: flex; align-items: center; gap: 10px; font-weight: 700; color: #fff; }
+    .lb-user-cell img { width: 34px; height: 34px; border-radius: 6px; }
 
     /* EVENTS */
     .events-section { padding: 95px 0; }
@@ -654,6 +656,13 @@
       border: 1px solid var(--border-bright); border-radius: 18px; padding: 44px;
       display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; margin-bottom: 50px;
     }
+    .event-type-badge {
+      display: inline-block; background: rgba(220, 38, 38, 0.2); border: 1px solid var(--crimson-glow);
+      color: #fca5a5; font-size: 0.75rem; font-weight: 800; letter-spacing: 1.5px;
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 12px;
+    }
+    .event-name-hero { font-size: 2.2rem; font-weight: 900; margin-bottom: 12px; color: #fff; }
+    .event-desc { color: #d1d5db; font-size: 0.95rem; margin-bottom: 24px; line-height: 1.6; }
     .countdown-timer-wrap { display: flex; gap: 16px; margin-bottom: 26px; }
     .countdown-unit {
       background: rgba(5, 5, 8, 0.85); border: 1px solid rgba(255, 255, 255, 0.12);
@@ -673,6 +682,11 @@
     .media-card {
       background: rgba(14, 14, 20, 0.8); border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius); padding: 30px 22px; text-align: center;
+    }
+    .media-icon { font-size: 2.5rem; color: #ff3344; margin-bottom: 14px; }
+    .media-requirement {
+      display: inline-block; font-family: var(--font-display); font-size: 1.15rem; font-weight: 800;
+      color: var(--gold-fs); margin: 8px 0 12px;
     }
     .creator-info-box {
       background: rgba(10, 10, 16, 0.85); border: 1px solid var(--border-color);
@@ -694,6 +708,11 @@
     .step-card {
       background: rgba(14, 14, 20, 0.75); border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius); padding: 26px;
+    }
+    .step-badge {
+      display: inline-block; background: rgba(245, 158, 11, 0.2); color: var(--gold-fs);
+      font-family: var(--font-display); font-weight: 800; font-size: 0.8rem; padding: 3px 10px;
+      border-radius: 6px; margin-bottom: 12px;
     }
     .accordion-item {
       background: rgba(14, 14, 20, 0.75); border: 1px solid rgba(255, 255, 255, 0.08);
@@ -728,6 +747,11 @@
     .discord-server-info-top { padding-top: 46px; }
     .discord-title-line { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
     .discord-server-name-heading { font-size: 1.35rem; font-weight: 800; color: #fff; }
+    .discord-badge-partner {
+      background: rgba(88, 101, 242, 0.25); color: #818cf8; font-size: 0.7rem;
+      font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;
+    }
+    .discord-tagline { font-size: 0.85rem; color: #949ba4; margin-bottom: 16px; line-height: 1.4; }
     .discord-live-stats-bar {
       display: flex; align-items: center; gap: 20px; background: var(--discord-darker);
       padding: 12px 18px; border-radius: 10px; margin-bottom: 20px;
@@ -746,7 +770,9 @@
       display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
       background: #5865F2; color: #fff; font-family: var(--font-body); font-weight: 700;
       font-size: 1rem; padding: 14px; border-radius: 8px; text-decoration: none;
+      transition: var(--transition);
     }
+    .discord-join-btn-big:hover { background: #4752c4; }
 
     /* FOOTER */
     footer.site-footer {
@@ -755,7 +781,7 @@
     }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.3fr; gap: 44px; margin-bottom: 50px; }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.92rem; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.92rem; transition: var(--transition); }
     .footer-links a:hover { color: var(--gold-fs); }
     .newsletter-form { display: flex; gap: 8px; margin-top: 14px; }
     .newsletter-form input {
@@ -764,7 +790,7 @@
     }
     .footer-bottom {
       border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 28px;
-      display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; color: #6b7280;
+      display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; color: #6b7280; flex-wrap: wrap; gap: 12px;
     }
 
     #toast-container { position: fixed; bottom: 26px; right: 26px; z-index: 100000; display: flex; flex-direction: column; gap: 12px; }
@@ -831,7 +857,7 @@
         <button class="auth-tab-btn" id="tab-register-btn" onclick="switchAuthTab('register')">REGISTER</button>
       </div>
 
-      <!-- Login Form (Only ItzVeltriex or fearstealsupport@gmail.com with thakuree@2064 unlocks Admin Panel) -->
+      <!-- Login Form (Only ItzVeltriex or fearstealsupport@gmail.com with thakuree@2064 unlocks Founder Panel) -->
       <form id="login-form" onsubmit="handleLoginSubmit(event)">
         <div class="auth-form-group">
           <label>Minecraft Username or Email</label>
@@ -942,7 +968,7 @@
     </div>
   </div>
 
-  <!-- NAVIGATION WITH DYNAMIC ADMIN TAB -->
+  <!-- NAVIGATION -->
   <header class="main-nav-wrapper">
     <div class="container nav-inner">
       <a href="#home" class="brand-logo-area">
@@ -992,9 +1018,7 @@
     </div>
   </header>
 
-  <!-- ========================================================
-       FOUNDER ADMIN DASHBOARD CONSOLE (LOCKED TO ITZVELTRIEX)
-       ======================================================== -->
+  <!-- FOUNDER ADMIN DASHBOARD CONSOLE -->
   <div id="admin-panel-overlay">
     <div class="admin-dashboard-box">
       <div class="admin-dash-header">
@@ -1768,7 +1792,7 @@
     </div>
   </section>
 
-  <!-- DISCORD DESKTOP WIDGET -->
+  <!-- DISCORD WIDGET -->
   <section class="discord-cta-section">
     <div class="container">
       <div class="discord-banner-card reveal-on-scroll">
@@ -1841,7 +1865,7 @@
             <img src="" alt="FearSteal Logo" class="footer-fs-logo fs-logo-img fs-asset-target" style="width:38px; height:38px;" />
             <span class="font-display" style="font-size:1.4rem; font-weight:800; color:#fff;">FEARSTEAL</span>
           </div>
-          <p>
+          <p style="margin: 12px 0; font-size: 0.9rem; color: var(--text-muted);">
             The Next Generation Minecraft LifeSteal network providing competitive survival, custom loot mechanics, and fair gameplay.
           </p>
           <div style="color:var(--text-muted); font-size:0.85rem;">
@@ -1898,7 +1922,7 @@
 
   <div id="toast-container"></div>
 
-  <!-- SCRIPTS -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
     const FEARSTEAL_LOGO_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><linearGradient id="yg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fff275"/><stop offset="30%" stop-color="%23ffca18"/><stop offset="100%" stop-color="%23e58900"/></linearGradient><linearGradient id="rg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23c51010"/><stop offset="100%" stop-color="%23480000"/></linearGradient><linearGradient id="sd" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ff5050"/><stop offset="100%" stop-color="%237e0606"/></linearGradient></defs><g stroke="%23000" stroke-width="18" stroke-linejoin="miter"><path d="M 125 145 L 245 145 L 245 205 L 180 205 L 180 235 L 235 235 L 235 285 L 180 285 L 180 345 L 125 345 Z" fill="url(%23sd)"/><path d="M 110 135 L 235 135 L 235 190 L 170 190 L 170 225 L 225 225 L 225 275 L 170 275 L 170 340 L 110 340 Z" fill="url(%23yg)"/><path d="M 110 340 L 125 355 L 185 355 L 170 340 Z" fill="url(%23rg)"/><path d="M 235 135 L 250 150 L 250 205 L 235 190 Z" fill="url(%23rg)"/><path d="M 265 145 L 385 145 L 385 220 L 325 220 L 325 245 L 390 245 L 390 345 L 265 345 L 265 270 L 325 270 L 325 245 L 265 245 Z" fill="url(%23sd)"/><path d="M 252 135 L 375 135 L 375 205 L 315 205 L 315 235 L 380 235 L 380 340 L 252 340 L 252 260 L 315 260 L 315 235 L 252 235 Z" fill="url(%23yg)"/><path d="M 375 135 L 392 150 L 392 220 L 375 205 Z" fill="url(%23rg)"/><path d="M 380 235 L 398 250 L 398 355 L 380 340 Z" fill="url(%23rg)"/><path d="M 252 340 L 270 358 L 398 358 L 380 340 Z" fill="url(%23rg)"/></g></svg>`;
 
@@ -1971,7 +1995,7 @@
       if (isMatchIdentity) {
         if (pass === ADMIN_PASS) {
           isAdminUser = true;
-          displayUsername = ADMIN_IGN; // Force standard Founder IGN
+          displayUsername = ADMIN_IGN;
           avatarUrl = `https://mc-heads.net/avatar/ItzVeltriex/32`;
           showToast('👑 Founder Authorization Accepted! Welcome ItzVeltriex.', 'success', 'fa-crown');
         } else {
@@ -2014,7 +2038,6 @@
       }
       confirmErr.textContent = '';
 
-      // Check if registration matches the secret founder credentials
       const isMatchFounder = (username.toLowerCase() === ADMIN_IGN.toLowerCase() || email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) && (pass === ADMIN_PASS);
 
       const userData = {
@@ -2553,7 +2576,7 @@
         </div>
 
         <div class="podium-box rank-1">
-          <div class="podium-crown"><i class="fa-solid fa-crown"></i></div>
+          <div style="color: #f59e0b; font-size: 1.6rem; margin-bottom: 6px;"><i class="fa-solid fa-crown"></i></div>
           <img src="https://mc-heads.net/avatar/${top1.name}/72" onerror="this.src='https://mc-heads.net/avatar/Steve/72'" class="podium-avatar" alt="${top1.name}" />
           <div class="podium-rank-num">#1</div>
           <div class="podium-name">${top1.name}</div>
@@ -2591,7 +2614,7 @@
     }
 
     /* --------------------------------------------------------
-       EVENTS ROTATION
+       EVENTS ROTATION (15 DAYS AUTOMATION)
        -------------------------------------------------------- */
     const ROTATING_EVENTS = [
       {
@@ -2827,4 +2850,4 @@
     });
   </script>
 </body>
-  </html>
+</html>
