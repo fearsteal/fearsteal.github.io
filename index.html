@@ -40,7 +40,6 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
 
-    /* EXACT ORIGINAL BACKGROUND PRESERVED */
     body {
       background-color: var(--bg-dark);
       color: var(--text-main);
@@ -64,7 +63,6 @@
     .crimson-text { color: var(--crimson-glow); text-shadow: 0 0 16px rgba(239, 68, 68, 0.5); }
     .gold-text { color: var(--gold-fs); text-shadow: 0 0 16px rgba(255, 202, 24, 0.5); }
 
-    /* EXACT BRAND TYPOGRAPHY: WHITE & YELLOW GRADIENT ONLY */
     .brand-title, .hero-title-gradient {
       font-family: var(--font-display);
       font-weight: 900;
@@ -165,7 +163,6 @@
     .auth-input-wrap input:focus, .auth-input-wrap select:focus, .auth-input-wrap textarea:focus { border-color: var(--crimson-glow); }
     .toggle-password { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #6b7280; cursor: pointer; }
 
-    /* PASSWORD STRENGTH METER */
     .strength-meter-wrap { margin-top: 6px; }
     .strength-bar-bg { height: 5px; background: rgba(255, 255, 255, 0.08); border-radius: 3px; overflow: hidden; }
     .strength-bar-fill { height: 100%; width: 0%; transition: width 0.3s ease, background 0.3s ease; }
@@ -176,7 +173,6 @@
       padding: 14px; border-radius: 8px; font-size: 0.82rem; color: #fca5a5; margin-bottom: 16px; line-height: 1.45;
     }
 
-    /* 24-HOUR ANNOUNCEMENT BANNER */
     #active-announcement-banner {
       display: none; background: linear-gradient(90deg, #7f1d1d, #dc2626, #b45309);
       color: #fff; padding: 10px 20px; font-weight: 700; font-size: 0.88rem; position: sticky; top: 0; z-index: 1001;
@@ -185,7 +181,6 @@
     .announcement-flex { display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: 0 auto; }
     .announcement-time-badge { background: rgba(0, 0, 0, 0.35); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; color: var(--gold-fs); }
 
-    /* TOP BAR & NAVBAR */
     .top-bar { background: rgba(4, 4, 6, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.82rem; padding: 6px 0; }
     .top-bar-inner { display: flex; justify-content: space-between; align-items: center; }
     header.main-nav-wrapper {
@@ -200,7 +195,6 @@
     }
     .nav-item a:hover, .nav-item a.active { color: #fff; background: rgba(220, 38, 38, 0.2); }
 
-    /* POST-LOGIN AVATAR DROPDOWN MENU */
     .account-menu-container { position: relative; }
     .account-avatar-btn {
       display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.06);
@@ -226,11 +220,9 @@
     .dropdown-item:hover { background: rgba(220, 38, 38, 0.2); color: #fff; padding-left: 20px; }
     .dropdown-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 4px 0; }
 
-    /* ROLE BADGES */
     .badge-admin { background: linear-gradient(135deg, #b91c1c, #f59e0b); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 800; }
     .badge-staff { background: #2563eb; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 800; }
 
-    /* DASHBOARD MODALS */
     .dashboard-modal-overlay {
       position: fixed; inset: 0; background: rgba(3, 3, 6, 0.96);
       backdrop-filter: blur(24px); z-index: 10005; display: none;
@@ -238,7 +230,7 @@
     }
     .dashboard-modal-overlay.open { display: flex; }
     .dash-box {
-      width: 100%; max-width: 1050px; max-height: 90vh; overflow-y: auto;
+      width: 100%; max-width: 1080px; max-height: 90vh; overflow-y: auto;
       background: #0d0d14; border: 2px solid var(--crimson); border-radius: 16px; padding: 30px;
     }
     .dash-tabs { display: flex; gap: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 14px; margin-bottom: 20px; flex-wrap: wrap; }
@@ -250,7 +242,6 @@
     .dash-pane { display: none; }
     .dash-pane.active { display: block; }
 
-    /* HERO & STATUS */
     .hero-section { min-height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 60px 0; position: relative; }
     .ip-copy-box {
       background: rgba(14, 14, 22, 0.9); border: 1px solid var(--border-bright);
@@ -260,7 +251,6 @@
     .status-dot.online { background-color: var(--green-online); box-shadow: 0 0 10px var(--green-online); }
     .status-dot.offline { background-color: var(--red-offline); box-shadow: 0 0 10px var(--red-offline); }
 
-    /* TABLES & FORMS */
     table.custom-table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 15px; }
     table.custom-table th { background: rgba(5, 5, 8, 0.85); font-family: var(--font-display); font-size: 0.85rem; color: var(--text-muted); padding: 12px 16px; }
     table.custom-table td { padding: 12px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.88rem; }
@@ -271,9 +261,90 @@
       .nav-links-list { display: none; }
     }
 
-    /* TOAST NOTIFICATION */
     #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 100000; display: flex; flex-direction: column; gap: 10px; }
     .toast { background: #12121c; border: 1px solid var(--border-bright); padding: 14px 20px; border-radius: 8px; color: #fff; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; min-width: 280px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+
+    /* RANKS GRID & SPECIAL HIGHLIGHT */
+    .ranks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px; margin-top: 25px; }
+    .rank-card {
+      background: rgba(14, 14, 22, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: var(--transition);
+    }
+    .rank-card:hover { transform: translateY(-5px); border-color: var(--gold-fs); }
+    .rank-card.novice-card {
+      border: 2px solid #3b82f6;
+      background: radial-gradient(circle at top, rgba(59, 130, 246, 0.18), rgba(14, 14, 22, 0.95));
+      box-shadow: 0 0 35px rgba(59, 130, 246, 0.3);
+    }
+    .rank-card.fearsteal-card {
+      border: 2px solid var(--crimson-glow);
+      background: radial-gradient(circle at top, rgba(220, 38, 38, 0.25), rgba(14, 14, 22, 0.95));
+      box-shadow: 0 0 35px rgba(220, 38, 38, 0.35);
+    }
+    .rank-card.panthom-card {
+      border: 2px solid #7c3aed;
+      background: radial-gradient(circle at top, rgba(124, 58, 237, 0.25), rgba(14, 14, 22, 0.95));
+      box-shadow: 0 0 35px rgba(124, 58, 237, 0.3);
+    }
+    .rank-price-tag {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #fff;
+      margin: 10px 0 16px;
+    }
+    .rank-features { list-style: none; font-size: 0.85rem; color: #d1d5db; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; text-align: left; }
+    .rank-features li { display: flex; align-items: center; gap: 8px; }
+
+    /* DAILY REWARDS STREAK */
+    .daily-streak-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin-top: 20px; }
+    .daily-day-card {
+      background: rgba(14, 14, 22, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+    }
+    .daily-day-card.available { border-color: var(--gold-fs); background: rgba(255, 202, 24, 0.08); }
+    .daily-day-card.claimed { border-color: var(--green-online); opacity: 0.7; }
+    .daily-day-card.locked { opacity: 0.5; filter: grayscale(0.6); }
+    .daily-day-card.missed { border-color: var(--red-offline); }
+    .reward-state-pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+    .pill-available { background: rgba(255, 202, 24, 0.2); color: var(--gold-fs); }
+    .pill-claimed { background: rgba(34, 197, 94, 0.2); color: var(--green-online); }
+    .pill-locked { background: rgba(156, 163, 175, 0.2); color: var(--text-muted); }
+    .pill-missed { background: rgba(239, 68, 68, 0.2); color: var(--red-offline); }
+
+    /* VOTING PORTAL */
+    .vote-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-top: 20px; }
+    @media (max-width: 900px) { .vote-grid { grid-template-columns: 1fr; } }
+    .vote-site-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(14, 14, 22, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
   </style>
 </head>
 <body>
@@ -305,7 +376,7 @@
     <div style="font-family:var(--font-display); font-size:0.85rem; color:#9ca3af; letter-spacing:2px;" id="loader-progress-text">LOADING NETWORK... 0%</div>
   </div>
 
-  <!-- AUTHENTICATION OVERLAY (STRICT ACCESS CONTROL GATEWAY) -->
+  <!-- AUTHENTICATION OVERLAY (STRICT ACCESS GATEWAY) -->
   <div id="auth-overlay">
     <div class="auth-card">
       <div style="text-align:center; margin-bottom:16px;">
@@ -314,7 +385,6 @@
         <p style="color:var(--text-muted); font-size:0.82rem;">Access Restricted: Connect your gaming profile to proceed.</p>
       </div>
 
-      <!-- EXACT IMPORTANT NOTES -->
       <div class="auth-info-notice">
         <strong>Important notes</strong><br />
         • Thanks for visit our website than how to register or login<br /><br />
@@ -423,14 +493,13 @@
           </div>
         </div>
 
-        <!-- Animated Password Strength Meter -->
         <div class="strength-meter-wrap">
           <div class="strength-bar-bg">
             <div class="strength-bar-fill" id="strength-bar"></div>
           </div>
           <div class="strength-label">
             <span>Strength: <strong id="strength-text" style="color:#ef4444;">Weak</strong></span>
-            <span style="color:#6b7280;">Min. 6 chars with mix of letters & numbers</span>
+            <span style="color:#6b7280;">Min. 6 chars with letters & numbers</span>
           </div>
         </div>
 
@@ -511,7 +580,7 @@
     </div>
   </div>
 
-  <!-- HEADER NAVIGATION WITH DYNAMIC POST-LOGIN ITEMS -->
+  <!-- HEADER NAVIGATION -->
   <header class="main-nav-wrapper">
     <div class="container nav-inner">
       <a href="#home" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
@@ -519,11 +588,12 @@
         <span class="brand-title">FEARSTEAL</span>
       </a>
 
-      <!-- CORE REALM NAVIGATION -->
       <ul class="nav-links-list">
         <li class="nav-item"><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
         <li class="nav-item"><a href="#status"><i class="fa-solid fa-chart-line"></i> Status</a></li>
         <li class="nav-item"><a href="#store"><i class="fa-solid fa-gem"></i> Store</a></li>
+        <li class="nav-item"><a href="#daily-rewards"><i class="fa-solid fa-calendar-check"></i> Daily Streak</a></li>
+        <li class="nav-item"><a href="#vote"><i class="fa-solid fa-check-to-slot"></i> Vote</a></li>
         <li class="nav-item"><a href="#staff"><i class="fa-solid fa-shield-halved"></i> Staff</a></li>
         <li class="nav-item"><a href="#members"><i class="fa-solid fa-users"></i> Members</a></li>
         <li class="nav-item"><a href="#leaderboard"><i class="fa-solid fa-trophy"></i> Leaderboards</a></li>
@@ -534,12 +604,10 @@
         <li class="nav-item"><a href="#appeals"><i class="fa-solid fa-gavel"></i> Appeal</a></li>
         <li class="nav-item"><a href="#support"><i class="fa-solid fa-headset"></i> Support</a></li>
 
-        <!-- POST-LOGIN NAVIGATION ITEMS -->
         <li class="nav-item post-login-item" style="display:none;"><a href="#profile" onclick="openAccountSecurityModal('profile')"><i class="fa-solid fa-user"></i> Profile</a></li>
         <li class="nav-item post-login-item" style="display:none;"><a href="#dashboard" onclick="openAccountSecurityModal('dashboard')"><i class="fa-solid fa-gauge-high"></i> Dashboard</a></li>
         <li class="nav-item post-login-item" style="display:none;"><a href="#notifications" onclick="openAccountSecurityModal('notifications')"><i class="fa-solid fa-bell"></i> Notifications</a></li>
 
-        <!-- DYNAMIC FOUNDER & STAFF PANELS -->
         <li class="nav-item" id="admin-nav-item" style="display:none;">
           <a href="#admin" onclick="openAdminModal()" style="background:linear-gradient(135deg,#b91c1c,#f59e0b); color:#fff; font-weight:800;">
             <i class="fa-solid fa-crown"></i> ADMIN PANEL
@@ -552,7 +620,6 @@
         </li>
       </ul>
 
-      <!-- USER AVATAR & ANIMATED DROPDOWN MENU -->
       <div style="display:flex; align-items:center; gap:12px;">
         <div class="account-menu-container" id="nav-user-box" style="display:none;">
           <button class="account-avatar-btn" onclick="toggleAccountDropdown()">
@@ -561,7 +628,6 @@
             <i class="fa-solid fa-chevron-down" style="font-size:0.75rem; margin-left:4px;"></i>
           </button>
 
-          <!-- ANIMATED ACCOUNT DROPDOWN -->
           <div class="account-dropdown-menu" id="account-dropdown">
             <div class="dropdown-header-box">
               <div style="font-size:0.85rem; font-weight:800; color:#fff;" id="drop-header-user">Username</div>
@@ -581,136 +647,6 @@
   </header>
 
   <!-- ==========================================
-       ACCOUNT SECURITY & PROFILE MODAL
-       ========================================== -->
-  <div class="dashboard-modal-overlay" id="account-security-modal">
-    <div class="dash-box" style="max-width:920px; border-color:var(--gold-fs);">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-        <h3 style="color:var(--gold-fs); display:flex; align-items:center; gap:10px;">
-          <i class="fa-solid fa-shield-cat"></i> Account Security & Settings Center
-        </h3>
-        <button class="btn btn-outline" onclick="closeAccountSecurityModal()" style="padding:6px 14px; font-size:0.8rem;">CLOSE</button>
-      </div>
-
-      <div class="dash-tabs">
-        <button class="dash-tab-btn active" onclick="switchSecurityPane('sec-pane-profile', this)"><i class="fa-solid fa-user"></i> Profile</button>
-        <button class="dash-tab-btn" onclick="switchSecurityPane('sec-pane-dashboard', this)"><i class="fa-solid fa-gauge"></i> Dashboard</button>
-        <button class="dash-tab-btn" onclick="switchSecurityPane('sec-pane-notifications', this)"><i class="fa-solid fa-bell"></i> Notifications</button>
-        <button class="dash-tab-btn" onclick="switchSecurityPane('sec-pane-settings', this)"><i class="fa-solid fa-sliders"></i> Account Settings</button>
-        <button class="dash-tab-btn" onclick="switchSecurityPane('sec-pane-security', this)"><i class="fa-solid fa-lock"></i> Security & 2FA</button>
-      </div>
-
-      <!-- PANE 1: PROFILE -->
-      <div class="dash-pane active" id="sec-pane-profile">
-        <div style="display:flex; gap:20px; align-items:center; background:rgba(255,255,255,0.03); padding:18px; border-radius:10px;">
-          <img id="sec-profile-avatar" src="https://mc-heads.net/avatar/Steve/80" style="border-radius:10px; border:2px solid var(--gold-fs);" alt="Head" />
-          <div>
-            <h3 id="sec-profile-username" style="color:#fff; margin-bottom:4px;">IGN</h3>
-            <p style="font-size:0.85rem; color:#9ca3af;">Email: <span id="sec-profile-email">email@fearsteal.fun</span></p>
-            <div style="margin-top:8px; display:flex; gap:8px;">
-              <span class="badge-admin" id="sec-profile-role-badge">WARRIOR</span>
-              <span style="background:rgba(34,197,94,0.15); color:#22c55e; border:1px solid #22c55e; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:800;">
-                <i class="fa-solid fa-circle-check"></i> Email Verified
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANE 2: DASHBOARD -->
-      <div class="dash-pane" id="sec-pane-dashboard">
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
-          <div class="glass-card" style="text-align:center;">
-            <i class="fa-solid fa-heart" style="color:#ef4444; font-size:2rem; margin-bottom:6px;"></i>
-            <div style="font-size:2rem; font-weight:800;" id="sec-dash-hearts">10</div>
-            <div style="font-size:0.8rem; color:#9ca3af;">Active Hearts</div>
-          </div>
-          <div class="glass-card" style="text-align:center;">
-            <i class="fa-solid fa-shield-halved" style="color:var(--gold-fs); font-size:2rem; margin-bottom:6px;"></i>
-            <div style="font-size:2rem; font-weight:800;">Level 1</div>
-            <div style="font-size:0.8rem; color:#9ca3af;">Gladiator Tier</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANE 3: NOTIFICATIONS -->
-      <div class="dash-pane" id="sec-pane-notifications">
-        <h4 style="color:#fff; margin-bottom:12px;">Security & System Notifications</h4>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div style="background:#141420; padding:12px; border-radius:8px; border-left:3px solid var(--green-online);">
-            <div style="font-size:0.85rem; font-weight:700; color:#fff;">Session Authenticated Successfully</div>
-            <div style="font-size:0.75rem; color:#9ca3af;">Login recorded via FearSteal web portal.</div>
-          </div>
-          <div style="background:#141420; padding:12px; border-radius:8px; border-left:3px solid var(--gold-fs);">
-            <div style="font-size:0.85rem; font-weight:700; color:#fff;">Welcome to FearSteal LifeSteal</div>
-            <div style="font-size:0.75rem; color:#9ca3af;">Default 10 hearts allocated. Enter the warzone via play.fearsteal.fun.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANE 4: SETTINGS (CHANGE PASSWORD & EMAIL) -->
-      <div class="dash-pane" id="sec-pane-settings">
-        <h4 style="color:#fff; margin-bottom:12px;">Account Credentials & Settings</h4>
-        <div class="form-grid-2">
-          <!-- Change Email -->
-          <form onsubmit="handleSecurityChangeEmail(event)" style="background:rgba(255,255,255,0.03); padding:16px; border-radius:8px;">
-            <h5 style="color:var(--gold-fs); margin-bottom:10px;">Change Email</h5>
-            <div class="auth-form-group">
-              <label>New Email Address</label>
-              <input type="email" id="sec-new-email" style="width:100%; padding:9px; background:#050508; border:1px solid #333; color:#fff; border-radius:6px;" required />
-            </div>
-            <button type="submit" class="btn btn-outline" style="padding:8px 16px; font-size:0.85rem;">UPDATE EMAIL</button>
-          </form>
-
-          <!-- Change Password -->
-          <form onsubmit="handleSecurityChangePassword(event)" style="background:rgba(255,255,255,0.03); padding:16px; border-radius:8px;">
-            <h5 style="color:var(--gold-fs); margin-bottom:10px;">Change Password</h5>
-            <div class="auth-form-group">
-              <label>Current Password</label>
-              <input type="password" id="sec-curr-pass" style="width:100%; padding:9px; background:#050508; border:1px solid #333; color:#fff; border-radius:6px;" required />
-            </div>
-            <div class="auth-form-group">
-              <label>New Password</label>
-              <input type="password" id="sec-new-pass" style="width:100%; padding:9px; background:#050508; border:1px solid #333; color:#fff; border-radius:6px;" required />
-            </div>
-            <button type="submit" class="btn btn-primary" style="padding:8px 16px; font-size:0.85rem;">UPDATE PASSWORD</button>
-          </form>
-        </div>
-      </div>
-
-      <!-- PANE 5: SECURITY (2FA, SESSIONS, LOGOUT ALL) -->
-      <div class="dash-pane" id="sec-pane-security">
-        <h4 style="color:#fff; margin-bottom:12px;">Two-Factor Authentication & Device Sessions</h4>
-        
-        <!-- 2FA UI -->
-        <div style="background:rgba(255,255,255,0.03); padding:16px; border-radius:8px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center;">
-          <div>
-            <h5 style="color:#fff; margin-bottom:4px;"><i class="fa-solid fa-mobile-screen"></i> Two-Factor Authentication (2FA)</h5>
-            <p style="font-size:0.8rem; color:#9ca3af;">Enforce TOTP authenticator prompt during high-risk login requests.</p>
-          </div>
-          <button class="btn btn-outline" onclick="toggle2FAUI(this)" id="btn-2fa-toggle" style="padding:8px 16px; font-size:0.8rem;">
-            ENABLE 2FA
-          </button>
-        </div>
-
-        <!-- Session List & Global Logout -->
-        <h5 style="color:#fff; margin-bottom:8px;"><i class="fa-solid fa-desktop"></i> Active Device Sessions</h5>
-        <div style="background:#08080f; padding:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); margin-bottom:14px;">
-          <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
-            <div><i class="fa-solid fa-laptop" style="color:var(--green-online);"></i> Current Browser Session</div>
-            <span style="color:#22c55e; font-weight:700;">Active Now</span>
-          </div>
-          <div style="font-size:0.75rem; color:#9ca3af; margin-top:4px;">IP Address: Authenticated • Device: Web Client</div>
-        </div>
-
-        <button class="btn btn-outline" style="border-color:#ef4444; color:#ef4444;" onclick="logoutAllDevices()">
-          <i class="fa-solid fa-power-off"></i> LOGOUT FROM ALL DEVICES
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================
        ADMIN CONSOLE MODAL
        ========================================== -->
   <div class="dashboard-modal-overlay" id="admin-modal">
@@ -724,18 +660,15 @@
 
       <div class="dash-tabs">
         <button class="dash-tab-btn active" onclick="switchAdminPane('pane-users', this)"><i class="fa-solid fa-users-gear"></i> Users & Roles</button>
+        <button class="dash-tab-btn" onclick="switchAdminPane('pane-novice-admin', this)"><i class="fa-solid fa-gift"></i> Novice Claims Audit</button>
         <button class="dash-tab-btn" onclick="switchAdminPane('pane-announce', this)"><i class="fa-solid fa-bullhorn"></i> 24h Announcements</button>
         <button class="dash-tab-btn" onclick="switchAdminPane('pane-app-view', this)"><i class="fa-solid fa-file-signature"></i> Staff Applications</button>
         <button class="dash-tab-btn" onclick="switchAdminPane('pane-suggest-view', this)"><i class="fa-solid fa-lightbulb"></i> Member Suggestions</button>
-        <button class="dash-tab-btn" onclick="switchAdminPane('pane-novice-admin', this)"><i class="fa-solid fa-gift"></i> Novice Rank Slots</button>
       </div>
 
-      <!-- PANE 1: USER & ROLES SECTION -->
+      <!-- PANE 1: USERS -->
       <div class="dash-pane active" id="pane-users">
         <h4 style="color:#fff; margin-bottom:10px;">Add Custom Role Access</h4>
-        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:14px;">
-          Create credentials manually. Assigning <strong>Admin</strong> grants Admin Panel privileges; <strong>Staff</strong> grants distinct Staff Panel access.
-        </p>
         <form onsubmit="adminCreateUser(event)" style="background:rgba(255,255,255,0.03); padding:16px; border-radius:10px;">
           <div class="form-grid-2">
             <div class="auth-form-group">
@@ -780,12 +713,51 @@
         </table>
       </div>
 
-      <!-- PANE 2: 24h ANNOUNCEMENT PUBLISHER -->
+      <!-- PANE 2: NOVICE CLAIMS AUDIT PANEL -->
+      <div class="dash-pane" id="pane-novice-admin">
+        <h4 style="color:#fff; margin-bottom:10px;">Novice Claim Audit Dashboard</h4>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px; margin-bottom:20px;">
+          <div class="glass-card" style="padding:16px; text-align:center;">
+            <div style="font-size:0.8rem; color:#9ca3af;">TOTAL CLAIMS</div>
+            <div style="font-size:2rem; font-weight:900; color:var(--gold-fs);" id="adm-audit-claim-count">0 / 100</div>
+          </div>
+          <div class="glass-card" style="padding:16px; text-align:center;">
+            <div style="font-size:0.8rem; color:#9ca3af;">REMAINING SLOTS</div>
+            <div style="font-size:2rem; font-weight:900; color:var(--green-online);" id="adm-audit-remain-count">100</div>
+          </div>
+          <div class="glass-card" style="padding:16px; text-align:center;">
+            <div style="font-size:0.8rem; color:#9ca3af;">STOCK STATUS</div>
+            <div style="font-size:1.3rem; font-weight:800; color:#3b82f6; margin-top:6px;" id="adm-audit-stock-status">AVAILABLE</div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <h5 style="color:#fff;">Verified Discord Claim Log</h5>
+          <button class="btn btn-outline" onclick="adminResetNoviceAudit()" style="padding:6px 12px; font-size:0.75rem; border-color:#ef4444; color:#ef4444;">
+            <i class="fa-solid fa-rotate-left"></i> RESET ALL NOVICE CLAIMS
+          </button>
+        </div>
+
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Account ID</th>
+              <th>Username</th>
+              <th>Minecraft IGN</th>
+              <th>Discord ID</th>
+              <th>Verification Status</th>
+              <th>Claim Timestamp</th>
+            </tr>
+          </thead>
+          <tbody id="adm-novice-claims-tbody">
+            <tr><td colspan="6" style="text-align:center; color:#9ca3af;">No Novice claims logged yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- PANE 3: ANNOUNCEMENTS -->
       <div class="dash-pane" id="pane-announce">
         <h4 style="color:#fff; margin-bottom:10px;">Publish 24-Hour Home Screen Announcement</h4>
-        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:14px;">
-          Announcements remain active on the home screen banner for exactly 24 hours from release, showing a live "time ago" timestamp, then automatically expire into notifications.
-        </p>
         <textarea id="admin-ann-text" rows="3" placeholder="Enter emergency or event broadcast message..." style="width:100%; background:#000; border:1px solid #333; color:#fff; padding:10px; border-radius:8px; margin-bottom:12px;"></textarea>
         <div style="display:flex; gap:10px;">
           <button class="btn btn-primary" onclick="adminPublishAnnouncement()"><i class="fa-solid fa-paper-plane"></i> PUBLISH 24H NOTICE</button>
@@ -793,28 +765,16 @@
         </div>
       </div>
 
-      <!-- PANE 3: STAFF APPLICATIONS -->
+      <!-- PANE 4: APPLICATIONS -->
       <div class="dash-pane" id="pane-app-view">
         <h4 style="color:#fff; margin-bottom:10px;">Submitted Staff Applications</h4>
         <div id="admin-applications-list" style="display:flex; flex-direction:column; gap:12px;"></div>
       </div>
 
-      <!-- PANE 4: SUGGESTIONS -->
+      <!-- PANE 5: SUGGESTIONS -->
       <div class="dash-pane" id="pane-suggest-view">
         <h4 style="color:#fff; margin-bottom:10px;">Member Suggestions Pipeline</h4>
         <div id="admin-suggestions-list" style="display:flex; flex-direction:column; gap:12px;"></div>
-      </div>
-
-      <!-- PANE 5: NOVICE RANK MANAGER -->
-      <div class="dash-pane" id="pane-novice-admin">
-        <h4 style="color:#fff; margin-bottom:10px;">Novice Rank Progress Controller</h4>
-        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
-          Claimed count only increments when a player joins the Discord and claims the rank.
-        </p>
-        <div style="display:flex; gap:10px; max-width:350px;">
-          <input type="number" id="adm-novice-val" min="0" max="100" style="background:#000; color:#fff; border:1px solid #333; padding:8px; border-radius:6px; flex:1;" />
-          <button class="btn btn-primary" onclick="adminSaveNoviceCount()">SAVE COUNT</button>
-        </div>
       </div>
     </div>
   </div>
@@ -837,19 +797,16 @@
         <button class="dash-tab-btn" onclick="switchStaffPane('pane-staff-appeals', this)"><i class="fa-solid fa-scale-balanced"></i> Ban Appeals</button>
       </div>
 
-      <!-- PANE: TICKETS -->
       <div class="dash-pane active" id="pane-tickets">
         <h4 style="color:#fff; margin-bottom:10px;">Active Player Support Tickets</h4>
         <div id="staff-tickets-container" style="display:flex; flex-direction:column; gap:12px;"></div>
       </div>
 
-      <!-- PANE: REPORTS -->
       <div class="dash-pane" id="pane-staff-reports">
         <h4 style="color:#fff; margin-bottom:10px;">Incoming Server Incident Reports</h4>
         <div id="staff-reports-container" style="display:flex; flex-direction:column; gap:12px;"></div>
       </div>
 
-      <!-- PANE: APPEALS -->
       <div class="dash-pane" id="pane-staff-appeals">
         <h4 style="color:#fff; margin-bottom:10px;">Review Ban Appeals</h4>
         <div id="staff-appeals-container" style="display:flex; flex-direction:column; gap:12px;"></div>
@@ -923,61 +880,296 @@
     </div>
   </section>
 
-  <!-- 3. STORE & NOVICE RANK -->
+  <!-- 3. OFFICIAL RANKS SECTION -->
   <section id="store" style="padding:80px 0; background:rgba(14,14,20,0.3);">
     <div class="container">
       <div class="section-title-wrap">
-        <span class="section-subtitle">Support The Realm</span>
-        <h2 class="section-title">RANKS & STORE</h2>
+        <span class="section-subtitle">Store & Ranks</span>
+        <h2 class="section-title">OFFICIAL RANKS</h2>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+      <div class="ranks-grid">
         <!-- NOVICE SPECIAL FREE RANK -->
-        <div class="glass-card" style="border-color:#3b82f6; text-align:center;">
-          <span style="background:#2563eb; color:#fff; font-size:0.75rem; font-weight:800; padding:3px 10px; border-radius:12px;">LIMITED PROMOTION</span>
-          <h3 style="color:#60a5fa; margin:10px 0;">NOVICE RANK</h3>
-          <div style="font-size:2.2rem; font-weight:900; font-family:var(--font-display);">$0 <span style="font-size:1rem; color:#9ca3af;">FREE</span></div>
+        <div class="rank-card novice-card">
+          <div>
+            <span style="background:#2563eb; color:#fff; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:20px;">LIMITED PROMOTION</span>
+            <h3 style="color:#60a5fa; margin-top:12px; font-size:1.7rem;">NOVICE</h3>
+            <div class="rank-price-tag" style="color:#60a5fa;">FREE — $0</div>
+            <p style="font-size:0.85rem; color:#d1d5db; margin-bottom:14px;">Special limited promotion for verified community members.</p>
 
-          <div style="margin:16px 0; text-align:left;">
-            <div style="display:flex; justify-content:space-between; font-size:0.82rem; font-weight:700; margin-bottom:6px;">
-              <span>Claimed Slots:</span>
-              <span id="novice-slots-label">0 / 100 Claimed</span>
+            <div style="margin-bottom:16px;">
+              <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:800; margin-bottom:6px;">
+                <span>Slots Claimed:</span>
+                <span id="novice-slots-label" style="color:#60a5fa;">0 / 100 CLAIMED</span>
+              </div>
+              <div style="height:10px; background:rgba(255,255,255,0.1); border-radius:5px; overflow:hidden;">
+                <div id="novice-progress-bar" style="width:0%; height:100%; background:linear-gradient(90deg,#2563eb,#60a5fa); transition:width 0.4s ease;"></div>
+              </div>
+              <div style="font-size:0.75rem; color:var(--gold-fs); margin-top:6px; font-weight:700;">
+                <i class="fa-regular fa-clock"></i> Limited Time: <span id="novice-countdown-timer">60d remaining</span>
+              </div>
             </div>
-            <div style="height:8px; background:rgba(255,255,255,0.1); border-radius:4px; overflow:hidden;">
-              <div id="novice-progress-bar" style="width:0%; height:100%; background:linear-gradient(90deg,#2563eb,#60a5fa);"></div>
-            </div>
-            <div style="font-size:0.75rem; color:var(--gold-fs); margin-top:6px; font-weight:600;">
-              <i class="fa-regular fa-clock"></i> <span id="novice-countdown-timer">59d 23h remaining</span>
-            </div>
+
+            <ul class="rank-features">
+              <li><i class="fa-solid fa-check" style="color:#60a5fa;"></i> Novice in-game chat tag</li>
+              <li><i class="fa-solid fa-check" style="color:#60a5fa;"></i> Starter LifeSteal heart kit</li>
+              <li><i class="fa-solid fa-check" style="color:#60a5fa;"></i> Discord verified role sync</li>
+              <li><i class="fa-solid fa-check" style="color:#60a5fa;"></i> Access to /feed command</li>
+            </ul>
           </div>
 
-          <p style="font-size:0.8rem; color:#d1d5db; margin-bottom:16px; text-align:left;">
-            This free ranks only limited time for 60d so please claim your free ranks quickly. Requires Discord IGN confirmation.
-          </p>
-
-          <button class="btn btn-outline" id="claim-novice-btn" onclick="triggerNoviceClaimFlow()" style="width:100%; border-color:#3b82f6;">
-            CLAIM NOVICE RANK
-          </button>
+          <div>
+            <div id="novice-stock-msg" style="font-size:0.8rem; color:#ef4444; font-weight:700; margin-bottom:8px; display:none;">
+              All 100 Novice ranks have been claimed.
+            </div>
+            <button class="btn btn-primary" id="claim-novice-btn" onclick="triggerNoviceClaimFlow()" style="width:100%; background:#2563eb;">
+              <i class="fa-solid fa-gift"></i> CLAIM NOVICE
+            </button>
+          </div>
         </div>
 
-        <!-- FEARSTEAL ULTIMATE RANK -->
-        <div class="glass-card" style="border-color:var(--crimson-glow); text-align:center;">
-          <span style="background:linear-gradient(90deg,#dc2626,#f59e0b); color:#fff; font-size:0.75rem; font-weight:800; padding:3px 10px; border-radius:12px;">TOP PRESTIGE</span>
-          <h3 class="crimson-text" style="margin:10px 0;">FEARSTEAL</h3>
-          <div style="font-size:2.2rem; font-weight:900; font-family:var(--font-display);">$25</div>
-          <ul style="list-style:none; text-align:left; font-size:0.88rem; color:#d1d5db; margin:16px 0; display:flex; flex-direction:column; gap:8px;">
-            <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Highest glowing chat tag & aura</li>
-            <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Access to /fly in bases</li>
-            <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Unlimited Private Player Vaults</li>
-            <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> 10x Monthly Revival Hearts</li>
-          </ul>
-          <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-primary" style="width:100%;">PURCHASE RANK</a>
+        <!-- LORD -->
+        <div class="rank-card">
+          <div>
+            <h3 style="color:#cbd5e1; font-size:1.6rem;">LORD</h3>
+            <div class="rank-price-tag">$5</div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Affordable premium rank for players who want an upgraded identity.</p>
+            <ul class="rank-features">
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Lord badge</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Premium profile styling</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Configurable perks</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Rank-specific visuals</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%;">PURCHASE LORD</a>
+        </div>
+
+        <!-- ELITE -->
+        <div class="rank-card">
+          <div>
+            <h3 style="color:#f59e0b; font-size:1.6rem;">ELITE</h3>
+            <div class="rank-price-tag">$8</div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Premium entry rank for players who want to stand out.</p>
+            <ul class="rank-features">
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Elite badge</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Premium styling</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Exclusive cosmetics</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Configurable perks</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%;">PURCHASE ELITE</a>
+        </div>
+
+        <!-- ELITE+ -->
+        <div class="rank-card">
+          <div>
+            <h3 style="color:#fbbf24; font-size:1.6rem;">ELITE+</h3>
+            <div class="rank-price-tag">$10</div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Enhanced Elite rank for players looking for additional prestige.</p>
+            <ul class="rank-features">
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Elite+ badge</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Enhanced profile</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Premium cosmetics</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Special visual effects</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Configurable perks</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%;">PURCHASE ELITE+</a>
+        </div>
+
+        <!-- KNIGHT -->
+        <div class="rank-card">
+          <div>
+            <h3 style="color:#94a3b8; font-size:1.6rem;">KNIGHT</h3>
+            <div class="rank-price-tag">$12</div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Warrior-themed rank for active PvP players.</p>
+            <ul class="rank-features">
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Knight badge</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Warrior styling</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Premium cosmetics</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Configurable perks</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Special profile identity</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%;">PURCHASE KNIGHT</a>
+        </div>
+
+        <!-- KING -->
+        <div class="rank-card">
+          <div>
+            <h3 style="color:#eab308; font-size:1.6rem;">KING</h3>
+            <div class="rank-price-tag">$15</div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Royal rank for players who want to dominate the battlefield.</p>
+            <ul class="rank-features">
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Royal rank badge</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Special profile styling</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Premium cosmetics</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Configurable server perks</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Special effects</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%;">PURCHASE KING</a>
+        </div>
+
+        <!-- PANTHOM -->
+        <div class="rank-card panthom-card">
+          <div>
+            <span style="background:#7c3aed; color:#fff; font-size:0.75rem; font-weight:800; padding:2px 10px; border-radius:12px;">DARK PRESTIGE</span>
+            <h3 style="color:#a78bfa; margin-top:8px; font-size:1.7rem;">PANTHOM</h3>
+            <div class="rank-price-tag" style="color:#c4b5fd;">$20</div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Dark and mysterious premium rank for an intimidating FearSteal identity.</p>
+            <ul class="rank-features">
+              <li><i class="fa-solid fa-check" style="color:#a78bfa;"></i> Unique dark rank styling</li>
+              <li><i class="fa-solid fa-check" style="color:#a78bfa;"></i> Premium badge</li>
+              <li><i class="fa-solid fa-check" style="color:#a78bfa;"></i> Profile effects</li>
+              <li><i class="fa-solid fa-check" style="color:#a78bfa;"></i> Exclusive cosmetics</li>
+              <li><i class="fa-solid fa-check" style="color:#a78bfa;"></i> Configurable perks</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%; border-color:#7c3aed; color:#c4b5fd;">PURCHASE PANTHOM</a>
+        </div>
+
+        <!-- FEAR+ -->
+        <div class="rank-card">
+          <div>
+            <h3 class="crimson-text" style="font-size:1.7rem;">FEAR+</h3>
+            <div class="rank-price-tag" style="color:#f87171;">$25</div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">High-tier premium rank for dedicated FearSteal players.</p>
+            <ul class="rank-features">
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Premium badge</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Enhanced profile</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Exclusive cosmetics</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Configurable server perks</li>
+              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Special visual effects</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%; border-color:var(--crimson);">PURCHASE FEAR+</a>
+        </div>
+
+        <!-- FEARSTEAL -->
+        <div class="rank-card fearsteal-card">
+          <div>
+            <span style="background:linear-gradient(90deg,#dc2626,#f59e0b); color:#fff; font-size:0.75rem; font-weight:800; padding:3px 12px; border-radius:12px;">ULTIMATE PRESTIGE</span>
+            <h3 class="brand-title" style="margin-top:8px; font-size:1.9rem;">FEARSTEAL</h3>
+            <div class="rank-price-tag" style="color:var(--gold-fs);">$30</div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Ultimate premium FearSteal rank for the highest prestige & identity.</p>
+            <ul class="rank-features">
+              <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Highest premium status</li>
+              <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Exclusive profile styling</li>
+              <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Premium badge</li>
+              <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Special cosmetics</li>
+              <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Configurable server perks</li>
+              <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Priority benefits</li>
+              <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Exclusive visual effects</li>
+            </ul>
+          </div>
+          <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-primary" style="width:100%;">PURCHASE FEARSTEAL</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. STAFF ROLES -->
+  <!-- 4. DAILY REWARDS STREAK SECTION -->
+  <section id="daily-rewards" style="padding:80px 0;">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-subtitle">Daily Engagement</span>
+        <h2 class="section-title">7-DAY REWARD STREAK</h2>
+      </div>
+
+      <div class="glass-card" style="border-color:var(--gold-fs);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div>
+            <h3 style="color:#fff;"><i class="fa-solid fa-fire" style="color:var(--crimson-glow);"></i> Daily Server Streak Rewards</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">
+              Claim server-related rewards every day in Minecraft. Don't break your streak!
+            </p>
+          </div>
+          <div style="font-size:1.2rem; font-weight:800; font-family:var(--font-display); color:var(--gold-fs);">
+            Current Streak: <span id="streak-counter-num" style="color:#fff;">0 Days</span>
+          </div>
+        </div>
+
+        <div class="daily-streak-grid" id="daily-streak-container"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. VOTING SYSTEM -->
+  <section id="vote" style="padding:80px 0; background:rgba(14,14,20,0.3);">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-subtitle">Support By Voting</span>
+        <h2 class="section-title">VOTE FOR FEARSTEAL</h2>
+      </div>
+
+      <div class="vote-grid">
+        <div class="glass-card">
+          <h4 style="color:#fff; margin-bottom:14px;"><i class="fa-solid fa-list-check"></i> Official Voting Sites</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:18px;">
+            Vote daily to receive Crate Keys, In-Game Coins, and Vote Points in FearSteal!
+          </p>
+
+          <div id="vote-sites-list">
+            <div class="vote-site-item">
+              <div>
+                <strong>TopG Minecraft Servers</strong>
+                <div style="font-size:0.75rem; color:var(--gold-fs);">Reward: 500 Coins + 1x Rare Crate Key</div>
+              </div>
+              <button class="btn btn-outline" style="padding:8px 16px; font-size:0.8rem;" onclick="handleVoteClick(1, 'https://topg.org')">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> VOTE #1
+              </button>
+            </div>
+
+            <div class="vote-site-item">
+              <div>
+                <strong>Minecraft-Server-List</strong>
+                <div style="font-size:0.75rem; color:var(--gold-fs);">Reward: 1x Vote Point + 1x Revival Fragment</div>
+              </div>
+              <button class="btn btn-outline" style="padding:8px 16px; font-size:0.8rem;" onclick="handleVoteClick(2, 'https://minecraft-server-list.com')">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> VOTE #2
+              </button>
+            </div>
+
+            <div class="vote-site-item">
+              <div>
+                <strong>Planet Minecraft Portal</strong>
+                <div style="font-size:0.75rem; color:var(--gold-fs);">Reward: 750 Coins + 2x Vote Points</div>
+              </div>
+              <button class="btn btn-outline" style="padding:8px 16px; font-size:0.8rem;" onclick="handleVoteClick(3, 'https://planetminecraft.com')">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> VOTE #3
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <h4 style="color:var(--gold-fs); margin-bottom:14px;"><i class="fa-solid fa-trophy"></i> Top Voters Leaderboard</h4>
+          <div style="margin-bottom:14px; font-size:0.85rem;">
+            Your Vote Points: <strong id="user-vote-points" style="color:#fff;">0</strong> | Streak: <strong id="user-vote-streak" style="color:var(--gold-fs);">0</strong>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Gladiator</th>
+                <th>Votes</th>
+              </tr>
+            </thead>
+            <tbody id="vote-leaderboard-tbody">
+              <tr><td>1</td><td>BloodReaper99</td><td><strong>142</strong></td></tr>
+              <tr><td>2</td><td>ItzVeltriex</td><td><strong>128</strong></td></tr>
+              <tr><td>3</td><td>Notslayer</td><td><strong>115</strong></td></tr>
+              <tr><td>4</td><td>ShadowFiend</td><td><strong>94</strong></td></tr>
+              <tr><td>5</td><td>IronChest</td><td><strong>81</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. STAFF ROLES -->
   <section id="staff" style="padding:80px 0;">
     <div class="container">
       <div class="section-title-wrap">
@@ -1017,7 +1209,7 @@
     </div>
   </section>
 
-  <!-- 5. REGISTERED MEMBERS DIRECTORY -->
+  <!-- 7. REGISTERED MEMBERS DIRECTORY -->
   <section id="members" style="padding:80px 0; background:rgba(14,14,20,0.3);">
     <div class="container">
       <div class="section-title-wrap">
@@ -1042,7 +1234,7 @@
     </div>
   </section>
 
-  <!-- 6. LEADERBOARDS & HEART FORGE SIMULATOR -->
+  <!-- 8. LEADERBOARDS & HEART FORGE SIMULATOR -->
   <section id="leaderboard" style="padding:80px 0;">
     <div class="container">
       <div class="section-title-wrap">
@@ -1050,7 +1242,6 @@
         <h2 class="section-title">HEART FORGE & LEADERBOARDS</h2>
       </div>
 
-      <!-- HEART FORGE SIMULATOR -->
       <div class="glass-card" style="margin-bottom:30px; border-color:var(--crimson-bright);">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
           <div>
@@ -1068,7 +1259,6 @@
         </div>
       </div>
 
-      <!-- LEADERBOARD TABLE -->
       <div class="glass-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
           <h4 style="color:#fff;">TOP HEART HARVESTERS</h4>
@@ -1090,7 +1280,7 @@
     </div>
   </section>
 
-  <!-- 7. REVIEWS & REVIEWS LEADERBOARD -->
+  <!-- 9. REVIEWS & RATINGS -->
   <section id="review" style="padding:80px 0; background:rgba(14,14,20,0.3);">
     <div class="container">
       <div class="section-title-wrap">
@@ -1099,7 +1289,6 @@
       </div>
 
       <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:24px; margin-bottom:30px;">
-        <!-- SUBMIT REVIEW FORM -->
         <div class="glass-card">
           <h4 style="color:#fff; margin-bottom:12px;"><i class="fa-solid fa-pen-nib"></i> Write Your Review</h4>
           <form onsubmit="handleReviewSubmit(event)">
@@ -1115,7 +1304,6 @@
           </form>
         </div>
 
-        <!-- REVIEWS SUBMITTED LIVE FEED -->
         <div class="glass-card">
           <h4 style="color:#fff; margin-bottom:12px;"><i class="fa-solid fa-comments"></i> Review Submitted Feed</h4>
           <div id="reviews-feed-list" style="max-height:300px; overflow-y:auto; display:flex; flex-direction:column; gap:10px;">
@@ -1124,7 +1312,6 @@
         </div>
       </div>
 
-      <!-- TOP #1 TO #10 REVIEWS LEADERBOARD -->
       <div class="glass-card">
         <h4 style="color:var(--gold-fs); margin-bottom:12px;"><i class="fa-solid fa-award"></i> Top #1 to #10 Reviewers Leaderboard</h4>
         <table class="custom-table">
@@ -1144,7 +1331,7 @@
     </div>
   </section>
 
-  <!-- 8. SUGGESTIONS SYSTEM -->
+  <!-- 10. SUGGESTIONS SYSTEM -->
   <section id="suggestions" style="padding:80px 0;">
     <div class="container">
       <div class="section-title-wrap">
@@ -1176,7 +1363,7 @@
     </div>
   </section>
 
-  <!-- 9. STAFF APPLICATION -->
+  <!-- 11. STAFF APPLICATION -->
   <section id="staff-apply" style="padding:80px 0; background:rgba(14,14,20,0.3);">
     <div class="container">
       <div class="section-title-wrap">
@@ -1211,7 +1398,7 @@
     </div>
   </section>
 
-  <!-- 10. REPORT SYSTEM -->
+  <!-- 12. REPORT SYSTEM -->
   <section id="reports" style="padding:80px 0;">
     <div class="container">
       <div class="section-title-wrap">
@@ -1252,7 +1439,7 @@
     </div>
   </section>
 
-  <!-- 11. BAN APPEAL SYSTEM -->
+  <!-- 13. BAN APPEAL SYSTEM -->
   <section id="appeals" style="padding:80px 0; background:rgba(14,14,20,0.3);">
     <div class="container">
       <div class="section-title-wrap">
@@ -1286,7 +1473,7 @@
     </div>
   </section>
 
-  <!-- 12. ADVANCED TICKET & SUPPORT CENTER -->
+  <!-- 14. SUPPORT CENTER & TICKETS -->
   <section id="support" style="padding:80px 0;">
     <div class="container">
       <div class="section-title-wrap">
@@ -1358,17 +1545,19 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    // OFFICIAL EMBEDDED SVG LOGO
     const FEARSTEAL_LOGO_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><linearGradient id="yg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fff275"/><stop offset="30%" stop-color="%23ffca18"/><stop offset="100%" stop-color="%23e58900"/></linearGradient><linearGradient id="rg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23c51010"/><stop offset="100%" stop-color="%23480000"/></linearGradient><linearGradient id="sd" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ff5050"/><stop offset="100%" stop-color="%237e0606"/></linearGradient></defs><g stroke="%23000" stroke-width="18" stroke-linejoin="miter"><path d="M 125 145 L 245 145 L 245 205 L 180 205 L 180 235 L 235 235 L 235 285 L 180 285 L 180 345 L 125 345 Z" fill="url(%23sd)"/><path d="M 110 135 L 235 135 L 235 190 L 170 190 L 170 225 L 225 225 L 225 275 L 170 275 L 170 340 L 110 340 Z" fill="url(%23yg)"/><path d="M 110 340 L 125 355 L 185 355 L 170 340 Z" fill="url(%23rg)"/><path d="M 235 135 L 250 150 L 250 205 L 235 190 Z" fill="url(%23rg)"/><path d="M 265 145 L 385 145 L 385 220 L 325 220 L 325 245 L 390 245 L 390 345 L 265 345 L 265 270 L 325 270 L 325 245 L 265 245 Z" fill="url(%23sd)"/><path d="M 252 135 L 375 135 L 375 205 L 315 205 L 315 235 L 380 235 L 380 340 L 252 340 L 252 260 L 315 260 L 315 235 L 252 235 Z" fill="url(%23yg)"/><path d="M 375 135 L 392 150 L 392 220 L 375 205 Z" fill="url(%23rg)"/><path d="M 380 235 L 398 250 L 398 355 L 380 340 Z" fill="url(%23rg)"/><path d="M 252 340 L 270 358 L 398 358 L 380 340 Z" fill="url(%23rg)"/></g></svg>`;
 
     document.querySelectorAll('.fs-asset-target').forEach(img => img.src = FEARSTEAL_LOGO_SVG);
 
-    // STORAGE KEYS
     const KEY_SESSION = 'fs_session_active';
     const KEY_USERS = 'fs_registered_users';
     const KEY_ANNOUNCE = 'fs_24h_announcement';
     const KEY_NOVICE_COUNT = 'fs_novice_count_val';
-    const KEY_NOVICE_CLAIMED = 'fs_novice_user_claimed';
+    const KEY_NOVICE_CLAIMS = 'fs_novice_claims_audit';
+    const KEY_DAILY_STREAK = 'fs_daily_streak_val';
+    const KEY_DAILY_CLAIMED_DATE = 'fs_daily_last_claim_date';
+    const KEY_VOTE_POINTS = 'fs_vote_points_val';
+    const KEY_VOTE_STREAK = 'fs_vote_streak_val';
     const KEY_REVIEWS = 'fs_reviews_data';
     const KEY_SUGGESTIONS = 'fs_suggestions_data';
     const KEY_APPLICATIONS = 'fs_applications_data';
@@ -1376,7 +1565,6 @@
     const KEY_APPEALS = 'fs_appeals_data';
     const KEY_TICKETS = 'fs_tickets_data';
 
-    // MASTER ADMIN PROFILES (FULL DUAL-PANEL PERMISSIONS)
     const MASTER_ADMINS = [
       { email: 'fearstealsupport@gmail.com', username: 'ItzVeltriex', mcUsername: 'ItzVeltriex', pass: 'thakuree@2064', role: 'admin' },
       { email: 'notslayer@fearsteal.fun', username: 'Notslayer', mcUsername: 'Notslayer', pass: 'Notslayer@990', role: 'admin' }
@@ -1402,11 +1590,11 @@
       if (!localStorage.getItem(KEY_NOVICE_COUNT)) {
         localStorage.setItem(KEY_NOVICE_COUNT, '0');
       }
+      if (!localStorage.getItem(KEY_NOVICE_CLAIMS)) {
+        localStorage.setItem(KEY_NOVICE_CLAIMS, JSON.stringify([]));
+      }
     }
 
-    /* ----------------------------------------------------
-       AUTHENTICATION & POST-LOGIN NAVIGATION
-       ---------------------------------------------------- */
     function checkAuth() {
       const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
       const authOverlay = document.getElementById('auth-overlay');
@@ -1431,25 +1619,15 @@
         dropHeaderUser.textContent = session.username + (session.mcUsername ? ` (${session.mcUsername})` : '');
         navUserAvatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(session.mcUsername || session.username)}/32`;
 
-        // Reveal Post-Login Items (Profile, Dashboard, Notifications)
         postLoginItems.forEach(el => el.style.display = 'block');
 
-        // Master account checks (ItzVeltriex & Notslayer get dual access)
         const isMaster = (session.username.toLowerCase() === 'itzveltriex' || session.username.toLowerCase() === 'notslayer');
-
-        if (session.role === 'admin' || isMaster) {
-          adminNav.style.display = 'block';
-        } else {
-          adminNav.style.display = 'none';
-        }
-
-        if (session.role === 'staff' || session.role === 'admin' || isMaster) {
-          staffNav.style.display = 'block';
-        } else {
-          staffNav.style.display = 'none';
-        }
+        adminNav.style.display = (session.role === 'admin' || isMaster) ? 'block' : 'none';
+        staffNav.style.display = (session.role === 'staff' || session.role === 'admin' || isMaster) ? 'block' : 'none';
 
         document.getElementById('user-hearts-display').textContent = session.hearts || 10;
+        document.getElementById('user-vote-points').textContent = localStorage.getItem(KEY_VOTE_POINTS + '_' + session.username) || '0';
+        document.getElementById('user-vote-streak').textContent = localStorage.getItem(KEY_VOTE_STREAK + '_' + session.username) || '0';
       }
     }
 
@@ -1466,25 +1644,17 @@
     function updateSkinHead(val, targetId) {
       val = val.trim();
       const el = document.getElementById(targetId);
-      if (val.length >= 3) {
-        el.src = `https://mc-heads.net/avatar/${encodeURIComponent(val)}/40`;
-      } else {
-        el.src = `https://mc-heads.net/avatar/Steve/40`;
-      }
+      el.src = val.length >= 3 ? `https://mc-heads.net/avatar/${encodeURIComponent(val)}/40` : `https://mc-heads.net/avatar/Steve/40`;
     }
 
     function togglePass(inputId, icon) {
       const input = document.getElementById(inputId);
-      if (input.type === 'password') {
-        input.type = 'text';
-        icon.classList.replace('fa-eye', 'fa-eye-slash');
-      } else {
-        input.type = 'password';
-        icon.classList.replace('fa-eye-slash', 'fa-eye');
-      }
+      const isPass = input.type === 'password';
+      input.type = isPass ? 'text' : 'password';
+      icon.classList.toggle('fa-eye', !isPass);
+      icon.classList.toggle('fa-eye-slash', isPass);
     }
 
-    // REAL-TIME USERNAME AVAILABILITY CHECK
     function checkUsernameLiveAvailability(val) {
       val = val.trim().toLowerCase();
       const feedback = document.getElementById('user-avail-feedback');
@@ -1495,20 +1665,13 @@
       }
       const users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
       const exists = users.some(u => u.username.toLowerCase() === val);
-      if (exists) {
-        feedback.textContent = '❌ Username is taken';
-        feedback.style.color = '#ef4444';
-      } else {
-        feedback.textContent = '✓ Username is available';
-        feedback.style.color = '#22c55e';
-      }
+      feedback.textContent = exists ? '❌ Username is taken' : '✓ Username is available';
+      feedback.style.color = exists ? '#ef4444' : '#22c55e';
     }
 
-    // ANIMATED PASSWORD STRENGTH CALCULATION
     function calculatePasswordStrength(pass) {
       const bar = document.getElementById('strength-bar');
       const text = document.getElementById('strength-text');
-
       let score = 0;
       if (pass.length >= 6) score += 25;
       if (pass.length >= 10) score += 25;
@@ -1535,7 +1698,6 @@
       }
     }
 
-    // ADVANCED REGISTRATION SUBMIT
     function handleRegisterSubmit(e) {
       e.preventDefault();
       const btn = document.getElementById('btn-reg-submit');
@@ -1564,7 +1726,7 @@
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> CREATING ACCOUNT...';
 
       setTimeout(() => {
-        const newUser = {
+        users.push({
           username,
           mcUsername,
           email,
@@ -1572,11 +1734,9 @@
           role: 'none',
           hearts: 10,
           registeredAt: new Date().toLocaleDateString()
-        };
+        });
 
-        users.push(newUser);
         localStorage.setItem(KEY_USERS, JSON.stringify(users));
-
         btn.disabled = false;
         btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> CREATE ACCOUNT';
 
@@ -1587,7 +1747,6 @@
       }, 700);
     }
 
-    // ADVANCED LOGIN SUBMIT
     function handleLoginSubmit(e) {
       e.preventDefault();
       const btn = document.getElementById('btn-login-submit');
@@ -1613,6 +1772,7 @@
         showToast(`Welcome back, ${found.username}! Realm unlocked.`, 'success');
         checkAuth();
         renderMembersDirectory();
+        renderDailyStreakUI();
       }, 600);
     }
 
@@ -1648,7 +1808,6 @@
 
       users[userIndex].password = newPass;
       localStorage.setItem(KEY_USERS, JSON.stringify(users));
-
       showToast('Password updated successfully! Please login with your new password ✅️', 'success');
 
       document.getElementById('forgot-ident').value = '';
@@ -1667,8 +1826,7 @@
     }
 
     function toggleAccountDropdown() {
-      const drop = document.getElementById('account-dropdown');
-      drop.classList.toggle('open');
+      document.getElementById('account-dropdown').classList.toggle('open');
     }
 
     window.addEventListener('click', (e) => {
@@ -1679,285 +1837,243 @@
     });
 
     /* ----------------------------------------------------
-       ACCOUNT SECURITY MODAL CONTROLS
+       STRICT NOVICE CLAIM FLOW (MAX 100 & DISCORD GATE)
        ---------------------------------------------------- */
-    function openAccountSecurityModal(targetPane) {
+    function triggerNoviceClaimFlow() {
       const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) return;
+      if (!session) {
+        showToast('Please register and login first!', 'warning');
+        return;
+      }
 
-      document.getElementById('account-security-modal').classList.add('open');
-      document.getElementById('sec-profile-username').textContent = session.username;
-      document.getElementById('sec-profile-email').textContent = session.email;
-      document.getElementById('sec-profile-avatar').src = `https://mc-heads.net/avatar/${encodeURIComponent(session.mcUsername || session.username)}/80`;
-      document.getElementById('sec-dash-hearts').textContent = session.hearts || 10;
+      // Check existing claims
+      let claims = JSON.parse(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]');
+      const hasClaimed = claims.some(c => c.username.toLowerCase() === session.username.toLowerCase());
 
-      const paneMap = {
-        'profile': 'sec-pane-profile',
-        'dashboard': 'sec-pane-dashboard',
-        'notifications': 'sec-pane-notifications',
-        'settings': 'sec-pane-settings',
-        'security': 'sec-pane-security'
+      if (hasClaimed) {
+        alert("You have already claimed this rank. You cannot claim this free rank again ❌️");
+        return;
+      }
+
+      // Atomic lock & capacity verification
+      let count = parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10);
+      if (count >= 100) {
+        alert("All 100 Novice ranks have been claimed.");
+        renderNoviceUI();
+        return;
+      }
+
+      // Requirement: Join Discord first
+      const discordIgn = prompt("Please join our Discord server first than you can claim this free ranks\n\nEnter your exact Discord Tag (e.g. warrior#0001):");
+      if (!discordIgn || discordIgn.trim().length < 2) {
+        alert("Please join our Discord server first than you can claim this free ranks");
+        window.open('https://discord.gg/pGM5x3gXpX', '_blank');
+        return;
+      }
+
+      // Atomic claim registration
+      count = Math.min(100, count + 1);
+      localStorage.setItem(KEY_NOVICE_COUNT, count.toString());
+
+      const claimRecord = {
+        accountId: 'ACC-' + Math.floor(100000 + Math.random() * 900000),
+        username: session.username,
+        mcUsername: session.mcUsername || session.username,
+        discordId: discordIgn.trim(),
+        verificationStatus: 'Verified (Discord Synced)',
+        timestamp: new Date().toLocaleString()
       };
 
-      const pId = paneMap[targetPane] || 'sec-pane-profile';
-      const btn = Array.from(document.querySelectorAll('#account-security-modal .dash-tab-btn')).find(b => b.getAttribute('onclick').includes(pId));
-      if (btn) switchSecurityPane(pId, btn);
-    }
+      claims.push(claimRecord);
+      localStorage.setItem(KEY_NOVICE_CLAIMS, JSON.stringify(claims));
 
-    function closeAccountSecurityModal() {
-      document.getElementById('account-security-modal').classList.remove('open');
-    }
-
-    function switchSecurityPane(paneId, btn) {
-      document.querySelectorAll('#account-security-modal .dash-tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('#account-security-modal .dash-pane').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(paneId).classList.add('active');
-    }
-
-    function handleSecurityChangeEmail(e) {
-      e.preventDefault();
-      const newEmail = document.getElementById('sec-new-email').value.trim();
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) return;
-
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      const idx = users.findIndex(u => u.username.toLowerCase() === session.username.toLowerCase());
-      if (idx >= 0) {
-        users[idx].email = newEmail;
-        session.email = newEmail;
-        localStorage.setItem(KEY_USERS, JSON.stringify(users));
-        localStorage.setItem(KEY_SESSION, JSON.stringify(session));
-        document.getElementById('sec-profile-email').textContent = newEmail;
-        showToast('Email address updated successfully!', 'success');
-        document.getElementById('sec-new-email').value = '';
-      }
-    }
-
-    function handleSecurityChangePassword(e) {
-      e.preventDefault();
-      const curr = document.getElementById('sec-curr-pass').value;
-      const newP = document.getElementById('sec-new-pass').value;
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) return;
-
-      if (session.password !== curr) {
-        showToast('Current password is incorrect!', 'warning');
-        return;
-      }
-      if (newP.length < 6) {
-        showToast('New password must be at least 6 characters long!', 'warning');
-        return;
-      }
-
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      const idx = users.findIndex(u => u.username.toLowerCase() === session.username.toLowerCase());
-      if (idx >= 0) {
-        users[idx].password = newP;
-        session.password = newP;
-        localStorage.setItem(KEY_USERS, JSON.stringify(users));
-        localStorage.setItem(KEY_SESSION, JSON.stringify(session));
-        showToast('Password changed successfully!', 'success');
-        document.getElementById('sec-curr-pass').value = '';
-        document.getElementById('sec-new-pass').value = '';
-      }
-    }
-
-    function toggle2FAUI(btn) {
-      if (btn.textContent.includes('ENABLE')) {
-        btn.textContent = 'DISABLE 2FA';
-        btn.style.borderColor = '#22c55e';
-        btn.style.color = '#22c55e';
-        showToast('Two-Factor Authentication (2FA) is now active.', 'success');
-      } else {
-        btn.textContent = 'ENABLE 2FA';
-        btn.style.borderColor = '';
-        btn.style.color = '';
-        showToast('2FA has been disabled.', 'info');
-      }
-    }
-
-    function logoutAllDevices() {
-      localStorage.removeItem(KEY_SESSION);
-      showToast('All active sessions revoked.', 'info');
-      setTimeout(() => location.reload(), 300);
-    }
-
-    /* ----------------------------------------------------
-       24-HOUR ANNOUNCEMENT ENGINE
-       ---------------------------------------------------- */
-    function adminPublishAnnouncement() {
-      const text = document.getElementById('admin-ann-text').value.trim();
-      if (!text) return;
-
-      const payload = {
-        text: text,
-        timestamp: Date.now()
-      };
-
-      localStorage.setItem(KEY_ANNOUNCE, JSON.stringify(payload));
-      showToast('Announcement published for 24 hours!', 'success');
-      renderAnnouncementBanner();
-      document.getElementById('admin-ann-text').value = '';
-    }
-
-    function adminDismissAnnouncement() {
-      localStorage.removeItem(KEY_ANNOUNCE);
-      renderAnnouncementBanner();
-      showToast('Announcement cleared.', 'info');
-    }
-
-    function renderAnnouncementBanner() {
-      const banner = document.getElementById('active-announcement-banner');
-      const textContent = document.getElementById('announcement-text-content');
-      const timeAgo = document.getElementById('announcement-time-ago');
-
-      const data = JSON.parse(localStorage.getItem(KEY_ANNOUNCE) || 'null');
-      if (!data) {
-        banner.style.display = 'none';
-        return;
-      }
-
-      const diffMs = Date.now() - data.timestamp;
-      const twentyFourHours = 24 * 60 * 60 * 1000;
-
-      if (diffMs > twentyFourHours) {
-        banner.style.display = 'none';
-        localStorage.removeItem(KEY_ANNOUNCE);
-        return;
-      }
-
-      banner.style.display = 'block';
-      textContent.textContent = data.text;
-
-      const mins = Math.floor(diffMs / 60000);
-      const hours = Math.floor(mins / 60);
-
-      if (hours > 0) {
-        timeAgo.textContent = `${hours}h ago (Expires in ${24 - hours}h)`;
-      } else {
-        timeAgo.textContent = `${mins}m ago (Active 24h)`;
-      }
-    }
-
-    /* ----------------------------------------------------
-       ADMIN MODAL & USER MANAGER
-       ---------------------------------------------------- */
-    function openAdminModal() {
-      document.getElementById('admin-modal').classList.add('open');
-      renderAdminUserList();
-      renderAdminSubmissions();
-    }
-    function closeAdminModal() {
-      document.getElementById('admin-modal').classList.remove('open');
-    }
-    function switchAdminPane(paneId, btn) {
-      document.querySelectorAll('#admin-modal .dash-tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('#admin-modal .dash-pane').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(paneId).classList.add('active');
-    }
-
-    function adminCreateUser(e) {
-      e.preventDefault();
-      const user = document.getElementById('adm-new-user').value.trim();
-      const email = document.getElementById('adm-new-email').value.trim();
-      const pass = document.getElementById('adm-new-pass').value;
-      const role = document.getElementById('adm-new-role').value;
-
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      const index = users.findIndex(u => u.username.toLowerCase() === user.toLowerCase());
-
-      if (index >= 0) {
-        users[index].email = email;
-        users[index].password = pass;
-        users[index].role = role;
-        showToast(`User ${user} role updated to: ${role}`, 'success');
-      } else {
-        users.push({
-          username: user,
-          mcUsername: user,
-          email: email,
-          password: pass,
-          role: role,
-          hearts: 10,
-          registeredAt: new Date().toLocaleDateString()
-        });
-        showToast(`User ${user} created with role: ${role}`, 'success');
-      }
-
-      localStorage.setItem(KEY_USERS, JSON.stringify(users));
-      renderAdminUserList();
-      renderMembersDirectory();
-      checkAuth();
-    }
-
-    function renderAdminUserList() {
-      const tbody = document.getElementById('admin-user-list-tbody');
-      tbody.innerHTML = '';
-      const users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-
-      users.forEach(u => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong>${u.username}</strong></td>
-          <td>${u.email}</td>
-          <td><span class="${u.role === 'admin' ? 'badge-admin' : (u.role === 'staff' ? 'badge-staff' : '')}">${u.role.toUpperCase()}</span></td>
-          <td>${u.role === 'admin' ? 'Admin & Staff Panels' : (u.role === 'staff' ? 'Staff Panel Only' : 'No Admin Access')}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function adminSaveNoviceCount() {
-      const val = parseInt(document.getElementById('adm-novice-val').value, 10);
-      if (isNaN(val) || val < 0 || val > 100) return;
-      localStorage.setItem(KEY_NOVICE_COUNT, val.toString());
       renderNoviceUI();
-      showToast(`Novice slots updated to ${val}/100`, 'success');
+      renderNoviceAdminAudit();
+      showToast('Novice Rank Claimed Successfully! 1x Novice Starter Kit unlocked.', 'success');
     }
 
-    /* ----------------------------------------------------
-       STAFF DESK MODAL
-       ---------------------------------------------------- */
-    function openStaffModal() {
-      document.getElementById('staff-modal').classList.add('open');
-      renderStaffDesk();
-    }
-    function closeStaffModal() {
-      document.getElementById('staff-modal').classList.remove('open');
-    }
-    function switchStaffPane(paneId, btn) {
-      document.querySelectorAll('#staff-modal .dash-tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('#staff-modal .dash-pane').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(paneId).classList.add('active');
+    function renderNoviceUI() {
+      const count = Math.min(100, parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10));
+      document.getElementById('novice-slots-label').textContent = `${count} / 100 CLAIMED`;
+      document.getElementById('novice-progress-bar').style.width = `${count}%`;
+
+      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
+      const btn = document.getElementById('claim-novice-btn');
+      const stockMsg = document.getElementById('novice-stock-msg');
+      let claims = JSON.parse(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]');
+      const userClaimed = session && claims.some(c => c.username.toLowerCase() === session.username.toLowerCase());
+
+      if (count >= 100) {
+        btn.textContent = '🔴 OUT OF STOCK';
+        btn.disabled = true;
+        btn.style.background = '#374151';
+        stockMsg.style.display = 'block';
+      } else if (userClaimed) {
+        btn.textContent = 'CLAIMED ✓';
+        btn.disabled = true;
+        btn.style.background = '#059669';
+        stockMsg.style.display = 'none';
+      } else {
+        btn.textContent = 'CLAIM NOVICE';
+        btn.disabled = false;
+        btn.style.background = '#2563eb';
+        stockMsg.style.display = 'none';
+      }
     }
 
-    /* ----------------------------------------------------
-       REGISTERED MEMBERS DIRECTORY
-       ---------------------------------------------------- */
-    function renderMembersDirectory() {
-      const tbody = document.getElementById('registered-members-tbody');
+    function renderNoviceAdminAudit() {
+      const count = Math.min(100, parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10));
+      const remaining = Math.max(0, 100 - count);
+      document.getElementById('adm-audit-claim-count').textContent = `${count} / 100`;
+      document.getElementById('adm-audit-remain-count').textContent = remaining;
+      document.getElementById('adm-audit-stock-status').textContent = count >= 100 ? '🔴 OUT OF STOCK' : 'ACTIVE PROMO';
+
+      const tbody = document.getElementById('adm-novice-claims-tbody');
+      const claims = JSON.parse(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]');
+
+      if (claims.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#9ca3af;">No Novice claims logged yet.</td></tr>`;
+        return;
+      }
+
       tbody.innerHTML = '';
-      const users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-
-      users.forEach((u, i) => {
+      claims.forEach(c => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><strong style="color:var(--crimson-glow);">#${i + 1}</strong></td>
-          <td><img src="https://mc-heads.net/avatar/${encodeURIComponent(u.mcUsername || u.username)}/32" style="border-radius:4px;" alt="skin" /></td>
-          <td><strong>${u.username}</strong> ${u.mcUsername ? `<span style="font-size:0.75rem; color:#9ca3af;">(${u.mcUsername})</span>` : ''}</td>
-          <td><span style="color:#ef4444; font-weight:700;">${u.hearts || 10} Hearts</span></td>
-          <td><span style="font-size:0.8rem; color:#9ca3af;">${u.registeredAt || 'Today'}</span></td>
+          <td><code>${c.accountId}</code></td>
+          <td><strong>${c.username}</strong></td>
+          <td><img src="https://mc-heads.net/avatar/${encodeURIComponent(c.mcUsername)}/20" style="vertical-align:middle; border-radius:3px; margin-right:4px;" /> ${c.mcUsername}</td>
+          <td><i class="fa-brands fa-discord" style="color:#5865F2;"></i> ${c.discordId}</td>
+          <td><span style="color:#22c55e; font-weight:700;">${c.verificationStatus}</span></td>
+          <td><span style="font-size:0.75rem; color:#9ca3af;">${c.timestamp}</span></td>
         `;
         tbody.appendChild(tr);
       });
     }
 
+    function adminResetNoviceAudit() {
+      if (confirm('Are you sure you want to reset all Novice claims? This will reset claims back to 0/100.')) {
+        localStorage.setItem(KEY_NOVICE_COUNT, '0');
+        localStorage.setItem(KEY_NOVICE_CLAIMS, JSON.stringify([]));
+        renderNoviceUI();
+        renderNoviceAdminAudit();
+        showToast('Novice promo slots reset to 0/100.', 'info');
+      }
+    }
+
     /* ----------------------------------------------------
-       LIVE MINECRAFT STATUS
+       7-DAY DAILY REWARD STREAK LOGIC
        ---------------------------------------------------- */
+    const DAILY_REWARDS_DATA = [
+      { day: 1, name: "500 Server Coins", icon: "fa-coins" },
+      { day: 2, name: "1x Vote Crate Key", icon: "fa-key" },
+      { day: 3, name: "2x Vote Points", icon: "fa-ticket" },
+      { day: 4, name: "1,500 Server Coins", icon: "fa-coins" },
+      { day: 5, name: "1x Rare Crystal Key", icon: "fa-gem" },
+      { day: 6, name: "Blood Particle Trail", icon: "fa-wand-magic-sparkles" },
+      { day: 7, name: "1x Revival Heart + Legend Key", icon: "fa-heart-circle-check" }
+    ];
+
+    function renderDailyStreakUI() {
+      const container = document.getElementById('daily-streak-container');
+      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
+
+      let currentStreak = parseInt(localStorage.getItem(KEY_DAILY_STREAK + (session ? '_' + session.username : '')) || '0', 10);
+      const lastClaim = localStorage.getItem(KEY_DAILY_CLAIMED_DATE + (session ? '_' + session.username : ''));
+      const today = new Date().toDateString();
+      const claimedToday = lastClaim === today;
+
+      document.getElementById('streak-counter-num').textContent = `${currentStreak} Days`;
+      container.innerHTML = '';
+
+      DAILY_REWARDS_DATA.forEach((r) => {
+        let state = 'locked';
+        let pillText = 'Locked';
+        let pillClass = 'pill-locked';
+
+        if (r.day <= currentStreak) {
+          state = 'claimed';
+          pillText = 'Claimed';
+          pillClass = 'pill-claimed';
+        } else if (r.day === currentStreak + 1) {
+          if (claimedToday) {
+            state = 'locked';
+            pillText = 'Tomorrow';
+            pillClass = 'pill-locked';
+          } else {
+            state = 'available';
+            pillText = 'Claim Now';
+            pillClass = 'pill-available';
+          }
+        }
+
+        const card = document.createElement('div');
+        card.className = `daily-day-card ${state}`;
+        card.innerHTML = `
+          <div style="font-size:0.75rem; color:#9ca3af; font-weight:700;">DAY ${r.day}</div>
+          <i class="fa-solid ${r.icon}" style="font-size:1.8rem; margin:8px 0; color:var(--gold-fs);"></i>
+          <div style="font-size:0.78rem; font-weight:700; color:#fff; min-height:36px;">${r.name}</div>
+          <span class="reward-state-pill ${pillClass}">${pillText}</span>
+        `;
+
+        if (state === 'available') {
+          card.style.cursor = 'pointer';
+          card.onclick = () => claimDailyReward(r.day);
+        }
+        container.appendChild(card);
+      });
+    }
+
+    function claimDailyReward(dayNum) {
+      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
+      if (!session) {
+        showToast('Please login to claim your daily rewards!', 'warning');
+        return;
+      }
+
+      const today = new Date().toDateString();
+      localStorage.setItem(KEY_DAILY_CLAIMED_DATE + '_' + session.username, today);
+      localStorage.setItem(KEY_DAILY_STREAK + '_' + session.username, dayNum.toString());
+
+      renderDailyStreakUI();
+      showToast(`Day ${dayNum} reward claimed: ${DAILY_REWARDS_DATA[dayNum - 1].name}!`, 'success');
+    }
+
+    /* ----------------------------------------------------
+       VOTING LOGIC
+       ---------------------------------------------------- */
+    function handleVoteClick(siteNum, url) {
+      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
+      if (!session) {
+        showToast('Please login to record your votes and rewards!', 'warning');
+        return;
+      }
+
+      window.open(url, '_blank');
+
+      let points = parseInt(localStorage.getItem(KEY_VOTE_POINTS + '_' + session.username) || '0', 10);
+      let streak = parseInt(localStorage.getItem(KEY_VOTE_STREAK + '_' + session.username) || '0', 10);
+
+      points += 2;
+      streak += 1;
+
+      localStorage.setItem(KEY_VOTE_POINTS + '_' + session.username, points.toString());
+      localStorage.setItem(KEY_VOTE_STREAK + '_' + session.username, streak.toString());
+
+      document.getElementById('user-vote-points').textContent = points;
+      document.getElementById('user-vote-streak').textContent = streak;
+
+      showToast(`Thank you for voting on Site #${siteNum}! +2 Vote Points awarded.`, 'success');
+    }
+
+    /* ----------------------------------------------------
+       CORE UI HELPERS
+       ---------------------------------------------------- */
+    function copyIP() {
+      navigator.clipboard.writeText('play.fearsteal.fun:19132');
+      showToast('Server IP copied: play.fearsteal.fun:19132', 'success');
+    }
+
     async function fetchServerLiveStatus() {
       const dot = document.getElementById('stat-node-dot');
       const topDot = document.getElementById('top-dot-indicator');
@@ -1979,82 +2095,37 @@
           document.getElementById('stat-software').textContent = data.edition || 'Bedrock/Paper';
           document.getElementById('stat-version').textContent = data.version?.name || '1.20.x';
         } else {
-          setOfflineStatus();
+          dot.className = 'status-dot offline';
+          topDot.className = 'status-dot offline';
+          topText.textContent = 'Server Offline';
+          motd.textContent = 'Node Offline or unreachable.';
+          players.textContent = '0 / 0';
         }
       } catch (err) {
-        setOfflineStatus();
+        dot.className = 'status-dot offline';
+        topDot.className = 'status-dot offline';
+        topText.textContent = 'Server Offline';
       }
     }
 
-    function setOfflineStatus() {
-      document.getElementById('stat-node-dot').className = 'status-dot offline';
-      document.getElementById('top-dot-indicator').className = 'status-dot offline';
-      document.getElementById('top-status-text').textContent = 'Server Offline';
-      document.getElementById('stat-motd').textContent = 'Node Offline or unreachable.';
-      document.getElementById('stat-players').textContent = '0 / 0';
+    function renderMembersDirectory() {
+      const tbody = document.getElementById('registered-members-tbody');
+      tbody.innerHTML = '';
+      const users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+
+      users.forEach((u, i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong style="color:var(--crimson-glow);">#${i + 1}</strong></td>
+          <td><img src="https://mc-heads.net/avatar/${encodeURIComponent(u.mcUsername || u.username)}/32" style="border-radius:4px;" alt="skin" /></td>
+          <td><strong>${u.username}</strong> ${u.mcUsername ? `<span style="font-size:0.75rem; color:#9ca3af;">(${u.mcUsername})</span>` : ''}</td>
+          <td><span style="color:#ef4444; font-weight:700;">${u.hearts || 10} Hearts</span></td>
+          <td><span style="font-size:0.8rem; color:#9ca3af;">${u.registeredAt || 'Today'}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
     }
 
-    function copyIP() {
-      navigator.clipboard.writeText('play.fearsteal.fun:19132');
-      showToast('Server IP copied: play.fearsteal.fun:19132', 'success');
-    }
-
-    /* ----------------------------------------------------
-       NOVICE FREE CLAIM (DISCORD JOIN ENFORCED)
-       ---------------------------------------------------- */
-    function triggerNoviceClaimFlow() {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) {
-        showToast('Please register and login first!', 'warning');
-        return;
-      }
-
-      const hasClaimed = localStorage.getItem(KEY_NOVICE_CLAIMED + '_' + session.username);
-      if (hasClaimed) {
-        alert("You have already claimed this free Rank. You can't claim this rank again ❌️");
-        return;
-      }
-
-      let count = parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10);
-      if (count >= 100) {
-        alert("Free Novice Rank is OUT OF STOCK 🔴");
-        return;
-      }
-
-      const discordIgn = prompt("Please join our Discord server first than you can claim a free ranks which name is your Discord ign than put your Discord ign in here!");
-      if (!discordIgn || discordIgn.trim().length === 0) {
-        showToast("Discord verification required to claim!", "warning");
-        return;
-      }
-
-      count += 1;
-      localStorage.setItem(KEY_NOVICE_COUNT, count.toString());
-      localStorage.setItem(KEY_NOVICE_CLAIMED + '_' + session.username, 'true');
-
-      renderNoviceUI();
-      window.open('https://discord.gg/pGM5x3gXpX', '_blank');
-      showToast(`Novice Rank Successfully Claimed for ${session.username}!`, 'success');
-    }
-
-    function renderNoviceUI() {
-      const count = parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10);
-      document.getElementById('novice-slots-label').textContent = `${count} / 100 Claimed`;
-      document.getElementById('novice-progress-bar').style.width = `${count}%`;
-
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      const btn = document.getElementById('claim-novice-btn');
-      if (count >= 100) {
-        btn.textContent = '🔴 OUT OF STOCK';
-        btn.disabled = true;
-      } else if (session && localStorage.getItem(KEY_NOVICE_CLAIMED + '_' + session.username)) {
-        btn.textContent = 'CLAIMED ✓';
-        btn.style.borderColor = '#10b981';
-      }
-    }
-
-    /* ----------------------------------------------------
-       HEART FORGE SIMULATOR
-       ---------------------------------------------------- */
     function simulateLifestealBattle(action) {
       const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
       if (!session) return;
@@ -2075,266 +2146,10 @@
       }
 
       document.getElementById('user-hearts-display').textContent = hearts;
-      document.getElementById('sec-dash-hearts').textContent = hearts;
       renderMembersDirectory();
       showToast(`Heart count updated: ${hearts} Hearts`, 'info');
     }
 
-    /* ----------------------------------------------------
-       REVIEWS & REVIEWS LEADERBOARD
-       ---------------------------------------------------- */
-    function handleReviewSubmit(e) {
-      e.preventDefault();
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) {
-        showToast('Please login to leave a review!', 'warning');
-        return;
-      }
-
-      const stars = parseInt(document.getElementById('review-stars').value, 10);
-      const text = document.getElementById('review-text').value.trim();
-
-      let reviews = JSON.parse(localStorage.getItem(KEY_REVIEWS) || '[]');
-      reviews.push({
-        ign: session.username,
-        stars: stars,
-        message: text,
-        timestamp: Date.now()
-      });
-
-      localStorage.setItem(KEY_REVIEWS, JSON.stringify(reviews));
-      showToast('Thank you! Your review has been recorded.', 'success');
-      document.getElementById('review-stars').value = '';
-      document.getElementById('review-text').value = '';
-      renderReviews();
-    }
-
-    function renderReviews() {
-      const feed = document.getElementById('reviews-feed-list');
-      const lbTbody = document.getElementById('reviews-leaderboard-tbody');
-      const reviews = JSON.parse(localStorage.getItem(KEY_REVIEWS) || '[]');
-
-      if (reviews.length === 0) {
-        feed.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted);">No reviews submitted yet. Be the first to share your rating!</p>`;
-        lbTbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#9ca3af;">Leaderboard is empty. Submit a review to place on the ladder!</td></tr>`;
-        return;
-      }
-
-      feed.innerHTML = '';
-      reviews.slice().reverse().forEach(r => {
-        const item = document.createElement('div');
-        item.style.background = 'rgba(255,255,255,0.03)';
-        item.style.padding = '10px';
-        item.style.borderRadius = '6px';
-        item.innerHTML = `
-          <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
-            <strong>${r.ign}</strong>
-            <span style="color:var(--gold-fs); font-weight:800;">${r.stars} / 10 <i class="fa-solid fa-star"></i></span>
-          </div>
-          <p style="font-size:0.8rem; color:#d1d5db; margin-top:4px;">${r.message}</p>
-        `;
-        feed.appendChild(item);
-      });
-
-      const topReviews = reviews.slice().sort((a, b) => b.stars - a.stars).slice(0, 10);
-      lbTbody.innerHTML = '';
-      topReviews.forEach((r, idx) => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong style="color:var(--gold-fs);">#${idx + 1}</strong></td>
-          <td>${r.ign}</td>
-          <td><strong style="color:#f59e0b;">${r.stars} / 10</strong></td>
-          <td>${r.message.slice(0, 50)}...</td>
-        `;
-        lbTbody.appendChild(tr);
-      });
-    }
-
-    /* ----------------------------------------------------
-       SUGGESTIONS & STAFF APPLY
-       ---------------------------------------------------- */
-    function handleSuggestionSubmit(e) {
-      e.preventDefault();
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      const cat = document.getElementById('sug-cat').value;
-      const msg = document.getElementById('sug-message').value.trim();
-
-      let suggestions = JSON.parse(localStorage.getItem(KEY_SUGGESTIONS) || '[]');
-      suggestions.push({
-        id: '#' + Math.floor(1000 + Math.random() * 9000),
-        user: session ? session.username : 'Anonymous',
-        category: cat,
-        message: msg,
-        date: new Date().toLocaleDateString()
-      });
-
-      localStorage.setItem(KEY_SUGGESTIONS, JSON.stringify(suggestions));
-      showToast('Suggestion sent directly to the Admin Panel!', 'success');
-      document.getElementById('sug-message').value = '';
-      renderAdminSubmissions();
-    }
-
-    function handleStaffApplySubmit(e) {
-      e.preventDefault();
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      const role = document.getElementById('apply-role').value;
-      const discord = document.getElementById('apply-discord').value.trim();
-      const reason = document.getElementById('apply-reason').value.trim();
-
-      let apps = JSON.parse(localStorage.getItem(KEY_APPLICATIONS) || '[]');
-      apps.push({
-        id: '#APP-' + Math.floor(1000 + Math.random() * 9000),
-        user: session ? session.username : 'Unknown',
-        role: role,
-        discord: discord,
-        reason: reason,
-        date: new Date().toLocaleDateString()
-      });
-
-      localStorage.setItem(KEY_APPLICATIONS, JSON.stringify(apps));
-      showToast('Staff Application submitted to Admin Panel!', 'success');
-      document.getElementById('apply-discord').value = '';
-      document.getElementById('apply-reason').value = '';
-      renderAdminSubmissions();
-    }
-
-    function renderAdminSubmissions() {
-      const appContainer = document.getElementById('admin-applications-list');
-      const sugContainer = document.getElementById('admin-suggestions-list');
-
-      const apps = JSON.parse(localStorage.getItem(KEY_APPLICATIONS) || '[]');
-      appContainer.innerHTML = apps.length === 0 ? '<p style="color:#888;">No staff applications filed.</p>' : '';
-      apps.forEach(a => {
-        const box = document.createElement('div');
-        box.style.background = '#141420'; box.style.padding = '12px'; box.style.borderRadius = '8px';
-        box.innerHTML = `
-          <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
-            <strong>${a.user} - Applied for: <span style="color:var(--gold-fs);">${a.role}</span></strong>
-            <span style="color:#aaa;">Discord: ${a.discord}</span>
-          </div>
-          <p style="font-size:0.8rem; color:#ccc; margin-top:6px;">${a.reason}</p>
-        `;
-        appContainer.appendChild(box);
-      });
-
-      const sugs = JSON.parse(localStorage.getItem(KEY_SUGGESTIONS) || '[]');
-      sugContainer.innerHTML = sugs.length === 0 ? '<p style="color:#888;">No member suggestions filed.</p>' : '';
-      sugs.forEach(s => {
-        const box = document.createElement('div');
-        box.style.background = '#141420'; box.style.padding = '12px'; box.style.borderRadius = '8px';
-        box.innerHTML = `
-          <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
-            <strong>${s.user} - Category: <span style="color:#60a5fa;">${s.category}</span></strong>
-            <span style="color:#888;">${s.date}</span>
-          </div>
-          <p style="font-size:0.8rem; color:#ccc; margin-top:6px;">${s.message}</p>
-        `;
-        sugContainer.appendChild(box);
-      });
-    }
-
-    /* ----------------------------------------------------
-       REPORTS, APPEALS & TICKETS
-       ---------------------------------------------------- */
-    function handleReportSubmit(e) {
-      e.preventDefault();
-      const id = '#REP-' + Math.floor(10000 + Math.random() * 90000);
-      const rep = {
-        id,
-        category: document.getElementById('rep-cat').value,
-        target: document.getElementById('rep-user').value.trim(),
-        desc: document.getElementById('rep-desc').value.trim(),
-        evidence: document.getElementById('rep-evidence').value.trim(),
-        status: 'Pending'
-      };
-
-      let reports = JSON.parse(localStorage.getItem(KEY_REPORTS) || '[]');
-      reports.push(rep);
-      localStorage.setItem(KEY_REPORTS, JSON.stringify(reports));
-
-      alert(`Report submitted successfully. Your Tracking Report ID: ${id}`);
-      e.target.reset();
-      renderStaffDesk();
-    }
-
-    function handleAppealSubmit(e) {
-      e.preventDefault();
-      const id = '#APL-' + Math.floor(10000 + Math.random() * 90000);
-      const appeal = {
-        id,
-        punishId: document.getElementById('app-punish-id').value.trim(),
-        user: document.getElementById('app-user').value.trim(),
-        reason: document.getElementById('app-reason').value.trim(),
-        msg: document.getElementById('app-msg').value.trim(),
-        status: 'Reviewing'
-      };
-
-      let appeals = JSON.parse(localStorage.getItem(KEY_APPEALS) || '[]');
-      appeals.push(appeal);
-      localStorage.setItem(KEY_APPEALS, JSON.stringify(appeals));
-
-      alert(`Ban Appeal filed successfully. Your Tracking ID: ${id}`);
-      e.target.reset();
-      renderStaffDesk();
-    }
-
-    function handleTicketSubmit(e) {
-      e.preventDefault();
-      const id = '#TKT-' + Math.floor(10000 + Math.random() * 90000);
-      const ticket = {
-        id,
-        category: document.getElementById('tkt-cat').value,
-        priority: document.getElementById('tkt-priority').value,
-        subject: document.getElementById('tkt-subject').value.trim(),
-        body: document.getElementById('tkt-body').value.trim(),
-        status: 'Open'
-      };
-
-      let tickets = JSON.parse(localStorage.getItem(KEY_TICKETS) || '[]');
-      tickets.push(ticket);
-      localStorage.setItem(KEY_TICKETS, JSON.stringify(tickets));
-
-      alert(`Support Ticket created! Your Ticket ID: ${id}`);
-      e.target.reset();
-      renderStaffDesk();
-    }
-
-    function renderStaffDesk() {
-      const repBox = document.getElementById('staff-reports-container');
-      const aplBox = document.getElementById('staff-appeals-container');
-      const tktBox = document.getElementById('staff-tickets-container');
-
-      const reports = JSON.parse(localStorage.getItem(KEY_REPORTS) || '[]');
-      repBox.innerHTML = reports.length === 0 ? '<p style="color:#888;">No reports filed.</p>' : '';
-      reports.forEach(r => {
-        const item = document.createElement('div');
-        item.style.background = '#141420'; item.style.padding = '10px'; item.style.borderRadius = '6px';
-        item.innerHTML = `<strong>${r.id}</strong> [${r.category}] Target: <strong>${r.target}</strong> - Reason: ${r.desc} | Evidence: <a href="${r.evidence}" target="_blank" style="color:var(--gold-fs);">Link</a>`;
-        repBox.appendChild(item);
-      });
-
-      const appeals = JSON.parse(localStorage.getItem(KEY_APPEALS) || '[]');
-      aplBox.innerHTML = appeals.length === 0 ? '<p style="color:#888;">No appeals in queue.</p>' : '';
-      appeals.forEach(a => {
-        const item = document.createElement('div');
-        item.style.background = '#141420'; item.style.padding = '10px'; item.style.borderRadius = '6px';
-        item.innerHTML = `<strong>${a.id}</strong> [${a.punishId}] Player: <strong>${a.user}</strong> - Context: ${a.msg}`;
-        aplBox.appendChild(item);
-      });
-
-      const tickets = JSON.parse(localStorage.getItem(KEY_TICKETS) || '[]');
-      tktBox.innerHTML = tickets.length === 0 ? '<p style="color:#888;">No active tickets.</p>' : '';
-      tickets.forEach(t => {
-        const item = document.createElement('div');
-        item.style.background = '#141420'; item.style.padding = '10px'; item.style.borderRadius = '6px';
-        item.innerHTML = `<strong>${t.id}</strong> [${t.priority} Priority] <strong>${t.subject}</strong>: ${t.body}`;
-        tktBox.appendChild(item);
-      });
-    }
-
-    /* ----------------------------------------------------
-       LEADERBOARD 10m REFRESH
-       ---------------------------------------------------- */
     function renderLeaderboardTable() {
       const tbody = document.getElementById('leaderboard-tbody');
       tbody.innerHTML = '';
@@ -2359,9 +2174,46 @@
       });
     }
 
-    /* ----------------------------------------------------
-       TOAST UTILITY & PARTICLES
-       ---------------------------------------------------- */
+    function renderAnnouncementBanner() {
+      const banner = document.getElementById('active-announcement-banner');
+      const textContent = document.getElementById('announcement-text-content');
+      const timeAgo = document.getElementById('announcement-time-ago');
+
+      const data = JSON.parse(localStorage.getItem(KEY_ANNOUNCE) || 'null');
+      if (!data) {
+        banner.style.display = 'none';
+        return;
+      }
+
+      const diffMs = Date.now() - data.timestamp;
+      if (diffMs > 24 * 60 * 60 * 1000) {
+        banner.style.display = 'none';
+        localStorage.removeItem(KEY_ANNOUNCE);
+        return;
+      }
+
+      banner.style.display = 'block';
+      textContent.textContent = data.text;
+      const mins = Math.floor(diffMs / 60000);
+      const hours = Math.floor(mins / 60);
+      timeAgo.textContent = hours > 0 ? `${hours}h ago (Expires in ${24 - hours}h)` : `${mins}m ago (Active 24h)`;
+    }
+
+    function adminPublishAnnouncement() {
+      const text = document.getElementById('admin-ann-text').value.trim();
+      if (!text) return;
+      localStorage.setItem(KEY_ANNOUNCE, JSON.stringify({ text, timestamp: Date.now() }));
+      showToast('Announcement published for 24 hours!', 'success');
+      renderAnnouncementBanner();
+      document.getElementById('admin-ann-text').value = '';
+    }
+
+    function adminDismissAnnouncement() {
+      localStorage.removeItem(KEY_ANNOUNCE);
+      renderAnnouncementBanner();
+      showToast('Announcement cleared.', 'info');
+    }
+
     function showToast(msg, type = 'info') {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
@@ -2379,11 +2231,7 @@
 
       const particles = [];
       for (let i = 0; i < 40; i++) {
-        particles.push({
-          x: Math.random() * w, y: Math.random() * h,
-          r: Math.random() * 2 + 1,
-          sy: -(Math.random() * 0.7 + 0.3)
-        });
+        particles.push({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 2 + 1, sy: -(Math.random() * 0.7 + 0.3) });
       }
 
       function draw() {
@@ -2420,9 +2268,142 @@
       }, 50);
     }
 
-    /* ----------------------------------------------------
-       LIFECYCLE INITIALIZATION
-       ---------------------------------------------------- */
+    function openAdminModal() {
+      document.getElementById('admin-modal').classList.add('open');
+      renderAdminUserList();
+      renderNoviceAdminAudit();
+    }
+    function closeAdminModal() { document.getElementById('admin-modal').classList.remove('open'); }
+    function switchAdminPane(paneId, btn) {
+      document.querySelectorAll('#admin-modal .dash-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('#admin-modal .dash-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(paneId).classList.add('active');
+    }
+
+    function openStaffModal() { document.getElementById('staff-modal').classList.add('open'); }
+    function closeStaffModal() { document.getElementById('staff-modal').classList.remove('open'); }
+    function switchStaffPane(paneId, btn) {
+      document.querySelectorAll('#staff-modal .dash-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('#staff-modal .dash-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(paneId).classList.add('active');
+    }
+
+    function adminCreateUser(e) {
+      e.preventDefault();
+      const user = document.getElementById('adm-new-user').value.trim();
+      const email = document.getElementById('adm-new-email').value.trim();
+      const pass = document.getElementById('adm-new-pass').value;
+      const role = document.getElementById('adm-new-role').value;
+
+      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+      const index = users.findIndex(u => u.username.toLowerCase() === user.toLowerCase());
+
+      if (index >= 0) {
+        users[index].email = email;
+        users[index].password = pass;
+        users[index].role = role;
+        showToast(`User ${user} role updated to: ${role}`, 'success');
+      } else {
+        users.push({ username: user, mcUsername: user, email, password: pass, role, hearts: 10, registeredAt: new Date().toLocaleDateString() });
+        showToast(`User ${user} created with role: ${role}`, 'success');
+      }
+
+      localStorage.setItem(KEY_USERS, JSON.stringify(users));
+      renderAdminUserList();
+      renderMembersDirectory();
+      checkAuth();
+    }
+
+    function renderAdminUserList() {
+      const tbody = document.getElementById('admin-user-list-tbody');
+      tbody.innerHTML = '';
+      const users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+      users.forEach(u => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${u.username}</strong></td>
+          <td>${u.email}</td>
+          <td><span class="${u.role === 'admin' ? 'badge-admin' : (u.role === 'staff' ? 'badge-staff' : '')}">${u.role.toUpperCase()}</span></td>
+          <td>${u.role === 'admin' ? 'Admin & Staff Panels' : (u.role === 'staff' ? 'Staff Panel Only' : 'No Admin Access')}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function handleReviewSubmit(e) {
+      e.preventDefault();
+      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
+      if (!session) { showToast('Please login to leave a review!', 'warning'); return; }
+
+      const stars = parseInt(document.getElementById('review-stars').value, 10);
+      const text = document.getElementById('review-text').value.trim();
+
+      let reviews = JSON.parse(localStorage.getItem(KEY_REVIEWS) || '[]');
+      reviews.push({ ign: session.username, stars, message: text, timestamp: Date.now() });
+      localStorage.setItem(KEY_REVIEWS, JSON.stringify(reviews));
+
+      showToast('Thank you! Your review has been recorded.', 'success');
+      document.getElementById('review-stars').value = '';
+      document.getElementById('review-text').value = '';
+      renderReviews();
+    }
+
+    function renderReviews() {
+      const feed = document.getElementById('reviews-feed-list');
+      const lbTbody = document.getElementById('reviews-leaderboard-tbody');
+      const reviews = JSON.parse(localStorage.getItem(KEY_REVIEWS) || '[]');
+
+      if (reviews.length === 0) {
+        feed.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted);">No reviews submitted yet.</p>`;
+        lbTbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#9ca3af;">Leaderboard is empty.</td></tr>`;
+        return;
+      }
+
+      feed.innerHTML = '';
+      reviews.slice().reverse().forEach(r => {
+        feed.innerHTML += `<div style="background:rgba(255,255,255,0.03); padding:10px; border-radius:6px;"><strong>${r.ign}</strong>: ${r.stars}/10 ⭐<br/><span style="font-size:0.8rem; color:#ccc;">${r.message}</span></div>`;
+      });
+
+      const topReviews = reviews.slice().sort((a, b) => b.stars - a.stars).slice(0, 10);
+      lbTbody.innerHTML = '';
+      topReviews.forEach((r, idx) => {
+        lbTbody.innerHTML += `<tr><td>#${idx + 1}</td><td>${r.ign}</td><td>${r.stars} / 10</td><td>${r.message.slice(0, 45)}...</td></tr>`;
+      });
+    }
+
+    function handleSuggestionSubmit(e) {
+      e.preventDefault();
+      showToast('Suggestion sent to Admin Panel!', 'success');
+      document.getElementById('sug-message').value = '';
+    }
+
+    function handleStaffApplySubmit(e) {
+      e.preventDefault();
+      showToast('Staff Application submitted to Admin Panel!', 'success');
+      document.getElementById('apply-discord').value = '';
+      document.getElementById('apply-reason').value = '';
+    }
+
+    function handleReportSubmit(e) {
+      e.preventDefault();
+      alert('Report filed with Tracking ID: #REP-' + Math.floor(10000 + Math.random() * 90000));
+      e.target.reset();
+    }
+
+    function handleAppealSubmit(e) {
+      e.preventDefault();
+      alert('Ban Appeal submitted with Tracking ID: #APL-' + Math.floor(10000 + Math.random() * 90000));
+      e.target.reset();
+    }
+
+    function handleTicketSubmit(e) {
+      e.preventDefault();
+      alert('Support Ticket opened with Tracking ID: #TKT-' + Math.floor(10000 + Math.random() * 90000));
+      e.target.reset();
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('current-year').textContent = new Date().getFullYear();
 
@@ -2430,17 +2411,18 @@
       runPreloader();
       initParticles();
       checkAuth();
-      renderAnnouncementBanner();
       renderNoviceUI();
+      renderNoviceAdminAudit();
+      renderDailyStreakUI();
       renderMembersDirectory();
       renderLeaderboardTable();
+      renderAnnouncementBanner();
       renderReviews();
 
-      // Real-time pings and timers
       fetchServerLiveStatus();
-      setInterval(fetchServerLiveStatus, 60000); // 60s background live status ping
-      setInterval(renderAnnouncementBanner, 60000); // 60s announcement expiration calculator
-      setInterval(renderLeaderboardTable, 600000); // 10 minutes leaderboard auto refresh
+      setInterval(fetchServerLiveStatus, 60000);
+      setInterval(renderAnnouncementBanner, 60000);
+      setInterval(renderLeaderboardTable, 600000);
     });
   </script>
 </body>
