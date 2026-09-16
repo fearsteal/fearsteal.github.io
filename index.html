@@ -4,10 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home | FearSteal</title>
-  <meta name="description" content="FearSteal LifeSteal Network - Steal Hearts, Build Power, Survive. Java & Bedrock play.fearsteal.fun:19132" />
-  <meta name="theme-color" content="#FF0000" />
+  <meta name="description" content="FearSteal - The premier Minecraft LifeSteal network featuring competitive PvP, dynamic events, real-time live server tracking, custom ranks, and a vibrant community." />
+  <meta name="theme-color" content="#dc2626" />
 
-  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Rajdhani:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -35,7 +34,7 @@
       --font-title: 'Cinzel', serif;
       --font-body: 'Inter', sans-serif;
       --radius: 14px;
-      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
       --rarity-common: #94a3b8;
       --rarity-rare: #3b82f6;
@@ -107,10 +106,9 @@
     .btn-gold { background: linear-gradient(135deg, #b45309, #f59e0b, #fbbf24); color: #000; font-weight: 900; }
     .btn-gold:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 0 20px rgba(245, 158, 11, 0.5); }
     .btn-discord { background: linear-gradient(135deg, #4f46e5, #5865F2); color: #fff; }
-    .btn-discord:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
     .glass-card {
-      background: rgba(12, 12, 18, 0.85);
+      background: rgba(12, 12, 18, 0.88);
       border: 1px solid var(--border-color);
       backdrop-filter: blur(16px);
       border-radius: var(--radius);
@@ -124,11 +122,10 @@
     .section-title { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; color: #ffffff; }
     .section-title-wrap::after { content: ''; display: block; width: 70px; height: 3px; background: linear-gradient(90deg, transparent, var(--crimson-glow), transparent); margin: 12px auto 0; }
 
-    /* PRELOADER STYLES */
     #site-loader {
       position: fixed; inset: 0; background: #020204; z-index: 9999999;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      transition: opacity 0.6s cubic-bezier(0.8, 0, 0.2, 1), visibility 0.6s;
+      transition: opacity 0.5s cubic-bezier(0.8, 0, 0.2, 1), visibility 0.5s;
     }
     #site-loader.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
     .loader-ring-wrap { position: relative; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
@@ -137,9 +134,8 @@
     @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     @keyframes spinRingReverse { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
     .loader-bar-bg { width: 280px; height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 10px; overflow: hidden; margin-bottom: 12px; border: 1px solid rgba(220, 38, 38, 0.3); }
-    .loader-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #dc2626, #f59e0b, #ef4444); transition: width 0.1s linear; }
+    .loader-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #dc2626, #f59e0b, #ef4444); transition: width 0.08s linear; }
 
-    /* AUTHENTICATION GATEWAY */
     #auth-overlay {
       position: fixed; inset: 0;
       background: radial-gradient(circle at center, rgba(20, 6, 8, 0.98) 0%, rgba(2, 2, 4, 1) 100%);
@@ -186,7 +182,14 @@
       padding: 14px; border-radius: 8px; font-size: 0.82rem; color: #fca5a5; margin-bottom: 16px; line-height: 1.45;
     }
 
-    /* TOP BAR & NAVBAR */
+    #active-announcement-banner {
+      display: none; background: linear-gradient(90deg, #7f1d1d, #dc2626, #b45309);
+      color: #fff; padding: 10px 20px; font-weight: 700; font-size: 0.88rem; position: sticky; top: 0; z-index: 1001;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 4px 15px rgba(220, 38, 38, 0.5);
+    }
+    .announcement-flex { display: flex; justify-content: space-between; align-items: center; max-width: 1360px; margin: 0 auto; }
+    .announcement-time-badge { background: rgba(0, 0, 0, 0.35); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; color: var(--gold-fs); }
+
     .top-bar { background: rgba(4, 4, 6, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.82rem; padding: 6px 0; }
     .top-bar-inner { display: flex; justify-content: space-between; align-items: center; }
     header.main-nav-wrapper {
@@ -270,10 +273,9 @@
     #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 100000; display: flex; flex-direction: column; gap: 10px; }
     .toast { background: #12121c; border: 1px solid var(--border-bright); padding: 14px 20px; border-radius: 8px; color: #fff; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; min-width: 280px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
 
-    /* RANKS GRID */
-    .ranks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 25px; }
+    .ranks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; margin-top: 25px; }
     .rank-card {
-      background: rgba(14, 14, 22, 0.85);
+      background: rgba(14, 14, 22, 0.88);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 14px;
       padding: 24px;
@@ -316,7 +318,6 @@
     .rank-features { list-style: none; font-size: 0.85rem; color: #d1d5db; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; text-align: left; }
     .rank-features li { display: flex; align-items: center; gap: 8px; }
 
-    /* 30-DAY STREAK PANEL & CALENDAR */
     .streak-status-panel {
       background: rgba(14, 14, 22, 0.95);
       border: 1px solid var(--border-bright);
@@ -399,7 +400,6 @@
     .pill-claimed { background: rgba(34, 197, 94, 0.2); color: var(--green-online); }
     .pill-locked { background: rgba(156, 163, 175, 0.2); color: var(--text-muted); }
 
-    /* COIN SHOP */
     .coinshop-controls {
       display: flex;
       justify-content: space-between;
@@ -452,7 +452,6 @@
     .rarity-mythic { background: rgba(239, 68, 68, 0.2); color: var(--rarity-mythic); border: 1px solid var(--rarity-mythic); }
     .rarity-fear { background: linear-gradient(135deg, #b91c1c, #f59e0b); color: #fff; font-weight: 900; }
 
-    /* STAFF DIRECTORY SPECIFIC HIERARCHY */
     .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 25px; }
     .staff-card {
       background: rgba(14, 14, 22, 0.9);
@@ -483,7 +482,6 @@
 
     .staff-img-avatar { width: 80px; height: 80px; border-radius: 12px; margin-bottom: 12px; image-rendering: pixelated; }
 
-    /* QUIZ */
     .quiz-box { background: rgba(14, 14, 22, 0.9); border: 1px solid var(--gold-fs); border-radius: 16px; padding: 28px; }
     .quiz-option-btn {
       width: 100%; text-align: left; padding: 12px 18px; margin: 8px 0; border-radius: 8px;
@@ -491,13 +489,17 @@
       font-size: 0.92rem; font-family: var(--font-body); cursor: pointer; transition: var(--transition);
     }
     .quiz-option-btn:hover { background: rgba(255, 202, 24, 0.15); border-color: var(--gold-fs); }
+
+    .basket-item {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;
+      padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;
+    }
   </style>
 </head>
 <body>
 
   <canvas id="particles-canvas"></canvas>
 
-  <!-- 24-HOUR ANNOUNCEMENT BANNER -->
   <div id="active-announcement-banner">
     <div class="announcement-flex">
       <div>
@@ -510,7 +512,6 @@
     </div>
   </div>
 
-  <!-- FIXED PRELOADER SCREEN -->
   <div id="site-loader">
     <div class="loader-ring-wrap">
       <div class="loader-spinning-ring-outer"></div>
@@ -523,7 +524,6 @@
     <div style="font-family:var(--font-display); font-size:0.95rem; font-weight:800; color:var(--gold-fs); letter-spacing:2px;" id="loader-progress-text">LOADING REALM... 0%</div>
   </div>
 
-  <!-- AUTHENTICATION OVERLAY (STRICT ACCESS GATEWAY WITH ADMIN UPDATE EMAIL) -->
   <div id="auth-overlay">
     <div class="auth-card">
       <div style="text-align:center; margin-bottom:16px;">
@@ -547,11 +547,9 @@
         <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')"><i class="fa-solid fa-right-to-bracket"></i> LOGIN</button>
         <button class="auth-tab-btn" id="tab-register-btn" onclick="switchAuthTab('register')"><i class="fa-solid fa-user-plus"></i> REGISTER</button>
         <button class="auth-tab-btn" id="tab-forgot-btn" onclick="switchAuthTab('forgot')"><i class="fa-solid fa-key"></i> RECOVER</button>
-        <!-- EXCLUSIVE ADMIN ONLY: UPDATE EMAIL TAB -->
         <button class="auth-tab-btn admin-tab" id="tab-admin-email-btn" style="display:none;" onclick="switchAuthTab('admin-email')"><i class="fa-solid fa-shield-halved"></i> UPDATE EMAIL</button>
       </div>
 
-      <!-- LOGIN FORM -->
       <form id="login-form" onsubmit="handleLoginSubmit(event)">
         <div class="auth-form-group">
           <label>Email or Username</label>
@@ -585,7 +583,6 @@
         </button>
       </form>
 
-      <!-- REGISTER FORM (STRICT DOMAIN EMAIL ENFORCED) -->
       <form id="register-form" style="display:none;" onsubmit="handleRegisterSubmit(event)">
         <div class="form-grid-2">
           <div class="auth-form-group">
@@ -658,7 +655,6 @@
         </button>
       </form>
 
-      <!-- FORGOT PASSWORD FORM -->
       <form id="forgot-form" style="display:none;" onsubmit="handleForgotPasswordSubmit(event)">
         <div style="background:rgba(255,202,24,0.08); border:1px solid rgba(255,202,24,0.3); padding:10px; border-radius:6px; margin-bottom:14px; font-size:0.8rem; color:#fde68a;">
           <i class="fa-solid fa-circle-question"></i> Enter your registered Minecraft username or Email to reset your password.
@@ -699,7 +695,6 @@
         </button>
       </form>
 
-      <!-- EXCLUSIVE ADMIN ONLY: UPDATE USER EMAIL FORM -->
       <form id="admin-email-form" style="display:none;" onsubmit="handleAdminUpdateEmailSubmit(event)">
         <div style="background:rgba(220,38,38,0.15); border:1px solid var(--border-bright); padding:12px; border-radius:8px; margin-bottom:14px; font-size:0.82rem; color:#fca5a5;">
           <i class="fa-solid fa-crown" style="color:var(--gold-fs);"></i> <strong>Founder/Admin Control:</strong> Override any registered player's domain email.
@@ -732,7 +727,6 @@
     </div>
   </div>
 
-  <!-- TOP BAR -->
   <div class="top-bar">
     <div class="container top-bar-inner">
       <div>
@@ -747,7 +741,6 @@
     </div>
   </div>
 
-  <!-- HEADER NAVIGATION -->
   <header class="main-nav-wrapper">
     <div class="container nav-inner">
       <a href="#home" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
@@ -773,7 +766,6 @@
         <li class="nav-item"><a href="#appeals"><i class="fa-solid fa-gavel"></i> Appeal</a></li>
         <li class="nav-item"><a href="#support"><i class="fa-solid fa-headset"></i> Support</a></li>
 
-        <!-- DYNAMIC PANELS: STRICTLY VISIBLE BY EXACT ROLE -->
         <li class="nav-item" id="admin-nav-item" style="display:none;">
           <a href="#admin" onclick="openAdminModal(); return false;" style="background:linear-gradient(135deg,#b91c1c,#f59e0b); color:#fff; font-weight:800;">
             <i class="fa-solid fa-crown"></i> ADMIN PANEL
@@ -800,6 +792,7 @@
               <div style="font-size:0.75rem; color:var(--gold-fs);"><i class="fa-solid fa-coins"></i> <span id="drop-user-coins">0</span> Coins</div>
             </div>
             <a class="dropdown-item" onclick="openAccountSecurityModal('profile')"><i class="fa-solid fa-id-card"></i> Profile</a>
+            <a class="dropdown-item" onclick="openAccountSecurityModal('basket')"><i class="fa-solid fa-basket-shopping"></i> My Basket & Items</a>
             <a class="dropdown-item" onclick="openAccountSecurityModal('dashboard')"><i class="fa-solid fa-gauge"></i> Dashboard</a>
             <a class="dropdown-item" onclick="openAccountSecurityModal('notifications')"><i class="fa-solid fa-bell"></i> Notifications</a>
             <a class="dropdown-item" onclick="openAccountSecurityModal('settings')"><i class="fa-solid fa-sliders"></i> Settings</a>
@@ -812,29 +805,28 @@
     </div>
   </header>
 
-  <!-- USER ACCOUNT PROFILE & SECURITY MODAL -->
   <div class="dashboard-modal-overlay" id="account-security-modal">
     <div class="dash-box" style="max-width:920px; border-color:var(--gold-fs);">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
         <h3 style="color:var(--gold-fs); display:flex; align-items:center; gap:10px;">
-          <i class="fa-solid fa-shield-cat"></i> Account Profile & Security Center
+          <i class="fa-solid fa-shield-cat"></i> Account Profile & Locker
         </h3>
         <button class="btn btn-outline" onclick="closeAccountSecurityModal()" style="padding:6px 14px; font-size:0.8rem;">CLOSE</button>
       </div>
 
       <div class="dash-tabs">
         <button class="dash-tab-btn active" onclick="switchSecurityPane('sec-pane-profile', this)"><i class="fa-solid fa-user"></i> Profile</button>
+        <button class="dash-tab-btn" onclick="switchSecurityPane('sec-pane-basket', this)"><i class="fa-solid fa-basket-shopping"></i> Basket / Items</button>
         <button class="dash-tab-btn" onclick="switchSecurityPane('sec-pane-dashboard', this)"><i class="fa-solid fa-gauge"></i> Dashboard</button>
         <button class="dash-tab-btn" onclick="switchSecurityPane('sec-pane-notifications', this)"><i class="fa-solid fa-bell"></i> Notifications</button>
         <button class="dash-tab-btn" onclick="switchSecurityPane('sec-pane-settings', this)"><i class="fa-solid fa-sliders"></i> Settings</button>
         <button class="dash-tab-btn" onclick="switchSecurityPane('sec-pane-security', this)"><i class="fa-solid fa-lock"></i> Security</button>
       </div>
 
-      <!-- PANE 1: PROFILE -->
       <div class="dash-pane active" id="sec-pane-profile">
-        <div style="display:flex; gap:20px; align-items:center; background:rgba(255,255,255,0.03); padding:18px; border-radius:10px; flex-wrap:wrap;">
+        <div style="display:flex; gap:20px; align-items:center; background:rgba(255,255,255,0.03); padding:18px; border-radius:10px; flex-wrap:wrap; margin-bottom:18px;">
           <img id="sec-profile-avatar" src="https://mc-heads.net/avatar/Steve/80" style="border-radius:10px; border:2px solid var(--gold-fs);" alt="Head" />
-          <div>
+          <div style="flex:1;">
             <h3 id="sec-profile-username" style="color:#fff; margin-bottom:4px;">IGN</h3>
             <p style="font-size:0.85rem; color:#9ca3af;">Email: <span id="sec-profile-email">email@fearsteal.fun</span></p>
             <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
@@ -844,10 +836,30 @@
               </span>
             </div>
           </div>
+          <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:8px; border:1px solid #333; text-align:right;">
+            <label style="font-size:0.72rem; color:#9ca3af; display:block; margin-bottom:4px;">Select Display Currency</label>
+            <select id="user-currency-select" onchange="changeUserCurrency(this.value)" style="background:#08080c; color:#fff; border:1px solid var(--gold-fs); border-radius:4px; padding:4px 8px; font-size:0.8rem; font-weight:700;">
+              <option value="USD">USD ($)</option>
+              <option value="INR">INR (₹)</option>
+              <option value="NPR">NPR (रू)</option>
+              <option value="PKR">PKR (₨)</option>
+              <option value="BDT">BDT (৳)</option>
+            </select>
+            <div style="margin-top:6px; font-size:1.1rem; font-weight:900; color:var(--gold-fs);" id="sec-profile-converted-wealth">$0.00 USD</div>
+          </div>
         </div>
       </div>
 
-      <!-- PANE 2: DASHBOARD -->
+      <div class="dash-pane" id="sec-pane-basket">
+        <h4 style="color:#fff; margin-bottom:8px;"><i class="fa-solid fa-basket-shopping"></i> My Claimed Basket & Purchases</h4>
+        <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:16px;">
+          Take a screenshot of your item codes below and ping the server owner to claim delivery in-game!
+        </p>
+        <div id="user-basket-items-list">
+          <div style="font-size:0.85rem; color:#888;">No items in basket yet. Buy from CoinShop or activate ranks!</div>
+        </div>
+      </div>
+
       <div class="dash-pane" id="sec-pane-dashboard">
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px;">
           <div class="glass-card" style="text-align:center; padding:18px;">
@@ -868,7 +880,6 @@
         </div>
       </div>
 
-      <!-- PANE 3: NOTIFICATIONS -->
       <div class="dash-pane" id="sec-pane-notifications">
         <h4 style="color:#fff; margin-bottom:12px;">Notifications Feed</h4>
         <div id="user-notifications-list" style="display:flex; flex-direction:column; gap:10px;">
@@ -879,7 +890,6 @@
         </div>
       </div>
 
-      <!-- PANE 4: SETTINGS -->
       <div class="dash-pane" id="sec-pane-settings">
         <h4 style="color:#fff; margin-bottom:12px;">Account Credentials & Updates</h4>
         <div class="form-grid-2">
@@ -907,7 +917,6 @@
         </div>
       </div>
 
-      <!-- PANE 5: SECURITY -->
       <div class="dash-pane" id="sec-pane-security">
         <h4 style="color:#fff; margin-bottom:12px;">Two-Factor Authentication & Device Sessions</h4>
         <div style="background:rgba(255,255,255,0.03); padding:16px; border-radius:8px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center;">
@@ -927,7 +936,6 @@
     </div>
   </div>
 
-  <!-- ADMIN CONSOLE (FOUNDER EXCLUSIVE) -->
   <div class="dashboard-modal-overlay" id="admin-modal">
     <div class="dash-box">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
@@ -938,8 +946,10 @@
       </div>
 
       <div class="dash-tabs">
-        <button class="dash-tab-btn active" onclick="switchAdminPane('pane-users', this)"><i class="fa-solid fa-users-gear"></i> User & 17 Roles</button>
-        <button class="dash-tab-btn" onclick="switchAdminPane('pane-admin-lb', this)"><i class="fa-solid fa-trophy"></i> Leaderboard Manager</button>
+        <button class="dash-tab-btn active" onclick="switchAdminPane('pane-users', this)"><i class="fa-solid fa-users-gear"></i> Roles & Accounts</button>
+        <button class="dash-tab-btn" onclick="switchAdminPane('pane-coins-give', this)"><i class="fa-solid fa-hand-holding-dollar"></i> Give / Remove Coins</button>
+        <button class="dash-tab-btn" onclick="switchAdminPane('pane-coupons', this)"><i class="fa-solid fa-ticket"></i> Coupons & Discounts</button>
+        <button class="dash-tab-btn" onclick="switchAdminPane('pane-admin-lb', this)"><i class="fa-solid fa-trophy"></i> Leaderboards</button>
         <button class="dash-tab-btn" onclick="switchAdminPane('pane-admin-vote', this)"><i class="fa-solid fa-check-to-slot"></i> Vote Category</button>
         <button class="dash-tab-btn" onclick="switchAdminPane('pane-admin-streak', this)"><i class="fa-solid fa-calendar-days"></i> 30d Streak Config</button>
         <button class="dash-tab-btn" onclick="switchAdminPane('pane-admin-shop', this)"><i class="fa-solid fa-shop"></i> CoinShop Config</button>
@@ -947,10 +957,9 @@
         <button class="dash-tab-btn" onclick="switchAdminPane('pane-announce', this)"><i class="fa-solid fa-bullhorn"></i> 24h Announcements</button>
       </div>
 
-      <!-- PANE 1: ALL 17 ROLES ASSIGNMENT -->
       <div class="dash-pane active" id="pane-users">
         <h4 style="color:#fff; margin-bottom:10px;">Role Assignment & Account Provisioning</h4>
-        <form onsubmit="adminCreateUser(event)" style="background:rgba(255,255,255,0.03); padding:16px; border-radius:10px; margin-bottom:20px;">
+        <form id="admin-role-assign-form" onsubmit="adminCreateUser(event)" style="background:rgba(255,255,255,0.03); padding:16px; border-radius:10px; margin-bottom:20px;">
           <div class="form-grid-2">
             <div class="auth-form-group">
               <label>Username / IGN</label>
@@ -991,7 +1000,7 @@
             </div>
           </div>
           <button type="submit" class="btn btn-primary" style="padding:8px 18px;">
-            <i class="fa-solid fa-user-shield"></i> SAVE / ASSIGN ROLE
+            <i class="fa-solid fa-user-shield"></i> SAVE & ASSIGN ROLE
           </button>
         </form>
 
@@ -1009,7 +1018,54 @@
         </table>
       </div>
 
-      <!-- PANE 2: LEADERBOARD CATEGORY -->
+      <div class="dash-pane" id="pane-coins-give">
+        <h4 style="color:#fff; margin-bottom:10px;"><i class="fa-solid fa-coins" style="color:var(--gold-fs);"></i> Player Coins Grant & Deduct Console</h4>
+        <form onsubmit="handleAdminCoinsGiveOrRemove(event)" style="background:rgba(255,255,255,0.03); padding:16px; border-radius:10px; margin-bottom:16px;">
+          <div class="form-grid-2">
+            <div class="auth-form-group">
+              <label>Target Player Username</label>
+              <input type="text" id="adm-coin-target" placeholder="Exact IGN" style="width:100%; padding:9px; background:#050508; border:1px solid #333; color:#fff; border-radius:6px;" required />
+            </div>
+            <div class="auth-form-group">
+              <label>Action</label>
+              <select id="adm-coin-action" style="width:100%; padding:9px; background:#050508; border:1px solid #333; color:#fff; border-radius:6px;">
+                <option value="give">Give / Add Coins (+)</option>
+                <option value="remove">Remove / Deduct Coins (-)</option>
+              </select>
+            </div>
+          </div>
+          <div class="auth-form-group">
+            <label>Amount of Coins</label>
+            <input type="number" id="adm-coin-amount" min="1" placeholder="e.g. 5000" style="width:100%; padding:9px; background:#050508; border:1px solid #333; color:#fff; border-radius:6px;" required />
+          </div>
+          <button type="submit" class="btn btn-gold" style="padding:9px 20px;"><i class="fa-solid fa-check"></i> PROCESS COIN TRANSACTION</button>
+        </form>
+      </div>
+
+      <div class="dash-pane" id="pane-coupons">
+        <h4 style="color:#fff; margin-bottom:10px;"><i class="fa-solid fa-ticket" style="color:var(--gold-fs);"></i> Create Coupon & Discount Code</h4>
+        <form onsubmit="handleCreateCoupon(event)" style="background:rgba(255,255,255,0.03); padding:16px; border-radius:10px; margin-bottom:18px;">
+          <div class="form-grid-2">
+            <div class="auth-form-group">
+              <label>Coupon Code Name</label>
+              <input type="text" id="adm-coupon-code" placeholder="e.g. FEAR50 or VELTRIEX" style="width:100%; padding:9px; background:#050508; border:1px solid #333; color:#fff; border-radius:6px;" required />
+            </div>
+            <div class="auth-form-group">
+              <label>Discount Percentage (%)</label>
+              <input type="number" id="adm-coupon-pct" min="1" max="100" placeholder="e.g. 20" style="width:100%; padding:9px; background:#050508; border:1px solid #333; color:#fff; border-radius:6px;" required />
+            </div>
+          </div>
+          <div class="auth-form-group">
+            <label>Valid Duration (Days)</label>
+            <input type="number" id="adm-coupon-days" min="1" placeholder="e.g. 7 (Days active)" style="width:100%; padding:9px; background:#050508; border:1px solid #333; color:#fff; border-radius:6px;" required />
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> CREATE ACTIVE COUPON</button>
+        </form>
+
+        <h4 style="color:#fff; margin-bottom:8px;">Active Coupon Codes</h4>
+        <div id="admin-coupons-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+      </div>
+
       <div class="dash-pane" id="pane-admin-lb">
         <h4 style="color:#fff; margin-bottom:10px;">Leaderboard Manager</h4>
         <p style="font-size:0.85rem; color:#9ca3af; margin-bottom:16px;">
@@ -1018,7 +1074,6 @@
         <button class="btn btn-primary" onclick="renderRealLeaderboards()"><i class="fa-solid fa-arrows-rotate"></i> RE-SYNC REAL LEADERBOARDS NOW</button>
       </div>
 
-      <!-- PANE 3: VOTE CATEGORY (ADD, EDIT, SAVE, PUBLISHED / PRIVATE) -->
       <div class="dash-pane" id="pane-admin-vote">
         <h4 style="color:#fff; margin-bottom:10px;">Add & Manage Vote Sites</h4>
         <form onsubmit="handleSaveVoteConfig(event)" style="background:rgba(255,255,255,0.03); padding:16px; border-radius:10px; margin-bottom:14px;">
@@ -1052,7 +1107,6 @@
         <div id="admin-vote-sites-list" style="display:flex; flex-direction:column; gap:8px;"></div>
       </div>
 
-      <!-- PANE 4: 30-DAY STREAK CONFIGURATOR -->
       <div class="dash-pane" id="pane-admin-streak">
         <h4 style="color:#fff; margin-bottom:10px;">Edit 30-Day Streak Rewards</h4>
         <form onsubmit="handleAdminStreakUpdate(event)" style="background:rgba(255,255,255,0.03); padding:16px; border-radius:10px; margin-bottom:14px;">
@@ -1062,7 +1116,7 @@
               <input type="number" id="adm-streak-day" min="1" max="30" value="1" style="width:100%; padding:9px; background:#050508; border:1px solid #333; color:#fff; border-radius:6px;" required />
             </div>
             <div class="auth-form-group">
-              <label>Reward Name / Description</label>
+              <label>Reward Name</label>
               <input type="text" id="adm-streak-name" placeholder="e.g. 500 Coins + 1x Key" style="width:100%; padding:9px; background:#050508; border:1px solid #333; color:#fff; border-radius:6px;" required />
             </div>
           </div>
@@ -1080,7 +1134,6 @@
         </form>
       </div>
 
-      <!-- PANE 5: COINSHOP CONFIGURATOR -->
       <div class="dash-pane" id="pane-admin-shop">
         <h4 style="color:#fff; margin-bottom:10px;">Add / Edit Coin Shop Items</h4>
         <form onsubmit="handleAdminShopAdd(event)" style="background:rgba(255,255,255,0.03); padding:16px; border-radius:10px; margin-bottom:14px;">
@@ -1129,7 +1182,6 @@
         </form>
       </div>
 
-      <!-- PANE 6: NOVICE AUDIT -->
       <div class="dash-pane" id="pane-novice-admin">
         <h4 style="color:#fff; margin-bottom:10px;">Novice Claim Audit Log</h4>
         <table class="custom-table">
@@ -1147,7 +1199,6 @@
         </table>
       </div>
 
-      <!-- PANE 7: ANNOUNCEMENTS -->
       <div class="dash-pane" id="pane-announce">
         <h4 style="color:#fff; margin-bottom:10px;">Broadcast 24-Hour Notice</h4>
         <textarea id="admin-ann-text" rows="3" placeholder="Enter broadcast message..." style="width:100%; background:#000; border:1px solid #333; color:#fff; padding:10px; border-radius:8px; margin-bottom:12px;"></textarea>
@@ -1159,7 +1210,6 @@
     </div>
   </div>
 
-  <!-- STAFF ENFORCEMENT PANEL (STAFF ONLY) -->
   <div class="dashboard-modal-overlay" id="staff-modal">
     <div class="dash-box" style="border-color:#2563eb;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
@@ -1236,7 +1286,7 @@
             <button class="btn btn-outline" style="padding:6px 14px; font-size:0.8rem;" onclick="fetchServerLiveStatus()"><i class="fa-solid fa-rotate"></i> REFRESH NOW</button>
           </div>
 
-          <div id="stat-motd" style="background:#050508; padding:16px; border-radius:8px; border:1px dashed #333; font-family:monospace; margin-bottom:16px; color:#e2e8f0;">
+          <div id="stat-motd" style="background:#050508; padding:16px; border-radius:8px; border-1px dashed #333; font-family:monospace; margin-bottom:16px; color:#e2e8f0;">
             Checking server connection...
           </div>
 
@@ -1269,7 +1319,6 @@
       </div>
 
       <div class="ranks-grid">
-        <!-- NOVICE -->
         <div class="rank-card novice-card">
           <div>
             <span style="background:#2563eb; color:#fff; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:20px;">LIMITED PROMOTION</span>
@@ -1309,7 +1358,6 @@
           </div>
         </div>
 
-        <!-- LORD -->
         <div class="rank-card">
           <div>
             <h3 style="color:#cbd5e1; font-size:1.6rem;">LORD</h3>
@@ -1323,13 +1371,11 @@
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Rank-specific visuals</li>
             </ul>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%;">PURCHASE ($5)</a>
-            <button class="btn btn-gold" style="width:100%;" onclick="buyRankWithCoins('LORD', 10000, 30)">BUY FOR 10K COINS</button>
-          </div>
+          <button class="btn btn-primary" style="width:100%;" onclick="openRankPurchaseModal('LORD', 5, 10000, 30)">
+            <i class="fa-solid fa-cart-shopping"></i> PURCHASE RANK
+          </button>
         </div>
 
-        <!-- ELITE -->
         <div class="rank-card">
           <div>
             <h3 style="color:#f59e0b; font-size:1.6rem;">ELITE</h3>
@@ -1343,13 +1389,11 @@
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Configurable perks</li>
             </ul>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%;">PURCHASE ($8)</a>
-            <button class="btn btn-gold" style="width:100%;" onclick="buyRankWithCoins('ELITE', 30000, 15)">BUY FOR 30K COINS</button>
-          </div>
+          <button class="btn btn-primary" style="width:100%;" onclick="openRankPurchaseModal('ELITE', 8, 30000, 15)">
+            <i class="fa-solid fa-cart-shopping"></i> PURCHASE RANK
+          </button>
         </div>
 
-        <!-- ELITE+ -->
         <div class="rank-card">
           <div>
             <h3 style="color:#fbbf24; font-size:1.6rem;">ELITE+</h3>
@@ -1361,16 +1405,13 @@
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Enhanced profile</li>
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Premium cosmetics</li>
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Special visual effects</li>
-              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Configurable perks</li>
             </ul>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%;">PURCHASE ($10)</a>
-            <button class="btn btn-gold" style="width:100%;" onclick="buyRankWithCoins('ELITE+', 40000, 15)">BUY FOR 40K COINS</button>
-          </div>
+          <button class="btn btn-primary" style="width:100%;" onclick="openRankPurchaseModal('ELITE+', 10, 40000, 15)">
+            <i class="fa-solid fa-cart-shopping"></i> PURCHASE RANK
+          </button>
         </div>
 
-        <!-- KNIGHT -->
         <div class="rank-card">
           <div>
             <h3 style="color:#94a3b8; font-size:1.6rem;">KNIGHT</h3>
@@ -1384,13 +1425,11 @@
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Configurable perks</li>
             </ul>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%;">PURCHASE ($12)</a>
-            <button class="btn btn-gold" style="width:100%;" onclick="buyRankWithCoins('KNIGHT', 50000, 15)">BUY FOR 50K COINS</button>
-          </div>
+          <button class="btn btn-primary" style="width:100%;" onclick="openRankPurchaseModal('KNIGHT', 12, 50000, 15)">
+            <i class="fa-solid fa-cart-shopping"></i> PURCHASE RANK
+          </button>
         </div>
 
-        <!-- KING -->
         <div class="rank-card">
           <div>
             <h3 style="color:#eab308; font-size:1.6rem;">KING</h3>
@@ -1402,16 +1441,13 @@
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Special profile styling</li>
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Premium cosmetics</li>
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Configurable server perks</li>
-              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Special effects</li>
             </ul>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%;">PURCHASE ($15)</a>
-            <button class="btn btn-gold" style="width:100%;" onclick="buyRankWithCoins('KING', 60000, 15)">BUY FOR 60K COINS</button>
-          </div>
+          <button class="btn btn-primary" style="width:100%;" onclick="openRankPurchaseModal('KING', 15, 60000, 15)">
+            <i class="fa-solid fa-cart-shopping"></i> PURCHASE RANK
+          </button>
         </div>
 
-        <!-- PANTHOM -->
         <div class="rank-card panthom-card">
           <div>
             <span style="background:#7c3aed; color:#fff; font-size:0.75rem; font-weight:800; padding:2px 10px; border-radius:12px;">DARK PRESTIGE</span>
@@ -1424,16 +1460,13 @@
               <li><i class="fa-solid fa-check" style="color:#a78bfa;"></i> Premium badge</li>
               <li><i class="fa-solid fa-check" style="color:#a78bfa;"></i> Profile effects</li>
               <li><i class="fa-solid fa-check" style="color:#a78bfa;"></i> Exclusive cosmetics</li>
-              <li><i class="fa-solid fa-check" style="color:#a78bfa;"></i> Configurable perks</li>
             </ul>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%; border-color:#7c3aed; color:#c4b5fd;">PURCHASE ($20)</a>
-            <button class="btn btn-gold" style="width:100%;" onclick="buyRankWithCoins('PANTHOM', 80000, 20)">BUY FOR 80K COINS</button>
-          </div>
+          <button class="btn btn-primary" style="width:100%; background:#7c3aed;" onclick="openRankPurchaseModal('PANTHOM', 20, 80000, 20)">
+            <i class="fa-solid fa-cart-shopping"></i> PURCHASE RANK
+          </button>
         </div>
 
-        <!-- FEAR+ -->
         <div class="rank-card">
           <div>
             <h3 class="crimson-text" style="font-size:1.7rem;">FEAR+</h3>
@@ -1445,16 +1478,13 @@
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Enhanced profile</li>
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Exclusive cosmetics</li>
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Configurable server perks</li>
-              <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Special visual effects</li>
             </ul>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%; border-color:var(--crimson);">PURCHASE ($25)</a>
-            <button class="btn btn-gold" style="width:100%;" onclick="buyRankWithCoins('FEAR+', 100000, 30)">BUY FOR 100K COINS</button>
-          </div>
+          <button class="btn btn-primary" style="width:100%;" onclick="openRankPurchaseModal('FEAR+', 25, 100000, 30)">
+            <i class="fa-solid fa-cart-shopping"></i> PURCHASE RANK
+          </button>
         </div>
 
-        <!-- FEARSTEAL -->
         <div class="rank-card fearsteal-card">
           <div>
             <span style="background:linear-gradient(90deg,#dc2626,#f59e0b); color:#fff; font-size:0.75rem; font-weight:800; padding:3px 12px; border-radius:12px;">ULTIMATE PRESTIGE</span>
@@ -1467,15 +1497,11 @@
               <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Exclusive profile styling</li>
               <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Premium badge</li>
               <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Special cosmetics</li>
-              <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Configurable server perks</li>
-              <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Priority benefits</li>
-              <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Exclusive visual effects</li>
             </ul>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-primary" style="width:100%;">PURCHASE ($30)</a>
-            <button class="btn btn-gold" style="width:100%;" onclick="buyRankWithCoins('FEARSTEAL', 1200000, 30)">BUY FOR 1.2M COINS</button>
-          </div>
+          <button class="btn btn-primary" style="width:100%;" onclick="openRankPurchaseModal('FEARSTEAL', 30, 1200000, 30)">
+            <i class="fa-solid fa-cart-shopping"></i> PURCHASE RANK
+          </button>
         </div>
       </div>
     </div>
@@ -1564,7 +1590,7 @@
     </div>
   </section>
 
-  <!-- 6. 30-DAY DAILY REWARD STREAK WITH LIVE TICKING COOLDOWN -->
+  <!-- 6. 30-DAY DAILY REWARD STREAK -->
   <section id="daily-rewards" style="padding:80px 0;">
     <div class="container">
       <div class="section-title-wrap">
@@ -1984,7 +2010,6 @@
     </div>
   </section>
 
-  <!-- STAFF PROFILE MODAL -->
   <div class="dashboard-modal-overlay" id="staff-profile-modal">
     <div class="dash-box" style="max-width:560px; border-color:var(--gold-fs); text-align:center;">
       <div style="display:flex; justify-content:flex-end;">
@@ -2006,7 +2031,6 @@
     </div>
   </div>
 
-  <!-- PURCHASE CONFIRMATION MODAL -->
   <div class="dashboard-modal-overlay" id="purchase-confirm-modal">
     <div class="dash-box" style="max-width:480px; text-align:center;">
       <h3 style="color:var(--gold-fs); margin-bottom:12px;"><i class="fa-solid fa-cart-shopping"></i> Confirm Purchase?</h3>
@@ -2020,12 +2044,29 @@
 
       <div style="display:flex; justify-content:space-between; gap:12px;">
         <button class="btn btn-outline" style="flex:1;" onclick="closePurchaseConfirmModal()">CANCEL</button>
-        <button class="btn btn-primary" style="flex:1;" id="btn-execute-purchase">CONFIRM PURCHASE</button>
+        <button class="btn btn-primary" style="flex:1;" id="btn-execute-purchase" onclick="executeConfirmedPurchase()">CONFIRM PURCHASE</button>
       </div>
     </div>
   </div>
 
-  <!-- PURCHASE HISTORY MODAL -->
+  <div class="dashboard-modal-overlay" id="rank-choice-modal">
+    <div class="dash-box" style="max-width:500px; text-align:center;">
+      <h3 style="color:var(--gold-fs); margin-bottom:10px;"><i class="fa-solid fa-gem"></i> Rank Acquisition Choice</h3>
+      <div id="rank-choice-title" style="font-size:1.6rem; font-weight:900; color:#fff; margin-bottom:14px;">[RANK]</div>
+      <p style="font-size:0.85rem; color:#9ca3af; margin-bottom:20px;">Choose your preferred payment method:</p>
+
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <a id="rank-choice-store-btn" href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline" style="width:100%; border-color:var(--crimson-glow); padding:14px;">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> PURCHASE ON WEBSTORE (STORE.CRYZORMC.IN)
+        </a>
+        <button id="rank-choice-coin-btn" class="btn btn-gold" style="width:100%; padding:14px;" onclick="handleRankCoinBuyFromModal()">
+          <i class="fa-solid fa-coins"></i> BUY FOR 0 COINS
+        </button>
+        <button class="btn btn-outline" style="margin-top:8px;" onclick="closeRankChoiceModal()">CANCEL</button>
+      </div>
+    </div>
+  </div>
+
   <div class="dashboard-modal-overlay" id="purchase-history-modal">
     <div class="dash-box" style="max-width:800px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
@@ -2048,7 +2089,6 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer style="background:#020204; border-top:1px solid rgba(255,255,255,0.06); padding:40px 0; text-align:center; font-size:0.85rem; color:#6b7280;">
     <div class="container">
       <div style="margin-bottom:10px;">
@@ -2062,1017 +2102,118 @@
 
   <div id="toast-container"></div>
 
-  <!-- JAVASCRIPT ENGINE -->
   <script>
-    const FEARSTEAL_LOGO_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><linearGradient id="yg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fff275"/><stop offset="30%" stop-color="%23ffca18"/><stop offset="100%" stop-color="%23e58900"/></linearGradient><linearGradient id="rg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23c51010"/><stop offset="100%" stop-color="%23480000"/></linearGradient><linearGradient id="sd" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ff5050"/><stop offset="100%" stop-color="%237e0606"/></linearGradient></defs><g stroke="%23000" stroke-width="18" stroke-linejoin="miter"><path d="M 125 145 L 245 145 L 245 205 L 180 205 L 180 235 L 235 235 L 235 285 L 180 285 L 180 345 L 125 345 Z" fill="url(%23sd)"/><path d="M 110 135 L 235 135 L 235 190 L 170 190 L 170 225 L 225 225 L 225 275 L 170 275 L 170 340 L 110 340 Z" fill="url(%23yg)"/><path d="M 110 340 L 125 355 L 185 355 L 170 340 Z" fill="url(%23rg)"/><path d="M 235 135 L 250 150 L 250 205 L 235 190 Z" fill="url(%23rg)"/><path d="M 265 145 L 385 145 L 385 220 L 325 220 L 325 245 L 390 245 L 390 345 L 265 345 L 265 270 L 325 270 L 325 245 L 265 245 Z" fill="url(%23sd)"/><path d="M 252 135 L 375 135 L 375 205 L 315 205 L 315 235 L 380 235 L 380 340 L 252 340 L 252 260 L 315 260 L 315 235 L 252 235 Z" fill="url(%23yg)"/><path d="M 375 135 L 392 150 L 392 220 L 375 205 Z" fill="url(%23rg)"/><path d="M 380 235 L 398 250 L 398 355 L 380 340 Z" fill="url(%23rg)"/><path d="M 252 340 L 270 358 L 398 358 L 380 340 Z" fill="url(%23rg)"/></g></svg>`;
-    const STAFF_PLACEHOLDER_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a0507"/><path d="M50 20 A15 15 0 1 0 50 50 A15 15 0 1 0 50 20 Z M25 80 C25 65 35 60 50 60 C65 60 75 65 75 80 Z" fill="%23dc2626"/></svg>`;
-
-    document.querySelectorAll('.fs-asset-target').forEach(img => img.src = FEARSTEAL_LOGO_SVG);
-
-    const KEY_SESSION = 'fs_session_active';
-    const KEY_USERS = 'fs_registered_users';
-    const KEY_ANNOUNCE = 'fs_24h_announcement';
-    const KEY_NOVICE_COUNT = 'fs_novice_count_val';
-    const KEY_NOVICE_CLAIMS = 'fs_novice_claims_audit';
-    const KEY_NOVICE_START_TS = 'fs_novice_promo_start_ts';
-    const KEY_DAILY_STREAK = 'fs_daily_streak_val';
-    const KEY_DAILY_LONGEST = 'fs_daily_longest_streak';
-    const KEY_DAILY_CLAIM_TIMESTAMP = 'fs_daily_last_claim_ts';
-    const KEY_QUIZ_DAILY_COUNT = 'fs_quiz_daily_count_val';
-    const KEY_QUIZ_LAST_DATE = 'fs_quiz_last_date';
-    const KEY_REVIEWS = 'fs_reviews_data';
-    const KEY_SUGGESTIONS = 'fs_suggestions_data';
-    const KEY_APPLICATIONS = 'fs_applications_data';
-    const KEY_REPORTS = 'fs_reports_data';
-    const KEY_APPEALS = 'fs_appeals_data';
-    const KEY_TICKETS = 'fs_tickets_data';
-    const KEY_VOTE_CONFIG = 'fs_vote_custom_config';
-    const KEY_PURCHASE_HISTORY = 'fs_purchase_history_log';
-    const KEY_SHOP_ITEMS = 'fs_custom_coinshop_items';
-    const KEY_CUSTOM_STREAK_REWARDS = 'fs_custom_streak_rewards';
-
-    const OFFICIAL_STAFF = [
-      {
-        name: "ItzVeltriex",
-        role: "FOUNDER",
-        cardClass: "founder",
-        badge: "👑 FOUNDER",
-        discord: "https://discord.gg/pGM5x3gXpX",
-        desc: "The Founder is the highest authority within FearSteal Network, responsible for the overall vision, direction, development, and future of the network. The Founder establishes the standards, manages major decisions, leads the staff team, and works toward making FearSteal a competitive and professional Minecraft community."
-      },
-      {
-        name: "Notslayer",
-        role: "FOUNDER & NETWORK LEADERSHIP",
-        cardClass: "founder",
-        badge: "👑 FOUNDER",
-        discord: "https://discord.gg/HZhTd9Pry5",
-        desc: "As a Founder, Notslayer helps lead FearSteal's overall operations, development, community growth, and long-term direction. The Founder works closely with the leadership team to maintain a strong, fair, and enjoyable environment for every player."
-      },
-      {
-        name: "RaviXD",
-        role: "OWNER & NETWORK EXECUTIVE",
-        cardClass: "owner",
-        badge: "👑 OWNER",
-        discord: "https://discord.gg/pGM5x3gXpX",
-        desc: "The Owner oversees the day-to-day direction of FearSteal and helps ensure that the network's systems, staff, community, and player experience continue to operate at a high standard. The Owner works closely with senior leadership and handles important network-level decisions."
-      },
-      {
-        name: "NotGamerYTGG",
-        role: "CO OWNER & LEADERSHIP SUPPORT",
-        cardClass: "co-owner",
-        badge: "⚔️ CO OWNER",
-        discord: "https://discord.gg/pGM5x3gXpX",
-        desc: "The Co Owner supports the Founder and Owner in managing the network and helping coordinate major operations. This role assists with staff management, community decisions, projects, and maintaining the overall quality of FearSteal."
-      },
-      {
-        name: "Prime Shifat",
-        role: "ADMINISTRATOR & NETWORK MANAGEMENT",
-        cardClass: "admin",
-        badge: "🛡️ ADMIN",
-        discord: "https://discord.gg/pGM5x3gXpX",
-        desc: "Administrators are responsible for maintaining the overall stability and quality of the network. They handle important player issues, supervise staff when necessary, assist with server operations, and help enforce FearSteal's rules and standards."
-      },
-      {
-        name: "Cosmic_Ayush",
-        role: "SENIOR ADMINISTRATOR & STAFF LEADERSHIP",
-        cardClass: "senior-admin",
-        badge: "🛡️ SENIOR ADMIN",
-        discord: "https://discord.gg/pGM5x3gXpX",
-        desc: "Senior Administrators handle advanced moderation and administrative responsibilities while supporting the wider staff team. They help resolve complicated player situations, supervise lower staff members, and ensure that rules are applied fairly and consistently."
-      },
-      {
-        name: "Harshu",
-        role: "JUNIOR ADMINISTRATOR & COMMUNITY SUPPORT",
-        cardClass: "junior-admin",
-        badge: "🔧 JUNIOR ADMIN",
-        discord: "https://discord.gg/pGM5x3gXpX",
-        desc: "Junior Administrators assist the senior administration team with player management, server issues, rule enforcement, and everyday network operations. They help maintain a safe and enjoyable environment while gaining experience in higher-level staff responsibilities."
-      },
-      {
-        name: "VoidSlayer",
-        role: "MANAGER & STAFF OPERATIONS",
-        cardClass: "manager",
-        badge: "📋 MANAGER",
-        discord: "https://discord.gg/pGM5x3gXpX",
-        desc: "The Manager focuses on organizing and coordinating staff operations. This role helps maintain communication between different staff levels, monitors team performance, assists with projects, and helps ensure that network operations remain organized and efficient."
-      },
-      {
-        name: "Thunderboltzzz_",
-        role: "MODERATOR & COMMUNITY GUARDIAN",
-        cardClass: "mod",
-        badge: "🔨 MODERATOR",
-        discord: "https://discord.gg/pGM5x3gXpX",
-        desc: "Moderators are responsible for maintaining a fair and friendly environment across the FearSteal community. They monitor player activity, enforce server rules, respond to reports, and take appropriate action against rule-breaking behavior."
-      },
-      {
-        name: "NotDark6",
-        role: "JUNIOR MODERATOR & PLAYER SUPPORT",
-        cardClass: "junior-mod",
-        badge: "🛡️ JUNIOR MODERATOR",
-        discord: "https://discord.gg/pGM5x3gXpX",
-        desc: "Junior Moderators assist the moderation team with monitoring the community, helping players, responding to basic reports, and identifying rule violations. They work under the guidance of experienced staff while helping maintain a positive player environment."
-      },
-      {
-        name: "JessGamer7733",
-        role: "HELPER & COMMUNITY ASSISTANCE",
-        cardClass: "helper",
-        badge: "💬 HELPER",
-        discord: "https://discord.gg/pGM5x3gXpX",
-        desc: "Helpers are the first point of support for many players. They assist users with questions, guide new members, provide basic server information, and help players understand FearSteal's systems and rules. Helpers contribute to creating a welcoming and friendly community."
+    /* ----------------------------------------------------
+       GLOBAL EXECUTION & INSTANT COMPONENT INJECTION
+       ---------------------------------------------------- */
+    function renderNoviceAdminAudit() {
+      const tbody = document.getElementById('adm-novice-claims-tbody');
+      if (!tbody) return;
+      const claims = JSON.parse(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]');
+      if (claims.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#9ca3af;">No Novice claims logged yet.</td></tr>`;
+        return;
       }
-    ];
-
-    const MASTER_ADMINS = [
-      { email: 'itzveltriex@fearsteal.fun', username: 'ItzVeltriex', mcUsername: 'ItzVeltriex', pass: 'thakuree@2064', role: 'Founder' },
-      { email: 'notslayer@fearsteal.fun', username: 'Notslayer', mcUsername: 'Notslayer', pass: 'Notslayer@990', role: 'Founder' }
-    ];
-
-    const INITIAL_SHOP_ITEMS = [
-      { id: 'item-1', name: 'Common Key', cat: 'keys', price: 500, rarity: 'common', desc: 'Unlock a Common Crate reward.' },
-      { id: 'item-2', name: 'Rare Key', cat: 'keys', price: 1500, rarity: 'rare', desc: 'Unlock higher-tier rewards.' },
-      { id: 'item-3', name: 'Epic Key', cat: 'keys', price: 3000, rarity: 'epic', desc: 'A premium key for Epic Crates.' },
-      { id: 'item-4', name: 'Legendary Key', cat: 'keys', price: 7500, rarity: 'legendary', desc: 'Unlock Legendary-tier rewards.' },
-      { id: 'item-5', name: 'Mythic Key', cat: 'keys', price: 15000, rarity: 'mythic', desc: 'Extremely rare key for highest tier crate.' },
-      { id: 'item-6', name: 'Key Bundle', cat: 'keys', price: 25000, rarity: 'mythic', desc: '5 Common Keys, 3 Rare Keys, 2 Epic Keys.' },
-      { id: 'item-7', name: '1 Hour XP Boost', cat: 'boosts', price: 1000, rarity: 'common', desc: 'Increase XP earnings for 1 hour.' },
-      { id: 'item-8', name: '3 Hour XP Boost', cat: 'boosts', price: 2500, rarity: 'rare', desc: 'Extended XP boost for active players.' },
-      { id: 'item-9', name: '6 Hour XP Boost', cat: 'boosts', price: 4500, rarity: 'epic', desc: 'Powerful experience boost.' },
-      { id: 'item-10', name: '12 Hour XP Boost', cat: 'boosts', price: 8000, rarity: 'legendary', desc: 'Extended session experience boost.' },
-      { id: 'item-11', name: 'Coin Multiplier', cat: 'boosts', price: 5000, rarity: 'rare', desc: 'Temporarily increase coin earnings.' },
-      { id: 'item-12', name: 'Crimson Aura', cat: 'cosmetics', price: 8000, rarity: 'rare', desc: 'A glowing crimson aura.' },
-      { id: 'item-13', name: 'Lightning Aura', cat: 'cosmetics', price: 10000, rarity: 'epic', desc: 'Animated lightning particles.' },
-      { id: 'item-14', name: 'Royal Crown', cat: 'cosmetics', price: 12000, rarity: 'epic', desc: 'Exclusive cosmetic crown effect.' },
-      { id: 'item-15', name: 'Shadow Effect', cat: 'cosmetics', price: 15000, rarity: 'legendary', desc: 'A dark animated shadow effect.' },
-      { id: 'item-16', name: 'Skull Effect', cat: 'cosmetics', price: 18000, rarity: 'legendary', desc: 'A dramatic skull cosmetic.' },
-      { id: 'item-17', name: 'Void Effect', cat: 'cosmetics', price: 20000, rarity: 'mythic', desc: 'A rare animated void effect.' },
-      { id: 'item-18', name: 'Fear Aura', cat: 'cosmetics', price: 25000, rarity: 'fear', desc: 'Exclusive FearSteal-themed aura.' },
-      { id: 'item-19', name: '[VIP] Tag', cat: 'tags', price: 5000, rarity: 'common', desc: 'Unlock [VIP] chat tag.' },
-      { id: 'item-20', name: '[PRO] Tag', cat: 'tags', price: 8000, rarity: 'rare', desc: 'Unlock [PRO] chat tag.' },
-      { id: 'item-21', name: '[ELITE] Tag', cat: 'tags', price: 12000, rarity: 'rare', desc: 'Unlock [ELITE] chat tag.' },
-      { id: 'item-22', name: '[FEAR] Tag', cat: 'tags', price: 18000, rarity: 'epic', desc: 'Unlock [FEAR] chat tag.' },
-      { id: 'item-23', name: '[LEGEND] Tag', cat: 'tags', price: 25000, rarity: 'legendary', desc: 'Unlock [LEGEND] chat tag.' },
-      { id: 'item-24', name: '[MYTHIC] Tag', cat: 'tags', price: 40000, rarity: 'mythic', desc: 'Unlock [MYTHIC] chat tag.' },
-      { id: 'item-25', name: '[OG] Tag', cat: 'tags', price: 50000, rarity: 'fear', desc: 'Exclusive [OG] chat tag.' },
-      { id: 'item-26', name: 'Custom Chat Color', cat: 'chat', price: 7500, rarity: 'rare', desc: 'Unlock a special chat color.' },
-      { id: 'item-27', name: 'Animated Chat Prefix', cat: 'chat', price: 15000, rarity: 'epic', desc: 'Add animated prefix to chat.' },
-      { id: 'item-28', name: 'Name Glow', cat: 'chat', price: 20000, rarity: 'legendary', desc: 'Special visual name glow.' },
-      { id: 'item-29', name: 'Rainbow Name', cat: 'chat', price: 30000, rarity: 'mythic', desc: 'Animated rainbow name.' },
-      { id: 'item-30', name: 'Crimson Name', cat: 'chat', price: 10000, rarity: 'epic', desc: 'FearSteal crimson name.' },
-      { id: 'item-31', name: 'Profile Badge', cat: 'profile', price: 5000, rarity: 'common', desc: 'Cosmetic profile badge.' },
-      { id: 'item-32', name: 'VIP Profile Frame', cat: 'profile', price: 12000, rarity: 'rare', desc: 'Animated profile frame.' },
-      { id: 'item-33', name: 'Legendary Profile Frame', cat: 'profile', price: 30000, rarity: 'legendary', desc: 'Exclusive animated frame.' },
-      { id: 'item-34', name: 'Custom Profile Background', cat: 'profile', price: 20000, rarity: 'epic', desc: 'Profile background unlock.' },
-      { id: 'item-35', name: 'FearSteal Founder-Style Frame', cat: 'profile', price: 50000, rarity: 'fear', desc: 'Founder cosmetic frame.' },
-      { id: 'item-36', name: 'Small Mystery Box', cat: 'mystery', price: 2000, rarity: 'common', desc: 'Random reward.' },
-      { id: 'item-37', name: 'Rare Mystery Box', cat: 'mystery', price: 7500, rarity: 'rare', desc: 'Higher value rewards.' },
-      { id: 'item-38', name: 'Epic Mystery Box', cat: 'mystery', price: 15000, rarity: 'epic', desc: 'Contains premium rewards.' },
-      { id: 'item-39', name: 'Legendary Mystery Box', cat: 'mystery', price: 35000, rarity: 'legendary', desc: 'High-tier reward pool.' },
-      { id: 'item-40', name: 'Fear Mystery Box', cat: 'mystery', price: 75000, rarity: 'fear', desc: 'Highest tier reward pool.' },
-      { id: 'item-41', name: 'Random Teleport Token', cat: 'utility', price: 2500, rarity: 'common', desc: 'Random teleport utility.' },
-      { id: 'item-42', name: 'Extra Home Slot', cat: 'utility', price: 5000, rarity: 'rare', desc: 'Increase home slots.' },
-      { id: 'item-43', name: 'Keep Inventory Token', cat: 'utility', price: 10000, rarity: 'epic', desc: 'Temporary keep inventory.' },
-      { id: 'item-44', name: 'Repair Token', cat: 'utility', price: 3000, rarity: 'common', desc: 'Repair equipment.' },
-      { id: 'item-45', name: 'Rename Token', cat: 'utility', price: 5000, rarity: 'rare', desc: 'Rename an item.' },
-      { id: 'item-46', name: '🔥 Fear Aura (Limited Deal)', cat: 'limited', price: 20000, originalPrice: 25000, rarity: 'fear', desc: 'LIMITED • 48 HOURS ONLY! Exclusive crimson aura.', isLimited: true }
-    ];
-
-    function initializeStorage() {
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      MASTER_ADMINS.forEach(adm => {
-        if (!users.find(u => u.username.toLowerCase() === adm.username.toLowerCase())) {
-          users.push({
-            username: adm.username,
-            mcUsername: adm.mcUsername,
-            email: adm.email,
-            password: adm.pass,
-            role: adm.role,
-            hearts: 10,
-            coins: 50000,
-            purchases: 30,
-            registeredAt: new Date().toLocaleDateString()
-          });
-        }
+      tbody.innerHTML = '';
+      claims.forEach(c => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><code>${c.accountId}</code></td>
+          <td><strong>${c.username}</strong></td>
+          <td>${c.mcUsername}</td>
+          <td>${c.discordId}</td>
+          <td><span style="color:#22c55e;">${c.verificationStatus}</span></td>
+          <td>${c.timestamp}</td>
+        `;
+        tbody.appendChild(tr);
       });
-      localStorage.setItem(KEY_USERS, JSON.stringify(users));
-
-      if (!localStorage.getItem(KEY_NOVICE_COUNT)) localStorage.setItem(KEY_NOVICE_COUNT, '0');
-      if (!localStorage.getItem(KEY_NOVICE_CLAIMS)) localStorage.setItem(KEY_NOVICE_CLAIMS, JSON.stringify([]));
-      if (!localStorage.getItem(KEY_NOVICE_START_TS)) localStorage.setItem(KEY_NOVICE_START_TS, Date.now().toString());
-      if (!localStorage.getItem(KEY_PURCHASE_HISTORY)) localStorage.setItem(KEY_PURCHASE_HISTORY, JSON.stringify([]));
-      if (!localStorage.getItem(KEY_SHOP_ITEMS)) localStorage.setItem(KEY_SHOP_ITEMS, JSON.stringify(INITIAL_SHOP_ITEMS));
-
-      if (!localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS)) {
-        const streakData = Array.from({ length: 30 }, (_, i) => {
-          const day = i + 1;
-          let name = `${day * 200} Coins`;
-          let icon = "fa-coins";
-          let coins = day * 200;
-          if (day === 1) { name = "Starter Pack + 500 Coins"; icon = "fa-box"; coins = 500; }
-          else if (day === 3) { name = "XP Boost + 700 Coins"; icon = "fa-bolt"; coins = 700; }
-          else if (day === 4) { name = "Rare Crate Key"; icon = "fa-key"; coins = 800; }
-          else if (day === 7) { name = "Weekly Bonus: 2,000 Coins"; icon = "fa-gift"; coins = 2000; }
-          else if (day === 10) { name = "Totem of Undying + 1,500 Coins"; icon = "fa-shield-halved"; coins = 1500; }
-          else if (day === 14) { name = "Premium Crate Key + 2,500 Coins"; icon = "fa-gem"; coins = 2500; }
-          else if (day === 15) { name = "Mid-Month Bonus: 3,000 Coins"; icon = "fa-fire"; coins = 3000; }
-          else if (day === 20) { name = "Epic Key + 3,500 Coins"; icon = "fa-wand-magic-sparkles"; coins = 3500; }
-          else if (day === 25) { name = "1x Revival Heart + 4,000 Coins"; icon = "fa-heart-pulse"; coins = 4000; }
-          else if (day === 30) { name = "🏆 30-DAY LEGENDARY FINALE (10,000 Coins + [FearSteal] Rank)"; icon = "fa-crown"; coins = 10000; isGrand: true }
-          return { day, name, icon, coins, isGrand: day === 30 };
-        });
-        localStorage.setItem(KEY_CUSTOM_STREAK_REWARDS, JSON.stringify(streakData));
-      }
-
-      if (!localStorage.getItem(KEY_VOTE_CONFIG)) {
-        const defaultVotes = [
-          { id: 'v1', title: 'TopG Minecraft Servers', url: 'https://topg.org', reward: '500 Coins + 1x Rare Crate Key', visibility: 'published' },
-          { id: 'v2', title: 'Minecraft-Server-List', url: 'https://minecraft-server-list.com', reward: '1x Vote Point + 1x Revival Fragment', visibility: 'published' },
-          { id: 'v3', title: 'Planet Minecraft Portal', url: 'https://planetminecraft.com', reward: '750 Coins + 2x Vote Points', visibility: 'published' }
-        ];
-        localStorage.setItem(KEY_VOTE_CONFIG, JSON.stringify(defaultVotes));
-      }
     }
 
-    /* ----------------------------------------------------
-       AUTHENTICATION & ROLE PRIVILEGES
-       ---------------------------------------------------- */
-    function checkAuth() {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      const authOverlay = document.getElementById('auth-overlay');
-      const adminNav = document.getElementById('admin-nav-item');
-      const staffNav = document.getElementById('staff-nav-item');
-      const navUserBox = document.getElementById('nav-user-box');
-      const navUserName = document.getElementById('nav-user-name');
-      const navUserAvatar = document.getElementById('nav-user-avatar');
-      const dropHeaderUser = document.getElementById('drop-header-user');
-      const dropUserCoins = document.getElementById('drop-user-coins');
-      const shopCoinBalance = document.getElementById('shop-coin-balance');
-      const adminEmailTabBtn = document.getElementById('tab-admin-email-btn');
-
-      if (!session) {
-        authOverlay.classList.remove('hidden');
-        adminNav.style.display = 'none';
-        staffNav.style.display = 'none';
-        navUserBox.style.display = 'none';
-        if (adminEmailTabBtn) adminEmailTabBtn.style.display = 'none';
-      } else {
-        authOverlay.classList.add('hidden');
-        navUserBox.style.display = 'block';
-        navUserName.textContent = session.username;
-        dropHeaderUser.textContent = session.username + (session.mcUsername ? ` (${session.mcUsername})` : '');
-        navUserAvatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(session.mcUsername || session.username)}/32`;
-
-        const coins = session.coins || 0;
-        dropUserCoins.textContent = coins.toLocaleString();
-        if (shopCoinBalance) shopCoinBalance.textContent = coins.toLocaleString();
-
-        const isFounder = session.role === 'Founder' || session.username.toLowerCase() === 'itzveltriex' || session.username.toLowerCase() === 'notslayer';
-        adminNav.style.display = isFounder ? 'block' : 'none';
-
-        const isStaff = isFounder || (session.role && session.role !== 'none');
-        staffNav.style.display = isStaff ? 'block' : 'none';
-
-        // Reveal Admin Update Email tab in auth gateway
-        if (adminEmailTabBtn) {
-          adminEmailTabBtn.style.display = isFounder ? 'block' : 'none';
-        }
-
-        document.getElementById('user-hearts-display').textContent = session.hearts || 10;
-      }
-    }
-
-    function switchAuthTab(tab) {
-      document.getElementById('tab-login-btn').classList.toggle('active', tab === 'login');
-      document.getElementById('tab-register-btn').classList.toggle('active', tab === 'register');
-      document.getElementById('tab-forgot-btn').classList.toggle('active', tab === 'forgot');
-      
-      const adminTabBtn = document.getElementById('tab-admin-email-btn');
-      if (adminTabBtn) adminTabBtn.classList.toggle('active', tab === 'admin-email');
-
-      document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none';
-      document.getElementById('register-form').style.display = tab === 'register' ? 'block' : 'none';
-      document.getElementById('forgot-form').style.display = tab === 'forgot' ? 'block' : 'none';
-      document.getElementById('admin-email-form').style.display = tab === 'admin-email' ? 'block' : 'none';
-    }
-
-    function updateSkinHead(val, targetId) {
-      val = val.trim();
-      const el = document.getElementById(targetId);
-      el.src = val.length >= 3 ? `https://mc-heads.net/avatar/${encodeURIComponent(val)}/40` : `https://mc-heads.net/avatar/Steve/40`;
-    }
-
-    function togglePass(inputId, icon) {
-      const input = document.getElementById(inputId);
-      const isPass = input.type === 'password';
-      input.type = isPass ? 'text' : 'password';
-      icon.classList.toggle('fa-eye', !isPass);
-      icon.classList.toggle('fa-eye-slash', isPass);
-    }
-
-    function checkUsernameLiveAvailability(val) {
-      val = val.trim().toLowerCase();
-      const feedback = document.getElementById('user-avail-feedback');
-      if (val.length < 3) {
-        feedback.textContent = 'Minimum 3 characters';
-        feedback.style.color = '#9ca3af';
-        return;
-      }
-      const users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      const exists = users.some(u => u.username.toLowerCase() === val);
-      feedback.textContent = exists ? '❌ Username is taken' : '✓ Username is available';
-      feedback.style.color = exists ? '#ef4444' : '#22c55e';
-    }
-
-    function calculatePasswordStrength(pass) {
-      const bar = document.getElementById('strength-bar');
-      const text = document.getElementById('strength-text');
-      let score = 0;
-      if (pass.length >= 6) score += 25;
-      if (pass.length >= 10) score += 25;
-      if (/[A-Z]/.test(pass) && /[0-9]/.test(pass)) score += 25;
-      if (/[^A-Za-z0-9]/.test(pass)) score += 25;
-
-      bar.style.width = score + '%';
-      if (score <= 25) { bar.style.background = '#ef4444'; text.textContent = 'Weak'; text.style.color = '#ef4444'; }
-      else if (score <= 50) { bar.style.background = '#f59e0b'; text.textContent = 'Medium'; text.style.color = '#f59e0b'; }
-      else if (score <= 75) { bar.style.background = '#3b82f6'; text.textContent = 'Strong'; text.style.color = '#3b82f6'; }
-      else { bar.style.background = '#22c55e'; text.textContent = 'Very Strong'; text.style.color = '#22c55e'; }
-    }
-
-    function handleRegisterSubmit(e) {
+    function handleAdminCoinsGiveOrRemove(e) {
       e.preventDefault();
-      const btn = document.getElementById('btn-reg-submit');
-      const username = document.getElementById('reg-username').value.trim();
-      const mcUsername = document.getElementById('reg-mc-user').value.trim();
-      const email = document.getElementById('reg-email').value.trim().toLowerCase();
-      const pass = document.getElementById('reg-password').value;
-      const confirmPass = document.getElementById('reg-confirm-password').value;
-
-      if (!email.endsWith('@fearsteal.fun')) {
-        alert("Don't use your own email ❌️\nPlease use email like this\nyourminecraftname@fearsteal.fun ✅️\nYou can choose and add any password which your account secured");
-        return;
-      }
-
-      if (pass !== confirmPass) { showToast('Passwords do not match!', 'warning'); return; }
-      if (pass.length < 6) { showToast('Password must be at least 6 characters!', 'warning'); return; }
-
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      if (users.find(u => u.username.toLowerCase() === username.toLowerCase() || u.email.toLowerCase() === email.toLowerCase())) {
-        showToast('Duplicate account detected! Username or Email already exists.', 'warning');
-        return;
-      }
-
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> CREATING ACCOUNT...';
-
-      setTimeout(() => {
-        users.push({
-          username,
-          mcUsername,
-          email,
-          password: pass,
-          role: 'none',
-          hearts: 10,
-          coins: 500,
-          purchases: 0,
-          registeredAt: new Date().toLocaleDateString()
-        });
-
-        localStorage.setItem(KEY_USERS, JSON.stringify(users));
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> CREATE ACCOUNT';
-
-        showToast('You are successful register so please login ✅️', 'success');
-        switchAuthTab('login');
-        document.getElementById('login-ident').value = username;
-        updateSkinHead(mcUsername || username, 'login-avatar-head');
-      }, 600);
-    }
-
-    function handleLoginSubmit(e) {
-      e.preventDefault();
-      const btn = document.getElementById('btn-login-submit');
-      const ident = document.getElementById('login-ident').value.trim().toLowerCase();
-      const pass = document.getElementById('login-pass').value;
-
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> AUTHENTICATING...';
-
-      setTimeout(() => {
-        let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-        const found = users.find(u => (u.username.toLowerCase() === ident || u.email.toLowerCase() === ident) && u.password === pass);
-
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fa-solid fa-gamepad"></i> ENTER REALM';
-
-        if (!found) {
-          showToast("Please register first and second login than you can visit our website otherwise you can't see anything for server related.", 'warning');
-          return;
-        }
-
-        localStorage.setItem(KEY_SESSION, JSON.stringify(found));
-        showToast(`Welcome back, ${found.username}! Realm unlocked.`, 'success');
-        checkAuth();
-        renderMembersDirectory();
-        renderDailyStreakUI();
-        renderRealLeaderboards();
-        renderCoinShop();
-      }, 500);
-    }
-
-    function handleForgotPasswordSubmit(e) {
-      e.preventDefault();
-      const ident = document.getElementById('forgot-ident').value.trim().toLowerCase();
-      const newPass = document.getElementById('forgot-new-pass').value;
-      const confirmPass = document.getElementById('forgot-confirm-pass').value;
-
-      if (newPass !== confirmPass) { showToast('Passwords do not match!', 'warning'); return; }
-      if (newPass.length < 6) { showToast('Password must be at least 6 characters long.', 'warning'); return; }
-
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      const userIndex = users.findIndex(u => u.username.toLowerCase() === ident || u.email.toLowerCase() === ident);
-
-      if (userIndex === -1) {
-        showToast('No account found with this Username or Email. Please register first!', 'warning');
-        return;
-      }
-
-      users[userIndex].password = newPass;
-      localStorage.setItem(KEY_USERS, JSON.stringify(users));
-      showToast('Password updated successfully! Please login with your new password ✅️', 'success');
-
-      switchAuthTab('login');
-      document.getElementById('login-ident').value = users[userIndex].username;
-    }
-
-    /* ----------------------------------------------------
-       EXCLUSIVE ADMIN UPDATE PLAYER EMAIL HANDLER
-       ---------------------------------------------------- */
-    function handleAdminUpdateEmailSubmit(e) {
-      e.preventDefault();
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      const isFounder = session && (session.role === 'Founder' || session.username.toLowerCase() === 'itzveltriex' || session.username.toLowerCase() === 'notslayer');
-
-      if (!isFounder) {
-        alert("Unauthorized. Only Founders can override emails.");
-        return;
-      }
-
-      const targetUser = document.getElementById('adm-override-user').value.trim().toLowerCase();
-      const newEmail = document.getElementById('adm-override-email').value.trim().toLowerCase();
-
-      if (!newEmail.endsWith('@fearsteal.fun')) {
-        alert("Error: New email must end with @fearsteal.fun ✅️");
-        return;
-      }
+      const targetUser = document.getElementById('adm-coin-target').value.trim().toLowerCase();
+      const action = document.getElementById('adm-coin-action').value;
+      const amount = parseInt(document.getElementById('adm-coin-amount').value, 10);
 
       let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
       const userIdx = users.findIndex(u => u.username.toLowerCase() === targetUser);
 
       if (userIdx === -1) {
-        showToast(`User ${targetUser} not found in database!`, 'warning');
+        showToast(`User ${targetUser} not found!`, 'warning');
         return;
       }
 
-      users[userIdx].email = newEmail;
+      if (action === 'give') {
+        users[userIdx].coins = (users[userIdx].coins || 0) + amount;
+        showToast(`Granted ${amount.toLocaleString()} coins to ${users[userIdx].username}!`, 'success');
+      } else {
+        users[userIdx].coins = Math.max(0, (users[userIdx].coins || 0) - amount);
+        showToast(`Deducted ${amount.toLocaleString()} coins from ${users[userIdx].username}!`, 'info');
+      }
+
       localStorage.setItem(KEY_USERS, JSON.stringify(users));
-      showToast(`Success: Updated ${users[userIdx].username}'s email to ${newEmail}!`, 'success');
-
-      document.getElementById('adm-override-user').value = '';
-      document.getElementById('adm-override-email').value = '';
-      switchAuthTab('login');
-    }
-
-    function handleLogout() {
-      localStorage.removeItem(KEY_SESSION);
-      showToast('You have been logged out securely.', 'info');
-      setTimeout(() => location.reload(), 250);
-    }
-
-    function toggleAccountDropdown() {
-      document.getElementById('account-dropdown').classList.toggle('open');
-    }
-
-    window.addEventListener('click', (e) => {
-      if (!e.target.closest('.account-menu-container')) {
-        const drop = document.getElementById('account-dropdown');
-        if (drop) drop.classList.remove('open');
-      }
-    });
-
-    /* ----------------------------------------------------
-       ACCOUNT PROFILE & SECURITY MODAL
-       ---------------------------------------------------- */
-    function openAccountSecurityModal(paneKey) {
       const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) return;
-
-      document.getElementById('account-security-modal').classList.add('open');
-      document.getElementById('sec-profile-username').textContent = session.username;
-      document.getElementById('sec-profile-email').textContent = session.email;
-      document.getElementById('sec-profile-avatar').src = `https://mc-heads.net/avatar/${encodeURIComponent(session.mcUsername || session.username)}/80`;
-      document.getElementById('sec-dash-hearts').textContent = session.hearts || 10;
-      document.getElementById('sec-dash-coins').textContent = (session.coins || 0).toLocaleString();
-      document.getElementById('sec-profile-role-badge').textContent = (session.role || 'WARRIOR').toUpperCase();
-
-      const paneMap = {
-        profile: 'sec-pane-profile',
-        dashboard: 'sec-pane-dashboard',
-        notifications: 'sec-pane-notifications',
-        settings: 'sec-pane-settings',
-        security: 'sec-pane-security'
-      };
-
-      const pId = paneMap[paneKey] || 'sec-pane-profile';
-      const btn = Array.from(document.querySelectorAll('#account-security-modal .dash-tab-btn')).find(b => b.getAttribute('onclick').includes(pId));
-      if (btn) switchSecurityPane(pId, btn);
-    }
-
-    function closeAccountSecurityModal() {
-      document.getElementById('account-security-modal').classList.remove('open');
-    }
-
-    function switchSecurityPane(paneId, btn) {
-      document.querySelectorAll('#account-security-modal .dash-tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('#account-security-modal .dash-pane').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(paneId).classList.add('active');
-    }
-
-    function handleSecurityChangeEmail(e) {
-      e.preventDefault();
-      const newEmail = document.getElementById('sec-new-email').value.trim().toLowerCase();
-      if (!newEmail.endsWith('@fearsteal.fun')) {
-        alert("Please use email ending in @fearsteal.fun ✅️");
-        return;
-      }
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-
-      const idx = users.findIndex(u => u.username.toLowerCase() === session.username.toLowerCase());
-      if (idx >= 0) {
-        users[idx].email = newEmail;
-        session.email = newEmail;
-        localStorage.setItem(KEY_USERS, JSON.stringify(users));
+      if (session && session.username.toLowerCase() === targetUser) {
+        session.coins = users[userIdx].coins;
         localStorage.setItem(KEY_SESSION, JSON.stringify(session));
-        document.getElementById('sec-profile-email').textContent = newEmail;
-        showToast('Email address updated successfully!', 'success');
-        document.getElementById('sec-new-email').value = '';
+        checkAuth();
       }
+
+      renderAdminUserList();
+      renderMembersDirectory();
+      renderRealLeaderboards();
+      document.getElementById('adm-coin-target').value = '';
+      document.getElementById('adm-coin-amount').value = '';
     }
 
-    function handleSecurityChangePassword(e) {
+    function handleCreateCoupon(e) {
       e.preventDefault();
-      const curr = document.getElementById('sec-curr-pass').value;
-      const newP = document.getElementById('sec-new-pass').value;
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
+      const code = document.getElementById('adm-coupon-code').value.trim().toUpperCase();
+      const pct = parseInt(document.getElementById('adm-coupon-pct').value, 10);
+      const days = parseInt(document.getElementById('adm-coupon-days').value, 10);
 
-      if (session.password !== curr) { showToast('Current password is incorrect!', 'warning'); return; }
-      if (newP.length < 6) { showToast('New password must be at least 6 characters long!', 'warning'); return; }
-
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      const idx = users.findIndex(u => u.username.toLowerCase() === session.username.toLowerCase());
-      if (idx >= 0) {
-        users[idx].password = newP;
-        session.password = newP;
-        localStorage.setItem(KEY_USERS, JSON.stringify(users));
-        localStorage.setItem(KEY_SESSION, JSON.stringify(session));
-        showToast('Password changed successfully!', 'success');
-        document.getElementById('sec-curr-pass').value = '';
-        document.getElementById('sec-new-pass').value = '';
-      }
-    }
-
-    function toggle2FAUI(btn) {
-      const isEnable = btn.textContent.includes('ENABLE');
-      btn.textContent = isEnable ? 'DISABLE 2FA' : 'ENABLE 2FA';
-      btn.style.borderColor = isEnable ? '#22c55e' : '';
-      btn.style.color = isEnable ? '#22c55e' : '';
-      showToast(isEnable ? 'Two-Factor Authentication (2FA) is now active.' : '2FA disabled.', 'info');
-    }
-
-    function logoutAllDevices() {
-      localStorage.removeItem(KEY_SESSION);
-      showToast('All active sessions revoked.', 'info');
-      setTimeout(() => location.reload(), 300);
-    }
-
-    /* ----------------------------------------------------
-       60-DAY PROMO TIMING & NOVICE CLAIM
-       ---------------------------------------------------- */
-    const SIXTY_DAYS_MS = 60 * 24 * 60 * 60 * 1000;
-
-    function updateNovice60DayTimer() {
-      const startTs = parseInt(localStorage.getItem(KEY_NOVICE_START_TS) || Date.now(), 10);
-      const elapsed = Date.now() - startTs;
-      const remainingMs = Math.max(0, SIXTY_DAYS_MS - elapsed);
-
-      const days = Math.floor(remainingMs / (24 * 60 * 60 * 1000));
-      const hours = Math.floor((remainingMs % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-      const mins = Math.floor((remainingMs % (60 * 60 * 1000)) / (60 * 1000));
-
-      const timerEl = document.getElementById('novice-countdown-timer');
-      if (timerEl) {
-        timerEl.textContent = remainingMs <= 0 ? 'PROMOTION EXPIRED' : `${days}d ${hours}h ${mins}m remaining`;
-      }
-    }
-
-    function triggerNoviceClaimFlow() {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) {
-        showToast('Please register and login first!', 'warning');
-        return;
-      }
-
-      let claims = JSON.parse(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]');
-      const hasClaimed = claims.some(c => c.username.toLowerCase() === session.username.toLowerCase());
-
-      if (hasClaimed) {
-        alert("You have already claimed this rank. You cannot claim this free rank again ❌️");
-        return;
-      }
-
-      let count = parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10);
-      if (count >= 100) {
-        alert("All 100 Novice ranks have been claimed.");
-        renderNoviceUI();
-        return;
-      }
-
-      const discordUsername = prompt("Please join our Discord server first than you can claim this free ranks\n\nEnter your Discord username to confirm membership:");
-      if (!discordUsername || discordUsername.trim().length < 3) {
-        alert("Please join our Discord server first than you can claim this free ranks");
-        window.open('https://discord.gg/pGM5x3gXpX', '_blank');
-        return;
-      }
-
-      count = Math.min(100, count + 1);
-      localStorage.setItem(KEY_NOVICE_COUNT, count.toString());
-
-      claims.push({
-        accountId: 'ACC-' + Math.floor(100000 + Math.random() * 900000),
-        username: session.username,
-        mcUsername: session.mcUsername || session.username,
-        discordId: discordUsername.trim(),
-        verificationStatus: 'Verified (Discord Synced)',
-        timestamp: new Date().toLocaleString()
+      let coupons = JSON.parse(localStorage.getItem(KEY_COUPONS) || '[]');
+      coupons.push({
+        code,
+        pct,
+        expiryTs: Date.now() + (days * 24 * 60 * 60 * 1000),
+        days
       });
-
-      localStorage.setItem(KEY_NOVICE_CLAIMS, JSON.stringify(claims));
-      renderNoviceUI();
-      showToast('Novice Rank Claimed Successfully!', 'success');
+      localStorage.setItem(KEY_COUPONS, JSON.stringify(coupons));
+      renderAdminCoupons();
+      showToast(`Coupon ${code} (${pct}% OFF for ${days}d) created!`, 'success');
+      e.target.reset();
     }
 
-    function renderNoviceUI() {
-      const count = Math.min(100, parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10));
-      document.getElementById('novice-slots-label').textContent = `${count} / 100 CLAIMED`;
-      document.getElementById('novice-progress-bar').style.width = `${count}%`;
-
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      const btn = document.getElementById('claim-novice-btn');
-      const stockMsg = document.getElementById('novice-stock-msg');
-      let claims = JSON.parse(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]');
-      const userClaimed = session && claims.some(c => c.username.toLowerCase() === session.username.toLowerCase());
-
-      if (count >= 100) {
-        btn.textContent = '🔴 OUT OF STOCK';
-        btn.disabled = true;
-        btn.style.background = '#374151';
-        stockMsg.style.display = 'block';
-      } else if (userClaimed) {
-        btn.textContent = 'CLAIMED ✓';
-        btn.disabled = true;
-        btn.style.background = '#059669';
-        stockMsg.style.display = 'none';
-      } else {
-        btn.textContent = 'CLAIM NOVICE';
-        btn.disabled = false;
-        btn.style.background = '#2563eb';
-        stockMsg.style.display = 'none';
-      }
-    }
-
-    function buyRankWithCoins(rankName, cost, days) {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) {
-        showToast('Please login to purchase ranks with coins!', 'warning');
-        return;
-      }
-
-      if ((session.coins || 0) < cost) {
-        showToast(`Insufficient coins! You need ${cost.toLocaleString()} Coins for [${rankName}] (${days}d).`, 'warning');
-        return;
-      }
-
-      if (confirm(`Confirm Purchase with Coins:\nBuy [${rankName}] Rank for ${days} Days for ${cost.toLocaleString()} Coins?`)) {
-        mutateUserCoins(session.username, -cost);
-        showToast(`Congratulations! You unlocked [${rankName}] Rank for ${days} Days!`, 'success');
-      }
-    }
-
-    /* ----------------------------------------------------
-       EARN COINS (10 DAILY TRIVIA QUESTIONS)
-       ---------------------------------------------------- */
-    let currentQuizIndex = 0;
-    let quizScore = 0;
-    let activeQuizBatch = [];
-
-    function startDailyQuiz() {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) { showToast('Please login to play the daily quiz and earn coins!', 'warning'); return; }
-
-      const today = new Date().toDateString();
-      const lastDate = localStorage.getItem(KEY_QUIZ_LAST_DATE + '_' + session.username);
-      let countToday = parseInt(localStorage.getItem(KEY_QUIZ_DAILY_COUNT + '_' + session.username) || '0', 10);
-
-      if (lastDate !== today) {
-        countToday = 0;
-        localStorage.setItem(KEY_QUIZ_DAILY_COUNT + '_' + session.username, '0');
-        localStorage.setItem(KEY_QUIZ_LAST_DATE + '_' + session.username, today);
-      }
-
-      if (countToday >= 10) {
-        alert("You have completed all 10 trivia questions today! Come back tomorrow for more coins.");
-        return;
-      }
-
-      document.getElementById('quiz-start-btn').style.display = 'none';
-      document.getElementById('quiz-reward-feedback').textContent = '';
-      quizScore = 0;
-      currentQuizIndex = 0;
-
-      const startIndex = countToday;
-      activeQuizBatch = MINECRAFT_TRIVIA_QUESTIONS.slice(startIndex, startIndex + 5);
-      renderQuizQuestion();
-    }
-
-    function renderQuizQuestion() {
-      const container = document.getElementById('quiz-options-list');
-      const prompt = document.getElementById('quiz-question-prompt');
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      const countToday = parseInt(localStorage.getItem(KEY_QUIZ_DAILY_COUNT + '_' + session.username) || '0', 10);
-
-      document.getElementById('quiz-progress-text').textContent = `${countToday + currentQuizIndex} / 10`;
-
-      if (currentQuizIndex >= activeQuizBatch.length) {
-        const earnedCoins = quizScore * 200;
-        const newCount = countToday + activeQuizBatch.length;
-        localStorage.setItem(KEY_QUIZ_DAILY_COUNT + '_' + session.username, newCount.toString());
-
-        mutateUserCoins(session.username, earnedCoins);
-        prompt.textContent = `Round Complete! You answered ${quizScore}/${activeQuizBatch.length} correctly and earned +${earnedCoins} Coins!`;
-        container.innerHTML = '';
-        document.getElementById('quiz-start-btn').style.display = 'inline-flex';
-        document.getElementById('quiz-start-btn').textContent = newCount >= 10 ? 'DAILY LIMIT REACHED (10/10)' : 'START NEXT ROUND';
-        document.getElementById('quiz-progress-text').textContent = `${newCount} / 10`;
-        return;
-      }
-
-      const qObj = activeQuizBatch[currentQuizIndex];
-      prompt.textContent = `Q${currentQuizIndex + 1}: ${qObj.q}`;
+    function renderAdminCoupons() {
+      const container = document.getElementById('admin-coupons-list');
+      if (!container) return;
+      const coupons = JSON.parse(localStorage.getItem(KEY_COUPONS) || '[]');
       container.innerHTML = '';
-
-      qObj.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'quiz-option-btn';
-        btn.textContent = `${String.fromCharCode(65 + idx)}. ${opt}`;
-        btn.onclick = () => selectQuizAnswer(idx, qObj.correct);
-        container.appendChild(btn);
-      });
-    }
-
-    function selectQuizAnswer(chosenIdx, correctIdx) {
-      if (chosenIdx === correctIdx) {
-        quizScore++;
-        showToast('✓ Correct Answer! +200 Coins banked.', 'success');
-      } else {
-        showToast('❌ Incorrect! Keep trying.', 'warning');
+      if (coupons.length === 0) {
+        container.innerHTML = `<div style="font-size:0.8rem; color:#888;">No active coupons.</div>`;
+        return;
       }
-      currentQuizIndex++;
-      renderQuizQuestion();
-    }
-
-    /* ----------------------------------------------------
-       30-DAY STREAK WITH 24h 59m 59s COOLDOWN
-       ---------------------------------------------------- */
-    const COOLDOWN_DURATION_MS = (24 * 60 + 59) * 60 * 1000 + 59000; // 24h 59m 59s
-
-    function renderDailyStreakUI() {
-      const container = document.getElementById('daily-streak-container');
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-
-      let currentStreak = parseInt(localStorage.getItem(KEY_DAILY_STREAK + (session ? '_' + session.username : '')) || '0', 10);
-      let longestStreak = parseInt(localStorage.getItem(KEY_DAILY_LONGEST + (session ? '_' + session.username : '')) || '0', 10);
-      const lastClaimTs = parseInt(localStorage.getItem(KEY_DAILY_CLAIM_TIMESTAMP + (session ? '_' + session.username : '')) || '0', 10);
-      const now = Date.now();
-      const elapsed = now - lastClaimTs;
-      const isCooldown = lastClaimTs > 0 && elapsed < COOLDOWN_DURATION_MS;
-
-      document.getElementById('streak-stat-current').textContent = `🔥 ${currentStreak} DAYS`;
-      document.getElementById('streak-stat-longest').textContent = `${longestStreak} Days`;
-      document.getElementById('streak-stat-claimed').textContent = `${currentStreak} / 30`;
-      document.getElementById('streak-stat-remaining').textContent = `${Math.max(0, 30 - currentStreak)} Days`;
-
-      const streakRewards = JSON.parse(localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS) || '[]');
-      container.innerHTML = '';
-
-      streakRewards.forEach((r) => {
-        let state = 'locked';
-        let pillText = 'Locked';
-        let pillClass = 'pill-locked';
-
-        if (r.day <= currentStreak) {
-          state = 'claimed';
-          pillText = '✓ Claimed';
-          pillClass = 'pill-claimed';
-        } else if (r.day === currentStreak + 1) {
-          if (isCooldown) {
-            state = 'locked';
-            pillText = 'Cooldown';
-            pillClass = 'pill-locked';
-          } else {
-            state = 'available';
-            pillText = 'Claim Reward';
-            pillClass = 'pill-available';
-          }
-        }
-
-        const isFinale = r.day === 30;
-        const card = document.createElement('div');
-        card.className = `daily-day-card ${state} ${isFinale ? 'grand-finale' : ''}`;
-        card.innerHTML = `
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:0.75rem; color:#9ca3af; font-weight:800;">DAY ${r.day}</span>
-              ${isFinale ? '<span style="color:var(--gold-fs); font-size:0.75rem; font-weight:800;">🏆 FINALE</span>' : ''}
+      coupons.forEach((c, idx) => {
+        const remainingDays = Math.max(0, Math.ceil((c.expiryTs - Date.now()) / (24 * 60 * 60 * 1000)));
+        container.innerHTML += `
+          <div style="background:#141420; padding:10px; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <strong>${c.code}</strong> (${c.pct}% OFF)
+              <span style="font-size:0.75rem; color:var(--gold-fs); margin-left:8px;">${remainingDays} Days remaining</span>
             </div>
-            <i class="fa-solid ${r.icon}" style="font-size:${isFinale ? '2.4rem' : '1.8rem'}; margin:12px 0; color:var(--gold-fs);"></i>
-            <div style="font-size:0.82rem; font-weight:800; color:#fff; min-height:36px;">${r.name}</div>
-          </div>
-          <div>
-            <span class="reward-state-pill ${pillClass}">${pillText}</span>
+            <button class="btn btn-outline" style="padding:4px 8px; font-size:0.75rem; color:#ef4444;" onclick="deleteCoupon(${idx})">DELETE</button>
           </div>
         `;
-
-        if (state === 'available') {
-          card.style.cursor = 'pointer';
-          card.onclick = () => claimDailyStreakDay(r.day, r.coins, r.name);
-        }
-        container.appendChild(card);
-      });
-
-      updateCooldownBar();
-    }
-
-    function updateCooldownBar() {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      const wrapper = document.getElementById('streak-cooldown-wrapper');
-      const label = document.getElementById('streak-timer-label');
-      const bar = document.getElementById('streak-cooldown-progress-bar');
-      const panelCountdown = document.getElementById('streak-stat-countdown');
-
-      const lastClaimTs = parseInt(localStorage.getItem(KEY_DAILY_CLAIM_TIMESTAMP + (session ? '_' + session.username : '')) || '0', 10);
-      const now = Date.now();
-      const diff = now - lastClaimTs;
-
-      if (lastClaimTs > 0 && diff < COOLDOWN_DURATION_MS) {
-        wrapper.style.display = 'block';
-        const remaining = COOLDOWN_DURATION_MS - diff;
-
-        const hours = String(Math.floor(remaining / 3600000)).padStart(2, '0');
-        const mins = String(Math.floor((remaining % 3600000) / 60000)).padStart(2, '0');
-        const secs = String(Math.floor((remaining % 60000) / 1000)).padStart(2, '0');
-
-        const timeStr = `${hours}:${mins}:${secs}`;
-        label.textContent = `${hours}h ${mins}m ${secs}s`;
-        if (panelCountdown) panelCountdown.textContent = timeStr;
-
-        const percentage = Math.max(0, (remaining / COOLDOWN_DURATION_MS) * 100);
-        bar.style.width = percentage + '%';
-      } else {
-        wrapper.style.display = 'none';
-        if (panelCountdown) panelCountdown.textContent = 'READY NOW';
-      }
-    }
-
-    function claimDailyStreakDay(dayNum, coinsReward, rewardName) {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) { showToast('Please login to claim your streak rewards!', 'warning'); return; }
-
-      const now = Date.now();
-      localStorage.setItem(KEY_DAILY_CLAIM_TIMESTAMP + '_' + session.username, now.toString());
-      localStorage.setItem(KEY_DAILY_STREAK + '_' + session.username, dayNum.toString());
-
-      let longest = parseInt(localStorage.getItem(KEY_DAILY_LONGEST + '_' + session.username) || '0', 10);
-      if (dayNum > longest) {
-        localStorage.setItem(KEY_DAILY_LONGEST + '_' + session.username, dayNum.toString());
-      }
-
-      mutateUserCoins(session.username, coinsReward);
-      renderDailyStreakUI();
-
-      if (dayNum === 30) {
-        alert("🔥 30-DAY STREAK MASTER ACHIEVED!\nYou completed the 30-Day Grand Finale Streak! +10,000 Coins and [FearSteal] Rank unlocked!");
-      } else {
-        showToast(`🔥 REWARD CLAIMED!\nDay ${dayNum} completed successfully: ${rewardName}`, 'success');
-      }
-    }
-
-    /* ----------------------------------------------------
-       COIN SHOP LOGIC
-       ---------------------------------------------------- */
-    let currentShopCategory = 'all';
-    let currentShopSearch = '';
-    let currentShopSort = 'default';
-    let pendingPurchaseItem = null;
-
-    function filterShopCategory(cat, btn) {
-      document.querySelectorAll('.coinshop-cat-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentShopCategory = cat;
-      renderCoinShop();
-    }
-
-    function searchShop(val) {
-      currentShopSearch = val.trim().toLowerCase();
-      renderCoinShop();
-    }
-
-    function sortShop(val) {
-      currentShopSort = val;
-      renderCoinShop();
-    }
-
-    function renderCoinShop() {
-      const container = document.getElementById('coinshop-items-grid');
-      let items = JSON.parse(localStorage.getItem(KEY_SHOP_ITEMS) || '[]');
-
-      if (currentShopCategory !== 'all') {
-        items = items.filter(i => i.cat === currentShopCategory);
-      }
-
-      if (currentShopSearch) {
-        items = items.filter(i => i.name.toLowerCase().includes(currentShopSearch) || i.desc.toLowerCase().includes(currentShopSearch));
-      }
-
-      if (currentShopSort === 'price-asc') {
-        items.sort((a, b) => a.price - b.price);
-      } else if (currentShopSort === 'price-desc') {
-        items.sort((a, b) => b.price - a.price);
-      }
-
-      container.innerHTML = '';
-      if (items.length === 0) {
-        container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:30px; color:#888;">No items match your query.</div>`;
-        return;
-      }
-
-      items.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'coinshop-item';
-        card.innerHTML = `
-          <span class="item-rarity-badge rarity-${item.rarity}">${item.rarity.toUpperCase()}</span>
-          <div>
-            <h4 style="color:#fff; margin-top:14px; font-size:1.15rem;">${item.name}</h4>
-            <p style="font-size:0.8rem; color:#9ca3af; margin:10px 0;">${item.desc}</p>
-          </div>
-          <div>
-            <div style="font-size:1.3rem; font-weight:800; color:var(--gold-fs); margin-bottom:12px;">
-              🪙 ${item.price.toLocaleString()} Coins
-            </div>
-            <button class="btn btn-primary" style="width:100%; padding:9px;" onclick="openPurchaseConfirmModal('${item.id}')">
-              BUY NOW
-            </button>
-          </div>
-        `;
-        container.appendChild(card);
       });
     }
 
-    function openPurchaseConfirmModal(itemId) {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) { showToast('Please login to purchase items!', 'warning'); return; }
-
-      const items = JSON.parse(localStorage.getItem(KEY_SHOP_ITEMS) || '[]');
-      const item = items.find(i => i.id === itemId);
-      if (!item) return;
-
-      pendingPurchaseItem = item;
-      const currentBal = session.coins || 0;
-      const afterBal = currentBal - item.price;
-
-      document.getElementById('modal-confirm-item-name').textContent = item.name;
-      document.getElementById('modal-confirm-price').textContent = item.price.toLocaleString();
-      document.getElementById('modal-confirm-current-bal').textContent = currentBal.toLocaleString();
-      document.getElementById('modal-confirm-after-bal').textContent = afterBal >= 0 ? afterBal.toLocaleString() : 'Insufficient';
-      document.getElementById('modal-confirm-after-bal').style.color = afterBal >= 0 ? '#22c55e' : '#ef4444';
-
-      document.getElementById('btn-execute-purchase').onclick = executeConfirmedPurchase;
-      document.getElementById('purchase-confirm-modal').classList.add('open');
-    }
-
-    function closePurchaseConfirmModal() {
-      document.getElementById('purchase-confirm-modal').classList.remove('open');
-      pendingPurchaseItem = null;
+    function deleteCoupon(idx) {
+      let coupons = JSON.parse(localStorage.getItem(KEY_COUPONS) || '[]');
+      coupons.splice(idx, 1);
+      localStorage.setItem(KEY_COUPONS, JSON.stringify(coupons));
+      renderAdminCoupons();
+      showToast('Coupon removed.', 'info');
     }
 
     function executeConfirmedPurchase() {
@@ -3100,573 +2241,41 @@
       });
       localStorage.setItem(KEY_PURCHASE_HISTORY, JSON.stringify(history));
 
+      let basket = JSON.parse(localStorage.getItem(KEY_USER_BASKET + '_' + session.username) || '[]');
+      basket.push({
+        name: pendingPurchaseItem.name,
+        code: txId,
+        date: new Date().toLocaleDateString()
+      });
+      localStorage.setItem(KEY_USER_BASKET + '_' + session.username, JSON.stringify(basket));
+
       closePurchaseConfirmModal();
-      showToast(`✓ PURCHASE SUCCESSFUL\n${pendingPurchaseItem.name} has been added to your account!`, 'success');
+      alert("If you buy any item take the screenshot and ping server owner and proof your items which you buy than claim your items from owner ✅️");
+      showToast(`✓ Purchase successful! ${pendingPurchaseItem.name} added to your locker.`, 'success');
       renderCoinShop();
+      renderUserBasket();
     }
 
-    function openPurchaseHistoryModal() {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) { showToast('Login to view purchase history!', 'warning'); return; }
-
-      const tbody = document.getElementById('user-purchase-history-tbody');
-      tbody.innerHTML = '';
-      const allHistory = JSON.parse(localStorage.getItem(KEY_PURCHASE_HISTORY) || '[]');
-      const userHistory = allHistory.filter(h => h.username.toLowerCase() === session.username.toLowerCase());
-
-      if (userHistory.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#888;">No purchases on record yet.</td></tr>`;
-      } else {
-        userHistory.forEach(h => {
-          tbody.innerHTML += `
-            <tr>
-              <td><code>${h.txId}</code></td>
-              <td><strong>${h.name}</strong></td>
-              <td>${h.cat}</td>
-              <td>🪙 ${h.price.toLocaleString()}</td>
-              <td><span style="font-size:0.75rem; color:#9ca3af;">${h.date}</span></td>
-              <td><span style="color:#22c55e; font-weight:700;">${h.status}</span></td>
-            </tr>
-          `;
-        });
-      }
-      document.getElementById('purchase-history-modal').classList.add('open');
+    function handleRankCoinBuyFromModal() {
+      if (!activeModalRank) return;
+      const { rankName, coinPrice, days } = activeModalRank;
+      closeRankChoiceModal();
+      buyRankWithCoins(rankName, coinPrice, days);
     }
 
-    function closePurchaseHistoryModal() {
-      document.getElementById('purchase-history-modal').classList.remove('open');
+    function openRankPurchaseModal(rankName, cashPrice, coinPrice, days) {
+      activeModalRank = { rankName, cashPrice, coinPrice, days };
+      document.getElementById('rank-choice-title').textContent = `${rankName} (${days} Days)`;
+      document.getElementById('rank-choice-store-btn').textContent = `PURCHASE ON WEBSTORE ($${cashPrice})`;
+      document.getElementById('rank-choice-coin-btn').textContent = `BUY FOR 🪙 ${coinPrice.toLocaleString()} COINS`;
+      document.getElementById('rank-choice-modal').classList.add('open');
     }
 
-    /* ----------------------------------------------------
-       STAFF DIRECTORY WITH DOM INJECTION
-       ---------------------------------------------------- */
-    function renderStaffDirectory() {
-      const container = document.getElementById('staff-directory-grid');
-      container.innerHTML = '';
-
-      OFFICIAL_STAFF.forEach(st => {
-        const card = document.createElement('div');
-        card.className = `staff-card ${st.cardClass}`;
-        card.onclick = () => openStaffProfileModal(st);
-
-        const img = document.createElement('img');
-        img.className = 'staff-img-avatar';
-        img.alt = st.name;
-        img.src = `https://mc-heads.net/avatar/${encodeURIComponent(st.name)}/80`;
-        img.onerror = function() { this.onerror = null; this.src = STAFF_PLACEHOLDER_SVG; };
-
-        const badgeWrap = document.createElement('div');
-        badgeWrap.innerHTML = `<span class="badge-admin" style="font-size:0.75rem; letter-spacing:1px;">${st.badge}</span>`;
-
-        const nameH4 = document.createElement('h4');
-        nameH4.style.cssText = 'margin:10px 0 4px; color:#fff; font-size:1.35rem;';
-        nameH4.textContent = st.name;
-
-        const roleDiv = document.createElement('div');
-        roleDiv.style.cssText = 'font-size:0.78rem; font-weight:700; color:var(--gold-fs); margin-bottom:10px;';
-        roleDiv.textContent = st.role;
-
-        const descP = document.createElement('p');
-        descP.style.cssText = 'font-size:0.83rem; color:#cbd5e1; line-height:1.5; text-align:left;';
-        descP.textContent = st.desc;
-
-        const discordDiv = document.createElement('div');
-        discordDiv.style.marginTop = '14px';
-        discordDiv.innerHTML = `<a href="${st.discord}" target="_blank" class="btn btn-discord" style="padding:6px 14px; font-size:0.75rem;" onclick="event.stopPropagation();"><i class="fa-brands fa-discord"></i> Discord</a>`;
-
-        card.appendChild(img);
-        card.appendChild(badgeWrap);
-        card.appendChild(nameH4);
-        card.appendChild(roleDiv);
-        card.appendChild(descP);
-        card.appendChild(discordDiv);
-
-        container.appendChild(card);
-      });
+    function closeRankChoiceModal() {
+      document.getElementById('rank-choice-modal').classList.remove('open');
+      activeModalRank = null;
     }
 
-    function openStaffProfileModal(staffObj) {
-      const avatarEl = document.getElementById('staff-modal-avatar');
-      avatarEl.src = `https://mc-heads.net/avatar/${encodeURIComponent(staffObj.name)}/96`;
-      avatarEl.onerror = function() { this.src = STAFF_PLACEHOLDER_SVG; };
-
-      document.getElementById('staff-modal-name').textContent = staffObj.name;
-      document.getElementById('staff-modal-role').textContent = staffObj.role;
-      document.getElementById('staff-modal-desc').textContent = staffObj.desc;
-      document.getElementById('staff-modal-discord').href = staffObj.discord;
-      document.getElementById('staff-modal-perms').textContent = staffObj.cardClass === 'founder' ? 'Full Network Owner & Root Authorization' : 'Executive Operational Authority';
-      document.getElementById('staff-profile-modal').classList.add('open');
-    }
-
-    function closeStaffProfileModal() { document.getElementById('staff-profile-modal').classList.remove('open'); }
-
-    /* ----------------------------------------------------
-       REAL PLAYERS LEADERBOARDS (10 PAGES)
-       ---------------------------------------------------- */
-    let currentLeaderboardType = 'coins';
-    let currentLeaderboardPage = 1;
-    const PAGE_SIZE = 10;
-
-    function switchLeaderboardType(type) {
-      currentLeaderboardType = type;
-      currentLeaderboardPage = 1;
-      document.getElementById('btn-lb-coins').className = type === 'coins' ? 'btn btn-primary' : 'btn btn-outline';
-      document.getElementById('btn-lb-purchase').className = type === 'purchases' ? 'btn btn-primary' : 'btn btn-outline';
-      document.getElementById('lb-metric-header').textContent = type === 'coins' ? 'Coins Balance' : 'Store Purchases ($)';
-      renderRealLeaderboards();
-    }
-
-    function renderRealLeaderboards() {
-      const tbody = document.getElementById('real-leaderboard-tbody');
-      const paginationWrap = document.getElementById('lb-pagination-wrap');
-      tbody.innerHTML = '';
-
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-
-      if (currentLeaderboardType === 'coins') {
-        users.sort((a, b) => (b.coins || 0) - (a.coins || 0));
-      } else {
-        users.sort((a, b) => (b.purchases || 0) - (a.purchases || 0));
-      }
-
-      const totalPlayers = users.length;
-      const totalPages = Math.min(10, Math.max(1, Math.ceil(totalPlayers / PAGE_SIZE)));
-      const startIdx = (currentLeaderboardPage - 1) * PAGE_SIZE;
-      const pagePlayers = users.slice(startIdx, startIdx + PAGE_SIZE);
-
-      if (pagePlayers.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#9ca3af;">No registered players found yet.</td></tr>`;
-      } else {
-        pagePlayers.forEach((u, i) => {
-          const rankNum = startIdx + i + 1;
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td><strong style="color:var(--gold-fs);">#${rankNum}</strong></td>
-            <td><strong>${u.username}</strong></td>
-            <td><img src="https://mc-heads.net/avatar/${encodeURIComponent(u.mcUsername || u.username)}/24" onerror="this.src='${STAFF_PLACEHOLDER_SVG}';" style="vertical-align:middle; border-radius:4px; margin-right:6px;" alt="" /> ${u.mcUsername || u.username}</td>
-            <td><strong style="color:${currentLeaderboardType === 'coins' ? 'var(--gold-fs)' : '#22c55e'};">${currentLeaderboardType === 'coins' ? (u.coins || 0).toLocaleString() + ' Coins' : '$' + (u.purchases || 0).toLocaleString()}</strong></td>
-            <td><span style="color:#22c55e; font-size:0.8rem; font-weight:700;"><i class="fa-solid fa-circle-check"></i> Registered</span></td>
-          `;
-          tbody.appendChild(tr);
-        });
-      }
-
-      paginationWrap.innerHTML = '';
-      for (let p = 1; p <= totalPages; p++) {
-        const pBtn = document.createElement('button');
-        pBtn.className = p === currentLeaderboardPage ? 'btn btn-primary' : 'btn btn-outline';
-        pBtn.style.padding = '4px 10px';
-        pBtn.style.fontSize = '0.78rem';
-        pBtn.textContent = p;
-        pBtn.onclick = () => { currentLeaderboardPage = p; renderRealLeaderboards(); };
-        paginationWrap.appendChild(pBtn);
-      }
-    }
-
-    /* ----------------------------------------------------
-       ADMIN PANEL AUDIT & EDITORS
-       ---------------------------------------------------- */
-    function openAdminModal() {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session || (session.role !== 'Founder' && session.username.toLowerCase() !== 'itzveltriex' && session.username.toLowerCase() !== 'notslayer')) {
-        showToast('Access Denied: Founder authorization required.', 'warning');
-        return;
-      }
-      document.getElementById('admin-modal').classList.add('open');
-      renderAdminUserList();
-      renderNoviceAdminAudit();
-      renderAdminVoteSites();
-    }
-    function closeAdminModal() { document.getElementById('admin-modal').classList.remove('open'); }
-
-    function switchAdminPane(paneId, btn) {
-      document.querySelectorAll('#admin-modal .dash-tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('#admin-modal .dash-pane').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(paneId).classList.add('active');
-    }
-
-    function openStaffModal() {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session || (session.role === 'none' && !session.role)) {
-        showToast('Access Denied: Staff authorization required.', 'warning');
-        return;
-      }
-      document.getElementById('staff-modal').classList.add('open');
-    }
-    function closeStaffModal() { document.getElementById('staff-modal').classList.remove('open'); }
-
-    function switchStaffPane(paneId, btn) {
-      document.querySelectorAll('#staff-modal .dash-tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('#staff-modal .dash-pane').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(paneId).classList.add('active');
-    }
-
-    function adminCreateUser(e) {
-      e.preventDefault();
-      const user = document.getElementById('adm-new-user').value.trim();
-      const email = document.getElementById('adm-new-email').value.trim().toLowerCase();
-      const pass = document.getElementById('adm-new-pass').value;
-      const role = document.getElementById('adm-new-role').value;
-
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      const index = users.findIndex(u => u.username.toLowerCase() === user.toLowerCase());
-
-      if (index >= 0) {
-        users[index].email = email;
-        users[index].password = pass;
-        users[index].role = role;
-        showToast(`User ${user} role updated to: ${role}`, 'success');
-      } else {
-        users.push({ username: user, mcUsername: user, email, password: pass, role, hearts: 10, coins: 500, purchases: 0, registeredAt: new Date().toLocaleDateString() });
-        showToast(`User ${user} created with role: ${role}`, 'success');
-      }
-
-      localStorage.setItem(KEY_USERS, JSON.stringify(users));
-      renderAdminUserList();
-      renderMembersDirectory();
-      checkAuth();
-      renderRealLeaderboards();
-    }
-
-    function renderAdminUserList() {
-      const tbody = document.getElementById('admin-user-list-tbody');
-      tbody.innerHTML = '';
-      const users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      users.forEach(u => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong>${u.username}</strong></td>
-          <td>${u.email}</td>
-          <td><span class="badge-admin">${u.role.toUpperCase()}</span></td>
-          <td>${(u.coins || 0).toLocaleString()} Coins</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function renderNoviceAdminAudit() {
-      const tbody = document.getElementById('adm-novice-claims-tbody');
-      const claims = JSON.parse(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]');
-
-      if (claims.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#9ca3af;">No Novice claims logged yet.</td></tr>`;
-        return;
-      }
-
-      tbody.innerHTML = '';
-      claims.forEach(c => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><code>${c.accountId}</code></td>
-          <td><strong>${c.username}</strong></td>
-          <td>${c.mcUsername}</td>
-          <td>${c.discordId}</td>
-          <td><span style="color:#22c55e;">${c.verificationStatus}</span></td>
-          <td>${c.timestamp}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function handleSaveVoteConfig(e) {
-      e.preventDefault();
-      const title = document.getElementById('adm-vote-title').value.trim();
-      const url = document.getElementById('adm-vote-url').value.trim();
-      const reward = document.getElementById('adm-vote-reward').value.trim();
-      const visibility = document.getElementById('adm-vote-visibility').value;
-
-      let votes = JSON.parse(localStorage.getItem(KEY_VOTE_CONFIG) || '[]');
-      votes.push({ id: 'vote-' + Date.now(), title, url, reward, visibility });
-      localStorage.setItem(KEY_VOTE_CONFIG, JSON.stringify(votes));
-      renderAdminVoteSites();
-      renderPublicVoteSites();
-      showToast(`Vote site added: ${title}!`, 'success');
-      e.target.reset();
-    }
-
-    function renderAdminVoteSites() {
-      const container = document.getElementById('admin-vote-sites-list');
-      if (!container) return;
-      const votes = JSON.parse(localStorage.getItem(KEY_VOTE_CONFIG) || '[]');
-      container.innerHTML = '';
-
-      votes.forEach((v, idx) => {
-        container.innerHTML += `
-          <div style="background:#141420; padding:10px 14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
-            <div>
-              <strong>${v.title}</strong> (${v.visibility.toUpperCase()})
-              <div style="font-size:0.75rem; color:#888;">${v.url} • ${v.reward}</div>
-            </div>
-            <button class="btn btn-outline" style="padding:4px 8px; font-size:0.75rem; color:#ef4444; border-color:#ef4444;" onclick="deleteVoteSite(${idx})">DELETE</button>
-          </div>
-        `;
-      });
-    }
-
-    function deleteVoteSite(idx) {
-      let votes = JSON.parse(localStorage.getItem(KEY_VOTE_CONFIG) || '[]');
-      votes.splice(idx, 1);
-      localStorage.setItem(KEY_VOTE_CONFIG, JSON.stringify(votes));
-      renderAdminVoteSites();
-      renderPublicVoteSites();
-      showToast('Voting site deleted.', 'info');
-    }
-
-    function renderPublicVoteSites() {
-      const container = document.getElementById('public-vote-sites-list');
-      if (!container) return;
-      const votes = JSON.parse(localStorage.getItem(KEY_VOTE_CONFIG) || '[]');
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      const isFounder = session && (session.role === 'Founder' || session.username.toLowerCase() === 'itzveltriex');
-
-      container.innerHTML = '';
-      votes.forEach(v => {
-        if (v.visibility === 'private' && !isFounder) return;
-        container.innerHTML += `
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#141420; padding:14px; border-radius:8px;">
-            <div>
-              <strong>${v.title}</strong> ${v.visibility === 'private' ? '<span style="color:var(--gold-fs); font-size:0.7rem;">[ADMIN PRIVATE]</span>' : ''}
-              <div style="font-size:0.8rem; color:var(--gold-fs);">${v.reward}</div>
-            </div>
-            <a href="${v.url}" target="_blank" class="btn btn-outline" style="padding:6px 14px; font-size:0.8rem;" onclick="handleRecordVote('${v.title}')">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> VOTE NOW
-            </a>
-          </div>
-        `;
-      });
-    }
-
-    function handleRecordVote(title) {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (session) {
-        mutateUserCoins(session.username, 500);
-        showToast(`Vote recorded for ${title}! +500 Coins awarded.`, 'success');
-      }
-    }
-
-    function handleAdminStreakUpdate(e) {
-      e.preventDefault();
-      const day = parseInt(document.getElementById('adm-streak-day').value, 10);
-      const name = document.getElementById('adm-streak-name').value.trim();
-      const coins = parseInt(document.getElementById('adm-streak-coins').value, 10);
-      const icon = document.getElementById('adm-streak-icon').value.trim();
-
-      let streakRewards = JSON.parse(localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS) || '[]');
-      const idx = streakRewards.findIndex(r => r.day === day);
-
-      if (idx >= 0) {
-        streakRewards[idx].name = name;
-        streakRewards[idx].coins = coins;
-        streakRewards[idx].icon = icon;
-      } else {
-        streakRewards.push({ day, name, coins, icon, isGrand: day === 30 });
-      }
-
-      localStorage.setItem(KEY_CUSTOM_STREAK_REWARDS, JSON.stringify(streakRewards));
-      renderDailyStreakUI();
-      showToast(`Day ${day} reward configuration saved!`, 'success');
-    }
-
-    function handleAdminShopAdd(e) {
-      e.preventDefault();
-      const name = document.getElementById('adm-shop-name').value.trim();
-      const cat = document.getElementById('adm-shop-cat').value;
-      const price = parseInt(document.getElementById('adm-shop-price').value, 10);
-      const rarity = document.getElementById('adm-shop-rarity').value;
-      const desc = document.getElementById('adm-shop-desc').value.trim();
-
-      let items = JSON.parse(localStorage.getItem(KEY_SHOP_ITEMS) || '[]');
-      items.push({ id: 'item-' + Date.now(), name, cat, price, rarity, desc });
-      localStorage.setItem(KEY_SHOP_ITEMS, JSON.stringify(items));
-      renderCoinShop();
-      showToast(`Added [${name}] to Coin Shop!`, 'success');
-      e.target.reset();
-    }
-
-    /* ----------------------------------------------------
-       COINS MUTATION
-       ---------------------------------------------------- */
-    function mutateUserCoins(username, amount) {
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      const idx = users.findIndex(u => u.username.toLowerCase() === username.toLowerCase());
-      if (idx >= 0) {
-        users[idx].coins = Math.max(0, (users[idx].coins || 0) + amount);
-        localStorage.setItem(KEY_USERS, JSON.stringify(users));
-
-        const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-        if (session && session.username.toLowerCase() === username.toLowerCase()) {
-          session.coins = users[idx].coins;
-          localStorage.setItem(KEY_SESSION, JSON.stringify(session));
-          checkAuth();
-        }
-        renderRealLeaderboards();
-      }
-    }
-
-    /* ----------------------------------------------------
-       COMMON COMMUNITY MODULES & LIVE SERVER CHECK
-       ---------------------------------------------------- */
-    function copyIP() {
-      navigator.clipboard.writeText('play.fearsteal.fun:19132');
-      showToast('Server IP copied: play.fearsteal.fun:19132', 'success');
-    }
-
-    async function fetchServerLiveStatus() {
-      const dot = document.getElementById('stat-node-dot');
-      const topDot = document.getElementById('top-dot-indicator');
-      const topText = document.getElementById('top-status-text');
-      const motd = document.getElementById('stat-motd');
-      const players = document.getElementById('stat-players');
-
-      try {
-        const res = await fetch('https://api.mcstatus.io/v2/status/bedrock/play.fearsteal.fun:19132');
-        let data = null;
-        if (res.ok) data = await res.json();
-
-        if (data && data.online) {
-          dot.className = 'status-dot online';
-          topDot.className = 'status-dot online';
-          topText.textContent = `Online (${data.players.online}/${data.players.max})`;
-          players.textContent = `${data.players.online} / ${data.players.max}`;
-          motd.textContent = data.motd?.clean || 'FearSteal LifeSteal Network • Steal Hearts or Die!';
-          document.getElementById('stat-software').textContent = data.edition || 'Bedrock/Paper';
-          document.getElementById('stat-version').textContent = data.version?.name || '1.20.x';
-        } else {
-          dot.className = 'status-dot offline';
-          topDot.className = 'status-dot offline';
-          topText.textContent = 'Server Offline';
-          motd.textContent = 'Node Offline or unreachable.';
-          players.textContent = '0 / 0';
-        }
-      } catch (err) {
-        dot.className = 'status-dot offline';
-        topDot.className = 'status-dot offline';
-        topText.textContent = 'Server Offline';
-      }
-    }
-
-    function renderMembersDirectory() {
-      const tbody = document.getElementById('registered-members-tbody');
-      tbody.innerHTML = '';
-      const users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-
-      users.forEach((u, i) => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong style="color:var(--crimson-glow);">#${i + 1}</strong></td>
-          <td><img src="https://mc-heads.net/avatar/${encodeURIComponent(u.mcUsername || u.username)}/32" onerror="this.src='${STAFF_PLACEHOLDER_SVG}';" style="border-radius:4px;" alt="skin" /></td>
-          <td><strong>${u.username}</strong> ${u.mcUsername ? `<span style="font-size:0.75rem; color:#9ca3af;">(${u.mcUsername})</span>` : ''}</td>
-          <td><span style="color:#ef4444; font-weight:700;">${u.hearts || 10} Hearts</span></td>
-          <td><span style="color:var(--gold-fs); font-weight:700;">${(u.coins || 0).toLocaleString()} Coins</span></td>
-          <td><span style="font-size:0.8rem; color:#9ca3af;">${u.registeredAt || 'Today'}</span></td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function handleReviewSubmit(e) {
-      e.preventDefault();
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) { showToast('Please login to leave a review!', 'warning'); return; }
-
-      const stars = parseInt(document.getElementById('review-stars').value, 10);
-      const text = document.getElementById('review-text').value.trim();
-
-      let reviews = JSON.parse(localStorage.getItem(KEY_REVIEWS) || '[]');
-      reviews.push({ ign: session.username, stars, message: text, timestamp: Date.now() });
-      localStorage.setItem(KEY_REVIEWS, JSON.stringify(reviews));
-
-      showToast('Thank you! Your review has been recorded.', 'success');
-      document.getElementById('review-stars').value = '';
-      document.getElementById('review-text').value = '';
-      renderReviews();
-    }
-
-    function renderReviews() {
-      const feed = document.getElementById('reviews-feed-list');
-      const reviews = JSON.parse(localStorage.getItem(KEY_REVIEWS) || '[]');
-
-      if (reviews.length === 0) {
-        feed.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted);">No reviews submitted yet.</p>`;
-        return;
-      }
-
-      feed.innerHTML = '';
-      reviews.slice().reverse().forEach(r => {
-        feed.innerHTML += `<div style="background:rgba(255,255,255,0.03); padding:10px; border-radius:6px;"><strong>${r.ign}</strong>: ${r.stars}/10 ⭐<br/><span style="font-size:0.8rem; color:#ccc;">${r.message}</span></div>`;
-      });
-    }
-
-    function handleSuggestionSubmit(e) {
-      e.preventDefault();
-      showToast('Suggestion sent to Admin Panel!', 'success');
-      document.getElementById('sug-message').value = '';
-    }
-
-    function handleStaffApplySubmit(e) {
-      e.preventDefault();
-      showToast('12-Question Staff Application submitted to Admin Panel!', 'success');
-      e.target.reset();
-    }
-
-    function handleReportSubmit(e) {
-      e.preventDefault();
-      alert('Report filed with Tracking ID: #REP-' + Math.floor(10000 + Math.random() * 90000));
-      e.target.reset();
-    }
-
-    function handleAppealSubmit(e) {
-      e.preventDefault();
-      alert('Ban Appeal submitted with Tracking ID: #APL-' + Math.floor(10000 + Math.random() * 90000));
-      e.target.reset();
-    }
-
-    function handleTicketSubmit(e) {
-      e.preventDefault();
-      alert('Support Ticket opened with Tracking ID: #TKT-' + Math.floor(10000 + Math.random() * 90000));
-      e.target.reset();
-    }
-
-    function showToast(msg, type = 'info') {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      toast.innerHTML = `<i class="fa-solid fa-circle-info" style="color:var(--crimson-glow);"></i> <span>${msg}</span>`;
-      container.appendChild(toast);
-      setTimeout(() => toast.remove(), 4000);
-    }
-
-    function initParticles() {
-      const canvas = document.getElementById('particles-canvas');
-      const ctx = canvas.getContext('2d');
-      let w = canvas.width = window.innerWidth;
-      let h = canvas.height = window.innerHeight;
-
-      const particles = [];
-      for (let i = 0; i < 40; i++) {
-        particles.push({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 2 + 1, sy: -(Math.random() * 0.7 + 0.3) });
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = 'rgba(220, 38, 38, 0.4)';
-        particles.forEach(p => {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fill();
-          p.y += p.sy;
-          if (p.y < 0) p.y = h;
-        });
-        requestAnimationFrame(draw);
-      }
-      draw();
-    }
-
-    /* ----------------------------------------------------
-       ROBUST PRELOADER EXECUTION (GUARANTEED DISMISSAL)
-       ---------------------------------------------------- */
     function runPreloader() {
       let val = 0;
       const bar = document.getElementById('loader-progress-bar');
@@ -3674,23 +2283,22 @@
       const loader = document.getElementById('site-loader');
 
       const interval = setInterval(() => {
-        val += Math.floor(Math.random() * 14) + 10;
-        if (val > 100) val = 100;
-        bar.style.width = val + '%';
-        text.textContent = `LOADING REALM... ${val}%`;
-
-        if (val === 100) {
+        val += Math.floor(Math.random() * 20) + 15;
+        if (val >= 100) {
+          val = 100;
           clearInterval(interval);
+          bar.style.width = '100%';
+          text.textContent = 'REALM INITIALIZED! 100%';
           setTimeout(() => {
             loader.classList.add('fade-out');
-          }, 300);
+          }, 200);
+        } else {
+          bar.style.width = val + '%';
+          text.textContent = `LOADING REALM... ${val}%`;
         }
-      }, 45);
+      }, 35);
     }
 
-    /* ----------------------------------------------------
-       INITIALIZE APP
-       ---------------------------------------------------- */
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('current-year').textContent = new Date().getFullYear();
 
@@ -3706,6 +2314,7 @@
       renderReviews();
       renderCoinShop();
       renderPublicVoteSites();
+      renderAdminCoupons();
 
       fetchServerLiveStatus();
       setInterval(fetchServerLiveStatus, 60000);
