@@ -75,7 +75,6 @@
 
     .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
 
-    /* Custom Logo Styles */
     .fs-logo-img {
       display: inline-block; object-fit: contain;
       filter: drop-shadow(0 0 16px rgba(255, 180, 0, 0.55));
@@ -87,7 +86,6 @@
       filter: drop-shadow(0 0 28px rgba(255, 60, 60, 0.85)) drop-shadow(0 0 12px rgba(255, 200, 0, 0.9));
     }
 
-    /* Buttons */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       font-family: var(--font-display); font-weight: 800; font-size: 0.98rem;
@@ -194,7 +192,7 @@
     #auth-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
     .auth-card {
-      width: 100%; max-width: 530px; background: rgba(14, 14, 22, 0.95);
+      width: 100%; max-width: 540px; background: rgba(14, 14, 22, 0.96);
       border: 1px solid var(--border-bright); border-radius: 20px; padding: 32px 28px;
       box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 50px rgba(220, 38, 38, 0.3);
       position: relative; max-height: 94vh; overflow-y: auto;
@@ -215,7 +213,7 @@
     .auth-tab-btn {
       flex: 1; padding: 10px; background: transparent; border: none;
       color: var(--text-muted); font-family: var(--font-display); font-weight: 800;
-      font-size: 0.95rem; cursor: pointer; border-radius: 6px; transition: var(--transition); text-align: center;
+      font-size: 0.92rem; cursor: pointer; border-radius: 6px; transition: var(--transition); text-align: center;
     }
     .auth-tab-btn.active {
       background: linear-gradient(135deg, #b91c1c, #ef4444); color: #fff;
@@ -248,6 +246,14 @@
       position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
       color: #6b7280; cursor: pointer; padding: 4px;
     }
+    .toggle-password:hover { color: #fff; }
+
+    .auth-options {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.82rem; margin-top: 4px; margin-bottom: 14px; color: var(--text-muted);
+    }
+    .forgot-link { color: var(--gold-fs); text-decoration: none; cursor: pointer; font-weight: 600; }
+    .forgot-link:hover { text-decoration: underline; color: #fff; }
 
     .auth-instructions-card {
       margin-top: 20px; background: rgba(0, 0, 0, 0.45);
@@ -581,9 +587,10 @@
       <div class="auth-tabs">
         <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">LOGIN</button>
         <button class="auth-tab-btn" id="tab-register-btn" onclick="switchAuthTab('register')">REGISTER</button>
+        <button class="auth-tab-btn" id="tab-forgot-btn" onclick="switchAuthTab('forgot')">RECOVER</button>
       </div>
 
-      <!-- Login Form -->
+      <!-- 1. Login Form -->
       <form id="login-form" onsubmit="handleLoginSubmit(event)">
         <div class="auth-form-group">
           <label>Minecraft Username or Email</label>
@@ -605,12 +612,19 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">
+        <div class="auth-options">
+          <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+            <input type="checkbox" id="login-remember" checked /> Remember Me
+          </label>
+          <span class="forgot-link" onclick="switchAuthTab('forgot')">Forgot Password?</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:6px;">
           <i class="fa-solid fa-right-to-bracket"></i> ENTER REALM
         </button>
       </form>
 
-      <!-- Register Form -->
+      <!-- 2. Register Form -->
       <form id="register-form" style="display:none;" onsubmit="handleRegisterSubmit(event)">
         <div class="auth-form-group">
           <label>Minecraft In-Game Name (IGN)</label>
@@ -643,6 +657,50 @@
         <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">
           <i class="fa-solid fa-user-plus"></i> CREATE ACCOUNT
         </button>
+      </form>
+
+      <!-- 3. Integrated Forgot Password Form -->
+      <form id="forgot-form" style="display:none;" onsubmit="handleForgotPasswordSubmit(event)">
+        <div style="background:rgba(245, 158, 11, 0.1); border:1px solid rgba(245, 158, 11, 0.35); padding:10px 14px; border-radius:8px; font-size:0.8rem; color:#fde68a; margin-bottom:14px;">
+          <i class="fa-solid fa-shield-halved"></i> Enter your registered Minecraft Username or Email address to reset your realm credentials.
+        </div>
+
+        <div class="auth-form-group">
+          <label>Registered Username or Email</label>
+          <div class="ign-input-container">
+            <img src="https://mc-heads.net/avatar/Steve/42" id="forgot-avatar-preview" class="auth-live-avatar" alt="Avatar" />
+            <div class="auth-input-wrap">
+              <i class="fa-solid fa-id-badge input-icon"></i>
+              <input type="text" id="forgot-identifier" placeholder="e.g. ItzVeltriex or warrior@email.com" oninput="updateSkinPreview(this.value, 'forgot-avatar-preview')" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-form-group">
+          <label>Enter New Password</label>
+          <div class="auth-input-wrap">
+            <i class="fa-solid fa-key input-icon"></i>
+            <input type="password" id="forgot-new-pass" placeholder="New Password (Min. 6 characters)" required />
+            <i class="fa-regular fa-eye toggle-password" onclick="togglePassVisibility('forgot-new-pass', this)"></i>
+          </div>
+        </div>
+
+        <div class="auth-form-group">
+          <label>Confirm New Password</label>
+          <div class="auth-input-wrap">
+            <i class="fa-solid fa-check-double input-icon"></i>
+            <input type="password" id="forgot-confirm-pass" placeholder="Re-enter New Password" required />
+            <i class="fa-regular fa-eye toggle-password" onclick="togglePassVisibility('forgot-confirm-pass', this)"></i>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:6px;">
+          <i class="fa-solid fa-arrows-rotate"></i> UPDATE & RESET PASSWORD
+        </button>
+
+        <div style="text-align:center; margin-top:12px;">
+          <span class="forgot-link" onclick="switchAuthTab('login')"><i class="fa-solid fa-arrow-left"></i> Back to Login</span>
+        </div>
       </form>
 
       <div class="auth-instructions-card">
@@ -815,7 +873,6 @@
       </div>
 
       <div class="ranks-grid">
-        <!-- NOVICE LIMITED 60-DAY RANK -->
         <div class="rank-card free-novice">
           <div>
             <span class="novice-timer-badge" id="novice-countdown-tag">
@@ -1533,6 +1590,56 @@
       }
     }
 
+    /* FORGOT PASSWORD LOGIC */
+    function handleForgotPasswordSubmit(e) {
+      e.preventDefault();
+      const ident = document.getElementById('forgot-identifier').value.trim().toLowerCase();
+      const newPass = document.getElementById('forgot-new-pass').value;
+      const confirmPass = document.getElementById('forgot-confirm-pass').value;
+
+      if (newPass.length < 6) {
+        showToast('New password must be at least 6 characters long!', 'error');
+        return;
+      }
+
+      if (newPass !== confirmPass) {
+        showToast('Passwords do not match!', 'error');
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem('fs_users') || '[]');
+      const targetUser = users.find(u => u.username.toLowerCase() === ident || u.email.toLowerCase() === ident);
+
+      if (!targetUser) {
+        showToast('No registered warrior found with this Username or Email!', 'error');
+        return;
+      }
+
+      // Update password
+      targetUser.pass = newPass;
+      localStorage.setItem('fs_users', JSON.stringify(users));
+
+      // If this user is currently stored as active, update their active profile
+      const activeUser = JSON.parse(localStorage.getItem('fs_active_user') || 'null');
+      if (activeUser && (activeUser.username.toLowerCase() === ident || activeUser.email.toLowerCase() === ident)) {
+        activeUser.pass = newPass;
+        localStorage.setItem('fs_active_user', JSON.stringify(activeUser));
+      }
+
+      showToast('Password successfully reset! Please login with your new password ✅️', 'success');
+
+      // Return smoothly to the login tab with the username populated
+      switchAuthTab('login');
+      document.getElementById('login-identifier').value = targetUser.username;
+      document.getElementById('login-password').value = '';
+      updateSkinPreview(targetUser.username, 'login-avatar-preview');
+
+      // Clear the recovery form
+      document.getElementById('forgot-identifier').value = '';
+      document.getElementById('forgot-new-pass').value = '';
+      document.getElementById('forgot-confirm-pass').value = '';
+    }
+
     function handleLogout() {
       localStorage.removeItem('fs_active_user');
       showToast('Logged out. Please register first and second login than you can visit.', 'info');
@@ -1542,15 +1649,27 @@
     function switchAuthTab(tab) {
       const loginBtn = document.getElementById('tab-login-btn');
       const regBtn = document.getElementById('tab-register-btn');
+      const forgotBtn = document.getElementById('tab-forgot-btn');
       const loginForm = document.getElementById('login-form');
       const regForm = document.getElementById('register-form');
+      const forgotForm = document.getElementById('forgot-form');
+
+      loginBtn.classList.remove('active');
+      regBtn.classList.remove('active');
+      forgotBtn.classList.remove('active');
+      loginForm.style.display = 'none';
+      regForm.style.display = 'none';
+      forgotForm.style.display = 'none';
 
       if (tab === 'login') {
-        loginBtn.classList.add('active'); regBtn.classList.remove('active');
-        loginForm.style.display = 'block'; regForm.style.display = 'none';
-      } else {
-        regBtn.classList.add('active'); loginBtn.classList.remove('active');
-        regForm.style.display = 'block'; loginForm.style.display = 'none';
+        loginBtn.classList.add('active');
+        loginForm.style.display = 'block';
+      } else if (tab === 'register') {
+        regBtn.classList.add('active');
+        regForm.style.display = 'block';
+      } else if (tab === 'forgot') {
+        forgotBtn.classList.add('active');
+        forgotForm.style.display = 'block';
       }
     }
 
