@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home | FearSteal</title>
-  <meta name="description" content="FearSteal - The premier Minecraft LifeSteal network featuring competitive PvP, dynamic events, real-time tracking, custom ranks, and community." />
+  <meta name="description" content="FearSteal - The premier Minecraft LifeSteal network featuring competitive PvP, dynamic events, real-time live server tracking, custom ranks, and a vibrant community." />
   <meta name="theme-color" content="#dc2626" />
 
   <!-- Fonts & Icons -->
@@ -55,7 +55,6 @@
         url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="%23221313" fill-opacity="0.2"><path d="M0 0h20v20H0V0zm20 20h20v20H20V20z"/></g></svg>');
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #040407; }
     ::-webkit-scrollbar-thumb {
@@ -88,7 +87,7 @@
       filter: drop-shadow(0 0 28px rgba(255, 60, 60, 0.85)) drop-shadow(0 0 12px rgba(255, 200, 0, 0.9));
     }
 
-    /* Standard Buttons */
+    /* Buttons */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       font-family: var(--font-display); font-weight: 800; font-size: 0.98rem;
@@ -126,14 +125,6 @@
     .btn-discord:hover {
       transform: translateY(-2px); box-shadow: 0 6px 26px rgba(88, 101, 242, 0.6);
     }
-    .btn-staff {
-      background: linear-gradient(135deg, #0284c7, #06b6d4);
-      color: #fff; box-shadow: 0 4px 18px rgba(6, 182, 212, 0.4);
-    }
-    .btn-admin {
-      background: linear-gradient(135deg, #991b1b, #f59e0b);
-      color: #fff; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
-    }
 
     .glass-card {
       background: rgba(12, 12, 18, 0.82);
@@ -163,9 +154,7 @@
       background: linear-gradient(90deg, transparent, var(--crimson-glow), transparent); margin: 12px auto 0;
     }
 
-    /* ----------------------------------------------------
-       PRE-LOADER
-       ---------------------------------------------------- */
+    /* PRELOADER */
     #site-loader {
       position: fixed; inset: 0; background: #020204; z-index: 999999;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -194,9 +183,7 @@
       border-radius: 10px; transition: width 0.15s ease-out;
     }
 
-    /* ----------------------------------------------------
-       MANDATORY AUTHENTICATION SCREEN & GATEWAY
-       ---------------------------------------------------- */
+    /* MANDATORY AUTHENTICATION SCREEN */
     #auth-overlay {
       position: fixed; inset: 0;
       background: radial-gradient(circle at center, rgba(18, 5, 8, 0.98) 0%, rgba(2, 2, 4, 0.99) 100%);
@@ -262,7 +249,6 @@
       color: #6b7280; cursor: pointer; padding: 4px;
     }
 
-    /* Important registration steps box */
     .auth-instructions-card {
       margin-top: 20px; background: rgba(0, 0, 0, 0.45);
       border: 1px dashed rgba(255, 202, 24, 0.35); border-radius: 10px; padding: 14px;
@@ -275,9 +261,7 @@
     .auth-instructions-card ol { margin-left: 18px; margin-bottom: 8px; }
     .auth-instructions-footer { font-size: 0.75rem; color: #9ca3af; text-align: right; font-style: italic; }
 
-    /* ----------------------------------------------------
-       24-HOUR HOME SCREEN ANNOUNCEMENTS TICKER
-       ---------------------------------------------------- */
+    /* 24-HOUR HOME SCREEN ANNOUNCEMENTS TICKER */
     #home-announcements-container {
       background: linear-gradient(90deg, rgba(153, 27, 27, 0.9), rgba(220, 38, 38, 0.85), rgba(245, 158, 11, 0.85));
       border-bottom: 1px solid rgba(255, 255, 255, 0.2); color: #fff;
@@ -294,9 +278,7 @@
       font-size: 0.78rem; opacity: 0.9; display: flex; align-items: center; gap: 4px;
     }
 
-    /* ----------------------------------------------------
-       TOP BAR & NAVBAR
-       ---------------------------------------------------- */
+    /* TOP BAR & NAVBAR */
     .top-bar {
       background: rgba(4, 4, 6, 0.92); border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       font-size: 0.82rem; padding: 6px 0; position: relative; z-index: 101;
@@ -330,7 +312,6 @@
       color: #ffffff; background: rgba(220, 38, 38, 0.2); box-shadow: inset 0 0 0 1px rgba(220, 38, 38, 0.4);
     }
 
-    /* Role Conditional Badges & Navigation Links */
     #admin-nav-item, #staff-nav-item { display: none; }
     #admin-nav-item a {
       background: linear-gradient(135deg, #b91c1c, #f59e0b); color: #fff;
@@ -363,9 +344,7 @@
       display: none; background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer;
     }
 
-    /* ----------------------------------------------------
-       HERO
-       ---------------------------------------------------- */
+    /* HERO */
     .hero-section {
       min-height: 88vh; position: relative; display: flex; align-items: center;
       padding: 60px 0 80px; overflow: hidden;
@@ -405,9 +384,7 @@
 
     .hero-btn-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-bottom: 35px; }
 
-    /* ----------------------------------------------------
-       LIVE STATUS & PROXY DETECTION SECTION
-       ---------------------------------------------------- */
+    /* LIVE STATUS */
     .status-section {
       padding: 85px 0; border-top: 1px solid rgba(255, 255, 255, 0.05);
       background: linear-gradient(180deg, transparent, rgba(14, 14, 20, 0.5));
@@ -445,9 +422,7 @@
     .status-stat-value { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: #fff; }
     .status-stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
 
-    /* ----------------------------------------------------
-       HEART FORGE & LIFESTEAL SIMULATOR
-       ---------------------------------------------------- */
+    /* HEART FORGE SIMULATOR */
     .heart-forge-box {
       background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(18, 18, 28, 0.95));
       border: 1px solid var(--border-bright); border-radius: var(--radius); padding: 26px;
@@ -459,9 +434,7 @@
     .heart-display-icons { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
     .mc-heart { color: #ef4444; filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.7)); font-size: 1.2rem; }
 
-    /* ----------------------------------------------------
-       STORE / 60-DAY NOVICE RANK CLAIM
-       ---------------------------------------------------- */
+    /* STORE */
     .store-section { padding: 85px 0; }
     .ranks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
     .rank-card {
@@ -481,9 +454,7 @@
     .progress-bar { height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; }
     .progress-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #60a5fa); transition: width 0.4s ease; }
 
-    /* ----------------------------------------------------
-       MEMBERS DIRECTORY
-       ---------------------------------------------------- */
+    /* MEMBERS DIRECTORY */
     .members-section { padding: 85px 0; background: linear-gradient(180deg, rgba(14,14,20,0.4), transparent); }
     .members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
     .member-card {
@@ -493,9 +464,7 @@
     .member-card:hover { transform: translateY(-4px); border-color: var(--border-bright); }
     .member-avatar { width: 56px; height: 56px; border-radius: 10px; margin-bottom: 10px; image-rendering: pixelated; }
 
-    /* ----------------------------------------------------
-       REVIEWS & REVIEWS SUBMITTED & LEADERBOARD
-       ---------------------------------------------------- */
+    /* REVIEWS */
     .review-section { padding: 85px 0; }
     .star-selector { display: flex; gap: 6px; justify-content: center; font-size: 1.5rem; margin: 14px 0; }
     .star-selector i { cursor: pointer; color: #4b5563; transition: color 0.2s ease; }
@@ -506,9 +475,7 @@
       border-radius: 12px; padding: 20px;
     }
 
-    /* ----------------------------------------------------
-       MODALS: ADMIN PANEL, STAFF PANEL, DISCORD CLAIM, REPORTS, TICKETS, APPEALS
-       ---------------------------------------------------- */
+    /* MODALS */
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(2, 2, 4, 0.94);
       backdrop-filter: blur(20px); z-index: 10005; display: none;
@@ -532,7 +499,7 @@
       background: var(--crimson); color: #fff; border-color: var(--crimson-glow);
     }
 
-    /* Status Pill Badges for Tickets/Reports */
+    /* Badges */
     .badge-status {
       display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
     }
@@ -541,7 +508,7 @@
     .badge-resolved, .badge-accepted { background: rgba(16, 185, 129, 0.2); color: #34d399; }
     .badge-closed, .badge-rejected { background: rgba(239, 68, 68, 0.2); color: #f87171; }
 
-    /* Footer */
+    /* FOOTER */
     footer.site-footer {
       background: #020204; border-top: 1px solid rgba(255, 255, 255, 0.07);
       padding: 60px 0 30px; position: relative; z-index: 2;
@@ -607,7 +574,6 @@
         <p style="font-size:0.82rem; color:var(--text-muted);">Please connect your account to explore the server network</p>
       </div>
 
-      <!-- User Requested Security Guard Warning -->
       <div class="auth-gate-warning">
         <i class="fa-solid fa-lock"></i> Please register first and second login than you can visit our website otherwise you can't see anything for server related.
       </div>
@@ -679,7 +645,6 @@
         </button>
       </form>
 
-      <!-- Exact User Instructions Notes -->
       <div class="auth-instructions-card">
         <div class="auth-instructions-title">
           <i class="fa-solid fa-circle-info"></i> Important notes • How to register or login
@@ -737,7 +702,7 @@
         <li class="nav-item"><a href="#reviews"><i class="fa-solid fa-star"></i> Reviews</a></li>
         <li class="nav-item"><a href="#help"><i class="fa-solid fa-headset"></i> Support</a></li>
 
-        <!-- ROLE PROTECTED LINKS -->
+        <!-- Role Badges -->
         <li class="nav-item" id="staff-nav-item">
           <a href="#staff-panel" onclick="openStaffPanel(event)"><i class="fa-solid fa-user-shield"></i> STAFF PANEL</a>
         </li>
@@ -788,7 +753,7 @@
     </div>
   </section>
 
-  <!-- 2. SERVER STATUS SECTION (WITH VELOCITY DETECTION & AUTO REFRESH) -->
+  <!-- 2. SERVER STATUS SECTION -->
   <section id="status" class="status-section">
     <div class="container">
       <div class="section-title-wrap">
@@ -983,7 +948,7 @@
       </div>
 
       <div class="members-grid" id="members-list-container">
-        <!-- Rendered Dynamically via JS -->
+        <!-- Rendered Dynamically -->
       </div>
     </div>
   </section>
@@ -1121,9 +1086,7 @@
     </div>
   </section>
 
-  <!-- ========================================================
-       FOUNDER ADMIN PANEL MODAL (LOCKED TO ADMINS)
-       ======================================================== -->
+  <!-- FOUNDER ADMIN PANEL MODAL (LOCKED TO ADMINS) -->
   <div class="modal-overlay" id="admin-panel-overlay">
     <div class="modal-box">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
@@ -1199,9 +1162,7 @@
     </div>
   </div>
 
-  <!-- ========================================================
-       STAFF PANEL MODAL (LOCKED TO STAFF & ADMINS)
-       ======================================================== -->
+  <!-- STAFF PANEL MODAL (LOCKED TO STAFF & ADMINS) -->
   <div class="modal-overlay" id="staff-panel-overlay">
     <div class="modal-box">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
@@ -1290,7 +1251,7 @@
     </div>
   </div>
 
-  <!-- MODAL: NOVICE CLAIM (WITH EXACT DISCORD VERIFICATION) -->
+  <!-- MODAL: NOVICE CLAIM -->
   <div class="modal-overlay" id="novice-claim-modal">
     <div class="modal-box" style="max-width:500px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
@@ -1437,24 +1398,17 @@
 
   <div id="toast-container"></div>
 
-  <!-- CORE JAVASCRIPT LOGIC -->
+  <!-- SCRIPT LOGIC -->
   <script>
-    /* ----------------------------------------------------
-       FEARSTEAL CREST LOGO ASSET
-       ---------------------------------------------------- */
     const FEARSTEAL_LOGO_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><linearGradient id="yg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fff275"/><stop offset="30%" stop-color="%23ffca18"/><stop offset="100%" stop-color="%23e58900"/></linearGradient><linearGradient id="rg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23c51010"/><stop offset="100%" stop-color="%23480000"/></linearGradient><linearGradient id="sd" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ff5050"/><stop offset="100%" stop-color="%237e0606"/></linearGradient></defs><g stroke="%23000" stroke-width="18" stroke-linejoin="miter"><path d="M 125 145 L 245 145 L 245 205 L 180 205 L 180 235 L 235 235 L 235 285 L 180 285 L 180 345 L 125 345 Z" fill="url(%23sd)"/><path d="M 110 135 L 235 135 L 235 190 L 170 190 L 170 225 L 225 225 L 225 275 L 170 275 L 170 340 L 110 340 Z" fill="url(%23yg)"/><path d="M 110 340 L 125 355 L 185 355 L 170 340 Z" fill="url(%23rg)"/><path d="M 235 135 L 250 150 L 250 205 L 235 190 Z" fill="url(%23rg)"/><path d="M 265 145 L 385 145 L 385 220 L 325 220 L 325 245 L 390 245 L 390 345 L 265 345 L 265 270 L 325 270 L 325 245 L 265 245 Z" fill="url(%23sd)"/><path d="M 252 135 L 375 135 L 375 205 L 315 205 L 315 235 L 380 235 L 380 340 L 252 340 L 252 260 L 315 260 L 315 235 L 252 235 Z" fill="url(%23yg)"/><path d="M 375 135 L 392 150 L 392 220 L 375 205 Z" fill="url(%23rg)"/><path d="M 380 235 L 398 250 L 398 355 L 380 340 Z" fill="url(%23rg)"/><path d="M 252 340 L 270 358 L 398 358 L 380 340 Z" fill="url(%23rg)"/></g></svg>`;
 
     document.querySelectorAll('.fs-asset-target').forEach(img => img.src = FEARSTEAL_LOGO_SVG);
 
-    /* ----------------------------------------------------
-       HARDCODED FOUNDERS & STORAGE SYSTEM
-       ---------------------------------------------------- */
     const FOUNDER_ACCOUNTS = [
       { username: "ItzVeltriex", email: "itzveltriex@fearsteal.fun", pass: "thakuree@2064", role: "admin" },
       { username: "Notslayer", email: "notslayer@fearsteal.fun", pass: "Notslayer@990", role: "admin" }
     ];
 
-    // Seed Data into LocalStorage if empty
     function initializeStorage() {
       if (!localStorage.getItem('fs_users')) {
         const initialUsers = [
@@ -1475,9 +1429,6 @@
       if (!localStorage.getItem('fs_appeals')) localStorage.setItem('fs_appeals', JSON.stringify([]));
     }
 
-    /* ----------------------------------------------------
-       AUTHENTICATION & GATE LOGIC
-       ---------------------------------------------------- */
     function checkAuth() {
       const activeUser = JSON.parse(localStorage.getItem('fs_active_user'));
       const overlay = document.getElementById('auth-overlay');
@@ -1492,7 +1443,6 @@
         userName.textContent = activeUser.username;
         userAvatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(activeUser.username)}/22`;
 
-        // ItzVeltriex or Notslayer gets Founder auto-access to both
         const isFounder = (activeUser.username.toLowerCase() === 'itzveltriex' || activeUser.username.toLowerCase() === 'notslayer');
 
         if (activeUser.role === 'admin' || isFounder) {
@@ -1525,13 +1475,11 @@
 
       const users = JSON.parse(localStorage.getItem('fs_users') || '[]');
 
-      // Check if user already exists
       if (users.some(u => u.username.toLowerCase() === user.toLowerCase() || u.email === email)) {
         showToast('Username or Email already registered!', 'error');
         return;
       }
 
-      // Hardcoded Admin Recognition
       let assignedRole = 'player';
       if ((user.toLowerCase() === 'itzveltriex' || email === 'itzveltriex@fearsteal.fun') && pass === 'thakuree@2064') {
         assignedRole = 'admin';
@@ -1551,10 +1499,8 @@
       users.push(newUser);
       localStorage.setItem('fs_users', JSON.stringify(users));
 
-      // Exact prompt requested by user
       showToast('You are successful register so please login ✅️', 'success');
 
-      // Switch to Login tab automatically
       switchAuthTab('login');
       document.getElementById('login-identifier').value = user;
       document.getElementById('login-password').value = '';
@@ -1568,10 +1514,8 @@
 
       const users = JSON.parse(localStorage.getItem('fs_users') || '[]');
 
-      // Check hardcoded founders first
       let matched = users.find(u => (u.username.toLowerCase() === ident || u.email.toLowerCase() === ident) && u.pass === pass);
 
-      // Fallback check against hardcoded list
       if (!matched) {
         const found = FOUNDER_ACCOUNTS.find(f => (f.username.toLowerCase() === ident || f.email.toLowerCase() === ident) && f.pass === pass);
         if (found) {
@@ -1628,9 +1572,6 @@
       }
     }
 
-    /* ----------------------------------------------------
-       24-HOUR HOMESCREEN ANNOUNCEMENTS SYSTEM
-       ---------------------------------------------------- */
     function checkAnnouncements() {
       const raw = localStorage.getItem('fs_announcement');
       const container = document.getElementById('home-announcements-container');
@@ -1646,7 +1587,6 @@
       const now = Date.now();
       const elapsedHours = (now - ann.timestamp) / (1000 * 60 * 60);
 
-      // Remove automatically after 24 Hours
       if (elapsedHours >= 24) {
         localStorage.removeItem('fs_announcement');
         container.style.display = 'none';
@@ -1684,9 +1624,6 @@
       showToast('Announcement removed.', 'info');
     }
 
-    /* ----------------------------------------------------
-       SERVER STATUS & VELOCITY PROXY DETECTION
-       ---------------------------------------------------- */
     let statusCountdown = 60;
     async function fetchServerStatus(isManual = false) {
       const motdEl = document.getElementById('dashboard-motd');
@@ -1702,7 +1639,6 @@
       if (isManual) showToast('Refreshing server telemetry...', 'info');
 
       try {
-        // Bedrock Check
         const res = await fetch('https://api.mcstatus.io/v2/status/bedrock/play.fearsteal.fun:19132', { cache: 'no-store' });
         const data = await res.json();
 
@@ -1715,11 +1651,9 @@
           playersEl.textContent = data.players.online;
           motdEl.textContent = data.motd?.clean || 'FearSteal LifeSteal Network • Steal Hearts or Die!';
 
-          // Detection for Velocity
           proxyBadge.style.display = 'inline-flex';
           metaVer.textContent = data.version?.name || '1.20.x Bedrock/Velocity';
         } else {
-          // Check Java Fallback
           const jRes = await fetch('https://api.mcstatus.io/v2/status/java/play.fearsteal.fun:19132', { cache: 'no-store' });
           const jData = await jRes.json();
 
@@ -1759,9 +1693,6 @@
       }, 1000);
     }
 
-    /* ----------------------------------------------------
-       MEMBERS DIRECTORY (SYNCED TO REGISTRATIONS)
-       ---------------------------------------------------- */
     function renderMembersDirectory() {
       const users = JSON.parse(localStorage.getItem('fs_users') || '[]');
       const container = document.getElementById('members-list-container');
@@ -1788,9 +1719,6 @@
       });
     }
 
-    /* ----------------------------------------------------
-       HEART FORGE & LIFESTEAL SIMULATOR
-       ---------------------------------------------------- */
     function renderHeartSimulator() {
       const activeUser = JSON.parse(localStorage.getItem('fs_active_user'));
       if (!activeUser) return;
@@ -1850,15 +1778,11 @@
       }
     }
 
-    /* ----------------------------------------------------
-       LEADERBOARD 10-MIN AUTO REFRESH
-       ---------------------------------------------------- */
     let lbTimeLeft = 600;
     function renderLeaderboardTable() {
       const tbody = document.getElementById('leaderboard-table-body');
       const users = JSON.parse(localStorage.getItem('fs_users') || '[]');
 
-      // Sort by hearts
       const sorted = [...users].sort((a, b) => (b.hearts || 10) - (a.hearts || 10));
 
       tbody.innerHTML = '';
@@ -1892,9 +1816,6 @@
       }, 1000);
     }
 
-    /* ----------------------------------------------------
-       60-DAY NOVICE RANK CLAIM & DISCORD VERIFICATION
-       ---------------------------------------------------- */
     function updateNoviceRankDisplay() {
       const count = parseInt(localStorage.getItem('fs_novice_count') || '0', 10);
       document.getElementById('novice-counter-text').textContent = `${count} / 100 Claimed`;
@@ -1932,9 +1853,6 @@
       showToast(`Novice rank verified for Discord user [${discordIgn}] and unlocked!`, 'success');
     }
 
-    /* ----------------------------------------------------
-       REVIEWS SYSTEM (0 - 10 STARS)
-       ---------------------------------------------------- */
     let selectedRating = 0;
     function selectReviewStar(val) {
       selectedRating = val;
@@ -2003,9 +1921,6 @@
       });
     }
 
-    /* ----------------------------------------------------
-       SUGGESTIONS, STAFF APPS, TICKETS, REPORTS, APPEALS
-       ---------------------------------------------------- */
     function handleSuggestionSubmit(e) {
       e.preventDefault();
       const activeUser = JSON.parse(localStorage.getItem('fs_active_user'));
@@ -2118,9 +2033,6 @@
       showToast(`Support Ticket ${tckId} opened.`, 'success');
     }
 
-    /* ----------------------------------------------------
-       ADMIN PANEL LOGIC & TAB CONTROLLERS
-       ---------------------------------------------------- */
     function openAdminPanel(e) {
       if (e) e.preventDefault();
       document.getElementById('admin-panel-overlay').classList.add('open');
@@ -2284,9 +2196,6 @@
       container.innerHTML = html;
     }
 
-    /* ----------------------------------------------------
-       STAFF PANEL TAB CONTROLLER
-       ---------------------------------------------------- */
     function openStaffPanel(e) {
       if (e) e.preventDefault();
       document.getElementById('staff-panel-overlay').classList.add('open');
@@ -2403,9 +2312,6 @@
       showToast(`Appeal status shifted to ${status}.`, 'info');
     }
 
-    /* ----------------------------------------------------
-       GENERAL HELPERS & INITIALIZATION
-       ---------------------------------------------------- */
     function openModal(id) { document.getElementById(id).classList.add('open'); }
     function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
@@ -2459,9 +2365,6 @@
       }, 40);
     }
 
-    /* ----------------------------------------------------
-       CANVAS PARTICLES
-       ---------------------------------------------------- */
     function initParticles() {
       const cvs = document.getElementById('particles-canvas');
       const ctx = cvs.getContext('2d');
@@ -2501,7 +2404,6 @@
       initStatusTimer();
       initLeaderboardTimer();
 
-      // Check 24-hr announcement timestamp every 30 seconds
       setInterval(checkAnnouncements, 30000);
     });
   </script>
