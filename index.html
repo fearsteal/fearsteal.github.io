@@ -91,7 +91,7 @@
       z-index: 2;
     }
 
-    /* STRICT BRAND NAME GRADIENT (WHITE AND YELLOW) */
+    /* BRAND GRADIENT: STRICTLY WHITE TO YELLOW GRADIENT FOR FEARSTEAL */
     .brand-title {
       font-family: var(--font-display);
       font-size: 1.65rem;
@@ -912,7 +912,7 @@
       <div class="auth-tabs">
         <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">LOGIN</button>
         <button class="auth-tab-btn" id="tab-register-btn" onclick="switchAuthTab('register')">REGISTER</button>
-        <button class="auth-tab-btn" id="tab-forgot-btn" onclick="switchAuthTab('forgot')">RECOVERY</button>
+        <button class="auth-tab-btn" id="tab-forgot-btn" onclick="switchAuthTab('forgot')">FORGOT PASSWORD</button>
       </div>
 
       <!-- LOGIN FORM -->
@@ -943,7 +943,9 @@
           <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
             <input type="checkbox" id="login-remember" checked /> Remember Me
           </label>
-          <a href="#forgot" style="color:var(--crimson-glow); text-decoration:none;" onclick="switchAuthTab('forgot'); return false;">Forgot Password?</a>
+          <a href="#forgot" style="color:var(--crimson-glow); text-decoration:none; font-weight:700;" onclick="switchAuthTab('forgot'); return false;">
+            <i class="fa-solid fa-key"></i> Forgot Password?
+          </a>
         </div>
 
         <button type="submit" id="login-submit-btn" class="btn btn-primary" style="width: 100%;">
@@ -1035,19 +1037,21 @@
         </button>
       </form>
 
-      <!-- FORGOT PASSWORD -->
+      <!-- FORGOT PASSWORD SECTION -->
       <div id="forgot-password-panel" style="display:none;">
         <div style="text-align:center; margin-bottom:16px;">
           <i class="fa-solid fa-key" style="font-size:2.4rem; color:var(--gold-fs); margin-bottom:10px;"></i>
-          <h3 style="color:#fff; font-size:1.3rem;">ACCOUNT RECOVERY</h3>
-          <p style="font-size:0.85rem; color:#9ca3af;">Enter registered email to receive a 6-digit security code.</p>
+          <h3 style="color:#fff; font-size:1.3rem;">PASSWORD RECOVERY</h3>
+          <p style="font-size:0.85rem; color:#9ca3af;">Enter your registered account email to reset your credentials.</p>
         </div>
+
+        <!-- Step 1: Send Verification Code -->
         <div id="forgot-step-1">
           <div class="auth-form-group">
             <label>Registered Account Email</label>
             <div class="auth-input-wrap">
               <i class="fa-solid fa-envelope input-icon"></i>
-              <input type="email" id="forgot-email-input" placeholder="e.g. user@fearsteal.fun" required />
+              <input type="email" id="forgot-email-input" placeholder="e.g. user@fearsteal.fun or admin email" required />
             </div>
             <div class="auth-error-msg" id="forgot-email-err"></div>
           </div>
@@ -1055,12 +1059,14 @@
             <i class="fa-solid fa-paper-plane"></i> SEND RESET CODE
           </button>
         </div>
+
+        <!-- Step 2: Verify Code & Enter New Password -->
         <div id="forgot-step-2" style="display:none;">
           <div class="auth-form-group">
             <label>6-Digit Verification Code</label>
             <div class="auth-input-wrap">
               <i class="fa-solid fa-shield-halved input-icon"></i>
-              <input type="text" id="forgot-code-input" placeholder="123456" maxlength="6" required />
+              <input type="text" id="forgot-code-input" placeholder="Enter 6-digit code..." maxlength="6" required />
             </div>
             <div class="auth-error-msg" id="forgot-code-err"></div>
           </div>
@@ -1083,8 +1089,9 @@
             <i class="fa-solid fa-check-double"></i> UPDATE PASSWORD & LOGIN
           </button>
         </div>
+
         <div style="text-align:center; margin-top:16px;">
-          <a href="#login" style="font-size:0.85rem; color:var(--crimson-glow); text-decoration:none;" onclick="switchAuthTab('login'); return false;">
+          <a href="#login" style="font-size:0.85rem; color:var(--crimson-glow); text-decoration:none; font-weight:700;" onclick="switchAuthTab('login'); return false;">
             <i class="fa-solid fa-arrow-left"></i> Back to Login
           </a>
         </div>
@@ -1774,7 +1781,7 @@
 
   <div id="toast-container"></div>
 
-  <!-- JAVASCRIPT LOGIC (SOUNDS, PARTICLES, REAL NOVICE ATOMIC CLAIMS, REWARDS, VOTE) -->
+  <!-- JAVASCRIPT LOGIC (SOUNDS, PARTICLES, REAL NOVICE ATOMIC CLAIMS, REWARDS, VOTE, FORGOT PASSWORD) -->
   <script>
     // Embedded Vector Logo
     const FEARSTEAL_LOGO_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><linearGradient id="yg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fff275"/><stop offset="30%" stop-color="%23ffca18"/><stop offset="100%" stop-color="%23e58900"/></linearGradient><linearGradient id="rg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23c51010"/><stop offset="100%" stop-color="%23480000"/></linearGradient><linearGradient id="sd" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ff5050"/><stop offset="100%" stop-color="%237e0606"/></linearGradient></defs><g stroke="%23000" stroke-width="18" stroke-linejoin="miter"><path d="M 125 145 L 245 145 L 245 205 L 180 205 L 180 235 L 235 235 L 235 285 L 180 285 L 180 345 L 125 345 Z" fill="url(%23sd)"/><path d="M 110 135 L 235 135 L 235 190 L 170 190 L 170 225 L 225 225 L 225 275 L 170 275 L 170 340 L 110 340 Z" fill="url(%23yg)"/><path d="M 110 340 L 125 355 L 185 355 L 170 340 Z" fill="url(%23rg)"/><path d="M 235 135 L 250 150 L 250 205 L 235 190 Z" fill="url(%23rg)"/><path d="M 265 145 L 385 145 L 385 220 L 325 220 L 325 245 L 390 245 L 390 345 L 265 345 L 265 270 L 325 270 L 325 245 L 265 245 Z" fill="url(%23sd)"/><path d="M 252 135 L 375 135 L 375 205 L 315 205 L 315 235 L 380 235 L 380 340 L 252 340 L 252 260 L 315 260 L 315 235 L 252 235 Z" fill="url(%23yg)"/><path d="M 375 135 L 392 150 L 392 220 L 375 205 Z" fill="url(%23rg)"/><path d="M 380 235 L 398 250 L 398 355 L 380 340 Z" fill="url(%23rg)"/><path d="M 252 340 L 270 358 L 398 358 L 380 340 Z" fill="url(%23rg)"/></g></svg>`;
@@ -2150,6 +2157,84 @@
         triggerPortalTransition(newUser.username);
         initAuth();
       }, 650);
+    }
+
+    /* ========================================================
+       FORGOT PASSWORD & RECOVERY FLOW
+       ======================================================== */
+    let tempRecoveryCode = null;
+    let tempRecoveryEmail = null;
+
+    function sendRecoveryCode() {
+      playClickSound();
+      const emailInput = document.getElementById('forgot-email-input');
+      const email = emailInput.value.trim();
+      const err = document.getElementById('forgot-email-err');
+
+      if (!email || !email.includes('@')) {
+        playErrorSound();
+        err.textContent = 'Please enter a valid registered email address.';
+        return;
+      }
+      err.textContent = '';
+
+      tempRecoveryEmail = email;
+      tempRecoveryCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+      playSuccessSound();
+      showToast(`Verification code sent! (Your Reset Code: ${tempRecoveryCode})`, 'warning', 'fa-envelope');
+      document.getElementById('forgot-step-1').style.display = 'none';
+      document.getElementById('forgot-step-2').style.display = 'block';
+    }
+
+    function confirmResetPassword() {
+      playClickSound();
+      const code = document.getElementById('forgot-code-input').value.trim();
+      const newPass = document.getElementById('forgot-new-pass').value;
+      const confirmPass = document.getElementById('forgot-confirm-pass').value;
+      const codeErr = document.getElementById('forgot-code-err');
+      const resetErr = document.getElementById('forgot-reset-err');
+
+      if (code !== tempRecoveryCode) {
+        playErrorSound();
+        codeErr.textContent = 'Invalid 6-digit verification code.';
+        return;
+      }
+      codeErr.textContent = '';
+
+      if (newPass.length < 6) {
+        playErrorSound();
+        resetErr.textContent = 'New password must be at least 6 characters.';
+        return;
+      }
+
+      if (newPass !== confirmPass) {
+        playErrorSound();
+        resetErr.textContent = 'Passwords do not match.';
+        return;
+      }
+      resetErr.textContent = '';
+
+      // Update in registered users database
+      const users = JSON.parse(localStorage.getItem(USERS_DB_KEY) || '[]');
+      const user = users.find(u => u.email.toLowerCase() === tempRecoveryEmail.toLowerCase());
+      if (user) {
+        user.password = newPass;
+        localStorage.setItem(USERS_DB_KEY, JSON.stringify(users));
+      }
+
+      playSuccessSound();
+      showToast('✓ Password updated successfully! Please login with your new password.', 'success', 'fa-key');
+      
+      // Reset flow and return to login tab
+      document.getElementById('forgot-step-1').style.display = 'block';
+      document.getElementById('forgot-step-2').style.display = 'none';
+      document.getElementById('forgot-email-input').value = '';
+      document.getElementById('forgot-code-input').value = '';
+      document.getElementById('forgot-new-pass').value = '';
+      document.getElementById('forgot-confirm-pass').value = '';
+
+      switchAuthTab('login');
     }
 
     function triggerPortalTransition(username) {
