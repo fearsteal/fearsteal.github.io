@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home | FearSteal</title>
-  <meta name="description" content="FearSteal - The premier Minecraft LifeSteal network featuring competitive PvP, dynamic events, real-time live server tracking, custom ranks, and a vibrant community." />
+  <meta name="description" content="FearSteal LifeSteal Network - Steal Hearts, Build Power, Survive. Java & Bedrock play.fearsteal.fun:19132" />
   <meta name="theme-color" content="#dc2626" />
 
   <!-- Fonts & Icons -->
@@ -387,7 +387,11 @@
 </head>
 <body>
 
-<div id="active-announcement-banner">
+  <canvas id="particles-canvas"></canvas>
+  <div class="smoke-layer"></div>
+
+  <!-- TOP ANNOUNCEMENT BANNER -->
+  <div id="active-announcement-banner">
     <div class="announcement-flex">
       <div><i class="fa-solid fa-bullhorn" style="margin-right: 8px; color: var(--gold-fs);"></i><span id="announcement-text-content">FEARSTEAL SEASON 1 IS NOW LIVE!</span></div>
       <div><span class="announcement-time-badge" id="announcement-time-ago">Just now</span></div>
@@ -3447,79 +3451,28 @@ function handleAdminSaveDiscordConfig(e) {
 
     /* 14. FAST PRELOADER */
     function runPreloader() {
-      // Start exactly once. No API/server/auth function is allowed to control this loader.
-      if (window.__FEARSTEAL_PRELOADER_STARTED__) return;
-      window.__FEARSTEAL_PRELOADER_STARTED__ = true;
-
       const bar = document.getElementById('loader-progress-bar');
       const text = document.getElementById('loader-progress-text');
       const loader = document.getElementById('site-loader');
-
-      if (!loader) return;
-
       let val = 0;
-      let finished = false;
-      const startTime = Date.now();
-
-      const render = () => {
-        if (bar) bar.style.width = Math.min(val, 100) + '%';
-        if (text) {
-          text.textContent = val >= 100
-            ? 'READY! 100%'
-            : `LOADING REALM... ${Math.floor(val)}%`;
-        }
-      };
-
-      const finish = () => {
-        if (finished) return;
-        finished = true;
-        val = 100;
-        render();
-
-        // Give the browser one frame to paint 100%, then fade out.
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            loader.classList.add('fade-out');
-
-            // Fully remove it after the CSS transition so it can never block clicks.
-            setTimeout(() => {
-              if (loader && loader.parentNode) {
-                loader.style.display = 'none';
-              }
-            }, 500);
-          });
-        });
-      };
-
-      render();
-
-      // Fixed, self-contained animation. It does NOT wait for:
-      // server status, Discord, images, auth, storage, or any API.
+      
       const interval = setInterval(() => {
-        if (finished) {
-          clearInterval(interval);
-          return;
-        }
-
-        val += 10;
-
+        val += 20;
         if (val >= 100) {
           clearInterval(interval);
-          finish();
+          if (bar) bar.style.width = '100%';
+          if (text) text.textContent = 'READY! 100%';
+          setTimeout(() => {
+            if (loader) loader.classList.add('fade-out');
+          }, 150);
         } else {
-          render();
+          if (bar) bar.style.width = val + '%';
+          if (text) text.textContent = `LOADING REALM... ${val}%`;
         }
-      }, 100);
-
-      // Absolute safety fallback: 3 seconds maximum.
-      setTimeout(finish, 3200);
+      }, 50);
     }
 
     /* 15. DOM INITIALIZATION & TIMERS */
-    // Start the ONLY existing loading screen immediately and independently.
-    // This prevents unrelated site initialization errors from freezing it at 0%.
-    setTimeout(runPreloader, 0);
-
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('current-year').textContent = new Date().getFullYear();
       initializeStorage();
@@ -3560,11 +3513,11 @@ function handleAdminSaveDiscordConfig(e) {
       setInterval(checkAnnouncementBanner, 15000);
       setInterval(fetchDiscordLiveStatus, 45000);
     });
-  
-      // Extra safety: if DOM initialization above fails, the original loader still closes.
-      window.addEventListener('load', () => {
-        setTimeout(runPreloader, 0);
-      }, { once: true });
-</script>
+  </script>
+</body>
+</html>
+cordLiveStatus, 45000);
+    });
+  </script>
 </body>
   </html>
