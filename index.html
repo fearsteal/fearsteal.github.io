@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home | FearSteal</title>
+  <title>FearSteal | Premier Minecraft LifeSteal Network</title>
   <meta name="description" content="FearSteal - The premier Minecraft LifeSteal network featuring competitive PvP, dynamic events, real-time live server tracking, custom ranks, and a vibrant community." />
   <meta name="theme-color" content="#dc2626" />
 
@@ -15,12 +15,12 @@
 
   <style>
     :root {
-      --bg-dark: #040407;
-      --bg-surface: #0a0a0f;
-      --bg-surface-elevated: #12121b;
-      --bg-glass: rgba(14, 14, 22, 0.88);
+      --bg-dark: #030306;
+      --bg-surface: #08080f;
+      --bg-surface-elevated: #0f0f18;
+      --bg-glass: rgba(12, 12, 20, 0.88);
       --border-color: rgba(220, 38, 38, 0.25);
-      --border-subtle: rgba(220, 38, 38, 0.22);
+      --border-subtle: rgba(220, 38, 38, 0.2);
       --border-bright: rgba(239, 68, 68, 0.65);
       --border-glow: rgba(239, 68, 68, 0.6);
       --crimson: #dc2626;
@@ -46,6 +46,7 @@
       --radius-md: 12px;
       --radius-sm: 8px;
       --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
       --rarity-common: #94a3b8;
       --rarity-rare: #3b82f6;
       --rarity-epic: #a855f7;
@@ -63,9 +64,10 @@
       overflow-x: hidden;
       line-height: 1.6;
       background-image: 
-        radial-gradient(circle at 15% 20%, rgba(220, 38, 38, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 85% 75%, rgba(229, 144, 5, 0.10) 0%, transparent 45%),
-        linear-gradient(rgba(4, 4, 7, 0.94), rgba(4, 4, 7, 0.98)),
+        radial-gradient(circle at 15% 15%, rgba(220, 38, 38, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(229, 144, 5, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.05) 0%, transparent 60%),
+        linear-gradient(rgba(3, 3, 6, 0.94), rgba(3, 3, 6, 0.98)),
         url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="%23221313" fill-opacity="0.25"><path d="M0 0h20v20H0V0zm20 20h20v20H20V20z"/></g></svg>');
       background-attachment: fixed;
     }
@@ -79,14 +81,14 @@
     .smoke-layer {
       position: fixed; inset: 0; pointer-events: none; z-index: 2;
       background: radial-gradient(circle at 50% 30%, rgba(220, 38, 38, 0.08), transparent 60%),
-                  radial-gradient(circle at 75% 70%, rgba(255, 60, 60, 0.04), transparent 50%);
-      filter: blur(40px);
+                  radial-gradient(circle at 75% 70%, rgba(255, 60, 60, 0.05), transparent 50%);
+      filter: blur(50px);
       animation: smokeDrift 22s infinite alternate ease-in-out;
     }
     @keyframes smokeDrift {
-      0% { transform: scale(1) translate(0, 0); opacity: 0.6; }
-      50% { transform: scale(1.08) translate(-20px, 15px); opacity: 0.9; }
-      100% { transform: scale(1) translate(25px, -15px); opacity: 0.7; }
+      0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+      50% { transform: scale(1.1) translate(-25px, 20px); opacity: 0.85; }
+      100% { transform: scale(1) translate(30px, -20px); opacity: 0.6; }
     }
 
     h1, h2, h3, h4, .font-display { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 1px; }
@@ -96,7 +98,7 @@
     .brand-title, .hero-title-gradient {
       font-family: var(--font-display);
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
       background: linear-gradient(180deg, #ffffff 15%, #fff176 55%, #ffca18 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -112,6 +114,40 @@
       user-select: none;
     }
     .fs-logo-img:hover { transform: scale(1.06); filter: drop-shadow(0 0 26px rgba(255, 60, 60, 0.8)); }
+
+    /* ============================================================
+       PREMIUM CYBER DARK INPUTS & MESSAGE BOXES
+       ============================================================ */
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      background: rgba(8, 8, 14, 0.92) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 8px !important;
+      padding: 11px 16px !important;
+      color: #f3f4f6 !important;
+      font-family: var(--font-body) !important;
+      font-size: 0.92rem !important;
+      outline: none !important;
+      transition: var(--transition) !important;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6) !important;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--crimson-glow) !important;
+      box-shadow: 0 0 18px rgba(220, 38, 38, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+      background: rgba(14, 14, 22, 0.98) !important;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #6b7280 !important;
+      font-size: 0.88rem !important;
+    }
 
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -131,7 +167,7 @@
     .btn-discord { background: linear-gradient(135deg, #4f46e5, #5865F2); color: #fff; }
 
     .glass-card {
-      background: rgba(12, 12, 18, 0.88);
+      background: var(--bg-glass);
       border: 1px solid var(--border-color);
       backdrop-filter: blur(16px);
       border-radius: var(--radius);
@@ -149,7 +185,7 @@
     #site-loader {
       position: fixed; inset: 0; background: #020204; z-index: 9999999;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     #site-loader.fade-out { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
     .loader-ring-wrap { position: relative; width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
@@ -186,12 +222,9 @@
     .auth-form-group { margin-bottom: 12px; text-align: left; }
     .auth-form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: #d1d5db; margin-bottom: 4px; }
     .auth-input-wrap { position: relative; }
-    .auth-input-wrap i.input-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #6b7280; }
-    .auth-input-wrap input, .auth-input-wrap select, .auth-input-wrap textarea {
-      width: 100%; background: rgba(8, 8, 12, 0.9); border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 8px; padding: 10px 40px 10px 40px; color: #fff; font-size: 0.9rem; outline: none; font-family: var(--font-body);
-    }
-    .toggle-password { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #6b7280; cursor: pointer; }
+    .auth-input-wrap i.input-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #6b7280; z-index: 2; }
+    .auth-input-wrap input { padding-left: 42px !important; }
+    .toggle-password { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #6b7280; cursor: pointer; z-index: 2; }
     .strength-bar-bg { height: 5px; background: rgba(255, 255, 255, 0.08); border-radius: 3px; overflow: hidden; margin-top: 5px; }
     .strength-bar-fill { height: 100%; width: 0%; transition: width 0.3s ease; }
     .auth-info-notice { background: rgba(220, 38, 38, 0.12); border: 1px dashed rgba(239, 68, 68, 0.5); padding: 12px; border-radius: 8px; font-size: 0.8rem; color: #fca5a5; margin-bottom: 14px; }
@@ -250,7 +283,6 @@
     .status-dot.online { background-color: var(--green-online); box-shadow: 0 0 10px var(--green-online); }
     .status-dot.offline { background-color: var(--red-offline); box-shadow: 0 0 10px var(--red-offline); }
 
-    /* STATUS DASHBOARD SPECIFIC DESIGNS */
     .master-status-card {
       background: var(--bg-glass);
       border: 1px solid var(--border-subtle);
@@ -305,14 +337,14 @@
     .rank-coin-price-tag { font-family: var(--font-display); font-size: 1.05rem; font-weight: 800; color: var(--gold-fs); margin-bottom: 12px; }
     .rank-features { list-style: none; font-size: 0.85rem; color: #d1d5db; margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
 
-    /* 7-DAY STREAK */
+    /* 30-DAY STREAK (0 / 30) */
     .streak-status-panel { background: rgba(14, 14, 22, 0.95); border: 1px solid var(--border-bright); border-radius: 16px; padding: 20px; margin-bottom: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; text-align: center; }
     .streak-stat-box { background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); }
     .streak-stat-box .val { font-family: var(--font-display); font-size: 1.8rem; font-weight: 900; color: #fff; }
     .streak-stat-box .lbl { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
-    .daily-streak-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-top: 16px; }
-    .daily-day-card { background: rgba(14, 14, 22, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 14px 10px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; min-height: 160px; }
-    .daily-day-card.available { border-color: var(--gold-fs); background: rgba(255, 202, 24, 0.08); box-shadow: 0 0 15px rgba(255, 202, 24, 0.2); }
+    .daily-streak-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); gap: 12px; margin-top: 16px; max-height: 520px; overflow-y: auto; padding-right: 6px; }
+    .daily-day-card { background: rgba(14, 14, 22, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 14px 10px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; min-height: 155px; }
+    .daily-day-card.available { border-color: var(--gold-fs); background: rgba(255, 202, 24, 0.08); box-shadow: 0 0 15px rgba(255, 202, 24, 0.2); cursor: pointer; }
     .daily-day-card.claimed { border-color: var(--green-online); background: rgba(34, 197, 94, 0.05); opacity: 0.8; }
     .daily-day-card.locked { opacity: 0.45; filter: grayscale(0.5); }
     .daily-day-card.grand-finale { grid-column: span 2; border: 2px solid var(--gold-fs); background: radial-gradient(circle at center, rgba(220, 38, 38, 0.35), rgba(14, 14, 22, 0.98)); }
@@ -584,7 +616,7 @@
         <li class="nav-item"><a href="#store"><i class="fa-solid fa-gem"></i> Store</a></li>
         <li class="nav-item"><a href="#coinshop"><i class="fa-solid fa-cart-shopping" style="color:var(--gold-fs);"></i> CoinShop</a></li>
         <li class="nav-item"><a href="#earn-coins"><i class="fa-solid fa-coins" style="color:var(--gold-fs);"></i> Earn Coins</a></li>
-        <li class="nav-item"><a href="#daily-rewards"><i class="fa-solid fa-calendar-check"></i> 7d Streak</a></li>
+        <li class="nav-item"><a href="#daily-rewards"><i class="fa-solid fa-calendar-check"></i> 30d Streak</a></li>
         <li class="nav-item"><a href="#vote"><i class="fa-solid fa-check-to-slot"></i> Vote</a></li>
         <li class="nav-item"><a href="#staff"><i class="fa-solid fa-shield-halved"></i> Staff</a></li>
         <li class="nav-item"><a href="#members"><i class="fa-solid fa-users"></i> Members</a></li>
@@ -647,12 +679,12 @@
         <i class="fa-solid fa-copy" style="color:var(--crimson-glow); font-size:1.1rem;"></i>
         <div style="text-align:left;">
           <div style="font-size:0.68rem; color:#9ca3af;">SERVER ADDRESS (CLICK TO COPY)</div>
-          <div style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; color:#fff;">play.fearsteal.fun <span style="color:var(--gold-fs);">:19132</span></div>
+          <div style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; color:#fff;" id="hero-ip-display">play.fearsteal.fun <span style="color:var(--gold-fs);">:19132</span></div>
         </div>
       </div>
       <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:14px;">
         <button class="btn btn-primary" onclick="copyIP()"><i class="fa-solid fa-play"></i> COPY SERVER IP</button>
-        <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn btn-discord"><i class="fa-brands fa-discord"></i> JOIN DISCORD</a>
+        <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn btn-discord" id="hero-discord-btn"><i class="fa-brands fa-discord"></i> JOIN DISCORD</a>
         <a href="https://store.cryzormc.in/" target="_blank" class="btn btn-outline"><i class="fa-solid fa-store"></i> VISIT STORE</a>
       </div>
     </div>
@@ -692,30 +724,30 @@
       <div class="metrics-grid-6">
         <div class="metric-card">
           <div class="metric-card-top">
-            <span class="metric-index-num">01 — INFRASTRUCTURE</span>
+            <span class="metric-index-num">01 — SERVER NAME</span>
+            <i class="fa-solid fa-server" style="color:var(--crimson-glow);"></i>
+          </div>
+          <div class="metric-label">NETWORK NAME</div>
+          <div class="metric-main-value" id="stat-server-title" style="font-size:1.3rem;">FearSteal Network</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-card-top">
+            <span class="metric-index-num">02 — SERVER ADDRESS</span>
             <i class="fa-solid fa-network-wired" style="color:var(--crimson-glow);"></i>
           </div>
-          <div class="metric-label">SERVER ADDRESS</div>
-          <div class="metric-main-value" style="font-size:1.2rem;">play.fearsteal.fun:19132</div>
+          <div class="metric-label">IP & PORT</div>
+          <div class="metric-main-value" id="stat-ip-val" style="font-size:1.2rem;">play.fearsteal.fun:19132</div>
         </div>
 
         <div class="metric-card">
           <div class="metric-card-top">
-            <span class="metric-index-num">02 — PROTOCOL</span>
-            <i class="fa-solid fa-code-branch" style="color:var(--crimson-glow);"></i>
-          </div>
-          <div class="metric-label">VERSION</div>
-          <div class="metric-main-value" id="stat-version">1.20.x</div>
-        </div>
-
-        <div class="metric-card">
-          <div class="metric-card-top">
-            <span class="metric-index-num">03 — LATENCY</span>
+            <span class="metric-index-num">03 — REAL-TIME PING & TPS</span>
             <i class="fa-solid fa-bolt" style="color:var(--crimson-glow);"></i>
           </div>
-          <div class="metric-label">PING</div>
-          <div class="metric-main-value" id="stat-ping">18ms</div>
-          <span class="ping-badge ping-low" id="stat-ping-badge">🟢 Low</span>
+          <div class="metric-label">PING / TPS</div>
+          <div class="metric-main-value" id="stat-ping-tps">18ms / 20.0 TPS</div>
+          <span class="ping-badge ping-low" id="stat-ping-badge">🟢 Optimal</span>
         </div>
 
         <div class="metric-card">
@@ -729,20 +761,20 @@
 
         <div class="metric-card">
           <div class="metric-card-top">
-            <span class="metric-index-num">05 — ENGINE</span>
-            <i class="fa-solid fa-server" style="color:var(--crimson-glow);"></i>
+            <span class="metric-index-num">05 — SOFTWARE ENGINE</span>
+            <i class="fa-solid fa-cube" style="color:var(--crimson-glow);"></i>
           </div>
-          <div class="metric-label">SERVER SOFTWARE</div>
+          <div class="metric-label">SERVER CORE</div>
           <div class="metric-main-value" id="stat-software">PaperMC</div>
         </div>
 
         <div class="metric-card">
           <div class="metric-card-top">
-            <span class="metric-index-num">06 — ROUTING</span>
-            <i class="fa-solid fa-shield-virus" style="color:var(--crimson-glow);"></i>
+            <span class="metric-index-num">06 — VERSION</span>
+            <i class="fa-solid fa-code-branch" style="color:var(--crimson-glow);"></i>
           </div>
-          <div class="metric-label">NETWORK / PROXY</div>
-          <div class="metric-main-value" id="stat-proxy">Velocity</div>
+          <div class="metric-label">COMPATIBILITY</div>
+          <div class="metric-main-value" id="stat-version">1.20.x - 1.21.x</div>
         </div>
       </div>
     </div>
@@ -790,7 +822,7 @@
         <div class="rank-card">
           <div>
             <h3 style="color:#cbd5e1; font-size:1.4rem;">LORD</h3>
-            <div class="rank-price-tag">$5</div>
+            <div class="rank-price-tag" data-usd="5">$5</div>
             <div class="rank-coin-price-tag">🪙 10,000 Coins / 30d</div>
             <ul class="rank-features">
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Lord prefix badge</li>
@@ -804,7 +836,7 @@
         <div class="rank-card">
           <div>
             <h3 style="color:#f59e0b; font-size:1.4rem;">ELITE</h3>
-            <div class="rank-price-tag">$8</div>
+            <div class="rank-price-tag" data-usd="8">$8</div>
             <div class="rank-coin-price-tag">🪙 30,000 Coins / 15d</div>
             <ul class="rank-features">
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Elite badge</li>
@@ -818,7 +850,7 @@
         <div class="rank-card">
           <div>
             <h3 style="color:#fbbf24; font-size:1.4rem;">ELITE+</h3>
-            <div class="rank-price-tag">$10</div>
+            <div class="rank-price-tag" data-usd="10">$10</div>
             <div class="rank-coin-price-tag">🪙 40,000 Coins / 15d</div>
             <ul class="rank-features">
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Elite+ badge & aura</li>
@@ -832,7 +864,7 @@
         <div class="rank-card">
           <div>
             <h3 style="color:#94a3b8; font-size:1.4rem;">KNIGHT</h3>
-            <div class="rank-price-tag">$12</div>
+            <div class="rank-price-tag" data-usd="12">$12</div>
             <div class="rank-coin-price-tag">🪙 50,000 Coins / 15d</div>
             <ul class="rank-features">
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Knight warrior tag</li>
@@ -846,7 +878,7 @@
         <div class="rank-card">
           <div>
             <h3 style="color:#eab308; font-size:1.4rem;">KING</h3>
-            <div class="rank-price-tag">$15</div>
+            <div class="rank-price-tag" data-usd="15">$15</div>
             <div class="rank-coin-price-tag">🪙 60,000 Coins / 15d</div>
             <ul class="rank-features">
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Royal rank badge</li>
@@ -861,7 +893,7 @@
           <div>
             <span style="background:#7c3aed; color:#fff; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:10px;">DARK</span>
             <h3 style="color:#a78bfa; margin-top:6px; font-size:1.5rem;">PANTHOM</h3>
-            <div class="rank-price-tag" style="color:#c4b5fd;">$20</div>
+            <div class="rank-price-tag" data-usd="20" style="color:#c4b5fd;">$20</div>
             <div class="rank-coin-price-tag">🪙 80,000 Coins / 20d</div>
             <ul class="rank-features">
               <li><i class="fa-solid fa-check" style="color:#a78bfa;"></i> Dark rank styling</li>
@@ -875,7 +907,7 @@
         <div class="rank-card">
           <div>
             <h3 class="crimson-text" style="font-size:1.5rem;">FEAR+</h3>
-            <div class="rank-price-tag" style="color:#f87171;">$25</div>
+            <div class="rank-price-tag" data-usd="25" style="color:#f87171;">$25</div>
             <div class="rank-coin-price-tag">🪙 100,000 Coins / 30d</div>
             <ul class="rank-features">
               <li><i class="fa-solid fa-check" style="color:var(--crimson);"></i> Premium glow badge</li>
@@ -890,7 +922,7 @@
           <div>
             <span style="background:linear-gradient(90deg,#dc2626,#f59e0b); color:#fff; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:10px;">ULTIMATE</span>
             <h3 class="brand-title" style="margin-top:6px; font-size:1.7rem;">FEARSTEAL</h3>
-            <div class="rank-price-tag" style="color:var(--gold-fs);">$30</div>
+            <div class="rank-price-tag" data-usd="30" style="color:var(--gold-fs);">$30</div>
             <div class="rank-coin-price-tag">🪙 1,200,000 Coins / 30d</div>
             <ul class="rank-features">
               <li><i class="fa-solid fa-check" style="color:var(--gold-fs);"></i> Highest prestige status</li>
@@ -949,22 +981,22 @@
           <button class="coinshop-cat-btn" onclick="filterShopCategory('cosmetics', this)">Cosmetics</button>
           <button class="coinshop-cat-btn" onclick="filterShopCategory('tags', this)">Tags</button>
         </div>
-        <input type="text" id="shop-search-input" placeholder="Search Shop..." oninput="searchShop(this.value)" style="background:#000; border:1px solid #333; color:#fff; padding:6px 12px; border-radius:20px; font-size:0.8rem; outline:none;" />
+        <input type="text" id="shop-search-input" placeholder="Search Shop..." oninput="searchShop(this.value)" style="max-width:240px; border-radius:20px !important;" />
       </div>
       <div class="coinshop-grid" id="coinshop-items-grid"></div>
     </div>
   </section>
 
-  <!-- 6. 7-DAY STREAK -->
+  <!-- 6. 30-DAY REWARD STREAK (0 / 30) -->
   <section id="daily-rewards" style="padding:60px 0;">
     <div class="container">
       <div class="section-title-wrap">
         <span class="section-subtitle">Engagement</span>
-        <h2 class="section-title">🔥 7-DAY REWARD STREAK</h2>
+        <h2 class="section-title">🔥 30-DAY REWARD STREAK</h2>
       </div>
       <div class="streak-status-panel">
         <div class="streak-stat-box"><div class="val" id="streak-stat-current">🔥 0 DAYS</div><div class="lbl">Current Streak</div></div>
-        <div class="streak-stat-box"><div class="val" id="streak-stat-claimed">0 / 7</div><div class="lbl">Days Claimed</div></div>
+        <div class="streak-stat-box"><div class="val" id="streak-stat-claimed" style="color:var(--gold-fs);">0 / 30</div><div class="lbl">Claimed Progress</div></div>
         <div class="streak-stat-box"><div class="val" id="streak-stat-countdown" style="color:var(--crimson-glow);">00:00:00</div><div class="lbl">Next Reward In</div></div>
       </div>
       <div class="glass-card" style="border-color:var(--gold-fs);">
@@ -977,6 +1009,15 @@
             <div id="streak-cooldown-progress-bar" style="height:100%; width:100%; background:linear-gradient(90deg, #ef4444, #f59e0b); transition: width 1s linear;"></div>
           </div>
         </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:0.85rem; font-weight:700;">
+          <span style="color:#fff;">30-Day Campaign Progress:</span>
+          <span id="streak-percentage-label" style="color:var(--gold-fs);">0% Completed</span>
+        </div>
+        <div style="height:8px; background:rgba(255,255,255,0.08); border-radius:4px; overflow:hidden; margin-bottom:18px;">
+          <div id="streak-overall-progress-bar" style="height:100%; width:0%; background:linear-gradient(90deg, #dc2626, #f59e0b, #10b981); transition:width 0.4s ease;"></div>
+        </div>
+
         <div class="daily-streak-grid" id="daily-streak-container"></div>
       </div>
     </div>
@@ -1069,7 +1110,7 @@
             Get instant announcements, claim tournament prizes, chat with our active staff team, and participate in daily heart giveaways!
           </p>
           <div style="display:flex; flex-wrap:wrap; gap:14px;">
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn btn-discord">
+            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="btn btn-discord" id="widget-discord-btn">
               <i class="fa-brands fa-discord"></i> JOIN DISCORD SERVER
             </a>
             <a href="mailto:fearstealsupport@gmail.com" class="btn btn-outline">
@@ -1112,7 +1153,7 @@
               <span class="discord-chan-tag"><i class="fa-solid fa-gift"></i> giveaways</span>
             </div>
 
-            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="discord-join-btn-big">
+            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="discord-join-btn-big" id="widget-discord-bottom-btn">
               <i class="fa-solid fa-arrow-right-to-bracket"></i> Join Server
             </a>
           </div>
@@ -1133,11 +1174,11 @@
           <form onsubmit="handleReviewSubmit(event)">
             <div class="auth-form-group">
               <label>Rating (0 to 10 Stars)</label>
-              <input type="number" id="review-stars" min="0" max="10" placeholder="10" style="width:100%; background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
+              <input type="number" id="review-stars" min="0" max="10" placeholder="10" required />
             </div>
             <div class="auth-form-group">
               <label>Review</label>
-              <textarea id="review-text" rows="3" placeholder="Share your experience..." style="width:100%; background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required></textarea>
+              <textarea id="review-text" rows="3" placeholder="Share your experience..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fa-solid fa-star"></i> SUBMIT REVIEW</button>
           </form>
@@ -1158,7 +1199,7 @@
         <form onsubmit="handleSuggestionSubmit(event)">
           <div class="auth-form-group">
             <label>Category</label>
-            <select id="sug-cat" style="width:100%; background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;">
+            <select id="sug-cat">
               <option value="Minecraft Server">Minecraft Server</option>
               <option value="Discord Server">Discord</option>
               <option value="Store & Coins">Store & Coins</option>
@@ -1166,7 +1207,7 @@
           </div>
           <div class="auth-form-group">
             <label>Details</label>
-            <textarea id="sug-message" rows="3" placeholder="Describe your suggestion..." style="width:100%; background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required></textarea>
+            <textarea id="sug-message" rows="3" placeholder="Describe your suggestion..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary"><i class="fa-solid fa-lightbulb"></i> SUBMIT SUGGESTION</button>
         </form>
@@ -1174,7 +1215,7 @@
     </div>
   </section>
 
-  <!-- 14. STAFF APPLY (12 QUESTIONS) -->
+  <!-- 14. STAFF APPLY -->
   <section id="staff-apply" style="padding:60px 0; background:rgba(14,14,20,0.3);">
     <div class="container">
       <div class="section-title-wrap">
@@ -1289,9 +1330,7 @@
     </div>
   </section>
 
-  <!-- ==========================================
-       ACCOUNT & SECURITY MODAL
-       ========================================== -->
+  <!-- ACCOUNT SECURITY MODAL -->
   <div class="dashboard-modal-overlay" id="account-security-modal">
     <div class="dash-box">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
@@ -1318,7 +1357,7 @@
           </div>
         </div>
         <div style="background:rgba(255,255,255,0.02); padding:16px; border-radius:10px;">
-          <h4 style="color:var(--gold-fs); margin-bottom:8px;">Account Valuation</h4>
+          <h4 style="color:var(--gold-fs); margin-bottom:8px;">Account Wealth & Valuation</h4>
           <div>Converted Balance: <strong id="sec-profile-converted-wealth" style="color:#22c55e;">$ 0.00 USD</strong></div>
         </div>
       </div>
@@ -1352,8 +1391,8 @@
       <div class="dash-pane" id="sec-pane-settings">
         <h4 style="color:#fff; margin-bottom:12px;">Regional Preferences</h4>
         <div class="auth-form-group">
-          <label>Display Currency</label>
-          <select id="user-currency-select" onchange="changeUserCurrency(this.value)" style="background:#050508; border:1px solid #333; color:#fff; padding:8px 12px; border-radius:6px;">
+          <label>Global Display Currency (Auto-Converts Ranks & Wealth)</label>
+          <select id="user-currency-select" onchange="changeUserCurrency(this.value)">
             <option value="USD">USD ($)</option>
             <option value="INR">INR (₹)</option>
             <option value="NPR">NPR (रू)</option>
@@ -1373,9 +1412,7 @@
     </div>
   </div>
 
-  <!-- ==========================================
-       MASTER ADMIN CONSOLE MODAL
-       ========================================== -->
+  <!-- MASTER ADMIN CONSOLE MODAL -->
   <div class="dashboard-modal-overlay" id="admin-modal">
     <div class="dash-box">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
@@ -1401,29 +1438,42 @@
 
       <!-- 1. IP / Port & Node Manager Pane -->
       <div class="dash-pane active" id="adm-pane-server">
-        <h4 style="color:var(--gold-fs); margin-bottom:12px;">Server Node & Telemetry Configuration</h4>
+        <h4 style="color:var(--gold-fs); margin-bottom:12px;"><i class="fa-solid fa-network-wired"></i> Server Node, TPS & Telemetry Configuration</h4>
         <form onsubmit="handleAdminSaveServerConfig(event)" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
           <div class="auth-form-group">
-            <label>1. Server Name</label>
-            <input type="text" id="adm-srv-name" placeholder="FearSteal LifeSteal" required />
+            <label>1. Server Name (Message Type)</label>
+            <input type="text" id="adm-srv-name" placeholder="e.g. FearSteal LifeSteal Network" required />
           </div>
           <div class="auth-form-group">
-            <label>2. Server IP Address</label>
-            <input type="text" id="adm-srv-ip" placeholder="play.fearsteal.fun" required />
+            <label>2. IP & Port (Message Type)</label>
+            <input type="text" id="adm-srv-ip" placeholder="e.g. play.fearsteal.fun:19132" required />
           </div>
           <div class="auth-form-group">
-            <label>3. Server Port</label>
-            <input type="text" id="adm-srv-port" placeholder="19132" required />
+            <label>3. Server Software Selector</label>
+            <select id="adm-srv-software">
+              <option value="PaperMC">PaperMC</option>
+              <option value="Velocity">Velocity</option>
+              <option value="WaterFall">WaterFall</option>
+              <option value="BungeeCord">BungeeCord</option>
+              <option value="Spigot">Spigot</option>
+              <option value="Purpur">Purpur</option>
+              <option value="Fabric">Fabric</option>
+              <option value="Bedrock Dedicated">Bedrock Dedicated</option>
+            </select>
           </div>
           <div class="auth-form-group">
-            <label>4. Server Engine / Software (Directly Detected)</label>
-            <input type="text" id="adm-srv-software" placeholder="Velocity / PaperMC / Bedrock" required />
+            <label>4. Real-time Ping & TPS (Message Type)</label>
+            <input type="text" id="adm-srv-ping-tps" placeholder="e.g. 18ms / 20.0 TPS" required />
           </div>
-          <div class="auth-form-group" style="grid-column:span 2;">
-            <label>5. Server MOTD Banner</label>
-            <input type="text" id="adm-srv-motd" placeholder="FearSteal LifeSteal Network • Steal Hearts or Die!" required />
+          <div class="auth-form-group">
+            <label>5. Server Version (Message Type)</label>
+            <input type="text" id="adm-srv-version" placeholder="e.g. 1.20.x - 1.21.x" required />
           </div>
-          <button type="submit" class="btn btn-primary" style="grid-column:span 2;">SAVE SERVER TELEMETRY</button>
+          <div class="auth-form-group">
+            <label>6. Server MOTD (Displayed on Server)</label>
+            <input type="text" id="adm-srv-motd" placeholder="e.g. FearSteal LifeSteal Network • Steal Hearts or Die!" required />
+          </div>
+          <button type="submit" class="btn btn-primary" style="grid-column:span 2;">SAVE SERVER NODE TELEMETRY</button>
         </form>
       </div>
 
@@ -1437,14 +1487,14 @@
           </div>
           <div class="auth-form-group">
             <label>Affiliation / Partnership Option</label>
-            <select id="adm-disc-affil" style="background:#050508; border:1px solid #333; color:#fff; padding:10px; border-radius:6px;">
+            <select id="adm-disc-affil">
               <option value="Official Network">Official Network Community</option>
-              <option value="Partnered Network">Partnered LifeSteal Hub</option>
+              <option value="Partnered LifeSteal">Partnered LifeSteal Network</option>
               <option value="Official Collaboration">Collab Network</option>
             </select>
           </div>
           <div class="auth-form-group" style="grid-column:span 2;">
-            <label>Discord Permanent Invite Code / Link</label>
+            <label>Discord Permanent Invite URL (e.g. https://discord.gg/pGM5x3gXpX)</label>
             <input type="text" id="adm-disc-invite" placeholder="https://discord.gg/pGM5x3gXpX" required />
           </div>
           <button type="submit" class="btn btn-primary" style="grid-column:span 2;">UPDATE DISCORD INTEGRATION</button>
@@ -1455,8 +1505,8 @@
       <div class="dash-pane" id="adm-pane-staff-mgr">
         <h4 style="color:var(--gold-fs); margin-bottom:12px;"><i class="fa-solid fa-user-shield"></i> Add / Manage Staff Directory</h4>
         <form onsubmit="handleAdminAddStaffMember(event)" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px; margin-bottom:16px;">
-          <input type="text" id="adm-stf-name" placeholder="Staff Minecraft IGN" required style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" />
-          <select id="adm-stf-role" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;">
+          <input type="text" id="adm-stf-name" placeholder="Staff Minecraft IGN" required />
+          <select id="adm-stf-role">
             <option value="FOUNDER">FOUNDER</option>
             <option value="OWNER">OWNER</option>
             <option value="CO OWNER">CO OWNER</option>
@@ -1468,8 +1518,8 @@
             <option value="JUNIOR MODERATOR">JUNIOR MODERATOR</option>
             <option value="HELPER">HELPER</option>
           </select>
-          <input type="text" id="adm-stf-discord" placeholder="Discord URL (https://discord.gg/...)" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <input type="text" id="adm-stf-desc" placeholder="Role Description / Responsibilities" style="grid-column:span 2; background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
+          <input type="text" id="adm-stf-discord" placeholder="Discord URL (https://discord.gg/...)" required />
+          <input type="text" id="adm-stf-desc" placeholder="Role Description / Responsibilities" style="grid-column:span 2;" required />
           <button type="submit" class="btn btn-primary" style="grid-column:span 2;">ADD TO STAFF DIRECTORY</button>
         </form>
         <div id="admin-staff-roster-list" style="display:flex; flex-direction:column; gap:8px;"></div>
@@ -1481,10 +1531,10 @@
           <h4 style="color:var(--gold-fs); margin-bottom:10px;">Create or Assign Staff / Admin Role</h4>
           <form id="admin-role-assign-form" onsubmit="adminCreateUser(event)">
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:10px;">
-              <input type="text" id="adm-new-user" placeholder="Username" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-              <input type="text" id="adm-new-email" placeholder="user@fearsteal.fun" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-              <input type="text" id="adm-new-pass" placeholder="Password" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-              <select id="adm-new-role" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;">
+              <input type="text" id="adm-new-user" placeholder="Username" required />
+              <input type="text" id="adm-new-email" placeholder="user@fearsteal.fun" required />
+              <input type="text" id="adm-new-pass" placeholder="Password" required />
+              <select id="adm-new-role">
                 <option value="none">Normal Member</option>
                 <option value="Helper">Helper</option>
                 <option value="Moderator">Moderator</option>
@@ -1507,12 +1557,12 @@
       <div class="dash-pane" id="adm-pane-coins">
         <h4 style="color:var(--gold-fs); margin-bottom:12px;">Grant or Deduct Coins</h4>
         <form onsubmit="handleAdminCoinsGiveOrRemove(event)" style="max-width:500px; display:flex; flex-direction:column; gap:10px;">
-          <input type="text" id="adm-coin-target" placeholder="Target Username" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <select id="adm-coin-action" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;">
+          <input type="text" id="adm-coin-target" placeholder="Target Username" required />
+          <select id="adm-coin-action">
             <option value="give">Give / Add Coins (+)</option>
             <option value="remove">Deduct / Remove Coins (-)</option>
           </select>
-          <input type="number" id="adm-coin-amount" placeholder="Coins Amount (e.g. 5000)" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
+          <input type="number" id="adm-coin-amount" placeholder="Coins Amount (e.g. 5000)" required />
           <button type="submit" class="btn btn-gold">UPDATE PLAYER COINS</button>
         </form>
       </div>
@@ -1535,15 +1585,15 @@
       <div class="dash-pane" id="adm-pane-shop">
         <h4 style="color:var(--gold-fs); margin-bottom:10px;">Add New Custom Item to CoinShop</h4>
         <form onsubmit="handleAdminShopAdd(event)" style="max-width:500px; display:flex; flex-direction:column; gap:10px;">
-          <input type="text" id="adm-shop-name" placeholder="Item Name" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <select id="adm-shop-cat" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;">
+          <input type="text" id="adm-shop-name" placeholder="Item Name" required />
+          <select id="adm-shop-cat">
             <option value="keys">Keys</option>
             <option value="boosts">Boosts</option>
             <option value="cosmetics">Cosmetics</option>
             <option value="tags">Tags</option>
           </select>
-          <input type="number" id="adm-shop-price" placeholder="Price in Coins (e.g. 2500)" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <select id="adm-shop-rarity" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;">
+          <input type="number" id="adm-shop-price" placeholder="Price in Coins (e.g. 2500)" required />
+          <select id="adm-shop-rarity">
             <option value="common">Common</option>
             <option value="rare">Rare</option>
             <option value="epic">Epic</option>
@@ -1551,7 +1601,7 @@
             <option value="mythic">Mythic</option>
             <option value="fear">Fear</option>
           </select>
-          <textarea id="adm-shop-desc" rows="2" placeholder="Item Description" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required></textarea>
+          <textarea id="adm-shop-desc" rows="2" placeholder="Item Description" required></textarea>
           <button type="submit" class="btn btn-primary">ADD TO COINSHOP</button>
         </form>
       </div>
@@ -1560,9 +1610,9 @@
       <div class="dash-pane" id="adm-pane-coupons">
         <h4 style="color:var(--gold-fs); margin-bottom:10px;">Create Discount Coupon</h4>
         <form onsubmit="handleCreateCoupon(event)" style="max-width:500px; display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
-          <input type="text" id="adm-coupon-code" placeholder="COUPON CODE (e.g. FEAR50)" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <input type="number" id="adm-coupon-pct" placeholder="Discount % (e.g. 50)" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <input type="number" id="adm-coupon-days" placeholder="Valid Days" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
+          <input type="text" id="adm-coupon-code" placeholder="COUPON CODE (e.g. FEAR50)" required />
+          <input type="number" id="adm-coupon-pct" placeholder="Discount % (e.g. 50)" required />
+          <input type="number" id="adm-coupon-days" placeholder="Valid Days" required />
           <button type="submit" class="btn btn-primary">CREATE COUPON</button>
         </form>
         <div id="admin-coupons-list" style="display:flex; flex-direction:column; gap:8px;"></div>
@@ -1572,10 +1622,10 @@
       <div class="dash-pane" id="adm-pane-vote">
         <h4 style="color:var(--gold-fs); margin-bottom:10px;">Manage Voting Links</h4>
         <form onsubmit="handleSaveVoteConfig(event)" style="max-width:500px; display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
-          <input type="text" id="adm-vote-title" placeholder="Site Name (e.g. TopG)" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <input type="url" id="adm-vote-url" placeholder="https://vote-link.com" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <input type="text" id="adm-vote-reward" placeholder="Reward Description" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <select id="adm-vote-visibility" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;">
+          <input type="text" id="adm-vote-title" placeholder="Site Name (e.g. TopG)" required />
+          <input type="url" id="adm-vote-url" placeholder="https://vote-link.com" required />
+          <input type="text" id="adm-vote-reward" placeholder="Reward Description" required />
+          <select id="adm-vote-visibility">
             <option value="published">Published (Public)</option>
             <option value="private">Private</option>
           </select>
@@ -1586,24 +1636,21 @@
 
       <!-- Streak Config Pane -->
       <div class="dash-pane" id="adm-pane-streak">
-        <h4 style="color:var(--gold-fs); margin-bottom:10px;">Configure Daily Streak Rewards</h4>
+        <h4 style="color:var(--gold-fs); margin-bottom:10px;">Configure Day 1-30 Rewards</h4>
         <form onsubmit="handleAdminStreakUpdate(event)" style="max-width:500px; display:flex; flex-direction:column; gap:10px;">
-          <select id="adm-streak-day" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;">
-            <option value="1">Day 1</option><option value="2">Day 2</option><option value="3">Day 3</option>
-            <option value="4">Day 4</option><option value="5">Day 5</option><option value="6">Day 6</option><option value="7">Day 7 (Grand Finale)</option>
-          </select>
-          <input type="text" id="adm-streak-name" placeholder="Reward Name" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <input type="number" id="adm-streak-coins" placeholder="Coins Given" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <input type="text" id="adm-streak-icon" placeholder="FontAwesome Icon (e.g. fa-gift)" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
-          <button type="submit" class="btn btn-primary">SAVE STREAK CONFIG</button>
+          <input type="number" id="adm-streak-day" min="1" max="30" placeholder="Day Number (1 to 30)" required />
+          <input type="text" id="adm-streak-name" placeholder="Reward Name" required />
+          <input type="number" id="adm-streak-coins" placeholder="Coins Given" required />
+          <input type="text" id="adm-streak-icon" placeholder="FontAwesome Icon (e.g. fa-gift)" required />
+          <button type="submit" class="btn btn-primary">SAVE STREAK REWARD</button>
         </form>
       </div>
 
       <!-- Announcements Pane -->
       <div class="dash-pane" id="adm-pane-broadcast">
         <h4 style="color:var(--gold-fs); margin-bottom:10px;">Publish 24-Hour Top Announcement</h4>
-        <textarea id="adm-announcement-input" rows="3" placeholder="Type banner message..." style="width:100%; max-width:600px; background:#050508; border:1px solid #333; color:#fff; padding:10px; border-radius:6px; margin-bottom:10px;"></textarea>
-        <div>
+        <textarea id="adm-announcement-input" rows="3" placeholder="Type banner message..."></textarea>
+        <div style="margin-top:10px;">
           <button class="btn btn-primary" onclick="publishAdminAnnouncement()"><i class="fa-solid fa-bullhorn"></i> POST ANNOUNCEMENT</button>
           <button class="btn btn-outline" onclick="clearAdminAnnouncement()" style="margin-left:8px;"><i class="fa-solid fa-trash"></i> HIDE BANNER</button>
         </div>
@@ -1623,9 +1670,7 @@
     </div>
   </div>
 
-  <!-- ==========================================
-       STAFF CONSOLE MODAL
-       ========================================== -->
+  <!-- STAFF CONSOLE MODAL -->
   <div class="dashboard-modal-overlay" id="staff-modal">
     <div class="dash-box" style="max-width:850px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
@@ -1640,21 +1685,15 @@
       </div>
 
       <div class="dash-pane active" id="stf-pane-tickets">
-        <div id="staff-tickets-list" style="display:flex; flex-direction:column; gap:8px;">
-          <div style="font-size:0.85rem; color:#888;">All open player tickets are synced here.</div>
-        </div>
+        <div id="staff-tickets-list" style="display:flex; flex-direction:column; gap:8px;"></div>
       </div>
 
       <div class="dash-pane" id="stf-pane-reports">
-        <div id="staff-reports-list" style="display:flex; flex-direction:column; gap:8px;">
-          <div style="font-size:0.85rem; color:#888;">Player infraction and glitch reports logged.</div>
-        </div>
+        <div id="staff-reports-list" style="display:flex; flex-direction:column; gap:8px;"></div>
       </div>
 
       <div class="dash-pane" id="stf-pane-appeals">
-        <div id="staff-appeals-list" style="display:flex; flex-direction:column; gap:8px;">
-          <div style="font-size:0.85rem; color:#888;">Ban and mute appeals awaiting review.</div>
-        </div>
+        <div id="staff-appeals-list" style="display:flex; flex-direction:column; gap:8px;"></div>
       </div>
     </div>
   </div>
@@ -1715,18 +1754,15 @@
       <div style="margin-bottom:8px;">
         <span class="brand-title" style="font-size:1.1rem; vertical-align:middle;">FEARSTEAL</span>
       </div>
-      <div>Support: <a href="mailto:fearstealsupport@gmail.com" style="color:var(--gold-fs); text-decoration:none;">fearstealsupport@gmail.com</a> | IP: <strong style="color:var(--crimson);">play.fearsteal.fun:19132</strong></div>
+      <div>Support: <a href="mailto:fearstealsupport@gmail.com" style="color:var(--gold-fs); text-decoration:none;">fearstealsupport@gmail.com</a> | IP: <strong style="color:var(--crimson);" id="footer-ip-text">play.fearsteal.fun:19132</strong></div>
       <div style="margin-top:4px;">&copy; <span id="current-year"></span> FearSteal Network. Not an official Minecraft product.</div>
     </div>
   </footer>
 
   <div id="toast-container"></div>
 
-  <!-- CORE JAVASCRIPT -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
-    /* ====================================================
-       1. GLOBAL CONSTANTS & STORAGE KEYS
-       ==================================================== */
     const FEARSTEAL_LOGO_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><linearGradient id="yg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fff275"/><stop offset="30%" stop-color="%23ffca18"/><stop offset="100%" stop-color="%23e58900"/></linearGradient><linearGradient id="rg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23c51010"/><stop offset="100%" stop-color="%23480000"/></linearGradient><linearGradient id="sd" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ff5050"/><stop offset="100%" stop-color="%237e0606"/></linearGradient></defs><g stroke="%23000" stroke-width="18" stroke-linejoin="miter"><path d="M 125 145 L 245 145 L 245 205 L 180 205 L 180 235 L 235 235 L 235 285 L 180 285 L 180 345 L 125 345 Z" fill="url(%23sd)"/><path d="M 110 135 L 235 135 L 235 190 L 170 190 L 170 225 L 225 225 L 225 275 L 170 275 L 170 340 L 110 340 Z" fill="url(%23yg)"/><path d="M 110 340 L 125 355 L 185 355 L 170 340 Z" fill="url(%23rg)"/><path d="M 235 135 L 250 150 L 250 205 L 235 190 Z" fill="url(%23rg)"/><path d="M 265 145 L 385 145 L 385 220 L 325 220 L 325 245 L 390 245 L 390 345 L 265 345 L 265 270 L 325 270 L 325 245 L 265 245 Z" fill="url(%23sd)"/><path d="M 252 135 L 375 135 L 375 205 L 315 205 L 315 235 L 380 235 L 380 340 L 252 340 L 252 260 L 315 260 L 315 235 L 252 235 Z" fill="url(%23yg)"/><path d="M 375 135 L 392 150 L 392 220 L 375 205 Z" fill="url(%23rg)"/><path d="M 380 235 L 398 250 L 398 355 L 380 340 Z" fill="url(%23rg)"/><path d="M 252 340 L 270 358 L 398 358 L 380 340 Z" fill="url(%23rg)"/></g></svg>`;
     const STAFF_PLACEHOLDER_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a0507"/><path d="M50 20 A15 15 0 1 0 50 50 A15 15 0 1 0 50 20 Z M25 80 C25 65 35 60 50 60 C65 60 75 65 75 80 Z" fill="%23dc2626"/></svg>`;
 
@@ -1807,7 +1843,7 @@
     ];
 
     const SIXTY_DAYS_MS = 60 * 24 * 60 * 60 * 1000;
-    const COOLDOWN_DURATION_MS = (24 * 60 + 59) * 60 * 1000 + 59000; // 24h 59m 59s
+    const COOLDOWN_DURATION_MS = (24 * 60 + 59) * 60 * 1000 + 59000;
 
     let currentShopCategory = 'all';
     let currentShopSearch = '';
@@ -1819,9 +1855,7 @@
     let quizScore = 0;
     let statusCountdownVal = 60;
 
-    /* ====================================================
-       2. PROCEDURAL SOUND SYNTHESIZER
-       ==================================================== */
+    /* AUDIO SYNTHESIZER */
     let audioCtx = null;
     function getAudioContext() {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1882,7 +1916,7 @@
     });
 
     /* ====================================================
-       3. STORAGE & AUTHENTICATION (1-HOUR SESSION TIMEOUT)
+       INITIALIZATION & STORAGE LOGIC
        ==================================================== */
     function initializeStorage() {
       let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
@@ -1909,9 +1943,10 @@
       if (!localStorage.getItem(KEY_SERVER_CONFIG)) {
         localStorage.setItem(KEY_SERVER_CONFIG, JSON.stringify({
           name: "FearSteal LifeSteal Network",
-          ip: "play.fearsteal.fun",
-          port: "19132",
-          software: "Velocity / PaperMC / Bedrock",
+          ip: "play.fearsteal.fun:19132",
+          software: "PaperMC",
+          pingTps: "18ms / 20.0 TPS",
+          version: "1.20.x - 1.21.x",
           motd: "FearSteal LifeSteal Network • Steal Hearts or Die!"
         }));
       }
@@ -1929,15 +1964,20 @@
       }
 
       if (!localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS)) {
-        const streakData = [
-          { day: 1, name: "Starter Pack + 500 Coins", icon: "fa-box", coins: 500 },
-          { day: 2, name: "1x Vote Crate Key", icon: "fa-key", coins: 600 },
-          { day: 3, name: "XP Boost + 800 Coins", icon: "fa-bolt", coins: 800 },
-          { day: 4, name: "Rare Key + 1,000 Coins", icon: "fa-gem", coins: 1000 },
-          { day: 5, name: "Totem of Undying + 1,200 Coins", icon: "fa-shield-halved", coins: 1200 },
-          { day: 6, name: "Blood Particle Trail + 1,500 Coins", icon: "fa-wand-magic-sparkles", coins: 1500 },
-          { day: 7, name: "🏆 7-DAY GRAND FINALE (3,000 Coins + Heart)", icon: "fa-crown", coins: 3000, isGrand: true }
-        ];
+        const streakData = [];
+        for (let d = 1; d <= 30; d++) {
+          let name = `Streak Reward + ${400 + (d * 50)} Coins`;
+          let icon = "fa-gift";
+          let coins = 400 + (d * 50);
+          let isGrand = false;
+
+          if (d === 7) { name = "⭐ 7-Day Crate Key + 1,500 Coins"; icon = "fa-key"; coins = 1500; }
+          else if (d === 14) { name = "💎 14-Day Totem + 3,000 Coins"; icon = "fa-gem"; coins = 3000; }
+          else if (d === 21) { name = "🔥 21-Day Mythic Shard + 5,000 Coins"; icon = "fa-fire"; coins = 5000; }
+          else if (d === 30) { name = "🏆 30-DAY GRAND FINALE (10,000 Coins + Free Heart)"; icon = "fa-crown"; coins = 10000; isGrand = true; }
+
+          streakData.push({ day: d, name, icon, coins, isGrand });
+        }
         localStorage.setItem(KEY_CUSTOM_STREAK_REWARDS, JSON.stringify(streakData));
       }
 
@@ -1976,7 +2016,7 @@
       const elapsed = Date.now() - (session.sessionStart || Date.now());
       if (elapsed >= ONE_HOUR_MS) {
         localStorage.removeItem(KEY_SESSION);
-        showToast("Your session has expired after 1 hour. Please login again to continue.", "warning");
+        showToast("Your session has expired after 1 hour. Please login again.", "warning");
         authOverlay.classList.remove('hidden');
         adminNav.style.display = 'none';
         staffNav.style.display = 'none';
@@ -2086,7 +2126,7 @@
       }
 
       playPortalEntrySound();
-      found.sessionStart = Date.now(); // Record 1-Hour timestamp
+      found.sessionStart = Date.now();
       localStorage.setItem(KEY_SESSION, JSON.stringify(found));
       showToast(`Welcome back, ${found.username}! Realm unlocked.`, 'success');
       checkAuth();
@@ -2151,7 +2191,7 @@
     });
 
     /* ====================================================
-       4. PROFILE, CURRENCY CONVERTER & BASKET
+       PROFILE, GLOBAL CURRENCY CONVERTER & BASKET
        ==================================================== */
     function openAccountSecurityModal(paneKey) {
       const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
@@ -2192,6 +2232,8 @@
       const idx = users.findIndex(u => u.username.toLowerCase() === session.username.toLowerCase());
       if (idx >= 0) { users[idx].currency = code; localStorage.setItem(KEY_USERS, JSON.stringify(users)); }
       updateUserCurrencyDisplay();
+      applyGlobalCurrency(code);
+      showToast(`Switched currency to ${code}!`, 'success');
     }
 
     function updateUserCurrencyDisplay() {
@@ -2204,6 +2246,15 @@
       const converted = ((session.coins || 0) / 1000 * curr.rate).toFixed(2);
       const target = document.getElementById('sec-profile-converted-wealth');
       if (target) target.textContent = `${curr.symbol} ${Number(converted).toLocaleString()} ${code}`;
+    }
+
+    function applyGlobalCurrency(code) {
+      const curr = CURRENCY_RATES[code] || CURRENCY_RATES.USD;
+      document.querySelectorAll('.rank-price-tag[data-usd]').forEach(el => {
+        const baseUsd = parseFloat(el.getAttribute('data-usd'));
+        const converted = Math.round(baseUsd * curr.rate);
+        el.textContent = `${curr.symbol}${converted.toLocaleString()}`;
+      });
     }
 
     function renderUserBasket() {
@@ -2222,7 +2273,7 @@
     }
 
     /* ====================================================
-       5. NOVICE 60-DAY PROMO & RANKS
+       NOVICE PROMO CLAIM & RANKS
        ==================================================== */
     function updateNovice60DayTimer() {
       const startTs = parseInt(localStorage.getItem(KEY_NOVICE_START_TS) || Date.now(), 10);
@@ -2257,7 +2308,8 @@
 
       if (validSyntax) {
         alert("This username is match discord username so pleased join discord than claim free ranks ✅️");
-        window.open('https://discord.gg/pGM5x3gXpX', '_blank');
+        const disc = JSON.parse(localStorage.getItem(KEY_DISCORD_CONFIG) || '{}');
+        window.open(disc.invite || 'https://discord.gg/pGM5x3gXpX', '_blank');
 
         count = Math.min(100, count + 1);
         localStorage.setItem(KEY_NOVICE_COUNT, count.toString());
@@ -2323,7 +2375,7 @@
     }
 
     /* ====================================================
-       6. DAILY TRIVIA QUIZ
+       DAILY TRIVIA
        ==================================================== */
     function startDailyQuiz() {
       const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
@@ -2380,7 +2432,7 @@
     }
 
     /* ====================================================
-       7. 7-DAY STREAK WITH COOLDOWN
+       30-DAY STREAK (0 / 30) WITH PROGRESS BAR
        ==================================================== */
     function renderDailyStreakUI() {
       const container = document.getElementById('daily-streak-container');
@@ -2392,6 +2444,16 @@
 
       const streakRewards = JSON.parse(localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS) || '[]');
       container.innerHTML = '';
+
+      // Update 0 / 30 Counter and Overall Progress Bar
+      const claimedLabel = document.getElementById('streak-stat-claimed');
+      const percentLabel = document.getElementById('streak-percentage-label');
+      const overallBar = document.getElementById('streak-overall-progress-bar');
+      
+      const pct = Math.min(100, Math.round((currentStreak / 30) * 100));
+      if (claimedLabel) claimedLabel.textContent = `${currentStreak} / 30`;
+      if (percentLabel) percentLabel.textContent = `${pct}% Completed`;
+      if (overallBar) overallBar.style.width = `${pct}%`;
 
       streakRewards.forEach((r) => {
         let state = 'locked';
@@ -2430,11 +2492,9 @@
       const bar = document.getElementById('streak-cooldown-progress-bar');
       const panel = document.getElementById('streak-stat-countdown');
       const curStreakEl = document.getElementById('streak-stat-current');
-      const claimCountEl = document.getElementById('streak-stat-claimed');
 
       let currentStreak = parseInt(localStorage.getItem(KEY_DAILY_STREAK + (session ? '_' + session.username : '')) || '0', 10);
       if (curStreakEl) curStreakEl.textContent = `🔥 ${currentStreak} DAYS`;
-      if (claimCountEl) claimCountEl.textContent = `${currentStreak} / 7`;
 
       if (isCooldown) {
         if (wrapper) wrapper.style.display = 'block';
@@ -2452,7 +2512,7 @@
     }
 
     /* ====================================================
-       8. COIN SHOP & AUTO-CLOSE MODAL FIX
+       COIN SHOP & AUTO CLOSE
        ==================================================== */
     function filterShopCategory(cat, btn) {
       document.querySelectorAll('.coinshop-cat-btn').forEach(b => b.classList.remove('active'));
@@ -2521,7 +2581,7 @@
       basket.push({ name: pendingPurchaseItem.name, code: txId, date: new Date().toLocaleDateString() });
       localStorage.setItem(KEY_USER_BASKET + '_' + session.username, JSON.stringify(basket));
 
-      closePurchaseConfirmModal(); // Auto-closes instantly
+      closePurchaseConfirmModal(); // Auto-closes immediately!
       playCoinSound();
       showToast(`Purchased ${pendingPurchaseItem.name}! Saved in your Locker.`, 'success');
       renderCoinShop();
@@ -2529,7 +2589,7 @@
     }
 
     /* ====================================================
-       9. STAFF DIRECTORY
+       STAFF DIRECTORY
        ==================================================== */
     function renderStaffDirectory() {
       const container = document.getElementById('staff-directory-grid');
@@ -2561,7 +2621,7 @@
     function closeStaffProfileModal() { document.getElementById('staff-profile-modal').classList.remove('open'); }
 
     /* ====================================================
-       10. REAL LEADERBOARDS (FIXED PAGE_SIZE)
+       LEADERBOARD PAGINATION & RENDERING
        ==================================================== */
     function switchLeaderboardType(type) {
       currentLeaderboardType = type; currentLeaderboardPage = 1;
@@ -2611,7 +2671,7 @@
     }
 
     /* ====================================================
-       11. ADMIN & STAFF PANELS
+       ADMIN & STAFF PANELS
        ==================================================== */
     function openAdminModal() {
       const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
@@ -2655,13 +2715,26 @@
       document.getElementById(paneId).classList.add('active');
     }
 
+    /* IP / Port & Node Telemetry Sync */
     function syncServerConfigUI() {
       const config = JSON.parse(localStorage.getItem(KEY_SERVER_CONFIG) || '{}');
-      if (document.getElementById('adm-srv-name')) document.getElementById('adm-srv-name').value = config.name || "FearSteal LifeSteal";
-      if (document.getElementById('adm-srv-ip')) document.getElementById('adm-srv-ip').value = config.ip || "play.fearsteal.fun";
-      if (document.getElementById('adm-srv-port')) document.getElementById('adm-srv-port').value = config.port || "19132";
-      if (document.getElementById('adm-srv-software')) document.getElementById('adm-srv-software').value = config.software || "Velocity / PaperMC / Bedrock";
+      if (document.getElementById('adm-srv-name')) document.getElementById('adm-srv-name').value = config.name || "FearSteal LifeSteal Network";
+      if (document.getElementById('adm-srv-ip')) document.getElementById('adm-srv-ip').value = config.ip || "play.fearsteal.fun:19132";
+      if (document.getElementById('adm-srv-software')) document.getElementById('adm-srv-software').value = config.software || "PaperMC";
+      if (document.getElementById('adm-srv-ping-tps')) document.getElementById('adm-srv-ping-tps').value = config.pingTps || "18ms / 20.0 TPS";
+      if (document.getElementById('adm-srv-version')) document.getElementById('adm-srv-version').value = config.version || "1.20.x - 1.21.x";
       if (document.getElementById('adm-srv-motd')) document.getElementById('adm-srv-motd').value = config.motd || "FearSteal LifeSteal Network • Steal Hearts or Die!";
+      
+      // Update Public DOM
+      if (document.getElementById('stat-node-name')) document.getElementById('stat-node-name').textContent = `NODE: ${config.ip || 'play.fearsteal.fun:19132'}`;
+      if (document.getElementById('hero-ip-display')) document.getElementById('hero-ip-display').innerHTML = `${(config.ip || 'play.fearsteal.fun:19132').replace(':', ' <span style="color:var(--gold-fs);">:')}</span>`;
+      if (document.getElementById('footer-ip-text')) document.getElementById('footer-ip-text').textContent = config.ip || "play.fearsteal.fun:19132";
+      if (document.getElementById('stat-server-title')) document.getElementById('stat-server-title').textContent = config.name || "FearSteal Network";
+      if (document.getElementById('stat-ip-val')) document.getElementById('stat-ip-val').textContent = config.ip || "play.fearsteal.fun:19132";
+      if (document.getElementById('stat-software')) document.getElementById('stat-software').textContent = config.software || "PaperMC";
+      if (document.getElementById('stat-ping-tps')) document.getElementById('stat-ping-tps').textContent = config.pingTps || "18ms / 20.0 TPS";
+      if (document.getElementById('stat-version')) document.getElementById('stat-version').textContent = config.version || "1.20.x - 1.21.x";
+      if (document.getElementById('stat-motd')) document.getElementById('stat-motd').textContent = config.motd || "FearSteal LifeSteal Network • Steal Hearts or Die!";
     }
 
     function handleAdminSaveServerConfig(e) {
@@ -2669,24 +2742,29 @@
       const config = {
         name: document.getElementById('adm-srv-name').value.trim(),
         ip: document.getElementById('adm-srv-ip').value.trim(),
-        port: document.getElementById('adm-srv-port').value.trim(),
-        software: document.getElementById('adm-srv-software').value.trim(),
+        software: document.getElementById('adm-srv-software').value,
+        pingTps: document.getElementById('adm-srv-ping-tps').value.trim(),
+        version: document.getElementById('adm-srv-version').value.trim(),
         motd: document.getElementById('adm-srv-motd').value.trim()
       };
       localStorage.setItem(KEY_SERVER_CONFIG, JSON.stringify(config));
-      document.getElementById('stat-node-name').textContent = `NODE: ${config.ip}:${config.port}`;
-      document.getElementById('stat-software').textContent = config.software;
-      document.getElementById('stat-motd').textContent = config.motd;
+      syncServerConfigUI();
       showToast('Server Telemetry & Node configuration saved!', 'success');
     }
 
+    /* Discord Sync & Live Update */
     function syncDiscordConfigUI() {
       const config = JSON.parse(localStorage.getItem(KEY_DISCORD_CONFIG) || '{}');
       if (document.getElementById('adm-disc-name')) document.getElementById('adm-disc-name').value = config.name || "FearSteal Community";
       if (document.getElementById('adm-disc-affil')) document.getElementById('adm-disc-affil').value = config.affil || "Official Network";
       if (document.getElementById('adm-disc-invite')) document.getElementById('adm-disc-invite').value = config.invite || "https://discord.gg/pGM5x3gXpX";
+      
+      // Update Public DOM
       if (document.getElementById('discord-guild-name')) document.getElementById('discord-guild-name').textContent = config.name || "FearSteal Community";
       if (document.getElementById('discord-affil-badge')) document.getElementById('discord-affil-badge').textContent = config.affil || "Verified";
+      if (document.getElementById('hero-discord-btn')) document.getElementById('hero-discord-btn').href = config.invite || "https://discord.gg/pGM5x3gXpX";
+      if (document.getElementById('widget-discord-btn')) document.getElementById('widget-discord-btn').href = config.invite || "https://discord.gg/pGM5x3gXpX";
+      if (document.getElementById('widget-discord-bottom-btn')) document.getElementById('widget-discord-bottom-btn').href = config.invite || "https://discord.gg/pGM5x3gXpX";
     }
 
     function handleAdminSaveDiscordConfig(e) {
@@ -2698,9 +2776,11 @@
       };
       localStorage.setItem(KEY_DISCORD_CONFIG, JSON.stringify(config));
       syncDiscordConfigUI();
-      showToast('Discord Integration & Affiliation settings updated!', 'success');
+      fetchDiscordLiveStatus();
+      showToast('Discord Server link & configuration saved!', 'success');
     }
 
+    /* Staff Management */
     function handleAdminAddStaffMember(e) {
       e.preventDefault();
       const name = document.getElementById('adm-stf-name').value.trim();
@@ -2945,295 +3025,4 @@
       const idx = streakRewards.findIndex(r => r.day === day);
 
       if (idx >= 0) {
-        streakRewards[idx].name = name;
-        streakRewards[idx].coins = coins;
-        streakRewards[idx].icon = icon;
-      } else {
-        streakRewards.push({ day, name, coins, icon, isGrand: day === 7 });
-      }
-
-      localStorage.setItem(KEY_CUSTOM_STREAK_REWARDS, JSON.stringify(streakRewards));
-      renderDailyStreakUI();
-      showToast(`Day ${day} reward configuration saved!`, 'success');
-    }
-
-    function handleAdminShopAdd(e) {
-      e.preventDefault();
-      const name = document.getElementById('adm-shop-name').value.trim();
-      const cat = document.getElementById('adm-shop-cat').value;
-      const price = parseInt(document.getElementById('adm-shop-price').value, 10);
-      const rarity = document.getElementById('adm-shop-rarity').value;
-      const desc = document.getElementById('adm-shop-desc').value.trim();
-
-      let items = JSON.parse(localStorage.getItem(KEY_SHOP_ITEMS) || '[]');
-      items.push({ id: 'item-' + Date.now(), name, cat, price, rarity, desc });
-      localStorage.setItem(KEY_SHOP_ITEMS, JSON.stringify(items));
-      renderCoinShop();
-      showToast(`Added [${name}] to Coin Shop!`, 'success');
-      e.target.reset();
-    }
-
-    function mutateUserCoins(username, amount) {
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      const idx = users.findIndex(u => u.username.toLowerCase() === username.toLowerCase());
-      if (idx >= 0) {
-        users[idx].coins = Math.max(0, (users[idx].coins || 0) + amount);
-        localStorage.setItem(KEY_USERS, JSON.stringify(users));
-        const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-        if (session && session.username.toLowerCase() === username.toLowerCase()) {
-          session.coins = users[idx].coins;
-          localStorage.setItem(KEY_SESSION, JSON.stringify(session));
-          checkAuth();
-        }
-        renderRealLeaderboards();
-      }
-    }
-
-    /* ====================================================
-       12. ANNOUNCEMENT BANNER
-       ==================================================== */
-    function checkAnnouncementBanner() {
-      const text = localStorage.getItem(KEY_ANNOUNCEMENT_TEXT);
-      const ts = parseInt(localStorage.getItem(KEY_ANNOUNCEMENT_TIME) || '0', 10);
-      const banner = document.getElementById('active-announcement-banner');
-      const textEl = document.getElementById('announcement-text-content');
-      const timeEl = document.getElementById('announcement-time-ago');
-
-      if (!text || !ts) {
-        banner.style.display = 'none';
-        return;
-      }
-
-      // 24-hour expiration check
-      const elapsed = Date.now() - ts;
-      if (elapsed > 24 * 60 * 60 * 1000) {
-        localStorage.removeItem(KEY_ANNOUNCEMENT_TEXT);
-        localStorage.removeItem(KEY_ANNOUNCEMENT_TIME);
-        banner.style.display = 'none';
-        return;
-      }
-
-      banner.style.display = 'block';
-      textEl.textContent = text;
-      const mins = Math.floor(elapsed / 60000);
-      timeEl.textContent = mins < 60 ? (mins <= 0 ? 'Just now' : `${mins}m ago`) : `${Math.floor(mins / 60)}h ago`;
-    }
-
-    function publishAdminAnnouncement() {
-      const input = document.getElementById('adm-announcement-input');
-      const msg = input.value.trim();
-      if (!msg) { showToast('Please enter an announcement!', 'warning'); return; }
-      localStorage.setItem(KEY_ANNOUNCEMENT_TEXT, msg);
-      localStorage.setItem(KEY_ANNOUNCEMENT_TIME, Date.now().toString());
-      checkAnnouncementBanner();
-      showToast('Announcement posted for 24 hours!', 'success');
-      input.value = '';
-    }
-
-    function clearAdminAnnouncement() {
-      localStorage.removeItem(KEY_ANNOUNCEMENT_TEXT);
-      localStorage.removeItem(KEY_ANNOUNCEMENT_TIME);
-      checkAnnouncementBanner();
-      showToast('Announcement banner cleared.', 'info');
-    }
-
-    /* ====================================================
-       13. REVIEWS & FORMS
-       ==================================================== */
-    function handleReviewSubmit(e) {
-      e.preventDefault();
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
-      if (!session) { showToast('Login to leave a review!', 'warning'); return; }
-      const stars = parseInt(document.getElementById('review-stars').value, 10);
-      const text = document.getElementById('review-text').value.trim();
-      let reviews = JSON.parse(localStorage.getItem(KEY_REVIEWS) || '[]');
-      reviews.push({ ign: session.username, stars, message: text });
-      localStorage.setItem(KEY_REVIEWS, JSON.stringify(reviews));
-      showToast('Review submitted!', 'success');
-      document.getElementById('review-stars').value = ''; document.getElementById('review-text').value = '';
-      renderReviews();
-    }
-
-    function renderReviews() {
-      const feed = document.getElementById('reviews-feed-list');
-      if (!feed) return;
-      const reviews = JSON.parse(localStorage.getItem(KEY_REVIEWS) || '[]');
-      feed.innerHTML = reviews.length === 0 ? `<p style="font-size:0.85rem; color:var(--text-muted);">No reviews yet.</p>` : '';
-      reviews.slice().reverse().forEach(r => {
-        feed.innerHTML += `<div style="background:rgba(255,255,255,0.03); padding:8px; border-radius:6px; margin-bottom:6px;"><strong>${r.ign}</strong>: ${r.stars}/10 ⭐<br/><span style="font-size:0.8rem; color:#ccc;">${r.message}</span></div>`;
-      });
-    }
-
-    function handleSuggestionSubmit(e) {
-      e.preventDefault();
-      const cat = document.getElementById('sug-cat').value;
-      const msg = document.getElementById('sug-message').value.trim();
-      let sugs = JSON.parse(localStorage.getItem(KEY_SUGGESTIONS) || '[]');
-      sugs.push({ cat, msg, date: new Date().toLocaleDateString() });
-      localStorage.setItem(KEY_SUGGESTIONS, JSON.stringify(sugs));
-      showToast('Suggestion delivered to Admin Panel!', 'success');
-      document.getElementById('sug-message').value = '';
-      renderAdminSuggestions();
-    }
-
-    function handleStaffApplySubmit(e) { e.preventDefault(); showToast('Staff Application submitted!', 'success'); e.target.reset(); }
-    function handleReportSubmit(e) { e.preventDefault(); alert('Report filed: #REP-' + Math.floor(10000 + Math.random() * 90000)); e.target.reset(); }
-    function handleAppealSubmit(e) { e.preventDefault(); alert('Ban Appeal filed: #APL-' + Math.floor(10000 + Math.random() * 90000)); e.target.reset(); }
-
-    function handleTicketSubmit(e) {
-      e.preventDefault();
-      const cat = document.getElementById('tkt-cat').value;
-      const subject = document.getElementById('tkt-subject').value.trim();
-      const body = document.getElementById('tkt-body').value.trim();
-      let tickets = JSON.parse(localStorage.getItem(KEY_TICKETS) || '[]');
-      tickets.push({ category: cat, subject, body, date: new Date().toLocaleDateString() });
-      localStorage.setItem(KEY_TICKETS, JSON.stringify(tickets));
-      alert('Support Ticket opened!');
-      e.target.reset();
-      renderAdminTickets();
-    }
-
-    function copyIP() { navigator.clipboard.writeText('play.fearsteal.fun:19132'); showToast('Server IP copied: play.fearsteal.fun:19132', 'success'); }
-
-    async function fetchServerLiveStatus() {
-      try {
-        const res = await fetch('https://api.mcstatus.io/v2/status/bedrock/play.fearsteal.fun:19132');
-        if (res.ok) {
-          const data = await res.json();
-          if (data && data.online) {
-            document.getElementById('stat-node-dot').className = 'status-dot online';
-            document.getElementById('stat-players').textContent = `${data.players.online} / ${data.players.max}`;
-            document.getElementById('stat-motd').textContent = data.motd?.clean || 'FearSteal LifeSteal Network';
-            statusCountdownVal = 60;
-            return;
-          }
-        }
-      } catch (err) {}
-      document.getElementById('stat-node-dot').className = 'status-dot offline';
-      statusCountdownVal = 60;
-    }
-
-    async function fetchDiscordLiveStatus() {
-      try {
-        const res = await fetch('https://discord.com/api/v9/invites/pGM5x3gXpX?with_counts=true');
-        if (res.ok) {
-          const data = await res.json();
-          const pCount = document.getElementById('discord-presence-count');
-          const tCount = document.getElementById('discord-total-count');
-          const gName = document.getElementById('discord-guild-name');
-          const gIcon = document.getElementById('discord-guild-icon');
-          if (pCount && data.approximate_presence_count) pCount.textContent = data.approximate_presence_count.toLocaleString() + ' Online';
-          if (tCount && data.approximate_member_count) tCount.textContent = data.approximate_member_count.toLocaleString() + ' Members';
-          if (gName && data.guild && data.guild.name) gName.textContent = data.guild.name;
-          if (gIcon && data.guild && data.guild.icon) gIcon.src = `https://cdn.discordapp.com/icons/${data.guild.id}/${data.guild.icon}.png?size=128`;
-        }
-      } catch (e) {}
-    }
-
-    function renderMembersDirectory() {
-      const tbody = document.getElementById('registered-members-tbody');
-      if (!tbody) return;
-      tbody.innerHTML = '';
-      const users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      users.forEach((u, i) => {
-        tbody.innerHTML += `
-          <tr>
-            <td><strong style="color:var(--crimson-glow);">#${i + 1}</strong></td>
-            <td><img src="https://mc-heads.net/avatar/${encodeURIComponent(u.mcUsername || u.username)}/28" onerror="this.src='${STAFF_PLACEHOLDER_SVG}';" style="border-radius:4px;" alt="" /></td>
-            <td><strong>${u.username}</strong></td>
-            <td><span style="color:var(--gold-fs); font-weight:700;">${(u.coins || 0).toLocaleString()} Coins</span></td>
-            <td><span style="font-size:0.75rem; color:#9ca3af;">${u.registeredAt || 'Today'}</span></td>
-          </tr>
-        `;
-      });
-    }
-
-    function showToast(msg, type = 'info') {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      toast.innerHTML = `<i class="fa-solid fa-circle-info" style="color:var(--crimson-glow);"></i> <span>${msg}</span>`;
-      container.appendChild(toast);
-      setTimeout(() => toast.remove(), 4000);
-    }
-
-    function initParticles() {
-      const canvas = document.getElementById('particles-canvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let w = canvas.width = window.innerWidth;
-      let h = canvas.height = window.innerHeight;
-      const particles = Array.from({ length: 30 }, () => ({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 2 + 1, sy: -(Math.random() * 0.7 + 0.3) }));
-      function draw() {
-        ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = 'rgba(220, 38, 38, 0.4)';
-        particles.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); p.y += p.sy; if (p.y < 0) p.y = h; });
-        requestAnimationFrame(draw);
-      }
-      draw();
-    }
-
-    /* 14. FAST PRELOADER */
-    function runPreloader() {
-      const bar = document.getElementById('loader-progress-bar');
-      const text = document.getElementById('loader-progress-text');
-      const loader = document.getElementById('site-loader');
-      let val = 0;
-      
-      const interval = setInterval(() => {
-        val += 20;
-        if (val >= 100) {
-          clearInterval(interval);
-          if (bar) bar.style.width = '100%';
-          if (text) text.textContent = 'READY! 100%';
-          setTimeout(() => {
-            if (loader) loader.classList.add('fade-out');
-          }, 150);
-        } else {
-          if (bar) bar.style.width = val + '%';
-          if (text) text.textContent = `LOADING REALM... ${val}%`;
-        }
-      }, 50);
-    }
-
-    /* 15. DOM INITIALIZATION & TIMERS */
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('current-year').textContent = new Date().getFullYear();
-      initializeStorage();
-      
-      renderStaffDirectory();
-      renderCoinShop();
-      renderDailyStreakUI();
-      renderRealLeaderboards();
-      renderMembersDirectory();
-      renderReviews();
-      renderNoviceUI();
-      renderPublicVoteSites();
-      
-      runPreloader();
-      initParticles();
-      checkAuth();
-      
-      fetchServerLiveStatus();
-      fetchDiscordLiveStatus();
-
-      // Real 1-Second Interval for All Active Timers
-      setInterval(() => {
-        updateCooldownBar();
-        updateNovice60DayTimer();
-        checkAuth(); // Auto-logout verification
-        
-        statusCountdownVal--;
-        const cntEl = document.getElementById('stat-refresh-countdown');
-        if (cntEl) cntEl.textContent = `${Math.max(0, statusCountdownVal)}s`;
-        if (statusCountdownVal <= 0) {
-          fetchServerLiveStatus();
-        }
-      }, 1000);
-
-      setInterval(checkAnnouncementBanner, 15000);
-      setInterval(fetchDiscordLiveStatus, 45000);
-    });
-  </script>
-</body>
-</html>
+        streakRewards
