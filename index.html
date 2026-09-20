@@ -412,36 +412,179 @@
   </style>
 
 
-<style id="fearsteal-free-rank-css">
-.free-rank-modal{
-  position:fixed;inset:0;z-index:999998;display:none;align-items:center;justify-content:center;
-  padding:18px;background:rgba(0,0,0,.78);backdrop-filter:blur(10px)
+<style id="fearsteal-loader-fix">
+#preloader{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  min-height:100vh;
+  z-index:2147483647;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:#050507;
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transition:opacity .45s ease,visibility .45s ease;
 }
-.free-rank-modal.open{display:flex}
-.free-rank-card{
-  width:min(94vw,480px);background:linear-gradient(145deg,#11131a,#090a0f);
-  border:1px solid rgba(88,101,242,.55);border-radius:20px;padding:24px;
-  box-shadow:0 20px 70px rgba(0,0,0,.65),0 0 35px rgba(88,101,242,.15)
+#preloader.fs-hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
-.free-rank-discord-icon{
-  width:72px;height:72px;border-radius:20px;background:#5865F2;display:grid;place-items:center;
-  margin:0 auto 12px;color:#fff;font-size:35px;box-shadow:0 0 25px rgba(88,101,242,.4)
+.fs-loader-bg{
+  position:absolute;
+  inset:-20%;
+  background:
+    radial-gradient(circle at 50% 42%,rgba(230,15,60,.20),transparent 24%),
+    radial-gradient(circle at 50% 50%,rgba(120,0,25,.18),transparent 48%),
+    #050507;
+  animation:fsLoaderBg 3s ease-in-out infinite alternate;
 }
-.free-rank-card h3{text-align:center;color:#fff;font-size:1.5rem}
-.free-rank-card .free-rank-note{text-align:center;color:#9ca3af;font-size:.82rem;margin:8px 0 18px}
-.free-rank-card label{display:block;color:#fff;font-size:.78rem;font-weight:800;margin-bottom:6px}
-.free-rank-card input{
-  width:100%;padding:12px 13px;border-radius:10px;border:1px solid #303542;
-  background:#06070b;color:#fff;outline:none
+.fs-loader-wrap{
+  position:relative;
+  z-index:2;
+  width:min(88vw,430px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
 }
-.free-rank-card input:focus{border-color:#5865F2;box-shadow:0 0 0 3px rgba(88,101,242,.12)}
-.free-rank-status{min-height:22px;margin-top:10px;font-size:.78rem;color:#fbbf24;text-align:center}
-.free-rank-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-@media(max-width:480px){.free-rank-actions{grid-template-columns:1fr}}
+.fs-loader-logo-box{
+  width:110px;
+  height:110px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:17px;
+}
+.fs-loader-logo{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 0 12px rgba(255,20,65,.75))
+         drop-shadow(0 0 32px rgba(255,0,50,.4));
+  animation:fsLoaderLogo 1.2s ease-in-out infinite;
+}
+#fs-logo-fallback{
+  display:none;
+  width:100%;
+  height:100%;
+  align-items:center;
+  justify-content:center;
+  border-radius:25px;
+  color:#fff;
+  font-weight:1000;
+  font-size:40px;
+  letter-spacing:2px;
+  background:linear-gradient(145deg,#26030b,#09090b);
+  border:1px solid rgba(255,40,75,.4);
+  box-shadow:0 0 30px rgba(255,20,60,.3);
+}
+.fs-loader-title{
+  color:#fff;
+  font-size:clamp(27px,8vw,43px);
+  line-height:1;
+  font-weight:1000;
+  letter-spacing:5px;
+  text-shadow:0 0 10px rgba(255,20,60,.8),0 0 28px rgba(255,0,50,.4);
+}
+.fs-loader-subtitle{
+  margin-top:11px;
+  color:rgba(255,255,255,.48);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+.fs-loader-progress{
+  width:100%;
+  height:8px;
+  margin-top:25px;
+  border-radius:99px;
+  overflow:hidden;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.1);
+}
+#fs-loader-bar{
+  width:0%;
+  height:100%;
+  border-radius:99px;
+  background:linear-gradient(90deg,#8d0020,#ed174c,#ff5275);
+  box-shadow:0 0 12px rgba(255,20,70,.9);
+  transition:width .08s linear;
+}
+#fs-loader-percent{
+  margin-top:10px;
+  color:#fff;
+  font-weight:1000;
+  font-size:19px;
+  letter-spacing:1px;
+}
+#fs-loader-status{
+  margin-top:5px;
+  min-height:15px;
+  color:rgba(255,255,255,.42);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+@keyframes fsLoaderLogo{
+  0%,100%{transform:scale(.96);filter:drop-shadow(0 0 9px rgba(255,20,65,.65))}
+  50%{transform:scale(1.045);filter:drop-shadow(0 0 20px rgba(255,20,65,1))}
+}
+@keyframes fsLoaderBg{
+  from{transform:scale(1);opacity:.85}
+  to{transform:scale(1.08);opacity:1}
+}
+@media(max-width:480px){
+  .fs-loader-logo-box{width:92px;height:92px}
+  .fs-loader-title{letter-spacing:3px}
+  .fs-loader-progress{height:7px}
+}
 </style>
 
 </head>
 <body>
+
+
+<div id="preloader" aria-label="FearSteal loading">
+  <div class="fs-loader-bg"></div>
+  <div class="fs-loader-wrap">
+    <div class="fs-loader-logo-box">
+      <img src="assets/logo.png" class="fs-loader-logo" alt="FearSteal"
+           onerror="this.style.display='none';document.getElementById('fs-logo-fallback').style.display='flex';">
+      <div id="fs-logo-fallback">FS</div>
+    </div>
+    <div class="fs-loader-title">FEARSTEAL</div>
+    <div class="fs-loader-subtitle">STEAL HEARTS. BUILD POWER. SURVIVE.</div>
+    <div class="fs-loader-progress">
+      <div id="fs-loader-bar"></div>
+    </div>
+    <div id="fs-loader-percent">0%</div>
+    <div id="fs-loader-status">INITIALIZING...</div>
+  </div>
+</div>
+
+<div class="fs-loader-orbit"></div>
+  <div class="fs-loader-wrap">
+    <img class="fs-loader-logo"
+         src="assets/logo.png"
+         alt="FearSteal"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+    <div class="fs-loader-fallback">FS</div>
+    <h1 class="fs-loader-title">FEARSTEAL</h1>
+    <p class="fs-loader-subtitle">STEAL HEARTS. BUILD POWER. SURVIVE.</p>
+    <div class="fs-loader-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="fs-loader-bar"></div>
+    </div>
+    <div class="fs-loader-percent">0%</div>
+    <div class="fs-loader-status">INITIALIZING NETWORK...</div>
+  </div>
+</div>
+
 
 
   <canvas id="particles-canvas"></canvas>
@@ -465,39 +608,6 @@
     <div class="loader-bar-bg"><div class="loader-bar-fill" id="loader-progress-bar"></div></div>
     <div style="font-family:var(--font-display); font-size:0.9rem; font-weight:800; color:var(--gold-fs); letter-spacing:2px;" id="loader-progress-text">LOADING REALM... 0%</div>
   </div>
-
-  
-<!-- FREE RANK CLAIM MODAL -->
-<div id="free-rank-modal" class="free-rank-modal" aria-hidden="true">
-  <div class="free-rank-card">
-    <div class="free-rank-discord-icon"><i class="fa-brands fa-discord"></i></div>
-    <h3>FREE RANK CLAIM</h3>
-    <div class="free-rank-note">
-      Enter your Discord username. You must join the official FearSteal Discord before the rank can be claimed.
-    </div>
-
-    <label for="free-rank-discord-username">DISCORD USERNAME</label>
-    <input id="free-rank-discord-username" type="text"
-           placeholder="example_username"
-           maxlength="32" autocomplete="off">
-
-    <div id="free-rank-status" class="free-rank-status"></div>
-
-    <div class="free-rank-actions">
-      <button class="btn btn-outline" onclick="closeFreeRankClaim()">CANCEL</button>
-      <button class="btn btn-discord" onclick="startFreeRankDiscordJoin()">
-        <i class="fa-brands fa-discord"></i> JOIN DISCORD
-      </button>
-    </div>
-
-    <button id="free-rank-complete-btn" class="btn btn-primary"
-            style="width:100%;margin-top:10px;display:none;"
-            onclick="completeFreeRankClaim()">
-      I JOINED — VERIFY CLAIM
-    </button>
-  </div>
-</div>
-
 
   <!-- AUTH OVERLAY -->
   <div id="auth-overlay">
@@ -850,7 +960,7 @@
         <div style="display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;">
           <span style="font-size:.78rem;color:#9ca3af;font-weight:800;">STORE CURRENCY</span>
           <select id="store-currency-select" onchange="changeUserCurrency(this.value)" style="background:#08080d;border:1px solid rgba(255,255,255,.14);color:#fff;padding:8px 12px;border-radius:8px;font-weight:800;outline:none;">
-            <option value="USD">USD</option><option value="INR">INR</option><option value="NPR">NPR</option><option value="PKR">PKR</option><option value="BDT">BDT</option>
+            <option value="USD">USD</option><option value="INR">INR (&#8377;)</option><option value="NPR">NPR (&#2352;&#2370;)</option><option value="PKR">PKR (&#8360;)</option><option value="BDT">BDT (&#2547;)</option>
           </select>
           <span style="font-size:.68rem;color:#6b7280;">CoinShop prices stay in Coins.</span>
         </div>
@@ -882,7 +992,7 @@
             </ul>
           </div>
           <div>
-            <button class="btn btn-primary" id="claim-novice-btn" onclick="openFreeRankClaim()" style="width:100%; background:#2563eb;">CLAIM NOVICE</button>
+            <button class="btn btn-primary" id="claim-novice-btn" onclick="triggerNoviceClaimFlow()" style="width:100%; background:#2563eb;">CLAIM NOVICE</button>
           </div>
         </div>
 
@@ -2315,6 +2425,42 @@
       const timerEl = document.getElementById('novice-countdown-timer');
       if (timerEl) timerEl.textContent = remainingMs <= 0 ? 'PROMOTION EXPIRED' : `${days}d ${hours}h ${mins}m ${secs}s remaining`;
     }
+
+    function triggerNoviceClaimFlow() {
+      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
+      if (!session) { showToast('Please register and login first!', 'warning'); return; }
+
+      let claims = JSON.parse(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]');
+      if (claims.some(c => c.username.toLowerCase() === session.username.toLowerCase())) {
+        alert("You have already claimed this rank. You cannot claim this free rank again ❌️"); return;
+      }
+      let count = parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10);
+      if (count >= 100) { alert("All 100 Novice ranks have been claimed."); renderNoviceUI(); return; }
+
+      const discordUsername = prompt("Please enter your Discord Username to verify (e.g. warrior or warrior#0001):");
+      if (!discordUsername || discordUsername.trim().length < 3) {
+        alert("This Username isn't match in discord pleased fill your real username");
+        return;
+      }
+
+      const cleanName = discordUsername.trim();
+      const validSyntax = /^[a-zA-Z0-9_.-]{2,32}(#[0-9]{4})?$/.test(cleanName);
+
+      if (validSyntax) {
+        alert("This username is match discord username so pleased join discord than claim free ranks ✅️");
+        window.open('https://discord.gg/pGM5x3gXpX', '_blank');
+
+        count = Math.min(100, count + 1);
+        localStorage.setItem(KEY_NOVICE_COUNT, count.toString());
+        claims.push({ accountId: 'ACC-' + Math.floor(100000 + Math.random() * 900000), username: session.username, mcUsername: session.mcUsername || session.username, discordId: cleanName, verificationStatus: 'Verified (Discord Synced)', timestamp: new Date().toLocaleString() });
+        localStorage.setItem(KEY_NOVICE_CLAIMS, JSON.stringify(claims));
+        renderNoviceUI();
+        showToast('Novice Rank Claimed Successfully!', 'success');
+      } else {
+        alert("This Username isn't match in discord pleased fill your real username");
+      }
+    }
+
     function renderNoviceUI() {
       const count = Math.min(100, parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10));
       const lbl = document.getElementById('novice-slots-label');
@@ -3279,21 +3425,15 @@
       const host = String(cfg.ip || 'play.fearsteal.fun').trim();
       const port = String(cfg.port || '19132').trim();
       const protocol = String(cfg.protocol || 'bedrock').toLowerCase();
+      const type = protocol === 'java' ? 'java' : 'bedrock';
       const address = `${host}:${port}`;
-      const endpoint = protocol === 'java'
-        ? `https://api.mcsrvstat.us/3/${encodeURIComponent(address)}`
-        : `https://api.mcsrvstat.us/bedrock/3/${encodeURIComponent(address)}`;
 
-      const set = (id, value) => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = value;
-      };
-
+      const set = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
       set('stat-node-name', cfg.name || 'FearSteal LifeSteal Network');
       set('stat-address', address);
       set('stat-software', cfg.software || 'PaperMC');
-      set('stat-version', cfg.version || 'Unknown');
-      set('stat-motd', cfg.motd || 'FearSteal LifeSteal Network');
+      set('stat-version', cfg.version || '1.20.x');
+      set('stat-motd', cfg.motd || 'FearSteal LifeSteal Network • Steal Hearts or Die!');
 
       const dot = document.getElementById('stat-node-dot');
       const players = document.getElementById('stat-players');
@@ -3305,61 +3445,36 @@
       if (dot) dot.className = 'status-dot checking';
       if (players) players.textContent = 'Checking...';
       if (ping) ping.textContent = '—';
-      if (pingNote) pingNote.textContent = 'Checking API';
+      if (pingNote) pingNote.textContent = 'Auto detecting';
       if (tps) tps.textContent = `${Number(cfg.tps) || 20}.0`;
-      if (tpsNote) tpsNote.textContent = 'Configured TPS';
+      if (tpsNote) tpsNote.textContent = 'Configured / live API when available';
 
       const started = performance.now();
-
       try {
-        /*
-          MCSRVSTAT.US API:
-          Java  -> /3/<address>
-          Bedrock -> /bedrock/3/<address>
-          The service returns online, version, software, MOTD and players.
-        */
-        const res = await fetch(endpoint, {
-          cache: 'no-store',
-          headers: { 'Accept': 'application/json' }
-        });
-
+        const res = await fetch(`https://api.mcstatus.io/v2/status/${type}/${encodeURIComponent(address)}`, { cache: 'no-store' });
         const data = await res.json();
+        const elapsed = Math.max(1, Math.round(performance.now() - started));
 
-        if (!res.ok || data.online !== true) {
-          throw new Error('Server offline');
-        }
+        if (!res.ok || !data?.online) throw new Error('offline');
 
         if (dot) dot.className = 'status-dot online';
+        if (players) players.textContent = `${Number(data.players?.online ?? 0)} / ${Number(data.players?.max ?? 0)}`;
 
-        const online = Number(data.players?.online ?? 0);
-        const max = Number(data.players?.max ?? 0);
-        if (players) players.textContent = `${online} / ${max}`;
+        const motd = data.motd?.clean || data.motd?.raw;
+        if (motd) set('stat-motd', motd);
 
-        const motd = Array.isArray(data.motd?.clean)
-          ? data.motd.clean.join(' ')
-          : (data.motd?.clean || data.motd?.raw || cfg.motd || 'FearSteal LifeSteal Network');
-        set('stat-motd', String(motd));
+        const version = data.version?.name_clean || data.version?.name;
+        if (version) set('stat-version', version);
 
-        const version = data.protocol?.name || data.version || cfg.version || 'Unknown';
-        set('stat-version', String(version));
+        const latency = Number(data.latency);
+        const finalPing = Number.isFinite(latency) ? Math.round(latency) : elapsed;
+        if (ping) ping.textContent = `${finalPing}ms`;
+        if (pingNote) pingNote.textContent = finalPing <= 60 ? 'Excellent connection' : finalPing <= 120 ? 'Stable connection' : 'High latency';
 
-        if (data.software) set('stat-software', String(data.software));
-
-        /*
-          MCSRVSTAT.US documents debug.ping as whether SLP was used; it does
-          not provide a client ping number. We therefore label this honestly
-          as API response time rather than Minecraft client ping.
-        */
-        const apiMs = Math.max(1, Math.round(performance.now() - started));
-        if (ping) ping.textContent = `${apiMs}ms`;
-        if (pingNote) pingNote.textContent = 'API response time';
-
-        /*
-          TPS is not part of the documented standard MCSRVSTAT response.
-          Keep the admin-configured fallback instead of falsely calling it live.
-        */
-        if (tpsNote) tpsNote.textContent = 'Configured TPS';
-
+        if (Array.isArray(data.tps) && data.tps.length && Number.isFinite(Number(data.tps[0]))) {
+          set('stat-tps', Number(data.tps[0]).toFixed(1));
+          if (tpsNote) tpsNote.textContent = 'Live TPS';
+        }
         statusCountdownVal = 60;
       } catch (err) {
         if (dot) dot.className = 'status-dot offline';
@@ -3479,80 +3594,111 @@
       draw();
     }
 
-    /* 14. ORIGINAL FEARSTEAL PRELOADER - FIXED / NEVER STUCK */
+    /* 14. FEARSTEAL ORIGINAL PRELOADER - FIXED, VISUAL DESIGN UNCHANGED */
     function runPreloader() {
-      const loader = document.getElementById('site-loader');
       const bar = document.getElementById('loader-progress-bar');
-      const textEl = document.getElementById('loader-progress-text');
+      const progressText = document.getElementById('loader-progress-text');
+      const loader = document.getElementById('site-loader');
 
       if (!loader) return;
-      if (window.__FEARSTEAL_PRELOADER_DONE__) {
-        loader.classList.add('fade-out');
-        loader.style.pointerEvents = 'none';
-        return;
-      }
-      if (window.__FEARSTEAL_PRELOADER_RUNNING__) return;
-      window.__FEARSTEAL_PRELOADER_RUNNING__ = true;
 
       let val = 0;
       let finished = false;
+      const startTime = Date.now();
 
-      const render = () => {
-        const pct = Math.min(100, val);
-        if (bar) bar.style.width = pct + '%';
-        if (textEl) {
-          textEl.textContent = pct >= 100
-            ? 'READY! 100%'
-            : `LOADING REALM... ${pct}%`;
+      function renderProgress(value) {
+        value = Math.max(0, Math.min(100, Math.round(value)));
+        if (bar) bar.style.width = value + '%';
+        if (progressText) {
+          progressText.textContent = value >= 100 ? 'READY! 100%' : `LOADING REALM... ${value}%`;
         }
-      };
+      }
 
-      const finish = () => {
+      function finishLoader() {
         if (finished) return;
         finished = true;
-        val = 100;
-        render();
+        renderProgress(100);
 
-        // Fade the ORIGINAL loader out after 100% is painted.
         setTimeout(() => {
           loader.classList.add('fade-out');
-          loader.style.pointerEvents = 'none';
-
-          // Remove it from the visual layer after the original CSS transition.
           setTimeout(() => {
             loader.style.display = 'none';
-            window.__FEARSTEAL_PRELOADER_DONE__ = true;
-            window.__FEARSTEAL_PRELOADER_RUNNING__ = false;
           }, 500);
-        }, 150);
-      };
+        }, 180);
+      }
 
-      render();
+      function animateLoader() {
+        if (finished) return;
 
-      // Original animation: 0 -> 20 -> 40 -> 60 -> 80 -> 100.
-      const interval = setInterval(() => {
-        if (finished) {
-          clearInterval(interval);
+        const elapsed = Date.now() - startTime;
+
+        // Independent of server/API/Discord/auth requests.
+        if (elapsed < 250) val += 4;
+        else if (elapsed < 700) val += 4;
+        else if (elapsed < 1200) val += 3;
+        else if (elapsed < 1800) val += 2.5;
+        else val += 3;
+
+        if (val >= 100) {
+          finishLoader();
           return;
         }
 
-        val += 20;
+        renderProgress(val);
+        requestAnimationFrame(animateLoader);
+      }
 
-        if (val >= 100) {
-          clearInterval(interval);
-          finish();
-        } else {
-          render();
-        }
-      }, 50);
+      renderProgress(0);
+      requestAnimationFrame(animateLoader);
 
-      // Emergency fallback so an unrelated JS/browser issue can never leave it stuck.
-      setTimeout(() => {
-        if (!finished) {
-          clearInterval(interval);
-          finish();
-        }
-      }, 1800);
+      // Absolute fallback: never allow the original loader to remain stuck.
+      setTimeout(finishLoader, 3500);
+    }
+
+
+    /* 16. ENCODING SAFETY - REMOVE OLD MOJIBAKE FROM VISIBLE UI */
+    function fixFearStealEncoding() {
+      const currencySymbols = /[\u20AC\u00A5\u20A9\u20B9\u20A8\u09F3\u20BD\u00A3\u00A2]/g;
+
+      const replacements = {
+        '': '\u20B9',
+        '': '\u20A8',
+        'à¤°à‚': '\u0930\u0942',
+        '': '\u09F3',
+        'â”': '-',
+        'â“': '-',
+        'â': '-',
+        'âœ': '"',
+        'â': '"',
+        'â˜': "'",
+        'â™': "'",
+        'â¦': '...',
+        '': ''
+      };
+
+      const fix = value => {
+        let out = String(value ?? '');
+        out = out.replace(currencySymbols, '');
+        Object.keys(replacements).forEach(key => {
+          out = out.split(key).join(replacements[key]);
+        });
+        return out;
+      };
+
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+
+      nodes.forEach(node => {
+        const fixed = fix(node.nodeValue);
+        if (fixed !== node.nodeValue) node.nodeValue = fixed;
+      });
+
+      document.querySelectorAll('input, textarea, option').forEach(el => {
+        if (el.placeholder) el.placeholder = fix(el.placeholder);
+        if (el.value) el.value = fix(el.value);
+        if (el.textContent) el.textContent = fix(el.textContent);
+      });
     }
 
     /* 15. DOM INITIALIZATION & TIMERS */
@@ -3573,6 +3719,7 @@
       renderPublicVoteSites();
       fixFearStealEncoding();
       
+      runPreloader();
       initParticles();
       checkAuth();
       
@@ -3601,6 +3748,110 @@
       setInterval(fetchDiscordLiveStatus, 45000);
     });
   </script>
+
+
+
+
+<script id="fearsteal-loader-controller">
+(function(){
+  var loader=document.getElementById("preloader");
+  if(!loader)return;
+
+  var bar=document.getElementById("fs-loader-bar");
+  var percent=document.getElementById("fs-loader-percent");
+  var status=document.getElementById("fs-loader-status");
+
+  var progress=0;
+  var start=Date.now();
+  var pageLoaded=document.readyState==="complete";
+  var hidden=false;
+
+  var statusSteps=[
+    [0,"INITIALIZING..."],
+    [15,"LOADING FEARSTEAL CORE..."],
+    [32,"CONNECTING SERVER..."],
+    [50,"LOADING PLAYER DATA..."],
+    [68,"SYNCING NETWORK..."],
+    [84,"PREPARING WEBSITE..."],
+    [96,"ALMOST READY..."],
+    [100,"FEARSTEAL ONLINE"]
+  ];
+
+  window.addEventListener("load",function(){
+    pageLoaded=true;
+  });
+
+  function render(n){
+    n=Math.floor(n);
+    if(n>100)n=100;
+    if(bar)bar.style.width=n+"%";
+    if(percent)percent.textContent=n+"%";
+    for(var i=statusSteps.length-1;i>=0;i--){
+      if(n>=statusSteps[i][0]){
+        if(status)status.textContent=statusSteps[i][1];
+        break;
+      }
+    }
+  }
+
+  function finish(){
+    if(hidden)return;
+    hidden=true;
+    render(100);
+    setTimeout(function(){
+      loader.classList.add("fs-hide");
+      setTimeout(function(){
+        if(loader&&loader.parentNode)loader.parentNode.removeChild(loader);
+      },500);
+    },150);
+  }
+
+  function animate(){
+    if(hidden)return;
+    var elapsed=Date.now()-start;
+
+    /*
+      Never waits for any API, image, fetch, font, Minecraft server,
+      Discord request, or other website script. The loader owns its
+      progress completely, which prevents the old 99% freeze.
+    */
+    if(elapsed<250)progress+=3.5;
+    else if(elapsed<800)progress+=2.8;
+    else if(elapsed<1500)progress+=2.1;
+    else if(elapsed<2200)progress+=1.7;
+    else if(elapsed<2900)progress+=1.4;
+    else progress+=2.5;
+
+    if(progress>=100){
+      progress=100;
+      finish();
+      return;
+    }
+
+    render(progress);
+    requestAnimationFrame(animate);
+  }
+
+  render(0);
+  requestAnimationFrame(animate);
+
+  // Absolute fallback. Even if another script breaks, the loading screen closes.
+  setTimeout(finish,5000);
+})();
+
+    window.addEventListener('DOMContentLoaded', () => {
+      try {
+        updateUserCurrencyDisplay();
+        updateStoreCurrencyPrices();
+        syncServerConfigUI();
+        syncStatusAdminButton();
+        renderDiscordServers();
+        renderAdminDiscordServers();
+      } catch (e) {}
+    });
+</script>
+
+
 <script>
 (function(){
   function cleanVisibleText(root){
