@@ -412,141 +412,6 @@
   </style>
 
 
-<style id="fearsteal-loader-fix">
-#preloader{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  min-height:100vh;
-  z-index:2147483647;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  background:#050507;
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
-  transition:opacity .45s ease,visibility .45s ease;
-}
-#preloader.fs-hide{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
-.fs-loader-bg{
-  position:absolute;
-  inset:-20%;
-  background:
-    radial-gradient(circle at 50% 42%,rgba(230,15,60,.20),transparent 24%),
-    radial-gradient(circle at 50% 50%,rgba(120,0,25,.18),transparent 48%),
-    #050507;
-  animation:fsLoaderBg 3s ease-in-out infinite alternate;
-}
-.fs-loader-wrap{
-  position:relative;
-  z-index:2;
-  width:min(88vw,430px);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-}
-.fs-loader-logo-box{
-  width:110px;
-  height:110px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:17px;
-}
-.fs-loader-logo{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  filter:drop-shadow(0 0 12px rgba(255,20,65,.75))
-         drop-shadow(0 0 32px rgba(255,0,50,.4));
-  animation:fsLoaderLogo 1.2s ease-in-out infinite;
-}
-#fs-logo-fallback{
-  display:none;
-  width:100%;
-  height:100%;
-  align-items:center;
-  justify-content:center;
-  border-radius:25px;
-  color:#fff;
-  font-weight:1000;
-  font-size:40px;
-  letter-spacing:2px;
-  background:linear-gradient(145deg,#26030b,#09090b);
-  border:1px solid rgba(255,40,75,.4);
-  box-shadow:0 0 30px rgba(255,20,60,.3);
-}
-.fs-loader-title{
-  color:#fff;
-  font-size:clamp(27px,8vw,43px);
-  line-height:1;
-  font-weight:1000;
-  letter-spacing:5px;
-  text-shadow:0 0 10px rgba(255,20,60,.8),0 0 28px rgba(255,0,50,.4);
-}
-.fs-loader-subtitle{
-  margin-top:11px;
-  color:rgba(255,255,255,.48);
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:1.5px;
-}
-.fs-loader-progress{
-  width:100%;
-  height:8px;
-  margin-top:25px;
-  border-radius:99px;
-  overflow:hidden;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.1);
-}
-#fs-loader-bar{
-  width:0%;
-  height:100%;
-  border-radius:99px;
-  background:linear-gradient(90deg,#8d0020,#ed174c,#ff5275);
-  box-shadow:0 0 12px rgba(255,20,70,.9);
-  transition:width .08s linear;
-}
-#fs-loader-percent{
-  margin-top:10px;
-  color:#fff;
-  font-weight:1000;
-  font-size:19px;
-  letter-spacing:1px;
-}
-#fs-loader-status{
-  margin-top:5px;
-  min-height:15px;
-  color:rgba(255,255,255,.42);
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:1.5px;
-}
-@keyframes fsLoaderLogo{
-  0%,100%{transform:scale(.96);filter:drop-shadow(0 0 9px rgba(255,20,65,.65))}
-  50%{transform:scale(1.045);filter:drop-shadow(0 0 20px rgba(255,20,65,1))}
-}
-@keyframes fsLoaderBg{
-  from{transform:scale(1);opacity:.85}
-  to{transform:scale(1.08);opacity:1}
-}
-@media(max-width:480px){
-  .fs-loader-logo-box{width:92px;height:92px}
-  .fs-loader-title{letter-spacing:3px}
-  .fs-loader-progress{height:7px}
-}
-</style>
-
-
 <style id="fearsteal-free-rank-css">
 .free-rank-modal{
   position:fixed;inset:0;z-index:999998;display:none;align-items:center;justify-content:center;
@@ -577,43 +442,6 @@
 
 </head>
 <body>
-
-
-<div id="preloader" aria-label="FearSteal loading">
-  <div class="fs-loader-bg"></div>
-  <div class="fs-loader-wrap">
-    <div class="fs-loader-logo-box">
-      <img src="assets/logo.png" class="fs-loader-logo" alt="FearSteal"
-           onerror="this.style.display='none';document.getElementById('fs-logo-fallback').style.display='flex';">
-      <div id="fs-logo-fallback">FS</div>
-    </div>
-    <div class="fs-loader-title">FEARSTEAL</div>
-    <div class="fs-loader-subtitle">STEAL HEARTS. BUILD POWER. SURVIVE.</div>
-    <div class="fs-loader-progress">
-      <div id="fs-loader-bar"></div>
-    </div>
-    <div id="fs-loader-percent">0%</div>
-    <div id="fs-loader-status">INITIALIZING...</div>
-  </div>
-</div>
-
-<div class="fs-loader-orbit"></div>
-  <div class="fs-loader-wrap">
-    <img class="fs-loader-logo"
-         src="assets/logo.png"
-         alt="FearSteal"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
-    <div class="fs-loader-fallback">FS</div>
-    <h1 class="fs-loader-title">FEARSTEAL</h1>
-    <p class="fs-loader-subtitle">STEAL HEARTS. BUILD POWER. SURVIVE.</p>
-    <div class="fs-loader-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <div class="fs-loader-bar"></div>
-    </div>
-    <div class="fs-loader-percent">0%</div>
-    <div class="fs-loader-status">INITIALIZING NETWORK...</div>
-  </div>
-</div>
-
 
 
   <canvas id="particles-canvas"></canvas>
@@ -3651,42 +3479,83 @@
       draw();
     }
 
-    /* 14. ORIGINAL FEARSTEAL PRELOADER */
+    /* 14. ORIGINAL FEARSTEAL PRELOADER - FIXED / NEVER STUCK */
     function runPreloader() {
-      const bar = document.getElementById('loader-progress-bar');
-      const text = document.getElementById('loader-progress-text');
       const loader = document.getElementById('site-loader');
-      let val = 0;
+      const bar = document.getElementById('loader-progress-bar');
+      const textEl = document.getElementById('loader-progress-text');
 
       if (!loader) return;
+      if (window.__FEARSTEAL_PRELOADER_DONE__) {
+        loader.classList.add('fade-out');
+        loader.style.pointerEvents = 'none';
+        return;
+      }
+      if (window.__FEARSTEAL_PRELOADER_RUNNING__) return;
+      window.__FEARSTEAL_PRELOADER_RUNNING__ = true;
 
+      let val = 0;
+      let finished = false;
+
+      const render = () => {
+        const pct = Math.min(100, val);
+        if (bar) bar.style.width = pct + '%';
+        if (textEl) {
+          textEl.textContent = pct >= 100
+            ? 'READY! 100%'
+            : `LOADING REALM... ${pct}%`;
+        }
+      };
+
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        val = 100;
+        render();
+
+        // Fade the ORIGINAL loader out after 100% is painted.
+        setTimeout(() => {
+          loader.classList.add('fade-out');
+          loader.style.pointerEvents = 'none';
+
+          // Remove it from the visual layer after the original CSS transition.
+          setTimeout(() => {
+            loader.style.display = 'none';
+            window.__FEARSTEAL_PRELOADER_DONE__ = true;
+            window.__FEARSTEAL_PRELOADER_RUNNING__ = false;
+          }, 500);
+        }, 150);
+      };
+
+      render();
+
+      // Original animation: 0 -> 20 -> 40 -> 60 -> 80 -> 100.
       const interval = setInterval(() => {
+        if (finished) {
+          clearInterval(interval);
+          return;
+        }
+
         val += 20;
 
         if (val >= 100) {
           clearInterval(interval);
-          if (bar) bar.style.width = '100%';
-          if (text) text.textContent = 'READY! 100%';
-
-          setTimeout(() => {
-            if (loader) loader.classList.add('fade-out');
-          }, 150);
+          finish();
         } else {
-          if (bar) bar.style.width = val + '%';
-          if (text) text.textContent = `LOADING REALM... ${val}%`;
+          render();
         }
       }, 50);
 
-      /* Safety only: never leave the original loader visible forever. */
+      // Emergency fallback so an unrelated JS/browser issue can never leave it stuck.
       setTimeout(() => {
-        clearInterval(interval);
-        if (bar) bar.style.width = '100%';
-        if (text) text.textContent = 'READY! 100%';
-        if (loader) loader.classList.add('fade-out');
-      }, 1200);
+        if (!finished) {
+          clearInterval(interval);
+          finish();
+        }
+      }, 1800);
     }
 
-/* 15. DOM INITIALIZATION & TIMERS */
+    /* 15. DOM INITIALIZATION & TIMERS */
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('current-year').textContent = new Date().getFullYear();
       initializeStorage();
@@ -3704,7 +3573,6 @@
       renderPublicVoteSites();
       fixFearStealEncoding();
       
-      runPreloader();
       initParticles();
       checkAuth();
       
