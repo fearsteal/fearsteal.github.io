@@ -305,7 +305,7 @@
     .rank-coin-price-tag { font-family: var(--font-display); font-size: 1.05rem; font-weight: 800; color: var(--gold-fs); margin-bottom: 12px; }
     .rank-features { list-style: none; font-size: 0.85rem; color: #d1d5db; margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
 
-    /* 7-DAY STREAK */
+    /* 30-DAY STREAK */
     .streak-status-panel { background: rgba(14, 14, 22, 0.95); border: 1px solid var(--border-bright); border-radius: 16px; padding: 20px; margin-bottom: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; text-align: center; }
     .streak-stat-box { background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); }
     .streak-stat-box .val { font-family: var(--font-display); font-size: 1.8rem; font-weight: 900; color: #fff; }
@@ -383,38 +383,6 @@
     .discord-channel-previews { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
     .discord-chan-tag { background: rgba(255, 255, 255, 0.06); color: #949ba4; font-size: 0.75rem; font-weight: 600; padding: 4px 8px; border-radius: 5px; }
     .discord-join-btn-big { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: #5865F2; color: #fff; font-weight: 700; font-size: 0.92rem; padding: 12px; border-radius: 8px; text-decoration: none; }
-
-    /* ===== FEARSTEAL UI FIX PACK ===== */
-    body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:
-      radial-gradient(circle at 12% 18%,rgba(239,68,68,.13),transparent 28%),
-      radial-gradient(circle at 88% 22%,rgba(255,202,24,.08),transparent 24%),
-      radial-gradient(circle at 55% 90%,rgba(127,29,29,.16),transparent 34%),
-      linear-gradient(135deg,rgba(0,0,0,.15),rgba(10,10,18,.45));}
-    body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.22;background-image:
-      linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-      background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 92%);}
-    body > *{position:relative;z-index:3;}
-    #particles-canvas,.smoke-layer{z-index:1!important;}
-    input:not([type="checkbox"]),select,textarea{background:linear-gradient(135deg,rgba(8,8,13,.96),rgba(20,20,30,.92))!important;color:#f8fafc!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 8px 24px rgba(0,0,0,.18);}
-    input:not([type="checkbox"])::placeholder,textarea::placeholder{color:#7f8796!important;}
-    input:not([type="checkbox"]):focus,select:focus,textarea:focus{border-color:var(--crimson-glow)!important;box-shadow:0 0 0 3px rgba(239,68,68,.12),0 0 22px rgba(239,68,68,.12)!important;}
-    option{background:#0b0b12!important;color:#fff!important;}
-    .discord-server-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;}
-    .discord-live-card{background:linear-gradient(145deg,rgba(31,33,39,.96),rgba(12,13,18,.96));border:1px solid rgba(88,101,242,.42);border-radius:16px;overflow:hidden;box-shadow:0 18px 45px rgba(0,0,0,.35);}
-    .discord-live-card .discord-mockup-banner{height:72px;}
-    .discord-live-card .discord-mockup-content{padding-bottom:18px;}
-    .discord-live-card .discord-server-info-top{padding-top:36px;}
-    .discord-server-list-empty{padding:28px;text-align:center;color:var(--text-muted);border:1px dashed rgba(255,255,255,.12);border-radius:14px;}
-    .server-live-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:20px;background:rgba(35,165,90,.12);color:#4ade80;font-size:.7rem;font-weight:800;}
-    .tps-live{color:#34d399!important;}
-    .streak-progress-wrap{margin:0 0 18px;padding:14px;border:1px solid rgba(255,202,24,.18);border-radius:12px;background:rgba(255,255,255,.025);}
-    .streak-progress-track{height:9px;border-radius:20px;background:rgba(255,255,255,.07);overflow:hidden;box-shadow:inset 0 1px 4px rgba(0,0,0,.5);}
-    .streak-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#dc2626,#f59e0b,#ffca18);border-radius:20px;box-shadow:0 0 14px rgba(245,158,11,.45);transition:width .55s cubic-bezier(.16,1,.3,1);}
-    .daily-day-card{min-height:150px;}
-    .admin-server-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;}
-    @media(max-width:700px){.discord-server-list{grid-template-columns:1fr}.master-card-grid{gap:14px}.container{padding:0 14px}.daily-streak-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-
   </style>
 </head>
 <body>
@@ -728,7 +696,7 @@
             <i class="fa-solid fa-network-wired" style="color:var(--crimson-glow);"></i>
           </div>
           <div class="metric-label">SERVER ADDRESS</div>
-          <div class="metric-main-value" style="font-size:1.2rem;" id="stat-address">play.fearsteal.fun:19132</div>
+          <div class="metric-main-value" style="font-size:1.2rem;">play.fearsteal.fun:19132</div>
         </div>
 
         <div class="metric-card">
@@ -774,7 +742,7 @@
             <i class="fa-solid fa-shield-virus" style="color:var(--crimson-glow);"></i>
           </div>
           <div class="metric-label">NETWORK / PROXY</div>
-          <div class="metric-main-value" id="stat-proxy">—</div>
+          <div class="metric-main-value" id="stat-proxy">Velocity</div>
         </div>
       </div>
     </div>
@@ -987,7 +955,7 @@
     </div>
   </section>
 
-  <!-- 6. 7-DAY STREAK -->
+  <!-- 6. 30-DAY STREAK -->
   <section id="daily-rewards" style="padding:60px 0;">
     <div class="container">
       <div class="section-title-wrap">
@@ -1000,12 +968,6 @@
         <div class="streak-stat-box"><div class="val" id="streak-stat-countdown" style="color:var(--crimson-glow);">00:00:00</div><div class="lbl">Next Reward In</div></div>
       </div>
       <div class="glass-card" style="border-color:var(--gold-fs);">
-         <div class="streak-progress-wrap">
-           <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px;font-weight:800;">
-             <span style="color:#fff;">30-DAY CLAIM PROGRESS</span><span id="streak-progress-text" style="color:var(--gold-fs);">0 / 30</span>
-           </div>
-           <div class="streak-progress-track"><div id="streak-progress-fill" class="streak-progress-fill"></div></div>
-         </div>
         <div id="streak-cooldown-wrapper" style="margin-bottom:16px; display:none;">
           <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:700; margin-bottom:4px;">
             <span style="color:var(--text-muted);">Cooldown Active:</span>
@@ -1116,8 +1078,45 @@
           </div>
         </div>
 
-        <div class="discord-server-list" id="discord-server-list"></div>
+        <div class="discord-mockup-card">
+          <div class="discord-mockup-banner"></div>
+          <div class="discord-mockup-content">
+            <div class="discord-server-icon-wrap">
+              <img id="discord-guild-icon" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-server-icon-img" alt="Discord Icon" />
+            </div>
 
+            <div class="discord-server-info-top">
+              <div class="discord-title-line">
+                <span class="discord-server-name-heading" id="discord-guild-name">FearSteal Community</span>
+                <span class="discord-badge-partner" id="discord-affil-badge"><i class="fa-solid fa-shield-check"></i> Verified</span>
+              </div>
+              <p class="discord-tagline">
+                The official hub for FearSteal LifeSteal Network. Daily announcements, faction recruitment & giveaways!
+              </p>
+            </div>
+
+            <div class="discord-live-stats-bar">
+              <div class="discord-stat-bubble">
+                <span class="online-indicator-dot"></span>
+                <span><strong id="discord-presence-count">140+</strong> Online</span>
+              </div>
+              <div class="discord-stat-bubble">
+                <span class="total-indicator-dot"></span>
+                <span><strong id="discord-total-count">3,500+</strong> Members</span>
+              </div>
+            </div>
+
+            <div class="discord-channel-previews">
+              <span class="discord-chan-tag"><i class="fa-solid fa-bullhorn"></i> announcements</span>
+              <span class="discord-chan-tag"><i class="fa-solid fa-hashtag"></i> lifesteal-chat</span>
+              <span class="discord-chan-tag"><i class="fa-solid fa-gift"></i> giveaways</span>
+            </div>
+
+            <a href="https://discord.gg/pGM5x3gXpX" target="_blank" class="discord-join-btn-big">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i> Join Server
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1418,10 +1417,10 @@
           </div>
           <div class="auth-form-group">
             <label>4. Server Engine / Software (Directly Detected)</label>
-            <input type="text" id="adm-srv-software" placeholder="PaperMC" required />
+            <input type="text" id="adm-srv-software" placeholder="Velocity / PaperMC / Bedrock" required />
           </div>
           <div class="auth-form-group" style="grid-column:span 2;">
-            <label>8. Server MOTD Fallback</label>
+            <label>5. Server MOTD Banner</label>
             <input type="text" id="adm-srv-motd" placeholder="FearSteal LifeSteal Network • Steal Hearts or Die!" required />
           </div>
           <button type="submit" class="btn btn-primary" style="grid-column:span 2;">SAVE SERVER TELEMETRY</button>
@@ -1448,10 +1447,8 @@
             <label>Discord Permanent Invite Code / Link</label>
             <input type="text" id="adm-disc-invite" placeholder="https://discord.gg/pGM5x3gXpX" required />
           </div>
-          <button type="submit" class="btn btn-primary" style="grid-column:span 2;">SAVE DISCORD SERVER</button>
-          <button type="button" class="btn btn-outline" style="grid-column:span 2;" onclick="clearDiscordServers()">CLEAR SAVED DISCORD SERVERS</button>
+          <button type="submit" class="btn btn-primary" style="grid-column:span 2;">UPDATE DISCORD INTEGRATION</button>
         </form>
-        <div id="admin-discord-server-list" style="display:flex;flex-direction:column;gap:8px;margin-top:14px;"></div>
       </div>
 
       <!-- 3. Staff Team Management Pane -->
@@ -1593,7 +1590,7 @@
         <form onsubmit="handleAdminStreakUpdate(event)" style="max-width:500px; display:flex; flex-direction:column; gap:10px;">
           <select id="adm-streak-day" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;">
             <option value="1">Day 1</option><option value="2">Day 2</option><option value="3">Day 3</option>
-            <option value="4">Day 4</option><option value="5">Day 5</option><option value="6">Day 6</option><option value="7">Day 7</option><option value="8">Day 8</option><option value="9">Day 9</option><option value="10">Day 10</option><option value="11">Day 11</option><option value="12">Day 12</option><option value="13">Day 13</option><option value="14">Day 14</option><option value="15">Day 15</option><option value="16">Day 16</option><option value="17">Day 17</option><option value="18">Day 18</option><option value="19">Day 19</option><option value="20">Day 20</option><option value="21">Day 21</option><option value="22">Day 22</option><option value="23">Day 23</option><option value="24">Day 24</option><option value="25">Day 25</option><option value="26">Day 26</option><option value="27">Day 27</option><option value="28">Day 28</option><option value="29">Day 29</option><option value="30">Day 30 (Grand Finale)</option>
+            <option value="4">Day 4</option><option value="5">Day 5</option><option value="6">Day 6</option><option value="7">Day 7 (Grand Finale)</option>
           </select>
           <input type="text" id="adm-streak-name" placeholder="Reward Name" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
           <input type="number" id="adm-streak-coins" placeholder="Coins Given" style="background:#050508; border:1px solid #333; color:#fff; padding:8px; border-radius:6px;" required />
@@ -1887,8 +1884,60 @@
     /* ====================================================
        3. STORAGE & AUTHENTICATION (1-HOUR SESSION TIMEOUT)
        ==================================================== */
+    function safeParseJSON(value, fallback = []) {
+      try {
+        const parsed = JSON.parse(value);
+        return parsed ?? fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    function getStoredUsers() {
+      const users = safeParseJSON(localStorage.getItem(KEY_USERS) || '[]', []);
+      return Array.isArray(users) ? users.filter(u => u && typeof u === 'object') : [];
+    }
+
+    function getStoredStaff() {
+      const staff = safeParseJSON(localStorage.getItem(KEY_CUSTOM_STAFF) || '[]', []);
+      return Array.isArray(staff) && staff.length ? staff : [...INITIAL_STAFF];
+    }
+
+    function build30DayStreakRewards(existing = []) {
+      const defaults = [
+        ["Starter Pack + 500 Coins","fa-box",500],["1x Vote Crate Key","fa-key",600],
+        ["XP Boost + 800 Coins","fa-bolt",800],["Rare Key + 1,000 Coins","fa-gem",1000],
+        ["Totem of Undying + 1,200 Coins","fa-shield-halved",1200],["Blood Particle Trail + 1,500 Coins","fa-wand-magic-sparkles",1500],
+        ["Blood Key + 1,750 Coins","fa-key",1750],["Elite Crate + 2,000 Coins","fa-box-open",2000],
+        ["XP Booster + 2,250 Coins","fa-bolt",2250],["Rare Cosmetic + 2,500 Coins","fa-star",2500],
+        ["Vote Key Bundle + 2,750 Coins","fa-key",2750],["Blood Token + 3,000 Coins","fa-coins",3000],
+        ["Epic Crate + 3,250 Coins","fa-gem",3250],["Heart Shard + 3,500 Coins","fa-heart",3500],
+        ["Combat Boost + 3,750 Coins","fa-fire",3750],["Legendary Key + 4,000 Coins","fa-key",4000],
+        ["Epic Cosmetic + 4,250 Coins","fa-star",4250],["Heart Fragment + 4,500 Coins","fa-heart",4500],
+        ["Champion Crate + 4,750 Coins","fa-trophy",4750],["Warrior Bundle + 5,000 Coins","fa-shield",5000],
+        ["Mythic Key + 5,250 Coins","fa-key",5250],["Mythic Cosmetic + 5,500 Coins","fa-crown",5500],
+        ["Heart Boost + 5,750 Coins","fa-heart",5750],["Elite Bundle + 6,000 Coins","fa-box-open",6000],
+        ["Legendary Cosmetic + 6,250 Coins","fa-star",6250],["Bloodlord Key + 6,500 Coins","fa-key",6500],
+        ["Champion Bundle + 6,750 Coins","fa-trophy",6750],["Mythic Crate + 7,000 Coins","fa-gem",7000],
+        ["FearSteal Champion Pack + 7,500 Coins","fa-dragon",7500],
+        ["🏆 30-DAY GRAND FINALE + 10,000 Coins + Heart","fa-crown",10000]
+      ];
+      const old = Array.isArray(existing) ? existing : [];
+      return defaults.map((d, i) => {
+        const day = i + 1;
+        const found = old.find(r => Number(r.day) === day);
+        return {
+          day,
+          name: found?.name || d[0],
+          icon: found?.icon || d[1],
+          coins: Number.isFinite(Number(found?.coins)) ? Number(found.coins) : d[2],
+          isGrand: day === 30
+        };
+      });
+    }
+
     function initializeStorage() {
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+      let users = getStoredUsers();
       MASTER_ADMINS.forEach(adm => {
         if (!users.find(u => u.username.toLowerCase() === adm.username.toLowerCase())) {
           users.push({
@@ -1914,7 +1963,7 @@
           name: "FearSteal LifeSteal Network",
           ip: "play.fearsteal.fun",
           port: "19132",
-          software: "PaperMC",
+          software: "Velocity / PaperMC / Bedrock",
           motd: "FearSteal LifeSteal Network • Steal Hearts or Die!"
         }));
       }
@@ -1927,26 +1976,10 @@
         }));
       }
 
-      if (!localStorage.getItem(KEY_CUSTOM_STAFF)) {
-        localStorage.setItem(KEY_CUSTOM_STAFF, JSON.stringify(INITIAL_STAFF));
-      }
+      localStorage.setItem(KEY_CUSTOM_STAFF, JSON.stringify(getStoredStaff()));
 
-      if (!localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS)) {
-        const streakNames = [
-          "Starter Pack", "Vote Crate Key", "XP Boost", "Rare Key", "Totem Cache", "Blood Trail", "Crimson Bundle", "Heart Fragment", "Elite Key", "Coin Chest",
-          "Mystic Dust", "PvP Boost", "Rare Cosmetic", "Heart Shard", "Mythic Key", "Champion Pack", "Fear Token", "Legendary Key", "Coin Vault", "Battle Aura",
-          "Crimson Chest", "Warrior Bundle", "Mythic Cosmetic", "Heart Cache", "Fear Cache", "Royal Bundle", "Legendary Aura", "Titan Pack", "Ultimate Key", "🏆 30-DAY GRAND FINALE"
-        ];
-        const streakIcons = ["fa-box","fa-key","fa-bolt","fa-gem","fa-shield-halved","fa-wand-magic-sparkles","fa-fire","fa-heart","fa-key","fa-coins","fa-star","fa-bolt","fa-sparkles","fa-heart","fa-key","fa-trophy","fa-ticket","fa-key","fa-vault","fa-wand-magic-sparkles","fa-box","fa-shield","fa-gem","fa-heart","fa-crown","fa-gift","fa-star","fa-dragon","fa-key","fa-crown"];
-        const streakData = Array.from({length:30}, (_,i) => ({day:i+1,name:streakNames[i],icon:streakIcons[i],coins:500+(i*250),isGrand:i===29}));
-        localStorage.setItem(KEY_CUSTOM_STREAK_REWARDS, JSON.stringify(streakData));
-      } else {
-        let sr = JSON.parse(localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS) || '[]');
-        if (sr.length < 30) {
-          for (let i=sr.length;i<30;i++) sr.push({day:i+1,name:`Day ${i+1} Reward`,icon:i===29?'fa-crown':'fa-gift',coins:500+(i*250),isGrand:i===29});
-          localStorage.setItem(KEY_CUSTOM_STREAK_REWARDS, JSON.stringify(sr));
-        }
-      }
+      const existingStreakRewards = safeParseJSON(localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS) || '[]', []);
+      localStorage.setItem(KEY_CUSTOM_STREAK_REWARDS, JSON.stringify(build30DayStreakRewards(existingStreakRewards)));
 
       if (!localStorage.getItem(KEY_VOTE_CONFIG)) {
         const defaultVotes = [
@@ -2066,13 +2099,15 @@
       }
       if (pass !== confirmPass) { showToast('Passwords do not match!', 'warning'); return; }
 
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+      let users = getStoredUsers();
       if (users.find(u => u.username.toLowerCase() === username.toLowerCase())) {
         showToast('Username already exists.', 'warning'); return;
       }
 
       users.push({ username, mcUsername, email, password: pass, role: 'none', hearts: 10, coins: 500, purchases: 0, currency: 'USD', registeredAt: new Date().toLocaleDateString() });
       localStorage.setItem(KEY_USERS, JSON.stringify(users));
+      renderMembersDirectory();
+      renderRealLeaderboards();
       showToast('You are successful register so please login ✅️', 'success');
       switchAuthTab('login');
       document.getElementById('login-ident').value = username;
@@ -2084,7 +2119,7 @@
       const ident = document.getElementById('login-ident').value.trim().toLowerCase();
       const pass = document.getElementById('login-pass').value;
 
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+      let users = getStoredUsers();
       const found = users.find(u => (u.username.toLowerCase() === ident || u.email.toLowerCase() === ident) && u.password === pass);
 
       if (!found) {
@@ -2110,7 +2145,7 @@
       const confirmPass = document.getElementById('forgot-confirm-pass').value;
 
       if (newPass !== confirmPass) { showToast('Passwords do not match!', 'warning'); return; }
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+      let users = getStoredUsers();
       const idx = users.findIndex(u => u.username.toLowerCase() === ident || u.email.toLowerCase() === ident);
 
       if (idx === -1) { showToast('Account not found! Register first.', 'warning'); return; }
@@ -2131,7 +2166,7 @@
         alert("Error: New email must end with @fearsteal.fun ✅️");
         return;
       }
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+      let users = getStoredUsers();
       const idx = users.findIndex(u => u.username.toLowerCase() === targetUser);
 
       if (idx === -1) { showToast(`User ${targetUser} not found.`, 'warning'); return; }
@@ -2189,16 +2224,13 @@
       if (targetPane) targetPane.classList.add('active');
     }
 
-    function formatCurrencyAmount(usd){ const s=JSON.parse(localStorage.getItem(KEY_SESSION)||'null'); const code=(s&&s.currency)||'USD'; const c=CURRENCY_RATES[code]||CURRENCY_RATES.USD; return `${c.symbol}${(Number(usd)*c.rate).toFixed(2)} ${code}`; }
-    function updateStoreCurrencyDisplay(){ document.querySelectorAll('.rank-price-tag').forEach(el=>{ if(el.dataset.usd) el.textContent=formatCurrencyAmount(el.dataset.usd); }); if(window.activeModalRank){ const b=document.getElementById('rank-choice-store-btn'); if(b)b.textContent=`PURCHASE ON STORE (${formatCurrencyAmount(window.activeModalRank.cashPrice)})`; } }
-    function tagRankPrices(){ const prices=[5,8,10,12,15,20,25,30]; document.querySelectorAll('.rank-price-tag').forEach((el,i)=>{if(!el.dataset.usd)el.dataset.usd=prices[i]??0;}); updateStoreCurrencyDisplay(); }
     function changeUserCurrency(code) {
       const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
       if (!session) return;
       session.currency = code;
       localStorage.setItem(KEY_SESSION, JSON.stringify(session));
 
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+      let users = getStoredUsers();
       const idx = users.findIndex(u => u.username.toLowerCase() === session.username.toLowerCase());
       if (idx >= 0) { users[idx].currency = code; localStorage.setItem(KEY_USERS, JSON.stringify(users)); }
       updateUserCurrencyDisplay();
@@ -2302,7 +2334,7 @@
     function openRankPurchaseModal(rankName, cashPrice, coinPrice, days) {
       activeModalRank = { rankName, cashPrice, coinPrice, days };
       document.getElementById('rank-choice-title').textContent = `${rankName} (${days} Days)`;
-      document.getElementById('rank-choice-store-btn').textContent = `PURCHASE ON STORE (${formatCurrencyAmount(cashPrice)})`;
+      document.getElementById('rank-choice-store-btn').textContent = `PURCHASE ON STORE ($${cashPrice})`;
       document.getElementById('rank-choice-coin-btn').textContent = `BUY FOR 🪙 ${coinPrice.toLocaleString()} COINS`;
       document.getElementById('rank-choice-modal').classList.add('open');
     }
@@ -2390,7 +2422,7 @@
     }
 
     /* ====================================================
-       7. 7-DAY STREAK WITH COOLDOWN
+       7. 30-DAY STREAK WITH COOLDOWN
        ==================================================== */
     function renderDailyStreakUI() {
       const container = document.getElementById('daily-streak-container');
@@ -2400,7 +2432,8 @@
       const lastClaimTs = parseInt(localStorage.getItem(KEY_DAILY_CLAIM_TIMESTAMP + (session ? '_' + session.username : '')) || '0', 10);
       const isCooldown = lastClaimTs > 0 && (Date.now() - lastClaimTs) < COOLDOWN_DURATION_MS;
 
-      const streakRewards = JSON.parse(localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS) || '[]');
+      const streakRewards = build30DayStreakRewards(safeParseJSON(localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS) || '[]', []));
+      localStorage.setItem(KEY_CUSTOM_STREAK_REWARDS, JSON.stringify(streakRewards));
       container.innerHTML = '';
 
       streakRewards.forEach((r) => {
@@ -2444,7 +2477,7 @@
 
       let currentStreak = parseInt(localStorage.getItem(KEY_DAILY_STREAK + (session ? '_' + session.username : '')) || '0', 10);
       if (curStreakEl) curStreakEl.textContent = `🔥 ${currentStreak} DAYS`;
-      if (claimCountEl) claimCountEl.textContent = `${currentStreak} / 7`;
+      if (claimCountEl) claimCountEl.textContent = `${Math.min(currentStreak, 30)} / 30`;
 
       if (isCooldown) {
         if (wrapper) wrapper.style.display = 'block';
@@ -2544,29 +2577,65 @@
     function renderStaffDirectory() {
       const container = document.getElementById('staff-directory-grid');
       if (!container) return;
+      const staffList = getStoredStaff();
       container.innerHTML = '';
-      const staffList = JSON.parse(localStorage.getItem(KEY_CUSTOM_STAFF) || JSON.stringify(INITIAL_STAFF));
 
       staffList.forEach(st => {
+        const name = String(st.name || 'FearSteal Staff');
+        const role = String(st.role || 'STAFF');
+        const desc = String(st.desc || 'FearSteal Network staff member.');
+        const discord = String(st.discord || 'https://discord.gg/pGM5x3gXpX');
+
         const card = document.createElement('div');
         card.className = `staff-card ${st.cardClass || 'mod'}`;
         card.onclick = () => {
-          document.getElementById('staff-modal-avatar').src = `https://mc-heads.net/avatar/${encodeURIComponent(st.name)}/96`;
-          document.getElementById('staff-modal-name').textContent = st.name;
-          document.getElementById('staff-modal-role').textContent = st.role;
-          document.getElementById('staff-modal-desc').textContent = st.desc;
-          document.getElementById('staff-modal-discord').href = st.discord || "https://discord.gg/pGM5x3gXpX";
-          document.getElementById('staff-profile-modal').classList.add('open');
+          const avatar = document.getElementById('staff-modal-avatar');
+          const modalName = document.getElementById('staff-modal-name');
+          const modalRole = document.getElementById('staff-modal-role');
+          const modalDesc = document.getElementById('staff-modal-desc');
+          const modalDiscord = document.getElementById('staff-modal-discord');
+          if (avatar) {
+            avatar.onerror = function(){ this.onerror = null; this.src = STAFF_PLACEHOLDER_SVG; };
+            avatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(name)}/96`;
+          }
+          if (modalName) modalName.textContent = name;
+          if (modalRole) modalRole.textContent = role;
+          if (modalDesc) modalDesc.textContent = desc;
+          if (modalDiscord) modalDiscord.href = discord;
+          document.getElementById('staff-profile-modal')?.classList.add('open');
         };
-        card.innerHTML = `
-          <img src="https://mc-heads.net/avatar/${encodeURIComponent(st.name)}/76" onerror="this.onerror=null; this.src='${STAFF_PLACEHOLDER_SVG}';" class="staff-img-avatar" alt="${st.name}" />
-          <div><span class="badge-admin">${st.badge || st.role}</span></div>
-          <h4 style="margin:8px 0 2px; color:#fff; font-size:1.2rem;">${st.name}</h4>
-          <div style="font-size:0.75rem; font-weight:700; color:var(--gold-fs); margin-bottom:8px;">${st.role}</div>
-          <p style="font-size:0.8rem; color:#cbd5e1; text-align:left; line-height:1.4;">${st.desc}</p>
-        `;
+
+        const img = document.createElement('img');
+        img.className = 'staff-img-avatar';
+        img.alt = name;
+        img.src = `https://mc-heads.net/avatar/${encodeURIComponent(name)}/76`;
+        img.onerror = function(){ this.onerror = null; this.src = STAFF_PLACEHOLDER_SVG; };
+
+        const badge = document.createElement('div');
+        const badgeSpan = document.createElement('span');
+        badgeSpan.className = 'badge-admin';
+        badgeSpan.textContent = String(st.badge || role);
+        badge.appendChild(badgeSpan);
+
+        const title = document.createElement('h4');
+        title.style.cssText = 'margin:8px 0 2px;color:#fff;font-size:1.2rem;';
+        title.textContent = name;
+
+        const roleEl = document.createElement('div');
+        roleEl.style.cssText = 'font-size:0.75rem;font-weight:700;color:var(--gold-fs);margin-bottom:8px;';
+        roleEl.textContent = role;
+
+        const descEl = document.createElement('p');
+        descEl.style.cssText = 'font-size:0.8rem;color:#cbd5e1;text-align:left;line-height:1.4;';
+        descEl.textContent = desc;
+
+        card.append(img, badge, title, roleEl, descEl);
         container.appendChild(card);
       });
+
+      if (!staffList.length) {
+        container.innerHTML = '<div class="glass-card" style="grid-column:1/-1;text-align:center;color:#9ca3af;">No staff members found.</div>';
+      }
     }
     function closeStaffProfileModal() { document.getElementById('staff-profile-modal').classList.remove('open'); }
 
@@ -2585,37 +2654,68 @@
       const tbody = document.getElementById('real-leaderboard-tbody');
       const paginationWrap = document.getElementById('lb-pagination-wrap');
       if (!tbody) return;
-      tbody.innerHTML = '';
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      users=users.filter(u=>u&&u.username); users.sort((a,b)=>currentLeaderboardType==='coins'?Number(b.coins||0)-Number(a.coins||0):Number(b.purchases||0)-Number(a.purchases||0));
 
-      const totalPages = Math.min(10, Math.max(1, Math.ceil(users.length / PAGE_SIZE)));
+      let users = getStoredUsers().map(u => ({
+        ...u,
+        username: String(u.username || 'Unknown'),
+        mcUsername: String(u.mcUsername || u.username || 'Unknown'),
+        coins: Number(u.coins) || 0,
+        purchases: Number(u.purchases) || 0
+      }));
+
+      users.sort((a,b) => {
+        const av = currentLeaderboardType === 'coins' ? a.coins : a.purchases;
+        const bv = currentLeaderboardType === 'coins' ? b.coins : b.purchases;
+        return bv - av;
+      });
+
+      const totalPages = Math.max(1, Math.ceil(users.length / PAGE_SIZE));
+      currentLeaderboardPage = Math.min(Math.max(1, currentLeaderboardPage), totalPages);
       const startIdx = (currentLeaderboardPage - 1) * PAGE_SIZE;
       const pagePlayers = users.slice(startIdx, startIdx + PAGE_SIZE);
 
-      if (pagePlayers.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#9ca3af;">No registered players found.</td></tr>`;
+      tbody.innerHTML = '';
+      if (!pagePlayers.length) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#9ca3af;padding:24px;">No registered players found.</td></tr>';
       } else {
-        pagePlayers.forEach((u, i) => {
-          tbody.innerHTML += `
-            <tr>
-              <td><strong style="color:var(--gold-fs);">#${startIdx + i + 1}</strong></td>
-              <td><strong>${u.username}</strong></td>
-              <td><img src="https://mc-heads.net/avatar/${encodeURIComponent(u.mcUsername || u.username)}/24" onerror="this.src='${STAFF_PLACEHOLDER_SVG}';" style="vertical-align:middle; border-radius:4px; margin-right:6px;" alt="" /> ${u.mcUsername || u.username}</td>
-              <td><strong style="color:${currentLeaderboardType === 'coins' ? 'var(--gold-fs)' : '#22c55e'};">${currentLeaderboardType === 'coins' ? (u.coins || 0).toLocaleString() + ' Coins' : '$' + (u.purchases || 0).toLocaleString()}</strong></td>
-            </tr>
-          `;
+        pagePlayers.forEach((u,i) => {
+          const tr = document.createElement('tr');
+          const rank = document.createElement('td');
+          rank.innerHTML = `<strong style="color:var(--gold-fs);">#${startIdx+i+1}</strong>`;
+
+          const userTd = document.createElement('td');
+          const userStrong = document.createElement('strong');
+          userStrong.textContent = u.username;
+          userTd.appendChild(userStrong);
+
+          const playerTd = document.createElement('td');
+          const img = document.createElement('img');
+          img.src = `https://mc-heads.net/avatar/${encodeURIComponent(u.mcUsername)}/24`;
+          img.onerror = function(){ this.onerror = null; this.src = STAFF_PLACEHOLDER_SVG; };
+          img.style.cssText = 'vertical-align:middle;border-radius:4px;margin-right:6px;';
+          img.alt = '';
+          playerTd.append(img, document.createTextNode(' ' + u.mcUsername));
+
+          const metricTd = document.createElement('td');
+          const metric = document.createElement('strong');
+          metric.style.color = currentLeaderboardType === 'coins' ? 'var(--gold-fs)' : '#22c55e';
+          metric.textContent = currentLeaderboardType === 'coins' ? `${u.coins.toLocaleString()} Coins` : `$${u.purchases.toLocaleString()}`;
+          metricTd.appendChild(metric);
+
+          tr.append(rank,userTd,playerTd,metricTd);
+          tbody.appendChild(tr);
         });
       }
 
       if (paginationWrap) {
         paginationWrap.innerHTML = '';
-        for (let p = 1; p <= totalPages; p++) {
-          const pBtn = document.createElement('button');
-          pBtn.className = p === currentLeaderboardPage ? 'btn btn-primary' : 'btn btn-outline';
-          pBtn.style.padding = '3px 8px'; pBtn.style.fontSize = '0.75rem'; pBtn.textContent = p;
-          pBtn.onclick = () => { currentLeaderboardPage = p; renderRealLeaderboards(); };
-          paginationWrap.appendChild(pBtn);
+        for (let p=1; p<=totalPages; p++) {
+          const btn = document.createElement('button');
+          btn.className = p === currentLeaderboardPage ? 'btn btn-primary' : 'btn btn-outline';
+          btn.style.cssText = 'padding:3px 8px;font-size:0.75rem;';
+          btn.textContent = p;
+          btn.onclick = () => { currentLeaderboardPage = p; renderRealLeaderboards(); };
+          paginationWrap.appendChild(btn);
         }
       }
     }
@@ -2665,68 +2765,51 @@
       document.getElementById(paneId).classList.add('active');
     }
 
-    function getServerConfig(){
-      try{return JSON.parse(localStorage.getItem(KEY_SERVER_CONFIG)||'{}')}catch(e){return {}}
-    }
     function syncServerConfigUI() {
-      const config = getServerConfig();
-      if (document.getElementById('adm-srv-name')) document.getElementById('adm-srv-name').value = config.name || "FearSteal LifeSteal Network";
+      const config = JSON.parse(localStorage.getItem(KEY_SERVER_CONFIG) || '{}');
+      if (document.getElementById('adm-srv-name')) document.getElementById('adm-srv-name').value = config.name || "FearSteal LifeSteal";
       if (document.getElementById('adm-srv-ip')) document.getElementById('adm-srv-ip').value = config.ip || "play.fearsteal.fun";
       if (document.getElementById('adm-srv-port')) document.getElementById('adm-srv-port').value = config.port || "19132";
-      if (document.getElementById('adm-srv-software')) document.getElementById('adm-srv-software').value = config.software || "PaperMC";
-      if (document.getElementById('adm-srv-protocol')) document.getElementById('adm-srv-protocol').value = config.protocol || "bedrock";
-      if (document.getElementById('adm-srv-version')) document.getElementById('adm-srv-version').value = config.version || "1.21.x";
-      if (document.getElementById('adm-srv-tps')) document.getElementById('adm-srv-tps').value = config.tps ?? 20;
+      if (document.getElementById('adm-srv-software')) document.getElementById('adm-srv-software').value = config.software || "Velocity / PaperMC / Bedrock";
       if (document.getElementById('adm-srv-motd')) document.getElementById('adm-srv-motd').value = config.motd || "FearSteal LifeSteal Network • Steal Hearts or Die!";
-      renderServerConfigUI(config);
     }
-    function renderServerConfigUI(config){
-      const addr=(config.ip||'play.fearsteal.fun')+':'+(config.port||'19132');
-      const name=config.name||'FearSteal LifeSteal Network';
-      const el=id=>document.getElementById(id);
-      if(el('stat-node-name')) el('stat-node-name').textContent=`${name} • ${addr}`;
-      if(el('stat-address')) el('stat-address').textContent=addr;
-      if(el('stat-software')) el('stat-software').textContent=config.software||'—';
-      if(el('stat-proxy')) el('stat-proxy').textContent=['Velocity','BungeeCord','Waterfall'].includes(config.software)?config.software:'—';
-      if(el('stat-motd') && config.motd) el('stat-motd').textContent=config.motd;
-      if(el('stat-version') && config.version) el('stat-version').textContent=config.version;
-      if(el('stat-tps')) el('stat-tps').textContent=config.tps!==''&&config.tps!=null?Number(config.tps).toFixed(1):'—';
-    }
+
     function handleAdminSaveServerConfig(e) {
       e.preventDefault();
-      const config={name:document.getElementById('adm-srv-name').value.trim(),ip:document.getElementById('adm-srv-ip').value.trim(),port:document.getElementById('adm-srv-port').value.trim(),software:document.getElementById('adm-srv-software').value,protocol:document.getElementById('adm-srv-protocol').value,version:document.getElementById('adm-srv-version').value.trim(),tps:document.getElementById('adm-srv-tps').value,motd:document.getElementById('adm-srv-motd').value.trim()};
-      localStorage.setItem(KEY_SERVER_CONFIG,JSON.stringify(config)); renderServerConfigUI(config); fetchServerLiveStatus(); showToast('Server name, IP, port, software, version and telemetry saved!','success');
+      const config = {
+        name: document.getElementById('adm-srv-name').value.trim(),
+        ip: document.getElementById('adm-srv-ip').value.trim(),
+        port: document.getElementById('adm-srv-port').value.trim(),
+        software: document.getElementById('adm-srv-software').value.trim(),
+        motd: document.getElementById('adm-srv-motd').value.trim()
+      };
+      localStorage.setItem(KEY_SERVER_CONFIG, JSON.stringify(config));
+      document.getElementById('stat-node-name').textContent = `NODE: ${config.ip}:${config.port}`;
+      document.getElementById('stat-software').textContent = config.software;
+      document.getElementById('stat-motd').textContent = config.motd;
+      showToast('Server Telemetry & Node configuration saved!', 'success');
     }
-    function getDiscordServers(){
-      try{const c=JSON.parse(localStorage.getItem(KEY_DISCORD_CONFIG)||'{}'); if(Array.isArray(c.servers)) return c.servers; if(c.invite) return [{name:c.name||'Discord Server',affil:c.affil||'Community',invite:c.invite}];}catch(e){} return [];
+
+    function syncDiscordConfigUI() {
+      const config = JSON.parse(localStorage.getItem(KEY_DISCORD_CONFIG) || '{}');
+      if (document.getElementById('adm-disc-name')) document.getElementById('adm-disc-name').value = config.name || "FearSteal Community";
+      if (document.getElementById('adm-disc-affil')) document.getElementById('adm-disc-affil').value = config.affil || "Official Network";
+      if (document.getElementById('adm-disc-invite')) document.getElementById('adm-disc-invite').value = config.invite || "https://discord.gg/pGM5x3gXpX";
+      if (document.getElementById('discord-guild-name')) document.getElementById('discord-guild-name').textContent = config.name || "FearSteal Community";
+      if (document.getElementById('discord-affil-badge')) document.getElementById('discord-affil-badge').textContent = config.affil || "Verified";
     }
-    function renderDiscordServers(){
-      const servers=getDiscordServers();
-      const list=document.getElementById('discord-server-list');
-      const adminList=document.getElementById('admin-discord-server-list');
-      if(adminList) adminList.innerHTML=servers.length?servers.map((s,i)=>`<div style="background:rgba(255,255,255,.035);border:1px solid rgba(88,101,242,.22);padding:10px 12px;border-radius:10px;display:flex;justify-content:space-between;gap:10px;align-items:center"><span><strong>${escapeHtml(s.name)}</strong><small style="display:block;color:#8b93a1">${escapeHtml(s.invite)}</small></span><button class="btn btn-outline" style="padding:5px 9px;color:#f87171" onclick="deleteDiscordServer(${i})">DELETE</button></div>`).join(''):'<div style="color:#8b93a1;font-size:.8rem">No Discord servers saved yet.</div>';
-      if(!list) return;
-      if(!servers.length){list.innerHTML='<div class="discord-server-list-empty"><i class="fa-brands fa-discord" style="font-size:2rem;color:#5865F2;margin-bottom:8px"></i><div>No Discord servers configured.</div></div>';return;}
-      list.innerHTML=servers.map((s,i)=>`<div class="discord-live-card"><div class="discord-mockup-banner"></div><div class="discord-mockup-content"><div class="discord-server-icon-wrap"><img id="discord-icon-${i}" src="https://cdn.discordapp.com/embed/avatars/${i%5}.png" class="discord-server-icon-img" alt="Discord"></div><div class="discord-server-info-top"><div class="discord-title-line"><span class="discord-server-name-heading" id="discord-name-${i}">${escapeHtml(s.name)}</span><span class="discord-badge-partner" id="discord-affil-${i}">${escapeHtml(s.affil||'Community')}</span></div><p class="discord-tagline">FearSteal community server</p><div class="discord-live-stats-bar"><div class="discord-stat-bubble"><span class="online-indicator-dot"></span><span><strong id="discord-online-${i}">—</strong> Online</span></div><div class="discord-stat-bubble"><span class="total-indicator-dot"></span><span><strong id="discord-total-${i}">—</strong> Members</span></div></div><div class="discord-channel-previews"><span class="discord-chan-tag"><i class="fa-solid fa-link"></i> Invite</span><span class="discord-chan-tag"><i class="fa-solid fa-signal"></i> Live</span></div><a href="${safeUrl(s.invite)}" target="_blank" rel="noopener" class="discord-join-btn-big"><i class="fa-brands fa-discord"></i> JOIN DISCORD SERVER</a></div></div></div>`).join('');
+
+    function handleAdminSaveDiscordConfig(e) {
+      e.preventDefault();
+      const config = {
+        name: document.getElementById('adm-disc-name').value.trim(),
+        affil: document.getElementById('adm-disc-affil').value,
+        invite: document.getElementById('adm-disc-invite').value.trim()
+      };
+      localStorage.setItem(KEY_DISCORD_CONFIG, JSON.stringify(config));
+      syncDiscordConfigUI();
+      showToast('Discord Integration & Affiliation settings updated!', 'success');
     }
-    function syncDiscordConfigUI(){
-      const servers=getDiscordServers(); const first=servers[0]||{};
-      if(document.getElementById('adm-disc-name')) document.getElementById('adm-disc-name').value=first.name||'';
-      if(document.getElementById('adm-disc-affil')) document.getElementById('adm-disc-affil').value=first.affil||'Official Network';
-      if(document.getElementById('adm-disc-invite')) document.getElementById('adm-disc-invite').value=first.invite||'';
-      renderDiscordServers();
-    }
-    function handleAdminSaveDiscordConfig(e){
-      e.preventDefault(); const name=document.getElementById('adm-disc-name').value.trim(); const affil=document.getElementById('adm-disc-affil').value; const invite=document.getElementById('adm-disc-invite').value.trim();
-      if(!name||!invite){showToast('Enter a Discord server name and invite link.','warning');return;}
-      let url;try{url=new URL(invite);if(!/discord\.gg|discord\.com\/invite/i.test(url.hostname+url.pathname)) throw new Error();}catch(err){showToast('Please enter a valid Discord invite link.','warning');return;}
-      let servers=getDiscordServers(); const idx=servers.findIndex(s=>s.invite.toLowerCase()===invite.toLowerCase()); const item={name,affil,invite}; if(idx>=0) servers[idx]=item; else servers.push(item);
-      localStorage.setItem(KEY_DISCORD_CONFIG,JSON.stringify({servers})); syncDiscordConfigUI(); fetchDiscordLiveStatus(); showToast(idx>=0?'Discord server updated!':'Discord server saved to Home!','success');
-    }
-    function deleteDiscordServer(i){let s=getDiscordServers();s.splice(i,1);localStorage.setItem(KEY_DISCORD_CONFIG,JSON.stringify({servers:s}));syncDiscordConfigUI();fetchDiscordLiveStatus();}
-    function clearDiscordServers(){if(!confirm('Remove all saved Discord servers?'))return;localStorage.removeItem(KEY_DISCORD_CONFIG);syncDiscordConfigUI();showToast('All Discord servers cleared.','info');}
-    function escapeHtml(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
-    function safeUrl(v){try{const u=new URL(v);return /^https?:$/.test(u.protocol)?u.href:'#'}catch(e){return '#'}}
 
     function handleAdminAddStaffMember(e) {
       e.preventDefault();
@@ -2735,7 +2818,7 @@
       const discord = document.getElementById('adm-stf-discord').value.trim();
       const desc = document.getElementById('adm-stf-desc').value.trim();
 
-      let staffList = JSON.parse(localStorage.getItem(KEY_CUSTOM_STAFF) || JSON.stringify(INITIAL_STAFF));
+      let staffList = getStoredStaff();
       let cardClass = 'mod';
       if (role.includes('FOUNDER')) cardClass = 'founder';
       else if (role.includes('OWNER')) cardClass = 'owner';
@@ -2754,7 +2837,7 @@
     function renderAdminStaffRosterList() {
       const container = document.getElementById('admin-staff-roster-list');
       if (!container) return;
-      const staffList = JSON.parse(localStorage.getItem(KEY_CUSTOM_STAFF) || JSON.stringify(INITIAL_STAFF));
+      const staffList = getStoredStaff();
       container.innerHTML = '';
       staffList.forEach((st, idx) => {
         container.innerHTML += `
@@ -2767,7 +2850,7 @@
     }
 
     function deleteStaffMember(idx) {
-      let staffList = JSON.parse(localStorage.getItem(KEY_CUSTOM_STAFF) || JSON.stringify(INITIAL_STAFF));
+      let staffList = getStoredStaff();
       staffList.splice(idx, 1);
       localStorage.setItem(KEY_CUSTOM_STAFF, JSON.stringify(staffList));
       renderStaffDirectory();
@@ -2782,7 +2865,7 @@
       const pass = document.getElementById('adm-new-pass').value;
       const role = document.getElementById('adm-new-role').value;
 
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+      let users = getStoredUsers();
       const idx = users.findIndex(u => u.username.toLowerCase() === user.toLowerCase());
 
       if (idx >= 0) { users[idx].email = email; users[idx].password = pass; users[idx].role = role; showToast(`Updated role for ${user}!`, 'success'); }
@@ -2809,7 +2892,7 @@
       const action = document.getElementById('adm-coin-action').value;
       const amount = parseInt(document.getElementById('adm-coin-amount').value, 10);
 
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+      let users = getStoredUsers();
       const idx = users.findIndex(u => u.username.toLowerCase() === targetUser);
       if (idx === -1) { showToast('User not found!', 'warning'); return; }
 
@@ -2968,7 +3051,7 @@
       const coins = parseInt(document.getElementById('adm-streak-coins').value, 10);
       const icon = document.getElementById('adm-streak-icon').value.trim();
 
-      let streakRewards = JSON.parse(localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS) || '[]');
+      let streakRewards = build30DayStreakRewards(safeParseJSON(localStorage.getItem(KEY_CUSTOM_STREAK_REWARDS) || '[]', []));
       const idx = streakRewards.findIndex(r => r.day === day);
 
       if (idx >= 0) {
@@ -3001,7 +3084,7 @@
     }
 
     function mutateUserCoins(username, amount) {
-      let users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+      let users = getStoredUsers();
       const idx = users.findIndex(u => u.username.toLowerCase() === username.toLowerCase());
       if (idx >= 0) {
         users[idx].coins = Math.max(0, (users[idx].coins || 0) + amount);
@@ -3122,46 +3205,89 @@
 
     function copyIP() { navigator.clipboard.writeText('play.fearsteal.fun:19132'); showToast('Server IP copied: play.fearsteal.fun:19132', 'success'); }
 
-    async function fetchServerLiveStatus(){
-      const cfg=getServerConfig(); const host=cfg.ip||'play.fearsteal.fun'; const port=cfg.port||'19132'; const protocol=cfg.protocol||'bedrock'; const url=`https://api.mcstatus.io/v2/status/${protocol}/${encodeURIComponent(host+':'+port)}`; const started=performance.now();
-      try{
-        const res=await fetch(url,{cache:'no-store'}); const elapsed=Math.round(performance.now()-started); if(!res.ok) throw new Error('status'); const data=await res.json();
-        if(!data||!data.online) throw new Error('offline');
-        document.getElementById('stat-node-dot').className='status-dot online'; document.getElementById('stat-node-name').textContent=`${cfg.name||'FearSteal'} • ${host}:${port}`;
-        document.getElementById('stat-address').textContent=`${host}:${port}`; document.getElementById('stat-players').textContent=`${data.players?.online??0} / ${data.players?.max??0}`;
-        document.getElementById('stat-motd').textContent=data.motd?.clean||cfg.motd||'Online'; document.getElementById('stat-version').textContent=data.version?.name_clean||data.version?.name||cfg.version||'Unknown';
-        document.getElementById('stat-software').textContent=cfg.software||'Auto detected'; document.getElementById('stat-ping').textContent=(data.latency!=null?Math.round(data.latency):elapsed)+'ms';
-        const ping=data.latency!=null?Number(data.latency):elapsed; const badge=document.getElementById('stat-ping-badge'); badge.className='ping-badge '+(ping<80?'ping-low':ping<160?'ping-med':'ping-high'); badge.textContent=ping<80?'🟢 Low':ping<160?'🟡 Medium':'🔴 High';
-        const tps=data.tps?.average??data.tps??cfg.tps??''; document.getElementById('stat-tps').textContent=tps!==''?Number(tps).toFixed(1):'—'; document.getElementById('stat-tps-note').textContent=data.tps?'Live API telemetry':'TPS is not exposed by this public status endpoint';
-        statusCountdownVal=60;
-      }catch(err){
-        document.getElementById('stat-node-dot').className='status-dot offline'; document.getElementById('stat-players').textContent='—'; document.getElementById('stat-ping').textContent='Offline'; document.getElementById('stat-ping-badge').className='ping-badge ping-offline'; document.getElementById('stat-ping-badge').textContent='⚫ Offline'; document.getElementById('stat-tps').textContent='—'; document.getElementById('stat-tps-note').textContent='Server telemetry unavailable while offline'; statusCountdownVal=60;
-      }
+    async function fetchServerLiveStatus() {
+      try {
+        const res = await fetch('https://api.mcstatus.io/v2/status/bedrock/play.fearsteal.fun:19132');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.online) {
+            document.getElementById('stat-node-dot').className = 'status-dot online';
+            document.getElementById('stat-players').textContent = `${data.players.online} / ${data.players.max}`;
+            document.getElementById('stat-motd').textContent = data.motd?.clean || 'FearSteal LifeSteal Network';
+            statusCountdownVal = 60;
+            return;
+          }
+        }
+      } catch (err) {}
+      document.getElementById('stat-node-dot').className = 'status-dot offline';
+      statusCountdownVal = 60;
     }
 
-    async function fetchDiscordLiveStatus(){
-      renderDiscordServers(); const servers=getDiscordServers();
-      await Promise.all(servers.map(async(s,i)=>{try{const u=new URL(s.invite); const code=u.pathname.split('/').filter(Boolean).pop(); if(!code)throw 0; const res=await fetch(`https://discord.com/api/v9/invites/${encodeURIComponent(code)}?with_counts=true`,{cache:'no-store'}); if(!res.ok)throw 0; const d=await res.json(); const on=document.getElementById(`discord-online-${i}`),tot=document.getElementById(`discord-total-${i}`),nm=document.getElementById(`discord-name-${i}`),ic=document.getElementById(`discord-icon-${i}`); if(on)on.textContent=(d.approximate_presence_count??0).toLocaleString(); if(tot)tot.textContent=(d.approximate_member_count??0).toLocaleString(); if(nm&&d.guild?.name)nm.textContent=d.guild.name; if(ic&&d.guild?.id&&d.guild?.icon)ic.src=`https://cdn.discordapp.com/icons/${d.guild.id}/${d.guild.icon}.png?size=128`;}catch(e){}}));
+    async function fetchDiscordLiveStatus() {
+      try {
+        const res = await fetch('https://discord.com/api/v9/invites/pGM5x3gXpX?with_counts=true');
+        if (res.ok) {
+          const data = await res.json();
+          const pCount = document.getElementById('discord-presence-count');
+          const tCount = document.getElementById('discord-total-count');
+          const gName = document.getElementById('discord-guild-name');
+          const gIcon = document.getElementById('discord-guild-icon');
+          if (pCount && data.approximate_presence_count) pCount.textContent = data.approximate_presence_count.toLocaleString() + ' Online';
+          if (tCount && data.approximate_member_count) tCount.textContent = data.approximate_member_count.toLocaleString() + ' Members';
+          if (gName && data.guild && data.guild.name) gName.textContent = data.guild.name;
+          if (gIcon && data.guild && data.guild.icon) gIcon.src = `https://cdn.discordapp.com/icons/${data.guild.id}/${data.guild.icon}.png?size=128`;
+        }
+      } catch (e) {}
     }
 
     function renderMembersDirectory() {
       const tbody = document.getElementById('registered-members-tbody');
       if (!tbody) return;
+      const users = getStoredUsers();
       tbody.innerHTML = '';
-      const users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      users.forEach((u, i) => {
-        tbody.innerHTML += `
-          <tr>
-            <td><strong style="color:var(--crimson-glow);">#${i + 1}</strong></td>
-            <td><img src="https://mc-heads.net/avatar/${encodeURIComponent(u.mcUsername || u.username)}/28" onerror="this.src='${STAFF_PLACEHOLDER_SVG}';" style="border-radius:4px;" alt="" /></td>
-            <td><strong>${u.username}</strong></td>
-            <td><span style="color:var(--gold-fs); font-weight:700;">${(u.coins || 0).toLocaleString()} Coins</span></td>
-            <td><span style="font-size:0.75rem; color:#9ca3af;">${u.registeredAt || 'Today'}</span></td>
-          </tr>
-        `;
-      });
-    }
 
+      users.forEach((u,i) => {
+        const username = String(u.username || 'Unknown');
+        const mcUsername = String(u.mcUsername || username);
+        const coins = Number(u.coins) || 0;
+        const tr = document.createElement('tr');
+
+        const idx = document.createElement('td');
+        idx.innerHTML = `<strong style="color:var(--crimson-glow);">#${i+1}</strong>`;
+
+        const avatarTd = document.createElement('td');
+        const avatar = document.createElement('img');
+        avatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(mcUsername)}/28`;
+        avatar.onerror = function(){ this.onerror = null; this.src = STAFF_PLACEHOLDER_SVG; };
+        avatar.style.cssText = 'border-radius:4px;';
+        avatar.alt = '';
+        avatarTd.appendChild(avatar);
+
+        const nameTd = document.createElement('td');
+        const name = document.createElement('strong');
+        name.textContent = username;
+        nameTd.appendChild(name);
+
+        const coinsTd = document.createElement('td');
+        const coin = document.createElement('span');
+        coin.style.cssText = 'color:var(--gold-fs);font-weight:700;';
+        coin.textContent = `${coins.toLocaleString()} Coins`;
+        coinsTd.appendChild(coin);
+
+        const dateTd = document.createElement('td');
+        const date = document.createElement('span');
+        date.style.cssText = 'font-size:0.75rem;color:#9ca3af;';
+        date.textContent = String(u.registeredAt || 'Today');
+        dateTd.appendChild(date);
+
+        tr.append(idx,avatarTd,nameTd,coinsTd,dateTd);
+        tbody.appendChild(tr);
+      });
+
+      if (!users.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#9ca3af;padding:24px;">No registered members yet.</td></tr>';
+      }
+    }
     function showToast(msg, type = 'info') {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
