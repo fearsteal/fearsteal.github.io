@@ -625,7 +625,7 @@
         <div class="notice-step"><span>STEP 2</span><p>After successful registration, switch to the Login section.</p></div>
         <div class="notice-step"><span>STEP 3</span><p>Use the same username or email and the password you registered with.</p></div>
         <div class="notice-step"><span>STEP 4</span><p>After successful login, you can enter the FearSteal website.</p></div>
-        <div class="notice-author"><i class="fa-solid fa-heart"></i> Thanks for registering or logging in â€” <b>Author: ItzVeltriex &amp; Notslayer</b></div>
+        <div class="notice-author"><i class="fa-solid fa-heart"></i> Thanks for registering or logging in - <b>Author: ItzVeltriex &amp; Notslayer</b></div>
       </div>
 
       <div class="auth-tabs">
@@ -1809,7 +1809,7 @@
       </div>
       <div style="display:flex; justify-content:space-between; gap:10px;">
         <button class="btn btn-outline" style="flex:1;" onclick="closePurchaseConfirmModal()">CANCEL</button>
-        <button class="btn btn-primary" style="flex:1;" onclick="executeConfirmedPurchase()">CONFIRM PURCHASE</button>
+        <button id="confirm-coinshop-purchase-btn" class="btn btn-primary" style="flex:1;" onclick="executeConfirmedPurchase()">CONFIRM PURCHASE</button>
       </div>
     </div>
   </div>
@@ -1896,14 +1896,14 @@
     const KEY_CUSTOM_STAFF = 'fs_custom_staff_roster';
 
     const PAGE_SIZE = 10;
-    const ONE_HOUR_MS = 60 * 60 * 1000; // 1-Hour strict session limit
+    // Login session stays active until the user explicitly logs out.
 
     const CURRENCY_RATES = {
       USD: { symbol: '$', rate: 1 },
-      INR: { symbol: 'â‚¹', rate: 86.5 },
-      NPR: { symbol: 'à¤°à¥‚', rate: 138.4 },
-      PKR: { symbol: 'â‚¨', rate: 279.0 },
-      BDT: { symbol: 'à§³', rate: 121.5 }
+      INR: { symbol: '\u20B9', rate: 86.5 },
+      NPR: { symbol: '\u0930\u0942', rate: 138.4 },
+      PKR: { symbol: '\u20A8', rate: 279.0 },
+      BDT: { symbol: '\u09F3', rate: 121.5 }
     };
 
     const INITIAL_STAFF = [
@@ -2152,19 +2152,7 @@
         if (adminEmailTabBtn) adminEmailTabBtn.style.display = 'none';
         return;
       }
-
-      // Check 1-Hour Session Expiry
-      const elapsed = Date.now() - (session.sessionStart || Date.now());
-      if (elapsed >= ONE_HOUR_MS) {
-        localStorage.removeItem(KEY_SESSION);
-        showToast("Your session has expired after 1 hour. Please login again to continue.", "warning");
-        authOverlay.classList.remove('hidden');
-        adminNav.style.display = 'none';
-        staffNav.style.display = 'none';
-        navUserBox.style.display = 'none';
-        return;
-      }
-
+      // Persistent login: do not expire the session automatically.
       authOverlay.classList.add('hidden');
       navUserBox.style.display = 'block';
       document.getElementById('nav-user-name').textContent = session.username;
@@ -2697,14 +2685,35 @@
       document.getElementById('modal-confirm-price').textContent = item.price.toLocaleString();
       document.getElementById('modal-confirm-current-bal').textContent = (session.coins || 0).toLocaleString();
       const after = (session.coins || 0) - item.price;
-      document.getElementById('modal-confirm-after-bal').textContent = after >= 0 ? after.toLocaleString() : 'Insufficient';
-      document.getElementById('modal-confirm-after-bal').style.color = after >= 0 ? '#22c55e' : '#ef4444';
+      const enoughCoins = after >= 0;
+      document.getElementById('modal-confirm-after-bal').textContent = enoughCoins ? after.toLocaleString() : 'Insufficient Coins';
+      document.getElementById('modal-confirm-after-bal').style.color = enoughCoins ? '#22c55e' : '#ef4444';
+
+      const confirmBtn = document.getElementById('confirm-coinshop-purchase-btn');
+      if (confirmBtn) {
+        confirmBtn.disabled = !enoughCoins;
+        confirmBtn.textContent = enoughCoins ? 'CONFIRM PURCHASE' : 'NOT ENOUGH COINS';
+        confirmBtn.style.opacity = enoughCoins ? '1' : '.55';
+        confirmBtn.style.cursor = enoughCoins ? 'pointer' : 'not-allowed';
+      }
+
       document.getElementById('purchase-confirm-modal').classList.add('open');
+
+      if (!enoughCoins) {
+        showToast(`Not enough Coins to purchase ${item.name}. You need ${(item.price - (session.coins || 0)).toLocaleString()} more Coins.`, 'warning');
+      }
     }
 
     function closePurchaseConfirmModal() {
       const modal = document.getElementById('purchase-confirm-modal');
       if (modal) modal.classList.remove('open');
+      const confirmBtn = document.getElementById('confirm-coinshop-purchase-btn');
+      if (confirmBtn) {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = 'CONFIRM PURCHASE';
+        confirmBtn.style.opacity = '1';
+        confirmBtn.style.cursor = 'pointer';
+      }
       pendingPurchaseItem = null;
     }
 
@@ -2713,8 +2722,8 @@
       if (!session || !pendingPurchaseItem) return;
 
       if ((session.coins || 0) < pendingPurchaseItem.price) {
-        showToast('Insufficient coins balance!', 'warning');
-        closePurchaseConfirmModal();
+        const missing = pendingPurchaseItem.price - (session.coins || 0);
+        showToast(`Not enough Coins to purchase ${pendingPurchaseItem.name}. You need ${missing.toLocaleString()} more Coins.`, 'warning');
         return;
       }
 
@@ -2727,7 +2736,7 @@
 
       closePurchaseConfirmModal(); // Auto-closes instantly
       playCoinSound();
-      showToast(`Purchased ${pendingPurchaseItem.name}! Saved in your Locker.`, 'success');
+      showToast(`You successfully purchased ${pendingPurchaseItem.name}. It has been added to your Locker.`, 'success');
       renderCoinShop();
       renderUserBasket();
     }
@@ -3585,27 +3594,108 @@
       draw();
     }
 
-    /* 14. FAST PRELOADER */
+    /* 14. FEARSTEAL ORIGINAL PRELOADER - FIXED, VISUAL DESIGN UNCHANGED */
     function runPreloader() {
       const bar = document.getElementById('loader-progress-bar');
-      const text = document.getElementById('loader-progress-text');
+      const progressText = document.getElementById('loader-progress-text');
       const loader = document.getElementById('site-loader');
+
+      if (!loader) return;
+
       let val = 0;
-      
-      const interval = setInterval(() => {
-        val += 20;
-        if (val >= 100) {
-          clearInterval(interval);
-          if (bar) bar.style.width = '100%';
-          if (text) text.textContent = 'READY! 100%';
-          setTimeout(() => {
-            if (loader) loader.classList.add('fade-out');
-          }, 150);
-        } else {
-          if (bar) bar.style.width = val + '%';
-          if (text) text.textContent = `LOADING REALM... ${val}%`;
+      let finished = false;
+      const startTime = Date.now();
+
+      function renderProgress(value) {
+        value = Math.max(0, Math.min(100, Math.round(value)));
+        if (bar) bar.style.width = value + '%';
+        if (progressText) {
+          progressText.textContent = value >= 100 ? 'READY! 100%' : `LOADING REALM... ${value}%`;
         }
-      }, 50);
+      }
+
+      function finishLoader() {
+        if (finished) return;
+        finished = true;
+        renderProgress(100);
+
+        setTimeout(() => {
+          loader.classList.add('fade-out');
+          setTimeout(() => {
+            loader.style.display = 'none';
+          }, 500);
+        }, 180);
+      }
+
+      function animateLoader() {
+        if (finished) return;
+
+        const elapsed = Date.now() - startTime;
+
+        // Independent of server/API/Discord/auth requests.
+        if (elapsed < 250) val += 4;
+        else if (elapsed < 700) val += 4;
+        else if (elapsed < 1200) val += 3;
+        else if (elapsed < 1800) val += 2.5;
+        else val += 3;
+
+        if (val >= 100) {
+          finishLoader();
+          return;
+        }
+
+        renderProgress(val);
+        requestAnimationFrame(animateLoader);
+      }
+
+      renderProgress(0);
+      requestAnimationFrame(animateLoader);
+
+      // Absolute fallback: never allow the original loader to remain stuck.
+      setTimeout(finishLoader, 3500);
+    }
+
+
+    /* 16. ENCODING SAFETY - REMOVE OLD MOJIBAKE FROM VISIBLE UI */
+    function fixFearStealEncoding() {
+      const replacements = {
+        'Ã¢â€šÂ¹': '\u20B9',
+        'Ã¢â€šÂ¨': '\u20A8',
+        'Ã Â¤Â°Ã Â¥â€š': '\u0930\u0942',
+        'Ã Â§Â³': '\u09F3',
+        'Ã¢â‚¬â€': '-',
+        'Ã¢â‚¬â€œ': '-',
+        'Ã¢â‚¬Â¢': '-',
+        'Ã¢â‚¬Å“': '"',
+        'Ã¢â‚¬Â': '"',
+        'Ã¢â‚¬Ëœ': "'",
+        'Ã¢â‚¬â„¢': "'",
+        'Ã¢â‚¬Â¦': '...',
+        'Ã¢â€šÂ¬': ''
+      };
+
+      const fix = value => {
+        let out = String(value ?? '');
+        Object.keys(replacements).forEach(key => {
+          out = out.split(key).join(replacements[key]);
+        });
+        return out;
+      };
+
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+
+      nodes.forEach(node => {
+        const fixed = fix(node.nodeValue);
+        if (fixed !== node.nodeValue) node.nodeValue = fixed;
+      });
+
+      document.querySelectorAll('input, textarea, option').forEach(el => {
+        if (el.placeholder) el.placeholder = fix(el.placeholder);
+        if (el.value) el.value = fix(el.value);
+        if (el.textContent) el.textContent = fix(el.textContent);
+      });
     }
 
     /* 15. DOM INITIALIZATION & TIMERS */
@@ -3624,6 +3714,7 @@
       renderReviews();
       renderNoviceUI();
       renderPublicVoteSites();
+      fixFearStealEncoding();
       
       runPreloader();
       initParticles();
@@ -3632,11 +3723,15 @@
       fetchServerLiveStatus();
       fetchDiscordLiveStatus();
 
+
+      setTimeout(fixFearStealEncoding, 250);
+      setTimeout(fixFearStealEncoding, 1000);
+
       // Real 1-Second Interval for All Active Timers
       setInterval(() => {
         updateCooldownBar();
         updateNovice60DayTimer();
-        checkAuth(); // Auto-logout verification
+        checkAuth(); // Keep navigation/session UI synchronized
         
         statusCountdownVal--;
         const cntEl = document.getElementById('stat-refresh-countdown');
