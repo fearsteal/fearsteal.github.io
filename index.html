@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home | FearSteal</title>
-  <meta name="description" content="FearSteal - The premier Minecraft LifeSteal network featuring competitive PvP, dynamic events, real-time live server tracking, custom ranks, and a vibrant community." />
+  <meta name="description" content="FearSteal LifeSteal Network - Steal Hearts, Build Power, Survive. Java & Bedrock play.fearsteal.fun:19132" />
   <meta name="theme-color" content="#dc2626" />
 
   <!-- Fonts & Icons -->
@@ -1963,7 +1963,10 @@
           name: "FearSteal LifeSteal Network",
           ip: "play.fearsteal.fun",
           port: "19132",
-          software: "Velocity / PaperMC / Bedrock",
+          software: "PaperMC",
+          protocol: "bedrock",
+          version: "1.20.x",
+          tps: 20,
           motd: "FearSteal LifeSteal Network • Steal Hearts or Die!"
         }));
       }
@@ -2766,28 +2769,43 @@
     }
 
     function syncServerConfigUI() {
-      const config = JSON.parse(localStorage.getItem(KEY_SERVER_CONFIG) || '{}');
-      if (document.getElementById('adm-srv-name')) document.getElementById('adm-srv-name').value = config.name || "FearSteal LifeSteal";
-      if (document.getElementById('adm-srv-ip')) document.getElementById('adm-srv-ip').value = config.ip || "play.fearsteal.fun";
-      if (document.getElementById('adm-srv-port')) document.getElementById('adm-srv-port').value = config.port || "19132";
-      if (document.getElementById('adm-srv-software')) document.getElementById('adm-srv-software').value = config.software || "Velocity / PaperMC / Bedrock";
-      if (document.getElementById('adm-srv-motd')) document.getElementById('adm-srv-motd').value = config.motd || "FearSteal LifeSteal Network • Steal Hearts or Die!";
+      const cfg = safeParseJSON(localStorage.getItem(KEY_SERVER_CONFIG) || '{}', {});
+      const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val ?? ''; };
+      setVal('adm-server-name', cfg.name || 'FearSteal LifeSteal Network');
+      setVal('adm-server-ip', cfg.ip || 'play.fearsteal.fun');
+      setVal('adm-server-port', cfg.port || '19132');
+      setVal('adm-server-software', cfg.software || 'PaperMC');
+      setVal('adm-server-protocol', cfg.protocol || 'bedrock');
+      setVal('adm-server-version', cfg.version || '1.20.x');
+      setVal('adm-server-tps', cfg.tps ?? 20);
+      setVal('adm-server-motd', cfg.motd || 'FearSteal LifeSteal Network • Steal Hearts or Die!');
+
+      const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+      setText('stat-node-name', cfg.name || 'FearSteal LifeSteal Network');
+      setText('stat-address', `${cfg.ip || 'play.fearsteal.fun'}:${cfg.port || '19132'}`);
+      setText('stat-software', cfg.software || 'PaperMC');
+      setText('stat-version', cfg.version || '1.20.x');
+      setText('stat-tps', `${Number(cfg.tps) || 20}.0`);
+      setText('stat-motd', cfg.motd || 'FearSteal LifeSteal Network • Steal Hearts or Die!');
     }
 
     function handleAdminSaveServerConfig(e) {
       e.preventDefault();
-      const config = {
-        name: document.getElementById('adm-srv-name').value.trim(),
-        ip: document.getElementById('adm-srv-ip').value.trim(),
-        port: document.getElementById('adm-srv-port').value.trim(),
-        software: document.getElementById('adm-srv-software').value.trim(),
-        motd: document.getElementById('adm-srv-motd').value.trim()
+      const cfg = {
+        name: document.getElementById('adm-server-name')?.value.trim() || 'FearSteal LifeSteal Network',
+        ip: document.getElementById('adm-server-ip')?.value.trim() || 'play.fearsteal.fun',
+        port: document.getElementById('adm-server-port')?.value.trim() || '19132',
+        software: document.getElementById('adm-server-software')?.value || 'PaperMC',
+        protocol: document.getElementById('adm-server-protocol')?.value || 'bedrock',
+        version: document.getElementById('adm-server-version')?.value.trim() || '1.20.x',
+        tps: Math.max(0, Math.min(20, Number(document.getElementById('adm-server-tps')?.value) || 20)),
+        motd: document.getElementById('adm-server-motd')?.value.trim() || 'FearSteal LifeSteal Network • Steal Hearts or Die!'
       };
-      localStorage.setItem(KEY_SERVER_CONFIG, JSON.stringify(config));
-      document.getElementById('stat-node-name').textContent = `NODE: ${config.ip}:${config.port}`;
-      document.getElementById('stat-software').textContent = config.software;
-      document.getElementById('stat-motd').textContent = config.motd;
-      showToast('Server Telemetry & Node configuration saved!', 'success');
+      localStorage.setItem(KEY_SERVER_CONFIG, JSON.stringify(cfg));
+      syncServerConfigUI();
+      statusCountdownVal = 0;
+      fetchServerLiveStatus();
+      showToast('Server configuration saved and Real-Time Node Status updated!', 'success');
     }
 
     function syncDiscordConfigUI() {
@@ -2799,16 +2817,78 @@
       if (document.getElementById('discord-affil-badge')) document.getElementById('discord-affil-badge').textContent = config.affil || "Verified";
     }
 
-    function handleAdminSaveDiscordConfig(e) {
+    function getDiscordServers() {
+      const raw = safeParseJSON(localStorage.getItem(KEY_DISCORD_CONFIG) || '[]', []);
+      if (Array.isArray(raw)) return raw.filter(s => s && s.invite);
+      if (raw && raw.invite) return [{ ...raw, id: raw.id || 'discord_legacy' }];
+      return [];
+    }
+    function saveDiscordServers(servers) {
+      localStorage.setItem(KEY_DISCORD_CONFIG, JSON.stringify(servers));
+    }
+
+function handleAdminSaveDiscordConfig(e) {
       e.preventDefault();
-      const config = {
-        name: document.getElementById('adm-disc-name').value.trim(),
-        affil: document.getElementById('adm-disc-affil').value,
-        invite: document.getElementById('adm-disc-invite').value.trim()
-      };
-      localStorage.setItem(KEY_DISCORD_CONFIG, JSON.stringify(config));
-      syncDiscordConfigUI();
-      showToast('Discord Integration & Affiliation settings updated!', 'success');
+      const name = document.getElementById('adm-discord-name')?.value.trim() || 'Discord Community';
+      const affil = document.getElementById('adm-discord-affil')?.value || 'Official Network';
+      const invite = document.getElementById('adm-discord-invite')?.value.trim() || '';
+
+      if (!/^https?:\/\/(discord\.gg|discord\.com\/invite)\//i.test(invite)) {
+        showToast('Please enter a valid Discord invite link.', 'warning');
+        return;
+      }
+
+      const servers = getDiscordServers();
+      servers.push({
+        id: `discord_${Date.now()}_${Math.random().toString(36).slice(2,8)}`,
+        name, affil, invite
+      });
+      saveDiscordServers(servers);
+
+      renderAdminDiscordServers();
+      renderDiscordServers();
+      fetchDiscordLiveStatus();
+      document.getElementById('admin-discord-form')?.reset();
+      showToast('Discord server added. Existing servers were kept!', 'success');
+    }
+
+    function deleteDiscordServer(id) {
+      saveDiscordServers(getDiscordServers().filter(s => s.id !== id));
+      renderAdminDiscordServers();
+      renderDiscordServers();
+      fetchDiscordLiveStatus();
+    }
+
+    function renderAdminDiscordServers() {
+      const wrap = document.getElementById('admin-discord-server-list');
+      if (!wrap) return;
+      const servers = getDiscordServers();
+      wrap.innerHTML = '';
+      if (!servers.length) {
+        wrap.innerHTML = '<div style="padding:12px;color:#9ca3af;">No Discord servers added yet.</div>';
+        return;
+      }
+      servers.forEach(s => {
+        const row = document.createElement('div');
+        row.className = 'glass-card';
+        row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;padding:12px;';
+        const info = document.createElement('div');
+        const title = document.createElement('strong');
+        title.style.color = '#fff';
+        title.textContent = s.name || 'Discord Server';
+        const link = document.createElement('div');
+        link.style.cssText = 'font-size:.75rem;color:#9ca3af;word-break:break-all;';
+        link.textContent = s.invite;
+        info.append(title, document.createElement('br'), link);
+
+        const del = document.createElement('button');
+        del.className = 'btn btn-outline';
+        del.style.color = '#ef4444';
+        del.textContent = 'Remove';
+        del.onclick = () => deleteDiscordServer(s.id);
+        row.append(info, del);
+        wrap.appendChild(row);
+      });
     }
 
     function handleAdminAddStaffMember(e) {
@@ -3206,38 +3286,94 @@
     function copyIP() { navigator.clipboard.writeText('play.fearsteal.fun:19132'); showToast('Server IP copied: play.fearsteal.fun:19132', 'success'); }
 
     async function fetchServerLiveStatus() {
+      const cfg = safeParseJSON(localStorage.getItem(KEY_SERVER_CONFIG) || '{}', {});
+      const host = String(cfg.ip || 'play.fearsteal.fun').trim();
+      const port = String(cfg.port || '19132').trim();
+      const protocol = String(cfg.protocol || 'bedrock').toLowerCase();
+      const type = protocol === 'java' ? 'java' : 'bedrock';
+      const address = `${host}:${port}`;
+
+      const set = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
+      set('stat-node-name', cfg.name || 'FearSteal LifeSteal Network');
+      set('stat-address', address);
+      set('stat-software', cfg.software || 'PaperMC');
+      set('stat-version', cfg.version || '1.20.x');
+      set('stat-motd', cfg.motd || 'FearSteal LifeSteal Network • Steal Hearts or Die!');
+
+      const dot = document.getElementById('stat-node-dot');
+      const players = document.getElementById('stat-players');
+      const ping = document.getElementById('stat-ping');
+      const pingNote = document.getElementById('stat-ping-note');
+      const tps = document.getElementById('stat-tps');
+      const tpsNote = document.getElementById('stat-tps-note');
+
+      if (dot) dot.className = 'status-dot checking';
+      if (players) players.textContent = 'Checking...';
+      if (ping) ping.textContent = '—';
+      if (pingNote) pingNote.textContent = 'Auto detecting';
+      if (tps) tps.textContent = `${Number(cfg.tps) || 20}.0`;
+      if (tpsNote) tpsNote.textContent = 'Configured / live API when available';
+
+      const started = performance.now();
       try {
-        const res = await fetch('https://api.mcstatus.io/v2/status/bedrock/play.fearsteal.fun:19132');
-        if (res.ok) {
-          const data = await res.json();
-          if (data && data.online) {
-            document.getElementById('stat-node-dot').className = 'status-dot online';
-            document.getElementById('stat-players').textContent = `${data.players.online} / ${data.players.max}`;
-            document.getElementById('stat-motd').textContent = data.motd?.clean || 'FearSteal LifeSteal Network';
-            statusCountdownVal = 60;
-            return;
-          }
+        const res = await fetch(`https://api.mcstatus.io/v2/status/${type}/${encodeURIComponent(address)}`, { cache: 'no-store' });
+        const data = await res.json();
+        const elapsed = Math.max(1, Math.round(performance.now() - started));
+
+        if (!res.ok || !data?.online) throw new Error('offline');
+
+        if (dot) dot.className = 'status-dot online';
+        if (players) players.textContent = `${Number(data.players?.online ?? 0)} / ${Number(data.players?.max ?? 0)}`;
+
+        const motd = data.motd?.clean || data.motd?.raw;
+        if (motd) set('stat-motd', motd);
+
+        const version = data.version?.name_clean || data.version?.name;
+        if (version) set('stat-version', version);
+
+        const latency = Number(data.latency);
+        const finalPing = Number.isFinite(latency) ? Math.round(latency) : elapsed;
+        if (ping) ping.textContent = `${finalPing}ms`;
+        if (pingNote) pingNote.textContent = finalPing <= 60 ? 'Excellent connection' : finalPing <= 120 ? 'Stable connection' : 'High latency';
+
+        if (Array.isArray(data.tps) && data.tps.length && Number.isFinite(Number(data.tps[0]))) {
+          set('stat-tps', Number(data.tps[0]).toFixed(1));
+          if (tpsNote) tpsNote.textContent = 'Live TPS';
         }
-      } catch (err) {}
-      document.getElementById('stat-node-dot').className = 'status-dot offline';
-      statusCountdownVal = 60;
+        statusCountdownVal = 60;
+      } catch (err) {
+        if (dot) dot.className = 'status-dot offline';
+        if (players) players.textContent = 'Offline';
+        if (ping) ping.textContent = '—';
+        if (pingNote) pingNote.textContent = 'Server offline';
+        if (tpsNote) tpsNote.textContent = 'Unavailable while offline';
+        statusCountdownVal = 60;
+      }
     }
 
     async function fetchDiscordLiveStatus() {
-      try {
-        const res = await fetch('https://discord.com/api/v9/invites/pGM5x3gXpX?with_counts=true');
-        if (res.ok) {
+      const servers = getDiscordServers();
+      await Promise.all(servers.map(async s => {
+        try {
+          const match = s.invite.match(/(?:discord\.gg\/|discord\.com\/invite\/)([^/?#]+)/i);
+          if (!match) return;
+          const res = await fetch(`https://discord.com/api/v9/invites/${encodeURIComponent(match[1])}?with_counts=true`, { cache: 'no-store' });
+          if (!res.ok) return;
           const data = await res.json();
-          const pCount = document.getElementById('discord-presence-count');
-          const tCount = document.getElementById('discord-total-count');
-          const gName = document.getElementById('discord-guild-name');
-          const gIcon = document.getElementById('discord-guild-icon');
-          if (pCount && data.approximate_presence_count) pCount.textContent = data.approximate_presence_count.toLocaleString() + ' Online';
-          if (tCount && data.approximate_member_count) tCount.textContent = data.approximate_member_count.toLocaleString() + ' Members';
-          if (gName && data.guild && data.guild.name) gName.textContent = data.guild.name;
-          if (gIcon && data.guild && data.guild.icon) gIcon.src = `https://cdn.discordapp.com/icons/${data.guild.id}/${data.guild.icon}.png?size=128`;
-        }
-      } catch (e) {}
+
+          const name = document.getElementById(`discord-name-${s.id}`);
+          const stats = document.getElementById(`discord-stats-${s.id}`);
+          const icon = document.getElementById(`discord-icon-${s.id}`);
+
+          if (name && data.guild?.name) name.textContent = data.guild.name;
+          if (stats) {
+            stats.textContent = `${Number(data.approximate_presence_count || 0).toLocaleString()} Online • ${Number(data.approximate_member_count || 0).toLocaleString()} Members`;
+          }
+          if (icon && data.guild?.id && data.guild?.icon) {
+            icon.src = `https://cdn.discordapp.com/icons/${data.guild.id}/${data.guild.icon}.png?size=128`;
+          }
+        } catch (e) {}
+      }));
     }
 
     function renderMembersDirectory() {
@@ -3340,12 +3476,15 @@
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('current-year').textContent = new Date().getFullYear();
       initializeStorage();
+      syncServerConfigUI();
       
       renderStaffDirectory();
       renderCoinShop();
       renderDailyStreakUI();
       renderRealLeaderboards();
       renderMembersDirectory();
+      renderAdminDiscordServers();
+      renderDiscordServers();
       renderReviews();
       renderNoviceUI();
       renderPublicVoteSites();
