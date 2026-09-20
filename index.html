@@ -412,182 +412,14 @@
   </style>
 
 
-<style id="fearsteal-loader-fix">
-#preloader{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  min-height:100vh;
-  z-index:2147483647;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  background:#050507;
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
-  transition:opacity .45s ease,visibility .45s ease;
-}
-#preloader.fs-hide{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
-.fs-loader-bg{
-  position:absolute;
-  inset:-20%;
-  background:
-    radial-gradient(circle at 50% 42%,rgba(230,15,60,.20),transparent 24%),
-    radial-gradient(circle at 50% 50%,rgba(120,0,25,.18),transparent 48%),
-    #050507;
-  animation:fsLoaderBg 3s ease-in-out infinite alternate;
-}
-.fs-loader-wrap{
-  position:relative;
-  z-index:2;
-  width:min(88vw,430px);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-}
-.fs-loader-logo-box{
-  width:110px;
-  height:110px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:17px;
-}
-.fs-loader-logo{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  filter:drop-shadow(0 0 12px rgba(255,20,65,.75))
-         drop-shadow(0 0 32px rgba(255,0,50,.4));
-  animation:fsLoaderLogo 1.2s ease-in-out infinite;
-}
-#fs-logo-fallback{
-  display:none;
-  width:100%;
-  height:100%;
-  align-items:center;
-  justify-content:center;
-  border-radius:25px;
-  color:#fff;
-  font-weight:1000;
-  font-size:40px;
-  letter-spacing:2px;
-  background:linear-gradient(145deg,#26030b,#09090b);
-  border:1px solid rgba(255,40,75,.4);
-  box-shadow:0 0 30px rgba(255,20,60,.3);
-}
-.fs-loader-title{
-  color:#fff;
-  font-size:clamp(27px,8vw,43px);
-  line-height:1;
-  font-weight:1000;
-  letter-spacing:5px;
-  text-shadow:0 0 10px rgba(255,20,60,.8),0 0 28px rgba(255,0,50,.4);
-}
-.fs-loader-subtitle{
-  margin-top:11px;
-  color:rgba(255,255,255,.48);
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:1.5px;
-}
-.fs-loader-progress{
-  width:100%;
-  height:8px;
-  margin-top:25px;
-  border-radius:99px;
-  overflow:hidden;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.1);
-}
-#fs-loader-bar{
-  width:0%;
-  height:100%;
-  border-radius:99px;
-  background:linear-gradient(90deg,#8d0020,#ed174c,#ff5275);
-  box-shadow:0 0 12px rgba(255,20,70,.9);
-  transition:width .08s linear;
-}
-#fs-loader-percent{
-  margin-top:10px;
-  color:#fff;
-  font-weight:1000;
-  font-size:19px;
-  letter-spacing:1px;
-}
-#fs-loader-status{
-  margin-top:5px;
-  min-height:15px;
-  color:rgba(255,255,255,.42);
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:1.5px;
-}
-@keyframes fsLoaderLogo{
-  0%,100%{transform:scale(.96);filter:drop-shadow(0 0 9px rgba(255,20,65,.65))}
-  50%{transform:scale(1.045);filter:drop-shadow(0 0 20px rgba(255,20,65,1))}
-}
-@keyframes fsLoaderBg{
-  from{transform:scale(1);opacity:.85}
-  to{transform:scale(1.08);opacity:1}
-}
-@media(max-width:480px){
-  .fs-loader-logo-box{width:92px;height:92px}
-  .fs-loader-title{letter-spacing:3px}
-  .fs-loader-progress{height:7px}
-}
-</style>
+
 
 </head>
 <body>
 
 
-<div id="preloader" aria-label="FearSteal loading">
-  <div class="fs-loader-bg"></div>
-  <div class="fs-loader-wrap">
-    <div class="fs-loader-logo-box">
-      <img src="assets/logo.png" class="fs-loader-logo" alt="FearSteal"
-           onerror="this.style.display='none';document.getElementById('fs-logo-fallback').style.display='flex';">
-      <div id="fs-logo-fallback">FS</div>
-    </div>
-    <div class="fs-loader-title">FEARSTEAL</div>
-    <div class="fs-loader-subtitle">STEAL HEARTS. BUILD POWER. SURVIVE.</div>
-    <div class="fs-loader-progress">
-      <div id="fs-loader-bar"></div>
-    </div>
-    <div id="fs-loader-percent">0%</div>
-    <div id="fs-loader-status">INITIALIZING...</div>
-  </div>
-</div>
 
-<div class="fs-loader-orbit"></div>
-  <div class="fs-loader-wrap">
-    <img class="fs-loader-logo"
-         src="assets/logo.png"
-         alt="FearSteal"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
-    <div class="fs-loader-fallback">FS</div>
-    <h1 class="fs-loader-title">FEARSTEAL</h1>
-    <p class="fs-loader-subtitle">STEAL HEARTS. BUILD POWER. SURVIVE.</p>
-    <div class="fs-loader-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <div class="fs-loader-bar"></div>
-    </div>
-    <div class="fs-loader-percent">0%</div>
-    <div class="fs-loader-status">INITIALIZING NETWORK...</div>
-  </div>
-</div>
-
-
-
-  <canvas id="particles-canvas"></canvas>
+<canvas id="particles-canvas"></canvas>
   <div class="smoke-layer"></div>
 
   <!-- TOP ANNOUNCEMENT BANNER -->
@@ -2427,38 +2259,70 @@
     }
 
     function triggerNoviceClaimFlow() {
-      const session = JSON.parse(localStorage.getItem(KEY_SESSION) || 'null');
+      const session = safeParseJSON(localStorage.getItem(KEY_SESSION) || 'null', null);
       if (!session) { showToast('Please register and login first!', 'warning'); return; }
-
-      let claims = JSON.parse(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]');
-      if (claims.some(c => c.username.toLowerCase() === session.username.toLowerCase())) {
-        alert("You have already claimed this rank. You cannot claim this free rank again ❌️"); return;
+      const claims = safeParseJSON(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]', []);
+      if (claims.some(c => String(c.username).toLowerCase() === String(session.username).toLowerCase())) {
+        showToast('You have already claimed NOVICE. This free rank can only be claimed once.', 'warning'); return;
       }
-      let count = parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10);
-      if (count >= 100) { alert("All 100 Novice ranks have been claimed."); renderNoviceUI(); return; }
+      const count = Math.min(100, parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10));
+      if (count >= 100) { showToast('NOVICE is out of stock — all 100 claims have been used.', 'warning'); renderNoviceUI(); return; }
+      const modal = document.getElementById('novice-claim-modal');
+      const field = document.getElementById('novice-discord-username');
+      const feedback = document.getElementById('novice-discord-feedback');
+      if (field) field.value = '';
+      if (feedback) feedback.textContent = 'Enter your Discord username (not your display name).';
+      if (modal) modal.classList.add('open');
+    }
 
-      const discordUsername = prompt("Please enter your Discord Username to verify (e.g. warrior or warrior#0001):");
-      if (!discordUsername || discordUsername.trim().length < 3) {
-        alert("This Username isn't match in discord pleased fill your real username");
-        return;
+    function closeNoviceClaimModal() {
+      const modal = document.getElementById('novice-claim-modal');
+      if (modal) modal.classList.remove('open');
+    }
+
+    function proceedNoviceDiscordJoin() {
+      const field = document.getElementById('novice-discord-username');
+      const feedback = document.getElementById('novice-discord-feedback');
+      const discordName = String(field?.value || '').trim().replace(/^@/, '');
+      // Discord usernames are 2–32 characters and use lowercase letters, numbers, periods and underscores.
+      if (!/^[a-z0-9._]{2,32}$/.test(discordName)) {
+        if (feedback) feedback.textContent = 'That username format looks invalid. Use your actual Discord username (2–32 letters, numbers, dots or underscores).';
+        showToast('Please enter a valid Discord username.', 'warning'); return;
       }
-
-      const cleanName = discordUsername.trim();
-      const validSyntax = /^[a-zA-Z0-9_.-]{2,32}(#[0-9]{4})?$/.test(cleanName);
-
-      if (validSyntax) {
-        alert("This username is match discord username so pleased join discord than claim free ranks ✅️");
-        window.open('https://discord.gg/pGM5x3gXpX', '_blank');
-
-        count = Math.min(100, count + 1);
-        localStorage.setItem(KEY_NOVICE_COUNT, count.toString());
-        claims.push({ accountId: 'ACC-' + Math.floor(100000 + Math.random() * 900000), username: session.username, mcUsername: session.mcUsername || session.username, discordId: cleanName, verificationStatus: 'Verified (Discord Synced)', timestamp: new Date().toLocaleString() });
-        localStorage.setItem(KEY_NOVICE_CLAIMS, JSON.stringify(claims));
-        renderNoviceUI();
-        showToast('Novice Rank Claimed Successfully!', 'success');
-      } else {
-        alert("This Username isn't match in discord pleased fill your real username");
+      const session = safeParseJSON(localStorage.getItem(KEY_SESSION) || 'null', null);
+      const claims = safeParseJSON(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]', []);
+      if (!session) { closeNoviceClaimModal(); showToast('Please log in first.', 'warning'); return; }
+      if (claims.some(c => String(c.username).toLowerCase() === String(session.username).toLowerCase())) {
+        closeNoviceClaimModal(); showToast('You have already claimed NOVICE.', 'warning'); return;
       }
+      if (feedback) feedback.textContent = 'Join the FearSteal Discord, then return here and confirm below. Membership cannot be verified from a static GitHub Pages site; staff/backend verification is required.';
+      const joinBtn = document.getElementById('novice-discord-join-btn');
+      const confirmBtn = document.getElementById('novice-discord-confirm-btn');
+      if (joinBtn) joinBtn.style.display = 'none';
+      if (confirmBtn) confirmBtn.style.display = 'inline-flex';
+      window.open('https://discord.gg/pGM5x3gXpX', '_blank', 'noopener');
+    }
+
+    function confirmNoviceDiscordJoin() {
+      const discordName = String(document.getElementById('novice-discord-username')?.value || '').trim().replace(/^@/, '');
+      const session = safeParseJSON(localStorage.getItem(KEY_SESSION) || 'null', null);
+      if (!session || !/^[a-z0-9._]{2,32}$/.test(discordName)) { showToast('Enter a valid Discord username first.', 'warning'); return; }
+      const claims = safeParseJSON(localStorage.getItem(KEY_NOVICE_CLAIMS) || '[]', []);
+      if (claims.some(c => String(c.username).toLowerCase() === String(session.username).toLowerCase())) {
+        closeNoviceClaimModal(); showToast('You have already claimed NOVICE.', 'warning'); return;
+      }
+      let count = Math.min(100, parseInt(localStorage.getItem(KEY_NOVICE_COUNT) || '0', 10));
+      if (count >= 100) { closeNoviceClaimModal(); renderNoviceUI(); showToast('NOVICE is out of stock.', 'warning'); return; }
+      count = Math.min(100, count + 1);
+      claims.push({ accountId: 'ACC-' + Math.floor(100000 + Math.random() * 900000), username: session.username, mcUsername: session.mcUsername || session.username, discordId: discordName, verificationStatus: 'Pending staff verification — self-confirmed', timestamp: new Date().toLocaleString() });
+      localStorage.setItem(KEY_NOVICE_COUNT, String(count));
+      localStorage.setItem(KEY_NOVICE_CLAIMS, JSON.stringify(claims));
+      closeNoviceClaimModal(); renderNoviceUI();
+      showToast('NOVICE request recorded for staff verification.', 'success');
+      const joinBtn = document.getElementById('novice-discord-join-btn');
+      const confirmBtn = document.getElementById('novice-discord-confirm-btn');
+      if (joinBtn) joinBtn.style.display = 'inline-flex';
+      if (confirmBtn) confirmBtn.style.display = 'none';
     }
 
     function renderNoviceUI() {
@@ -2508,7 +2372,7 @@
         localStorage.setItem(KEY_USER_BASKET + '_' + session.username, JSON.stringify(basket));
         playCoinSound();
         alert("Purchase successful! Take a screenshot and send proof to server owner to activate your rank ✅️");
-        showToast(`Unlocked [${rankName}] Rank for ${days} Days!`, 'success');
+        showToast(`PURCHASE COMPLETE: [${rankName}] Rank for ${days} days was added to your Locker.`, 'success');
         renderUserBasket();
       }
     }
@@ -3451,22 +3315,25 @@
 
       const started = performance.now();
       try {
-        const res = await fetch(`https://api.mcstatus.io/v2/status/${type}/${encodeURIComponent(address)}`, { cache: 'no-store' });
+        const apiUrl = type === 'java'
+          ? `https://api.mcsrvstat.us/3/${encodeURIComponent(address)}`
+          : `https://api.mcsrvstat.us/bedrock/3/${encodeURIComponent(address)}`;
+        const res = await fetch(apiUrl, { cache: 'no-store' });
         const data = await res.json();
         const elapsed = Math.max(1, Math.round(performance.now() - started));
 
-        if (!res.ok || !data?.online) throw new Error('offline');
+        if (!res.ok || data?.online !== true) throw new Error('offline');
 
         if (dot) dot.className = 'status-dot online';
         if (players) players.textContent = `${Number(data.players?.online ?? 0)} / ${Number(data.players?.max ?? 0)}`;
 
-        const motd = data.motd?.clean || data.motd?.raw;
+        const motd = Array.isArray(data.motd?.clean) ? data.motd.clean.join(' ') : (data.motd?.clean || data.motd?.raw || data.motd?.html?.join(' '));
         if (motd) set('stat-motd', motd);
 
-        const version = data.version?.name_clean || data.version?.name;
+        const version = data.version || data.protocol?.name || ''; 
         if (version) set('stat-version', version);
 
-        const latency = Number(data.latency);
+        const latency = Number(data.debug?.ping ?? data.ping ?? data.latency);
         const finalPing = Number.isFinite(latency) ? Math.round(latency) : elapsed;
         if (ping) ping.textContent = `${finalPing}ms`;
         if (pingNote) pingNote.textContent = finalPing <= 60 ? 'Excellent connection' : finalPing <= 120 ? 'Stable connection' : 'High latency';
@@ -3752,104 +3619,7 @@
 
 
 
-<script id="fearsteal-loader-controller">
-(function(){
-  var loader=document.getElementById("preloader");
-  if(!loader)return;
 
-  var bar=document.getElementById("fs-loader-bar");
-  var percent=document.getElementById("fs-loader-percent");
-  var status=document.getElementById("fs-loader-status");
-
-  var progress=0;
-  var start=Date.now();
-  var pageLoaded=document.readyState==="complete";
-  var hidden=false;
-
-  var statusSteps=[
-    [0,"INITIALIZING..."],
-    [15,"LOADING FEARSTEAL CORE..."],
-    [32,"CONNECTING SERVER..."],
-    [50,"LOADING PLAYER DATA..."],
-    [68,"SYNCING NETWORK..."],
-    [84,"PREPARING WEBSITE..."],
-    [96,"ALMOST READY..."],
-    [100,"FEARSTEAL ONLINE"]
-  ];
-
-  window.addEventListener("load",function(){
-    pageLoaded=true;
-  });
-
-  function render(n){
-    n=Math.floor(n);
-    if(n>100)n=100;
-    if(bar)bar.style.width=n+"%";
-    if(percent)percent.textContent=n+"%";
-    for(var i=statusSteps.length-1;i>=0;i--){
-      if(n>=statusSteps[i][0]){
-        if(status)status.textContent=statusSteps[i][1];
-        break;
-      }
-    }
-  }
-
-  function finish(){
-    if(hidden)return;
-    hidden=true;
-    render(100);
-    setTimeout(function(){
-      loader.classList.add("fs-hide");
-      setTimeout(function(){
-        if(loader&&loader.parentNode)loader.parentNode.removeChild(loader);
-      },500);
-    },150);
-  }
-
-  function animate(){
-    if(hidden)return;
-    var elapsed=Date.now()-start;
-
-    /*
-      Never waits for any API, image, fetch, font, Minecraft server,
-      Discord request, or other website script. The loader owns its
-      progress completely, which prevents the old 99% freeze.
-    */
-    if(elapsed<250)progress+=3.5;
-    else if(elapsed<800)progress+=2.8;
-    else if(elapsed<1500)progress+=2.1;
-    else if(elapsed<2200)progress+=1.7;
-    else if(elapsed<2900)progress+=1.4;
-    else progress+=2.5;
-
-    if(progress>=100){
-      progress=100;
-      finish();
-      return;
-    }
-
-    render(progress);
-    requestAnimationFrame(animate);
-  }
-
-  render(0);
-  requestAnimationFrame(animate);
-
-  // Absolute fallback. Even if another script breaks, the loading screen closes.
-  setTimeout(finish,5000);
-})();
-
-    window.addEventListener('DOMContentLoaded', () => {
-      try {
-        updateUserCurrencyDisplay();
-        updateStoreCurrencyPrices();
-        syncServerConfigUI();
-        syncStatusAdminButton();
-        renderDiscordServers();
-        renderAdminDiscordServers();
-      } catch (e) {}
-    });
-</script>
 
 
 <script>
@@ -3911,5 +3681,73 @@
 })();
 </script>
 
+
+<script id="fearsteal-guaranteed-loader-fix">
+(function () {
+  "use strict";
+  function startLoader(id, barId, textId, hideClass, readyText) {
+    var el = document.getElementById(id);
+    if (!el || el.dataset.loaderFixed === "1") return;
+    el.dataset.loaderFixed = "1";
+    var bar = document.getElementById(barId);
+    var text = document.getElementById(textId);
+    var value = 0, started = Date.now(), completed = false;
+    function draw(n) {
+      n = Math.max(0, Math.min(100, Math.floor(n)));
+      if (bar) bar.style.width = n + "%";
+      if (text) text.textContent = n >= 100 ? readyText : "LOADING REALM... " + n + "%";
+    }
+    function close() {
+      if (completed) return;
+      completed = true;
+      draw(100);
+      window.setTimeout(function () {
+        if (hideClass) el.classList.add(hideClass);
+        el.style.opacity = "0";
+        el.style.visibility = "hidden";
+        el.style.pointerEvents = "none";
+        window.setTimeout(function () {
+          if (el && el.parentNode) el.parentNode.removeChild(el);
+        }, 550);
+      }, 180);
+    }
+    function tick() {
+      if (completed) return;
+      var elapsed = Date.now() - started;
+      // A time-based curve, rather than incrementing by frame, also works on slow phones.
+      value = Math.min(100, (elapsed / 2600) * 100);
+      draw(value);
+      if (value >= 100) close();
+      else window.setTimeout(tick, 35);
+    }
+    draw(0);
+    tick();
+    // Absolute watchdog protects against throttled or interrupted animation frames.
+    window.setTimeout(close, 4200);
+  }
+  function boot() {
+    startLoader("site-loader", "loader-progress-bar", "loader-progress-text", "fade-out", "REALM READY! 100%");
+    startLoader("preloader", "fs-loader-bar", "fs-loader-percent", "fs-hide", "100%");
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
+  } else {
+    boot();
+  }
+})();
+</script>
+
+<!-- NOVICE CLAIM CONFIRMATION -->
+<div class="dashboard-modal-overlay" id="novice-claim-modal" role="dialog" aria-modal="true" aria-labelledby="novice-claim-title">
+  <div class="dashboard-modal" style="max-width:520px;">
+    <div class="modal-header"><h3 id="novice-claim-title"><i class="fa-brands fa-discord" style="color:#7289da"></i> CLAIM FREE NOVICE</h3><button class="modal-close" onclick="closeNoviceClaimModal()" aria-label="Close">×</button></div>
+    <p style="color:#cbd5e1;margin:12px 0 18px;">Enter your Discord username, join the official FearSteal Discord, then return to confirm your request.</p>
+    <label for="novice-discord-username" style="display:block;margin-bottom:7px;font-weight:800;">Discord Username</label>
+    <input id="novice-discord-username" type="text" maxlength="32" autocomplete="off" placeholder="yourdiscordname" style="width:100%;padding:13px 14px;border-radius:10px;background:#09090f;color:#fff;border:1px solid rgba(255,255,255,.18);outline:none;">
+    <div id="novice-discord-feedback" style="font-size:.8rem;color:#a1a1aa;margin:10px 0 16px;">Enter your Discord username (not your display name).</div>
+    <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35);border-radius:10px;padding:12px;color:#fcd34d;font-size:.78rem;margin-bottom:16px;"><b>Verification notice:</b> A GitHub Pages-only website cannot confirm Discord account existence or server membership securely. This request is recorded as pending staff verification; production verification requires Discord OAuth/bot plus a secure backend.</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-primary" id="novice-discord-join-btn" onclick="proceedNoviceDiscordJoin()" style="flex:1;background:#5865f2;"><i class="fa-brands fa-discord"></i> JOIN DISCORD</button><button class="btn btn-primary" id="novice-discord-confirm-btn" onclick="confirmNoviceDiscordJoin()" style="display:none;flex:1;background:#2563eb;"><i class="fa-solid fa-check"></i> I JOINED — SUBMIT</button><button class="btn btn-outline" onclick="closeNoviceClaimModal()">CANCEL</button></div>
+  </div>
+</div>
 </body>
 </html>
