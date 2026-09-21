@@ -2079,8 +2079,8 @@ const STAFF_PLACEHOLDER_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3
       const pass = document.getElementById('reg-password').value;
       const confirmPass = document.getElementById('reg-confirm-password').value;
 
-      if (!email.endsWith('@fearsteal.fun')) {
-        alert("Don't use your own email ❌️\nPlease use email like this\nyourminecraftname@fearsteal.fun ✅️\nYou can choose and add any password which your account secured");
+      if (!/^[a-z0-9._%+-]+@fearsteal\.fun$/i.test(email)) {
+        openRegisterGuide(email);
         return;
       }
       if (pass !== confirmPass) { showToast('Passwords do not match!', 'warning'); return; }
@@ -3771,8 +3771,80 @@ const STAFF_PLACEHOLDER_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3
     <input id="novice-discord-username" type="text" maxlength="32" autocomplete="off" placeholder="yourdiscordname" style="width:100%;padding:13px 14px;border-radius:10px;background:#09090f;color:#fff;border:1px solid rgba(255,255,255,.18);outline:none;">
     <div id="novice-discord-feedback" style="font-size:.8rem;color:#a1a1aa;margin:10px 0 16px;">Enter your Discord username (not your display name).</div>
     <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35);border-radius:10px;padding:12px;color:#fcd34d;font-size:.78rem;margin-bottom:16px;"><b>Verification notice:</b> A GitHub Pages-only website cannot confirm Discord account existence or server membership securely. This request is recorded as pending staff verification; production verification requires Discord OAuth/bot plus a secure backend.</div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-primary" id="novice-discord-join-btn" onclick="proceedNoviceDiscordJoin()" style="flex:1;background:#5865f2;"><i class="fa-brands fa-discord"></i> JOIN DISCORD</button><button class="btn btn-primary" id="novice-discord-confirm-btn" onclick="confirmNoviceDiscordJoin()" style="display:none;flex:1;background:#2563eb;"><i class="fa-solid fa-check"></i> I JOINED — SUBMIT</button><button class="btn btn-outline" onclick="closeNoviceClaimModal()">CANCEL</button></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-primary" id="novice-discord-continue-btn" onclick="continueNoviceClaim()" style="flex:1;background:#7c3aed;"><i class="fa-solid fa-arrow-right"></i> CONTINUE</button><button class="btn btn-primary" id="novice-discord-join-btn" onclick="proceedNoviceDiscordJoin()" style="flex:1;background:#5865f2;"><i class="fa-brands fa-discord"></i> JOIN DISCORD</button><button class="btn btn-primary" id="novice-discord-confirm-btn" onclick="confirmNoviceDiscordJoin()" style="display:none;flex:1;background:#2563eb;"><i class="fa-solid fa-check"></i> I JOINED — SUBMIT</button><button class="btn btn-outline" onclick="closeNoviceClaimModal()">CANCEL</button></div>
   </div>
 </div>
+
+<style>
+/* FearSteal logo motion + slide-away mobile menu */
+@keyframes fsLogoPulse { 0%,100% { transform:translateY(0) scale(1); filter:drop-shadow(0 0 10px rgba(255,170,0,.42)); } 50% { transform:translateY(-5px) scale(1.055); filter:drop-shadow(0 0 25px rgba(239,68,68,.9)); } }
+.hero-section > .container > .fs-logo-img { animation:fsLogoPulse 3.2s ease-in-out infinite; transform-origin:center; }
+.hero-section > .container > .fs-logo-img:hover { animation-play-state:paused; transform:scale(1.12) rotate(-3deg); }
+#register-guide-overlay { position:fixed; inset:0; z-index:10000001; display:none; align-items:center; justify-content:center; padding:18px; background:rgba(0,0,0,.82); backdrop-filter:blur(9px); }
+#register-guide-overlay.open { display:flex; }
+.register-guide-card { width:min(560px,100%); max-height:92vh; overflow:auto; background:linear-gradient(145deg,#15151f,#08080d); border:1px solid rgba(244,63,94,.48); border-radius:20px; padding:26px; color:#f4f4f5; box-shadow:0 25px 90px #000; }
+.register-guide-card h2 { color:#facc15; margin:10px 0; font-weight:900; letter-spacing:1.5px; }
+.register-guide-card .guide-example { margin:14px 0; padding:15px; border-radius:12px; background:#09090f; border:1px solid #3f3f46; color:#86efac; overflow-wrap:anywhere; font-weight:800; }
+.register-guide-card .guide-step { padding:11px 13px; margin:8px 0; background:rgba(255,255,255,.045); border-radius:10px; color:#d4d4d8; }
+@media (max-width:992px) { .nav-links-list.open { animation:fsMenuIn .22s ease-out; } @keyframes fsMenuIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } } }
+</style>
+<div id="register-guide-overlay" role="dialog" aria-modal="true" aria-labelledby="register-guide-title">
+ <div class="register-guide-card">
+  <button onclick="closeRegisterGuide()" aria-label="Close register guide" style="float:right;background:transparent;border:0;color:#fff;font-size:28px;cursor:pointer">×</button>
+  <div style="text-align:center"><img id="register-guide-logo" alt="FearSteal logo" style="width:76px;height:76px;object-fit:contain;filter:drop-shadow(0 0 15px #f59e0b)"><h2 id="register-guide-title">REGISTER GUIDE</h2><p style="color:#a1a1aa">Create your FearSteal account with the required email format.</p></div>
+  <div class="guide-step"><b style="color:#facc15">STEP 1</b> — Enter your website username and Minecraft IGN.</div>
+  <div class="guide-step"><b style="color:#facc15">STEP 2</b> — For this website's current registration rule, use an address ending in <b>@fearsteal.fun</b>.</div>
+  <div class="guide-example">Example: yourminecraftname@fearsteal.fun ✅</div>
+  <div class="guide-step"><b style="color:#facc15">STEP 3</b> — Choose a password and type it again in Confirm Password. Use a password you can remember and keep private.</div>
+  <div class="guide-step"><b style="color:#facc15">STEP 4</b> — Accept the Terms & Rules and press <b>CREATE ACCOUNT</b>. Then switch to Login and use your registered username/email and password.</div>
+  <div id="register-guide-error" style="color:#fca5a5;font-size:.85rem;margin:12px 0"></div>
+  <button class="btn btn-primary" onclick="closeRegisterGuide();switchAuthTab('register');document.getElementById('reg-email').focus();" style="width:100%;justify-content:center">GOT IT — BACK TO REGISTER</button>
+ </div>
+</div>
+<script>
+function closeMobileNavAfterSelection() {
+ const menu=document.getElementById('main-nav-menu');
+ if(menu) menu.classList.remove('open');
+ const toggle=document.querySelector('.mobile-hamburger-btn');
+ if(toggle) toggle.setAttribute('aria-expanded','false');
+}
+// Close the mobile drawer after selecting any navigation item; hash links retain normal behavior.
+document.addEventListener('click',function(ev){
+ const link=ev.target.closest('#main-nav-menu a');
+ if(link) closeMobileNavAfterSelection();
+});
+const _toggleMobileNavOriginal=window.toggleMobileNav;
+window.toggleMobileNav=function(){
+ const menu=document.getElementById('main-nav-menu');
+ if(!menu)return;
+ const opening=!menu.classList.contains('open');
+ menu.classList.toggle('open',opening);
+ const btn=document.querySelector('.mobile-hamburger-btn');
+ if(btn)btn.setAttribute('aria-expanded',String(opening));
+};
+function openRegisterGuide(badEmail){
+ const overlay=document.getElementById('register-guide-overlay');
+ const logo=document.querySelector('.fs-logo-img');
+ const guideLogo=document.getElementById('register-guide-logo');
+ if(logo && guideLogo) guideLogo.src=logo.currentSrc||logo.src;
+ const err=document.getElementById('register-guide-error');
+ if(err) err.textContent=badEmail ? 'The email you entered ('+badEmail+') does not match the required @fearsteal.fun format. Please use the example above.' : '';
+ if(overlay)overlay.classList.add('open');
+}
+function closeRegisterGuide(){const el=document.getElementById('register-guide-overlay');if(el)el.classList.remove('open');}
+function continueNoviceClaim(){
+ const field=document.getElementById('novice-discord-username');
+ const feedback=document.getElementById('novice-discord-feedback');
+ const name=String(field?.value||'').trim().replace(/^@/,'');
+ if(!/^[a-z0-9._]{2,32}$/.test(name)){if(feedback)feedback.textContent='Enter a valid Discord username first (2–32 letters, numbers, dots or underscores).';showToast('Please enter a valid Discord username.','warning');return;}
+ const join=document.getElementById('novice-discord-join-btn');
+ const confirm=document.getElementById('novice-discord-confirm-btn');
+ const cont=document.getElementById('novice-discord-continue-btn');
+ if(cont)cont.style.display='none'; if(join)join.style.display='inline-flex'; if(confirm)confirm.style.display='none';
+ if(feedback)feedback.textContent='Now tap JOIN DISCORD. After joining, return to this page and press “I JOINED — SUBMIT”. This static site cannot independently verify server membership; confirmation is a self-report and staff/backend verification may be required.';
+}
+// Trigger Discord invite only from the explicit Join button, after Continue validated the username.
+</script>
+
 </body>
 </html>
