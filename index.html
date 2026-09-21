@@ -1,4 +1,4 @@
-<!DOCTYP Ehtml>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -1492,7 +1492,7 @@
         </div>
         <table class="custom-table">
           <thead>
-            <tr><th>Username</th><th>Email</th><th>Role</th><th>Coins</th></tr>
+            <tr><th>Username</th><th>Email</th><th>Role</th><th>Coins</th><th>Actions</th></tr>
           </thead>
           <tbody id="admin-user-list-tbody"></tbody>
         </table>
@@ -2984,11 +2984,64 @@ const STAFF_PLACEHOLDER_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3
       const tbody = document.getElementById('admin-user-list-tbody');
       if (!tbody) return;
       tbody.innerHTML = '';
-      const users = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-      users.forEach(u => {
-        tbody.innerHTML += `<tr><td><strong>${u.username}</strong></td><td>${u.email}</td><td><span class="badge-admin">${u.role.toUpperCase()}</span></td><td>${(u.coins || 0).toLocaleString()}</td></tr>`;
+      const users = getStoredUsers();
+      if (!users.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#9ca3af;padding:20px;">No registered users yet.</td></tr>';
+        return;
+      }
+      users.forEach((u, index) => {
+        const tr = document.createElement('tr');
+        const values = [u.username || 'Unknown', u.email || '—', String(u.role || 'none').toUpperCase(), (Number(u.coins) || 0).toLocaleString()];
+        values.forEach((value, i) => {
+          const td = document.createElement('td');
+          if (i === 0) { const strong = document.createElement('strong'); strong.textContent = value; td.appendChild(strong); }
+          else if (i === 2) { const badge = document.createElement('span'); badge.className = 'badge-admin'; badge.textContent = value; td.appendChild(badge); }
+          else td.textContent = value;
+          tr.appendChild(td);
+        });
+        const actionTd = document.createElement('td');
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'btn btn-outline';
+        removeBtn.style.cssText = 'border-color:#ef4444;color:#ef4444;padding:5px 10px;font-size:.75rem;';
+        removeBtn.textContent = 'REMOVE USER';
+        removeBtn.addEventListener('click', () => adminRemoveUser(u.username));
+        actionTd.appendChild(removeBtn);
+        tr.appendChild(actionTd);
+        tbody.appendChild(tr);
       });
     }
+
+    function adminRemoveUser(username) {
+      const session = safeParseJSON(localStorage.getItem(KEY_SESSION) || 'null', null);
+      if (!session || !(session.role === 'Founder' || ['itzveltriex','notslayer'].includes(String(session.username || '').toLowerCase()))) {
+        showToast('Only the founder can remove users.', 'warning');
+        return;
+      }
+      if (!confirm(`Remove the account "${username}"? This cannot be undone.`)) return;
+      const users = getStoredUsers();
+      const target = users.find(u => String(u.username || '').toLowerCase() === String(username || '').toLowerCase());
+      if (!target) { showToast('User not found.', 'warning'); renderAdminUserList(); return; }
+      const updated = users.filter(u => String(u.username || '').toLowerCase() !== String(username || '').toLowerCase());
+      localStorage.setItem(KEY_USERS, JSON.stringify(updated));
+      if (session && String(session.username || '').toLowerCase() === String(username || '').toLowerCase()) {
+        localStorage.removeItem(KEY_SESSION);
+        checkAuth();
+      }
+      renderAdminUserList();
+      renderMembersDirectory();
+      renderRealLeaderboards();
+      showToast(`Account "${username}" removed.`, 'success');
+    }
+
+    // Keep visible lists in step with changes made in another tab of this same browser.
+    window.addEventListener('storage', event => {
+      if (event.key === KEY_USERS) {
+        renderMembersDirectory();
+        renderAdminUserList();
+        renderRealLeaderboards();
+      }
+    });
 
     function handleAdminCoinsGiveOrRemove(e) {
       e.preventDefault();
