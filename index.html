@@ -3394,4 +3394,69 @@ input:focus, textarea:focus, select:focus {
   #status, #status ~ section { background-attachment:scroll !important; }
 }
 </style>
+<!-- GitHub Pages SPA/hash navigation fix: keep internal sections in the URL hash so refresh never requests /coinshop, /status, etc. -->
+<script id="github-pages-route-fix">
+(function () {
+  const INTERNAL_IDS = new Set([
+    'home','status','store','coinshop','earn-coins','daily-rewards','vote','staff','members',
+    'leaderboard','review','suggestions','staff-apply','media-apply','reports','appeals','support',
+    'discord-activity','forgot'
+  ]);
+
+  function toHashTarget(raw) {
+    if (!raw) return null;
+    let value = String(raw).trim();
+    if (!value || value === '#') return null;
+    if (value.startsWith('#')) return value;
+    try {
+      const u = new URL(value, window.location.href);
+      if (u.origin !== window.location.origin) return null;
+      const path = u.pathname.replace(/^\\/+|\\/+$/g, '');
+      const base = window.location.pathname.replace(/^\\/+|\\/+$/g, '');
+      // Convert same-site section URLs such as /coinshop or /status into #coinshop / #status.
+      if (INTERNAL_IDS.has(path) && (!u.search || u.search === '')) return '#' + path;
+      // Also handle project-site paths like /coinshop/coinshop.
+      const last = path.split('/').pop();
+      if (INTERNAL_IDS.has(last) && (!u.search || u.search === '')) return '#' + last;
+    } catch (e) {}
+    return null;
+  }
+
+  document.addEventListener('click', function (event) {
+    const a = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+    if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+    const raw = a.getAttribute('href');
+    const hash = toHashTarget(raw);
+    if (!hash) return;
+    const id = hash.slice(1);
+    if (!document.getElementById(id)) return;
+    event.preventDefault();
+    history.pushState(null, '', hash);
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, true);
+
+  // If an older link ever lands on /coinshop, /status, etc. while this HTML is served,
+  // normalize it to a hash route immediately.
+  (function normalizePath() {
+    const path = window.location.pathname.replace(/^\\/+|\\/+$/g, '');
+    const last = path.split('/').pop();
+    if (INTERNAL_IDS.has(path) || INTERNAL_IDS.has(last)) {
+      const id = INTERNAL_IDS.has(path) ? path : last;
+      if (window.location.hash !== '#' + id) {
+        history.replaceState(null, '', '#' + id);
+      }
+      const el = document.getElementById(id);
+      if (el) setTimeout(() => el.scrollIntoView({ block: 'start' }), 0);
+    }
+  })();
+
+  window.addEventListener('popstate', function () {
+    const id = window.location.hash.slice(1);
+    if (INTERNAL_IDS.has(id)) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ block: 'start' });
+    }
+  });
+})();
+</script>
 </body></html>
