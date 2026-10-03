@@ -327,7 +327,15 @@ if (!localStorage.getItem(KEY_NOVICE_COUNT)) localStorage.setItem(KEY_NOVICE_COU
 if (!localStorage.getItem(KEY_NOVICE_CLAIMS)) localStorage.setItem(KEY_NOVICE_CLAIMS, JSON.stringify([]));
 if (!localStorage.getItem(KEY_NOVICE_START_TS)) localStorage.setItem(KEY_NOVICE_START_TS, Date.now().toString());
 if (!localStorage.getItem(KEY_PURCHASE_HISTORY)) localStorage.setItem(KEY_PURCHASE_HISTORY, JSON.stringify([]));
-if (!localStorage.getItem(KEY_SHOP_ITEMS)) localStorage.setItem(KEY_SHOP_ITEMS, JSON.stringify(INITIAL_SHOP_ITEMS));
+// Keep every existing Coin Shop item and automatically restore any missing built-in items.
+// This prevents the Coin Shop from becoming empty after an update while preserving admin-added items.
+let savedShopItems = safeParseJSON(localStorage.getItem(KEY_SHOP_ITEMS) || '[]', []);
+if (!Array.isArray(savedShopItems)) savedShopItems = [];
+const savedShopIds = new Set(savedShopItems.map(i => String(i?.id || '')));
+INITIAL_SHOP_ITEMS.forEach(defaultItem => {
+  if (!savedShopIds.has(String(defaultItem.id))) savedShopItems.push({ ...defaultItem });
+});
+localStorage.setItem(KEY_SHOP_ITEMS, JSON.stringify(savedShopItems));
 if (!localStorage.getItem(KEY_COUPONS)) localStorage.setItem(KEY_COUPONS, JSON.stringify([]));
 if (!localStorage.getItem(KEY_REDEEM_CODES)) localStorage.setItem(KEY_REDEEM_CODES, JSON.stringify([]));
 if (!localStorage.getItem(KEY_TICKETS)) localStorage.setItem(KEY_TICKETS, JSON.stringify([]));
@@ -1083,7 +1091,12 @@ function searchShop(val) { currentShopSearch = val.trim().toLowerCase(); renderC
 function renderCoinShop() {
 const container = document.getElementById('coinshop-items-grid');
 if (!container) return;
-let items = JSON.parse(localStorage.getItem(KEY_SHOP_ITEMS) || '[]');
+let items = safeParseJSON(localStorage.getItem(KEY_SHOP_ITEMS) || '[]', []);
+if (!Array.isArray(items)) items = [];
+if (!items.length) {
+  items = INITIAL_SHOP_ITEMS.map(item => ({ ...item }));
+  localStorage.setItem(KEY_SHOP_ITEMS, JSON.stringify(items));
+}
 if (currentShopCategory !== 'all') items = items.filter(i => i.cat === currentShopCategory);
 if (currentShopSearch) items = items.filter(i => i.name.toLowerCase().includes(currentShopSearch));
 container.innerHTML = '';
@@ -2030,7 +2043,9 @@ fetchDiscordLiveStatus();
 function renderMembersDirectory() {
 const tbody = document.getElementById('registered-members-tbody');
 if (!tbody) return;
-const users = getStoredUsers().filter(u => u.registered !== false);
+// Show every valid registered account saved by the website; do not hide accounts
+// just because an older account record does not contain the newer `registered` flag.
+const users = getStoredUsers().filter(u => String(u.username || '').trim().length > 0);
 tbody.innerHTML = '';
 users.forEach((u,i) => {
 const username = String(u.username || 'Unknown');
@@ -2081,6 +2096,14 @@ if (!users.length) {
 tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#9ca3af;padding:24px;">No registered members yet.</td></tr>';
 }
 }
+// Keep Registered Members live when another tab/window registers or updates an account.
+function refreshFearStealRegisteredMembers() {
+  try { renderMembersDirectory(); } catch (e) {}
+}
+window.addEventListener('storage', function(event) {
+  if (event.key === KEY_USERS) refreshFearStealRegisteredMembers();
+});
+
 function showToast(msg, type = 'info') {
 const container = document.getElementById('toast-container');
 const toast = document.createElement('div');
@@ -2212,6 +2235,8 @@ renderCoinShop();
 renderDailyStreakUI();
 renderRealLeaderboards();
 renderMembersDirectory();
+// Refresh the public member directory periodically so newly registered users appear without a manual reload.
+setInterval(refreshFearStealRegisteredMembers, 3000);
 renderAdminDiscordServers();
 renderDiscordServers();
 renderReviews();
