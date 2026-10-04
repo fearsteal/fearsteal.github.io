@@ -11,7 +11,7 @@ Welcome to **FearSteal** — a premium Minecraft server built for players who lo
 ## 🌐 SERVER INFORMATION
 
 **Server IP:** `play.fearsteal.fun`  
-**Version:** `1.21.11 - 26.1.2`
+**Version:** `1.21.11 - 26.2`
 
 ### 🎮 Available Gamemodes
 
